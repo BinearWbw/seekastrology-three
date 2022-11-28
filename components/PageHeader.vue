@@ -71,6 +71,7 @@ export default {
 $block: 140px;
 $spacing: 16px;
 .header {
+  position: fixed;
   height: 170px;
   padding-bottom: 53px;
   width: 100%;
