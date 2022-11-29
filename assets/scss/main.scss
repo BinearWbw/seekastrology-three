@@ -139,47 +139,18 @@ button {
   background: 0 0;
 }
 @font-face {
-  font-family: 'Heebo-Black';
-  src: url('../font/Heebo-Black.ttf') format('truetype');
+  font-family: 'BebasNeue-Regular';
+  src: url('../font/BebasNeue-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Heebo-Bold';
-  src: url('../font/Heebo-Bold.ttf') format('truetype');
+  font-family: 'GothicOutTitD';
+  src: url('../font/GothicOutTitD.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
-@font-face {
-  font-family: 'Heebo-ExtraBold';
-  src: url('../font/Heebo-ExtraBold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Heebo-Light';
-  src: url('../font/Heebo-Light.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Heebo-Medium';
-  src: url('../font/Heebo-Medium.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Heebo-Regular';
-  src: url('../font/Heebo-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Heebo-Thin';
-  src: url('../font/Heebo-Thin.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+
 html {
   overscroll-behavior: contain;
   scrollbar-width: thin;
@@ -315,7 +286,7 @@ body::-webkit-scrollbar {
 }
 :root {
   --text-color: #ffffff;
-  --background-color: #1F2128;
+  --background-color: #1f2128;
   --shadow-color: #7a2ce5;
   --active-color: #ffaf64;
   --border-radius: 5px;
