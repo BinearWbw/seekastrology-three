@@ -1,13 +1,18 @@
 <template>
-  <main class="main">
-    <page-left class="main__left"></page-left>
+  <main class="main" :class="{ mainActive: getSlideActive }">
+    <div class="main__nav">
+      <page-left class="main__nav__slide"></page-left>
+    </div>
     <Nuxt class="main__page" />
   </main>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  computed: {},
+  computed: {
+    ...mapGetters(['getSlideActive']),
+  },
   mounted() {},
   methods: {},
 }
@@ -15,17 +20,38 @@ export default {
 <style lang="scss" scoped>
 .main {
   min-height: 100vh;
-  &__left {
-    position: fixed;
-    left: 0;
-    top: 0;
+  display: flex;
+  &__nav {
+    flex-shrink: 0;
     width: 255px;
     height: 100%;
-    background-color: #1f2128;
-    box-shadow: 1px 0px 0px 0px #2e313d;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    &__slide {
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 255px;
+      height: 100%;
+      background-color: #1f2128;
+      box-shadow: 1px 0px 0px 0px #2e313d;
+      z-index: 1;
+    }
   }
   &__page {
-    padding-left: 255px;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+  &.mainActive {
+    .main__nav {
+      width: 80px;
+      &__slide {
+        width: 80px;
+      }
+    }
   }
 }
 </style>

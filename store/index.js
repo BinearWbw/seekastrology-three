@@ -1,4 +1,5 @@
 export const state = () => ({
+  slideActive: false,
   visibleSearch: false,
   toastCfg: {
     position: 'bottom-left',
@@ -16,11 +17,17 @@ export const state = () => ({
   },
 })
 export const getters = {
+  getSlideActive(state) {
+    return state.slideActive
+  },
   getVisibleSearch(state) {
     return state.visibleSearch
   },
 }
 export const mutations = {
+  UPDATE_SLIDE_ACTIVE(state) {
+    state.slideActive = !state.slideActive
+  },
   UPDATE_VISIBLE_SEARCH(state, payload) {
     state.visibleSearch = payload
   },
