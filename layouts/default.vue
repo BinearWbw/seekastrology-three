@@ -44,6 +44,8 @@ export default {
     flex: 1;
     min-width: 0;
     overflow: hidden;
+    background: url('~assets/img/home/bg.jpg') no-repeat center top;
+    background-size: cover;
   }
   &.mainActive {
     .main__nav {
