@@ -45,7 +45,8 @@ export default {
     min-width: 0;
     overflow: hidden;
     background: url('~assets/img/home/bg.jpg') no-repeat center top;
-    background-size: cover;
+    background-size: 100% 930px;
+    padding-bottom: 169px;
   }
   &.mainActive {
     .main__nav {

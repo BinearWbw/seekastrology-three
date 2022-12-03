@@ -208,7 +208,7 @@ export default {
   &__menu {
     flex-shrink: 0;
     width: 100%;
-    padding: 0 20px 50px;
+    padding: 0 20px 33px;
     position: relative;
     &__a {
       width: 100%;
