@@ -1,119 +1,113 @@
 <template>
   <article class="game">
-    <section class="list">
-      <template v-for="(item, index) in gameList">
-        <common-normal
-          :item="item"
-          v-if="item.areaType === 1"
-          :key="`normal${item.id}`"
-        />
-        <common-double
-          :item="item"
-          v-else-if="item.areaType === 2"
-          :key="`double${item.id}`"
-        />
-        <common-large
-          :item="item"
-          v-else-if="item.areaType === 4"
-          :key="`large${item.id}`"
-        />
-        <div
-          class="area"
-          v-else-if="item.areaType === 77"
-          :key="`area${index}`"
-        >
-          <div class="area__main" :class="{ active: full }" id="game-area">
-            <div class="top">
-              <transition name="fade" mode="out-in">
-                <div class="top__shading" v-if="!visible" key="shading">
-                  <button class="btn common-btn pc" @click="visible = true">
-                    <span>Play Now</span>
-                    <img src="~/assets/img/play.png" alt="play" />
-                  </button>
-                  <button class="btn common-btn h5" @click="openH5">
-                    <span>Play Now</span>
-                    <img src="~/assets/img/play.png" alt="play" />
-                  </button>
-                </div>
-                <iframe
-                  key="game"
-                  v-else
-                  id="game-element"
-                  allowfullscreen="true"
-                  allow="autoplay; fullscreen; camera; focus-without-user-activation *; monetization; gamepad; keyboard-map *; xr-spatial-tracking; clipboard-write"
-                  name="gameFrame"
-                  scrolling="no"
-                  sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-scripts allow-same-origin allow-downloads"
-                  :src="gameInfo.url"
-                  :title="gameInfo.name"
-                ></iframe>
-              </transition>
-            </div>
-            <div class="bottom">
-              <img
-                class="bottom__img"
-                :src="gameInfo.icon"
-                :alt="gameInfo.name"
-              />
-              <p class="bottom__title">{{ gameInfo.name }}</p>
-              <button
-                class="common-btn bottom__btn bottom__love"
-                :class="{ active: favorite }"
-                @click="loveGame"
-              ></button>
-              <button
-                class="common-btn bottom__btn bottom__full"
-                v-if="!full"
-                @click="fullScreen"
+    <div class="game__main">
+      <div class="game__main__left">
+        <div class="nav">
+          <img class="first" src="~/assets/img/game/nav.png" alt="nav" />
+          <a href="/">Home</a>
+          <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
+          <a href="/">Home SSS</a>
+          <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
+          <p class="name">{{ gameInfo.name }}</p>
+        </div>
+        <div class="info">
+          <div class="info__banner">
+            <swiper class="swiper" :options="swiperOptions">
+              <swiper-slide
+                class="swiper__item"
+                v-for="(item, index) in banners"
+                :key="index"
               >
-                <img
-                  class="fullScreen"
-                  src="~/assets/img/game/fullScreen.png"
-                  alt="fullScreen"
-                />
-              </button>
-              <button
-                class="common-btn bottom__btn bottom__full"
-                v-else
-                @click="smallScreen"
-              >
-                <img
-                  class="smallScreen"
-                  src="~/assets/img/game/smallScreen.png"
-                  alt="smallScreen"
-                />
-              </button>
-            </div>
-            <div class="return" v-if="full" @click="smallScreen">
-              <img src="~/assets/img/game/back.png" alt="back" />
-            </div>
+                <img :src="item.img" alt="obskins" />
+              </swiper-slide>
+            </swiper>
           </div>
-          <div class="area__info">
-            <p class="title">{{ gameInfo.name }}</p>
-            <p class="explain">
-              {{ gameInfo.desc }}
-            </p>
-          </div>
-          <div class="area__ad"></div>
-          <div class="area__show">
-            <button class="btn common-btn"></button>
+          <div class="info__pagination">
+            <button class="btn prev"></button>
+            <div class="pagination"></div>
+            <button class="btn next"></button>
           </div>
         </div>
-      </template>
-    </section>
+      </div>
+      <div class="game__main__right">
+        <home-search></home-search>
+        <div class="ad"></div>
+        <div class="best">Best Games</div>
+        <div class="list">
+          <home-best2
+            v-for="item in gameList"
+            :item="item"
+            :key="item.id"
+          ></home-best2>
+        </div>
+      </div>
+    </div>
   </article>
 </template>
 
 <script>
-import screenfull from 'screenfull'
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
 export default {
   name: 'Game',
   data() {
     return {
-      visible: false,
-      full: false,
-      favorite: false,
+      swiperOptions: {
+        autoplay: {
+          delay: 5000,
+          stopOnLastSlide: false,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.pagination',
+          type: 'custom',
+          renderCustom: function (swiper, current, total) {
+            var customPaginationHtml = ''
+            for (var i = 0; i < total; i++) {
+              //判断哪个分页器此刻应该被激活
+              if (i == current - 1) {
+                customPaginationHtml +=
+                  '<div class="swiper-pagination-customs swiper-pagination-customs-active"></div>'
+              } else {
+                customPaginationHtml +=
+                  '<div class="swiper-pagination-customs"></div>'
+              }
+            }
+            return customPaginationHtml
+          },
+        },
+        navigation: {
+          nextEl: '.next',
+          prevEl: '.prev',
+        },
+        speed: 500,
+        grabCursor: true,
+      },
+      banners: [
+        {
+          name: 'Cyberpunk 2077',
+          title: 'tournament3',
+          text: 'Pre-Purchase Now to unlock early game content, including two-suit pack, early access to the Gravity Well gadget and Three Skill Points.',
+          img: require('~/assets/111.png'),
+        },
+        {
+          name: 'Cyberpunk 2077',
+          title: 'tournament1',
+          text: 'Pre-Purchase Now to unlock early game content, including two-suit pack, early access to the Gravity Well gadget and Three Skill Points.',
+          img: require('~/assets/222.png'),
+        },
+        {
+          name: 'Cyberpunk 2077',
+          title: 'tournament2',
+          text: 'Pre-Purchase Now to unlock early game content, including two-suit pack, early access to the Gravity Well gadget and Three Skill Points.',
+          img: require('~/assets/111.png'),
+        },
+      ],
     }
+  },
+  components: {
+    Swiper,
+    SwiperSlide,
   },
   validate({ query }) {
     if (
@@ -137,9 +131,8 @@ export default {
       gameInfo = res.detail
       res.relate.map((item) => {
         item.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${item.icon}`
-        gameList.push({ ...item, areaType: 1 })
+        gameList.push(item)
       })
-      gameList.splice(2, 0, { areaType: 77 })
       return {
         gameInfo,
         gameList,
@@ -148,53 +141,9 @@ export default {
       error({ statusCode: e.code, message: e.message })
     }
   },
-  mounted() {
-    this.favorite = this.$utils.getLocalData(this.gameInfo.id)
-    screenfull.on('change', this.fullBack)
-  },
-  beforeDestroy() {
-    screenfull.off('change', this.fullBack)
-  },
-  methods: {
-    openH5() {
-      this.visible = true
-      this.fullScreen()
-    },
-    fullScreen() {
-      const element = document.getElementById('game-area')
-      if (screenfull.isEnabled) {
-        this.full = true
-        screenfull.request(element)
-      }
-    },
-    smallScreen() {
-      this.full = false
-      screenfull.toggle()
-    },
-    fullBack() {
-      if (!screenfull.isFullscreen) {
-        this.visible = false
-        this.full = false
-      }
-    },
-    loveGame() {
-      let data = {
-        id: this.gameInfo.id,
-        opt: this.favorite ? 1 : 0,
-        origin: process.env.origin,
-        type: 4,
-      }
-      this.$apiList.home
-        .postGameVote(data)
-        .then(() => {
-          this.favorite = !this.favorite
-          this.$utils.setLocalData(this.gameInfo.id, this.favorite)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
-  },
+  mounted() {},
+  beforeDestroy() {},
+  methods: {},
 }
 </script>
 <style lang="scss" scoped>
@@ -202,403 +151,169 @@ export default {
 $block: 140px;
 $spacing: 16px;
 .game {
-  width: 100%;
-  .list {
-    grid-template-columns: repeat(11, 140px);
-    grid-gap: 16px;
-    display: grid;
-    grid-auto-flow: dense;
-    justify-content: center;
-    align-content: flex-start;
-    .area {
-      grid-gap: 16px 0;
-      grid-row-start: span 11;
-      grid-column-start: span 7;
-      display: flex;
-      flex-direction: column;
-      align-content: stretch;
-      &__main {
-        height: 608px;
-        box-shadow: 0 2px 20px 0 rgba(118, 87, 233, 0.4);
-        border-radius: 16px;
-        padding: 2px;
-        border: solid 2px #4e3991;
-        background-color: #0f0536;
+  &__main {
+    margin: 0 auto;
+    width: 1218px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 36px;
+    &__left {
+      flex: 1;
+      min-width: 0;
+      .nav {
+        width: 100%;
+        height: 40px;
         display: flex;
-        flex-direction: column;
-        flex-shrink: 0;
-        position: relative;
-        .top {
-          border-radius: 10px 10px 0 0;
+        align-items: center;
+        a {
+          font-size: 14px;
+          line-height: 1;
+          color: #808191;
+          &:hover {
+            color: #fff;
+          }
+        }
+        .first {
+          width: 21px;
+          height: 21px;
+          margin-right: 15px;
+          margin-bottom: 2px;
+        }
+        .arrow {
+          margin: 0 16px 0 20px;
+          width: 8px;
+          height: 12px;
+        }
+        .name {
+          font-size: 14px;
+          color: #ffffff;
+          line-height: 1;
+        }
+      }
+      .info {
+        margin-top: 36px;
+        padding-right: 52px;
+        width: 100%;
+        overflow: hidden;
+        &__banner {
           width: 100%;
-          flex: 1;
-          min-height: 0;
-          position: relative;
+          height: 460px;
+          background-color: #111216;
+          border-radius: 24px;
           overflow: hidden;
-          &__shading {
-            position: absolute;
-            left: 0;
-            top: 0;
+          .swiper {
             width: 100%;
             height: 100%;
-            z-index: 1;
-            background-color: #0f0536;
+            &__item {
+              width: 100%;
+              height: 100%;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+        }
+        &__pagination {
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 34px;
+          .btn {
+            width: 34px;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #242731;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+          .prev {
+            background-image: url('~assets/img/home/prev.png');
+          }
+          .next {
+            background-image: url('~assets/img/home/next.png');
+          }
+          .pagination{
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            .btn {
-              padding: 18px 32px;
-              border-radius: 30px;
-              background-color: #7a2ce5;
-              span {
-                font-size: 20px;
-                height: 23px;
-                line-height: 25px;
-                padding-right: 14px;
-                font-family: Heebo-Bold;
-              }
-              img {
-                width: 23px;
-                height: 23px;
-                object-fit: contain;
-              }
-              &.pc {
-                display: flex;
-              }
-              &.h5 {
-                display: none;
-              }
+            grid-gap: 0 10px;
+            width: auto;
+            min-width: 126px;
+            padding: 0 30px;
+          }
+          :deep(.swiper-pagination-customs) {
+            width: 10px;
+            height: 10px;
+            border: solid 2px transparent;
+            border-radius: 50%;
+            position: relative;
+            transition-duration: 0.3s;
+            &::before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              background-color: #808191;
             }
           }
-          #game-element {
-            width: 100%;
-            height: 100%;
-          }
-        }
-        .bottom {
-          height: 70px;
-          border-radius: 0 0 10px 10px;
-          padding: 0 20px 0 10px;
-          flex-shrink: 0;
-          width: 100%;
-          background-image: linear-gradient(90deg, #4a3687 0%, #362860 100%);
-          background-blend-mode: normal, normal;
-          display: flex;
-          align-items: center;
-          &__img {
-            width: 50px;
-            height: 50px;
-            box-shadow: 0 5px 10px 0 #3e0f7f;
-            border-radius: 8px;
-            background-color: #1d1242;
-          }
-          &__title {
-            padding-left: 13px;
-            font-size: 24px;
-            font-family: Heebo-Bold;
-            line-height: 1;
-          }
-          &__love {
-            margin-left: auto;
-            background-image: url('~assets/img/game/love.png');
-            background-repeat: no-repeat;
-            background-size: 18px 16px;
-            background-position: center;
-            &.active.bottom__love {
-              background-image: url('~assets/img/game/loveActive.png');
-              background-repeat: no-repeat;
-              background-size: 18px 16px;
-              background-position: center;
+          :deep(.swiper-pagination-customs-active) {
+            border-color: #fe27ee;
+            &::before {
+              background-color: #000000;
             }
-          }
-          &__full {
-            margin-left: 10px;
-            .fullScreen {
-              width: 18px;
-              height: 18px;
-            }
-            .smallScreen {
-              width: 20px;
-              height: 20px;
-            }
-          }
-          &__btn {
-            width: 60px;
-            height: 36px;
-            box-shadow: 0 5px 10px 0 #3e0f7f;
-            border-radius: 18px;
-            background-color: #7a2ce5;
-            -webkit-transition: background-image 0.3s var(--cubic-bezier),
-              background-color 0.3s var(--cubic-bezier),
-              -webkit-transform 0.3s var(--cubic-bezier);
-            -webkit-transition: background-image 0.3s var(--cubic-bezier),
-              background-color 0.3s var(--cubic-bezier),
-              transform 0.3s var(--cubic-bezier);
-            transition: background-image 0.3s var(--cubic-bezier),
-              background-color 0.3s var(--cubic-bezier),
-              transform 0.3s var(--cubic-bezier);
-            &.active {
-              background-color: #23194b;
-              box-shadow: none;
-            }
-          }
-        }
-        .return {
-          display: none;
-        }
-        &.active {
-          padding: 0;
-          border: none;
-          .top {
-            border-radius: 0;
-          }
-          .bottom {
-            border-radius: 0;
           }
         }
       }
-      &__info {
-        padding: 43px 10px;
-        border-radius: 16px;
-        height: 296px;
-        background-color: #3c2c6d;
-        display: flex;
-        flex-direction: column;
-        flex-shrink: 0;
-        .title {
-          padding-left: 35px;
-          font-size: 24px;
-          flex-shrink: 0;
-          font-family: Heebo-Bold;
-          line-height: 1;
-        }
-        .explain {
-          padding-left: 35px;
-          padding-right: 45px;
-          margin-top: 18px;
-          font-size: 20px;
-          line-height: 32px;
-          overflow: auto;
-          font-family: Heebo-Regular;
-          font-weight: normal;
-          font-stretch: normal;
-          color: #ae96ff;
-          flex: 1;
-          min-height: 0;
-        }
+    }
+    &__right {
+      width: 286px;
+      .search {
+        position: relative;
       }
-      &__ad {
-        height: 140px;
+      .ad {
+        margin-top: 36px;
+        height: 250px;
+        background-color: #282a31;
         border-radius: 16px;
-        background-color: #0d0723;
-        flex-shrink: 0;
       }
-      &__show {
-        height: 608px;
-        border-radius: 16px;
-        box-shadow: 0 2px 20px 0 rgba(118, 87, 233, 0.4);
-        flex-shrink: 0;
-        background-color: #0f0536;
-        border: solid 2px #4e3991;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .btn {
-          width: 118px;
-          height: 121px;
-          background: url('~assets/img/show.png') no-repeat center center;
-          background-size: contain;
+      .best {
+        font-family: BebasNeue-Regular;
+        font-size: 28px;
+        line-height: 1;
+        margin: 38px 0 24px;
+      }
+      .list {
+        width: 100%;
+        .item {
+          margin-bottom: 20px;
+          &:last-child {
+            margin-bottom: 0;
+          }
         }
       }
     }
   }
 }
 @media (max-width: (11 * $block + 10 * $spacing+60px)) {
-  .game {
-    .list {
-      grid-template-columns: repeat(10, 140px);
-      .area {
-        grid-row-end: 1;
-        grid-column-end: 9;
-      }
-    }
-  }
 }
 @media (max-width: (10 * $block + 9 * $spacing+60px)) {
-  .game {
-    .list {
-      grid-template-columns: repeat(9, 140px);
-    }
-  }
 }
 @media (max-width: (9 * $block + 8 * $spacing+60px)) {
-  .game {
-    .list {
-      grid-template-columns: repeat(8, 140px);
-      .area {
-        grid-row-end: 1;
-        grid-column-end: 8;
-      }
-    }
-  }
 }
 @media (max-width: (8 * $block + 7 * $spacing+60px)) {
-  .game {
-    .list {
-      grid-template-columns: repeat(7, 140px);
-    }
-  }
 }
 @media (max-width: (7 * $block + 6 * $spacing+60px)) {
-  .game {
-    .list {
-      grid-template-columns: repeat(6, 140px);
-      .area {
-        grid-row-end: 1;
-        grid-column-end: 7;
-        grid-row-start: span 11;
-        grid-column-start: span 6;
-      }
-    }
-  }
 }
 @media (max-width: (6 * $block + 5 * $spacing+60px)) {
-  .game {
-    .list {
-      grid-template-columns: repeat(5, 140px);
-      .area {
-        grid-row-end: 1;
-        grid-column-end: 6;
-        grid-row-start: span 11;
-        grid-column-start: span 5;
-      }
-    }
-  }
 }
 @media (max-width: 828px) {
   $pr: math.div(1vw, 8.28);
-  .game {
-    .list {
-      grid-template-columns: repeat(4, 176 * $pr);
-      grid-gap: 16 * $pr;
-      .area {
-        grid-gap: 16 * $pr 0;
-        grid-row-start: span 7;
-        grid-column-start: span 4;
-        grid-row-end: 1;
-        grid-column-end: 5;
-        &__main {
-          height: 438 * $pr;
-          box-shadow: 0 2 * $pr 20 * $pr 0 rgba(118, 87, 233, 0.4);
-          border-radius: 16 * $pr;
-          .top {
-            border-radius: 10 * $pr;
-            &__shading {
-              .btn {
-                padding: 18 * $pr 32 * $pr;
-                border-radius: 30 * $pr;
-                span {
-                  font-size: 20 * $pr;
-                  height: 23 * $pr;
-                  line-height: 25 * $pr;
-                  padding-right: 14 * $pr;
-                }
-                img {
-                  width: 23 * $pr;
-                  height: 23 * $pr;
-                }
-                &.pc {
-                  display: none;
-                }
-                &.h5 {
-                  display: flex;
-                }
-              }
-            }
-          }
-          .return {
-            position: absolute;
-            left: 0;
-            top: 30 * $pr;
-            width: 75 * $pr;
-            height: 64 * $pr;
-            border-radius: 0 32 * $pr 32 * $pr 0;
-            background: #fff;
-            padding-left: 11 * $pr;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            img {
-              width: 13 * $pr;
-              height: 20 * $pr;
-            }
-          }
-          .bottom {
-            height: 100 * $pr;
-            border-radius: 0 0 10 * $pr 10 * $pr;
-            padding: 0 30 * $pr 0 20 * $pr;
-            &__img {
-              width: 70 * $pr;
-              height: 70 * $pr;
-              box-shadow: 0 5 * $pr 10 * $pr 0 #3e0f7f;
-              border-radius: 12 * $pr;
-            }
-            &__title {
-              padding-left: 20 * $pr;
-              font-size: 28 * $pr;
-            }
-            &__love {
-              background-size: 18 * $pr 16 * $pr;
-              background-position: center;
-              &.active.bottom__love {
-                background-size: 18 * $pr 16 * $pr;
-                background-position: center;
-              }
-            }
-            &__full {
-              display: none;
-            }
-            &__btn {
-              width: 80 * $pr;
-              height: 48 * $pr;
-              box-shadow: 0 5 * $pr 10 * $pr 0 #3e0f7f;
-              border-radius: 24 * $pr;
-            }
-          }
-        }
-        &__info {
-          padding: 30 * $pr;
-          border-radius: 16 * $pr;
-          height: auto;
-          .title {
-            padding-left: 30 * $pr;
-            font-size: 28 * $pr;
-          }
-          .explain {
-            padding-left: 30 * $pr;
-            padding-right: 30 * $pr;
-            margin-top: 20 * $pr;
-            font-size: 24 * $pr;
-            line-height: 32 * $pr;
-            overflow: hidden;
-          }
-        }
-        &__ad {
-          height: 176 * $pr;
-          border-radius: 16 * $pr;
-        }
-        &__show {
-          height: 368 * $pr;
-          border-radius: 16 * $pr;
-          box-shadow: 0 2 * $pr 20 * $pr 0 rgba(118, 87, 233, 0.4);
-          .btn {
-            width: 118 * $pr;
-            height: 121 * $pr;
-          }
-        }
-      }
-    }
-  }
 }
 </style>

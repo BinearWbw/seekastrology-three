@@ -1,14 +1,8 @@
 <template>
   <article class="home">
     <div class="home__main">
-      <div class="search">
-        <input
-          class="input"
-          type="text"
-          v-model="searchInput"
-          placeholder="Search"
-        />
-        <button class="button" @click="search"></button>
+      <div class="home__main__search">
+        <home-search></home-search>
       </div>
       <section class="banner">
         <div class="banner__left">
@@ -60,36 +54,18 @@
           <a href="/" class="more">MORE GAME</a>
         </div>
         <div class="best1">
-          <a
-            class="item"
+          <home-best1
             v-for="item in gameList.comm.slice(0, 7)"
+            :item="item"
             :key="item.id"
-            :title="item.name"
-          >
-            <div class="item__top">
-              <img :src="item.icon" :alt="item.name" />
-            </div>
-            <p class="item__title">
-              {{ item.name }}
-            </p>
-          </a>
+          ></home-best1>
         </div>
         <div class="best2">
-          <a
-            class="item"
+          <home-best2
             v-for="item in gameList.comm.slice(0, 8)"
+            :item="item"
             :key="item.id"
-            :title="item.name"
-          >
-            <div class="item__left">
-              <img :src="item.icon" :alt="item.name" />
-            </div>
-            <div class="item__right">
-              <p class="p1">{{ item.name }}</p>
-              <p class="p2">Shooting</p>
-              <p class="p3">May 26,2020</p>
-            </div>
-          </a>
+          ></home-best2>
         </div>
       </section>
       <section class="module latest">
@@ -101,20 +77,11 @@
           </div>
         </div>
         <div class="list">
-          <a
-            class="item"
+          <home-latest
             v-for="item in gameList.comm.slice(0, 18)"
             :key="item.id"
-            :title="item.name"
-          >
-            <div class="item__top">
-              <img :src="item.icon" :alt="item.name" />
-            </div>
-            <div class="item__bottom">
-              <p class="name">{{ item.name }}</p>
-              <p class="time">14m ago</p>
-            </div>
-          </a>
+            :item="item"
+          ></home-latest>
         </div>
       </section>
       <section class="module hot">
@@ -126,21 +93,11 @@
           </div>
         </div>
         <div class="list">
-          <a
-            class="item"
-            :class="{ free: index > 6 }"
-            v-for="(item, index) in gameList.comm.slice(0, 21)"
+          <home-hot
+            v-for="item in gameList.comm.slice(0, 21)"
+            :item="item"
             :key="item.id"
-            :title="item.name"
-          >
-            <div class="item__top">
-              <img :src="item.icon" :alt="item.name" />
-            </div>
-            <div class="item__bottom">
-              <p class="name">{{ item.name }}</p>
-              <button class="btn" v-if="index > 6">FREE</button>
-            </div>
-          </a>
+          ></home-hot>
         </div>
       </section>
     </div>
@@ -175,7 +132,6 @@ export default {
           img: require('~/assets/111.png'),
         },
       ],
-      searchInput: '',
     }
   },
   async asyncData({ error, $apiList }) {
@@ -230,9 +186,6 @@ export default {
       ) {
         this.$router.push(this.banners[index].url)
       }
-    },
-    search() {
-      console.log(this.searchInput)
     },
     changeBanner(index) {
       this.bannersActive = index
@@ -293,30 +246,11 @@ export default {
     margin: 0 auto;
     width: 1218px;
     position: relative;
-    .search {
+    &__search {
       position: absolute;
       top: 36px;
       right: 0;
       width: 270px;
-      height: 40px;
-      background-color: rgba(0, 0, 0, 0.45);
-      border-radius: 20px;
-      input {
-        width: 100%;
-        height: 100%;
-        font-size: 14px;
-        color: #808191;
-        padding: 0 51px 0 19px;
-      }
-      button {
-        position: absolute;
-        top: 12px;
-        right: 17px;
-        width: 15px;
-        height: 15px;
-        background: url('~assets/img/home/search.png') no-repeat center center;
-        background-size: contain;
-      }
     }
     .banner {
       width: 100%;
@@ -522,33 +456,6 @@ export default {
         width: 100%;
         display: flex;
         justify-content: space-between;
-        .item {
-          flex-shrink: 0;
-          width: 140px;
-          cursor: pointer;
-          &__top {
-            height: 140px;
-            background-color: #3c375f;
-            border-radius: 24px;
-            position: relative;
-            img {
-              position: absolute;
-              bottom: 0;
-              left: 0;
-              max-width: 100%;
-              border-radius: 0 0 24px 24px;
-            }
-          }
-          &__title {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #808191;
-            text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-        }
       }
       .best2 {
         margin-top: 30px;
@@ -556,83 +463,6 @@ export default {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 20px 25px;
-        .item {
-          overflow: hidden;
-          height: 96px;
-          background-color: #282a31;
-          border-radius: 16px;
-          display: flex;
-          cursor: pointer;
-          -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
-          &__left {
-            flex-shrink: 0;
-            width: 72px;
-            height: 100%;
-            border-radius: 16px;
-            img {
-              -webkit-transition-duration: 0.3s;
-              transition-duration: 0.3s;
-              border-radius: 16px;
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-            }
-          }
-          &__right {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            padding-left: 18px;
-            padding-top: 19px;
-            .p1 {
-              font-size: 14px;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
-            }
-            .p2 {
-              font-size: 14px;
-              color: #808191;
-              line-height: 1;
-              margin-top: -1px;
-            }
-            .p3 {
-              font-size: 12px;
-              color: #808191;
-              position: relative;
-              padding-left: 16px;
-              margin-top: 6px;
-              &::before {
-                content: '';
-                position: absolute;
-                top: calc(50% - 4px);
-                left: 0;
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background-color: #ff754c;
-              }
-              &.active {
-                &:before {
-                  background-color: #76ff4c;
-                }
-              }
-            }
-          }
-          &:hover {
-            background-color: #6c5dd3;
-            -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-            .item__left {
-              img {
-                -webkit-transform: scale(0.9);
-                transform: scale(0.9);
-              }
-            }
-          }
-        }
       }
       &.latest {
         margin-top: 82px;
@@ -643,52 +473,6 @@ export default {
           display: flex;
           flex-wrap: wrap;
           padding: 4px 24px 64px;
-          .item {
-            width: 94px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 50px 18px 0;
-            cursor: pointer;
-            &__top {
-              width: 74px;
-              height: 74px;
-              background-color: #808191;
-              border-radius: 16px;
-              flex-shrink: 0;
-              margin-bottom: 16px;
-              img {
-                border-radius: 16px;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-              }
-            }
-            &__bottom {
-              width: 100%;
-              display: flex;
-              flex-direction: column;
-              .name {
-                font-size: 14px;
-                line-height: 18px;
-                text-align: center;
-                margin-bottom: 10px;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                line-clamp: 2;
-                -webkit-box-orient: vertical;
-                text-overflow: -o-ellipsis-lastline;
-                overflow: hidden;
-                text-overflow: ellipsis;
-              }
-              .time {
-                font-size: 14px;
-                color: #808191;
-                text-align: center;
-                line-height: 1;
-              }
-            }
-          }
         }
       }
       &.hot {
@@ -699,85 +483,6 @@ export default {
           grid-gap: 20px 21px;
           display: grid;
           grid-template-columns: repeat(7, 1fr);
-          .item {
-            overflow: hidden;
-            position: relative;
-            padding-top: 29px;
-            &__top {
-              position: absolute;
-              top: 0;
-              left: calc(50% - 54px);
-              width: 108px;
-              height: 108px;
-              background-color: #3c375f;
-              box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
-              border-radius: 24px;
-              img {
-                width: 100%;
-                height: 100%;
-                border-radius: 24px;
-                object-fit: cover;
-              }
-            }
-            &__bottom {
-              width: 100%;
-              height: 100%;
-              background-color: #282a31;
-              border-radius: 16px;
-              padding-top: 94px;
-              padding-bottom: 20px;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              .name {
-                flex-shrink: 0;
-                padding: 0 24px;
-                font-size: 14px;
-                line-height: 18px;
-                text-align: center;
-                margin-bottom: auto;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                line-clamp: 2;
-                -webkit-box-orient: vertical;
-                text-overflow: -o-ellipsis-lastline;
-                overflow: hidden;
-                text-overflow: ellipsis;
-              }
-            }
-            &.free {
-              padding-top: 145px;
-              background-color: #282a31;
-              border-radius: 24px;
-              .item__top {
-                top: 19px;
-              }
-              .item__bottom {
-                padding-top: 0;
-                .btn {
-                  flex-shrink: 0;
-                  width: 86px;
-                  height: 30px;
-                  background-color: #1f2128;
-                  border-radius: 15px;
-                  font-size: 12px;
-                  color: #808191;
-                  -webkit-transition-duration: 0.3s;
-                  transition-duration: 0.3s;
-                  margin-top: 11px;
-                  margin-bottom: 8px;
-                }
-              }
-            }
-            &:hover {
-              .item__bottom {
-                .btn {
-                  background-color: #6c5dd3;
-                  color: #fff;
-                }
-              }
-            }
-          }
         }
       }
     }

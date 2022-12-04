@@ -26,101 +26,15 @@
     </nav>
     <div class="nav__title active">Category</div>
     <ul class="nav__category">
-      <li class="nav__category__li">
+      <li
+        class="nav__category__li"
+        v-for="(item, index) in category"
+        :key="index"
+      >
         <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
+          <img :src="item.name.icon" alt="" />
         </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
-      </li>
-      <li class="nav__category__li">
-        <div class="icon">
-          <img src="~/assets/img/nav/best-active.png" alt="" />
-        </div>
-        <span class="name">Minecraft</span>
+        <span class="name">{{ item.name.name }}</span>
       </li>
     </ul>
   </div>
@@ -167,7 +81,16 @@ export default {
           imgActive: require('~/assets/img/nav/new-active.png'),
         },
       ],
+      category: [],
     }
+  },
+  async fetch() {
+    const res = await this.$apiList.home.getCategory({ page: 1, size: 10000 })
+    res.map((item) => {
+      item.name = JSON.parse(item.name)
+      item.name.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${item.name.icon}`
+    })
+    this.category = res
   },
   methods: {},
 }
@@ -317,7 +240,7 @@ export default {
       }
     }
     .nav__menu {
-      padding: 0 10px 50px;
+      padding: 0 10px 33px;
       &__a {
         span {
           visibility: hidden;
