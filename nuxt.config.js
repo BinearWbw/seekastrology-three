@@ -60,11 +60,7 @@ module.exports = {
   css: ['@/assets/scss/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~plugins/axios',
-    '~plugins/utils',
-    { src: '~plugins/vue-dragscroll', ssr: false },
-  ],
+  plugins: ['~plugins/axios', '~plugins/utils'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
