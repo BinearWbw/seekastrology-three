@@ -117,7 +117,7 @@
         <div class="best">Best Games</div>
         <div class="list">
           <home-best2
-            v-for="item in gameList"
+            v-for="item in gameList.slice(0, 6)"
             :item="item"
             :key="item.id"
           ></home-best2>
@@ -593,6 +593,7 @@ $spacing: 16px;
       }
     }
     &__right {
+      flex-shrink: 0;
       width: 286px;
       .search {
         position: relative;

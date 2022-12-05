@@ -228,6 +228,9 @@ export default {
             this.$refs.latestScroll.clientWidth,
           behavior: 'smooth',
         })
+        setTimeout(() => {
+        console.log(this.$refs.latestScroll.scrollLeft)
+        }, 300);
       } else {
         return false
       }
