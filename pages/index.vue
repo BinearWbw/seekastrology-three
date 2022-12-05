@@ -72,12 +72,18 @@
         <div class="module__top">
           <div class="title">LATEST GAMES</div>
           <div class="page">
-            <button class="page__button prev"></button>
-            <button class="page__button next"></button>
+            <button
+              class="page__button prev"
+              @click="scrollPrevLatest"
+            ></button>
+            <button
+              class="page__button next"
+              @click="scrollNextLatest"
+            ></button>
           </div>
         </div>
         <div class="list">
-          <div class="scroll">
+          <div class="scroll" ref="latestScroll">
             <home-latest
               v-for="item in gameList.comm"
               :key="item.id"
@@ -175,6 +181,7 @@ export default {
   mounted() {
     console.log(this.gameList)
     this.setTimer()
+    this.$refs.latestScroll.scrollLeft = 0
   },
   beforeDestroy() {
     this.timer && clearInterval(this.timer)
@@ -209,6 +216,41 @@ export default {
           this.bannersActive = 0
         }
       }, 5000)
+    },
+    scrollPrevLatest() {
+      console.log(this.$refs.latestScroll.scrollWidth)
+      console.log(this.$refs.latestScroll.scrollLeft)
+      console.log(this.$refs.latestScroll.clientWidth)
+      if (this.$refs.latestScroll.scrollLeft > 0) {
+        this.$refs.latestScroll.scrollTo({
+          left:
+            this.$refs.latestScroll.scrollLeft -
+            this.$refs.latestScroll.clientWidth,
+          behavior: 'smooth',
+        })
+      } else {
+        return false
+      }
+    },
+    scrollNextLatest() {
+      console.log(this.$refs.latestScroll.scrollWidth)
+      console.log(this.$refs.latestScroll.scrollLeft)
+      console.log(this.$refs.latestScroll.clientWidth)
+      if (
+        this.$refs.latestScroll.scrollWidth -
+          this.$refs.latestScroll.scrollLeft >
+        this.$refs.latestScroll.clientWidth
+      ) {
+        this.num += 1
+        this.$refs.latestScroll.scrollTo({
+          left:
+            this.$refs.latestScroll.scrollLeft +
+            this.$refs.latestScroll.clientWidth,
+          behavior: 'smooth',
+        })
+      } else {
+        return false
+      }
     },
   },
 }
@@ -474,16 +516,15 @@ export default {
           border-radius: 16px;
           padding: 54px 26px 64px;
           .scroll {
-            --grid-rows: 2;
             --grid-num: 9;
             display: grid;
-            grid-template-rows: repeat(var(--grid-rows), 1fr);
+            grid-template-rows: repeat(2, 1fr);
             grid-auto-flow: column;
             grid-auto-columns: calc(
               100% / var(--grid-num) - (var(--grid-num) - 1) * 18px /
                 var(--grid-num)
             );
-            gap: 50px 18px;
+            grid-gap: 50px 18px;
             -webkit-scroll-snap-type: x mandatory;
             -moz-scroll-snap-type: x mandatory;
             -ms-scroll-snap-type: x mandatory;

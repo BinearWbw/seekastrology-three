@@ -29,6 +29,7 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:math';
 .item {
+  flex: none;
   width: 100%;
   overflow: hidden;
   display: flex;

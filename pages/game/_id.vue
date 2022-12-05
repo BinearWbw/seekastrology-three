@@ -61,7 +61,7 @@
               there are no viruses and malware.
             </p>
           </div>
-          <section class="module">
+          <div class="module">
             <div class="module__top">
               <div class="title">RELATED GAMES</div>
               <div class="page">
@@ -70,13 +70,45 @@
               </div>
             </div>
             <div class="list">
-              <home-latest
-                v-for="item in gameList.slice(0, 6)"
-                :key="item.id"
-                :item="item"
-              ></home-latest>
+              <div class="scroll">
+                <home-latest
+                  v-for="item in gameList"
+                  :item="item"
+                  :key="item.id"
+                ></home-latest>
+              </div>
             </div>
-          </section>
+          </div>
+          <div class="comment">
+            <p class="comment__title">COMMENT</p>
+            <div class="comment__box">
+              <input
+                type="text"
+                v-model="name"
+                placeholder="Fill in your name"
+              />
+              <textarea
+                v-model="comment"
+                cols="30"
+                rows="10"
+                placeholder="Add a comment..."
+              ></textarea>
+              <button>Submit</button>
+              <ul class="message">
+                <li
+                  class="message__li"
+                  v-for="(item, index) in message"
+                  :key="index"
+                >
+                  <div class="top">
+                    <span>{{ item.name }}</span>
+                    <span>{{ item.time }}</span>
+                  </div>
+                  <p class="text">{{ item.text }}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
       <section class="game__main__right">
@@ -102,6 +134,20 @@ export default {
   name: 'Game',
   data() {
     return {
+      name: '',
+      comment: '',
+      message: [
+        {
+          name: 'Redd bradley',
+          time: '15 Sep,2022',
+          text: 'Players will play a game of youth, and other players to compete',
+        },
+        {
+          name: 'Nathan Miller',
+          time: '15 Sep,2022',
+          text: 'his game breaks the traditional tactical competitive gameplay, combining the game story line, gameplay mode in to the commercialization mode',
+        },
+      ],
       swiperOptions: {
         autoplay: {
           delay: 5000,
@@ -444,9 +490,104 @@ $spacing: 16px;
             margin-top: 24px;
             background-color: #282a31;
             border-radius: 16px;
+            padding: 54px 54px 55px;
+            .scroll {
+              --grid-num: 6;
+              display: grid;
+              grid-template-rows: repeat(1, 1fr);
+              grid-auto-flow: column;
+              grid-auto-columns: calc(
+                100% / var(--grid-num) - (var(--grid-num) - 1) * 18px /
+                  var(--grid-num)
+              );
+              grid-gap: 18px;
+              -webkit-scroll-snap-type: x mandatory;
+              -moz-scroll-snap-type: x mandatory;
+              -ms-scroll-snap-type: x mandatory;
+              scroll-snap-type: x mandatory;
+              -webkit-scroll-behavior: smooth;
+              -moz-scroll-behavior: smooth;
+              -ms-scroll-behavior: smooth;
+              scroll-behavior: smooth;
+              overflow-x: auto;
+              overflow-y: hidden;
+            }
+          }
+        }
+        .comment {
+          margin-top: 39px;
+          &__title {
+            font-family: BebasNeue-Regular;
+            font-size: 28px;
+            line-height: 1;
+            color: #ffffff;
+          }
+          &__box {
+            margin-top: 24px;
+            background-color: #282a31;
+            border-radius: 16px;
+            padding: 55px 70px 57px;
             display: flex;
-            flex-wrap: wrap;
-            padding: 4px 24px 55px;
+            flex-direction: column;
+            input {
+              width: 270px;
+              height: 40px;
+              background-color: rgba(0, 0, 0, 0.45);
+              border-radius: 20px;
+              font-size: 14px;
+              color: #808191;
+              padding: 0 20px;
+            }
+            textarea {
+              margin-top: 20px;
+              width: 100%;
+              background-color: rgba(0, 0, 0, 0.45);
+              height: 147px;
+              border-radius: 20px;
+              font-size: 14px;
+              line-height: 18px;
+              color: #808191;
+              padding: 12px 20px;
+              resize: none;
+            }
+            button {
+              margin-top: 25px;
+              width: 192px;
+              height: 46px;
+              background-color: #6c5dd3;
+              border-radius: 4px;
+              font-size: 14px;
+              color: #ffffff;
+            }
+            .message {
+              width: 100%;
+              margin-top: 30px;
+              &__li {
+                margin-top: 30px;
+                border-bottom: 1px solid #2e323d;
+                padding-bottom: 24px;
+                .top {
+                  display: flex;
+                  font-size: 14px;
+                  line-height: 1;
+                  span:first-child {
+                    color: #ffffff;
+                    padding-left: 6px;
+                  }
+                  span:last-child {
+                    padding-left: 8px;
+                    color: #808191;
+                  }
+                }
+                .text {
+                  padding-left: 5px;
+                  margin-top: 14px;
+                  font-size: 14px;
+                  line-height: 18px;
+                  color: #808191;
+                }
+              }
+            }
           }
         }
       }
