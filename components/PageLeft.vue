@@ -32,9 +32,9 @@
         :key="index"
       >
         <div class="icon">
-          <img :src="item.name.icon" alt="" />
+          <img src="~/assets/111.png" alt="" />
         </div>
-        <span class="name">{{ item.name.name }}</span>
+        <span class="name">{{ item.name }}</span>
       </li>
     </ul>
   </div>
@@ -86,10 +86,6 @@ export default {
   },
   async fetch() {
     const res = await this.$apiList.home.getCategory({ page: 1, size: 10000 })
-    res.map((item) => {
-      item.name = JSON.parse(item.name)
-      item.name.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${item.name.icon}`
-    })
     this.category = res
   },
   methods: {},

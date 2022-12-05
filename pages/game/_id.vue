@@ -222,6 +222,7 @@ export default {
       const res = await $apiList.home.getGameDetail({
         site_id: process.env.origin,
         game_id: query.id,
+        origin: process.env.origin,
       })
       res.detail.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${res.detail.icon}`
       gameInfo = res.detail
@@ -250,12 +251,11 @@ $spacing: 16px;
   &__main {
     margin: 0 auto;
     width: 1218px;
-    display: flex;
-    justify-content: space-between;
     padding-top: 36px;
+    padding-right: 286px;
+    position: relative;
     &__left {
-      flex: 1;
-      min-width: 0;
+      width: 100%;
       .nav {
         width: 100%;
         height: 40px;
@@ -593,7 +593,9 @@ $spacing: 16px;
       }
     }
     &__right {
-      flex-shrink: 0;
+      position: absolute;
+      right: 0;
+      top: 36px;
       width: 286px;
       .search {
         position: relative;

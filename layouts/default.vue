@@ -24,7 +24,6 @@ export default {
   &__nav {
     flex-shrink: 0;
     width: 255px;
-    height: 100%;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
     &__slide {

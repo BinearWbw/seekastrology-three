@@ -68,46 +68,20 @@
           ></home-best2>
         </div>
       </section>
-      <section class="module latest">
-        <div class="module__top">
-          <div class="title">LATEST GAMES</div>
-          <div class="page">
-            <button
-              class="page__button prev"
-              @click="scrollPrevLatest"
-            ></button>
-            <button
-              class="page__button next"
-              @click="scrollNextLatest"
-            ></button>
-          </div>
-        </div>
-        <div class="list">
-          <div class="scroll" ref="latestScroll">
-            <home-latest
-              v-for="item in gameList.comm"
-              :key="item.id"
-              :item="item"
-            ></home-latest>
-          </div>
-        </div>
-      </section>
-      <section class="module hot">
-        <div class="module__top">
-          <div class="title">HOT GAMES</div>
-          <div class="page">
-            <button class="page__button prev"></button>
-            <button class="page__button next"></button>
-          </div>
-        </div>
-        <div class="list">
-          <home-hot
-            v-for="item in gameList.comm.slice(0, 21)"
-            :item="item"
-            :key="item.id"
-          ></home-hot>
-        </div>
-      </section>
+      <home-list class="latest" :title="'LATEST GAMES'">
+        <home-latest
+          v-for="item in gameList.comm"
+          :key="item.id"
+          :item="item"
+        ></home-latest>
+      </home-list>
+      <home-list class="hot" :title="'HOT GAMES'">
+        <home-hot
+          v-for="item in gameList.comm"
+          :item="item"
+          :key="item.id"
+        ></home-hot>
+      </home-list>
     </div>
   </article>
 </template>
@@ -179,9 +153,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.gameList)
     this.setTimer()
-    this.$refs.latestScroll.scrollLeft = 0
   },
   beforeDestroy() {
     this.timer && clearInterval(this.timer)
@@ -216,44 +188,6 @@ export default {
           this.bannersActive = 0
         }
       }, 5000)
-    },
-    scrollPrevLatest() {
-      console.log(this.$refs.latestScroll.scrollWidth)
-      console.log(this.$refs.latestScroll.scrollLeft)
-      console.log(this.$refs.latestScroll.clientWidth)
-      if (this.$refs.latestScroll.scrollLeft > 0) {
-        this.$refs.latestScroll.scrollTo({
-          left:
-            this.$refs.latestScroll.scrollLeft -
-            this.$refs.latestScroll.clientWidth,
-          behavior: 'smooth',
-        })
-        setTimeout(() => {
-        console.log(this.$refs.latestScroll.scrollLeft)
-        }, 300);
-      } else {
-        return false
-      }
-    },
-    scrollNextLatest() {
-      console.log(this.$refs.latestScroll.scrollWidth)
-      console.log(this.$refs.latestScroll.scrollLeft)
-      console.log(this.$refs.latestScroll.clientWidth)
-      if (
-        this.$refs.latestScroll.scrollWidth -
-          this.$refs.latestScroll.scrollLeft >
-        this.$refs.latestScroll.clientWidth
-      ) {
-        this.num += 1
-        this.$refs.latestScroll.scrollTo({
-          left:
-            this.$refs.latestScroll.scrollLeft +
-            this.$refs.latestScroll.clientWidth,
-          behavior: 'smooth',
-        })
-      } else {
-        return false
-      }
     },
   },
 }
@@ -511,45 +445,39 @@ export default {
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 20px 25px;
       }
-      &.latest {
-        margin-top: 82px;
-        .list {
-          margin-top: 34px;
-          background-color: #282a31;
-          border-radius: 16px;
-          padding: 54px 26px 64px;
-          .scroll {
-            --grid-num: 9;
-            display: grid;
-            grid-template-rows: repeat(2, 1fr);
-            grid-auto-flow: column;
-            grid-auto-columns: calc(
-              100% / var(--grid-num) - (var(--grid-num) - 1) * 18px /
-                var(--grid-num)
-            );
-            grid-gap: 50px 18px;
-            -webkit-scroll-snap-type: x mandatory;
-            -moz-scroll-snap-type: x mandatory;
-            -ms-scroll-snap-type: x mandatory;
-            scroll-snap-type: x mandatory;
-            -webkit-scroll-behavior: smooth;
-            -moz-scroll-behavior: smooth;
-            -ms-scroll-behavior: smooth;
-            scroll-behavior: smooth;
-            overflow-x: auto;
-            overflow-y: hidden;
-          }
-        }
+    }
+    .latest {
+      margin-top: 82px;
+      :deep(.scroll__bottom) {
+        margin-top: 34px;
+        background-color: #282a31;
+        border-radius: 16px;
+        padding: 54px 26px 64px;
       }
-      &.hot {
-        margin-top: 73px;
-        .list {
-          margin-top: 33px;
-          width: 100%;
-          grid-gap: 20px 21px;
-          display: grid;
-          grid-template-columns: repeat(7, 1fr);
-        }
+      :deep(.list) {
+        --grid-num: 9;
+        grid-template-rows: repeat(2, 1fr);
+        grid-auto-flow: column;
+        grid-auto-columns: calc(
+          (100% - (var(--grid-num) - 1) * 18px) / var(--grid-num)
+        );
+        grid-gap: 50px 18px;
+      }
+    }
+    .hot {
+      margin-top: 73px;
+      :deep(.scroll__bottom) {
+        margin-top: 33px;
+        padding: 0;
+      }
+      :deep(.list) {
+        --grid-num: 7;
+        grid-template-rows: repeat(3, 1fr);
+        grid-auto-flow: column;
+        grid-auto-columns: calc(
+          (100% - (var(--grid-num) - 1) * 21px) / var(--grid-num)
+        );
+        grid-gap: 20px 21px;
       }
     }
   }
