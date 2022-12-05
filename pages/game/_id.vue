@@ -23,9 +23,9 @@
             </swiper>
           </div>
           <div class="pagination">
-            <button class="btn prev"></button>
-            <div class="pagination"></div>
-            <button class="btn next"></button>
+            <button class="btn pagination__prev"></button>
+            <div class="pagination__page"></div>
+            <button class="btn pagination__next"></button>
           </div>
           <game-info class="explain1"></game-info>
           <div class="ad"></div>
@@ -61,6 +61,22 @@
               there are no viruses and malware.
             </p>
           </div>
+          <section class="module">
+            <div class="module__top">
+              <div class="title">RELATED GAMES</div>
+              <div class="page">
+                <button class="page__button prev"></button>
+                <button class="page__button next"></button>
+              </div>
+            </div>
+            <div class="list">
+              <home-latest
+                v-for="item in gameList.slice(0, 6)"
+                :key="item.id"
+                :item="item"
+              ></home-latest>
+            </div>
+          </section>
         </div>
       </section>
       <section class="game__main__right">
@@ -93,7 +109,7 @@ export default {
           disableOnInteraction: false,
         },
         pagination: {
-          el: '.pagination',
+          el: '.pagination__page',
           type: 'custom',
           renderCustom: function (swiper, current, total) {
             var customPaginationHtml = ''
@@ -111,8 +127,8 @@ export default {
           },
         },
         navigation: {
-          nextEl: '.next',
-          prevEl: '.prev',
+          nextEl: '.pagination__next',
+          prevEl: '.pagination__prev',
         },
         speed: 500,
         grabCursor: true,
@@ -263,13 +279,13 @@ $spacing: 16px;
             background-repeat: no-repeat;
             background-position: center;
           }
-          .prev {
+          &__prev {
             background-image: url('~assets/img/home/prev.png');
           }
-          .next {
+          &__next {
             background-image: url('~assets/img/home/next.png');
           }
-          .pagination {
+          &__page {
             height: 100%;
             display: flex;
             align-items: center;
@@ -381,6 +397,56 @@ $spacing: 16px;
             font-size: 14px;
             color: #808191;
             line-height: 20px;
+          }
+        }
+        .module {
+          margin-top: 32px;
+          &__top {
+            width: 100%;
+            height: 34px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .title {
+              flex-shrink: 0;
+              font-family: BebasNeue-Regular;
+              font-size: 28px;
+              color: #ffffff;
+              margin-top: 5px;
+            }
+            .page {
+              flex-shrink: 0;
+              height: 100%;
+              &__button {
+                width: 34px;
+                height: 100%;
+                border-radius: 50%;
+                background-color: #242731;
+                -webkit-transition-duration: 0.3s;
+                transition-duration: 0.3s;
+                background-repeat: no-repeat;
+                background-position: center;
+                &.active {
+                  background-color: #6c5dd3;
+                }
+              }
+              .prev {
+                background-image: url('~assets/img/home/prev.png');
+                margin-right: 6px;
+              }
+              .next {
+                background-image: url('~assets/img/home/next.png');
+              }
+            }
+          }
+          .list {
+            margin-top: 24px;
+            background-color: #282a31;
+            border-radius: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 4px 24px 55px;
           }
         }
       }

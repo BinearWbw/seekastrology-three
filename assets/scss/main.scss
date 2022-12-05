@@ -241,6 +241,7 @@ input::-ms-input-placeholder {
 }
 body {
   scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 body::-webkit-scrollbar {
   margin-right: 10px;
@@ -273,6 +274,10 @@ body::-webkit-scrollbar {
   scrollbar-color: var(--shadow-color) transparent;
   scrollbar-width: thin;
   scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
 .common-btn {
   -moz-user-select: none;
@@ -422,6 +427,12 @@ body::-webkit-scrollbar {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+.scroll-start {
+  -webkit-scroll-snap-align: start;
+  -moz-scroll-snap-align: start;
+  -ms-scroll-snap-align: start;
+  scroll-snap-align: start;
 }
 // .flex {
 //   display: flex;

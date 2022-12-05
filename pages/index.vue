@@ -77,11 +77,13 @@
           </div>
         </div>
         <div class="list">
-          <home-latest
-            v-for="item in gameList.comm.slice(0, 18)"
-            :key="item.id"
-            :item="item"
-          ></home-latest>
+          <div class="scroll">
+            <home-latest
+              v-for="item in gameList.comm"
+              :key="item.id"
+              :item="item"
+            ></home-latest>
+          </div>
         </div>
       </section>
       <section class="module hot">
@@ -470,9 +472,29 @@ export default {
           margin-top: 34px;
           background-color: #282a31;
           border-radius: 16px;
-          display: flex;
-          flex-wrap: wrap;
-          padding: 4px 24px 64px;
+          padding: 54px 26px 64px;
+          .scroll {
+            --grid-rows: 2;
+            --grid-num: 9;
+            display: grid;
+            grid-template-rows: repeat(var(--grid-rows), 1fr);
+            grid-auto-flow: column;
+            grid-auto-columns: calc(
+              100% / var(--grid-num) - (var(--grid-num) - 1) * 18px /
+                var(--grid-num)
+            );
+            gap: 50px 18px;
+            -webkit-scroll-snap-type: x mandatory;
+            -moz-scroll-snap-type: x mandatory;
+            -ms-scroll-snap-type: x mandatory;
+            scroll-snap-type: x mandatory;
+            -webkit-scroll-behavior: smooth;
+            -moz-scroll-behavior: smooth;
+            -ms-scroll-behavior: smooth;
+            scroll-behavior: smooth;
+            overflow-x: auto;
+            overflow-y: hidden;
+          }
         }
       }
       &.hot {

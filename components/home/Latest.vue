@@ -1,5 +1,9 @@
 <template>
-  <a class="item" :href="`/game/${href}?id=${item.id}`" :title="item.name">
+  <a
+    class="item scroll-start"
+    :href="`/game/${href}?id=${item.id}`"
+    :title="item.name"
+  >
     <div class="item__top">
       <img :src="item.icon" :alt="item.name" />
     </div>
@@ -25,11 +29,11 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:math';
 .item {
-  width: 94px;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px 18px 0;
   cursor: pointer;
   &__top {
     width: 74px;
