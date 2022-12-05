@@ -1,7 +1,7 @@
 <template>
   <article class="game">
     <div class="game__main">
-      <div class="game__main__left">
+      <section class="game__main__left">
         <div class="nav">
           <img class="first" src="~/assets/img/game/nav.png" alt="nav" />
           <a href="/">Home</a>
@@ -10,8 +10,8 @@
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
           <p class="name">{{ gameInfo.name }}</p>
         </div>
-        <div class="info">
-          <div class="info__banner">
+        <div class="main">
+          <div class="banner">
             <swiper class="swiper" :options="swiperOptions">
               <swiper-slide
                 class="swiper__item"
@@ -22,14 +22,48 @@
               </swiper-slide>
             </swiper>
           </div>
-          <div class="info__pagination">
+          <div class="pagination">
             <button class="btn prev"></button>
             <div class="pagination"></div>
             <button class="btn next"></button>
           </div>
+          <game-info class="explain1"></game-info>
+          <div class="ad"></div>
+          <game-info class="explain2"></game-info>
+          <div class="info">
+            <p class="info__title">Get The Game</p>
+            <div class="info__main">
+              <p>
+                <span>Version :</span>
+                <span>12.61/1.1.2</span>
+              </p>
+              <p>
+                <span>Size :</span>
+                <span>238.8MB/32.73MB</span>
+              </p>
+              <p>
+                <span>Updated :</span>
+                <span>May 26, 2020/December 20, 2019</span>
+              </p>
+            </div>
+            <div class="info__download">
+              <a href="/">
+                <img src="~/assets/img/game/andriod.png" alt="andriod" />
+                <span>Andriod</span>
+              </a>
+              <a href="/">
+                <img src="~/assets/img/game/ios.png" alt="ios" />
+                <span>IOS</span>
+              </a>
+            </div>
+            <p class="info__remark">
+              * For reference, The Fortnite game websites are all approved,
+              there are no viruses and malware.
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="game__main__right">
+      </section>
+      <section class="game__main__right">
         <home-search></home-search>
         <div class="ad"></div>
         <div class="best">Best Games</div>
@@ -40,7 +74,7 @@
             :key="item.id"
           ></home-best2>
         </div>
-      </div>
+      </section>
     </div>
   </article>
 </template>
@@ -190,12 +224,12 @@ $spacing: 16px;
           line-height: 1;
         }
       }
-      .info {
+      .main {
         margin-top: 36px;
         padding-right: 52px;
         width: 100%;
         overflow: hidden;
-        &__banner {
+        .banner {
           width: 100%;
           height: 460px;
           background-color: #111216;
@@ -215,7 +249,7 @@ $spacing: 16px;
             }
           }
         }
-        &__pagination {
+        .pagination {
           margin-top: 10px;
           display: flex;
           align-items: center;
@@ -235,7 +269,7 @@ $spacing: 16px;
           .next {
             background-image: url('~assets/img/home/next.png');
           }
-          .pagination{
+          .pagination {
             height: 100%;
             display: flex;
             align-items: center;
@@ -268,6 +302,85 @@ $spacing: 16px;
             &::before {
               background-color: #000000;
             }
+          }
+        }
+        .explain1 {
+          margin-top: 20px;
+        }
+        .ad {
+          margin-top: 25px;
+          width: 100%;
+          height: 200px;
+          background-color: #111216;
+          border-radius: 24px;
+        }
+        .explain2 {
+          margin-top: 25px;
+        }
+        .info {
+          margin-top: 30px;
+          height: 270px;
+          background-color: #282a31;
+          border-radius: 24px;
+          padding: 36px 44px;
+          &__title {
+            font-size: 24px;
+            line-height: 1;
+            color: #ffffff;
+          }
+          &__main {
+            margin-top: 19px;
+            display: flex;
+            flex-wrap: wrap;
+            grid-gap: 20px 83px;
+            p {
+              font-size: 14px;
+              line-height: 20px;
+              span:first-child {
+                color: #fff;
+              }
+              span:last-child {
+                color: #808191;
+                padding-left: 7px;
+              }
+            }
+          }
+          &__download {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            grid-gap: 20px;
+            a {
+              width: 164px;
+              height: 42px;
+              border-radius: 21px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              img {
+                margin-bottom: 2px;
+              }
+              span {
+                padding-left: 10px;
+                margin-top: 2px;
+                font-size: 14px;
+                color: #ffffff;
+                line-height: 1;
+              }
+              &:first-child {
+                background-color: #7ac450;
+              }
+              &:nth-child(2) {
+                background-color: #3f8cff;
+              }
+            }
+          }
+          &__remark {
+            margin-top: 38px;
+            font-size: 14px;
+            color: #808191;
+            line-height: 20px;
           }
         }
       }
