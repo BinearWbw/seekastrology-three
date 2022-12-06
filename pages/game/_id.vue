@@ -641,64 +641,17 @@ $spacing: 16px;
   .game {
     &__main {
       width: 100%;
-      padding-top: 36px;
-      padding-right: 0;
+      padding: 0 24px;
       &__left {
         width: 100%;
         .nav {
-          width: 100%;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          a {
-            font-size: 14px;
-            line-height: 1;
-            color: #808191;
-            &:hover {
-              color: #fff;
-            }
-          }
-          .first {
-            width: 21px;
-            height: 21px;
-            margin-right: 15px;
-            margin-bottom: 2px;
-          }
-          .arrow {
-            margin: 0 16px 0 20px;
-            width: 8px;
-            height: 12px;
-          }
-          .name {
-            font-size: 14px;
-            color: #ffffff;
-            line-height: 1;
-          }
+          display: none;
         }
         .main {
-          margin-top: 36px;
-          padding-right: 52px;
-          width: 100%;
-          overflow: hidden;
+          margin-top: 0;
+          padding-right: 0;
           .banner {
-            width: 100%;
-            height: 460px;
-            background-color: #111216;
-            border-radius: 24px;
-            overflow: hidden;
-            .swiper {
-              width: 100%;
-              height: 100%;
-              &__item {
-                width: 100%;
-                height: 100%;
-                img {
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                }
-              }
-            }
+            height: 171px;
           }
           .pagination {
             margin-top: 10px;
@@ -707,18 +660,7 @@ $spacing: 16px;
             justify-content: center;
             height: 34px;
             .btn {
-              width: 34px;
-              height: 100%;
-              border-radius: 50%;
-              background-color: #242731;
-              background-repeat: no-repeat;
-              background-position: center;
-            }
-            &__prev {
-              background-image: url('~assets/img/home/prev.png');
-            }
-            &__next {
-              background-image: url('~assets/img/home/next.png');
+              display: none;
             }
             &__page {
               height: 100%;
