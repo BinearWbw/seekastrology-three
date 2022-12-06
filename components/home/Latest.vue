@@ -78,6 +78,31 @@ export default {
     }
   }
 }
-@media (max-width: 828px) {
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .item {
+    &__top {
+      width: 74 * $pr;
+      height: 74 * $pr;
+      border-radius: 16 * $pr;
+      margin-bottom: 16 * $pr;
+      img {
+        border-radius: 16 * $pr;
+      }
+    }
+    &__bottom {
+      .name {
+        font-size: 14 * $pr;
+        line-height: 18 * $pr;
+        margin-bottom: 10 * $pr;
+      }
+      .time {
+        font-size: 14 * $pr;
+      }
+    }
+    &:nth-child(n + 10) {
+      display: none;
+    }
+  }
 }
 </style>

@@ -51,16 +51,16 @@
       <section class="module best">
         <div class="module__top">
           <div class="title">BEST GAMES</div>
-          <a href="/" class="more">MORE GAME</a>
+          <a href="/best" class="more" title="BEST GAMES">MORE GAME</a>
         </div>
-        <div class="best1">
+        <div class="list1">
           <home-best1
             v-for="item in gameList.comm.slice(0, 7)"
             :item="item"
             :key="item.id"
           ></home-best1>
         </div>
-        <div class="best2">
+        <div class="list2">
           <home-best2
             v-for="item in gameList.comm.slice(0, 8)"
             :item="item"
@@ -68,20 +68,32 @@
           ></home-best2>
         </div>
       </section>
-      <home-list class="latest" :title="'LATEST GAMES'">
-        <home-latest
-          v-for="item in gameList.comm"
-          :key="item.id"
-          :item="item"
-        ></home-latest>
-      </home-list>
-      <home-list class="hot" :title="'HOT GAMES'">
-        <home-hot
-          v-for="item in gameList.comm"
-          :item="item"
-          :key="item.id"
-        ></home-hot>
-      </home-list>
+      <section class="module latest">
+        <div class="module__top">
+          <div class="title">LATEST GAMES</div>
+          <a href="/new" class="more" title="LATEST GAMES">MORE GAME</a>
+        </div>
+        <div class="list">
+          <home-latest
+            v-for="item in gameList.comm.slice(0, 18)"
+            :key="item.id"
+            :item="item"
+          ></home-latest>
+        </div>
+      </section>
+      <section class="module hot">
+        <div class="module__top">
+          <div class="title">HOT GAMES</div>
+          <a href="/hot" class="more" title="HOT GAMES">MORE GAME</a>
+        </div>
+        <div class="list">
+          <home-hot
+            v-for="item in gameList.comm.slice(0, 21)"
+            :item="item"
+            :key="item.id"
+          ></home-hot>
+        </div>
+      </section>
     </div>
   </article>
 </template>
@@ -98,7 +110,7 @@ export default {
         {
           name: 'Cyberpunk 2077',
           title: 'tournament3',
-          text: 'Pre-Purchase Now to unlock early game content, including two-suit pack, early access to the Gravity Well gadget and Three Skill Points.',
+          text: 'Pre-Purchase Now to unlock early game content, including two-suit pack, early access',
           img: require('~/assets/111.png'),
         },
         {
@@ -153,7 +165,7 @@ export default {
     },
   },
   mounted() {
-    this.setTimer()
+    // this.setTimer()
   },
   beforeDestroy() {
     this.timer && clearInterval(this.timer)
@@ -297,10 +309,9 @@ export default {
           width: 428px;
           height: 428px;
           border-radius: 50%;
-          background-image: linear-gradient(80deg, #512351 0%, #1f2732 100%),
-            linear-gradient(#212936, #212936);
+          background-image: linear-gradient(80deg, #512351 0%, #1f2732 100%);
           background-blend-mode: normal, normal;
-          box-shadow: 0px 30px 40px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.2);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -308,8 +319,7 @@ export default {
             width: calc(100% - 20px);
             height: calc(100% - 20px);
             border-radius: 50%;
-            background-image: linear-gradient(60deg, #161527 70%, #3b47b3 100%),
-              linear-gradient(#212936, #212936);
+            background-image: linear-gradient(60deg, #161527 70%, #3b47b3 100%);
             background-blend-mode: normal, normal;
             position: relative;
             img {
@@ -401,83 +411,50 @@ export default {
           color: #ffffff;
         }
         .more {
-          margin-top: 8px;
+          margin-top: 7px;
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
           font-size: 20px;
           color: #808191;
         }
-        .page {
-          flex-shrink: 0;
-          height: 100%;
-          &__button {
-            width: 34px;
-            height: 100%;
-            border-radius: 50%;
-            background-color: #242731;
-            -webkit-transition-duration: 0.3s;
-            transition-duration: 0.3s;
-            background-repeat: no-repeat;
-            background-position: center;
-            &.active {
-              background-color: #6c5dd3;
-            }
-          }
-          .prev {
-            background-image: url('~assets/img/home/prev.png');
-            margin-right: 6px;
-          }
-          .next {
-            background-image: url('~assets/img/home/next.png');
-          }
+      }
+      &.best {
+        .list1 {
+          margin-top: 38px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
+        .list2 {
+          margin-top: 30px;
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          grid-gap: 20px 25px;
         }
       }
-      .best1 {
-        margin-top: 38px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
+      &.latest {
+        margin-top: 82px;
+        .list {
+          margin-top: 34px;
+          background-color: #282a31;
+          border-radius: 16px;
+          padding: 54px 26px 64px;
+          display: grid;
+          grid-template-rows: repeat(2, 1fr);
+          grid-template-columns: repeat(9, 1fr);
+          grid-gap: 50px 18px;
+        }
       }
-      .best2 {
-        margin-top: 30px;
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 20px 25px;
-      }
-    }
-    .latest {
-      margin-top: 82px;
-      :deep(.scroll__bottom) {
-        margin-top: 34px;
-        background-color: #282a31;
-        border-radius: 16px;
-        padding: 54px 26px 64px;
-      }
-      :deep(.list) {
-        --grid-num: 9;
-        grid-template-rows: repeat(2, 1fr);
-        grid-auto-flow: column;
-        grid-auto-columns: calc(
-          (100% - (var(--grid-num) - 1) * 18px) / var(--grid-num)
-        );
-        grid-gap: 50px 18px;
-      }
-    }
-    .hot {
-      margin-top: 73px;
-      :deep(.scroll__bottom) {
-        margin-top: 33px;
-        padding: 0;
-      }
-      :deep(.list) {
-        --grid-num: 7;
-        grid-template-rows: repeat(3, 1fr);
-        grid-auto-flow: column;
-        grid-auto-columns: calc(
-          (100% - (var(--grid-num) - 1) * 21px) / var(--grid-num)
-        );
-        grid-gap: 20px 21px;
+      &.hot {
+        margin-top: 73px;
+        .list {
+          margin-top: 33px;
+          display: grid;
+          grid-template-rows: repeat(3, auto);
+          grid-template-columns: repeat(7, 1fr);
+          grid-gap: 20px 21px;
+        }
       }
     }
   }
@@ -534,14 +511,130 @@ export default {
 //     }
 //   }
 // }
-// @media (max-width: 828px) {
-//   $pr: math.div(1vw, 8.28);
-//   .home {
-//     padding: 0;
-//     .list {
-//       grid-template-columns: repeat(4, 176 * $pr);
-//       grid-gap: 16 * $pr;
-//     }
-//   }
-// }
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .home {
+    &__main {
+      width: 100%;
+      &__search {
+        display: none;
+      }
+      .banner {
+        height: auto;
+        &__left {
+          flex-direction: column-reverse;
+          align-items: center;
+          .info {
+            background: url('~assets/img/home/mask.png') repeat-x left top;
+            background-size: 362 * $pr 201 * $pr;
+            position: relative;
+            z-index: 1;
+            margin-top: -139 * $pr;
+            padding-top: 46 * $pr;
+            padding-left: 24 * $pr;
+            padding-right: 24 * $pr;
+            &__p1 {
+              font-size: 54 * $pr;
+            }
+            &__p2 {
+              margin-top: 1 * $pr;
+              line-height: 1;
+              span:nth-child(1) {
+                font-size: 54 * $pr;
+              }
+              span:nth-child(2) {
+                font-size: 58 * $pr;
+                padding-left: 6 * $pr;
+              }
+              span:nth-child(3) {
+                font-size: 54 * $pr;
+                padding-left: 10 * $pr;
+              }
+            }
+            &__p3 {
+              padding-right: 0;
+              margin-top: 10 * $pr;
+              font-size: 15 * $pr;
+              line-height: 22 * $pr;
+            }
+            &__btn {
+              margin-top: 18 * $pr;
+              width: 202 * $pr;
+              height: 50 * $pr;
+              border-radius: 4 * $pr;
+              font-size: 14 * $pr;
+            }
+          }
+          .box {
+            margin-top: 87 * $pr;
+            width: 313 * $pr;
+            height: 313 * $pr;
+            box-shadow: 0 30 * $pr 40 * $pr 0 rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            &__main {
+              width: calc(100% - 16 * $pr);
+              height: calc(100% - 16 * $pr);
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+        .pagination {
+          display: none;
+        }
+      }
+      .module {
+        &__top {
+          padding: 0 24 * $pr;
+          height: 40 * $pr;
+          .title {
+            font-size: 34 * $pr;
+          }
+          .more {
+            margin-top: 0;
+            font-size: 20 * $pr;
+          }
+        }
+        &.best {
+          margin-top: 64 * $pr;
+          .list1 {
+            padding: 0 24 * $pr;
+            margin-top: 30 * $pr;
+            flex-wrap: wrap;
+            gap: 34 * $pr 0;
+          }
+          .list2 {
+            padding: 0 24 * $pr;
+            margin-top: 24 * $pr;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 20 * $pr 25 * $pr;
+          }
+        }
+        &.latest {
+          margin-top: 54 * $pr;
+          .list {
+            margin: 20 * $pr auto 0;
+            width: calc(100% - 20 * $pr);
+            border-radius: 16 * $pr;
+            padding: 35 * $pr 10 * $pr;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 30 * $pr 18 * $pr;
+          }
+        }
+        &.hot {
+          margin-top: 54 * $pr;
+          .list {
+            padding: 0 24 * $pr;
+            margin-top: 20 * $pr;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 14 * $pr 13.5 * $pr;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

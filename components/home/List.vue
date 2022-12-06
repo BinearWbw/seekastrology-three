@@ -66,6 +66,39 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use 'sass:math';
+// .latest {
+//   :deep(.scroll__bottom) {
+//     margin-top: 34px;
+//     background-color: #282a31;
+//     border-radius: 16px;
+//     padding: 54px 26px 64px;
+//   }
+//   :deep(.list) {
+//     --grid-num: 9;
+//     grid-template-rows: repeat(2, 1fr);
+//     grid-auto-flow: column;
+//     grid-auto-columns: calc(
+//       (100% - (var(--grid-num) - 1) * 18px) / var(--grid-num)
+//     );
+//     grid-gap: 50px 18px;
+//   }
+// }
+// .hot {
+//   margin-top: 73px;
+//   :deep(.scroll__bottom) {
+//     margin-top: 33px;
+//     padding: 0;
+//   }
+//   :deep(.list) {
+//     --grid-num: 7;
+//     grid-template-rows: repeat(3, 1fr);
+//     grid-auto-flow: column;
+//     grid-auto-columns: calc(
+//       (100% - (var(--grid-num) - 1) * 21px) / var(--grid-num)
+//     );
+//     grid-gap: 20px 21px;
+//   }
+// }
 .scroll {
   &__top {
     width: 100%;

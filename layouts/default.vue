@@ -18,6 +18,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@use 'sass:math';
 .main {
   min-height: 100vh;
   display: flex;
@@ -53,6 +54,19 @@ export default {
       &__slide {
         width: 80px;
       }
+    }
+  }
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .main {
+    &__nav {
+      display: none;
+    }
+    &__page {
+      background: url('~assets/img/home/bg.jpg') no-repeat center top;
+      background-size: 100% 930px;
+      padding-bottom: 53 * $pr;
     }
   }
 }

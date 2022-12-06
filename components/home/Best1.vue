@@ -50,6 +50,24 @@ export default {
     text-overflow: ellipsis;
   }
 }
-@media (max-width: 828px) {
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .item {
+    width: 98 * $pr;
+    &__top {
+      height: 98 * $pr;
+      border-radius: 24 * $pr;
+      img {
+        border-radius: 0 0 24 * $pr 24 * $pr;
+      }
+    }
+    &__title {
+      margin-top: 11 * $pr;
+      font-size: 14 * $pr;
+    }
+    &:nth-child(n + 7) {
+      display: none;
+    }
+  }
 }
 </style>

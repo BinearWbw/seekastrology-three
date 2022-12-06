@@ -12,6 +12,7 @@
         class="nav__menu__a"
         :to="item.href"
         :class="{ active: item.href == $route.path }"
+        :title="item.title"
         v-for="(item, index) in menu"
         :key="index"
       >

@@ -1,11 +1,16 @@
 <template>
-  <a class="item free" :href="`/game/${href}?id=${item.id}`" :title="item.name">
+  <a
+    class="item"
+    :class="{ free: item.id > 3 }"
+    :href="`/game/${href}?id=${item.id}`"
+    :title="item.name"
+  >
     <div class="item__top">
       <img :src="item.icon" :alt="item.name" />
     </div>
     <div class="item__bottom">
       <p class="name">{{ item.name }}</p>
-      <button class="btn">FREE</button>
+      <button class="btn" v-if="item.id > 3">FREE</button>
     </div>
   </a>
 </template>
@@ -103,6 +108,46 @@ export default {
     }
   }
 }
-@media (max-width: 828px) {
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .item {
+    padding-top: 20 * $pr;
+    &__top {
+      left: calc(50% - 40 * $pr);
+      width: 80 * $pr;
+      height: 80 * $pr;
+      box-shadow: 0 16 * $pr 30 * $pr 0 rgba(0, 0, 0, 0.2);
+      border-radius: 16 * $pr;
+      img {
+        border-radius: 16 * $pr;
+      }
+    }
+    &__bottom {
+      border-radius: 18 * $pr;
+      padding-top: 72 * $pr;
+      padding-bottom: 16 * $pr;
+      .name {
+        padding: 0 10 * $pr;
+        font-size: 14 * $pr;
+        line-height: 16 * $pr;
+      }
+    }
+    &.free {
+      padding-top: 105 * $pr;
+      border-radius: 18 * $pr;
+      .item__top {
+        top: 10 * $pr;
+      }
+      .item__bottom {
+        padding-bottom: 27 * $pr;
+        .btn {
+          display: none;
+        }
+      }
+    }
+    &:nth-child(n + 10) {
+      display: none;
+    }
+  }
 }
 </style>

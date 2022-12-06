@@ -111,6 +111,42 @@ export default {
     }
   }
 }
-@media (max-width: 828px) {
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .item {
+    height: 96 * $pr;
+    border-radius: 16 * $pr;
+    &__left {
+      width: 72 * $pr;
+      border-radius: 16 * $pr;
+      img {
+        border-radius: 16 * $pr;
+      }
+    }
+    &__right {
+      padding-left: 18 * $pr;
+      padding-top: 19 * $pr;
+      .p1 {
+        font-size: 14 * $pr;
+      }
+      .p2 {
+        margin-top: 0;
+        font-size: 14 * $pr;
+      }
+      .p3 {
+        font-size: 12 * $pr;
+        padding-left: 18 * $pr;
+        margin-top: 9 * $pr;
+        &::before {
+          top: calc(50% - 5 * $pr);
+          width: 8 * $pr;
+          height: 8 * $pr;
+        }
+      }
+    }
+    &:nth-child(n + 3) {
+      display: none;
+    }
+  }
 }
 </style>
