@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'unityGame',
+      name: 'taptogame',
       exec_mode: 'cluster',
       script: './node_modules/nuxt/bin/nuxt.js',
       args: 'start',

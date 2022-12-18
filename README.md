@@ -1,4 +1,4 @@
-# unity
+# taptogame
 
 ## Build Setup
 
