@@ -3,7 +3,16 @@ export default ({ $axios }, inject) => {
   $axios.defaults.timeout = 20000
   $axios.interceptors.request.use(
     (config) => {
-      // config.headers['Authorization'] = $cookies.get('Authorization') || ''
+      let url = config.url
+      if (config.method === 'get' && config.params) {
+        url += '?'
+        Object.keys(config.params).map((key) => {
+          url += `${key}=${encodeURIComponent(config.params[key])}&`
+        })
+        url = url.substring(0, url.length - 1)
+        config.params = {}
+      }
+      config.url = url
       return config
     },
     (error) => {
