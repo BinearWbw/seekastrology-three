@@ -162,6 +162,7 @@ module.exports = {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'vue-toastification/nuxt',
+    '@nuxtjs/pwa',
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -169,6 +170,22 @@ module.exports = {
 
   toast: {
     draggable: false,
+  },
+
+  pwa: {
+    icon: {
+      source: '/favicon.png',
+      fileName: 'favicon.png',
+    },
+    manifest: {
+      name: 'gameseeks',
+      short_name: 'gameseeks',
+      description:
+        'On Gameseeks you can play free online games at home or on the road. Gameseeks has the best online game selection and offers the most fun experience to play alone or with friends. We support mobile and desktop games.',
+    },
+    // workbox: {
+    //   dev: true,
+    // },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

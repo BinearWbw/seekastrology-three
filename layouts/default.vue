@@ -1,17 +1,14 @@
 <template>
-  <main class="main" :class="{ mainActive: getSlideActive }">
-    <page-header></page-header>
+  <main class="main">
+    <Header></Header>
     <Nuxt class="main__page" />
-    <page-footer></page-footer>
+    <Footer></Footer>
   </main>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
-  computed: {
-    ...mapGetters(['getSlideActive']),
-  },
+  computed: {},
   mounted() {},
   methods: {},
 }

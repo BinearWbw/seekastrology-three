@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'PageFooter',
+  name: 'Footer',
   data() {
     return {
       menu: [
