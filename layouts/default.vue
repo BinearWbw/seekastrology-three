@@ -1,9 +1,8 @@
 <template>
   <main class="main" :class="{ mainActive: getSlideActive }">
-    <div class="main__nav">
-      <page-left class="main__nav__slide"></page-left>
-    </div>
+    <page-header></page-header>
     <Nuxt class="main__page" />
+    <page-footer></page-footer>
   </main>
 </template>
 
@@ -21,52 +20,18 @@ export default {
 @use 'sass:math';
 .main {
   min-height: 100vh;
-  display: flex;
-  &__nav {
-    flex-shrink: 0;
-    width: 255px;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    &__slide {
-      -webkit-transition-duration: 0.3s;
-      transition-duration: 0.3s;
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 255px;
-      height: 100%;
-      background-color: #1f2128;
-      box-shadow: 1px 0px 0px 0px #2e313d;
-      z-index: 1;
-    }
-  }
   &__page {
-    flex: 1;
-    min-width: 0;
     overflow: hidden;
-    background: url('~assets/img/home/bg.jpg') no-repeat center top;
-    background-size: 100% 930px;
-    padding-bottom: 169px;
-  }
-  &.mainActive {
-    .main__nav {
-      width: 80px;
-      &__slide {
-        width: 80px;
-      }
-    }
+    background: url('~assets/img/home/bg.png') no-repeat center -45px;
+    background-size: 100% 1000px;
   }
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .main {
-    &__nav {
-      display: none;
-    }
     &__page {
-      background: url('~assets/img/home/bg.jpg') no-repeat center top;
-      background-size: 100% 930px;
-      padding-bottom: 53 * $pr;
+      background: url('~assets/img/home/bg.png') no-repeat center -45px;
+      background-size: 100% 1000px;
     }
   }
 }

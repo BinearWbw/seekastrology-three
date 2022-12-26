@@ -21,11 +21,15 @@ export default ({ $axios }, inject) => {
   )
   $axios.interceptors.response.use(
     (response) => {
-      const res = response.data
-      if (!res.code) {
-        return res.data
+      if (response.status === 200) {
+        const res = response.data
+        if (!res.code) {
+          return res.data
+        }
+        return Promise.reject(res)
+      } else {
+        return Promise.reject(response)
       }
-      return Promise.reject(res)
     },
     (error) => {
       return Promise.reject(error)
