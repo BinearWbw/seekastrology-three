@@ -54,26 +54,33 @@ export default {
     display: flex;
     flex-direction: column;
     padding-left: 18px;
-    padding-top: 19px;
+    padding-top: 20px;
     .p1 {
       font-size: 14px;
+      line-height: 18px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
     }
     .p2 {
       font-size: 14px;
+      line-height: 18px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
       color: #808191;
-      line-height: 1;
-      margin-top: -1px;
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
     }
     .p3 {
+      padding-left: 16px;
+      margin-top: 6px;
       font-size: 12px;
+      line-height: 14px;
       color: #808191;
       position: relative;
-      padding-left: 16px;
-      margin-top: 9px;
-      line-height: 1;
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
       &::before {
         content: '';
         position: absolute;
@@ -90,11 +97,11 @@ export default {
   }
   &:hover {
     background-color: #6c5dd3;
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    -webkit-transform: scale(1.08);
+    transform: scale(1.08);
     .item__left {
-      -webkit-transform: scale(0.9) translate3d(0, 0, 0);
-      transform: scale(0.9) translate3d(0, 0, 0);
+      -webkit-transform: scale(0.92) translate3d(0, 0, 0);
+      transform: scale(0.92) translate3d(0, 0, 0);
       img {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
@@ -103,7 +110,11 @@ export default {
     .item__right {
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
+      .p2 {
+        color: #fff;
+      }
       .p3 {
+        color: #fff;
         &:before {
           background-color: #76ff4c;
         }

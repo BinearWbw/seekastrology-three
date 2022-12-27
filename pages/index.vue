@@ -88,7 +88,6 @@ export default {
       const res = await $apiList.home.getGameHome({
         origin: process.env.origin,
       })
-      console.log(Object.keys(res))
       gameList = res
       return {
         gameList,
@@ -180,12 +179,6 @@ export default {
     margin: 0 auto;
     width: 1310px;
     position: relative;
-    &__search {
-      position: absolute;
-      top: 36px;
-      right: 0;
-      width: 270px;
-    }
     .banner {
       width: 100%;
       height: 538px;
@@ -340,28 +333,29 @@ export default {
     .module {
       &__top {
         width: 100%;
-        height: 34px;
-        line-height: 1;
+        height: 41px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         .title {
+          font-size: 34px;
+          line-height: 41px;
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
-          font-size: 34px;
           color: #ffffff;
         }
         .more {
-          margin-top: 7px;
+          margin-top: 2px;
+          font-size: 22px;
+          line-height: 26px;
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
-          font-size: 20px;
           color: #808191;
         }
       }
       &.best {
         .list1 {
-          margin-top: 38px;
+          margin-top: 26px;
           width: 100%;
           display: flex;
           justify-content: space-between;
@@ -370,8 +364,8 @@ export default {
           margin-top: 30px;
           width: 100%;
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          grid-gap: 20px 25px;
+          grid-template-columns: repeat(5, 1fr);
+          grid-gap: 20px;
         }
       }
       &.latest {

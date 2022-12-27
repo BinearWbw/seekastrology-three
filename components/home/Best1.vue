@@ -25,10 +25,10 @@ export default {
 @use 'sass:math';
 .item {
   flex-shrink: 0;
-  width: 140px;
+  width: 150px;
   cursor: pointer;
   &__top {
-    height: 140px;
+    height: 150px;
     background-color: #3c375f;
     border-radius: 24px;
     position: relative;
@@ -41,13 +41,21 @@ export default {
     }
   }
   &__title {
-    margin-top: 10px;
-    font-size: 14px;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 18px;
     color: #808191;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+  }
+  &:hover {
+    .item__title {
+      color: #fff;
+    }
   }
 }
 @media (max-width: 750px) {
