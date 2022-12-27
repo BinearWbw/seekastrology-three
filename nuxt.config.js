@@ -19,6 +19,7 @@ module.exports = {
     axios: {
       browserBaseURL: process.env.PUBLIC_URL,
     },
+    imgUrl: 'https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/',
   },
 
   privateRuntimeConfig: {
@@ -59,7 +60,7 @@ module.exports = {
       {
         name: 'viewport',
         content:
-          'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no',
+          'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui,shrink-to-fit=no viewport-fit=cover',
       },
       { name: 'format-detection', content: 'telephone=no' },
       {
@@ -90,12 +91,10 @@ module.exports = {
         property: 'og:url',
         content: 'https://taptogame.com/',
       },
-      // todo
       {
         hid: 'og:image',
         property: 'og:image',
-        content:
-          'https://cloud.taptogame.com/web/fore-end/static/taptogame.png',
+        content: 'https://taptogame.com/favicon.png',
       },
       {
         hid: 'twitter:card',
@@ -127,15 +126,13 @@ module.exports = {
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content:
-          'https://cloud.taptogame.com/web/fore-end/static/taptogame.png',
+        content: 'https://taptogame.com/favicon.png',
       },
     ],
     link: [
-      // todo
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'shortcut icon', sizes: '512x512', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', href: '/favicon.ico' },
+      { rel: 'shortcut icon', sizes: '512x512', href: '/favicon.png' },
+      { rel: 'apple-touch-icon', href: '/favicon.png' },
     ],
   },
 
@@ -178,8 +175,8 @@ module.exports = {
       fileName: 'favicon.png',
     },
     manifest: {
-      name: 'gameseeks',
-      short_name: 'gameseeks',
+      name: 'taptogame',
+      short_name: 'taptogame',
       description:
         'On Gameseeks you can play free online games at home or on the road. Gameseeks has the best online game selection and offers the most fun experience to play alone or with friends. We support mobile and desktop games.',
     },

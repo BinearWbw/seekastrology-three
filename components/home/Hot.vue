@@ -2,14 +2,13 @@
   <a
     class="item"
     :class="{ free: item.id > 3 }"
-    :href="`/game/${href}?id=${item.id}`"
-    :title="item.name"
+    :href="`/game/${href}-${item.id}`"
   >
     <div class="item__top">
-      <img :src="item.icon" :alt="item.name" />
+      <img :src="$config.imgUrl + item.icon" :alt="item.name" />
     </div>
     <div class="item__bottom">
-      <p class="name">{{ item.name }}</p>
+      <p class="name" :title="item.name">{{ item.name }}</p>
       <button class="btn" v-if="item.id > 3">FREE</button>
     </div>
   </a>

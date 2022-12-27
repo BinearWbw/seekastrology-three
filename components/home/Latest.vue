@@ -1,14 +1,10 @@
 <template>
-  <a
-    class="item scroll-start"
-    :href="`/game/${href}?id=${item.id}`"
-    :title="item.name"
-  >
+  <a class="item scroll-start" :href="`/game/${href}-${item.id}`">
     <div class="item__top">
-      <img :src="item.icon" :alt="item.name" />
+      <img :src="$config.imgUrl + item.icon" :alt="item.name" />
     </div>
     <div class="item__bottom">
-      <p class="name">{{ item.name }}</p>
+      <p class="name" :title="item.name">{{ item.name }}</p>
       <p class="time">14m ago</p>
     </div>
   </a>

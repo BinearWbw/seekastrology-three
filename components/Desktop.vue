@@ -40,6 +40,7 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:math';
 .desktop {
+  margin-left: 20px;
   flex-shrink: 0;
   width: 110px;
   height: 34px;
@@ -47,16 +48,14 @@ export default {
   border-radius: 6px;
   text-align: center;
   line-height: 34px;
-  font-family: 'Bahnschrift';
-  font-style: normal;
   font-weight: 700;
   font-size: 12px;
 }
-@media (max-width: (1292px)) {
-  .download {
-    margin-bottom: 10px;
-  }
-}
+// @media (max-width: (1500px)) {
+//   .desktop {
+//     width: 96px;
+//   }
+// }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .download {

@@ -1,10 +1,10 @@
 <template>
-  <a class="item" :href="`/game/${href}?id=${item.id}`" :title="item.name">
+  <a class="item" :href="`/game/${href}-${item.id}`">
     <div class="item__left">
-      <img :src="item.icon" :alt="item.name" />
+      <img :src="$config.imgUrl + item.icon" :alt="item.name" />
     </div>
     <div class="item__right">
-      <p class="p1">{{ item.name }}</p>
+      <p class="p1" :title="item.name">{{ item.name }}</p>
       <p class="p2">Shooting</p>
       <p class="p3">May 26,2020</p>
     </div>

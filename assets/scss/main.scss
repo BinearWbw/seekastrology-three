@@ -188,6 +188,7 @@ a,
 button {
   color: var(--text-color);
   font-weight: 400;
+  font-style: normal;
   font-family: 'bahnschrift', -apple-system, Framedcn, Helvetica Neue, Condensed,
     DisplayRegular, Helvetica, Arial, PingFang SC, Hiragino Sans GB,
     WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
@@ -196,7 +197,6 @@ a {
   text-decoration: none;
 }
 a:active {
-  color: var(--active-color) !important;
   text-decoration: none;
 }
 a:active:hover {
@@ -308,7 +308,6 @@ body::-webkit-scrollbar {
   --text-color: #ffffff;
   --background-color: #1f2128;
   --shadow-color: #7a2ce5;
-  --active-color: #ffaf64;
   --border-radius: 5px;
   --cubic-bezier: cubic-bezier(0.36, 0.66, 0.04, 1);
 }

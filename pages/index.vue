@@ -1,53 +1,7 @@
 <template>
   <article class="home">
     <div class="home__main">
-      <div class="home__main__search">
-        <home-search></home-search>
-      </div>
-      <section class="banner">
-        <div class="banner__left">
-          <div class="info" v-if="visible">
-            <p class="info__p1">{{ banners[bannersActive].title }}</p>
-            <p class="info__p2">
-              <span>CASH PRIZE</span><span>$</span><span>free</span>
-            </p>
-            <p class="info__p3">
-              {{ banners[bannersActive].text }}
-            </p>
-            <button class="info__btn" @mouseenter="enter" @mouseleave="leave">
-              PLAY FOR FREE
-            </button>
-          </div>
-          <div class="box">
-            <div class="box__main">
-              <img
-                :src="banners[bannersActive].img"
-                alt="game"
-                v-if="visible"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="pagination">
-          <div
-            class="pagination__item"
-            v-for="(item, index) in banners"
-            :key="index"
-          >
-            <button
-              v-if="bannersActive !== index"
-              class="circle"
-              @click="changeBanner(index)"
-            ></button>
-            <div v-else class="rect">
-              <div class="rect__img">
-                <img :src="item.img" alt="game" />
-              </div>
-              <div class="rect__name">{{ item.name }}</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section class="banner"></section>
       <section class="module best">
         <div class="module__top">
           <div class="title">BEST GAMES</div>
@@ -55,14 +9,14 @@
         </div>
         <div class="list1">
           <home-best1
-            v-for="item in gameList.comm.slice(0, 7)"
+            v-for="item in gameList['best-games'].slice(0, 7)"
             :item="item"
             :key="item.id"
           ></home-best1>
         </div>
         <div class="list2">
           <home-best2
-            v-for="item in gameList.comm.slice(0, 8)"
+            v-for="item in gameList['best-games'].slice(7, 17)"
             :item="item"
             :key="item.id"
           ></home-best2>
@@ -75,7 +29,7 @@
         </div>
         <div class="list">
           <home-latest
-            v-for="item in gameList.comm.slice(0, 18)"
+            v-for="item in gameList['latest-games'].slice(0, 18)"
             :key="item.id"
             :item="item"
           ></home-latest>
@@ -88,7 +42,7 @@
         </div>
         <div class="list">
           <home-hot
-            v-for="item in gameList.comm.slice(0, 21)"
+            v-for="item in gameList['hot-games'].slice(0, 21)"
             :item="item"
             :key="item.id"
           ></home-hot>
@@ -134,21 +88,8 @@ export default {
       const res = await $apiList.home.getGameHome({
         origin: process.env.origin,
       })
-      res.list.comm.map((item) => {
-        item.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${item.icon}`
-      })
-      res.list.medium.map((item, index) => {
-        item.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${item.icon}`
-      })
-      res.list.max.map((item, index) => {
-        item.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${item.icon}`
-      })
-      res.list.category.map((item, index) => {
-        item.data.map((el) => {
-          el.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${el.icon}`
-        })
-      })
-      gameList = res.list
+      console.log(Object.keys(res))
+      gameList = res
       return {
         gameList,
       }
@@ -237,7 +178,7 @@ export default {
 .home {
   &__main {
     margin: 0 auto;
-    width: 1218px;
+    width: 1310px;
     position: relative;
     &__search {
       position: absolute;

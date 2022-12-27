@@ -132,6 +132,40 @@ import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 export default {
   name: 'Game',
+  head() {
+    return {
+      title: "Online Games on Gameseeks — Let's play " + this.gameInfo.name,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.gameInfo.desc,
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.gameInfo.desc,
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.gameInfo.desc,
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content:
+            "Online Games on Gameseeks — Let's play " + this.gameInfo.name,
+        },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content:
+            "Online Games on Gameseeks — Let's play " + this.gameInfo.name,
+        },
+      ],
+    }
+  },
   data() {
     return {
       name: '',
@@ -205,37 +239,46 @@ export default {
     Swiper,
     SwiperSlide,
   },
-  validate({ query }) {
-    if (
-      query.id &&
-      typeof Number(query.id) === 'number' &&
-      !isNaN(Number(query.id))
-    ) {
-      return true
+  validate({ params }) {
+    if (params.id) {
+      let id = params.id.replace(
+        /^.*?(\d*)$/,
+        (str, match, index) => match || '0'
+      )
+      if (id) {
+        return true
+      } else {
+        return false
+      }
+    } else {
+      return false
     }
-    return false
   },
-  async asyncData({ error, $apiList, query }) {
+  async asyncData({ error, $apiList, params }) {
     try {
       let gameList = [],
-        gameInfo = null
+        gameInfo = null,
+        labels = []
       const res = await $apiList.home.getGameDetail({
-        site_id: process.env.origin,
-        game_id: query.id,
         origin: process.env.origin,
+        site_id: process.env.origin,
+        game_id: params.id.replace(
+          /^.*?(\d*)$/,
+          (str, match, index) => match || '0'
+        ),
       })
-      res.detail.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${res.detail.icon}`
+      Object.keys(res.detail.labels).map((item) => {
+        labels.push({ id: item, name: res.detail.labels[item] })
+      })
+      res.detail.labels = labels
       gameInfo = res.detail
-      res.relate.map((item) => {
-        item.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${item.icon}`
-        gameList.push(item)
-      })
+      gameList = res.relate || []
       return {
         gameInfo,
         gameList,
       }
     } catch (e) {
-      error({ statusCode: e.code, message: e.message })
+      error({ statusCode: e.code, message: e.msg })
     }
   },
   mounted() {},

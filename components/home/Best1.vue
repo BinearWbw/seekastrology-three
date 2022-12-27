@@ -1,9 +1,9 @@
 <template>
-  <a class="item" :href="`/game/${href}?id=${item.id}`" :title="item.name">
+  <a class="item" :href="`/game/${href}-${item.id}`">
     <div class="item__top">
-      <img :src="item.icon" :alt="item.name" />
+      <img :src="$config.imgUrl + item.icon" :alt="item.name" />
     </div>
-    <p class="item__title">
+    <p class="item__title" :title="item.name">
       {{ item.name }}
     </p>
   </a>
