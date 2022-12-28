@@ -1,22 +1,9 @@
 <template>
   <div class="explain">
-    <p class="explain__title">Football Strike: Online Soccer</p>
+    <p class="explain__title">{{ name }}</p>
     <div class="explain__main" :class="{ active: show }">
       <p ref="explain">
-        Fortnite is a shooting game that incorporates construction gameplay.
-        This game breaks the traditional tactical competitive gameplay,
-        combining the game story line, gameplay mode in to the commercialization
-        mode, the game is now with innovative and diversified gameplay, rich and
-        interesting elements.This is a game that concentrates tower defense,
-        construction and survival shooting competition, but also has its own
-        style and personality at the same time. Fortnite is a shooting game that
-        incorporates construction gameplay. This game breaks the traditional
-        tactical competitive gameplay, combining the game story line, gameplay
-        mode in to the commercialization mode, the game is now with innovative
-        and diversified gameplay, rich and interesting elements.This is a game
-        that concentrates tower defense, construction and survival shooting
-        competition, but also has its own style and personality at the same
-        time.
+        {{ desc }}
       </p>
     </div>
     <button class="explain__btn" @click="show = !show" v-if="visible">
@@ -34,13 +21,13 @@
 <script>
 export default {
   name: 'GameInfo',
+  props: ['name', 'desc'],
   data() {
     return {
       visible: true,
       show: false,
     }
   },
-  props: [],
   mounted() {
     this.visible = this.$refs.explain.clientHeight > 80 ? true : false
   },

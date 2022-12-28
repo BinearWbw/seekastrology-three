@@ -40,7 +40,8 @@ module.exports = {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Online Games on Taptogame — Let's play",
+    title:
+      'Taptogame－dedicated to the dreams and wonders of the young crowd, play with your own colors in the game!',
     meta: [
       { charset: 'utf-8' },
       {
@@ -67,24 +68,25 @@ module.exports = {
         hid: 'description',
         name: 'description',
         content:
-          'On Taptogame you can play free online games at home or on the road. Taptogame has the best online game selection and offers the most fun experience to play alone or with friends. We support mobile and desktop games.',
+          'Taptogame is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Taptogame will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
       },
       {
         hid: 'keywords',
         name: 'keywords',
         content:
-          'free games, game to play online, online games, free games to play, online games for gamers, game y8, poki, yad, crazygames, babygames, scorenga, actiongameshub, 958games',
+          'Role-playing games, entertainment games, puzzle games, strategy games, cute games, pet games, parkour games, synthesis games, dress up games, princess games, adventure games, casual games, healing games, horror games, music games, cooking games',
       },
       {
         hid: 'og:title',
         property: 'og:title',
-        content: "Online Games on Taptogame — Let's play",
+        content:
+          'Taptogame－dedicated to the dreams and wonders of the young crowd, play with your own colors in the game!',
       },
       {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'On Taptogame you can play free online games at home or on the road. Taptogame has the best online game selection and offers the most fun experience to play alone or with friends. We support mobile and desktop games.',
+          'Taptogame is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Taptogame will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
       },
       {
         hid: 'og:url',
@@ -114,15 +116,15 @@ module.exports = {
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: "Online Games on Taptogame — Let's play",
+        content:
+          'Taptogame－dedicated to the dreams and wonders of the young crowd, play with your own colors in the game!',
       },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          'On Taptogame you can play free online games at home or on the road. Taptogame has the best online game selection and offers the most fun experience to play alone or with friends. We support mobile and desktop games.',
+          'Taptogame is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Taptogame will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
       },
-      // todo
       {
         hid: 'twitter:image',
         name: 'twitter:image',
@@ -178,7 +180,7 @@ module.exports = {
       name: 'taptogame',
       short_name: 'taptogame',
       description:
-        'On Gameseeks you can play free online games at home or on the road. Gameseeks has the best online game selection and offers the most fun experience to play alone or with friends. We support mobile and desktop games.',
+        'Taptogame is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Taptogame will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
     },
     // workbox: {
     //   dev: true,

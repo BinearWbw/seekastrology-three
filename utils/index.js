@@ -40,31 +40,93 @@ const shuffleArr = (array) => {
   }
   return array
 }
-const getLocalData = (id) => {
-  let num = Number(id)
-  let favoriteGame = JSON.parse(localStorage.getItem('favoriteGame')) || []
-  return favoriteGame.includes(num)
+const getWeek = (dateTime) => {
+  let temptTime = new Date(dateTime.getTime())
+  let weekday = temptTime.getDay() || 7
+  temptTime.setDate(temptTime.getDate() - weekday + 1 + 5)
+  let firstDay = new Date(temptTime.getFullYear(), 0, 1)
+  let dayOfWeek = firstDay.getDay()
+  let spendDay = 1
+  if (dayOfWeek != 0) spendDay = 7 - dayOfWeek + 1
+  firstDay = new Date(temptTime.getFullYear(), 0, 1 + spendDay)
+  let d = Math.ceil((temptTime.valueOf() - firstDay.valueOf()) / 86400000)
+  let result = Math.ceil(d / 7)
+  return result
 }
-const setLocalData = (id, isFavorite) => {
-  let num = Number(id)
-  let favoriteGame = JSON.parse(localStorage.getItem('favoriteGame')) || []
-  if (isFavorite) {
-    if (favoriteGame.includes(num)) {
-      return false
-    } else {
-      favoriteGame.push(num)
-    }
-  } else {
-    if (favoriteGame.includes(num)) {
-      favoriteGame.splice(favoriteGame.indexOf(num), 1)
-    } else {
-      return false
-    }
+const formatDate = (date, format) => {
+  let we = date.getDay()
+  let z = getWeek(date)
+  let qut = Math.floor((date.getMonth() + 3) / 3).toString()
+  let mon = date.getMonth()
+  const opt = {
+    'Y+': date.getFullYear().toString(),
+    'm+': (date.getMonth() + 1).toString(),
+    'd+': date.getDate().toString(),
+    'H+': date.getHours().toString(),
+    'M+': date.getMinutes().toString(),
+    'S+': date.getSeconds().toString(),
+    'q+': qut,
   }
-  localStorage.setItem('favoriteGame', JSON.stringify(favoriteGame))
+  const month = {
+    0: 'January',
+    1: 'February',
+    2: 'March',
+    3: 'April',
+    4: 'May',
+    5: 'June',
+    6: 'July',
+    7: 'August',
+    8: 'September',
+    9: 'October',
+    10: 'November',
+    11: 'December',
+  }
+  const week = {
+    0: 'Sun',
+    1: 'Mon',
+    2: 'Tues',
+    3: 'Wed',
+    4: 'Thur',
+    5: 'Fri',
+    6: 'Sat',
+  }
+  const quarter = {
+    1: 'First',
+    2: 'Second',
+    3: 'Third',
+    4: 'Fourth',
+  }
+  if (/(W+)/.test(format))
+    format = format.replace(
+      RegExp.$1,
+      RegExp.$1.length > 1
+        ? RegExp.$1.length > 2
+          ? week[we]
+          : week[we]
+        : week[we]
+    )
+  if (/(Q+)/.test(format))
+    format = format.replace(
+      RegExp.$1,
+      RegExp.$1.length == 4 ? quarter[qut] + 'quarter' : quarter[qut]
+    )
+  if (/(Z+)/.test(format))
+    format = format.replace(
+      RegExp.$1,
+      RegExp.$1.length == 3 ? 'Week ' + z : z + ''
+    )
+  for (let k in opt) {
+    let r = new RegExp('(' + k + ')').exec(format)
+    if (r)
+      format = format.replace(
+        r[1],
+        RegExp.$1.length == 1 ? opt[k] : opt[k].padStart(RegExp.$1.length, '0')
+      )
+  }
+  if (/(E+)/.test(format)) format = format.replace(RegExp.$1, month[mon])
+  return format
 }
 export default {
-  getLocalData,
-  setLocalData,
   formatArr,
+  formatDate,
 }

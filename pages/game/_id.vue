@@ -15,10 +15,10 @@
             <swiper class="swiper" :options="swiperOptions">
               <swiper-slide
                 class="swiper__item"
-                v-for="(item, index) in banners"
+                v-for="(item, index) in gameInfo.banner"
                 :key="index"
               >
-                <img :src="item.img" alt="obskins" />
+                <img :src="$config.imgUrl + item" alt="swiper" />
               </swiper-slide>
             </swiper>
           </div>
@@ -27,38 +27,65 @@
             <div class="pagination__page"></div>
             <button class="btn pagination__next"></button>
           </div>
-          <game-info class="explain1"></game-info>
+          <game-info
+            class="explain1"
+            :name="gameInfo.name"
+            :desc="gameInfo.desc"
+          ></game-info>
           <div class="ad"></div>
-          <game-info class="explain2"></game-info>
+          <game-info
+            class="explain2"
+            :name="gameInfo.name"
+            :desc="gameInfo.desc"
+          ></game-info>
           <div class="info">
             <p class="info__title">Get The Game</p>
             <div class="info__main">
               <p>
                 <span>Version :</span>
-                <span>12.61/1.1.2</span>
+                <span
+                  >{{ gameOs[0].ver }}{{ gameOs | detectionArr
+                  }}{{ gameOs[1].ver }}</span
+                >
               </p>
               <p>
                 <span>Size :</span>
-                <span>238.8MB/32.73MB</span>
+                <span
+                  >{{ gameOs[0].size }}{{ gameOs | detectionArr
+                  }}{{ gameOs[1].size }}</span
+                >
               </p>
               <p>
                 <span>Updated :</span>
-                <span>May 26, 2020/December 20, 2019</span>
+                <span
+                  >{{ gameOs[0].updated }}{{ gameOs | detectionArr
+                  }}{{ gameOs[1].updated }}</span
+                >
               </p>
             </div>
             <div class="info__download">
-              <a href="/" title="Andriod">
+              <a
+                class="andriod"
+                :href="gameOs[0].url"
+                title="Andriod"
+                v-if="gameOs[0].visible"
+              >
                 <img src="~/assets/img/game/andriod.png" alt="andriod" />
                 <span>Andriod</span>
               </a>
-              <a href="/" title="IOS">
+              <a
+                class="ios"
+                :href="gameOs[1].url"
+                title="IOS"
+                v-if="gameOs[1].visible"
+              >
                 <img src="~/assets/img/game/ios.png" alt="ios" />
                 <span>IOS</span>
               </a>
             </div>
             <p class="info__remark">
-              * For reference, The Fortnite game websites are all approved,
-              there are no viruses and malware.
+              * For reference, The {{ gameInfo.name }} game websites are all
+              approved, there are no viruses and malware.
             </p>
           </div>
           <div class="module">
@@ -134,7 +161,9 @@ export default {
   name: 'Game',
   head() {
     return {
-      title: "Online Games on Gameseeks — Let's play " + this.gameInfo.name,
+      title:
+        'Taptogame－dedicated to the dreams and wonders of the young crowd, play with your own colors in the ' +
+        this.gameInfo.name,
       meta: [
         {
           hid: 'description',
@@ -155,13 +184,15 @@ export default {
           hid: 'og:title',
           property: 'og:title',
           content:
-            "Online Games on Gameseeks — Let's play " + this.gameInfo.name,
+            'Taptogame－dedicated to the dreams and wonders of the young crowd, play with your own colors in the ' +
+            this.gameInfo.name,
         },
         {
           hid: 'twitter:title',
           name: 'twitter:title',
           content:
-            "Online Games on Gameseeks — Let's play " + this.gameInfo.name,
+            'Taptogame－dedicated to the dreams and wonders of the young crowd, play with your own colors in the ' +
+            this.gameInfo.name,
         },
       ],
     }
@@ -254,12 +285,29 @@ export default {
       return false
     }
   },
-  async asyncData({ error, $apiList, params }) {
+  async asyncData({ error, $apiList, params, $utils }) {
     try {
       let gameList = [],
         gameInfo = null,
-        labels = []
-      const res = await $apiList.home.getGameDetail({
+        gameOs = [
+          {
+            visible: false,
+            name: 'Andriod',
+            ver: null,
+            size: null,
+            updated: null,
+            url: null,
+          },
+          {
+            visible: false,
+            name: 'IOS',
+            ver: null,
+            size: null,
+            updated: null,
+            url: null,
+          },
+        ]
+      const appInfo = await $apiList.home.getGameDetail({
         origin: process.env.origin,
         site_id: process.env.origin,
         game_id: params.id.replace(
@@ -267,13 +315,37 @@ export default {
           (str, match, index) => match || '0'
         ),
       })
-      Object.keys(res.detail.labels).map((item) => {
-        labels.push({ id: item, name: res.detail.labels[item] })
+      if (!appInfo.detail.banner) {
+        appInfo.detail.banner = []
+      } else {
+        appInfo.detail.banner = appInfo.detail.banner.split(',')
+      }
+      appInfo.detail.os.split(',').map((item, index) => {
+        if (item.toLowerCase() == 'andriod') {
+          gameOs[0].visible = true
+          gameOs[0].ver = appInfo.detail.version.split('/')[index]
+          gameOs[0].size = appInfo.detail.apk_size.split('/')[index]
+          gameOs[0].updated = $utils.formatDate(
+            new Date(appInfo.detail.apk_updated.split('/')[index] * 1000),
+            'EE dd, YYYY'
+          )
+          gameOs[0].url = appInfo.detail.url.split(',')[index]
+        } else if (item.toLowerCase() == 'ios') {
+          gameOs[1].visible = true
+          gameOs[1].ver = appInfo.detail.version.split('/')[index]
+          gameOs[1].size = appInfo.detail.apk_size.split('/')[index]
+          gameOs[1].updated = $utils.formatDate(
+            new Date(appInfo.detail.apk_updated.split('/')[index] * 1000),
+            'EE dd, YYYY'
+          )
+          gameOs[1].url = appInfo.detail.url.split(',')[index]
+        }
       })
-      res.detail.labels = labels
-      gameInfo = res.detail
-      gameList = res.relate || []
+      gameInfo = appInfo.detail
+      gameList = appInfo.relate || []
+      console.log(gameInfo)
       return {
+        gameOs,
         gameInfo,
         gameList,
       }
@@ -284,6 +356,18 @@ export default {
   mounted() {},
   beforeDestroy() {},
   methods: {},
+  filters: {
+    detectionArr(arr) {
+      let active = ''
+      let index = arr.findIndex(({ visible }) => !visible)
+      if (index !== -1) {
+        active = ''
+      } else {
+        active = '/'
+      }
+      return active
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -473,10 +557,10 @@ $spacing: 16px;
                 color: #ffffff;
                 line-height: 1;
               }
-              &:first-child {
+              &.andriod {
                 background-color: #7ac450;
               }
-              &:nth-child(2) {
+              &.ios {
                 background-color: #3f8cff;
               }
             }

@@ -1,6 +1,4 @@
 export const state = () => ({
-  slideActive: false,
-  visibleSearch: false,
   toastCfg: {
     position: 'bottom-left',
     timeout: 3000,
@@ -16,22 +14,8 @@ export const state = () => ({
     rtl: false,
   },
 })
-export const getters = {
-  getSlideActive(state) {
-    return state.slideActive
-  },
-  getVisibleSearch(state) {
-    return state.visibleSearch
-  },
-}
-export const mutations = {
-  UPDATE_SLIDE_ACTIVE(state) {
-    state.slideActive = !state.slideActive
-  },
-  UPDATE_VISIBLE_SEARCH(state, payload) {
-    state.visibleSearch = payload
-  },
-}
+export const getters = {}
+export const mutations = {}
 export const actions = {
   // async nuxtServerInit({ commit }, { query, $cookies, $apiList }) {
   //   if (query.InvitationCode) {
@@ -58,7 +42,6 @@ export const actions = {
   //       });
   //   }
   // },
-
   toast({ state }, res) {
     if (process.client) {
       this.$toast[res.type ? res.type : 'info'](res.msg, state.toastCfg)
