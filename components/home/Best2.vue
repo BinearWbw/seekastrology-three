@@ -1,7 +1,11 @@
 <template>
   <a class="item" :href="`/game/${href}-${item.id}`">
     <div class="item__left">
-      <img :src="$config.imgUrl + item.icon" :alt="item.name" />
+      <img
+        v-lazy="$config.imgUrl + item.icon"
+        :key="item.icon"
+        :alt="item.name"
+      />
     </div>
     <div class="item__right">
       <p class="p1" :title="item.name">{{ item.name }}</p>

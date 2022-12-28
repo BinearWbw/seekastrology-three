@@ -139,6 +139,10 @@ button {
   color: inherit;
   background: 0 0;
 }
+img[src=''],
+img:not([src]) {
+  opacity: 0 !important;
+}
 @font-face {
   font-family: 'BebasNeue-Regular';
   src: url('../font/BebasNeue-Regular.otf') format('opentype');
@@ -157,7 +161,6 @@ button {
   font-weight: normal;
   font-style: normal;
 }
-
 html {
   overscroll-behavior: contain;
   scrollbar-width: thin;
@@ -311,13 +314,13 @@ body::-webkit-scrollbar {
   --border-radius: 5px;
   --cubic-bezier: cubic-bezier(0.36, 0.66, 0.04, 1);
 }
-@media (max-width: 828px) {
-  $pr: math.div(1vw, 8.28);
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
   body::-webkit-scrollbar {
-    margin-right: 10 * $pr;
+    margin-right: 5 * $pr;
   }
   ::-webkit-scrollbar {
-    width: 10 * $pr;
+    width: 5 * $pr;
   }
 }
 .fade-enter-active {

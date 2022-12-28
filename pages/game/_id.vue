@@ -6,7 +6,9 @@
           <img class="first" src="~/assets/img/game/nav.png" alt="nav" />
           <a href="/" title="HOME">Home</a>
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
-          <a href="/">Home SSS</a>
+          <a :href="`/category/${gameInfo.category}`">{{
+            gameInfo.category
+          }}</a>
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
           <p class="name">{{ gameInfo.name }}</p>
         </div>
@@ -244,26 +246,6 @@ export default {
         speed: 500,
         grabCursor: true,
       },
-      banners: [
-        {
-          name: 'Cyberpunk 2077',
-          title: 'tournament3',
-          text: 'Pre-Purchase Now to unlock early game content, including two-suit pack, early access to the Gravity Well gadget and Three Skill Points.',
-          img: require('~/assets/111.png'),
-        },
-        {
-          name: 'Cyberpunk 2077',
-          title: 'tournament1',
-          text: 'Pre-Purchase Now to unlock early game content, including two-suit pack, early access to the Gravity Well gadget and Three Skill Points.',
-          img: require('~/assets/222.png'),
-        },
-        {
-          name: 'Cyberpunk 2077',
-          title: 'tournament2',
-          text: 'Pre-Purchase Now to unlock early game content, including two-suit pack, early access to the Gravity Well gadget and Three Skill Points.',
-          img: require('~/assets/111.png'),
-        },
-      ],
     }
   },
   components: {

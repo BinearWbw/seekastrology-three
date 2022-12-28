@@ -48,7 +48,6 @@ export default {
   border-radius: 6px;
   text-align: center;
   line-height: 34px;
-  font-weight: 700;
   font-size: 12px;
 }
 // @media (max-width: (1500px)) {

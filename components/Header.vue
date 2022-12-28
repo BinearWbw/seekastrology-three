@@ -126,7 +126,6 @@ export default {
         span {
           margin-top: 2px;
           padding-left: 10px;
-          font-weight: 700;
           font-size: 15px;
           line-height: 1;
           color: #808191;
