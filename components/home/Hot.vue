@@ -1,15 +1,11 @@
 <template>
-  <a
-    class="item"
-    :class="{ free: item.id > 3 }"
-    :href="`/game/${href}-${item.id}`"
-  >
+  <a class="item" :href="`/game/${href}-${item.id}`">
     <div class="item__top">
       <img :src="$config.imgUrl + item.icon" :alt="item.name" />
     </div>
     <div class="item__bottom">
       <p class="name" :title="item.name">{{ item.name }}</p>
-      <button class="btn" v-if="item.id > 3">FREE</button>
+      <button class="btn">Download</button>
     </div>
   </a>
 </template>
@@ -31,10 +27,12 @@ export default {
 .item {
   overflow: hidden;
   position: relative;
-  padding-top: 29px;
+  padding-top: 143px;
+  background-color: #282a31;
+  border-radius: 16px;
   &__top {
     position: absolute;
-    top: 0;
+    top: 20px;
     left: calc(50% - 54px);
     width: 108px;
     height: 108px;
@@ -53,11 +51,13 @@ export default {
     height: 100%;
     background-color: #282a31;
     border-radius: 16px;
-    padding-top: 94px;
-    padding-bottom: 20px;
+    padding-top: 0;
+    padding-bottom: 21px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
     .name {
       flex-shrink: 0;
       padding: 0 24px;
@@ -73,28 +73,36 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    .btn {
+      flex-shrink: 0;
+      width: 86px;
+      height: 31px;
+      background-color: #1f2128;
+      border-radius: 48px;
+      font-size: 12px;
+      color: #808191;
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      margin-top: 14px;
+      margin-bottom: 5px;
+    }
   }
-  &.free {
-    padding-top: 145px;
-    background-color: #282a31;
-    border-radius: 24px;
+  &:nth-child(n):nth-child(-n + 7) {
+    padding-top: 30px;
+    background-color: transparent;
+    border-radius: 0;
     .item__top {
-      top: 19px;
+      top: 0;
     }
     .item__bottom {
-      padding-top: 0;
+      padding-top: 93px;
       .btn {
-        flex-shrink: 0;
-        width: 86px;
-        height: 30px;
-        background-color: #1f2128;
-        border-radius: 15px;
-        font-size: 12px;
-        color: #808191;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
-        margin-top: 11px;
-        margin-bottom: 8px;
+        display: none;
+      }
+    }
+    &:hover {
+      .item__bottom {
+        background-color: #6c5dd3;
       }
     }
   }

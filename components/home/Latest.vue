@@ -39,11 +39,14 @@ export default {
     border-radius: 16px;
     flex-shrink: 0;
     margin-bottom: 16px;
+    overflow: hidden;
     img {
       border-radius: 16px;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
     }
   }
   &__bottom {
@@ -56,7 +59,7 @@ export default {
       font-size: 14px;
       line-height: 18px;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       line-clamp: 2;
@@ -68,9 +71,24 @@ export default {
     .time {
       margin-top: auto;
       font-size: 14px;
+      line-height: 18px;
       color: #808191;
       text-align: center;
-      line-height: 1;
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+    }
+  }
+  &:hover {
+    .item__top {
+      img {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+      }
+    }
+    .item__bottom {
+      .time {
+        color: #fff;
+      }
     }
   }
 }

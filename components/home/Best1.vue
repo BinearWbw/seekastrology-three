@@ -38,6 +38,8 @@ export default {
       left: 0;
       max-width: 100%;
       border-radius: 0 0 24px 24px;
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
     }
   }
   &__title {
@@ -53,6 +55,12 @@ export default {
     transition-duration: 0.3s;
   }
   &:hover {
+    .item__top {
+      img {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+      }
+    }
     .item__title {
       color: #fff;
     }

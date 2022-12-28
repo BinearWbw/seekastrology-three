@@ -29,7 +29,7 @@
         </div>
         <div class="list">
           <home-latest
-            v-for="item in gameList['latest-games'].slice(0, 18)"
+            v-for="item in gameList['latest-games'].slice(0, 20)"
             :key="item.id"
             :item="item"
           ></home-latest>
@@ -369,26 +369,26 @@ export default {
         }
       }
       &.latest {
-        margin-top: 82px;
+        margin-top: 48px;
         .list {
-          margin-top: 34px;
+          margin-top: 20px;
           background-color: #282a31;
           border-radius: 16px;
-          padding: 54px 26px 64px;
+          padding: 55px 12px 53px;
           display: grid;
           grid-template-rows: repeat(2, 1fr);
-          grid-template-columns: repeat(9, 1fr);
-          grid-gap: 50px 18px;
+          grid-template-columns: repeat(10, 1fr);
+          grid-gap: 48px 30px;
         }
       }
       &.hot {
-        margin-top: 73px;
+        margin-top: 50px;
         .list {
-          margin-top: 33px;
+          margin-top: 20px;
           display: grid;
           grid-template-rows: repeat(3, auto);
           grid-template-columns: repeat(7, 1fr);
-          grid-gap: 20px 21px;
+          grid-gap: 30px;
         }
       }
     }
