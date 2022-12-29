@@ -3,11 +3,11 @@
     <div class="type__main">
       <section class="module">
         <div class="module__top">
-          <div class="title">Top GAMES</div>
+          <div class="title">TOP GAMES</div>
         </div>
         <div class="list">
           <home-hot
-            v-for="item in gameList.comm.slice(0, 21)"
+            v-for="item in gameList"
             :item="item"
             :key="item.id"
           ></home-hot>
@@ -25,27 +25,29 @@ export default {
   },
   async asyncData({ error, $apiList }) {
     try {
-      let gameList
-      const res = await $apiList.home.getGameHome({
-        origin: process.env.origin,
-      })
-      res.list.comm.map((item) => {
-        item.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${item.icon}`
-      })
-      res.list.medium.map((item, index) => {
-        item.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${item.icon}`
-      })
-      res.list.max.map((item, index) => {
-        item.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${item.icon}`
-      })
-      res.list.category.map((item, index) => {
-        item.data.map((el) => {
-          el.icon = `https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/${el.icon}`
-        })
-      })
-      gameList = res.list
+      let [gameList, bestList] = await Promise.all([
+        $apiList.home
+          .getGameMenu({
+            origin: process.env.origin,
+            menu: 'top-games',
+            size: 10,
+          })
+          .then((res) => {
+            return res || []
+          }),
+        $apiList.home
+          .getGameMenu({
+            origin: process.env.origin,
+            menu: 'best-games',
+            size: 10,
+          })
+          .then((res) => {
+            return res || []
+          }),
+      ])
       return {
         gameList,
+        bestList,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
