@@ -30,9 +30,6 @@ export default {
   },
   methods: {
     scrollPrevLatest() {
-      console.log(this.$refs.latestScroll.scrollWidth)
-      console.log(this.$refs.latestScroll.scrollLeft)
-      console.log(this.$refs.latestScroll.clientWidth)
       if (this.$refs.latestScroll.scrollLeft > 0) {
         this.$refs.latestScroll.scrollTo({
           left:
@@ -40,17 +37,11 @@ export default {
             this.$refs.latestScroll.clientWidth,
           behavior: 'smooth',
         })
-        setTimeout(() => {
-          console.log(this.$refs.latestScroll.scrollLeft)
-        }, 300)
       } else {
         return false
       }
     },
     scrollNextLatest() {
-      console.log(this.$refs.latestScroll.scrollWidth)
-      console.log(this.$refs.latestScroll.scrollLeft)
-      console.log(this.$refs.latestScroll.clientWidth)
       if (
         this.$refs.latestScroll.scrollWidth -
           this.$refs.latestScroll.scrollLeft >
