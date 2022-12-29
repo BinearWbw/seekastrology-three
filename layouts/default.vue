@@ -1,5 +1,5 @@
 <template>
-  <main class="main">
+  <main class="main" v-cloak>
     <Header></Header>
     <Nuxt class="main__page" />
     <Footer></Footer>
@@ -15,6 +15,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use 'sass:math';
+[v-cloak] {
+  display: none !important;
+}
 .main {
   min-height: 100vh;
   &__page {
