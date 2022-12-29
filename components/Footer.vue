@@ -156,7 +156,7 @@ export default {
         background: #242731;
         border-radius: 4px;
         &:hover {
-          background: #695acc;
+          background: #7a78ff;
         }
       }
     }
@@ -205,9 +205,12 @@ export default {
             flex-shrink: 0;
             width: 104px;
             height: 100%;
-            background: #7a78ff;
+            background: #6c5dd3;
             border-radius: 6px;
             font-size: 14px;
+            &:hover {
+              background-color: #7a78ff;
+            }
           }
         }
       }

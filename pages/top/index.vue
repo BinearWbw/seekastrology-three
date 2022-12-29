@@ -1,9 +1,6 @@
 <template>
   <article class="type">
     <div class="type__main">
-      <div class="type__main__search">
-        <home-search></home-search>
-      </div>
       <section class="module">
         <div class="module__top">
           <div class="title">Top GAMES</div>

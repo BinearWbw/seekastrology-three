@@ -3,7 +3,7 @@
     <div class="game__main">
       <section class="game__main__left">
         <div class="nav">
-          <img class="first" src="~/assets/img/game/nav.png" alt="nav" />
+          <img class="first" src="~/assets/img/game/nav.svg" alt="nav" />
           <a href="/" title="HOME">Home</a>
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
           <a :href="`/category/${gameInfo.category}`">{{
@@ -25,18 +25,12 @@
             </swiper>
           </div>
           <div class="pagination">
-            <button class="btn pagination__prev"></button>
+            <button class="btn pagination__prev common__btn"></button>
             <div class="pagination__page"></div>
-            <button class="btn pagination__next"></button>
+            <button class="btn pagination__next common__btn"></button>
           </div>
           <game-info
             class="explain1"
-            :name="gameInfo.name"
-            :desc="gameInfo.desc"
-          ></game-info>
-          <div class="ad"></div>
-          <game-info
-            class="explain2"
             :name="gameInfo.name"
             :desc="gameInfo.desc"
           ></game-info>
@@ -67,7 +61,7 @@
             </div>
             <div class="info__download">
               <a
-                class="andriod"
+                class="andriod common__btn"
                 :href="gameOs[0].url"
                 title="Andriod"
                 v-if="gameOs[0].visible"
@@ -76,7 +70,7 @@
                 <span>Andriod</span>
               </a>
               <a
-                class="ios"
+                class="ios common__btn"
                 :href="gameOs[1].url"
                 title="IOS"
                 v-if="gameOs[1].visible"
@@ -85,55 +79,49 @@
                 <span>IOS</span>
               </a>
             </div>
-            <p class="info__remark">
+            <p
+              class="info__remark"
+              :title="`* For reference, The ${gameInfo.name} game websites are all approved, there are no viruses and malware.`"
+            >
               * For reference, The {{ gameInfo.name }} game websites are all
               approved, there are no viruses and malware.
             </p>
           </div>
-          <div class="module">
-            <div class="module__top">
-              <div class="title">RELATED GAMES</div>
-              <div class="page">
-                <button class="page__button prev"></button>
-                <button class="page__button next"></button>
-              </div>
-            </div>
-            <div class="list">
-              <div class="scroll">
-                <home-latest
-                  v-for="item in gameList"
-                  :item="item"
-                  :key="item.id"
-                ></home-latest>
-              </div>
-            </div>
-          </div>
+          <home-list class="module" :title="'RELATED GAMES'">
+            <home-latest
+              v-for="item in bestList"
+              :item="item"
+              :key="item.id"
+            ></home-latest>
+          </home-list>
           <div class="comment">
             <p class="comment__title">COMMENT</p>
             <div class="comment__box">
               <input
                 type="text"
-                v-model="name"
+                v-model="form.nick"
                 placeholder="Fill in your name"
               />
               <textarea
-                v-model="comment"
+                v-model="form.comment"
                 cols="30"
                 rows="10"
                 placeholder="Add a comment..."
               ></textarea>
-              <button>Submit</button>
+              <button class="common__btn" @click="!status && submit()">
+                Submit
+              </button>
               <ul class="message">
                 <li
                   class="message__li"
-                  v-for="(item, index) in message"
+                  v-for="(item, index) in commentList"
                   :key="index"
                 >
                   <div class="top">
-                    <span>{{ item.name }}</span>
-                    <span>{{ item.time }}</span>
+                    <span :title="item.nick">{{ item.nick }}</span>
+                    <span>{{ item.updated_at }}</span>
                   </div>
-                  <p class="text">{{ item.text }}</p>
+                  <p class="text" :title="item.comment">{{ item.comment }}</p>
                 </li>
               </ul>
             </div>
@@ -141,12 +129,12 @@
         </div>
       </section>
       <section class="game__main__right">
-        <home-search></home-search>
-        <div class="ad"></div>
+        <google-ad :id="'ID1-pc'" :timeout="200" classNames="ad" />
         <div class="best">Best Games</div>
         <div class="list">
           <home-best2
-            v-for="item in gameList.slice(0, 6)"
+            class="active"
+            v-for="item in bestList.slice(0, 6)"
             :item="item"
             :key="item.id"
           ></home-best2>
@@ -201,20 +189,11 @@ export default {
   },
   data() {
     return {
-      name: '',
-      comment: '',
-      message: [
-        {
-          name: 'Redd bradley',
-          time: '15 Sep,2022',
-          text: 'Players will play a game of youth, and other players to compete',
-        },
-        {
-          name: 'Nathan Miller',
-          time: '15 Sep,2022',
-          text: 'his game breaks the traditional tactical competitive gameplay, combining the game story line, gameplay mode in to the commercialization mode',
-        },
-      ],
+      status: false,
+      form: {
+        nick: '',
+        comment: '',
+      },
       swiperOptions: {
         autoplay: {
           delay: 5000,
@@ -288,15 +267,49 @@ export default {
             updated: null,
             url: null,
           },
-        ]
-      const appInfo = await $apiList.home.getGameDetail({
-        origin: process.env.origin,
-        site_id: process.env.origin,
-        game_id: params.id.replace(
-          /^.*?(\d*)$/,
-          (str, match, index) => match || '0'
-        ),
-      })
+        ],
+        totalNum = 0,
+        totalPage = 1,
+        search = {
+          page: 1,
+          size: 5,
+        }
+      let [appInfo, bestList, commentList] = await Promise.all([
+        $apiList.home
+          .getGameDetail({
+            origin: process.env.origin,
+            site_id: process.env.origin,
+            game_id: params.id.replace(
+              /^.*?(\d*)$/,
+              (str, match, index) => match || '0'
+            ),
+          })
+          .then((res) => {
+            return res || null
+          }),
+        $apiList.home
+          .getGameMenu({
+            origin: process.env.origin,
+            menu: 'best-games',
+            size: 10,
+          })
+          .then((res) => {
+            return res || []
+          }),
+        $apiList.home
+          .getGameComment({
+            origin: process.env.origin,
+            game_id: params.id.replace(
+              /^.*?(\d*)$/,
+              (str, match, index) => match || '0'
+            ),
+            ...search,
+          })
+          .then((res) => {
+            console.log(res)
+            return res || []
+          }),
+      ])
       if (!appInfo.detail.banner) {
         appInfo.detail.banner = []
       } else {
@@ -325,19 +338,100 @@ export default {
       })
       gameInfo = appInfo.detail
       gameList = appInfo.relate || []
-      console.log(gameInfo)
+      commentList.map((item) => {
+        item.updated_at = $utils.formatDate(
+          new Date(item.updated_at * 1000),
+          'dd AA,YYYY'
+        )
+      })
       return {
         gameOs,
         gameInfo,
         gameList,
+        bestList,
+        totalNum,
+        totalPage,
+        search,
+        commentList,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
     }
   },
-  mounted() {},
-  beforeDestroy() {},
-  methods: {},
+  methods: {
+    submit() {
+      let regNick = /^.{2,}$/
+      let regComment = /^.{6,}$/
+      if (
+        !this.form.nick.replace(/\s+/g, '') ||
+        !regNick.test(this.form.nick.replace(/\s+/g, ''))
+      ) {
+        this.$store.dispatch('toast', {
+          type: 'warning',
+          msg: 'Name is required and the length cannot be less than 2',
+        })
+      } else if (
+        !this.form.comment.replace(/\s+/g, '') ||
+        !regComment.test(this.form.comment.replace(/\s+/g, ''))
+      ) {
+        console.log(regComment.test(this.form.comment))
+        this.$store.dispatch('toast', {
+          type: 'warning',
+          msg: 'Comment is required and the length cannot be less than 6',
+        })
+      } else {
+        this.status = true
+        let data = {
+          origin: process.env.origin,
+          game_id: Number(
+            this.$route.params.id.replace(
+              /^.*?(\d*)$/,
+              (str, match, index) => match || '0'
+            )
+          ),
+          ...this.form,
+        }
+        this.$apiList.home
+          .postGameComment(data)
+          .then(() => {
+            this.$store.dispatch('toast', {
+              type: 'success',
+              msg: 'Comment successful',
+            })
+            this.getComment()
+            this.status = false
+          })
+          .catch(() => {
+            this.$store.dispatch('toast', {
+              type: 'error',
+              msg: 'Comment failure',
+            })
+            this.status = false
+          })
+      }
+    },
+    getComment() {
+      this.$apiList.home
+        .getGameComment({
+          origin: process.env.origin,
+          game_id: this.params.id.replace(
+            /^.*?(\d*)$/,
+            (str, match, index) => match || '0'
+          ),
+          ...search,
+        })
+        .then((res) => {
+          let list = res || []
+          list.map((item) => {
+            item.updated_at = this.$utils.formatDate(
+              new Date(item.updated_at * 1000),
+              'dd AA,YYYY'
+            )
+          })
+          this.commentList = list
+        })
+    },
+  },
   filters: {
     detectionArr(arr) {
       let active = ''
@@ -359,9 +453,9 @@ $spacing: 16px;
 .game {
   &__main {
     margin: 0 auto;
-    width: 1218px;
-    padding-top: 36px;
-    padding-right: 286px;
+    width: 1310px;
+    padding-top: 33px;
+    padding-right: 350px;
     position: relative;
     &__left {
       width: 100%;
@@ -372,32 +466,34 @@ $spacing: 16px;
         align-items: center;
         a {
           font-size: 14px;
-          line-height: 1;
+          line-height: 18px;
           color: #808191;
+          -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
           &:hover {
             color: #fff;
           }
         }
         .first {
-          width: 21px;
-          height: 21px;
-          margin-right: 15px;
+          width: 20px;
+          height: 20px;
+          margin-right: 10px;
           margin-bottom: 2px;
         }
         .arrow {
-          margin: 0 16px 0 20px;
-          width: 8px;
-          height: 12px;
+          margin: 0 14px 2px 11px;
+          width: 6px;
+          height: 9px;
         }
         .name {
           font-size: 14px;
-          color: #ffffff;
-          line-height: 1;
+          line-height: 18px;
+          margin-left: -2px;
         }
       }
       .main {
-        margin-top: 36px;
-        padding-right: 52px;
+        margin-top: 20px;
+        padding-right: 80px;
         width: 100%;
         overflow: hidden;
         .banner {
@@ -433,6 +529,9 @@ $spacing: 16px;
             background-color: #242731;
             background-repeat: no-repeat;
             background-position: center;
+            &:hover {
+              background-color: #7a78ff;
+            }
           }
           &__prev {
             background-image: url('~assets/img/home/prev.png');
@@ -456,7 +555,6 @@ $spacing: 16px;
             border: solid 2px transparent;
             border-radius: 50%;
             position: relative;
-            transition-duration: 0.3s;
             &::before {
               content: '';
               position: absolute;
@@ -478,32 +576,22 @@ $spacing: 16px;
         .explain1 {
           margin-top: 20px;
         }
-        .ad {
-          margin-top: 25px;
-          width: 100%;
-          height: 200px;
-          background-color: #111216;
-          border-radius: 24px;
-        }
-        .explain2 {
-          margin-top: 25px;
-        }
         .info {
           margin-top: 30px;
           height: 270px;
           background-color: #282a31;
           border-radius: 24px;
-          padding: 36px 44px;
+          padding: 37px 36px 35px;
           &__title {
             font-size: 24px;
             line-height: 1;
             color: #ffffff;
           }
           &__main {
-            margin-top: 19px;
+            margin-top: 24px;
             display: flex;
             flex-wrap: wrap;
-            grid-gap: 20px 83px;
+            grid-gap: 20px 76px;
             p {
               font-size: 14px;
               line-height: 20px;
@@ -541,9 +629,15 @@ $spacing: 16px;
               }
               &.andriod {
                 background-color: #7ac450;
+                &:hover {
+                  background-color: #96ef63;
+                }
               }
               &.ios {
                 background-color: #3f8cff;
+                &:hover {
+                  background-color: #70a9ff;
+                }
               }
             }
           }
@@ -552,90 +646,26 @@ $spacing: 16px;
             font-size: 14px;
             color: #808191;
             line-height: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
         .module {
-          margin-top: 32px;
-          &__top {
-            width: 100%;
-            height: 34px;
-            line-height: 1;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            .title {
-              flex-shrink: 0;
-              font-family: BebasNeue-Regular;
-              font-size: 28px;
-              color: #ffffff;
-              margin-top: 5px;
-            }
-            .page {
-              flex-shrink: 0;
-              height: 100%;
-              &__button {
-                width: 34px;
-                height: 100%;
-                border-radius: 50%;
-                background-color: #242731;
-                -webkit-transition-duration: 0.3s;
-                transition-duration: 0.3s;
-                background-repeat: no-repeat;
-                background-position: center;
-                &.active {
-                  background-color: #6c5dd3;
-                }
-              }
-              .prev {
-                background-image: url('~assets/img/home/prev.png');
-                margin-right: 6px;
-              }
-              .next {
-                background-image: url('~assets/img/home/next.png');
-              }
-            }
-          }
-          .list {
-            margin-top: 24px;
-            background-color: #282a31;
-            border-radius: 16px;
-            padding: 54px 54px 55px;
-            .scroll {
-              --grid-num: 6;
-              display: grid;
-              grid-template-rows: repeat(1, 1fr);
-              grid-auto-flow: column;
-              grid-auto-columns: calc(
-                100% / var(--grid-num) - (var(--grid-num) - 1) * 18px /
-                  var(--grid-num)
-              );
-              grid-gap: 18px;
-              -webkit-scroll-snap-type: x mandatory;
-              -moz-scroll-snap-type: x mandatory;
-              -ms-scroll-snap-type: x mandatory;
-              scroll-snap-type: x mandatory;
-              -webkit-scroll-behavior: smooth;
-              -moz-scroll-behavior: smooth;
-              -ms-scroll-behavior: smooth;
-              scroll-behavior: smooth;
-              overflow-x: auto;
-              overflow-y: hidden;
-            }
-          }
+          margin-top: 30px;
         }
         .comment {
-          margin-top: 39px;
+          margin-top: 30px;
           &__title {
             font-family: BebasNeue-Regular;
             font-size: 28px;
-            line-height: 1;
-            color: #ffffff;
+            line-height: 34px;
           }
           &__box {
-            margin-top: 24px;
+            margin-top: 20px;
             background-color: #282a31;
             border-radius: 16px;
-            padding: 55px 70px 57px;
+            padding: 56px 70px 34px;
             display: flex;
             flex-direction: column;
             input {
@@ -667,6 +697,9 @@ $spacing: 16px;
               border-radius: 4px;
               font-size: 14px;
               color: #ffffff;
+              &:hover {
+                background-color: #7a78ff;
+              }
             }
             .message {
               width: 100%;
@@ -695,6 +728,9 @@ $spacing: 16px;
                   line-height: 18px;
                   color: #808191;
                 }
+                &:last-child {
+                  border-bottom: none;
+                }
               }
             }
           }
@@ -702,24 +738,21 @@ $spacing: 16px;
       }
     }
     &__right {
+      padding-top: 94px;
       position: absolute;
       right: 0;
-      top: 36px;
-      width: 286px;
-      .search {
-        position: relative;
-      }
+      top: 0;
+      width: 350px;
       .ad {
-        margin-top: 36px;
-        height: 250px;
+        height: 300px;
         background-color: #282a31;
         border-radius: 16px;
       }
       .best {
         font-family: BebasNeue-Regular;
-        font-size: 28px;
-        line-height: 1;
-        margin: 38px 0 24px;
+        font-size: 34px;
+        line-height: 41px;
+        margin: 40px 0 20px;
       }
       .list {
         width: 100%;
@@ -787,7 +820,6 @@ $spacing: 16px;
               border: solid 2px transparent;
               border-radius: 50%;
               position: relative;
-              transition-duration: 0.3s;
               &::before {
                 content: '';
                 position: absolute;
@@ -808,16 +840,6 @@ $spacing: 16px;
           }
           .explain1 {
             margin-top: 20px;
-          }
-          .ad {
-            margin-top: 25px;
-            width: 100%;
-            height: 200px;
-            background-color: #111216;
-            border-radius: 24px;
-          }
-          .explain2 {
-            margin-top: 25px;
           }
           .info {
             margin-top: 30px;
@@ -914,7 +936,7 @@ $spacing: 16px;
                   background-repeat: no-repeat;
                   background-position: center;
                   &.active {
-                    background-color: #6c5dd3;
+                    background-color: #7a78ff;
                   }
                 }
                 .prev {

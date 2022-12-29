@@ -15,21 +15,9 @@ export default (axios) => ({
   getGameDetail(params) {
     return axios.get('api/game/detail', { params })
   },
-  /* 我的喜欢 */
-  getGameFavorite(params) {
-    return axios.get('api/game/favorite', { params })
-  },
   /* 最近热门 */
   getGameNew(params) {
     return axios.get('api/game/new', { params })
-  },
-  /* 最近访问 */
-  getGameRecent(params) {
-    return axios.get('api/game/recent', { params })
-  },
-  /* 喜欢游戏 */
-  postGameVote(data) {
-    return axios.post('api/game/vote', data)
   },
   /* 游戏搜索 */
   getGameSearch(params) {
@@ -38,5 +26,17 @@ export default (axios) => ({
   /* 邮箱订阅 */
   postSubscribe(data) {
     return axios.post('api/subscribe', data)
+  },
+  /* 分类游戏 */
+  getGameMenu(params) {
+    return axios.get('api/game/menu', { params })
+  },
+  /* 游戏评论列表 */
+  getGameComment(params) {
+    return axios.get('api/game/comment', { params })
+  },
+  /* 游戏评论 */
+  postGameComment(data) {
+    return axios.post('api/game/comment', data)
   },
 })

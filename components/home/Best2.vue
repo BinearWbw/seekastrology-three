@@ -8,9 +8,12 @@
       />
     </div>
     <div class="item__right">
-      <p class="p1" :title="item.name">{{ item.name }}</p>
-      <p class="p2">Shooting</p>
-      <p class="p3">May 26,2020</p>
+      <div class="item__right-l">
+        <p class="p1" :title="item.name">{{ item.name }}</p>
+        <p class="p2">Shooting</p>
+        <p class="p3">May 26,2020</p>
+      </div>
+      <button class="download common__btn">Download</button>
     </div>
   </a>
 </template>
@@ -56,51 +59,75 @@ export default {
     flex: 1;
     min-width: 0;
     display: flex;
-    flex-direction: column;
     padding-left: 18px;
     padding-top: 20px;
-    .p1 {
-      font-size: 14px;
-      line-height: 18px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-    .p2 {
-      font-size: 14px;
-      line-height: 18px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      color: #808191;
-      -webkit-transition-duration: 0.3s;
-      transition-duration: 0.3s;
-    }
-    .p3 {
-      padding-left: 16px;
-      margin-top: 6px;
-      font-size: 12px;
-      line-height: 14px;
-      color: #808191;
-      position: relative;
-      -webkit-transition-duration: 0.3s;
-      transition-duration: 0.3s;
-      &::before {
-        content: '';
-        position: absolute;
-        top: calc(50% - 4px);
-        left: 0;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #ff754c;
+    &-l {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      .p1 {
+        font-size: 14px;
+        line-height: 18px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      .p2 {
+        font-size: 14px;
+        line-height: 18px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: #808191;
         -webkit-transition-duration: 0.3s;
         transition-duration: 0.3s;
+      }
+      .p3 {
+        padding-left: 16px;
+        margin-top: 6px;
+        font-size: 12px;
+        line-height: 14px;
+        color: #808191;
+        position: relative;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        &::before {
+          content: '';
+          position: absolute;
+          top: calc(50% - 4px);
+          left: 0;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #ff754c;
+          -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+        }
+      }
+    }
+    .download {
+      display: none;
+      margin-top: 13px;
+      margin-right: 20px;
+      flex-shrink: 0;
+      width: 84px;
+      height: 30px;
+      background: #1f2128;
+      border-radius: 48px;
+      font-size: 12px;
+      color: #808191;
+    }
+  }
+  &.active {
+    .item__right {
+      .download {
+        display: block;
       }
     }
   }
   &:hover {
-    background-color: #6c5dd3;
+    background-color: #7a78ff;
     -webkit-transform: scale(1.08);
     transform: scale(1.08);
     .item__left {
@@ -114,14 +141,20 @@ export default {
     .item__right {
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
-      .p2 {
-        color: #fff;
-      }
-      .p3 {
-        color: #fff;
-        &:before {
-          background-color: #76ff4c;
+      &-l {
+        .p2 {
+          color: #fff;
         }
+        .p3 {
+          color: #fff;
+          &:before {
+            background-color: #76ff4c;
+          }
+        }
+      }
+      .download {
+        background: #fff;
+        color: #7a78ff;
       }
     }
   }

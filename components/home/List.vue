@@ -3,8 +3,14 @@
     <div class="scroll__top">
       <div class="title">{{ title }}</div>
       <div class="page">
-        <button class="page__button prev" @click="scrollPrevLatest"></button>
-        <button class="page__button next" @click="scrollNextLatest"></button>
+        <button
+          class="page__button prev common__btn"
+          @click="scrollPrevLatest"
+        ></button>
+        <button
+          class="page__button next common__btn"
+          @click="scrollNextLatest"
+        ></button>
       </div>
     </div>
     <div class="scroll__bottom">
@@ -110,7 +116,7 @@ export default {
     .title {
       flex-shrink: 0;
       font-family: BebasNeue-Regular;
-      font-size: 34px;
+      font-size: 28px;
       color: #ffffff;
     }
     .page {
@@ -121,12 +127,10 @@ export default {
         height: 100%;
         border-radius: 50%;
         background-color: #242731;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
         background-repeat: no-repeat;
         background-position: center;
-        &.active {
-          background-color: #6c5dd3;
+        &:hover {
+          background-color: #7a78ff;
         }
       }
       .prev {
@@ -139,8 +143,19 @@ export default {
     }
   }
   &__bottom {
+    margin-top: 20px;
+    background-color: #282a31;
+    border-radius: 16px;
+    padding: 40px 22px 48px;
     .list {
+      --grid-num: 7;
       display: grid;
+      grid-template-rows: repeat(1, 1fr);
+      grid-auto-flow: column;
+      grid-auto-columns: calc(
+        100% / var(--grid-num) - (var(--grid-num) - 1) * 18px / var(--grid-num)
+      );
+      grid-gap: 18px;
       -webkit-scroll-snap-type: x mandatory;
       -moz-scroll-snap-type: x mandatory;
       -ms-scroll-snap-type: x mandatory;

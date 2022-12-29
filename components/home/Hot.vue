@@ -106,14 +106,14 @@ export default {
     }
     &:hover {
       .item__bottom {
-        background-color: #6c5dd3;
+        background-color: #7a78ff;
       }
     }
   }
   &:hover {
     .item__bottom {
       .btn {
-        background-color: #6c5dd3;
+        background-color: #7a78ff;
         color: #fff;
       }
     }
