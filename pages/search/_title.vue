@@ -1,21 +1,31 @@
 <template>
-  <article class="category">
-    <div class="category__main">
+  <article class="type">
+    <div class="type__main">
       <div class="nav">
         <img class="first" src="~/assets/img/game/nav.svg" alt="nav" />
         <a href="/" title="HOME">Home</a>
         <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
-        <p class="name">Games categories</p>
+        <p class="name">Search</p>
       </div>
-      <section class="module active">
+      <section class="search" v-if="gameList.length > 0">
+        <p class="title">
+          <span>"{{ $route.params.title }}" </span>,
+          {{
+            gameList.length > 1 ? gameList.length + ' results' : '1 result'
+          }}
+          found
+        </p>
         <div class="list">
-          <category-classify
-            v-for="item in category"
-            :item="item"
+          <home-latest
+            v-for="item in gameList"
             :key="item.id"
-          ></category-classify>
+            :item="item"
+          ></home-latest>
         </div>
       </section>
+      <p class="none" v-else>
+        Sorry, No <span>"{{ $route.params.title }}"</span> found
+      </p>
       <section class="module">
         <div class="module__top">
           <div class="title">MORE GAMES</div>
@@ -34,16 +44,17 @@
 
 <script>
 export default {
-  name: 'Category',
-  async asyncData({ error, $apiList }) {
+  name: 'SearchTitle',
+  async asyncData({ error, $apiList, params }) {
     try {
-      let [category, recommendList] = await Promise.all([
+      let [gameList, recommendList] = await Promise.all([
         $apiList.home
-          .getCategory({
-            page: 1,
-            size: 10000,
+          .getGameSearch({
+            origin: process.env.origin,
+            name: params.title,
           })
           .then((res) => {
+            console.log(res)
             return res || []
           }),
         $apiList.home
@@ -57,7 +68,7 @@ export default {
           }),
       ])
       return {
-        category,
+        gameList,
         recommendList,
       }
     } catch (e) {
@@ -68,7 +79,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use 'sass:math';
-.category {
+.type {
   &__main {
     margin: 0 auto;
     width: 1310px;
@@ -107,8 +118,46 @@ export default {
         margin-left: -2px;
       }
     }
+    .search {
+      width: 100%;
+      background: #282a31;
+      border-radius: 18px;
+      margin-top: 21px;
+      padding-top: 35px;
+      .title {
+        text-align: center;
+        font-size: 20px;
+        span {
+          color: #ffc908;
+        }
+      }
+      .list {
+        background-color: #282a31;
+        border-radius: 16px;
+        padding: 41px 51px 35px;
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-gap: 28px 30px;
+      }
+    }
+    .none {
+      width: 100%;
+      height: 200px;
+      background: #282a31;
+      border-radius: 18px;
+      margin-top: 21px;
+      font-size: 24px;
+      text-align: center;
+      line-height: 204px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      span {
+        color: #ffc908;
+      }
+    }
     .module {
-      padding-top: 60px;
+      padding-top: 40px;
       &__top {
         width: 100%;
         height: 41px;
@@ -125,13 +174,8 @@ export default {
         grid-template-columns: repeat(7, 1fr);
         grid-gap: 30px;
       }
-      &.active {
-        padding-top: 0;
-        .list {
-          margin-top: 24px;
-          grid-template-columns: repeat(5, 1fr);
-          grid-gap: 20px;
-        }
+      &:first-child {
+        padding-top: 34px;
       }
     }
   }

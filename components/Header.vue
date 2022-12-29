@@ -44,36 +44,52 @@ export default {
       searchInput: '',
       menu: [
         {
-          title: 'HOME',
+          title: 'Home',
           href: '/',
           img: require('~/assets/img/header/navHome.svg'),
         },
         {
-          title: 'HOT GAMES',
+          title: 'Hot Games',
           href: '/hot',
           img: require('~/assets/img/header/navHot.svg'),
         },
         {
-          title: 'BEST GAMES',
+          title: 'Best Games',
           href: '/best',
           img: require('~/assets/img/header/navBest.svg'),
         },
         {
-          title: 'TOP GAMES',
+          title: 'Top Games',
           href: '/top',
           img: require('~/assets/img/header/navTop.svg'),
         },
         {
-          title: 'NEW GAMES',
+          title: 'New Games',
           href: '/new',
           img: require('~/assets/img/header/navNew.svg'),
+        },
+        {
+          title: 'Category',
+          href: '/category',
+          img: require('~/assets/img/header/navCategory.svg'),
         },
       ],
     }
   },
   methods: {
     search() {
-      console.log(this.searchInput)
+      let regSearch = /^.{2,}$/
+      if (
+        !this.searchInput.replace(/\s+/g, '') ||
+        !regSearch.test(this.searchInput.replace(/\s+/g, ''))
+      ) {
+        this.$store.dispatch('toast', {
+          type: 'warning',
+          msg: 'Search is required and the length cannot be less than 2',
+        })
+      } else {
+        window.location = `/search/${this.searchInput}`
+      }
     },
   },
 }

@@ -3,27 +3,26 @@
     <div class="type__main">
       <section class="module">
         <div class="module__top">
-          <div class="title">RECOMMEND GAMES</div>
+          <div class="title">{{ $route.params.title.toLowerCase() }} GAMES</div>
         </div>
-        <div class="list rec">
-          <home-best2
-            v-for="item in recommendList.slice(0, 10)"
+        <div class="list">
+          <home-hot
+            v-for="item in recommendList.slice(0, 21)"
             :item="item"
             :key="item.id"
-          ></home-best2>
+          ></home-hot>
         </div>
       </section>
       <section class="module">
         <div class="module__top">
-          <div class="title">NEW GAMES</div>
+          <div class="title">MORE GAMES</div>
         </div>
         <div class="list">
           <home-hot
-            v-for="item in gameList"
+            v-for="item in recommendList.slice(0, 21)"
             :item="item"
             :key="item.id"
           ></home-hot>
-          <google-ad :id="'ID1-pc'" :timeout="200" classNames="ad" />
         </div>
       </section>
     </div>
@@ -32,18 +31,18 @@
 
 <script>
 export default {
-  name: 'New',
-  async asyncData({ error, $apiList }) {
+  name: 'CategoryTitle',
+  async asyncData({ error, $apiList, params }) {
     try {
       let [gameList, recommendList] = await Promise.all([
         $apiList.home
-          .getGameMenu({
+          .getGameCategory({
             origin: process.env.origin,
-            menu: 'new-games',
-            size: 10,
+            cate_name: params.title.toLowerCase(),
           })
           .then((res) => {
-            return res || []
+            console.log(res)
+            return res.list || []
           }),
         $apiList.home
           .getGameMenu({
@@ -52,6 +51,7 @@ export default {
             size: 10,
           })
           .then((res) => {
+            console.log(res)
             return res || []
           }),
       ])
@@ -89,17 +89,6 @@ export default {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         grid-gap: 30px;
-        &.rec {
-          grid-template-columns: repeat(5, 1fr);
-          grid-gap: 20px;
-        }
-        .ad {
-          height: 250px;
-          background: #000000;
-          border-radius: 16px;
-          grid-column-end: span 7;
-          grid-row-end: 5;
-        }
       }
       &:first-child {
         padding-top: 34px;

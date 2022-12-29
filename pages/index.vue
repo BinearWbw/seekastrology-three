@@ -291,7 +291,6 @@ export default {
           line-height: 41px;
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
-          color: #ffffff;
         }
         .more {
           margin-top: 2px;

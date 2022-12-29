@@ -3,6 +3,18 @@
     <div class="type__main">
       <section class="module">
         <div class="module__top">
+          <div class="title">RECOMMEND GAMES</div>
+        </div>
+        <div class="list rec">
+          <home-best2
+            v-for="item in recommendList.slice(0, 10)"
+            :item="item"
+            :key="item.id"
+          ></home-best2>
+        </div>
+      </section>
+      <section class="module">
+        <div class="module__top">
           <div class="title">BEST GAMES</div>
         </div>
         <div class="list">
@@ -11,6 +23,7 @@
             :item="item"
             :key="item.id"
           ></home-hot>
+          <google-ad :id="'ID1-pc'" :timeout="200" classNames="ad" />
         </div>
       </section>
     </div>
@@ -20,12 +33,9 @@
 <script>
 export default {
   name: 'Best',
-  data() {
-    return {}
-  },
   async asyncData({ error, $apiList }) {
     try {
-      let [gameList, bestList] = await Promise.all([
+      let [gameList, recommendList] = await Promise.all([
         $apiList.home
           .getGameMenu({
             origin: process.env.origin,
@@ -47,7 +57,7 @@ export default {
       ])
       return {
         gameList,
-        bestList,
+        recommendList,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
@@ -57,46 +67,44 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use 'sass:math';
-$block: 140px;
-$spacing: 16px;
 .type {
   &__main {
     margin: 0 auto;
-    width: 1218px;
+    width: 1310px;
     position: relative;
-    padding-top: 36px;
-    &__search {
-      position: absolute;
-      top: 36px;
-      right: 0;
-      width: 270px;
-    }
     .module {
-      padding-top: 76px;
+      padding-top: 40px;
       &__top {
         width: 100%;
-        height: 34px;
-        line-height: 1;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        height: 41px;
         .title {
+          font-size: 34px;
+          line-height: 41px;
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
-          font-size: 34px;
-          color: #ffffff;
         }
       }
       .list {
-        margin-top: 33px;
-        width: 100%;
-        grid-gap: 20px 21px;
+        margin-top: 20px;
         display: grid;
         grid-template-columns: repeat(7, 1fr);
+        grid-gap: 30px;
+        &.rec {
+          grid-template-columns: repeat(5, 1fr);
+          grid-gap: 20px;
+        }
+        .ad {
+          height: 250px;
+          background: #000000;
+          border-radius: 16px;
+          grid-column-end: span 7;
+          grid-row-end: 5;
+        }
+      }
+      &:first-child {
+        padding-top: 34px;
       }
     }
   }
-}
-@media (max-width: 828px) {
 }
 </style>
