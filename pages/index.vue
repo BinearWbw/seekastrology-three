@@ -83,6 +83,9 @@ export default {
         origin: process.env.origin,
       })
       gameList = res
+      for (var i = 0; i < 40; i++) {
+        res['hot-games'].push(res['hot-games'][0])
+      }
       return {
         gameList,
       }
@@ -100,6 +103,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use 'sass:math';
+// grid-template-columns: 250px 250px 250px 250px 250px;
 .home {
   &__main {
     margin: 0 auto;
@@ -342,48 +346,119 @@ export default {
     }
   }
 }
-// @media (max-width: (11 * $block + 10 * $spacing+60px)) {
-//   .home {
-//     .list {
-//       grid-template-columns: repeat(10, 140px);
-//     }
-//   }
-// }
-// @media (max-width: (10 * $block + 9 * $spacing+60px)) {
-//   .home {
-//     .list {
-//       grid-template-columns: repeat(9, 140px);
-//     }
-//   }
-// }
-// @media (max-width: (9 * $block + 8 * $spacing+60px)) {
-//   .home {
-//     .list {
-//       grid-template-columns: repeat(8, 140px);
-//     }
-//   }
-// }
-// @media (max-width: (8 * $block + 7 * $spacing+60px)) {
-//   .home {
-//     .list {
-//       grid-template-columns: repeat(7, 140px);
-//     }
-//   }
-// }
-// @media (max-width: (7 * $block + 6 * $spacing+60px)) {
-//   .home {
-//     .list {
-//       grid-template-columns: repeat(6, 140px);
-//     }
-//   }
-// }
-// @media (max-width: (6 * $block + 5 * $spacing+60px)) {
-//   .home {
-//     .list {
-//       grid-template-columns: repeat(5, 140px);
-//     }
-//   }
-// }
+@media (max-width: 1370px) {
+  .home {
+    &__main {
+      padding: 0 30px;
+      width: 100%;
+      .module {
+        &.best {
+          .list1 {
+            :deep(.item:nth-child(7)) {
+              display: none;
+            }
+          }
+          .list2 {
+            grid-template-columns: repeat(4, 1fr);
+            :deep(.item:nth-last-child(3) ~ .item) {
+              display: none;
+            }
+          }
+        }
+        &.latest {
+          .list {
+            grid-template-columns: repeat(9, 1fr);
+            :deep(.item:nth-last-child(3) ~ .item) {
+              display: none;
+            }
+          }
+        }
+        &.hot {
+          .list {
+            grid-template-columns: repeat(6, 1fr);
+            :deep(.item:nth-last-child(4) ~ .item) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1104px) {
+  .home {
+    &__main {
+      .module {
+        &.best {
+          .list1 {
+            :deep(.item:nth-child(6)) {
+              display: none;
+            }
+          }
+          .list2 {
+            grid-template-columns: repeat(3, 1fr);
+            :deep(.item:nth-last-child(5) ~ .item) {
+              display: none;
+            }
+          }
+        }
+        &.latest {
+          .list {
+            grid-template-columns: repeat(8, 1fr);
+            :deep(.item:nth-last-child(5) ~ .item) {
+              display: none;
+            }
+          }
+        }
+        &.hot {
+          .list {
+            grid-template-columns: repeat(5, 1fr);
+            :deep(.item:nth-last-child(7) ~ .item) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 890px) {
+  .home {
+    &__main {
+      .module {
+        &.best {
+          .list1 {
+            :deep(.item:nth-child(5)) {
+              display: none;
+            }
+          }
+          .list2 {
+            grid-template-columns: repeat(2, 1fr);
+            :deep(.item:nth-last-child(7) ~ .item) {
+              display: none;
+            }
+          }
+        }
+        &.latest {
+          .list {
+            grid-template-columns: repeat(6, 1fr);
+            :deep(.item:nth-last-child(9) ~ .item) {
+              display: none;
+            }
+          }
+        }
+        &.hot {
+          .list {
+            grid-template-columns: repeat(4, 1fr);
+            :deep(.item:nth-last-child(10) ~ .item) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .home {

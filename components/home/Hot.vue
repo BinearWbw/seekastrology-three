@@ -28,15 +28,64 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use 'sass:math';
-.item {
-  overflow: hidden;
-  position: relative;
+@mixin special {
+  padding-top: 30px;
+  background-color: transparent;
+  border-radius: 0;
+  .item__top {
+    top: 0;
+  }
+  .item__bottom {
+    padding-top: 93px;
+    .btn {
+      display: none;
+    }
+  }
+  &:hover {
+    .item__bottom {
+      background-color: #7a78ff;
+    }
+  }
+}
+@mixin normal {
   padding-top: 143px;
   background-color: #282a31;
   border-radius: 16px;
+  .item__top {
+    top: 20px;
+  }
+  .item__bottom {
+    padding-top: 0;
+    .btn {
+      display: block;
+      flex-shrink: 0;
+      width: 86px;
+      height: 31px;
+      background-color: #1f2128;
+      border-radius: 48px;
+      font-size: 12px;
+      color: #808191;
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      margin-top: 14px;
+      margin-bottom: 5px;
+    }
+  }
+  &:hover {
+    .item__bottom {
+      .btn {
+        background-color: #7a78ff;
+        color: #fff;
+      }
+    }
+  }
+}
+.item {
+  overflow: hidden;
+  position: relative;
+  @include normal;
   &__top {
     position: absolute;
-    top: 20px;
     left: calc(50% - 54px);
     width: 108px;
     height: 108px;
@@ -55,7 +104,6 @@ export default {
     height: 100%;
     background-color: #282a31;
     border-radius: 16px;
-    padding-top: 0;
     padding-bottom: 21px;
     display: flex;
     flex-direction: column;
@@ -67,6 +115,7 @@ export default {
       padding: 0 24px;
       font-size: 14px;
       line-height: 18px;
+      height: 36px;
       text-align: center;
       margin-bottom: auto;
       display: -webkit-box;
@@ -77,46 +126,24 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .btn {
-      flex-shrink: 0;
-      width: 86px;
-      height: 31px;
-      background-color: #1f2128;
-      border-radius: 48px;
-      font-size: 12px;
-      color: #808191;
-      -webkit-transition-duration: 0.3s;
-      transition-duration: 0.3s;
-      margin-top: 14px;
-      margin-bottom: 5px;
-    }
   }
-  &:nth-child(n):nth-child(-n + 7) {
-    padding-top: 30px;
-    background-color: transparent;
-    border-radius: 0;
-    .item__top {
-      top: 0;
-    }
-    .item__bottom {
-      padding-top: 93px;
-      .btn {
-        display: none;
-      }
-    }
-    &:hover {
-      .item__bottom {
-        background-color: #7a78ff;
-      }
-    }
+  &:nth-child(-n + 7) {
+    @include special;
   }
-  &:hover {
-    .item__bottom {
-      .btn {
-        background-color: #7a78ff;
-        color: #fff;
-      }
-    }
+}
+@media (max-width: 1370px) {
+  .item:nth-child(7) {
+    @include normal;
+  }
+}
+@media (max-width: 1104px) {
+  .item:nth-child(6) {
+    @include normal;
+  }
+}
+@media (max-width: 890px) {
+  .item:nth-child(5) {
+    @include normal;
   }
 }
 @media (max-width: 750px) {
