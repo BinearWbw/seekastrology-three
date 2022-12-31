@@ -5,7 +5,7 @@
         <div
           class="rec__item"
           :class="`rec${index + 1}`"
-          v-for="(item, index) in gameList['best-games'].slice(0, 5)"
+          v-for="(item, index) in gameList['latest-games'].slice(0, 5)"
           :key="item.id"
           @click="goRec(item)"
         >
@@ -103,7 +103,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use 'sass:math';
-// grid-template-columns: 250px 250px 250px 250px 250px;
 .home {
   &__main {
     margin: 0 auto;
@@ -117,6 +116,7 @@ export default {
       grid-template-rows: repeat(2, 1fr);
       grid-auto-flow: column;
       gap: 20px;
+      grid-template-columns: 214px auto 196px 196px;
       &__item {
         background: #000;
         border-radius: 16px;
@@ -188,7 +188,6 @@ export default {
         }
       }
       .rec1 {
-        width: 214px;
         grid-row-start: span 2;
         .info {
           padding-top: 32px;
@@ -213,7 +212,6 @@ export default {
         }
       }
       .rec2 {
-        width: 644px;
         grid-row-start: span 2;
         .info {
           padding-top: 26px;
@@ -249,7 +247,6 @@ export default {
       .rec3,
       .rec4,
       .rec5 {
-        width: 196px;
         .info {
           padding-top: 14px;
           padding-left: 16px;
@@ -278,7 +275,6 @@ export default {
         );
       }
       .ad {
-        width: 196px;
         grid-row-end: 2;
         grid-column-end: 5;
       }
@@ -380,6 +376,22 @@ export default {
               display: none;
             }
           }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1154px) {
+  .home {
+    &__main {
+      .rec {
+        grid-template-columns: 214px auto 196px;
+        .rec4,
+        .rec5 {
+          display: none;
+        }
+        .ad {
+          grid-column-end: 4;
         }
       }
     }

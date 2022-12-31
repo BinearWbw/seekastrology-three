@@ -14,12 +14,24 @@
         <a
           class="nav__item"
           :href="item.href"
-          :class="{ active: item.href == $route.path }"
+          :class="{
+            active:
+              item.href == $route.path ||
+              (item.href !== '/' && $route.path.includes(item.href)),
+          }"
           :title="item.title"
           v-for="(item, index) in menu"
           :key="index"
         >
-          <img :src="item.img" alt="item.title" />
+          <img
+            :src="
+              item.href == $route.path ||
+              (item.href !== '/' && $route.path.includes(item.href))
+                ? item.imgActive
+                : item.img
+            "
+            :alt="item.title"
+          />
           <span> {{ item.title }}</span>
         </a>
       </nav>
@@ -32,6 +44,13 @@
         />
         <button class="button" @click="search"></button>
       </div>
+      <div class="menu common__btn" @click="visibleMenu = true"></div>
+      <lazy-dialog-menu
+        :menu="menu"
+        :visible="visibleMenu"
+        @close="visibleMenu = false"
+      >
+      </lazy-dialog-menu>
     </div>
   </header>
 </template>
@@ -41,37 +60,50 @@ export default {
   name: 'Header',
   data() {
     return {
+      visibleMenu: false,
       searchInput: '',
       menu: [
         {
           title: 'Home',
           href: '/',
           img: require('~/assets/img/header/navHome.svg'),
+          imgActive: require('~/assets/img/header/navHomeActive.svg'),
+          imgActive1: require('~/assets/img/header/navHomeActive1.svg'),
         },
         {
           title: 'Hot Games',
           href: '/hot',
           img: require('~/assets/img/header/navHot.svg'),
+          imgActive: require('~/assets/img/header/navHotActive.svg'),
+          imgActive1: require('~/assets/img/header/navHotActive1.svg'),
         },
         {
           title: 'Best Games',
           href: '/best',
           img: require('~/assets/img/header/navBest.svg'),
+          imgActive: require('~/assets/img/header/navBestActive.svg'),
+          imgActive1: require('~/assets/img/header/navBestActive1.svg'),
         },
         {
           title: 'Top Games',
           href: '/top',
           img: require('~/assets/img/header/navTop.svg'),
+          imgActive: require('~/assets/img/header/navTopActive.svg'),
+          imgActive1: require('~/assets/img/header/navTopActive1.svg'),
         },
         {
           title: 'New Games',
           href: '/new',
           img: require('~/assets/img/header/navNew.svg'),
+          imgActive: require('~/assets/img/header/navNewActive.svg'),
+          imgActive1: require('~/assets/img/header/navNewActive1.svg'),
         },
         {
           title: 'Category',
           href: '/category',
           img: require('~/assets/img/header/navCategory.svg'),
+          imgActive: require('~/assets/img/header/navCategoryActive.svg'),
+          imgActive1: require('~/assets/img/header/navCategoryActive1.svg'),
         },
       ],
     }
@@ -185,15 +217,94 @@ export default {
         background-size: contain;
       }
     }
+    .menu {
+      display: none;
+    }
   }
 }
-// @media (max-width: (1500px)) {
-//   .header {
-//     > div {
-//       .search {
-//         width: 250px;
-//       }
-//     }
-//   }
-// }
+@media (max-width: (1600px)) {
+  .header {
+    > div {
+      padding: 0 30px;
+      .nav {
+        &__item {
+          padding: 0 10px;
+        }
+      }
+      .search {
+        width: 260px;
+      }
+    }
+  }
+}
+@media (max-width: (1366px)) {
+  .header {
+    > div {
+      .nav {
+        &__item {
+          img {
+            display: none;
+          }
+          span {
+            margin-top: 0;
+            font-size: 12px;
+            padding-left: 0;
+          }
+        }
+      }
+      .search {
+        width: 180px;
+      }
+    }
+  }
+}
+@media (max-width: (1024px)) {
+  .header {
+    > div {
+      .logo {
+        margin-right: auto;
+      }
+      .nav {
+        display: none;
+      }
+      .search {
+        display: none;
+      }
+      .menu {
+        margin-left: 30px;
+        display: block;
+        width: 33px;
+        height: 100%;
+        background: url('~assets/img/header/menu.png') no-repeat center center;
+        background-size: contain;
+      }
+    }
+  }
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .header {
+    height: 63 * $pr;
+    border-bottom: 1 * $pr solid #2f303e;
+    > div {
+      padding: 0 24 * $pr 0 21 * $pr;
+      .logo {
+        height: 40 * $pr;
+        .img {
+          width: 40 * $pr;
+          height: 40 * $pr;
+        }
+        .title {
+          margin: 9 * $pr 0 0 11 * $pr;
+          width: 119 * $pr;
+          height: 22 * $pr;
+        }
+      }
+      .menu {
+        margin-left: 14 * $pr;
+        width: 22 * $pr;
+      }
+    }
+  }
+}
 </style>

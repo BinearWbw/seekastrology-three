@@ -49,37 +49,23 @@ export default {
   text-align: center;
   line-height: 34px;
   font-size: 12px;
+  &:hover {
+    background: linear-gradient(90deg, #cb68fc 0%, #8484fd 100%), #6c5dd3;
+  }
 }
-// @media (max-width: (1500px)) {
-//   .desktop {
-//     width: 96px;
-//   }
-// }
+@media (max-width: (1600px)) {
+  .desktop {
+    width: 96px;
+  }
+}
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
-  .download {
-    width: 86 * $pr;
+  .desktop {
+    width: 96 * $pr;
     height: 34 * $pr;
-    padding-left: 15 * $pr;
-    margin-left: auto;
-    margin-bottom: 7 * $pr;
-    border-radius: 48 * $pr;
-    img {
-      width: 10 * $pr;
-      height: 10 * $pr;
-      margin-right: 6 * $pr;
-      margin-bottom: 2 * $pr;
-    }
-    span {
-      font-size: 10 * $pr;
-      line-height: 15 * $pr;
-      &.pc {
-        display: none;
-      }
-      &.h5 {
-        display: block;
-      }
-    }
+    border-radius: 6 * $pr;
+    line-height: 36 * $pr;
+    font-size: 10 * $pr;
   }
 }
 </style>
