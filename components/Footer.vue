@@ -145,6 +145,7 @@ export default {
         a {
           flex-shrink: 0;
           margin-right: 20px;
+          display: flex;
           &:last-child {
             margin-right: 0;
           }
@@ -210,6 +211,101 @@ export default {
             font-size: 14px;
             &:hover {
               background-color: #7a78ff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: (1370px)) {
+  .footer {
+    &__main {
+      padding: 0 30px;
+    }
+  }
+}
+@media (max-width: (1250px)) {
+  .footer {
+    &__main {
+      .bottom {
+        flex-direction: column-reverse;
+        .left {
+          margin-top: 30px;
+          width: 100%;
+        }
+        .right {
+          padding-top: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+@media (max-width: (750px)) {
+  $pr: math.div(1vw, 3.75);
+  .footer {
+    margin-top: 40 * $pr;
+    &__main {
+      padding: 0;
+      .top {
+        padding: 0 23 * $pr;
+        height: 47 * $pr;
+        border-bottom: 1 * $pr solid #282a31;
+        &__left {
+          a {
+            margin-right: 15 * $pr;
+            img {
+              width: 20 * $pr;
+            }
+          }
+        }
+        .arrow {
+          width: 20 * $pr;
+          height: 20 * $pr;
+          border-radius: 4 * $pr;
+          img {
+            height: 6 * $pr;
+          }
+        }
+      }
+      .bottom {
+        padding: 14 * $pr 23 * $pr 17 * $pr;
+        .left {
+          margin-top: 20 * $pr;
+          p {
+            font-size: 9 * $pr;
+            line-height: 14 * $pr;
+          }
+          .p2 {
+            margin-top: 13 * $pr;
+          }
+        }
+        .right {
+          .title {
+            font-size: 14 * $pr;
+            line-height: 17 * $pr;
+            padding-left: 0;
+          }
+          .handle {
+            margin-top: 15 * $pr;
+            height: 90 * $pr;
+            flex-direction: column;
+            justify-content: space-between;
+            input {
+              flex: none;
+              height: 40 * $pr;
+              border-radius: 48 * $pr;
+              font-size: 12 * $pr;
+              padding: 0 17 * $pr;
+              margin-right: 0;
+            }
+            button {
+              width: 104 * $pr;
+              height: 40 * $pr;
+              border-radius: 6 * $pr;
+              font-size: 14 * $pr;
+              line-height: 44 * $pr;
             }
           }
         }
