@@ -8,7 +8,7 @@
         <p class="name">Games categories</p>
       </div>
       <section class="module active">
-        <div class="list">
+        <div class="categories">
           <category-classify
             v-for="item in category"
             :item="item"
@@ -119,6 +119,12 @@ export default {
           font-family: BebasNeue-Regular;
         }
       }
+      .categories {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 20px;
+      }
       .list {
         margin-top: 20px;
         display: grid;
@@ -127,10 +133,58 @@ export default {
       }
       &.active {
         padding-top: 0;
+      }
+    }
+  }
+}
+@media (max-width: 1370px) {
+  .category {
+    &__main {
+      padding: 0 30px;
+      width: 100%;
+      .module {
+        .categories {
+          grid-template-columns: repeat(4, 1fr);
+        }
         .list {
-          margin-top: 24px;
+          grid-template-columns: repeat(6, 1fr);
+          :deep(.item:nth-last-child(4) ~ .item) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1104px) {
+  .category {
+    &__main {
+      .module {
+        .categories {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .list {
           grid-template-columns: repeat(5, 1fr);
-          grid-gap: 20px;
+          :deep(.item:nth-last-child(7) ~ .item) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 890px) {
+  .category {
+    &__main {
+      .module {
+        .categories {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .list {
+          grid-template-columns: repeat(4, 1fr);
+          :deep(.item:nth-last-child(10) ~ .item) {
+            display: none;
+          }
         }
       }
     }

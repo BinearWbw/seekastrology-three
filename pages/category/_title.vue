@@ -17,7 +17,7 @@
         <div class="module__top">
           <div class="title">MORE GAMES</div>
         </div>
-        <div class="list">
+        <div class="list more">
           <home-hot
             v-for="item in recommendList.slice(0, 21)"
             :item="item"
@@ -92,6 +92,56 @@ export default {
       }
       &:first-child {
         padding-top: 34px;
+      }
+    }
+  }
+}
+@media (max-width: 1370px) {
+  .type {
+    &__main {
+      padding: 0 30px;
+      width: 100%;
+      .module {
+        .list {
+          grid-template-columns: repeat(6, 1fr);
+        }
+        .more {
+          :deep(.item:nth-last-child(4) ~ .item) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1104px) {
+  .type {
+    &__main {
+      .module {
+        .list {
+          grid-template-columns: repeat(5, 1fr);
+        }
+        .more {
+          :deep(.item:nth-last-child(7) ~ .item) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 890px) {
+  .type {
+    &__main {
+      .module {
+        .list {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .more {
+          :deep(.item:nth-last-child(10) ~ .item) {
+            display: none;
+          }
+        }
       }
     }
   }

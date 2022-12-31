@@ -107,4 +107,66 @@ export default {
     }
   }
 }
+@media (max-width: 1370px) {
+  .type {
+    &__main {
+      padding: 0 30px;
+      width: 100%;
+      .module {
+        .list {
+          grid-template-columns: repeat(6, 1fr);
+          &.rec {
+            grid-template-columns: repeat(4, 1fr);
+            :deep(.item:nth-last-child(3) ~ .item) {
+              display: none;
+            }
+          }
+          .ad {
+            grid-column-end: span 6;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1104px) {
+  .type {
+    &__main {
+      .module {
+        .list {
+          grid-template-columns: repeat(5, 1fr);
+          &.rec {
+            grid-template-columns: repeat(3, 1fr);
+            :deep(.item:nth-last-child(5) ~ .item) {
+              display: none;
+            }
+          }
+          .ad {
+            grid-column-end: span 5;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 890px) {
+  .type {
+    &__main {
+      .module {
+        .list {
+          grid-template-columns: repeat(4, 1fr);
+          &.rec {
+            grid-template-columns: repeat(2, 1fr);
+            :deep(.item:nth-last-child(7) ~ .item) {
+              display: none;
+            }
+          }
+          .ad {
+            grid-column-end: span 4;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

@@ -10,9 +10,7 @@
       <section class="search" v-if="gameList.length > 0">
         <p class="title">
           <span>"{{ $route.params.title }}" </span>,
-          {{
-            gameList.length > 1 ? gameList.length + ' results' : '1 result'
-          }}
+          {{ gameList.length > 1 ? gameList.length + ' results' : '1 result' }}
           found
         </p>
         <div class="list">
@@ -149,6 +147,7 @@ export default {
       font-size: 24px;
       text-align: center;
       line-height: 204px;
+      padding: 0 10px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -176,6 +175,65 @@ export default {
       }
       &:first-child {
         padding-top: 34px;
+      }
+    }
+  }
+}
+@media (max-width: 1370px) {
+  .type {
+    &__main {
+      padding: 0 30px;
+      width: 100%;
+      .search {
+        .list {
+          grid-template-columns: repeat(8, 1fr);
+        }
+      }
+      .module {
+        .list {
+          grid-template-columns: repeat(6, 1fr);
+          :deep(.item:nth-last-child(4) ~ .item) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1104px) {
+  .type {
+    &__main {
+      .search {
+        .list {
+          grid-template-columns: repeat(7, 1fr);
+        }
+      }
+      .module {
+        .list {
+          grid-template-columns: repeat(5, 1fr);
+          :deep(.item:nth-last-child(7) ~ .item) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 890px) {
+  .type {
+    &__main {
+      .search {
+        .list {
+          grid-template-columns: repeat(6, 1fr);
+        }
+      }
+      .module {
+        .list {
+          grid-template-columns: repeat(4, 1fr);
+          :deep(.item:nth-last-child(10) ~ .item) {
+            display: none;
+          }
+        }
       }
     }
   }
