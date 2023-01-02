@@ -172,28 +172,28 @@ export default {
       }
     }
     &__right {
-      padding-left: 18 * $pr;
-      padding-top: 19 * $pr;
+      padding-left: 20 * $pr;
+      padding-top: 22 * $pr;
       .p1 {
         font-size: 14 * $pr;
+        line-height: 18 * $pr;
       }
       .p2 {
         margin-top: 0;
         font-size: 14 * $pr;
+        line-height: 18 * $pr;
       }
       .p3 {
         font-size: 12 * $pr;
+        line-height: 14 * $pr;
         padding-left: 18 * $pr;
-        margin-top: 9 * $pr;
+        margin-top: 6 * $pr;
         &::before {
           top: calc(50% - 5 * $pr);
           width: 8 * $pr;
           height: 8 * $pr;
         }
       }
-    }
-    &:nth-child(n + 3) {
-      display: none;
     }
   }
 }

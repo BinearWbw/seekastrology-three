@@ -12,6 +12,7 @@
             :key="item.id"
           ></home-best2>
         </div>
+        <google-ad :id="'ID1-pc'" :timeout="200" classNames="h5ad" />
       </section>
       <section class="module">
         <div class="module__top">
@@ -104,6 +105,9 @@ export default {
       &:first-child {
         padding-top: 34px;
       }
+      .h5ad {
+        display: none;
+      }
     }
   }
 }
@@ -164,6 +168,47 @@ export default {
           .ad {
             grid-column-end: span 4;
           }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .type {
+    &__main {
+      padding: 0 23 * $pr;
+      .module {
+        padding-top: 20 * $pr;
+        &__top {
+          height: 41 * $pr;
+          .title {
+            font-size: 34 * $pr;
+            line-height: 41 * $pr;
+          }
+        }
+        .list {
+          margin-top: 15 * $pr;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 14 * $pr 12 * $pr;
+          &.rec {
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 20 * $pr 0;
+          }
+          .ad {
+            display: none;
+          }
+        }
+        &:first-child {
+          padding-top: 30 * $pr;
+        }
+        .h5ad {
+          margin-top: 25 * $pr;
+          display: block;
+          width: 100%;
+          height: 100 * $pr;
+          border-radius: 24 * $pr;
+          background: #000000;
         }
       }
     }

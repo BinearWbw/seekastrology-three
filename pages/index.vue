@@ -475,57 +475,156 @@ export default {
   $pr: math.div(1vw, 3.75);
   .home {
     &__main {
-      width: 100%;
-      .banner {
+      padding: 0 10 * $pr;
+      .rec {
         height: auto;
+        padding: 26 * $pr 13 * $pr;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15 * $pr 0;
+        &__item {
+          flex-shrink: 0;
+          width: 156 * $pr;
+          height: 170 * $pr;
+          border-radius: 13 * $pr;
+          .bg {
+            border-radius: 13 * $pr;
+          }
+          .info {
+            height: 70 * $pr;
+            border-radius: 0 0 13 * $pr 13 * $pr;
+            backdrop-filter: blur(10 * $pr);
+            -webkit-backdrop-filter: blur(10 * $pr);
+            &__bottom {
+              margin-top: 3 * $pr;
+              .category {
+                border-radius: 13 * $pr;
+                padding: 0 7 * $pr;
+                height: 15 * $pr;
+                line-height: 17 * $pr;
+                font-size: 9 * $pr;
+              }
+              .company {
+                margin-top: 6 * $pr;
+                font-size: 12 * $pr;
+                line-height: 15 * $pr;
+              }
+            }
+          }
+        }
+        .rec1 {
+          display: none;
+        }
+        .rec2 {
+          width: 100%;
+          height: 228 * $pr;
+          .info {
+            padding-top: 22 * $pr;
+            padding-left: 17 * $pr;
+            height: 81 * $pr;
+            &__title {
+              font-size: 16 * $pr;
+              line-height: 16 * $pr;
+            }
+            &__bottom {
+              margin-top: 8 * $pr;
+              .category {
+                height: 16 * $pr;
+                line-height: 16 * $pr;
+                padding: 0 9 * $pr;
+              }
+              .company {
+                margin-left: 9 * $pr;
+                font-size: 12 * $pr;
+                line-height: 18 * $pr;
+              }
+            }
+          }
+        }
+        .rec3,
+        .rec4,
+        .rec5 {
+          .info {
+            padding-top: 6 * $pr;
+            padding-left: 12 * $pr;
+            height: 70 * $pr;
+            &__title {
+              font-size: 11 * $pr;
+              line-height: 15 * $pr;
+            }
+          }
+        }
+        .rec4 {
+          display: block;
+        }
+        .ad {
+          width: 100%;
+          height: 63 * $pr;
+        }
       }
       .module {
         &__top {
-          padding: 0 24 * $pr;
-          height: 40 * $pr;
+          height: 41 * $pr;
           .title {
             font-size: 34 * $pr;
+            line-height: 41 * $pr;
           }
           .more {
-            margin-top: 0;
-            font-size: 20 * $pr;
+            margin-top: 8 * $pr;
+            font-size: 22 * $pr;
+            line-height: 26 * $pr;
           }
         }
         &.best {
-          margin-top: 64 * $pr;
+          padding: 0 13 * $pr;
           .list1 {
-            padding: 0 24 * $pr;
-            margin-top: 30 * $pr;
+            margin-top: 24 * $pr;
             flex-wrap: wrap;
             gap: 34 * $pr 0;
+            :deep(.item:nth-child(5)) {
+              display: block;
+            }
+            :deep(.item:nth-child(6)) {
+              display: block;
+            }
           }
           .list2 {
-            padding: 0 24 * $pr;
-            margin-top: 24 * $pr;
+            margin-top: 28 * $pr;
             grid-template-columns: repeat(1, 1fr);
-            grid-gap: 20 * $pr 25 * $pr;
+            grid-gap: 20 * $pr 0;
+            :deep(.item:nth-last-child(9) ~ .item) {
+              display: none;
+            }
           }
         }
         &.latest {
-          margin-top: 54 * $pr;
+          margin-top: 40 * $pr;
+          .module__top {
+            padding: 0 13 * $pr;
+          }
           .list {
-            margin: 20 * $pr auto 0;
-            width: calc(100% - 20 * $pr);
+            margin-top: 15 * $pr;
             border-radius: 16 * $pr;
-            padding: 35 * $pr 10 * $pr;
+            padding: 35 * $pr 17 * $pr 32 * $pr;
             grid-template-rows: repeat(3, 1fr);
             grid-template-columns: repeat(3, 1fr);
-            grid-gap: 30 * $pr 18 * $pr;
+            grid-gap: 28 * $pr 30 * $pr;
+            :deep(.item:nth-last-child(12) ~ .item) {
+              display: none;
+            }
           }
         }
         &.hot {
-          margin-top: 54 * $pr;
+          margin-top: 41 * $pr;
+          padding: 0 13 * $pr;
           .list {
-            padding: 0 24 * $pr;
-            margin-top: 20 * $pr;
-            display: grid;
+            margin-top: 15 * $pr;
             grid-template-columns: repeat(3, 1fr);
-            grid-gap: 14 * $pr 13.5 * $pr;
+            grid-gap: 14 * $pr 12 * $pr;
+            :deep(.item:nth-last-child(13) ~ .item) {
+              display: none;
+            }
           }
         }
       }

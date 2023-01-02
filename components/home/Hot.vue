@@ -73,6 +73,7 @@ export default {
   }
   &:hover {
     .item__bottom {
+      background-color: #282a31;
       .btn {
         background-color: #7a78ff;
         color: #fff;
@@ -148,8 +149,40 @@ export default {
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
+  @mixin specialh5 {
+    padding-top: 22 * $pr;
+    .item__bottom {
+      padding-top: 70 * $pr;
+      padding-bottom: 16 * $pr;
+    }
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  @mixin normalh5 {
+    padding-top: 33 * $pr;
+    background-color: #282a31;
+    border-radius: 16 * $pr;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    .item__top {
+      top: 10 * $pr;
+    }
+    .item__bottom {
+      padding-top: 72 * $pr;
+      .btn {
+        display: none;
+      }
+    }
+    &:hover {
+      background-color: #7a78ff;
+      .item__bottom {
+        background-color: #7a78ff;
+      }
+    }
+  }
   .item {
-    padding-top: 20 * $pr;
+    @include normalh5;
     &__top {
       left: calc(50% - 40 * $pr);
       width: 80 * $pr;
@@ -161,31 +194,21 @@ export default {
       }
     }
     &__bottom {
-      border-radius: 18 * $pr;
-      padding-top: 72 * $pr;
-      padding-bottom: 16 * $pr;
+      border-radius: 16 * $pr;
+      padding-bottom: 27 * $pr;
       .name {
         padding: 0 10 * $pr;
         font-size: 14 * $pr;
         line-height: 16 * $pr;
+        height: 32 * $pr;
       }
     }
-    &.free {
-      padding-top: 105 * $pr;
-      border-radius: 18 * $pr;
-      .item__top {
-        top: 10 * $pr;
-      }
-      .item__bottom {
-        padding-bottom: 27 * $pr;
-        .btn {
-          display: none;
-        }
-      }
+    &:nth-child(-n + 3) {
+      @include specialh5;
     }
-    &:nth-child(n + 10) {
-      display: none;
-    }
+  }
+  .item:nth-child(n + 4) {
+    @include normalh5;
   }
 }
 </style>

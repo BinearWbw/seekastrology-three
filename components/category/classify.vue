@@ -97,42 +97,40 @@ export default {
       }
     }
   }
+  &.active {
+    background-color: #7a78ff;
+    pointer-events: none;
+    .item__right {
+      .p2 {
+        color: #fff;
+      }
+    }
+  }
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .item {
-    height: 96 * $pr;
-    border-radius: 16 * $pr;
+    height: 60 * $pr;
+    padding: 6 * $pr 0 6 * $pr 6 * $pr;
+    border-radius: 12 * $pr;
     &__left {
-      width: 72 * $pr;
-      border-radius: 16 * $pr;
+      width: 48 * $pr;
+      border-radius: 8 * $pr;
       img {
-        border-radius: 16 * $pr;
+        border-radius: 8 * $pr;
       }
     }
     &__right {
-      padding-left: 18 * $pr;
-      padding-top: 19 * $pr;
+      padding-left: 11 * $pr;
+      padding-top: 11 * $pr;
       .p1 {
-        font-size: 14 * $pr;
+        font-size: 10 * $pr;
+        line-height: 13 * $pr;
       }
       .p2 {
-        margin-top: 0;
-        font-size: 14 * $pr;
+        font-size: 10 * $pr;
+        line-height: 13 * $pr;
       }
-      .p3 {
-        font-size: 12 * $pr;
-        padding-left: 18 * $pr;
-        margin-top: 9 * $pr;
-        &::before {
-          top: calc(50% - 5 * $pr);
-          width: 8 * $pr;
-          height: 8 * $pr;
-        }
-      }
-    }
-    &:nth-child(n + 3) {
-      display: none;
     }
   }
 }

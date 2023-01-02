@@ -190,4 +190,38 @@ export default {
     }
   }
 }
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .category {
+    &__main {
+      padding: 0 23 * $pr;
+      .nav {
+        display: none;
+      }
+      .module {
+        padding-top: 40 * $pr;
+        &__top {
+          height: 41 * $pr;
+          .title {
+            font-size: 34 * $pr;
+            line-height: 41 * $pr;
+          }
+        }
+        .categories {
+          margin-top: 24 * $pr;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 10 * $pr;
+        }
+        .list {
+          margin-top: 15 * $pr;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 14 * $pr 12 * $pr;
+          :deep(.item:nth-last-child(13) ~ .item) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

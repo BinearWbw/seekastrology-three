@@ -4,6 +4,38 @@
       <section class="module">
         <div class="module__top">
           <div class="title">{{ $route.params.title.toLowerCase() }} GAMES</div>
+          <div class="category">
+            <div class="item">
+              <div class="item__left">
+                <img
+                  v-lazy="$config.imgUrl + item.bg_icon"
+                  :key="item.bg_icon"
+                  :alt="item.name"
+                />
+              </div>
+              <div class="item__right">
+                <p class="p1">{{ item.name }}</p>
+                <p class="p2">48 Games</p>
+              </div>
+            </div>
+            <div
+              class="item show"
+              :class="{ active: visible }"
+              @click="visible = true"
+            >
+              <img
+                class="moreImg"
+                src="~/assets/img/category/more.png"
+                alt="more"
+              />
+              <span class="text">More</span>
+              <img
+                class="arrow"
+                src="~/assets/img/category/arrow.png"
+                alt="arrow"
+              />
+            </div>
+          </div>
         </div>
         <div class="list">
           <home-hot
@@ -26,15 +58,35 @@
         </div>
       </section>
     </div>
+    <lazy-dialog-category
+      :category="category"
+      :info="item"
+      :visible="visible"
+      @close="visible = false"
+    ></lazy-dialog-category>
   </article>
 </template>
 
 <script>
 export default {
   name: 'CategoryTitle',
+  data() {
+    return {
+      visible: false,
+    }
+  },
   async asyncData({ error, $apiList, params }) {
     try {
-      let [gameList, recommendList] = await Promise.all([
+      let item = null
+      let [category, gameList, recommendList] = await Promise.all([
+        $apiList.home
+          .getCategory({
+            page: 1,
+            size: 10000,
+          })
+          .then((res) => {
+            return res || []
+          }),
         $apiList.home
           .getGameCategory({
             origin: process.env.origin,
@@ -55,7 +107,12 @@ export default {
             return res || []
           }),
       ])
+      item = category.find(
+        (el) => el.name.toLowerCase() === params.title.toLowerCase()
+      )
       return {
+        item,
+        category,
         gameList,
         recommendList,
       }
@@ -92,6 +149,11 @@ export default {
       }
       &:first-child {
         padding-top: 34px;
+        .module__top {
+          .category {
+            display: none;
+          }
+        }
       }
     }
   }
@@ -140,6 +202,121 @@ export default {
         .more {
           :deep(.item:nth-last-child(10) ~ .item) {
             display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .type {
+    &__main {
+      padding: 0 23 * $pr;
+      .module {
+        padding-top: 40 * $pr;
+        &__top {
+          height: 41 * $pr;
+          .title {
+            font-size: 34 * $pr;
+            line-height: 41 * $pr;
+          }
+        }
+        .list {
+          margin-top: 15 * $pr;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 14 * $pr 12 * $pr;
+        }
+        .more {
+          :deep(.item:nth-last-child(13) ~ .item) {
+            display: none;
+          }
+        }
+        &:first-child {
+          padding-top: 24 * $pr;
+          .module__top {
+            height: 60 * $pr;
+            .title {
+              display: none;
+            }
+            .category {
+              width: 100%;
+              height: 100%;
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              grid-gap: 10 * $pr;
+              .item {
+                overflow: hidden;
+                height: 60 * $pr;
+                padding: 6 * $pr 0 6 * $pr 6 * $pr;
+                border-radius: 12 * $pr;
+                background-color: #282a31;
+                display: flex;
+                cursor: pointer;
+                &__left {
+                  flex-shrink: 0;
+                  width: 48 * $pr;
+                  border-radius: 8 * $pr;
+                  height: 100%;
+                  img {
+                    border-radius: 8 * $pr;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                  }
+                }
+                &__right {
+                  flex: 1;
+                  min-width: 0;
+                  display: flex;
+                  flex-direction: column;
+                  padding-left: 11 * $pr;
+                  padding-top: 11 * $pr;
+                  .p1 {
+                    font-size: 10 * $pr;
+                    line-height: 13 * $pr;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                  }
+                  .p2 {
+                    font-size: 10 * $pr;
+                    line-height: 13 * $pr;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    color: #808191;
+                  }
+                }
+                &.show {
+                  align-items: center;
+                  padding: 0 6px 0 16px;
+                  .moreImg {
+                    width: 28px;
+                    height: 28px;
+                  }
+                  .text {
+                    margin: 2px 37px 0 16px;
+                    font-size: 16px;
+                    line-height: 1;
+                  }
+                  .arrow {
+                    width: 10px;
+                    -webkit-transition-duration: 0.3s;
+                    transition-duration: 0.3s;
+                  }
+                  &.active {
+                    .arrow {
+                      -webkit-transform: rotate(180deg);
+                      transform: rotate(180deg);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .list {
+            margin-top: 20 * $pr;
           }
         }
       }

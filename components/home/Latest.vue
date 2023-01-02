@@ -112,14 +112,12 @@ export default {
       .name {
         font-size: 14 * $pr;
         line-height: 18 * $pr;
-        margin-bottom: 10 * $pr;
+        margin-bottom: 8 * $pr;
       }
       .time {
         font-size: 14 * $pr;
+        line-height: 18 * $pr;
       }
-    }
-    &:nth-child(n + 10) {
-      display: none;
     }
   }
 }
