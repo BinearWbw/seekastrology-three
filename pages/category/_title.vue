@@ -290,18 +290,18 @@ export default {
                 }
                 &.show {
                   align-items: center;
-                  padding: 0 6px 0 16px;
+                  padding: 0 6 * $pr 0 16 * $pr;
                   .moreImg {
-                    width: 28px;
-                    height: 28px;
+                    width: 28 * $pr;
+                    height: 28 * $pr;
                   }
                   .text {
-                    margin: 2px 37px 0 16px;
-                    font-size: 16px;
+                    margin: 2 * $pr 37 * $pr 0 16 * $pr;
+                    font-size: 16 * $pr;
                     line-height: 1;
                   }
                   .arrow {
-                    width: 10px;
+                    width: 10 * $pr;
                     -webkit-transition-duration: 0.3s;
                     transition-duration: 0.3s;
                   }
