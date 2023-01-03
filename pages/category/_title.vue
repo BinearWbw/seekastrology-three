@@ -252,6 +252,9 @@ export default {
                 border-radius: 12 * $pr;
                 background-color: #282a31;
                 display: flex;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
                 cursor: pointer;
                 &__left {
                   flex-shrink: 0;
@@ -266,9 +269,18 @@ export default {
                   }
                 }
                 &__right {
+                  -webkit-box-flex: 1;
+                  -moz-box-flex: 1;
+                  -webkit-flex: 1;
+                  -ms-flex: 1;
                   flex: 1;
                   min-width: 0;
                   display: flex;
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  -webkit-flex-direction: column;
+                  -ms-flex-direction: column;
                   flex-direction: column;
                   padding-left: 11 * $pr;
                   padding-top: 11 * $pr;
@@ -289,6 +301,9 @@ export default {
                   }
                 }
                 &.show {
+                  -webkit-align-items: center;
+                  -webkit-box-align: center;
+                  -ms-flex-align: center;
                   align-items: center;
                   padding: 0 6 * $pr 0 16 * $pr;
                   .moreImg {

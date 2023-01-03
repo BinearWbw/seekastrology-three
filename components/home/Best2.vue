@@ -38,6 +38,9 @@ export default {
   background-color: #282a31;
   border-radius: 16px;
   display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   cursor: pointer;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
@@ -56,15 +59,31 @@ export default {
     }
   }
   &__right {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
     flex: 1;
     min-width: 0;
     display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     padding-left: 18px;
     padding-top: 20px;
     &-l {
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -webkit-flex: 1;
+      -ms-flex: 1;
       flex: 1;
       min-width: 0;
       display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
       flex-direction: column;
       .p1 {
         font-size: 14px;

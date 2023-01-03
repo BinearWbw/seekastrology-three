@@ -122,6 +122,12 @@ export default {
       width: 100%;
       height: 40px;
       display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
       a {
         font-size: 14px;

@@ -149,7 +149,15 @@ export default {
           &__bottom {
             margin-top: 2px;
             display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
             flex-direction: column;
+            -webkit-align-items: flex-start;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
             align-items: flex-start;
             .category {
               background: #783beb;
@@ -284,7 +292,16 @@ export default {
         width: 100%;
         height: 41px;
         display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
         justify-content: space-between;
         .title {
           font-size: 34px;
@@ -306,6 +323,12 @@ export default {
           margin-top: 26px;
           width: 100%;
           display: flex;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          -webkit-box-pack: justify;
+          -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
           justify-content: space-between;
         }
         .list2 {
@@ -480,7 +503,15 @@ export default {
         height: auto;
         padding: 26 * $pr 13 * $pr;
         display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
         justify-content: space-between;
         gap: 15 * $pr 0;
         &__item {
@@ -580,6 +611,8 @@ export default {
           padding: 0 13 * $pr;
           .list1 {
             margin-top: 24 * $pr;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
             flex-wrap: wrap;
             gap: 34 * $pr 0;
             :deep(.item:nth-child(5)) {

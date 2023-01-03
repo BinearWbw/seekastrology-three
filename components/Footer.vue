@@ -136,16 +136,34 @@ export default {
       height: 88px;
       border-bottom: 1px solid #282a31;
       display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
       justify-content: space-between;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
       &__left {
         height: 100%;
         display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         a {
           flex-shrink: 0;
           margin-right: 20px;
           display: flex;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
           &:last-child {
             margin-right: 0;
           }
@@ -164,6 +182,12 @@ export default {
     .bottom {
       padding: 25px 0 24px;
       display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
       justify-content: space-between;
       .left {
         width: 759px;
@@ -190,8 +214,15 @@ export default {
         .handle {
           margin-top: 13px;
           display: flex;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
           height: 44px;
           input {
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
             flex: 1;
             min-width: 0;
             height: 100%;
@@ -290,7 +321,12 @@ export default {
           .handle {
             margin-top: 15 * $pr;
             height: 90 * $pr;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
             flex-direction: column;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
             justify-content: space-between;
             input {
               flex: none;

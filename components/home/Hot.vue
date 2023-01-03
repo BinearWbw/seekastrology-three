@@ -107,7 +107,15 @@ export default {
     border-radius: 16px;
     padding-bottom: 21px;
     display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;

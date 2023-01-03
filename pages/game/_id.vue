@@ -460,6 +460,12 @@ export default {
         width: 100%;
         height: 40px;
         display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         a {
           font-size: 14px;
@@ -519,7 +525,16 @@ export default {
         .pagination {
           margin-top: 10px;
           display: flex;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          -webkit-align-items: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
           align-items: center;
+          -webkit-box-pack: center;
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
           justify-content: center;
           height: 34px;
           .btn {
@@ -542,7 +557,16 @@ export default {
           &__page {
             height: 100%;
             display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
             align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
             justify-content: center;
             grid-gap: 0 10px;
             width: auto;
@@ -589,6 +613,11 @@ export default {
           &__main {
             margin-top: 24px;
             display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
             flex-wrap: wrap;
             grid-gap: 20px 76px;
             p {
@@ -606,7 +635,16 @@ export default {
           &__download {
             margin-top: 40px;
             display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
             align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
             justify-content: center;
             grid-gap: 20px;
             a {
@@ -614,7 +652,16 @@ export default {
               height: 42px;
               border-radius: 21px;
               display: flex;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              -webkit-align-items: center;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
               align-items: center;
+              -webkit-box-pack: center;
+              -webkit-justify-content: center;
+              -ms-flex-pack: center;
               justify-content: center;
               img {
                 margin-bottom: 2px;
@@ -666,6 +713,11 @@ export default {
             border-radius: 16px;
             padding: 56px 70px 34px;
             display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
             flex-direction: column;
             input {
               width: 270px;
@@ -709,6 +761,9 @@ export default {
                 padding-bottom: 24px;
                 .top {
                   display: flex;
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
                   font-size: 14px;
                   line-height: 1;
                   span:first-child {
@@ -906,6 +961,8 @@ export default {
             }
             &__download {
               margin-top: 24 * $pr;
+              -webkit-flex-direction: column;
+              -ms-flex-direction: column;
               flex-direction: column;
               grid-gap: 20 * $pr;
               a {

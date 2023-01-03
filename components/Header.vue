@@ -139,10 +139,19 @@ export default {
     padding: 0 65px;
     height: 100%;
     display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     .logo {
       height: 40px;
       display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       flex-shrink: 0;
       img {
         display: block;
@@ -161,6 +170,12 @@ export default {
     .nav {
       height: 44px;
       display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
       flex-shrink: 0;
       margin-left: auto;
@@ -170,6 +185,12 @@ export default {
         border-radius: 6px;
         height: 100%;
         display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         span {
           margin-top: 2px;
