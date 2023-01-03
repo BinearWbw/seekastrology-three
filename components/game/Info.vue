@@ -105,6 +105,38 @@ export default {
     }
   }
 }
-@media (max-width: 828px) {
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .explain {
+    border-radius: 24 * $pr;
+    padding: 28 * $pr 23 * $pr 25 * $pr;
+    &__title {
+      font-size: 20 * $pr;
+    }
+    &__main {
+      margin-top: 21 * $pr;
+      max-height: 80 * $pr;
+      p {
+        font-size: 14 * $pr;
+        line-height: 20 * $pr;
+      }
+    }
+    &__btn {
+      margin: 24 * $pr auto 0;
+      width: 164 * $pr;
+      height: 42 * $pr;
+      border-radius: 48 * $pr;
+      span {
+        font-size: 12 * $pr;
+        padding-right: 22 * $pr;
+        &::after {
+          right: -2 * $pr;
+          top: 2 * $pr;
+          width: 11 * $pr;
+          height: 8 * $pr;
+        }
+      }
+    }
+  }
 }
 </style>

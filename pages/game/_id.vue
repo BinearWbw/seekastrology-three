@@ -30,7 +30,7 @@
             <button class="btn pagination__next common__btn"></button>
           </div>
           <game-info
-            class="explain1"
+            class="parent"
             :name="gameInfo.name"
             :desc="gameInfo.desc"
           ></game-info>
@@ -66,7 +66,7 @@
                 title="Andriod"
                 v-if="gameOs[0].visible"
               >
-                <img src="~/assets/img/game/andriod.png" alt="andriod" />
+                <img src="~/assets/img/game/andriod.svg" alt="andriod" />
                 <span>Andriod</span>
               </a>
               <a
@@ -75,7 +75,7 @@
                 title="IOS"
                 v-if="gameOs[1].visible"
               >
-                <img src="~/assets/img/game/ios.png" alt="ios" />
+                <img src="~/assets/img/game/ios.svg" alt="ios" />
                 <span>IOS</span>
               </a>
             </div>
@@ -87,6 +87,7 @@
               approved, there are no viruses and malware.
             </p>
           </div>
+          <google-ad :id="'ID1-h5'" :timeout="200" classNames="h5ad" />
           <home-list class="module" :title="'RELATED GAMES'">
             <home-latest
               v-for="item in bestList"
@@ -485,6 +486,9 @@ export default {
           font-size: 14px;
           line-height: 18px;
           margin-left: -2px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
       .main {
@@ -530,10 +534,10 @@ export default {
             }
           }
           &__prev {
-            background-image: url('~assets/img/home/prev.png');
+            background-image: url('~assets/img/home/prev.svg');
           }
           &__next {
-            background-image: url('~assets/img/home/next.png');
+            background-image: url('~assets/img/home/next.svg');
           }
           &__page {
             height: 100%;
@@ -569,7 +573,7 @@ export default {
             }
           }
         }
-        .explain1 {
+        .parent {
           margin-top: 20px;
         }
         .info {
@@ -642,6 +646,9 @@ export default {
             color: #808191;
             line-height: 20px;
           }
+        }
+        .h5ad {
+          display: none;
         }
         .module {
           margin-top: 30px;
@@ -825,286 +832,181 @@ export default {
     }
   }
 }
-// @media (max-width: 750px) {
-//   $pr: math.div(1vw, 3.75);
-//   .game {
-//     &__main {
-//       width: 100%;
-//       padding: 0 24px;
-//       &__left {
-//         width: 100%;
-//         .nav {
-//           display: none;
-//         }
-//         .main {
-//           margin-top: 0;
-//           padding-right: 0;
-//           .banner {
-//             height: 171px;
-//           }
-//           .pagination {
-//             margin-top: 10px;
-//             display: flex;
-//             align-items: center;
-//             justify-content: center;
-//             height: 34px;
-//             .btn {
-//               display: none;
-//             }
-//             &__page {
-//               height: 100%;
-//               display: flex;
-//               align-items: center;
-//               justify-content: center;
-//               grid-gap: 0 10px;
-//               width: auto;
-//               min-width: 126px;
-//               padding: 0 30px;
-//             }
-//             :deep(.swiper-pagination-customs) {
-//               width: 10px;
-//               height: 10px;
-//               border: solid 2px transparent;
-//               border-radius: 50%;
-//               position: relative;
-//               &::before {
-//                 content: '';
-//                 position: absolute;
-//                 left: 0;
-//                 top: 0;
-//                 width: 100%;
-//                 height: 100%;
-//                 border-radius: 50%;
-//                 background-color: #808191;
-//               }
-//             }
-//             :deep(.swiper-pagination-customs-active) {
-//               border-color: #fe27ee;
-//               &::before {
-//                 background-color: #000000;
-//               }
-//             }
-//           }
-//           .explain1 {
-//             margin-top: 20px;
-//           }
-//           .info {
-//             margin-top: 30px;
-//             height: 270px;
-//             background-color: #282a31;
-//             border-radius: 24px;
-//             padding: 36px 44px;
-//             &__title {
-//               font-size: 24px;
-//               line-height: 1;
-//               color: #ffffff;
-//             }
-//             &__main {
-//               margin-top: 19px;
-//               display: flex;
-//               flex-wrap: wrap;
-//               grid-gap: 20px 83px;
-//               p {
-//                 font-size: 14px;
-//                 line-height: 20px;
-//                 span:first-child {
-//                   color: #fff;
-//                 }
-//                 span:last-child {
-//                   color: #808191;
-//                   padding-left: 7px;
-//                 }
-//               }
-//             }
-//             &__download {
-//               margin-top: 40px;
-//               display: flex;
-//               align-items: center;
-//               justify-content: center;
-//               grid-gap: 20px;
-//               a {
-//                 width: 164px;
-//                 height: 42px;
-//                 border-radius: 21px;
-//                 display: flex;
-//                 align-items: center;
-//                 justify-content: center;
-//                 img {
-//                   margin-bottom: 2px;
-//                 }
-//                 span {
-//                   padding-left: 10px;
-//                   margin-top: 2px;
-//                   font-size: 14px;
-//                   color: #ffffff;
-//                   line-height: 1;
-//                 }
-//                 &:first-child {
-//                   background-color: #7ac450;
-//                 }
-//                 &:nth-child(2) {
-//                   background-color: #3f8cff;
-//                 }
-//               }
-//             }
-//             &__remark {
-//               margin-top: 38px;
-//               font-size: 14px;
-//               color: #808191;
-//               line-height: 20px;
-//             }
-//           }
-//           .module {
-//             margin-top: 32px;
-//             &__top {
-//               width: 100%;
-//               height: 34px;
-//               line-height: 1;
-//               display: flex;
-//               align-items: center;
-//               justify-content: space-between;
-//               .title {
-//                 flex-shrink: 0;
-//                 font-family: BebasNeue-Regular;
-//                 font-size: 28px;
-//                 color: #ffffff;
-//                 margin-top: 5px;
-//               }
-//               .page {
-//                 flex-shrink: 0;
-//                 height: 100%;
-//                 &__button {
-//                   width: 34px;
-//                   height: 100%;
-//                   border-radius: 50%;
-//                   background-color: #242731;
-//                   -webkit-transition-duration: 0.3s;
-//                   transition-duration: 0.3s;
-//                   background-repeat: no-repeat;
-//                   background-position: center;
-//                   &.active {
-//                     background-color: #7a78ff;
-//                   }
-//                 }
-//                 .prev {
-//                   background-image: url('~assets/img/home/prev.png');
-//                   margin-right: 6px;
-//                 }
-//                 .next {
-//                   background-image: url('~assets/img/home/next.png');
-//                 }
-//               }
-//             }
-//             .list {
-//               margin-top: 24px;
-//               background-color: #282a31;
-//               border-radius: 16px;
-//               padding: 54px 54px 55px;
-//               .scroll {
-//                 --grid-num: 6;
-//                 display: grid;
-//                 grid-template-rows: repeat(1, 1fr);
-//                 grid-auto-flow: column;
-//                 grid-auto-columns: calc(
-//                   100% / var(--grid-num) - (var(--grid-num) - 1) * 18px /
-//                     var(--grid-num)
-//                 );
-//                 grid-gap: 18px;
-//                 -webkit-scroll-snap-type: x mandatory;
-//                 -moz-scroll-snap-type: x mandatory;
-//                 -ms-scroll-snap-type: x mandatory;
-//                 scroll-snap-type: x mandatory;
-//                 -webkit-scroll-behavior: smooth;
-//                 -moz-scroll-behavior: smooth;
-//                 -ms-scroll-behavior: smooth;
-//                 scroll-behavior: smooth;
-//                 overflow-x: auto;
-//                 overflow-y: hidden;
-//               }
-//             }
-//           }
-//           .comment {
-//             margin-top: 39px;
-//             &__title {
-//               font-family: BebasNeue-Regular;
-//               font-size: 28px;
-//               line-height: 1;
-//               color: #ffffff;
-//             }
-//             &__box {
-//               margin-top: 24px;
-//               background-color: #282a31;
-//               border-radius: 16px;
-//               padding: 55px 70px 57px;
-//               display: flex;
-//               flex-direction: column;
-//               input {
-//                 width: 270px;
-//                 height: 40px;
-//                 background-color: rgba(0, 0, 0, 0.45);
-//                 border-radius: 20px;
-//                 font-size: 14px;
-//                 color: #808191;
-//                 padding: 0 20px;
-//               }
-//               textarea {
-//                 margin-top: 20px;
-//                 width: 100%;
-//                 background-color: rgba(0, 0, 0, 0.45);
-//                 height: 147px;
-//                 border-radius: 20px;
-//                 font-size: 14px;
-//                 line-height: 18px;
-//                 color: #808191;
-//                 padding: 12px 20px;
-//                 resize: none;
-//               }
-//               button {
-//                 margin-top: 25px;
-//                 width: 192px;
-//                 height: 46px;
-//                 background-color: #6c5dd3;
-//                 border-radius: 4px;
-//                 font-size: 14px;
-//                 color: #ffffff;
-//               }
-//               .message {
-//                 width: 100%;
-//                 margin-top: 30px;
-//                 &__li {
-//                   margin-top: 30px;
-//                   border-bottom: 1px solid #2e323d;
-//                   padding-bottom: 24px;
-//                   .top {
-//                     display: flex;
-//                     font-size: 14px;
-//                     line-height: 1;
-//                     span:first-child {
-//                       color: #ffffff;
-//                       padding-left: 6px;
-//                     }
-//                     span:last-child {
-//                       padding-left: 8px;
-//                       color: #808191;
-//                     }
-//                   }
-//                   .text {
-//                     padding-left: 5px;
-//                     margin-top: 14px;
-//                     font-size: 14px;
-//                     line-height: 18px;
-//                     color: #808191;
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//       &__right {
-//         display: none;
-//       }
-//     }
-//   }
-// }
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .game {
+    &__main {
+      padding: 0 23 * $pr;
+      &__left {
+        .nav {
+          display: none;
+        }
+        .main {
+          margin-top: 24 * $pr;
+          .banner {
+            height: 171 * $pr;
+            border-radius: 24 * $pr;
+          }
+          .pagination {
+            margin-top: 8 * $pr;
+            height: 10 * $pr;
+            .btn {
+              display: none;
+            }
+            &__page {
+              grid-gap: 0 8 * $pr;
+              min-width: auto;
+              padding: 0;
+            }
+            :deep(.swiper-pagination-customs) {
+              width: 10 * $pr;
+              height: 10 * $pr;
+              border: solid 2 * $pr transparent;
+              border-radius: 50%;
+              position: relative;
+              &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                background-color: #808191;
+              }
+            }
+            :deep(.swiper-pagination-customs-active) {
+              border-color: #fe27ee;
+              &::before {
+                background-color: #000000;
+              }
+            }
+          }
+          .parent {
+            margin-top: 20 * $pr;
+          }
+          .info {
+            margin-top: 20 * $pr;
+            border-radius: 24 * $pr;
+            padding: 28 * $pr 23 * $pr 31 * $pr;
+            &__title {
+              font-size: 20 * $pr;
+            }
+            &__main {
+              margin-top: 21 * $pr;
+              grid-gap: 0;
+              p {
+                min-width: 100%;
+                font-size: 14 * $pr;
+                line-height: 20 * $pr;
+                span:last-child {
+                  padding-left: 9 * $pr;
+                }
+              }
+            }
+            &__download {
+              margin-top: 24 * $pr;
+              flex-direction: column;
+              grid-gap: 20 * $pr;
+              a {
+                width: 164 * $pr;
+                height: 42 * $pr;
+                border-radius: 21 * $pr;
+                img {
+                  margin-bottom: 2 * $pr;
+                }
+                span {
+                  padding-left: 10 * $pr;
+                  margin-top: 2 * $pr;
+                  font-size: 14 * $pr;
+                }
+              }
+            }
+            &__remark {
+              margin-top: 32 * $pr;
+              font-size: 14 * $pr;
+              line-height: 20 * $pr;
+            }
+          }
+          .h5ad {
+            margin-top: 20 * $pr;
+            display: block;
+            width: 100%;
+            height: 100 * $pr;
+            border-radius: 24 * $pr;
+            background: #000000;
+          }
+          .module {
+            margin-top: 24 * $pr;
+            :deep(.scroll__bottom .list) {
+              --grid-num: 3;
+            }
+          }
+          .comment {
+            margin-top: 40 * $pr;
+            &__title {
+              font-size: 34 * $pr;
+            }
+            &__box {
+              margin-top: 23 * $pr;
+              border-radius: 24 * $pr;
+              padding: 31 * $pr 23 * $pr 17 * $pr;
+              input {
+                width: 100%;
+                height: 38 * $pr;
+                border-radius: 19 * $pr;
+                font-size: 14 * $pr;
+                padding: 0 19 * $pr;
+              }
+              textarea {
+                margin-top: 21 * $pr;
+                height: 148 * $pr;
+                border-radius: 20 * $pr;
+                font-size: 14 * $pr;
+                line-height: 20 * $pr;
+                padding: 10 * $pr 19 * $pr;
+              }
+              button {
+                margin-top: 24 * $pr;
+                width: 100%;
+                height: 46 * $pr;
+                border-radius: 4 * $pr;
+                font-size: 14 * $pr;
+              }
+              .message {
+                margin-top: 30 * $pr;
+                &__li {
+                  margin-top: 30 * $pr;
+                  border-bottom: 1 * $pr solid #2e323d;
+                  padding-bottom: 16 * $pr;
+                  .top {
+                    font-size: 14 * $pr;
+                    span:first-child {
+                      padding-left: 0;
+                    }
+                    span:last-child {
+                      padding-left: 8 * $pr;
+                    }
+                  }
+                  .text {
+                    padding-left: 0;
+                    margin-top: 14 * $pr;
+                    font-size: 14 * $pr;
+                    line-height: 18 * $pr;
+                  }
+                  &:nth-child(n + 2) {
+                    margin-top: 21 * $pr;
+                  }
+                  &:last-child {
+                    border-bottom: 1 * $pr solid #2e323d;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>

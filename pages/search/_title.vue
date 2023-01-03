@@ -7,12 +7,22 @@
         <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
         <p class="name">Search</p>
       </div>
+      <div class="h5search">
+        <input
+          class="input"
+          type="text"
+          v-model="searchInput"
+          placeholder="Search"
+        />
+        <button class="button common__btn" @click="search"></button>
+      </div>
       <section class="search" v-if="gameList.length > 0">
         <p class="title">
           <span>"{{ $route.params.title }}" </span>,
           {{ gameList.length > 1 ? gameList.length + ' results' : '1 result' }}
           found
         </p>
+        <p class="h5title">Search Results</p>
         <div class="list">
           <home-latest
             v-for="item in gameList"
@@ -26,7 +36,7 @@
       </p>
       <section class="module">
         <div class="module__top">
-          <div class="title">MORE GAMES</div>
+          <div class="title">More Games</div>
         </div>
         <div class="list">
           <home-hot
@@ -43,6 +53,11 @@
 <script>
 export default {
   name: 'SearchTitle',
+  data() {
+    return {
+      searchInput: '',
+    }
+  },
   async asyncData({ error, $apiList, params }) {
     try {
       let [gameList, recommendList] = await Promise.all([
@@ -72,6 +87,25 @@ export default {
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
     }
+  },
+  methods: {
+    search() {
+      let regSearch = /^.{2,}$/
+      if (
+        !this.searchInput.replace(/\s+/g, '') ||
+        !regSearch.test(this.searchInput.replace(/\s+/g, ''))
+      ) {
+        this.$store.dispatch('toast', {
+          type: 'warning',
+          msg: 'Search is required and the length cannot be less than 2',
+        })
+      } else {
+        window.location = `/search/${this.searchInput}`
+      }
+    },
+  },
+  mounted() {
+    this.searchInput = this.$route.params.title || ''
   },
 }
 </script>
@@ -116,6 +150,9 @@ export default {
         margin-left: -2px;
       }
     }
+    .h5search {
+      display: none;
+    }
     .search {
       width: 100%;
       background: #282a31;
@@ -128,6 +165,9 @@ export default {
         span {
           color: #ffc908;
         }
+      }
+      .h5title {
+        display: none;
       }
       .list {
         background-color: #282a31;
@@ -172,9 +212,6 @@ export default {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         grid-gap: 30px;
-      }
-      &:first-child {
-        padding-top: 34px;
       }
     }
   }
@@ -231,6 +268,101 @@ export default {
         .list {
           grid-template-columns: repeat(4, 1fr);
           :deep(.item:nth-last-child(10) ~ .item) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .type {
+    &__main {
+      padding: 0 10 * $pr;
+      .nav {
+        display: none;
+      }
+      .h5search {
+        margin: 39 * $pr auto 0;
+        display: block;
+        width: calc(100% - 26 * $pr);
+        height: 46 * $pr;
+        border-radius: 24 * $pr;
+        background: #111216;
+        position: relative;
+        input {
+          width: 100%;
+          height: 100%;
+          font-size: 18 * $pr;
+          padding: 2 * $pr 88 * $pr 0 22 * $pr;
+        }
+        button {
+          position: absolute;
+          top: calc(50% - 21 * $pr);
+          right: 2 * $pr;
+          width: 64 * $pr;
+          height: 42 * $pr;
+          border-radius: 24 * $pr;
+          background-color: #6c5dd3;
+          background-image: url('~assets/img/search/search.png');
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 20 * $pr 20 * $pr;
+          &:hover {
+            background-color: #7a78ff;
+          }
+        }
+      }
+      .search {
+        background: transparent;
+        border-radius: 0;
+        margin-top: 0;
+        padding-top: 32 * $pr;
+        .title {
+          display: none;
+        }
+        .h5title {
+          padding: 0 13 * $pr;
+          display: block;
+          font-size: 14 * $pr;
+          line-height: 18 * $pr;
+          color: #808191;
+          font-family: 'Bahnschrift';
+        }
+        .list {
+          margin-top: 15 * $pr;
+          border-radius: 16 * $pr;
+          padding: 35 * $pr 17 * $pr 32 * $pr;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 28 * $pr 30 * $pr;
+        }
+      }
+      .none {
+        height: 18 * $pr;
+        border-radius: 0;
+        background: transparent;
+        margin-top: 63 * $pr;
+        font-size: 18 * $pr;
+        line-height: 18 * $pr;
+        padding: 0 13 * $pr;
+      }
+      .module {
+        padding: 59 * $pr 13 * $pr 0;
+        &__top {
+          height: 18 * $pr;
+          .title {
+            font-size: 14 * $pr;
+            line-height: 18 * $pr;
+            color: #808191;
+            font-family: 'Bahnschrift';
+          }
+        }
+        .list {
+          margin-top: 15 * $pr;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 14 * $pr 12 * $pr;
+          :deep(.item:nth-last-child(13) ~ .item) {
             display: none;
           }
         }

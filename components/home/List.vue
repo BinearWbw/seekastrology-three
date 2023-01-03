@@ -125,11 +125,11 @@ export default {
         }
       }
       .prev {
-        background-image: url('~assets/img/home/prev.png');
+        background-image: url('~assets/img/home/prev.svg');
         margin-right: 6px;
       }
       .next {
-        background-image: url('~assets/img/home/next.png');
+        background-image: url('~assets/img/home/next.svg');
       }
     }
   }
@@ -160,6 +160,36 @@ export default {
     }
   }
 }
-@media (max-width: 828px) {
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .scroll {
+    &__top {
+      height: 34 * $pr;
+      .title {
+        font-size: 34 * $pr;
+      }
+      .page {
+        &__button {
+          width: 34 * $pr;
+        }
+        .prev {
+          margin-right: 6 * $pr;
+        }
+      }
+    }
+    &__bottom {
+      margin-top: 15 * $pr;
+      border-radius: 24 * $pr;
+      padding: 35 * $pr 4 * $pr 32 * $pr;
+      .list {
+        --grid-num: 7;
+        grid-auto-columns: calc(
+          100% / var(--grid-num) - (var(--grid-num) - 1) * 30 * $pr /
+            var(--grid-num)
+        );
+        grid-gap: 30 * $pr;
+      }
+    }
+  }
 }
 </style>
