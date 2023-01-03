@@ -196,6 +196,12 @@ export default {
       padding: 0 10px;
       white-space: nowrap;
       overflow: hidden;
+      appearance: none;
+      backface-visibility: hidden;
+      transform: translate(0, 0, 0);
+      -webkit-appearance: none;
+      -webkit-backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
       text-overflow: ellipsis;
       span {
         color: #ffc908;

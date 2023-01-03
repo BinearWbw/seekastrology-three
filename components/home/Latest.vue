@@ -52,6 +52,12 @@ export default {
     flex-shrink: 0;
     margin-bottom: 16px;
     overflow: hidden;
+    appearance: none;
+    backface-visibility: hidden;
+    transform: translate(0, 0, 0);
+    -webkit-appearance: none;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
     img {
       border-radius: 16px;
       width: 100%;

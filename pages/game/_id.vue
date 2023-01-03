@@ -508,6 +508,12 @@ export default {
           background-color: #111216;
           border-radius: 24px;
           overflow: hidden;
+          appearance: none;
+          backface-visibility: hidden;
+          transform: translate(0, 0, 0);
+          -webkit-appearance: none;
+          -webkit-backface-visibility: hidden;
+          -webkit-transform: translate3d(0, 0, 0);
           .swiper {
             width: 100%;
             height: 100%;
@@ -568,7 +574,6 @@ export default {
             -webkit-justify-content: center;
             -ms-flex-pack: center;
             justify-content: center;
-            grid-gap: 0 10px;
             width: auto;
             min-width: 126px;
             padding: 0 30px;
@@ -576,6 +581,7 @@ export default {
           :deep(.swiper-pagination-customs) {
             width: 10px;
             height: 10px;
+            margin-right: 10px;
             border: solid 2px transparent;
             border-radius: 50%;
             position: relative;
@@ -588,6 +594,9 @@ export default {
               height: 100%;
               border-radius: 50%;
               background-color: #808191;
+            }
+            &:last-child {
+              margin-right: 0;
             }
           }
           :deep(.swiper-pagination-customs-active) {
@@ -909,13 +918,13 @@ export default {
               display: none;
             }
             &__page {
-              grid-gap: 0 8 * $pr;
               min-width: auto;
               padding: 0;
             }
             :deep(.swiper-pagination-customs) {
               width: 10 * $pr;
               height: 10 * $pr;
+              margin-right: 8 * $pr;
               border: solid 2 * $pr transparent;
               border-radius: 50%;
               position: relative;
@@ -964,7 +973,7 @@ export default {
               -webkit-flex-direction: column;
               -ms-flex-direction: column;
               flex-direction: column;
-              grid-gap: 20 * $pr;
+              grid-gap: 0;
               a {
                 width: 164 * $pr;
                 height: 42 * $pr;
@@ -976,6 +985,9 @@ export default {
                   padding-left: 10 * $pr;
                   margin-top: 2 * $pr;
                   font-size: 14 * $pr;
+                }
+                &:nth-child(2) {
+                  margin-top: 20 * $pr;
                 }
               }
             }

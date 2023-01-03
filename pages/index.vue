@@ -122,6 +122,12 @@ export default {
         border-radius: 16px;
         position: relative;
         overflow: hidden;
+        appearance: none;
+        backface-visibility: hidden;
+        transform: translate(0, 0, 0);
+        -webkit-appearance: none;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
         cursor: pointer;
         .bg {
           border-radius: 16px;
@@ -513,7 +519,7 @@ export default {
         -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
         justify-content: space-between;
-        gap: 15 * $pr 0;
+        gap: 0;
         &__item {
           flex-shrink: 0;
           width: 156 * $pr;
@@ -586,10 +592,15 @@ export default {
             }
           }
         }
+        .rec3 {
+          margin-top: 15 * $pr;
+        }
         .rec4 {
+          margin-top: 15 * $pr;
           display: block;
         }
         .ad {
+          margin-top: 15 * $pr;
           width: 100%;
           height: 63 * $pr;
         }
@@ -614,12 +625,15 @@ export default {
             -webkit-flex-wrap: wrap;
             -ms-flex-wrap: wrap;
             flex-wrap: wrap;
-            gap: 34 * $pr 0;
+            gap: 0;
             :deep(.item:nth-child(5)) {
               display: block;
             }
             :deep(.item:nth-child(6)) {
               display: block;
+            }
+            :deep(.item:nth-child(n + 4)) {
+              margin-top: 34 * $pr;
             }
           }
           .list2 {

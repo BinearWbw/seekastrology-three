@@ -30,6 +30,12 @@ export default {
 @use 'sass:math';
 .item {
   overflow: hidden;
+  appearance: none;
+  backface-visibility: hidden;
+  transform: translate(0, 0, 0);
+  -webkit-appearance: none;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
   height: 94px;
   padding: 10px 0 10px 10px;
   background-color: #282a31;

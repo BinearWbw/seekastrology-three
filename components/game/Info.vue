@@ -39,6 +39,12 @@ export default {
   background-color: #282a31;
   border-radius: 24px;
   overflow: hidden;
+  appearance: none;
+  backface-visibility: hidden;
+  transform: translate(0, 0, 0);
+  -webkit-appearance: none;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
   padding: 37px 36px 35px;
   &__title {
     font-size: 24px;
