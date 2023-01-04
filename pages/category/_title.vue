@@ -93,7 +93,6 @@ export default {
             cate_name: params.title.toLowerCase(),
           })
           .then((res) => {
-            console.log(res)
             return res.list || []
           }),
         $apiList.home
@@ -103,7 +102,6 @@ export default {
             size: 10,
           })
           .then((res) => {
-            console.log(res)
             return res || []
           }),
       ])

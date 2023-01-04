@@ -67,7 +67,6 @@ export default {
             name: params.title,
           })
           .then((res) => {
-            console.log(res)
             return res || []
           }),
         $apiList.home
