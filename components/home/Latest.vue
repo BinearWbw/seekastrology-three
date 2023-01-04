@@ -29,9 +29,6 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:math';
 .item {
-  flex: none;
-  width: 100%;
-  overflow: hidden;
   display: flex;
   display: -webkit-box;
   display: -webkit-flex;
@@ -58,13 +55,13 @@ export default {
     -webkit-appearance: none;
     -webkit-backface-visibility: hidden;
     -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
     img {
       border-radius: 16px;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      -webkit-transition-duration: 0.3s;
-      transition-duration: 0.3s;
     }
   }
   &__bottom {
@@ -107,10 +104,8 @@ export default {
   }
   &:hover {
     .item__top {
-      img {
-        -webkit-transform: scale(1.2);
-        transform: scale(1.2);
-      }
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
     }
     .item__bottom {
       .time {

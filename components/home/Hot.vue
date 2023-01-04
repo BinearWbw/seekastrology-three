@@ -82,13 +82,6 @@ export default {
   }
 }
 .item {
-  overflow: hidden;
-  appearance: none;
-  backface-visibility: hidden;
-  transform: translate(0, 0, 0);
-  -webkit-appearance: none;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
   position: relative;
   @include normal;
   &__top {
@@ -99,6 +92,8 @@ export default {
     background-color: #3c375f;
     box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
     border-radius: 24px;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
     img {
       width: 100%;
       height: 100%;
@@ -140,6 +135,12 @@ export default {
       text-overflow: -o-ellipsis-lastline;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+  }
+  &:hover {
+    .item__top {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
     }
   }
   &:nth-child(-n + 7) {

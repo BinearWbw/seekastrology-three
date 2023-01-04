@@ -146,8 +146,9 @@ export default {
     margin-top: 20px;
     background-color: #282a31;
     border-radius: 16px;
-    padding: 40px 22px 48px;
+    padding: 0 22px 48px;
     .list {
+      padding-top: 40px;
       --grid-num: 7;
       display: grid;
       grid-template-rows: repeat(1, 1fr);
@@ -189,8 +190,9 @@ export default {
     &__bottom {
       margin-top: 15 * $pr;
       border-radius: 24 * $pr;
-      padding: 35 * $pr 4 * $pr 32 * $pr;
+      padding: 0 4 * $pr 32 * $pr;
       .list {
+        padding-top: 35 * $pr;
         --grid-num: 7;
         grid-auto-columns: calc(
           100% / var(--grid-num) - (var(--grid-num) - 1) * 30 * $pr /
