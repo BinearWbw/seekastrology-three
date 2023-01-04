@@ -61,13 +61,13 @@
             </div>
             <div class="info__download">
               <a
-                class="andriod common__btn"
+                class="android common__btn"
                 :href="gameOs[0].url"
-                title="Andriod"
+                title="Android"
                 v-if="gameOs[0].visible"
               >
-                <img src="~/assets/img/game/andriod.svg" alt="andriod" />
-                <span>Andriod</span>
+                <img src="~/assets/img/game/android.svg" alt="android" />
+                <span>Android</span>
               </a>
               <a
                 class="ios common__btn"
@@ -254,7 +254,7 @@ export default {
         gameOs = [
           {
             visible: false,
-            name: 'Andriod',
+            name: 'Android',
             ver: null,
             size: null,
             updated: null,
@@ -316,7 +316,7 @@ export default {
         appInfo.detail.banner = appInfo.detail.banner.split(',')
       }
       appInfo.detail.os.split(',').map((item, index) => {
-        if (item.toLowerCase() == 'andriod') {
+        if (item.toLowerCase() == 'android') {
           gameOs[0].visible = true
           gameOs[0].ver = appInfo.detail.version.split('/')[index]
           gameOs[0].size = appInfo.detail.apk_size.split('/')[index]
@@ -682,7 +682,7 @@ export default {
                 color: #ffffff;
                 line-height: 1;
               }
-              &.andriod {
+              &.android {
                 background-color: #7ac450;
                 &:hover {
                   background-color: #96ef63;

@@ -168,7 +168,7 @@ export default {
           grid-template-columns: repeat(6, 1fr);
         }
         .more {
-          :deep(.item:nth-last-child(4) ~ .item) {
+          :deep(.item:nth-child(n + 19)) {
             display: none;
           }
         }
@@ -184,7 +184,7 @@ export default {
           grid-template-columns: repeat(5, 1fr);
         }
         .more {
-          :deep(.item:nth-last-child(7) ~ .item) {
+          :deep(.item:nth-child(n + 16)) {
             display: none;
           }
         }
@@ -200,7 +200,7 @@ export default {
           grid-template-columns: repeat(4, 1fr);
         }
         .more {
-          :deep(.item:nth-last-child(10) ~ .item) {
+          :deep(.item:nth-child(n + 13)) {
             display: none;
           }
         }
@@ -228,7 +228,7 @@ export default {
           grid-gap: 14 * $pr 12 * $pr;
         }
         .more {
-          :deep(.item:nth-last-child(13) ~ .item) {
+          :deep(.item:nth-child(n + 10)) {
             display: none;
           }
         }

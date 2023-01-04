@@ -121,7 +121,7 @@ export default {
           grid-template-columns: repeat(6, 1fr);
           &.rec {
             grid-template-columns: repeat(4, 1fr);
-            :deep(.item:nth-last-child(3) ~ .item) {
+            :deep(.item:nth-child(n + 9)) {
               display: none;
             }
           }
@@ -141,7 +141,7 @@ export default {
           grid-template-columns: repeat(5, 1fr);
           &.rec {
             grid-template-columns: repeat(3, 1fr);
-            :deep(.item:nth-last-child(5) ~ .item) {
+            :deep(.item:nth-child(n + 7)) {
               display: none;
             }
           }
@@ -161,7 +161,7 @@ export default {
           grid-template-columns: repeat(4, 1fr);
           &.rec {
             grid-template-columns: repeat(2, 1fr);
-            :deep(.item:nth-last-child(7) ~ .item) {
+            :deep(.item:nth-child(n + 5)) {
               display: none;
             }
           }

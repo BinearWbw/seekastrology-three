@@ -83,9 +83,6 @@ export default {
         origin: process.env.origin,
       })
       gameList = res
-      for (var i = 0; i < 40; i++) {
-        res['hot-games'].push(res['hot-games'][0])
-      }
       return {
         gameList,
       }
@@ -385,7 +382,7 @@ export default {
           }
           .list2 {
             grid-template-columns: repeat(4, 1fr);
-            :deep(.item:nth-last-child(3) ~ .item) {
+            :deep(.item:nth-child(n + 9)) {
               display: none;
             }
           }
@@ -393,7 +390,7 @@ export default {
         &.latest {
           .list {
             grid-template-columns: repeat(9, 1fr);
-            :deep(.item:nth-last-child(3) ~ .item) {
+            :deep(.item:nth-child(n + 19)) {
               display: none;
             }
           }
@@ -401,7 +398,7 @@ export default {
         &.hot {
           .list {
             grid-template-columns: repeat(6, 1fr);
-            :deep(.item:nth-last-child(4) ~ .item) {
+            :deep(.item:nth-child(n + 19)) {
               display: none;
             }
           }
@@ -438,7 +435,7 @@ export default {
           }
           .list2 {
             grid-template-columns: repeat(3, 1fr);
-            :deep(.item:nth-last-child(5) ~ .item) {
+            :deep(.item:nth-child(n + 7)) {
               display: none;
             }
           }
@@ -446,7 +443,7 @@ export default {
         &.latest {
           .list {
             grid-template-columns: repeat(8, 1fr);
-            :deep(.item:nth-last-child(5) ~ .item) {
+            :deep(.item:nth-child(n + 17)) {
               display: none;
             }
           }
@@ -454,7 +451,7 @@ export default {
         &.hot {
           .list {
             grid-template-columns: repeat(5, 1fr);
-            :deep(.item:nth-last-child(7) ~ .item) {
+            :deep(.item:nth-child(n + 16)) {
               display: none;
             }
           }
@@ -475,7 +472,7 @@ export default {
           }
           .list2 {
             grid-template-columns: repeat(2, 1fr);
-            :deep(.item:nth-last-child(7) ~ .item) {
+            :deep(.item:nth-child(n + 5)) {
               display: none;
             }
           }
@@ -483,7 +480,7 @@ export default {
         &.latest {
           .list {
             grid-template-columns: repeat(6, 1fr);
-            :deep(.item:nth-last-child(9) ~ .item) {
+            :deep(.item:nth-child(n + 13)) {
               display: none;
             }
           }
@@ -491,7 +488,7 @@ export default {
         &.hot {
           .list {
             grid-template-columns: repeat(4, 1fr);
-            :deep(.item:nth-last-child(10) ~ .item) {
+            :deep(.item:nth-child(n + 13)) {
               display: none;
             }
           }
@@ -640,7 +637,7 @@ export default {
             margin-top: 28 * $pr;
             grid-template-columns: repeat(1, 1fr);
             grid-gap: 20 * $pr 0;
-            :deep(.item:nth-last-child(9) ~ .item) {
+            :deep(.item:nth-child(n + 3)) {
               display: none;
             }
           }
@@ -657,7 +654,7 @@ export default {
             grid-template-rows: repeat(3, 1fr);
             grid-template-columns: repeat(3, 1fr);
             grid-gap: 28 * $pr 30 * $pr;
-            :deep(.item:nth-last-child(12) ~ .item) {
+            :deep(.item:nth-child(n + 10)) {
               display: none;
             }
           }
@@ -669,7 +666,7 @@ export default {
             margin-top: 15 * $pr;
             grid-template-columns: repeat(3, 1fr);
             grid-gap: 14 * $pr 12 * $pr;
-            :deep(.item:nth-last-child(13) ~ .item) {
+            :deep(.item:nth-child(n + 10)) {
               display: none;
             }
           }
