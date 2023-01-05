@@ -28,6 +28,7 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:math';
 .item {
+  -webkit-flex-shrink: 0;
   flex-shrink: 0;
   width: 150px;
   cursor: pointer;

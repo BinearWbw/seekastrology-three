@@ -241,6 +241,7 @@ export default {
             margin-top: 10px;
             flex-direction: row;
             .category {
+              -webkit-flex-shrink: 0;
               flex-shrink: 0;
               height: 24px;
               line-height: 24px;
@@ -309,6 +310,7 @@ export default {
         .title {
           font-size: 34px;
           line-height: 41px;
+          -webkit-flex-shrink: 0;
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
         }
@@ -316,6 +318,7 @@ export default {
           margin-top: 2px;
           font-size: 22px;
           line-height: 26px;
+          -webkit-flex-shrink: 0;
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
           color: #808191;
@@ -518,6 +521,7 @@ export default {
         justify-content: space-between;
         gap: 0;
         &__item {
+          -webkit-flex-shrink: 0;
           flex-shrink: 0;
           width: 156 * $pr;
           height: 170 * $pr;

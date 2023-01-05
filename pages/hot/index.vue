@@ -81,6 +81,7 @@ export default {
         .title {
           font-size: 34px;
           line-height: 41px;
+          -webkit-flex-shrink: 0;
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
         }

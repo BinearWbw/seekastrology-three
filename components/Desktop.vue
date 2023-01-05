@@ -41,6 +41,7 @@ export default {
 @use 'sass:math';
 .desktop {
   margin-left: 20px;
+  -webkit-flex-shrink: 0;
   flex-shrink: 0;
   width: 110px;
   height: 34px;

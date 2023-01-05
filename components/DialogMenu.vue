@@ -132,6 +132,7 @@ export default {
       background: rgba(0, 0, 0, 0.45);
       border-radius: 72px;
       position: relative;
+      -webkit-flex-shrink: 0;
       flex-shrink: 0;
       input {
         width: 100%;

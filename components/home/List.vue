@@ -114,12 +114,14 @@ export default {
     -ms-flex-pack: justify;
     justify-content: space-between;
     .title {
+      -webkit-flex-shrink: 0;
       flex-shrink: 0;
       font-family: BebasNeue-Regular;
       font-size: 28px;
       color: #ffffff;
     }
     .page {
+      -webkit-flex-shrink: 0;
       flex-shrink: 0;
       height: 100%;
       &__button {

@@ -48,6 +48,7 @@ export default {
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
   &__left {
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
     width: 74px;
     height: 100%;

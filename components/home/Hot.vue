@@ -58,6 +58,7 @@ export default {
     padding-top: 0;
     .btn {
       display: block;
+      -webkit-flex-shrink: 0;
       flex-shrink: 0;
       width: 86px;
       height: 31px;
@@ -121,6 +122,7 @@ export default {
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
     .name {
+      -webkit-flex-shrink: 0;
       flex-shrink: 0;
       padding: 0 24px;
       font-size: 14px;

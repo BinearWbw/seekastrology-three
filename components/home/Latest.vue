@@ -46,6 +46,7 @@ export default {
     height: 74px;
     background-color: #808191;
     border-radius: 16px;
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
     margin-bottom: 16px;
     overflow: hidden;

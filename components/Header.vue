@@ -152,6 +152,7 @@ export default {
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
+      -webkit-flex-shrink: 0;
       flex-shrink: 0;
       img {
         display: block;
@@ -177,6 +178,7 @@ export default {
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
+      -webkit-flex-shrink: 0;
       flex-shrink: 0;
       margin-left: auto;
       margin-right: auto;
@@ -220,6 +222,7 @@ export default {
       background: rgba(0, 0, 0, 0.45);
       border-radius: 48px;
       position: relative;
+      -webkit-flex-shrink: 0;
       flex-shrink: 0;
       input {
         width: 100%;

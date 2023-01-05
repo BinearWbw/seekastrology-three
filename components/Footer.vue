@@ -158,6 +158,7 @@ export default {
         -ms-flex-align: center;
         align-items: center;
         a {
+          -webkit-flex-shrink: 0;
           flex-shrink: 0;
           margin-right: 20px;
           display: flex;
@@ -203,6 +204,7 @@ export default {
         }
       }
       .right {
+        -webkit-flex-shrink: 0;
         flex-shrink: 0;
         padding-top: 7px;
         width: 401px;
@@ -234,6 +236,7 @@ export default {
             margin-right: 20px;
           }
           button {
+            -webkit-flex-shrink: 0;
             flex-shrink: 0;
             width: 104px;
             height: 100%;

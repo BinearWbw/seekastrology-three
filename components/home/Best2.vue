@@ -51,6 +51,7 @@ export default {
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
   &__left {
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
     width: 72px;
     height: 100%;
@@ -135,6 +136,7 @@ export default {
       display: none;
       margin-top: 13px;
       margin-right: 20px;
+      -webkit-flex-shrink: 0;
       flex-shrink: 0;
       width: 84px;
       height: 30px;

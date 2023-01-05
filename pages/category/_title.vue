@@ -135,6 +135,7 @@ export default {
         .title {
           font-size: 34px;
           line-height: 41px;
+          -webkit-flex-shrink: 0;
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
         }
@@ -261,6 +262,7 @@ export default {
                 display: -ms-flexbox;
                 cursor: pointer;
                 &__left {
+                  -webkit-flex-shrink: 0;
                   flex-shrink: 0;
                   width: 48 * $pr;
                   border-radius: 8 * $pr;
