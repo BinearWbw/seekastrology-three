@@ -58,7 +58,7 @@ export default {
       searchInput: '',
     }
   },
-  async asyncData({ error, $apiList, params }) {
+  async asyncData({ error, $apiList, params, $utils }) {
     try {
       let [gameList, recommendList] = await Promise.all([
         $apiList.home
@@ -67,16 +67,22 @@ export default {
             name: params.title,
           })
           .then((res) => {
+            res &&
+              res.map((item) => {
+                item.updated = $utils.formatPast(
+                  item.updated * 1000,
+                  'dd AA,YYYY'
+                )
+              })
             return res || []
           }),
         $apiList.home
-          .getGameMenu({
+          .getGameRec({
             origin: process.env.origin,
-            menu: 'best-games',
-            size: 10,
+            size: 21,
           })
           .then((res) => {
-            return res || []
+            return res.list || []
           }),
       ])
       return {

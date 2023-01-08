@@ -40,10 +40,12 @@ export default {
       let [category, recommendList] = await Promise.all([
         $apiList.home
           .getCategory({
+            origin: process.env.origin,
             page: 1,
-            size: 10000,
+            size: 1000,
           })
           .then((res) => {
+            console.log(res)
             return res || []
           }),
         $apiList.home

@@ -90,7 +90,7 @@
           <google-ad :id="'ID1-h5'" :timeout="200" classNames="h5ad" />
           <home-list class="module" :title="'RELATED GAMES'">
             <home-latest
-              v-for="item in bestList"
+              v-for="item in gameList"
               :item="item"
               :key="item.id"
             ></home-latest>
@@ -135,7 +135,7 @@
         <div class="list">
           <home-best2
             class="active"
-            v-for="item in bestList.slice(0, 6)"
+            v-for="item in recommendList.slice(0, 6)"
             :item="item"
             :key="item.id"
           ></home-best2>
@@ -275,7 +275,7 @@ export default {
           page: 1,
           size: 5,
         }
-      let [appInfo, bestList, commentList] = await Promise.all([
+      let [appInfo, recommendList, commentList] = await Promise.all([
         $apiList.home
           .getGameDetail({
             origin: process.env.origin,
@@ -289,13 +289,19 @@ export default {
             return res || null
           }),
         $apiList.home
-          .getGameMenu({
+          .getGameRec({
             origin: process.env.origin,
-            menu: 'best-games',
-            size: 10,
+            size: 6,
           })
           .then((res) => {
-            return res || []
+            res.list &&
+              res.list.map((item) => {
+                item.updated = $utils.formatDate(
+                  new Date(item.updated * 1000),
+                  'EE dd, YYYY'
+                )
+              })
+            return res.list || []
           }),
         $apiList.home
           .getGameComment({
@@ -338,6 +344,10 @@ export default {
       })
       gameInfo = appInfo.detail
       gameList = appInfo.relate || []
+      gameList &&
+        gameList.map((item) => {
+          item.updated = $utils.formatPast(item.updated * 1000, 'dd AA,YYYY')
+        })
       commentList.map((item) => {
         item.updated_at = $utils.formatDate(
           new Date(item.updated_at * 1000),
@@ -348,7 +358,7 @@ export default {
         gameOs,
         gameInfo,
         gameList,
-        bestList,
+        recommendList,
         totalNum,
         totalPage,
         search,

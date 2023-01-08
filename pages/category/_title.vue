@@ -15,7 +15,7 @@
               </div>
               <div class="item__right">
                 <p class="p1">{{ item.name }}</p>
-                <p class="p2">48 Games</p>
+                <p class="p2">{{ item.total }} Games</p>
               </div>
             </div>
             <div
@@ -39,7 +39,7 @@
         </div>
         <div class="list">
           <home-hot
-            v-for="item in recommendList.slice(0, 21)"
+            v-for="item in gameList"
             :item="item"
             :key="item.id"
           ></home-hot>
@@ -81,8 +81,9 @@ export default {
       let [category, gameList, recommendList] = await Promise.all([
         $apiList.home
           .getCategory({
+            origin: process.env.origin,
             page: 1,
-            size: 10000,
+            size: 1000,
           })
           .then((res) => {
             return res || []
@@ -91,18 +92,18 @@ export default {
           .getGameCategory({
             origin: process.env.origin,
             cate_name: params.title.toLowerCase(),
+            size: 2100,
           })
           .then((res) => {
             return res.list || []
           }),
         $apiList.home
-          .getGameMenu({
+          .getGameRec({
             origin: process.env.origin,
-            menu: 'best-games',
-            size: 10,
+            size: 21,
           })
           .then((res) => {
-            return res || []
+            return res.list || []
           }),
       ])
       item = category.find(

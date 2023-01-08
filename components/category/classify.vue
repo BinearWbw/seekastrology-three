@@ -9,7 +9,7 @@
     </div>
     <div class="item__right">
       <p class="p1">{{ item.name }}</p>
-      <p class="p2">48 Games</p>
+      <p class="p2">{{ item.total }} Games</p>
     </div>
   </a>
 </template>
