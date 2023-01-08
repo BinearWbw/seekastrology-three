@@ -5,7 +5,7 @@
         <div
           class="rec__item"
           :class="`rec${index + 1}`"
-          v-for="(item, index) in gameList['latest-games'].slice(0, 5)"
+          v-for="(item, index) in gameList['rec'].slice(0, 5)"
           :key="item.id"
           @click="goRec(item)"
         >
@@ -13,8 +13,8 @@
           <div class="info">
             <p class="info__title">{{ item.name }}</p>
             <div class="info__bottom">
-              <div class="category">Action</div>
-              <div class="company">EA</div>
+              <div class="category">{{ item.category }}</div>
+              <div class="company">{{ item.company_id }}</div>
             </div>
           </div>
         </div>
@@ -76,12 +76,23 @@ export default {
   data() {
     return {}
   },
-  async asyncData({ error, $apiList }) {
+  async asyncData({ error, $apiList, $utils }) {
     try {
       let gameList
       const res = await $apiList.home.getGameHome({
         origin: process.env.origin,
       })
+      res['best-games'] &&
+        res['best-games'].map((item) => {
+          item.updated = $utils.formatDate(
+            new Date(item.updated * 1000),
+            'EE dd, YYYY'
+          )
+        })
+      res['latest-games'] &&
+        res['latest-games'].map((item) => {
+          item.updated = $utils.formatPast(item.updated * 1000, 'dd AA,YYYY')
+        })
       gameList = res
       return {
         gameList,

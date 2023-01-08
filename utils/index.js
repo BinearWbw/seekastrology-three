@@ -141,7 +141,34 @@ const formatDate = (date, format) => {
   if (/(A+)/.test(format)) format = format.replace(RegExp.$1, month_s[mon])
   return format
 }
+const formatPast = (param, format) => {
+  let t, s
+  let time = new Date().getTime()
+  typeof param === 'string' || 'object'
+    ? (t = new Date(param).getTime())
+    : (t = param)
+  time = Number.parseInt(`${time - t}`)
+  if (time < 10000) {
+    return 'Just now'
+  } else if (time < 60000 && time >= 10000) {
+    s = Math.floor(time / 1000)
+    return `${s}s ago`
+  } else if (time < 3600000 && time >= 60000) {
+    s = Math.floor(time / 60000)
+    return `${s}m ago`
+  } else if (time < 86400000 && time >= 3600000) {
+    s = Math.floor(time / 3600000)
+    return `${s}h ago`
+  } else if (time < 259200000 && time >= 86400000) {
+    s = Math.floor(time / 86400000)
+    return `${s}day ago`
+  } else {
+    let date = typeof param === 'string' || 'object' ? new Date(param) : param
+    return formatDate(date, format)
+  }
+}
 export default {
   formatArr,
   formatDate,
+  formatPast,
 }

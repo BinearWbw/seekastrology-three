@@ -15,9 +15,9 @@ export default (axios) => ({
   getGameDetail(params) {
     return axios.get('api/game/detail', { params })
   },
-  /* 最近热门 */
-  getGameNew(params) {
-    return axios.get('api/game/new', { params })
+  /* 推荐游戏 */
+  getGameRec(params) {
+    return axios.get('api/game/rec', { params })
   },
   /* 游戏搜索 */
   getGameSearch(params) {

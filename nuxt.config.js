@@ -8,7 +8,7 @@ module.exports = {
   },
 
   env: {
-    origin: process.env.NODE_ENV === 'development' ? 'kfreegame' : 'taptogame',
+    origin: 'taptogame',
   },
 
   axios: {

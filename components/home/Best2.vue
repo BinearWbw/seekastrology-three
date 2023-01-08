@@ -10,8 +10,8 @@
     <div class="item__right">
       <div class="item__right-l">
         <p class="p1" :title="item.name">{{ item.name }}</p>
-        <p class="p2">Shooting</p>
-        <p class="p3">May 26,2020</p>
+        <p class="p2">{{ item.category }}</p>
+        <p class="p3">{{ item.updated }}</p>
       </div>
       <button class="download common__btn">Download</button>
     </div>

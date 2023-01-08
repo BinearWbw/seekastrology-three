@@ -34,7 +34,7 @@
 <script>
 export default {
   name: 'New',
-  async asyncData({ error, $apiList }) {
+  async asyncData({ error, $apiList, $utils }) {
     try {
       let [gameList, recommendList] = await Promise.all([
         $apiList.home
@@ -47,13 +47,19 @@ export default {
             return res || []
           }),
         $apiList.home
-          .getGameMenu({
+          .getGameRec({
             origin: process.env.origin,
-            menu: 'best-games',
             size: 10,
           })
           .then((res) => {
-            return res || []
+            res.list &&
+              res.list.map((item) => {
+                item.updated = $utils.formatDate(
+                  new Date(item.updated * 1000),
+                  'EE dd, YYYY'
+                )
+              })
+            return res.list || []
           }),
       ])
       return {

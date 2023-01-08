@@ -9,7 +9,7 @@
     </div>
     <div class="item__bottom">
       <p class="name" :title="item.name">{{ item.name }}</p>
-      <p class="time">14m ago</p>
+      <p class="time">{{ item.updated }}</p>
     </div>
   </a>
 </template>
