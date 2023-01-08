@@ -41,7 +41,6 @@ export default {
           .getGameMenu({
             origin: process.env.origin,
             menu: 'top-games',
-            size: 10,
           })
           .then((res) => {
             return res || []
