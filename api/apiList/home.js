@@ -39,4 +39,8 @@ export default (axios) => ({
   postGameComment(data) {
     return axios.post('api/game/comment', data)
   },
+  /* 所有游戏 */
+  getAllGame(params) {
+    return axios.get('api/game', { params })
+  },
 })

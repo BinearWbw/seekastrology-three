@@ -180,6 +180,8 @@ export default {
               height: 18px;
               line-height: 18px;
               font-size: 12px;
+              -webkit-transition-duration: 0.3s;
+              transition-duration: 0.3s;
             }
             .company {
               max-width: 100%;
@@ -202,6 +204,9 @@ export default {
           }
           .info {
             &__bottom {
+              .category {
+                background: #d23beb;
+              }
               .company {
                 color: #fff;
               }

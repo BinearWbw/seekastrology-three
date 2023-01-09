@@ -6,8 +6,17 @@
         <div class="dialog__main" v-if="visibleMain">
           <p class="title">Categories</p>
           <div class="list">
+            <a class="item" href="/category" :class="{ active: !info }" key="0">
+              <div class="item__left">
+                <img src="~/assets/img/category/all.png" alt="All Games" />
+              </div>
+              <div class="item__right">
+                <p class="p1">All Games</p>
+                <p class="p2">{{ total }} Games</p>
+              </div>
+            </a>
             <category-classify
-              :class="{ active: item.id === info.id }"
+              :class="{ active: info && item.id === info.id }"
               v-for="item in category"
               :item="item"
               :key="item.id"
@@ -40,6 +49,15 @@ export default {
         let bodyStyle = document.body.style
         bodyStyle.overflow = ''
       }
+    },
+  },
+  computed: {
+    total() {
+      let total = 0
+      this.category.map((item) => {
+        total += item.total
+      })
+      return total
     },
   },
   methods: {
@@ -93,6 +111,104 @@ $pr: math.div(1vw, 3.75);
       margin-top: 24 * $pr;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 10 * $pr;
+    }
+    .item {
+      overflow: hidden;
+      appearance: none;
+      backface-visibility: hidden;
+      transform: translate(0, 0, 0);
+      -webkit-appearance: none;
+      -webkit-backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+      height: 60 * $pr;
+      padding: 6 * $pr 0 6 * $pr 6 * $pr;
+      border-radius: 12 * $pr;
+      background-color: #282a31;
+      display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      cursor: pointer;
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      &__left {
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+        width: 48 * $pr;
+        border-radius: 8 * $pr;
+        height: 100%;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        img {
+          border-radius: 8 * $pr;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      &__right {
+        padding-left: 11 * $pr;
+        padding-top: 11 * $pr;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        .p1 {
+          font-size: 10 * $pr;
+          line-height: 13 * $pr;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .p2 {
+          font-size: 10 * $pr;
+          line-height: 13 * $pr;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          color: #808191;
+          -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+        }
+      }
+      &:hover {
+        background-color: #7a78ff;
+        -webkit-transform: scale(1.08);
+        transform: scale(1.08);
+        .item__left {
+          -webkit-transform: scale(0.92) translate3d(0, 0, 0);
+          transform: scale(0.92) translate3d(0, 0, 0);
+          img {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+          }
+        }
+        .item__right {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+          .p2 {
+            color: #fff;
+          }
+        }
+      }
+      &.active {
+        background-color: #7a78ff;
+        pointer-events: none;
+        .item__right {
+          .p2 {
+            color: #fff;
+          }
+        }
+      }
     }
   }
 }
