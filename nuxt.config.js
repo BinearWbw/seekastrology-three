@@ -19,7 +19,7 @@ module.exports = {
     axios: {
       browserBaseURL: process.env.PUBLIC_URL,
     },
-    imgUrl: 'https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/',
+    imgUrl: 'https://asserts.gameseeks.com/',
   },
 
   privateRuntimeConfig: {
