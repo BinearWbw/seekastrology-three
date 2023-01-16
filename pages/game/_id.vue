@@ -34,9 +34,29 @@
             :name="gameInfo.name"
             :desc="gameInfo.desc"
           ></game-info>
+          <home-list class="module" :title="'RELATED GAMES'">
+            <home-latest
+              v-for="item in gameList"
+              :item="item"
+              :key="item.id"
+            ></home-latest>
+          </home-list>
           <div class="info">
             <p class="info__title">Get The Game</p>
             <div class="info__main">
+              <p>
+                <span>OS :</span>
+                <img
+                  v-if="gameOs[0].visible"
+                  src="~/assets/img/game/android.svg"
+                  alt="android"
+                />
+                <img
+                  v-if="gameOs[1].visible"
+                  src="~/assets/img/game/ios.svg"
+                  alt="ios"
+                />
+              </p>
               <p>
                 <span>Version :</span>
                 <span
@@ -88,13 +108,6 @@
             </p>
           </div>
           <google-ad :id="'ID1-h5'" :timeout="200" classNames="h5ad" />
-          <home-list class="module" :title="'RELATED GAMES'">
-            <home-latest
-              v-for="item in gameList"
-              :item="item"
-              :key="item.id"
-            ></home-latest>
-          </home-list>
           <div class="comment">
             <p class="comment__title">COMMENT</p>
             <div class="comment__box">
@@ -196,8 +209,9 @@ export default {
         comment: '',
       },
       swiperOptions: {
+        slidesPerView: 'auto',
         autoplay: {
-          delay: 5000,
+          delay: 8000,
           stopOnLastSlide: false,
           disableOnInteraction: false,
         },
@@ -513,8 +527,9 @@ export default {
         width: 100%;
         overflow: hidden;
         .banner {
+          padding: 20px;
           width: 100%;
-          height: 460px;
+          height: 310px;
           background-color: #111216;
           border-radius: 24px;
           overflow: hidden;
@@ -528,12 +543,24 @@ export default {
             width: 100%;
             height: 100%;
             &__item {
-              width: 100%;
+              width: 480px;
               height: 100%;
+              border-radius: 24px;
+              overflow: hidden;
+              appearance: none;
+              backface-visibility: hidden;
+              transform: translate(0, 0, 0);
+              -webkit-appearance: none;
+              -webkit-backface-visibility: hidden;
+              -webkit-transform: translate3d(0, 0, 0);
+              margin-right: 20px;
               img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+              }
+              &:last-child {
+                margin-right: 0;
               }
             }
           }
@@ -640,14 +667,28 @@ export default {
             flex-wrap: wrap;
             grid-gap: 20px 76px;
             p {
+              display: flex;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              -webkit-align-items: center;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
               font-size: 14px;
               line-height: 20px;
               span:first-child {
+                -webkit-flex-shrink: 0;
+                flex-shrink: 0;
                 color: #fff;
               }
               span:last-child {
                 color: #808191;
                 padding-left: 7px;
+              }
+              img {
+                height: 20px;
+                margin-left: 7px;
               }
             }
           }
@@ -847,9 +888,6 @@ export default {
       &__left {
         .main {
           padding-right: 5.772vw;
-          .banner {
-            height: 26.885vw;
-          }
           .module {
             :deep(.scroll__bottom .list) {
               --grid-num: 6;
@@ -890,9 +928,6 @@ export default {
       &__left {
         .main {
           padding-right: 0;
-          .banner {
-            height: 48vw;
-          }
           .module {
             :deep(.scroll__bottom .list) {
               --grid-num: 7;
@@ -918,8 +953,16 @@ export default {
         .main {
           margin-top: 24 * $pr;
           .banner {
+            padding: 0;
             height: 171 * $pr;
             border-radius: 24 * $pr;
+            .swiper {
+              &__item {
+                width: 100%;
+                border-radius: 24 * $pr;
+                margin-right: 10 * $pr;
+              }
+            }
           }
           .pagination {
             margin-top: 8 * $pr;
@@ -972,9 +1015,18 @@ export default {
               p {
                 min-width: 100%;
                 font-size: 14 * $pr;
-                line-height: 20 * $pr;
+                line-height: 30 * $pr;
+                -webkit-align-items: flex-start;
+                -webkit-box-align: start;
+                -ms-flex-align: start;
+                align-items: flex-start;
                 span:last-child {
                   padding-left: 9 * $pr;
+                }
+                img {
+                  margin-top: 5 * $pr;
+                  height: 20 * $pr;
+                  margin-left: 9 * $pr;
                 }
               }
             }
@@ -989,6 +1041,7 @@ export default {
                 height: 42 * $pr;
                 border-radius: 21 * $pr;
                 img {
+                  height: 20 * $pr;
                   margin-bottom: 2 * $pr;
                 }
                 span {

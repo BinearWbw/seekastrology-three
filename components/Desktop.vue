@@ -1,6 +1,7 @@
 <template>
   <button class="desktop common__btn" v-if="prompt" @click="download">
-    TO DESKTOP
+    <span class="pc">TO DESKTOP</span>
+    <span class="h5">INSTALL</span>
   </button>
 </template>
 <script>
@@ -53,6 +54,9 @@ export default {
   &:hover {
     background: linear-gradient(90deg, #cb68fc 0%, #8484fd 100%), #6c5dd3;
   }
+  .h5 {
+    display: none;
+  }
 }
 @media (max-width: (1600px)) {
   .desktop {
@@ -67,6 +71,12 @@ export default {
     border-radius: 6 * $pr;
     line-height: 36 * $pr;
     font-size: 10 * $pr;
+    .pc {
+      display: none;
+    }
+    .h5 {
+      display: block;
+    }
   }
 }
 </style>

@@ -385,18 +385,11 @@ export default {
         display: none;
       }
       .module {
-        padding-top: 40 * $pr;
+        padding-top: 0;
         &__top {
-          height: 41 * $pr;
-          .title {
-            font-size: 34 * $pr;
-            line-height: 41 * $pr;
-          }
+          display: none;
         }
         .categories {
-          // margin-top: 24 * $pr;
-          // grid-template-columns: repeat(2, 1fr);
-          // grid-gap: 10 * $pr;
           display: none;
         }
         .categoriesH5 {
@@ -496,7 +489,7 @@ export default {
           }
         }
         .list {
-          margin-top: 15 * $pr;
+          margin-top: 20 * $pr;
           grid-template-columns: repeat(3, 1fr);
           grid-gap: 14 * $pr 12 * $pr;
         }

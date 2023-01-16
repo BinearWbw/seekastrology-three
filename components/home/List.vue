@@ -148,7 +148,7 @@ export default {
     margin-top: 20px;
     background-color: #282a31;
     border-radius: 16px;
-    padding: 0 22px 48px;
+    padding: 0 22px 30px;
     .list {
       padding-top: 40px;
       --grid-num: 7;

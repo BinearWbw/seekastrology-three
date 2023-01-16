@@ -3,19 +3,6 @@
     <div class="type__main">
       <section class="module">
         <div class="module__top">
-          <div class="title">RECOMMEND GAMES</div>
-        </div>
-        <div class="list rec">
-          <home-best2
-            v-for="item in recommendList.slice(0, 10)"
-            :item="item"
-            :key="item.id"
-          ></home-best2>
-        </div>
-        <google-ad :id="'ID1-pc'" :timeout="200" classNames="h5ad" />
-      </section>
-      <section class="module">
-        <div class="module__top">
           <div class="title">TOP GAMES</div>
         </div>
         <div class="list">
@@ -26,6 +13,19 @@
           ></home-hot>
           <google-ad :id="'ID1-pc'" :timeout="200" classNames="ad" />
         </div>
+      </section>
+      <section class="module">
+        <div class="module__top">
+          <div class="title">RECOMMEND GAMES</div>
+        </div>
+        <div class="list rec">
+          <home-best2
+            v-for="item in recommendList.slice(0, 10)"
+            :item="item"
+            :key="item.id"
+          ></home-best2>
+        </div>
+        <google-ad :id="'ID1-pc'" :timeout="200" classNames="h5ad" />
       </section>
     </div>
   </article>
@@ -43,7 +43,7 @@ export default {
             menu: 'top-games',
           })
           .then((res) => {
-            return res || []
+            return res.list || []
           }),
         $apiList.home
           .getGameRec({

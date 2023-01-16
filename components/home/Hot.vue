@@ -177,22 +177,21 @@ export default {
     }
   }
   @mixin normalh5 {
-    padding-top: 33 * $pr;
-    background-color: #282a31;
-    border-radius: 16 * $pr;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
+    padding-top: 22 * $pr;
+    background-color: transparent;
+    border-radius: 0;
     .item__top {
-      top: 10 * $pr;
+      top: 0;
     }
     .item__bottom {
-      padding-top: 72 * $pr;
+      padding-top: 70 * $pr;
+      padding-bottom: 16 * $pr;
       .btn {
         display: none;
       }
     }
     &:hover {
-      background-color: #7a78ff;
+      background-color: transparent;
       .item__bottom {
         background-color: #7a78ff;
       }
