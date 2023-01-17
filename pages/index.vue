@@ -5,7 +5,7 @@
         <div
           class="rec__item"
           :class="`rec${index + 1}`"
-          v-for="(item, index) in gameList['rec'].slice(0, 6)"
+          v-for="(item, index) in gameList['rec'].slice(0, 5)"
           :key="item.id"
           @click="goRec(item)"
         >
@@ -18,22 +18,23 @@
             </div>
           </div>
         </div>
+        <google-ad :id="'ID1-pc'" :timeout="200" classNames="rec__item ad" />
       </section>
       <section class="module best">
         <div class="module__top">
-          <div class="title">LATEST GAMES</div>
-          <a href="/new" class="more" title="LATEST GAMES">MORE GAME</a>
+          <div class="title">BEST GAMES</div>
+          <a href="/best" class="more" title="BEST GAMES">MORE GAME</a>
         </div>
         <div class="list1">
           <home-best1
-            v-for="item in gameList['latest-games'].slice(0, 7)"
+            v-for="item in gameList['best-games'].slice(0, 7)"
             :item="item"
             :key="item.id"
           ></home-best1>
         </div>
         <div class="list2">
           <home-best2
-            v-for="item in gameList['latest-games'].slice(7, 17)"
+            v-for="item in gameList['best-games'].slice(7, 17)"
             :item="item"
             :key="item.id"
           ></home-best2>
@@ -41,12 +42,12 @@
       </section>
       <section class="module latest">
         <div class="module__top">
-          <div class="title">BEST GAMES</div>
-          <a href="/best" class="more" title="BEST GAMES">MORE GAME</a>
+          <div class="title">LATEST GAMES</div>
+          <a href="/new" class="more" title="LATEST GAMES">MORE GAME</a>
         </div>
         <div class="list">
           <home-latest
-            v-for="item in gameList['best-games'].slice(0, 20)"
+            v-for="item in gameList['latest-games'].slice(0, 20)"
             :key="item.id"
             :item="item"
           ></home-latest>
@@ -85,12 +86,12 @@ export default {
         res['best-games'].map((item) => {
           item.updated = $utils.formatDate(
             new Date(item.updated * 1000),
-            'dd AA,YYYY'
+            'EE dd, YYYY'
           )
         })
       res['latest-games'] &&
         res['latest-games'].map((item) => {
-          item.updated = $utils.formatPast(item.updated * 1000, 'EE dd, YYYY')
+          item.updated = $utils.formatPast(item.updated * 1000, 'dd AA, YYYY')
         })
       gameList = res
       return {
@@ -273,8 +274,7 @@ export default {
       }
       .rec3,
       .rec4,
-      .rec5,
-      .rec6 {
+      .rec5 {
         .info {
           padding-top: 14px;
           padding-left: 16px;
@@ -285,8 +285,7 @@ export default {
           }
         }
       }
-      .rec3,
-      .rec5 {
+      .rec3 {
         .info {
           background: linear-gradient(
             180deg,
@@ -296,12 +295,16 @@ export default {
         }
       }
       .rec4,
-      .rec6 {
+      .rec5 {
         background: linear-gradient(
           180deg,
           rgba(25, 26, 29, 0.2) 0%,
           rgba(25, 26, 29, 0.8) 100%
         );
+      }
+      .ad {
+        grid-row-end: 2;
+        grid-column-end: 5;
       }
     }
     .module {
@@ -428,9 +431,12 @@ export default {
     &__main {
       .rec {
         grid-template-columns: 214px auto 196px;
-        .rec5,
-        .rec6 {
+        .rec3,
+        .rec4 {
           display: none;
+        }
+        .ad {
+          grid-column-end: 4;
         }
       }
     }
@@ -591,7 +597,8 @@ export default {
           }
         }
         .rec3,
-        .rec4 {
+        .rec4,
+        .rec5 {
           .info {
             padding-top: 6 * $pr;
             padding-left: 12 * $pr;
@@ -602,11 +609,17 @@ export default {
             }
           }
         }
-        .rec3 {
-          margin-top: 15 * $pr;
-        }
         .rec4 {
           margin-top: 15 * $pr;
+          display: block;
+        }
+        .rec5 {
+          margin-top: 15 * $pr;
+        }
+        .ad {
+          margin-top: 15 * $pr;
+          width: 100%;
+          height: 63 * $pr;
         }
       }
       .module {
