@@ -495,8 +495,8 @@ export default {
           font-size: 14px;
           line-height: 18px;
           color: #808191;
-          -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+          -webkit-transition: color 0.3s;
+          transition: color 0.3s;
           &:hover {
             color: #fff;
           }

@@ -201,8 +201,8 @@ export default {
         font-size: 14px;
         line-height: 18px;
         color: #808191;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
+        -webkit-transition: color 0.3s;
+        transition: color 0.3s;
         &:hover {
           color: #fff;
         }
@@ -325,7 +325,6 @@ export default {
           }
         }
       }
-
       &.active {
         padding-top: 0;
       }
@@ -476,8 +475,8 @@ export default {
               }
               .arrow {
                 width: 10 * $pr;
-                -webkit-transition-duration: 0.3s;
-                transition-duration: 0.3s;
+                -webkit-transition: -webkit-transform 0.3s;
+                transition: transform 0.3s;
               }
               &.active {
                 .arrow {

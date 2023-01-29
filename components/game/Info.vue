@@ -88,8 +88,8 @@ export default {
         height: 8px;
         background: url('~assets/img/game/show.png') no-repeat center center;
         background-size: contain;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
+        -webkit-transition: -webkit-transform 0.3s;
+        transition: transform 0.3s;
       }
       &.active {
         &::after {

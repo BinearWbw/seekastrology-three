@@ -48,16 +48,16 @@ export default {
   display: -webkit-flex;
   display: -ms-flexbox;
   cursor: pointer;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
+  -webkit-transition: background-color 0.3s, -webkit-transform 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
   &__left {
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
     width: 72px;
     height: 100%;
     border-radius: 16px;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
     img {
       border-radius: 16px;
       width: 100%;
@@ -106,8 +106,8 @@ export default {
         text-overflow: ellipsis;
         overflow: hidden;
         color: #808191;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
+        -webkit-transition: color 0.3s;
+        transition: color 0.3s;
       }
       .p3 {
         padding-left: 16px;
@@ -116,8 +116,8 @@ export default {
         line-height: 14px;
         color: #808191;
         position: relative;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
+        -webkit-transition: color 0.3s;
+        transition: color 0.3s;
         &::before {
           content: '';
           position: absolute;
@@ -127,8 +127,8 @@ export default {
           height: 8px;
           border-radius: 50%;
           background-color: #ff754c;
-          -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+          -webkit-transition: background-color 0.3s;
+          transition: background-color 0.3s;
         }
       }
     }

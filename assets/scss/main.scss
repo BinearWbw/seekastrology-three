@@ -291,10 +291,10 @@ body::-webkit-scrollbar {
   -webkit-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  transition-timing-function: var(--cubic-bezier);
-  -o-transition-timing-function: var(--cubic-bezier);
   -moz-transition-timing-function: var(--cubic-bezier);
   -webkit-transition-timing-function: var(--cubic-bezier);
+  -o-transition-timing-function: var(--cubic-bezier);
+  transition-timing-function: var(--cubic-bezier);
   &:active {
     -webkit-transform: scale(0.95);
     -ms-transform: scale(0.95);

@@ -129,16 +129,16 @@ $pr: math.div(1vw, 3.75);
       display: -webkit-flex;
       display: -ms-flexbox;
       cursor: pointer;
-      -webkit-transition-duration: 0.3s;
-      transition-duration: 0.3s;
+      -webkit-transition: background-color 0.3s, -webkit-transform 0.3s;
+      transition: background-color 0.3s, transform 0.3s;
       &__left {
         -webkit-flex-shrink: 0;
         flex-shrink: 0;
         width: 48 * $pr;
         border-radius: 8 * $pr;
         height: 100%;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
+        -webkit-transition: -webkit-transform 0.3s;
+        transition: transform 0.3s;
         img {
           border-radius: 8 * $pr;
           width: 100%;
@@ -176,8 +176,8 @@ $pr: math.div(1vw, 3.75);
           text-overflow: ellipsis;
           overflow: hidden;
           color: #808191;
-          -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+          -webkit-transition: color 0.3s;
+          transition: color 0.3s;
         }
       }
       &:hover {

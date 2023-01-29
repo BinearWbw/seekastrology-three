@@ -23,7 +23,7 @@
       <section class="module best">
         <div class="module__top">
           <div class="title">BEST GAMES</div>
-          <a href="/best" class="more" title="BEST GAMES">MORE GAME</a>
+          <a href="/best" class="more" title="BEST GAMES">MORE GAMES</a>
         </div>
         <div class="list1">
           <home-best1
@@ -43,7 +43,7 @@
       <section class="module latest">
         <div class="module__top">
           <div class="title">LATEST GAMES</div>
-          <a href="/new" class="more" title="LATEST GAMES">MORE GAME</a>
+          <a href="/new" class="more" title="LATEST GAMES">MORE GAMES</a>
         </div>
         <div class="list">
           <home-latest
@@ -56,11 +56,11 @@
       <section class="module hot">
         <div class="module__top">
           <div class="title">HOT GAMES</div>
-          <a href="/hot" class="more" title="HOT GAMES">MORE GAME</a>
+          <a href="/hot" class="more" title="HOT GAMES">MORE GAMES</a>
         </div>
         <div class="list">
           <home-hot
-            v-for="item in gameList['hot-games'].slice(0, 21)"
+            v-for="item in gameList['hot-games']"
             :item="item"
             :key="item.id"
           ></home-hot>
@@ -143,8 +143,8 @@ export default {
           height: 100%;
           object-fit: cover;
           display: block;
-          -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+          -webkit-transition: -webkit-transform 0.3s;
+          transition: transform 0.3s;
         }
         .info {
           position: absolute;
@@ -180,8 +180,8 @@ export default {
               height: 18px;
               line-height: 18px;
               font-size: 12px;
-              -webkit-transition-duration: 0.3s;
-              transition-duration: 0.3s;
+              -webkit-transition: background 0.3s;
+              transition: background 0.3s;
             }
             .company {
               max-width: 100%;
@@ -192,8 +192,8 @@ export default {
               font-size: 12px;
               line-height: 14px;
               color: #a9a9ac;
-              -webkit-transition-duration: 0.3s;
-              transition-duration: 0.3s;
+              -webkit-transition: color 0.3s;
+              transition: color 0.3s;
             }
           }
         }
@@ -417,9 +417,6 @@ export default {
         &.hot {
           .list {
             grid-template-columns: repeat(6, 1fr);
-            :deep(.item:nth-child(n + 19)) {
-              display: none;
-            }
           }
         }
       }
@@ -470,9 +467,6 @@ export default {
         &.hot {
           .list {
             grid-template-columns: repeat(5, 1fr);
-            :deep(.item:nth-child(n + 16)) {
-              display: none;
-            }
           }
         }
       }
@@ -507,9 +501,6 @@ export default {
         &.hot {
           .list {
             grid-template-columns: repeat(4, 1fr);
-            :deep(.item:nth-child(n + 13)) {
-              display: none;
-            }
           }
         }
       }
@@ -686,9 +677,6 @@ export default {
             margin-top: 15 * $pr;
             grid-template-columns: repeat(3, 1fr);
             grid-gap: 14 * $pr 12 * $pr;
-            :deep(.item:nth-child(n + 10)) {
-              display: none;
-            }
           }
         }
       }

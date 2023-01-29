@@ -40,10 +40,13 @@
         </div>
         <div class="list">
           <home-hot
-            v-for="item in recommendList.slice(0, 21)"
+            v-for="item in allList"
             :item="item"
             :key="item.id"
           ></home-hot>
+        </div>
+        <div class="loading" v-scroll v-if="search.page < totalPage">
+          <div class="loader" v-if="loading"></div>
         </div>
       </section>
     </div>
@@ -55,12 +58,20 @@ export default {
   name: 'SearchTitle',
   data() {
     return {
+      loading: false,
+      status: false,
       searchInput: '',
     }
   },
   async asyncData({ error, $apiList, params, $utils }) {
     try {
-      let [gameList, recommendList] = await Promise.all([
+      let totalNum = 0,
+        totalPage = 1,
+        search = {
+          page: 1,
+          size: 42,
+        }
+      let [gameList, allList] = await Promise.all([
         $apiList.home
           .getGameSearch({
             origin: process.env.origin,
@@ -77,17 +88,25 @@ export default {
             return res || []
           }),
         $apiList.home
-          .getGameRec({
+          .getAllGame({
             origin: process.env.origin,
-            size: 21,
+            ...search,
           })
           .then((res) => {
+            totalNum = res.count
+            totalPage =
+              Math.ceil(totalNum / search.size) === 0
+                ? 1
+                : Math.ceil(totalNum / search.size)
             return res.list || []
           }),
       ])
       return {
         gameList,
-        recommendList,
+        totalNum,
+        totalPage,
+        search,
+        allList,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
@@ -108,9 +127,60 @@ export default {
         window.location = `/search/${this.searchInput}`
       }
     },
+    showMoreGame() {
+      this.loading = true
+      this.status = true
+      this.search.page += 1
+      this.$apiList.home
+        .getAllGame({
+          origin: process.env.origin,
+          ...this.search,
+        })
+        .then((res) => {
+          res.list &&
+            res.list.map((item) => {
+              this.allList.push(item)
+            })
+          this.totalNum = res.count
+          this.totalPage =
+            Math.ceil(this.totalNum / this.search.size) === 0
+              ? 1
+              : Math.ceil(this.totalNum / this.search.size)
+          this.loading = false
+          this.status = false
+        })
+        .catch((error) => {
+          console.log(error)
+          this.search.page -= 1
+          this.loading = false
+          this.status = false
+        })
+    },
+    scrollLoad() {
+      let scrollTop =
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop
+      let bodyHeight =
+        document.body.scrollHeight || document.documentElement.scrollHeight
+      if (scrollTop + window.innerHeight >= bodyHeight - 150) {
+        if (this.loading) return
+        this.showMoreGame()
+      }
+    },
   },
   mounted() {
     this.searchInput = this.$route.params.title || ''
+  },
+  directives: {
+    scroll: {
+      bind: function (el, binding, vnode) {
+        window.addEventListener('scroll', vnode.context.scrollLoad)
+      },
+      unbind: function (el, binding, vnode) {
+        window.removeEventListener('scroll', vnode.context.scrollLoad)
+      },
+    },
   },
 }
 </script>
@@ -138,8 +208,8 @@ export default {
         font-size: 14px;
         line-height: 18px;
         color: #808191;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
+        -webkit-transition: color 0.3s;
+        transition: color 0.3s;
         &:hover {
           color: #fff;
         }
@@ -231,6 +301,79 @@ export default {
         grid-template-columns: repeat(7, 1fr);
         grid-gap: 30px;
       }
+      .loading {
+        width: 100%;
+        height: 2em;
+        display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        margin-top: 20px;
+        [class*='loader'] {
+          display: inline-block;
+          width: 2em;
+          height: 2em;
+          color: inherit;
+          vertical-align: middle;
+          pointer-events: none;
+        }
+        .loader {
+          background: #808191;
+          position: relative;
+          -webkit-animation: loader 1s ease-in-out infinite;
+          animation: loader 1s ease-in-out infinite;
+          -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+          width: 0.5em;
+          height: 1em;
+        }
+        .loader:before,
+        .loader:after {
+          content: '';
+          position: absolute;
+          width: inherit;
+          height: inherit;
+          background: inherit;
+          -webkit-animation: inherit;
+          animation: inherit;
+        }
+        .loader:before {
+          right: 1em;
+          -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+        }
+        .loader:after {
+          left: 1em;
+          -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+        }
+        @-webkit-keyframes loader {
+          0%,
+          100% {
+            box-shadow: 0 0 0 #808191, 0 0 0 #808191;
+          }
+          50% {
+            box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
+          }
+        }
+        @keyframes loader {
+          0%,
+          100% {
+            box-shadow: 0 0 0 #808191, 0 0 0 #808191;
+          }
+          50% {
+            box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
+          }
+        }
+      }
     }
   }
 }
@@ -247,9 +390,6 @@ export default {
       .module {
         .list {
           grid-template-columns: repeat(6, 1fr);
-          :deep(.item:nth-child(n + 19)) {
-            display: none;
-          }
         }
       }
     }
@@ -266,9 +406,6 @@ export default {
       .module {
         .list {
           grid-template-columns: repeat(5, 1fr);
-          :deep(.item:nth-child(n + 16)) {
-            display: none;
-          }
         }
       }
     }
@@ -285,9 +422,6 @@ export default {
       .module {
         .list {
           grid-template-columns: repeat(4, 1fr);
-          :deep(.item:nth-child(n + 13)) {
-            display: none;
-          }
         }
       }
     }
@@ -380,9 +514,9 @@ export default {
           margin-top: 15 * $pr;
           grid-template-columns: repeat(3, 1fr);
           grid-gap: 14 * $pr 12 * $pr;
-          :deep(.item:nth-child(n + 10)) {
-            display: none;
-          }
+        }
+        .loading {
+          margin-top: 20 * $pr;
         }
       }
     }

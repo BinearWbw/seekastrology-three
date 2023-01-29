@@ -56,8 +56,8 @@ export default {
     -webkit-appearance: none;
     -webkit-backface-visibility: hidden;
     -webkit-transform: translate3d(0, 0, 0);
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
     img {
       border-radius: 16px;
       width: 100%;
@@ -99,8 +99,8 @@ export default {
       line-height: 18px;
       color: #808191;
       text-align: center;
-      -webkit-transition-duration: 0.3s;
-      transition-duration: 0.3s;
+      -webkit-transition: color 0.3s;
+      transition: color 0.3s;
     }
   }
   &:hover {

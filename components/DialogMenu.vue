@@ -198,8 +198,8 @@ export default {
           font-size: 21px;
           line-height: 1;
           color: #808191;
-          -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+          -webkit-transition: color 0.3s;
+          transition: color 0.3s;
         }
         &:hover {
           .name {

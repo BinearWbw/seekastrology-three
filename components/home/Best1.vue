@@ -42,9 +42,9 @@ export default {
       bottom: 0;
       left: 0;
       max-width: 100%;
-      border-radius: 0 0 24px 24px;
-      -webkit-transition-duration: 0.3s;
-      transition-duration: 0.3s;
+      border-radius: 24px;
+      -webkit-transition: -webkit-transform 0.3s;
+      transition: transform 0.3s;
     }
   }
   &__title {
@@ -56,8 +56,8 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
   }
   &:hover {
     .item__top {

@@ -66,8 +66,8 @@ export default {
       border-radius: 48px;
       font-size: 12px;
       color: #808191;
-      -webkit-transition-duration: 0.3s;
-      transition-duration: 0.3s;
+      -webkit-transition: color 0.3s, background-color 0.3s;
+      transition: color 0.3s, background-color 0.3s;
       margin-top: 14px;
       margin-bottom: 5px;
     }
@@ -93,8 +93,8 @@ export default {
     background-color: #3c375f;
     box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
     border-radius: 24px;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
     img {
       width: 100%;
       height: 100%;
@@ -119,8 +119,8 @@ export default {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
     .name {
       -webkit-flex-shrink: 0;
       flex-shrink: 0;
