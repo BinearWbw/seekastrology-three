@@ -357,18 +357,22 @@ export default {
         @-webkit-keyframes loader {
           0%,
           100% {
+            -webkit-box-shadow: 0 0 0 #808191, 0 0 0 #808191;
             box-shadow: 0 0 0 #808191, 0 0 0 #808191;
           }
           50% {
+            -webkit-box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
             box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
           }
         }
         @keyframes loader {
           0%,
           100% {
+            -webkit-box-shadow: 0 0 0 #808191, 0 0 0 #808191;
             box-shadow: 0 0 0 #808191, 0 0 0 #808191;
           }
           50% {
+            -webkit-box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
             box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
           }
         }

@@ -91,7 +91,8 @@ export default {
     width: 108px;
     height: 108px;
     background-color: #3c375f;
-    box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.2);
     border-radius: 24px;
     -webkit-transition: -webkit-transform 0.3s;
     transition: transform 0.3s;
@@ -203,6 +204,7 @@ export default {
       left: calc(50% - 40 * $pr);
       width: 80 * $pr;
       height: 80 * $pr;
+      -webkit-box-shadow: 0 16 * $pr 30 * $pr 0 rgba(0, 0, 0, 0.2);
       box-shadow: 0 16 * $pr 30 * $pr 0 rgba(0, 0, 0, 0.2);
       border-radius: 16 * $pr;
       img {
