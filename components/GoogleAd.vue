@@ -1,18 +1,17 @@
 <template>
-  <div :class="classNames">
+  <div :class="classNames" class="googleAdStyle" ref="googleAdStyle">
+    <p class="title">Advertisement</p>
     <ins
-      className="adsbygoogle"
+      v-if="visible"
+      class="adsbygoogle"
       :style="{
-        display: 'flex',
+        display: 'block',
         width: '100%',
         height: '100%',
-        'align-items': 'center',
-        'justify-content': 'center',
       }"
       :data-ad-client="googleAdId"
       :data-ad-slot="id"
-      data-ad-format="auto"
-      data-full-width-responsive="true"
+      data-full-width-responsive="false"
     ></ins>
   </div>
 </template>
@@ -26,22 +25,70 @@ export default {
   },
   data() {
     return {
+      erd: null,
       googleInit: null,
       googleAdId: 'ca-pub-6430486603399192',
+      visible: false,
     }
   },
   mounted() {
-    let timeout = 200
-    if (this.timeout) timeout = this.timeout
-    this.googleInit = setTimeout(() => {
-      if (typeof window !== 'undefined')
-        try {
-          ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-        } catch (error) {}
-    }, timeout)
+    if (window.getComputedStyle(this.$refs.googleAdStyle).display !== 'none') {
+      this.visible = true
+      this.googleInit = setTimeout(() => {
+        if (typeof window !== 'undefined')
+          try {
+            ;(adsbygoogle = window.adsbygoogle || []).push({})
+          } catch (error) {}
+      }, 500)
+    } else {
+      const elementResizeDetectorMaker = require('element-resize-detector')
+      this.erd = elementResizeDetectorMaker()
+      this.erd.listenTo(this.$refs.googleAdStyle, (ele) => {
+        if (window.getComputedStyle(ele).display !== 'none') {
+          this.visible = true
+          this.googleInit = setTimeout(() => {
+            if (typeof window !== 'undefined')
+              try {
+                ;(adsbygoogle = window.adsbygoogle || []).push({})
+              } catch (error) {}
+          }, 500)
+          this.erd.uninstall(this.$refs.googleAdStyle)
+        }
+      })
+    }
   },
   destroyed() {
     if (this.googleInit) clearTimeout(this.googleInit)
+    if (this.erd) this.erd.uninstall(this.$refs.googleAdStyle)
   },
 }
 </script>
+<style lang="scss" scoped>
+@use 'sass:math';
+.googleAdStyle {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  .title {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: #808191;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .googleAdStyle {
+    .title {
+      font-size: 12 * $pr;
+      margin-bottom: 5 * $pr;
+    }
+  }
+}
+</style>

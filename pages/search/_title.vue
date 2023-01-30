@@ -14,7 +14,7 @@
           v-model="searchInput"
           placeholder="Search"
         />
-        <button class="button common__btn" @click="search"></button>
+        <button class="button common__btn" @click="searchResult"></button>
       </div>
       <section class="search" v-if="gameList.length > 0">
         <p class="title">
@@ -60,7 +60,6 @@ export default {
     return {
       loading: false,
       status: false,
-      searchInput: '',
     }
   },
   async asyncData({ error, $apiList, params, $utils }) {
@@ -70,7 +69,8 @@ export default {
         search = {
           page: 1,
           size: 42,
-        }
+        },
+        searchInput = ''
       let [gameList, allList] = await Promise.all([
         $apiList.home
           .getGameSearch({
@@ -101,11 +101,13 @@ export default {
             return res.list || []
           }),
       ])
+      searchInput = params.title || ''
       return {
         gameList,
         totalNum,
         totalPage,
         search,
+        searchInput,
         allList,
       }
     } catch (e) {
@@ -113,7 +115,7 @@ export default {
     }
   },
   methods: {
-    search() {
+    searchResult() {
       let regSearch = /^.{2,}$/
       if (
         !this.searchInput.replace(/\s+/g, '') ||
@@ -168,9 +170,6 @@ export default {
         this.showMoreGame()
       }
     },
-  },
-  mounted() {
-    this.searchInput = this.$route.params.title || ''
   },
   directives: {
     scroll: {

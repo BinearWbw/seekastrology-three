@@ -1,3 +1,4 @@
+import sitemap from './config/sitemap'
 module.exports = {
   /*
    ** Server configuration
@@ -165,7 +166,10 @@ module.exports = {
     '@nuxtjs/axios',
     'vue-toastification/nuxt',
     '@nuxtjs/pwa',
+    '@nuxtjs/sitemap',
   ],
+
+  sitemap: sitemap,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [],

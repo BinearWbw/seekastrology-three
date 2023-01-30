@@ -148,12 +148,14 @@ img:not([src]) {
   src: url('../font/BebasNeue-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'bahnschrift';
   src: url('../font/bahnschrift.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 html {
   overscroll-behavior: contain;
@@ -174,6 +176,7 @@ body {
   -webkit-tap-highlight-color: transparent;
   scrollbar-width: thin;
   scrollbar-color: #20313d transparent;
+  padding: 0 !important;
 }
 body #__nuxt {
   overflow-x: hidden;

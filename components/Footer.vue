@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer__main">
       <div class="top">
-        <div class="top__left">
+        <!-- <div class="top__left">
           <a
             :href="item.path"
             v-for="(item, index) in menu"
@@ -11,7 +11,7 @@
           >
             <img :src="item.src" :alt="item.name" />
           </a>
-        </div>
+        </div> -->
         <button class="arrow common__btn" @click="goTop">
           <img src="~/assets/img/footer/arrow.svg" alt="arrow" />
         </button>
@@ -171,6 +171,7 @@ export default {
         }
       }
       .arrow {
+        margin-left: auto;
         width: 32px;
         height: 32px;
         background: #242731;
