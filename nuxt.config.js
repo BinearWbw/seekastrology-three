@@ -1,5 +1,30 @@
 import sitemap from './config/sitemap'
+import routes from './config/routes'
+const CompressionPlugin = require('compression-webpack-plugin')
+
 module.exports = {
+  target: 'static',
+  generate: {
+    manifest: false,
+    workers: 4,
+    workerConcurrency: 50,
+    concurrency: 50,
+    interval: 100,
+    routes() {
+      return routes
+    },
+    done({ duration, errors, workerInfo }) {
+      if (errors.length) {
+        console.log(errors.length)
+        let arr = []
+        errors.map((item) => {
+          arr.push(item.route)
+        })
+        arr = JSON.stringify(arr)
+        console.log(arr)
+      }
+    },
+  },
   /*
    ** Server configuration
    */
@@ -28,6 +53,8 @@ module.exports = {
       baseURL: process.env.PRIVATE_URL,
     },
   },
+
+  productionSourceMap: process.env.NODE_ENV === 'development' ? true : false,
 
   telemetry: false,
 
@@ -62,7 +89,7 @@ module.exports = {
       {
         name: 'viewport',
         content:
-          'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui,shrink-to-fit=no viewport-fit=cover',
+          'width=device-width, initial-scale=1.0, minimal-ui, shrink-to-fit=no viewport-fit=cover',
       },
       { name: 'format-detection', content: 'telephone=no' },
       {
@@ -133,9 +160,19 @@ module.exports = {
       },
     ],
     link: [
+      { rel: 'preconnect', href: 'https://asserts.gameseeks.com' },
+      { rel: 'preconnect', href: 'https://www.taptogame.com' },
+      { rel: 'preconnect', href: 'https://taptogame.com' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'shortcut icon', sizes: '512x512', href: '/favicon.png' },
       { rel: 'apple-touch-icon', href: '/favicon.png' },
+    ],
+    script: [
+      {
+        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6430486603399192',
+        async: 'true',
+        crossorigin: 'anonymous',
+      },
     ],
   },
 
@@ -148,6 +185,8 @@ module.exports = {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/scss/main.scss'],
+
+  loading: false,
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -165,14 +204,40 @@ module.exports = {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'vue-toastification/nuxt',
-    '@nuxtjs/pwa',
     '@nuxtjs/sitemap',
+    'nuxt-precompress',
   ],
+
+  nuxtPrecompress: {
+    gzip: {
+      enabled: true,
+      filename: '[path].gz[query]',
+      threshold: 10240,
+      minRatio: 0.8,
+      compressionOptions: { level: 9 },
+    },
+    brotli: {
+      enabled: true,
+      filename: '[path].br[query]',
+      compressionOptions: { level: 11 },
+      threshold: 10240,
+      minRatio: 0.8,
+    },
+    enabled: true,
+    report: false,
+    test: /\.(js|css|html|txt|xml|svg)$/,
+    // Serving options
+    middleware: {
+      enabled: true,
+      enabledStatic: true,
+      encodingsPriority: ['br', 'gzip'],
+    },
+  },
 
   sitemap: sitemap,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ['@nuxtjs/pwa'],
 
   toast: {
     draggable: false,
@@ -196,20 +261,45 @@ module.exports = {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    plugins: [
+      new CompressionPlugin({
+        test: /\.js$|\.html$|\.css/, // 匹配文件名
+        threshold: 10240, // 对超过10kb的数据进行压缩
+        deleteOriginalAssets: false, // 是否删除原文件
+      }),
+    ],
     /* https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/web/ */
-    publicPath: process.env.PUBLIC_PATH,
-    maxChunkSize: 300000,
+    // publicPath: process.env.PUBLIC_PATH,
+    // maxChunkSize: 300000,
     extractCSS: {
       ignoreOrder: true,
     },
     optimization: {
+      minimize: true,
       splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        name: true,
+        minSize: 10000,
+        maxSize: 244000,
         cacheGroups: {
+          vendor: {
+            name: 'node_vendors',
+            test: /[\\/]node_modules[\\/]/,
+            chunks: 'all',
+            maxSize: 244000,
+          },
           styles: {
             name: 'styles',
             test: /\.(css|vue)$/,
             chunks: 'all',
             enforce: true,
+          },
+          commons: {
+            test: /node_modules[\\/](vue|vue-loader|vue-router|vuex|vue-meta|core-js|@babel\/runtime|axios|webpack|setimmediate|timers-browserify|process|regenerator-runtime|cookie|js-cookie|is-buffer|dotprop|nuxt\.js)[\\/]/,
+            chunks: 'all',
+            priority: 10,
+            name: true,
           },
         },
       },

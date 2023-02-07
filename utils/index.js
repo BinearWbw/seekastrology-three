@@ -1,32 +1,3 @@
-const copyObject = (obj) => {
-  let newObj = {}
-  for (let key in obj) {
-    if (typeof obj[key] == 'object') {
-      newObj[key] = copyObject(obj[key])
-    } else {
-      newObj[key] = obj[key]
-    }
-  }
-  return newObj
-}
-const copyArray = (arr) => {
-  let newArr = []
-  arr.map((item) => {
-    newArr.push(item)
-  })
-  return newArr
-}
-const formatArr = (data, boolean) => {
-  return (a, b) => {
-    var value1 = a[data]
-    var value2 = b[data]
-    if (boolean) {
-      return value1 - value2
-    } else {
-      return value2 - value1
-    }
-  }
-}
 const shuffleArr = (array) => {
   var currentIndex = array.length,
     temporaryValue,
@@ -171,4 +142,5 @@ export default {
   formatArr,
   formatDate,
   formatPast,
+  shuffleArr,
 }

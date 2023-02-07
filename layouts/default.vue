@@ -9,7 +9,17 @@
 <script>
 export default {
   computed: {},
-  mounted() {},
+  mounted() {
+    let url = 'https://taptogame.com'
+    if (window.location.host == 'taptogame.com') {
+      url = 'https://www.taptogame.com'
+    } else if (window.location.host == 'www.taptogame.com') {
+      url = 'https://taptogame.com'
+    } else {
+      url = `http://${window.location.host}`
+    }
+    this.$store.commit('UPDATE_INTERSPERSE_URL', url)
+  },
   methods: {},
 }
 </script>

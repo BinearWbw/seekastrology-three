@@ -7,7 +7,6 @@ export default () => {
   }
   Vue._use_components_lazyload = true
   Vue.use(VueLazyLoad, {
-    attempt: 2,
-    listenEvents: ['scroll', 'resize'],
+    attempt: 1,
   })
 }

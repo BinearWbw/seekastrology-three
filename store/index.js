@@ -1,4 +1,5 @@
 export const state = () => ({
+  intersperseUrl: 'https://taptogame.com',
   toastCfg: {
     position: 'bottom-left',
     timeout: 3000,
@@ -14,34 +15,17 @@ export const state = () => ({
     rtl: false,
   },
 })
-export const getters = {}
-export const mutations = {}
+export const getters = {
+  getIntersperseUrl(state) {
+    return state.intersperseUrl
+  },
+}
+export const mutations = {
+  UPDATE_INTERSPERSE_URL(state, payload) {
+    state.intersperseUrl = payload
+  },
+}
 export const actions = {
-  // async nuxtServerInit({ commit }, { query, $cookies, $apiList }) {
-  //   if (query.InvitationCode) {
-  //     commit("UPDATE_INVITATION_CODE", query.InvitationCode);
-  //   }
-  //   if ($cookies.get("Authorization")) {
-  //     await $apiList.common
-  //       .getCommonUserinfo()
-  //       .then((res) => {
-  //         $cookies.set("ID", res.id);
-  //         if (res.steamTradeLink) {
-  //           res.steamTradeLink = res.steamTradeLink.replace(
-  //             /(.{53}).{6}(.{10}).{6}(.{1})/,
-  //             "$1******$2******$3"
-  //           );
-  //         }
-  //         commit("UPDATE_USERINFO", res);
-  //         commit("UPDATE_IS_LOGIN", true);
-  //       })
-  //       .catch(() => {
-  //         $cookies.removeAll();
-  //         commit("UPDATE_IS_LOGIN", false);
-  //         commit("UPDATE_USERINFO", null);
-  //       });
-  //   }
-  // },
   toast({ state }, res) {
     if (process.client) {
       this.$toast[res.type ? res.type : 'info'](res.msg, state.toastCfg)
