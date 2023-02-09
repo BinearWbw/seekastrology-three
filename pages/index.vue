@@ -18,7 +18,7 @@
             </div>
           </div>
         </div>
-        <google-ad :id="'ID1-pc'" :timeout="200" classNames="rec__item ad" />
+        <google-ad :id="'ID1-pc'" classNames="rec__item ad" />
       </section>
       <section class="module best">
         <div class="module__top">

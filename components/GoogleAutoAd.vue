@@ -4,20 +4,17 @@
     <ins
       v-if="visible"
       class="adsbygoogle"
-      :style="{
-        display: 'block',
-        width: '100%',
-        height: '100%',
-      }"
+      style="display: block"
       :data-ad-client="googleAdId"
       :data-ad-slot="id"
+      data-ad-format="auto"
       data-full-width-responsive="false"
     ></ins>
   </div>
 </template>
 <script>
 export default {
-  name: 'GoogleAd',
+  name: 'GoogleAutoAd',
   props: {
     classNames: String,
     id: String,
@@ -65,22 +62,15 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:math';
 .googleAdStyle {
-  display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  overflow: hidden;
   .title {
-    -webkit-flex-shrink: 0;
-    flex-shrink: 0;
     font-size: 20px;
     line-height: 1;
     color: #808191;
     margin-bottom: 5px;
   }
 }
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .googleAdStyle {

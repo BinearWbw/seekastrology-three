@@ -11,7 +11,7 @@
             :item="item"
             :key="item.id"
           ></home-hot>
-          <google-ad :id="'ID1-pc'" :timeout="200" classNames="ad" />
+          <google-ad :id="'ID1-pc'" classNames="ad" />
         </div>
       </section>
       <section class="module">
@@ -25,7 +25,7 @@
             :key="item.id"
           ></home-best2>
         </div>
-        <google-ad :id="'ID1-pc'" :timeout="200" classNames="h5ad" />
+        <google-ad :id="'ID1-pc'" classNames="h5ad" />
       </section>
     </div>
   </article>

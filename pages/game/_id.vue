@@ -107,7 +107,7 @@
               approved, there are no viruses and malware.
             </p>
           </div>
-          <google-ad :id="'ID1-h5'" :timeout="200" classNames="h5ad" />
+          <google-ad :id="'ID1-h5'" classNames="h5ad" />
           <div class="comment">
             <p class="comment__title">COMMENT</p>
             <div class="comment__box">
@@ -143,7 +143,7 @@
         </div>
       </section>
       <section class="game__main__right">
-        <google-ad :id="'ID1-pc'" :timeout="200" classNames="ad" />
+        <google-ad :id="'ID1-pc'" classNames="ad" />
         <div class="best">Best Games</div>
         <div class="list">
           <home-best2

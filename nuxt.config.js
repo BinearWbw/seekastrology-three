@@ -1,28 +1,17 @@
 import sitemap from './config/sitemap'
 import routes from './config/routes'
+import shrinkRay from 'shrink-ray-current'
 const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
   target: 'static',
+
   generate: {
-    manifest: false,
-    workers: 4,
-    workerConcurrency: 50,
-    concurrency: 50,
+    // manifest: false,
+    concurrency: 500,
     interval: 100,
     routes() {
       return routes
-    },
-    done({ duration, errors, workerInfo }) {
-      if (errors.length) {
-        console.log(errors.length)
-        let arr = []
-        errors.map((item) => {
-          arr.push(item.route)
-        })
-        arr = JSON.stringify(arr)
-        console.log(arr)
-      }
     },
   },
   /*
@@ -88,8 +77,7 @@ module.exports = {
       { 'http-equiv': 'x-ua-compatible', content: 'ie=edge' },
       {
         name: 'viewport',
-        content:
-          'width=device-width, initial-scale=1.0, minimal-ui, shrink-to-fit=no viewport-fit=cover',
+        content: 'width=device-width,initial-scale=1,minimal-ui',
       },
       { name: 'format-detection', content: 'telephone=no' },
       {
@@ -167,13 +155,6 @@ module.exports = {
       { rel: 'shortcut icon', sizes: '512x512', href: '/favicon.png' },
       { rel: 'apple-touch-icon', href: '/favicon.png' },
     ],
-    script: [
-      {
-        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6430486603399192',
-        async: 'true',
-        crossorigin: 'anonymous',
-      },
-    ],
   },
 
   router: {
@@ -225,7 +206,7 @@ module.exports = {
     },
     enabled: true,
     report: false,
-    test: /\.(js|css|html|txt|xml|svg)$/,
+    test: /\.(js|css|html|txt|xml|svg|ttf)$/,
     // Serving options
     middleware: {
       enabled: true,
@@ -237,7 +218,7 @@ module.exports = {
   sitemap: sitemap,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['@nuxtjs/pwa'],
+  buildModules: ['@nuxtjs/pwa', 'nuxt-purgecss'],
 
   toast: {
     draggable: false,
@@ -257,6 +238,13 @@ module.exports = {
     // workbox: {
     //   dev: true,
     // },
+  },
+
+  render: {
+    http2: {
+      push: true,
+    },
+    compressor: shrinkRay(),
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

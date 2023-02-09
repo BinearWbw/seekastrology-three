@@ -8,7 +8,12 @@
 
 <script>
 export default {
-  computed: {},
+  data() {
+    return {
+      visiblePrivacy: false,
+      visibleDialogPrivacy: false,
+    }
+  },
   mounted() {
     let url = 'https://taptogame.com'
     if (window.location.host == 'taptogame.com') {
@@ -20,7 +25,12 @@ export default {
     }
     this.$store.commit('UPDATE_INTERSPERSE_URL', url)
   },
-  methods: {},
+  methods: {
+    closeDialogPrivacy() {
+      this.visibleDialogPrivacy = false
+      this.visiblePrivacy = false
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
