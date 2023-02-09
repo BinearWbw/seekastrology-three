@@ -139,7 +139,6 @@ const formatPast = (param, format) => {
   }
 }
 export default {
-  formatArr,
   formatDate,
   formatPast,
   shuffleArr,

@@ -1,6 +1,5 @@
 import sitemap from './config/sitemap'
 import routes from './config/routes'
-import shrinkRay from 'shrink-ray-current'
 const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
@@ -238,13 +237,6 @@ module.exports = {
     // workbox: {
     //   dev: true,
     // },
-  },
-
-  render: {
-    http2: {
-      push: true,
-    },
-    compressor: shrinkRay(),
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
