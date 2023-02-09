@@ -183,10 +183,16 @@ module.exports = {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/gtm',
     'vue-toastification/nuxt',
     '@nuxtjs/sitemap',
     'nuxt-precompress',
   ],
+
+  gtm: {
+    enabled: true,
+    id: 'GTM-MWX5CCT',
+  },
 
   nuxtPrecompress: {
     gzip: {
