@@ -6,7 +6,8 @@ module.exports = {
   target: 'static',
 
   generate: {
-    // manifest: false,
+    // crawler: false,
+    manifest: false,
     concurrency: 500,
     interval: 100,
     routes() {
@@ -158,9 +159,6 @@ module.exports = {
 
   router: {
     mode: 'history',
-    scrollBehavior(to, from, savedPosition) {
-      return { x: 0, y: 0 }
-    },
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -223,7 +221,7 @@ module.exports = {
   sitemap: sitemap,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['@nuxtjs/pwa', 'nuxt-purgecss'],
+  buildModules: ['@nuxtjs/pwa'],
 
   toast: {
     draggable: false,

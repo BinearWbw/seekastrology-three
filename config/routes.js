@@ -1,6 +1,12 @@
 import axios from 'axios'
 const addRoutes = async () => {
   let routes = []
+  let res2 = await axios.get(
+    'https://taptogame.com/api/category?origin=taptogame&page=1&size=10000'
+  )
+  res2.data.data.map((item) => {
+    routes.push(`/category/${item.name.toLowerCase()}`)
+  })
   let res1 = await axios.get(
     'https://taptogame.com/api/sitemap/games?origin=taptogame'
   )
@@ -10,12 +16,6 @@ const addRoutes = async () => {
         item.id
       }`
     )
-  })
-  let res2 = await axios.get(
-    'https://taptogame.com/api/category?origin=taptogame&page=1&size=10000'
-  )
-  res2.data.data.map((item) => {
-    routes.push(`/category/${item.name.toLowerCase()}`)
   })
   return routes
 }
