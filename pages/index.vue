@@ -5,7 +5,7 @@
         <div
           class="rec__item"
           :class="`rec${index + 1}`"
-          v-for="(item, index) in gameList['rec'].slice(0, 5)"
+          v-for="(item, index) in gameList['rec'].slice(0, 6)"
           :key="item.id"
           @click="goRec(item)"
         >
@@ -18,7 +18,6 @@
             </div>
           </div>
         </div>
-        <google-ad :id="'ID1-pc'" classNames="rec__item ad" />
       </section>
       <section class="module best">
         <div class="module__top">
@@ -82,17 +81,14 @@ export default {
       const res = await $apiList.home.getGameHome({
         origin: process.env.origin,
       })
-      res['best-games'] &&
-        res['best-games'].map((item) => {
-          item.updated = $utils.formatDate(
-            new Date(item.updated * 1000),
-            'EE dd, YYYY'
-          )
-        })
-      res['latest-games'] &&
-        res['latest-games'].map((item) => {
-          item.updated = $utils.formatPast(item.updated * 1000, 'dd AA, YYYY')
-        })
+      const formatGameItem = (item) => {
+        item.updated =
+          item.updated * 1000 < Date.now()
+            ? $utils.formatPast(item.updated * 1000, 'dd AA, YYYY')
+            : $utils.formatDate(new Date(item.updated * 1000), 'EE dd, YYYY')
+      }
+      res['best-games'] && res['best-games'].map(formatGameItem)
+      res['latest-games'] && res['latest-games'].map(formatGameItem)
       gameList = res
       return {
         gameList,
@@ -274,7 +270,8 @@ export default {
       }
       .rec3,
       .rec4,
-      .rec5 {
+      .rec5,
+      .rec6 {
         .info {
           padding-top: 14px;
           padding-left: 16px;
@@ -285,7 +282,8 @@ export default {
           }
         }
       }
-      .rec3 {
+      .rec3,
+      .rec5 {
         .info {
           background: linear-gradient(
             180deg,
@@ -295,16 +293,12 @@ export default {
         }
       }
       .rec4,
-      .rec5 {
+      .rec6 {
         background: linear-gradient(
           180deg,
           rgba(25, 26, 29, 0.2) 0%,
           rgba(25, 26, 29, 0.8) 100%
         );
-      }
-      .ad {
-        grid-row-end: 2;
-        grid-column-end: 5;
       }
     }
     .module {
@@ -428,12 +422,9 @@ export default {
     &__main {
       .rec {
         grid-template-columns: 214px auto 196px;
-        .rec3,
-        .rec4 {
+        .rec5,
+        .rec6 {
           display: none;
-        }
-        .ad {
-          grid-column-end: 4;
         }
       }
     }
@@ -588,8 +579,8 @@ export default {
           }
         }
         .rec3,
-        .rec4,
-        .rec5 {
+        .rec4 {
+          margin-top: 15 * $pr;
           .info {
             padding-top: 6 * $pr;
             padding-left: 12 * $pr;
@@ -599,18 +590,6 @@ export default {
               line-height: 15 * $pr;
             }
           }
-        }
-        .rec4 {
-          margin-top: 15 * $pr;
-          display: block;
-        }
-        .rec5 {
-          margin-top: 15 * $pr;
-        }
-        .ad {
-          margin-top: 15 * $pr;
-          width: 100%;
-          height: 63 * $pr;
         }
       }
       .module {

@@ -159,6 +159,9 @@ module.exports = {
 
   router: {
     mode: 'history',
+    scrollBehavior(to, from, savedPosition) {
+      return { x: 0, y: 0 }
+    },
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -210,9 +213,8 @@ module.exports = {
     enabled: true,
     report: false,
     test: /\.(js|css|html|txt|xml|svg|ttf)$/,
-    // Serving options
     middleware: {
-      enabled: true,
+      enabled: false,
       enabledStatic: true,
       encodingsPriority: ['br', 'gzip'],
     },
@@ -265,13 +267,13 @@ module.exports = {
         automaticNameDelimiter: '.',
         name: true,
         minSize: 10000,
-        maxSize: 244000,
+        maxSize: 250000,
         cacheGroups: {
           vendor: {
             name: 'node_vendors',
             test: /[\\/]node_modules[\\/]/,
             chunks: 'all',
-            maxSize: 244000,
+            maxSize: 250000,
           },
           styles: {
             name: 'styles',

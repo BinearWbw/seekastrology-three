@@ -38,26 +38,20 @@ export default {
     try {
       let [gameList, recommendList] = await Promise.all([
         $apiList.home
-          .getGameMenu({
-            origin: process.env.origin,
-            menu: 'new-games',
-          })
-          .then((res) => {
-            return res.list || []
-          }),
+          .getGameMenu({ origin: process.env.origin, menu: 'new-games' })
+          .then((res) => res.list || []),
         $apiList.home
-          .getGameRec({
-            origin: process.env.origin,
-            size: 10,
-          })
+          .getGameRec({ origin: process.env.origin, size: 10 })
           .then((res) => {
-            res.list &&
-              res.list.map((item) => {
-                item.updated = $utils.formatDate(
-                  new Date(item.updated * 1000),
-                  'EE dd, YYYY'
-                )
-              })
+            if (res.list) {
+              res.list.forEach(
+                (item) =>
+                  (item.updated = $utils.formatDate(
+                    new Date(item.updated * 1000),
+                    'EE dd, YYYY'
+                  ))
+              )
+            }
             return res.list || []
           }),
       ])
