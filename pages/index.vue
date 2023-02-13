@@ -9,7 +9,7 @@
           :key="item.id"
           @click="goRec(item)"
         >
-          <img class="bg" :src="$config.imgUrl + item.icon" :alt="item.name" />
+          <img class="bg" :src="$config.cdnUrl + item.icon" :alt="item.name" />
           <div class="info">
             <p class="info__title">{{ item.name }}</p>
             <div class="info__bottom">
@@ -22,7 +22,12 @@
       <section class="module best">
         <div class="module__top">
           <div class="title">BEST GAMES</div>
-          <a href="/best" class="more" title="BEST GAMES">MORE GAMES</a>
+          <a
+            :href="`${getIntersperseUrl}/best/?from=home`"
+            class="more"
+            title="BEST GAMES"
+            >MORE GAMES</a
+          >
         </div>
         <div class="list1">
           <home-best1
@@ -42,7 +47,12 @@
       <section class="module latest">
         <div class="module__top">
           <div class="title">LATEST GAMES</div>
-          <a href="/new" class="more" title="LATEST GAMES">MORE GAMES</a>
+          <a
+            :href="`${getIntersperseUrl}/new/?from=home`"
+            class="more"
+            title="LATEST GAMES"
+            >MORE GAMES</a
+          >
         </div>
         <div class="list">
           <home-latest
@@ -55,7 +65,12 @@
       <section class="module hot">
         <div class="module__top">
           <div class="title">HOT GAMES</div>
-          <a href="/hot" class="more" title="HOT GAMES">MORE GAMES</a>
+          <a
+            :href="`${getIntersperseUrl}/hot/?from=home`"
+            class="more"
+            title="HOT GAMES"
+            >MORE GAMES</a
+          >
         </div>
         <div class="list">
           <home-hot
@@ -70,6 +85,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
   data() {
@@ -97,10 +113,13 @@ export default {
       error({ statusCode: e.code, message: e.message })
     }
   },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
+  },
   methods: {
     goRec(item) {
       let href = item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
-      window.location = `/game/${href}-${item.id}`
+      window.location = `${this.getIntersperseUrl}/game/${href}-${item.id}/?from=home`
     },
   },
 }

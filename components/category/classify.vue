@@ -1,8 +1,11 @@
 <template>
-  <a class="item" :href="`/category/${item.name.toLowerCase()}`">
+  <a
+    class="item"
+    :href="`${getIntersperseUrl}/category/${item.name.toLowerCase()}/?from=${path}`"
+  >
     <div class="item__left">
       <img
-        v-lazy="$config.imgUrl + item.bg_icon"
+        v-lazy="$config.cdnUrl + item.bg_icon"
         :key="item.bg_icon"
         :alt="item.name"
       />
@@ -15,6 +18,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'categoryClassify',
   props: ['item'],
@@ -23,6 +27,17 @@ export default {
       let href = this.item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
       return href
     },
+    path() {
+      let path = ''
+      if (this.$route.path == '/') {
+        path = 'home'
+      } else {
+        path = this.$route.path.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
+        path = path.substring(1, path.length)
+      }
+      return path
+    },
+    ...mapGetters(['getIntersperseUrl']),
   },
 }
 </script>

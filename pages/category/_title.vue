@@ -8,7 +8,7 @@
             <div class="item">
               <div class="item__left">
                 <img
-                  v-lazy="$config.imgUrl + item.bg_icon"
+                  v-lazy="$config.cdnUrl + item.bg_icon"
                   :key="item.bg_icon"
                   :alt="item.name"
                 />

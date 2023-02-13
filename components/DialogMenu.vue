@@ -18,11 +18,11 @@
         <div class="menu">
           <a
             class="href"
-            :href="item.href"
+            :href="`${getIntersperseUrl + item.href}`"
             :class="{
               active:
-                item.href == $route.path ||
-                (item.href !== '/' && $route.path.includes(item.href)),
+                item.path == $route.path ||
+                (item.path !== '/' && $route.path.includes(item.path)),
             }"
             v-for="(item, index) in menu"
             :key="index"
@@ -30,8 +30,8 @@
             <div class="img">
               <img
                 :src="
-                  item.href == $route.path ||
-                  (item.href !== '/' && $route.path.includes(item.href))
+                  item.path == $route.path ||
+                  (item.path !== '/' && $route.path.includes(item.path))
                     ? item.imgActive1
                     : item.img
                 "
@@ -47,9 +47,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'DialogMenu',
   props: ['menu', 'visible'],
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
+  },
   data() {
     return {
       searchInput: '',

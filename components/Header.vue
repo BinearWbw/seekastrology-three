@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div>
-      <a href="/" class="logo">
+      <a :href="getIntersperseUrl" class="logo">
         <img class="img" src="~/assets/img/header/logoImg.png" alt="logoImg" />
         <img
           class="title"
@@ -13,11 +13,11 @@
       <nav class="nav">
         <a
           class="nav__item"
-          :href="item.href"
+          :href="`${getIntersperseUrl + item.href}`"
           :class="{
             active:
-              item.href == $route.path ||
-              (item.href !== '/' && $route.path.includes(item.href)),
+              item.path == $route.path ||
+              (item.path !== '/' && $route.path.includes(item.path)),
           }"
           :title="item.title"
           v-for="(item, index) in menu"
@@ -25,8 +25,8 @@
         >
           <img
             :src="
-              item.href == $route.path ||
-              (item.href !== '/' && $route.path.includes(item.href))
+              item.path == $route.path ||
+              (item.path !== '/' && $route.path.includes(item.path))
                 ? item.imgActive
                 : item.img
             "
@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Header',
   data() {
@@ -65,13 +66,15 @@ export default {
       menu: [
         {
           title: 'Home',
-          href: '/',
+          path: '/',
+          href: '',
           img: require('~/assets/img/header/navHome.svg'),
           imgActive: require('~/assets/img/header/navHomeActive.svg'),
           imgActive1: require('~/assets/img/header/navHomeActive1.svg'),
         },
         {
           title: 'Hot Games',
+          path: '/hot',
           href: '/hot',
           img: require('~/assets/img/header/navHot.svg'),
           imgActive: require('~/assets/img/header/navHotActive.svg'),
@@ -79,6 +82,7 @@ export default {
         },
         {
           title: 'Best Games',
+          path: '/best',
           href: '/best',
           img: require('~/assets/img/header/navBest.svg'),
           imgActive: require('~/assets/img/header/navBestActive.svg'),
@@ -86,6 +90,7 @@ export default {
         },
         {
           title: 'Top Games',
+          path: '/top',
           href: '/top',
           img: require('~/assets/img/header/navTop.svg'),
           imgActive: require('~/assets/img/header/navTopActive.svg'),
@@ -93,6 +98,7 @@ export default {
         },
         {
           title: 'New Games',
+          path: '/new',
           href: '/new',
           img: require('~/assets/img/header/navNew.svg'),
           imgActive: require('~/assets/img/header/navNewActive.svg'),
@@ -100,6 +106,7 @@ export default {
         },
         {
           title: 'Category',
+          path: '/category',
           href: '/category',
           img: require('~/assets/img/header/navCategory.svg'),
           imgActive: require('~/assets/img/header/navCategoryActive.svg'),
@@ -107,6 +114,9 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
   },
   methods: {
     search() {

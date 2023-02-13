@@ -1,8 +1,11 @@
 <template>
-  <a class="item scroll-start" :href="`/game/${href}-${item.id}`">
+  <a
+    class="item scroll-start"
+    :href="`${getIntersperseUrl}/game/${href}-${item.id}/?from=${path}`"
+  >
     <div class="item__top">
       <img
-        v-lazy="$config.imgUrl + item.icon"
+        v-lazy="$config.cdnUrl + item.icon"
         :key="item.icon"
         :alt="item.name"
       />
@@ -15,6 +18,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'HomeLatest',
   props: ['item'],
@@ -23,6 +27,17 @@ export default {
       let href = this.item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
       return href
     },
+    path() {
+      let path = ''
+      if (this.$route.path == '/') {
+        path = 'home'
+      } else {
+        path = this.$route.path.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
+        path = path.substring(1, path.length)
+      }
+      return path
+    },
+    ...mapGetters(['getIntersperseUrl']),
   },
 }
 </script>

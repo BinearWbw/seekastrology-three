@@ -6,7 +6,12 @@
         <div class="dialog__main" v-if="visibleMain">
           <p class="title">Categories</p>
           <div class="list">
-            <a class="item" href="/category" :class="{ active: !info }" key="0">
+            <a
+              class="item"
+              :href="`${getIntersperseUrl}/category/?from=${path}`"
+              :class="{ active: !info }"
+              key="0"
+            >
               <div class="item__left">
                 <img src="~/assets/img/category/all.png" alt="All Games" />
               </div>
@@ -29,6 +34,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'DialogCategory',
   props: ['visible', 'category', 'info'],
@@ -59,6 +65,17 @@ export default {
       })
       return total
     },
+    path() {
+      let path = ''
+      if (this.$route.path == '/') {
+        path = 'home'
+      } else {
+        path = this.$route.path.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
+        path = path.substring(1, path.length)
+      }
+      return path
+    },
+    ...mapGetters(['getIntersperseUrl']),
   },
   methods: {
     closeVisibleMain() {

@@ -34,7 +34,7 @@ module.exports = {
     axios: {
       browserBaseURL: process.env.PUBLIC_URL,
     },
-    imgUrl: 'https://asserts.gameseeks.com/',
+    cdnUrl: 'https://asserts.gameseeks.com/',
   },
 
   privateRuntimeConfig: {

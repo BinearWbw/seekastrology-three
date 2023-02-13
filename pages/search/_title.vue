@@ -3,7 +3,7 @@
     <div class="type__main">
       <div class="nav">
         <img class="first" src="~/assets/img/game/nav.svg" alt="nav" />
-        <a href="/" title="HOME">Home</a>
+        <a :href="`${getIntersperseUrl}/?from=${path}`" title="HOME">Home</a>
         <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
         <p class="name">Search</p>
       </div>
@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'SearchTitle',
   data() {
@@ -113,6 +114,19 @@ export default {
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
     }
+  },
+  computed: {
+    path() {
+      let path = ''
+      if (this.$route.path == '/') {
+        path = 'home'
+      } else {
+        path = this.$route.path.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
+        path = path.substring(1, path.length)
+      }
+      return path
+    },
+    ...mapGetters(['getIntersperseUrl']),
   },
   methods: {
     searchResult() {

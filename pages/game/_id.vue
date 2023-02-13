@@ -4,11 +4,12 @@
       <section class="game__main__left">
         <div class="nav">
           <img class="first" src="~/assets/img/game/nav.svg" alt="nav" />
-          <a href="/" title="HOME">Home</a>
+          <a :href="`${getIntersperseUrl}/?from=${path}`" title="HOME">Home</a>
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
-          <a :href="`/category/${gameInfo.category}`">{{
-            gameInfo.category
-          }}</a>
+          <a
+            :href="`${getIntersperseUrl}/category/${gameInfo.category}/?from=${path}`"
+            >{{ gameInfo.category }}</a
+          >
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
           <p class="name">{{ gameInfo.name }}</p>
         </div>
@@ -20,7 +21,7 @@
                 v-for="(item, index) in gameInfo.banner"
                 :key="index"
               >
-                <img :src="$config.imgUrl + item" alt="swiper" />
+                <img :src="$config.cdnUrl + item" alt="swiper" />
               </swiper-slide>
             </swiper>
           </div>
@@ -159,6 +160,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 export default {
@@ -381,6 +383,19 @@ export default {
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
     }
+  },
+  computed: {
+    path() {
+      let path = ''
+      if (this.$route.path == '/') {
+        path = 'home'
+      } else {
+        path = this.$route.path.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
+        path = path.substring(1, path.length)
+      }
+      return path
+    },
+    ...mapGetters(['getIntersperseUrl']),
   },
   methods: {
     submit() {

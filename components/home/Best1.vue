@@ -1,8 +1,11 @@
 <template>
-  <a class="item" :href="`/game/${href}-${item.id}`">
+  <a
+    class="item"
+    :href="`${getIntersperseUrl}/game/${href}-${item.id}/?from=home`"
+  >
     <div class="item__top">
       <img
-        v-lazy="$config.imgUrl + item.icon"
+        v-lazy="$config.cdnUrl + item.icon"
         :key="item.icon"
         :alt="item.name"
       />
@@ -14,6 +17,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'HomeBest1',
   props: ['item'],
@@ -22,6 +26,7 @@ export default {
       let href = this.item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
       return href
     },
+    ...mapGetters(['getIntersperseUrl']),
   },
 }
 </script>
