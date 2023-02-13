@@ -170,12 +170,7 @@ module.exports = {
   loading: false,
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~plugins/axios',
-    '~plugins/utils',
-    '~plugins/vue-lazyload',
-    '~plugins/vue-gtag',
-  ],
+  plugins: ['~plugins/axios', '~plugins/utils', '~plugins/vue-lazyload'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -184,16 +179,10 @@ module.exports = {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/gtm',
     'vue-toastification/nuxt',
     '@nuxtjs/sitemap',
     'nuxt-precompress',
   ],
-
-  gtm: {
-    enabled: true,
-    id: 'GTM-MWX5CCT',
-  },
 
   nuxtPrecompress: {
     gzip: {
