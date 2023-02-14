@@ -3,7 +3,7 @@
     <div class="type__main">
       <div class="nav">
         <img class="first" src="~/assets/img/game/nav.svg" alt="nav" />
-        <a :href="`${getIntersperseUrl}/?from=${path}`" title="HOME">Home</a>
+        <a :href="`${getIntersperseUrl}/?from=search`" title="HOME">Home</a>
         <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
         <p class="name">Search</p>
       </div>
@@ -18,7 +18,7 @@
       </div>
       <section class="search" v-if="gameList.length > 0">
         <p class="title">
-          <span>"{{ $route.params.title }}" </span>,
+          <span>"{{ searchInput }}" </span>,
           {{ gameList.length > 1 ? gameList.length + ' results' : '1 result' }}
           found
         </p>
@@ -32,7 +32,7 @@
         </div>
       </section>
       <p class="none" v-else>
-        Sorry, No <span>"{{ $route.params.title }}"</span> found
+        Sorry, No <span>"{{ searchInputResult }}"</span> found
       </p>
       <section class="module">
         <div class="module__top">
@@ -56,38 +56,25 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  name: 'SearchTitle',
+  name: 'Search',
   data() {
     return {
       loading: false,
       status: false,
+      gameList: [],
+      searchInput: '',
+      searchInputResult: '',
     }
   },
-  async asyncData({ error, $apiList, params, $utils }) {
+  async asyncData({ error, $apiList }) {
     try {
       let totalNum = 0,
         totalPage = 1,
         search = {
           page: 1,
           size: 42,
-        },
-        searchInput = ''
-      let [gameList, allList] = await Promise.all([
-        $apiList.home
-          .getGameSearch({
-            origin: process.env.origin,
-            name: params.title,
-          })
-          .then((res) => {
-            res &&
-              res.map((item) => {
-                item.updated = $utils.formatPast(
-                  item.updated * 1000,
-                  'dd AA,YYYY'
-                )
-              })
-            return res || []
-          }),
+        }
+      let [allList] = await Promise.all([
         $apiList.home
           .getAllGame({
             origin: process.env.origin,
@@ -102,13 +89,10 @@ export default {
             return res.list || []
           }),
       ])
-      searchInput = params.title || ''
       return {
-        gameList,
         totalNum,
         totalPage,
         search,
-        searchInput,
         allList,
       }
     } catch (e) {
@@ -116,17 +100,13 @@ export default {
     }
   },
   computed: {
-    path() {
-      let path = ''
-      if (this.$route.path == '/') {
-        path = 'home'
-      } else {
-        path = this.$route.path.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
-        path = path.substring(1, path.length)
-      }
-      return path
-    },
     ...mapGetters(['getIntersperseUrl']),
+  },
+  mounted() {
+    if (this.$route.query.input) {
+      this.searchInput = this.$route.query.input
+      this.searchResult()
+    }
   },
   methods: {
     searchResult() {
@@ -140,7 +120,29 @@ export default {
           msg: 'Search is required and the length cannot be less than 2',
         })
       } else {
-        window.location = `/search/${this.searchInput}`
+        this.$apiList.home
+          .getGameSearch({
+            origin: process.env.origin,
+            name: this.searchInput,
+          })
+          .then((res) => {
+            this.searchInputResult = this.searchInput
+            res &&
+              res.map((item) => {
+                item.updated = this.$utils.formatPast(
+                  item.updated * 1000,
+                  'dd AA,YYYY'
+                )
+              })
+            this.gameList = res
+          })
+          .catch((error) => {
+            this.$store.dispatch('toast', {
+              type: 'error',
+              msg: error.msg,
+            })
+            this.status = false
+          })
       }
     },
     showMoreGame() {

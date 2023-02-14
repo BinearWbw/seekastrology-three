@@ -121,16 +121,14 @@ export default {
   methods: {
     search() {
       let regSearch = /^.{2,}$/
-      if (
-        !this.searchInput.replace(/\s+/g, '') ||
-        !regSearch.test(this.searchInput.replace(/\s+/g, ''))
-      ) {
+      let search = this.searchInput
+      if (!search || !regSearch.test(search)) {
         this.$store.dispatch('toast', {
           type: 'warning',
           msg: 'Search is required and the length cannot be less than 2',
         })
       } else {
-        window.location = `/search/${this.searchInput}`
+        window.location = `/search/?input=${search}`
       }
     },
   },

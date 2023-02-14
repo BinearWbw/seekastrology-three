@@ -148,14 +148,14 @@ img:not([src]) {
   src: url('../font/BebasNeue-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'bahnschrift';
   src: url('../font/bahnschrift.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 html {
   overscroll-behavior: contain;
