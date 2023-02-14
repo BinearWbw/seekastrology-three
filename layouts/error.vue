@@ -48,12 +48,7 @@ export default {
 @use 'sass:math';
 .error {
   width: 100%;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  min-height: 0;
+  min-height: calc(100vh - 566px);
   display: flex;
   display: -webkit-box;
   display: -webkit-flex;
@@ -74,7 +69,7 @@ export default {
     line-height: 32px;
     padding: 0 5%;
     text-align: center;
-    font-family: Heebo-Bold;
+    font-weight: bold;
     color: #fff;
   }
   &-link {
@@ -84,7 +79,7 @@ export default {
     background-color: #ffff00;
     border-radius: 12px;
     display: block;
-    font-family: Heebo-Bold;
+    font-weight: bold;
     font-size: 15px;
     color: #2a2d80;
     text-decoration: none;

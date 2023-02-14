@@ -84,7 +84,7 @@ export default {
       height: 100 * $pr;
       border-radius: 24 * $pr;
       img {
-        border-radius: 0 0 24 * $pr 24 * $pr;
+        border-radius: 24 * $pr;
       }
     }
     &__title {

@@ -1,5 +1,6 @@
 <template>
   <article class="game">
+    <Loading v-show="show"></Loading>
     <div class="game__main">
       <section class="game__main__left">
         <div class="nav">
@@ -80,7 +81,23 @@
                 >
               </p>
             </div>
-            <div class="info__download">
+            <div class="info__download pc">
+              <div class="download">
+                <img src="~/assets/img/game/download.svg" alt="download" />
+                <span>Download</span>
+                <div class="code">
+                  <div class="code__item" v-if="gameOs[0].url">
+                    <p>Android</p>
+                    <div class="code__img" id="androidCode"></div>
+                  </div>
+                  <div class="code__item" v-if="gameOs[1].url">
+                    <p>IOS</p>
+                    <div class="code__img" id="iosCode"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="info__download h5">
               <a
                 class="android common__btn"
                 :href="gameOs[0].url"
@@ -149,7 +166,7 @@
         <div class="list">
           <home-best2
             class="active"
-            v-for="item in recommendList.slice(0, 6)"
+            v-for="item in recommendList.slice(0, 10)"
             :item="item"
             :key="item.id"
           ></home-best2>
@@ -201,15 +218,24 @@ export default {
             this.gameInfo.name,
         },
       ],
+      script: [
+        {
+          type: 'text/javascript',
+          src: '/js/qrcode.min.js',
+        },
+      ],
     }
   },
   data() {
     return {
+      show: true,
       status: false,
       form: {
         nick: '',
         comment: '',
       },
+      qrcodeObj1: {},
+      qrcodeObj2: {},
       swiperOptions: {
         slidesPerView: 'auto',
         autoplay: {
@@ -247,21 +273,6 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-  },
-  validate({ params }) {
-    if (params.id) {
-      let id = params.id.replace(
-        /^.*?(\d*)$/,
-        (str, match, index) => match || '0'
-      )
-      if (id) {
-        return true
-      } else {
-        return false
-      }
-    } else {
-      return false
-    }
   },
   async asyncData({ error, $apiList, params, $utils }) {
     try {
@@ -477,6 +488,31 @@ export default {
         })
     },
   },
+  mounted() {
+    this.$nextTick(() => {
+      if (this.gameOs[0].url) {
+        this.qrcodeObj1 = new QRCode('androidCode', {
+          text: this.gameOs[0].url,
+          width: 90,
+          height: 90,
+          colorDark: '#000',
+          colorLight: '#fff',
+          correctLevel: QRCode.CorrectLevel.H,
+        })
+      }
+      if (this.gameOs[1].url) {
+        this.qrcodeObj2 = new QRCode('iosCode', {
+          text: this.gameOs[1].url,
+          width: 90,
+          height: 90,
+          colorDark: '#000',
+          colorLight: '#fff',
+          correctLevel: QRCode.CorrectLevel.H,
+        })
+      }
+      this.show = false
+    })
+  },
   filters: {
     detectionArr(arr) {
       let active = ''
@@ -498,7 +534,7 @@ export default {
     margin: 0 auto;
     width: 1310px;
     padding-top: 33px;
-    padding-right: 350px;
+    padding-right: 336px;
     position: relative;
     &__left {
       width: 100%;
@@ -728,7 +764,73 @@ export default {
             -webkit-justify-content: center;
             -ms-flex-pack: center;
             justify-content: center;
-            grid-gap: 20px;
+            .download {
+              width: 164px;
+              height: 42px;
+              border-radius: 21px;
+              display: flex;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              -webkit-align-items: center;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
+              -webkit-box-pack: center;
+              -webkit-justify-content: center;
+              -ms-flex-pack: center;
+              justify-content: center;
+              background-color: #7a78ff;
+              cursor: pointer;
+              position: relative;
+              span {
+                padding-left: 10px;
+                margin-top: 2px;
+                font-size: 14px;
+                color: #ffffff;
+                line-height: 1;
+              }
+              .code {
+                -webkit-transition: opacity 0.3s, visibility 0.3s;
+                transition: opacity 0.3s, visibility 0.3s;
+                position: absolute;
+                opacity: 0;
+                visibility: hidden;
+                bottom: -170px;
+                padding: 25px 30px 30px;
+                height: 165px;
+                border-radius: 16px;
+                background-color: #fff;
+                display: flex;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                gap: 0 30px;
+                &__item {
+                  width: 90px;
+                  height: 100%;
+                  p {
+                    width: 100%;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #000000;
+                    text-align: center;
+                  }
+                  .code__img {
+                    width: 100%;
+                    height: 90px;
+                  }
+                }
+              }
+              &:hover {
+                background-color: #8a88fc;
+                .code {
+                  opacity: 1;
+                  visibility: visible;
+                  z-index: 1;
+                }
+              }
+            }
             a {
               width: 164px;
               height: 42px;
@@ -767,6 +869,12 @@ export default {
                   background-color: #70a9ff;
                 }
               }
+              &:nth-child(2) {
+                margin-left: 20px;
+              }
+            }
+            &.h5 {
+              display: none;
             }
           }
           &__remark {
@@ -878,11 +986,9 @@ export default {
       position: absolute;
       right: 0;
       top: 0;
-      width: 350px;
+      width: 336px;
       .ad {
-        height: 300px;
-        background-color: #282a31;
-        border-radius: 16px;
+        height: 305px;
       }
       .best {
         font-family: BebasNeue-Regular;
@@ -950,6 +1056,19 @@ export default {
       &__left {
         .main {
           padding-right: 0;
+          .info {
+            &__download {
+              &.pc {
+                display: none;
+              }
+              &.h5 {
+                display: flex;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+              }
+            }
+          }
           .module {
             :deep(.scroll__bottom .list) {
               --grid-num: 7;
@@ -1057,7 +1176,6 @@ export default {
               -webkit-flex-direction: column;
               -ms-flex-direction: column;
               flex-direction: column;
-              grid-gap: 0;
               a {
                 width: 164 * $pr;
                 height: 42 * $pr;
@@ -1072,6 +1190,7 @@ export default {
                   font-size: 14 * $pr;
                 }
                 &:nth-child(2) {
+                  margin-left: 0;
                   margin-top: 20 * $pr;
                 }
               }
