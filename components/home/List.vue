@@ -191,7 +191,7 @@ export default {
     }
     &__bottom {
       margin-top: 15 * $pr;
-      border-radius: 24 * $pr;
+      border-radius: 16 * $pr;
       padding: 0 4 * $pr 32 * $pr;
       .list {
         padding-top: 35 * $pr;

@@ -207,7 +207,7 @@ export default {
           display: block;
           width: 100%;
           height: 100 * $pr;
-          border-radius: 24 * $pr;
+          border-radius: 16 * $pr;
           background: #000000;
         }
       }

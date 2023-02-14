@@ -114,7 +114,7 @@ $pr: math.div(1vw, 3.75);
     z-index: 2;
     width: 100%;
     height: calc(100vh - 167 * $pr);
-    border-radius: 24 * $pr 24 * $pr 0 0;
+    border-radius: 16 * $pr 16 * $pr 0 0;
     background-color: #1f2128;
     padding: 24 * $pr 23 * $pr;
     overflow-x: hidden;

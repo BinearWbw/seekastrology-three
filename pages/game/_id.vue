@@ -1096,11 +1096,11 @@ export default {
           .banner {
             padding: 0;
             height: 171 * $pr;
-            border-radius: 24 * $pr;
+            border-radius: 16 * $pr;
             .swiper {
               &__item {
                 width: 100%;
-                border-radius: 24 * $pr;
+                border-radius: 16 * $pr;
                 margin-right: 10 * $pr;
               }
             }
@@ -1145,7 +1145,7 @@ export default {
           }
           .info {
             margin-top: 20 * $pr;
-            border-radius: 24 * $pr;
+            border-radius: 16 * $pr;
             padding: 28 * $pr 23 * $pr 31 * $pr;
             &__title {
               font-size: 20 * $pr;
@@ -1206,7 +1206,7 @@ export default {
             display: block;
             width: 100%;
             height: 100 * $pr;
-            border-radius: 24 * $pr;
+            border-radius: 16 * $pr;
             background: #000000;
           }
           .module {
@@ -1222,7 +1222,7 @@ export default {
             }
             &__box {
               margin-top: 23 * $pr;
-              border-radius: 24 * $pr;
+              border-radius: 16 * $pr;
               padding: 31 * $pr 23 * $pr 17 * $pr;
               input {
                 width: 100%;
