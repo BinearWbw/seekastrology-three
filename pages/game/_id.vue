@@ -452,11 +452,11 @@ export default {
       this.$apiList.home
         .getGameComment({
           origin: process.env.origin,
-          game_id: this.params.id.replace(
+          game_id: this.$route.params.id.replace(
             /^.*?(\d*)$/,
             (str, match, index) => match || '0'
           ),
-          ...search,
+          ...this.search,
         })
         .then((res) => {
           let list = res || []
@@ -467,6 +467,13 @@ export default {
             )
           })
           this.commentList = list
+        })
+        .catch(() => {
+          this.$store.dispatch('toast', {
+            type: 'error',
+            msg: 'No comment data was obtained',
+          })
+          this.status = false
         })
     },
   },
