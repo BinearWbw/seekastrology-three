@@ -28,7 +28,7 @@ export default {
     }
   },
   mounted() {
-    this.visible = this.$refs.explain.clientHeight > 80 ? true : false
+    this.visible = this.$refs.explain.clientHeight > 120 ? true : false
   },
 }
 </script>
@@ -57,7 +57,7 @@ export default {
     margin-top: 24px;
     width: 100%;
     color: #808191;
-    max-height: 80px;
+    max-height: 120px;
     overflow: hidden;
     p {
       font-size: 14px;
@@ -113,10 +113,10 @@ export default {
       font-size: 20 * $pr;
     }
     &__main {
-      margin-top: 21 * $pr;
+      margin-top: 12 * $pr;
     }
     &__btn {
-      margin: 16 * $pr auto 0;
+      margin: 8 * $pr auto 0;
       span {
         font-size: 12 * $pr;
         padding-right: 13 * $pr;

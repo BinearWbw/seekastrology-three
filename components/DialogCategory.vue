@@ -261,7 +261,7 @@ $pr: math.div(1vw, 3.75);
   -webkit-animation: height_leave ease-out 0.3s;
   animation: height_leave ease-out 0.3s;
 }
-@media (min-width: 750px) {
+@media (min-width: 751px) {
   .dialog {
     display: none;
   }

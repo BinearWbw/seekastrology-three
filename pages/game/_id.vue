@@ -1210,18 +1210,19 @@ export default {
             background: #000000;
           }
           .module {
-            margin-top: 24 * $pr;
+            margin-top: 20 * $pr;
             :deep(.scroll__bottom .list) {
               --grid-num: 3;
             }
           }
           .comment {
-            margin-top: 40 * $pr;
+            margin-top: 20 * $pr;
             &__title {
-              font-size: 34 * $pr;
+              font-size: 28 * $pr;
+              line-height: 34 * $pr;
             }
             &__box {
-              margin-top: 23 * $pr;
+              margin-top: 6 * $pr;
               border-radius: 16 * $pr;
               padding: 31 * $pr 23 * $pr 17 * $pr;
               input {
