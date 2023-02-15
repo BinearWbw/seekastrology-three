@@ -2,16 +2,6 @@
   <footer class="footer">
     <div class="footer__main">
       <div class="top">
-        <!-- <div class="top__left">
-          <a
-            :href="item.path"
-            v-for="(item, index) in menu"
-            :key="index"
-            :title="item.name"
-          >
-            <img :src="item.src" :alt="item.name" />
-          </a>
-        </div> -->
         <button class="arrow common__btn" @click="goTop">
           <img src="~/assets/img/footer/arrow.svg" alt="arrow" />
         </button>
@@ -33,7 +23,7 @@
             find the most suitable games in Taptogame.com for the first time.<br />Hope
             you can find the best game for you on Taptogame.com platform. If you
             have any feedback on us, please feel free to contact us by email:
-            Service@taptogame.com
+            <a href="mailto:service@taptogame.com">Service@taptogame.com</a>.
           </p>
           <p class="p2">copyright © 2022 Taptogame All rights reserved.</p>
         </div>
@@ -47,35 +37,37 @@
           </div>
         </div>
       </div>
+      <div class="link">
+        <div class="list">
+          <a :href="`${getIntersperseUrl}/eula.html`" target="_blank"
+            >Terms of Service</a
+          >
+          <a :href="`${getIntersperseUrl}/privacy.html`" target="_blank"
+            >Privacy Policy</a
+          >
+          <a :href="`${getIntersperseUrl}/cookies.html`" target="_blank"
+            >Cookies Policy</a
+          >
+          <a href="mailto:service@taptogame.com">Contact Us</a>
+        </div>
+        <span>Copyright © 2023 Taptogame All rights reserved.</span>
+      </div>
     </div>
   </footer>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Footer',
   data() {
     return {
       email: '',
       status: false,
-      menu: [
-        {
-          name: 'Facebook',
-          src: require('~/assets/img/footer/Facebook.svg'),
-          path: '/',
-        },
-        {
-          name: 'Twitter',
-          src: require('~/assets/img/footer/Twitter.svg'),
-          path: '/',
-        },
-        {
-          name: 'Youtube',
-          src: require('~/assets/img/footer/Youtube.svg'),
-          path: '/',
-        },
-      ],
     }
+  },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
   },
   methods: {
     goTop() {
@@ -249,6 +241,67 @@ export default {
             }
           }
         }
+      }
+    }
+    .link {
+      display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      .list {
+        display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        a {
+          font-family: 'Heebo';
+          font-size: 18px;
+          line-height: 34px;
+          height: 34px;
+          position: relative;
+          padding: 0 12px 0 10px;
+          -webkit-transition: color 0.3s;
+          transition: color 0.3s;
+          color: #fff;
+          &:hover {
+            color: #ff0;
+          }
+          &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 7px;
+            width: 2px;
+            height: 20px;
+            background-color: #fff;
+          }
+          &:last-child {
+            padding: 0 0 0 10px;
+            &::after {
+              content: none;
+            }
+          }
+          &:first-child {
+            padding: 0 12px 0 0;
+          }
+        }
+      }
+      span {
+        margin-left: auto;
+        margin-bottom: 2px;
+        line-height: 1;
+        font-size: 16px;
       }
     }
   }
