@@ -55,8 +55,8 @@
             :key="item.id"
           ></home-hot>
         </div>
-        <div class="loading" v-scroll v-if="search.page < totalPage">
-          <div class="loader" v-if="loading"></div>
+        <div class="common__loading" v-scroll v-if="search.page < totalPage">
+          <div class="common__loading__loader" v-if="loading"></div>
         </div>
       </section>
     </div>
@@ -256,82 +256,8 @@ export default {
         grid-template-columns: repeat(7, 1fr);
         grid-gap: 30px;
       }
-      .loading {
-        width: 100%;
-        height: 2em;
-        display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
+      .common__loading {
         margin-top: 20px;
-        [class*='loader'] {
-          display: inline-block;
-          width: 2em;
-          height: 2em;
-          color: inherit;
-          vertical-align: middle;
-          pointer-events: none;
-        }
-        .loader {
-          background: #808191;
-          position: relative;
-          -webkit-animation: loader 1s ease-in-out infinite;
-          animation: loader 1s ease-in-out infinite;
-          -webkit-animation-delay: 0.4s;
-          animation-delay: 0.4s;
-          width: 0.5em;
-          height: 1em;
-        }
-        .loader:before,
-        .loader:after {
-          content: '';
-          position: absolute;
-          width: inherit;
-          height: inherit;
-          background: inherit;
-          -webkit-animation: inherit;
-          animation: inherit;
-        }
-        .loader:before {
-          right: 1em;
-          -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s;
-        }
-        .loader:after {
-          left: 1em;
-          -webkit-animation-delay: 0.6s;
-          animation-delay: 0.6s;
-        }
-        @-webkit-keyframes loader {
-          0%,
-          100% {
-            -webkit-box-shadow: 0 0 0 #808191, 0 0 0 #808191;
-            box-shadow: 0 0 0 #808191, 0 0 0 #808191;
-          }
-          50% {
-            -webkit-box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
-            box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
-          }
-        }
-        @keyframes loader {
-          0%,
-          100% {
-            -webkit-box-shadow: 0 0 0 #808191, 0 0 0 #808191;
-            box-shadow: 0 0 0 #808191, 0 0 0 #808191;
-          }
-          50% {
-            -webkit-box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
-            box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
-          }
-        }
       }
       &.active {
         padding-top: 0;
@@ -500,7 +426,7 @@ export default {
           grid-template-columns: repeat(3, 1fr);
           grid-gap: 14 * $pr 12 * $pr;
         }
-        .loading {
+        .common__loading {
           margin-top: 20 * $pr;
         }
       }

@@ -304,6 +304,82 @@ body::-webkit-scrollbar {
     transform: scale(0.95);
   }
 }
+.common__loading {
+  width: 100%;
+  height: 2em;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  [class*='common__loading__loader'] {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    color: inherit;
+    vertical-align: middle;
+    pointer-events: none;
+  }
+  .common__loading__loader {
+    background: #808191;
+    position: relative;
+    -webkit-animation: common__loader 1s ease-in-out infinite;
+    animation: common__loader 1s ease-in-out infinite;
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+    width: 0.5em;
+    height: 1em;
+  }
+  .common__loading__loader:before,
+  .common__loading__loader:after {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background: inherit;
+    -webkit-animation: inherit;
+    animation: inherit;
+  }
+  .common__loading__loader:before {
+    right: 1em;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+  }
+  .common__loading__loader:after {
+    left: 1em;
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+  }
+  @-webkit-keyframes common__loader {
+    0%,
+    100% {
+      -webkit-box-shadow: 0 0 0 #808191, 0 0 0 #808191;
+      box-shadow: 0 0 0 #808191, 0 0 0 #808191;
+    }
+    50% {
+      -webkit-box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
+      box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
+    }
+  }
+  @keyframes common__loader {
+    0%,
+    100% {
+      -webkit-box-shadow: 0 0 0 #808191, 0 0 0 #808191;
+      box-shadow: 0 0 0 #808191, 0 0 0 #808191;
+    }
+    50% {
+      -webkit-box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
+      box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
+    }
+  }
+}
 :root {
   --text-color: #ffffff;
   --background-color: #1f2128;

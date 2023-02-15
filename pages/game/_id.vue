@@ -36,13 +36,17 @@
             :name="gameInfo.name"
             :desc="gameInfo.desc"
           ></game-info>
-          <home-list class="module" :title="'RELATED GAMES'">
-            <home-latest
-              v-for="item in gameList"
-              :item="item"
-              :key="item.id"
-            ></home-latest>
-          </home-list>
+          <div class="module">
+            <div class="module__title">RELATED GAMES</div>
+            <div class="related">
+              <home-latest
+                v-for="item in gameList"
+                :key="item.id"
+                :item="item"
+              ></home-latest>
+            </div>
+          </div>
+          <google-auto-ad :id="'6150976776'" classNames="leftAd1" />
           <div class="info">
             <p class="info__title">Get The Game</p>
             <div class="info__main">
@@ -125,7 +129,29 @@
               approved, there are no viruses and malware.
             </p>
           </div>
-          <google-ad :id="'ID1-h5'" classNames="h5ad" />
+          <div class="module">
+            <div class="module__title">RECOMMEND GAMES</div>
+            <div class="recommend">
+              <home-hot
+                v-for="item in recList"
+                :key="item.id"
+                :item="item"
+              ></home-hot>
+            </div>
+            <div
+              class="more"
+              @click="
+                searchRec.page < totalPageRec && !status && showMoreGame()
+              "
+              v-if="searchRec.page < totalPageRec || loadingRec"
+            >
+              <p class="more__text" v-if="!loadingRec">MORE GAMES</p>
+              <div class="common__loading" v-else>
+                <div class="common__loading__loader"></div>
+              </div>
+            </div>
+          </div>
+          <google-auto-ad :id="'3524813435'" classNames="leftAd2" />
           <div class="comment">
             <p class="comment__title">COMMENT</p>
             <div class="comment__box">
@@ -161,12 +187,12 @@
         </div>
       </section>
       <section class="game__main__right">
-        <google-ad :id="'ID1-pc'" classNames="ad" />
+        <google-ad :id="'2317890582'" classNames="rightAd" />
         <div class="best">Best Games</div>
         <div class="list">
           <home-best2
             class="active"
-            v-for="item in recommendList.slice(0, 10)"
+            v-for="item in recList.slice(0, 10)"
             :item="item"
             :key="item.id"
           ></home-best2>
@@ -228,6 +254,7 @@ export default {
   },
   data() {
     return {
+      loadingRec: false,
       show: true,
       status: false,
       form: {
@@ -301,8 +328,14 @@ export default {
         search = {
           page: 1,
           size: 5,
+        },
+        totalNumRec = 0,
+        totalPageRec = 1,
+        searchRec = {
+          page: 1,
+          size: 15,
         }
-      let [appInfo, recommendList, commentList] = await Promise.all([
+      let [appInfo, recList, commentList] = await Promise.all([
         $apiList.home
           .getGameDetail({
             origin: process.env.origin,
@@ -318,17 +351,22 @@ export default {
         $apiList.home
           .getGameRec({
             origin: process.env.origin,
-            size: 6,
+            ...searchRec,
           })
           .then((res) => {
-            res.list &&
-              res.list.map((item) => {
-                item.updated = $utils.formatDate(
-                  new Date(item.updated * 1000),
-                  'EE dd, YYYY'
-                )
-              })
+            totalNumRec = res.count
+            totalPageRec =
+              Math.ceil(totalNumRec / searchRec.size) === 0
+                ? 1
+                : Math.ceil(totalNumRec / searchRec.size)
             return res.list || []
+            // res.list &&
+            //   res.list.map((item) => {
+            //     item.updated = $utils.formatDate(
+            //       new Date(item.updated * 1000),
+            //       'EE dd, YYYY'
+            //     )
+            //   })
           }),
         $apiList.home
           .getGameComment({
@@ -385,7 +423,10 @@ export default {
         gameOs,
         gameInfo,
         gameList,
-        recommendList,
+        totalNumRec,
+        totalPageRec,
+        searchRec,
+        recList,
         totalNum,
         totalPage,
         search,
@@ -484,6 +525,35 @@ export default {
             type: 'error',
             msg: 'No comment data was obtained',
           })
+          this.status = false
+        })
+    },
+    showMoreGame() {
+      this.loadingRec = true
+      this.status = true
+      this.searchRec.page += 1
+      this.$apiList.home
+        .getGameRec({
+          origin: process.env.origin,
+          ...this.searchRec,
+        })
+        .then((res) => {
+          this.totalNumRec = res.count
+          this.totalPageRec =
+            Math.ceil(this.totalNumRec / this.searchRec.size) === 0
+              ? 1
+              : Math.ceil(this.totalNumRec / this.searchRec.size)
+          res.list &&
+            res.list.map((item) => {
+              this.recList.push(item)
+            })
+          this.loadingRec = false
+          this.status = false
+        })
+        .catch((error) => {
+          console.log(error)
+          this.searchRec.page -= 1
+          this.loadingRec = false
           this.status = false
         })
     },
@@ -884,10 +954,67 @@ export default {
             line-height: 20px;
           }
         }
-        .h5ad {
-          display: none;
-        }
         .module {
+          margin-top: 30px;
+          &__title {
+            height: 34px;
+            line-height: 34px;
+            font-family: BebasNeue-Regular;
+            font-size: 28px;
+            color: #ffffff;
+          }
+          .related {
+            margin-top: 20px;
+            background-color: #282a31;
+            border-radius: 24px;
+            padding: 40px 36px 30px;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-gap: 48px 30px;
+            :deep(.item:nth-child(n + 15)) {
+              display: none;
+            }
+          }
+          .recommend {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 30px;
+          }
+          .more {
+            width: 164px;
+            height: 42px;
+            background: #111216;
+            border-radius: 21px;
+            margin: 20px auto 0;
+            cursor: pointer;
+            -webkit-transition: background 0.3s;
+            transition: background 0.3s;
+            display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            &__text {
+              font-size: 12px;
+              line-height: 1;
+            }
+            &:hover {
+              background: #15161a;
+            }
+          }
+        }
+        .leftAd1 {
+          margin-top: 30px;
+        }
+        .leftAd2 {
           margin-top: 30px;
         }
         .comment {
@@ -987,7 +1114,7 @@ export default {
       right: 0;
       top: 0;
       width: 336px;
-      .ad {
+      .rightAd {
         height: 305px;
       }
       .best {
@@ -1017,8 +1144,14 @@ export default {
         .main {
           padding-right: 5.772vw;
           .module {
-            :deep(.scroll__bottom .list) {
-              --grid-num: 6;
+            .related {
+              grid-template-columns: repeat(6, 1fr);
+              :deep(.item:nth-child(n + 13)) {
+                display: none;
+              }
+            }
+            .recommend {
+              grid-template-columns: repeat(4, 1fr);
             }
           }
           .comment {
@@ -1034,14 +1167,38 @@ export default {
     }
   }
 }
+@media (max-width: 1237px) {
+  .game {
+    &__main {
+      &__left {
+        .main {
+          .module {
+            .related {
+              grid-template-columns: repeat(5, 1fr);
+              :deep(.item:nth-child(n + 11)) {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 @media (max-width: 1104px) {
   .game {
     &__main {
       &__left {
         .main {
           .module {
-            :deep(.scroll__bottom .list) {
-              --grid-num: 5;
+            .related {
+              grid-template-columns: repeat(4, 1fr);
+              :deep(.item:nth-child(n + 9)) {
+                display: none;
+              }
+            }
+            .recommend {
+              grid-template-columns: repeat(3, 1fr);
             }
           }
         }
@@ -1070,14 +1227,44 @@ export default {
             }
           }
           .module {
-            :deep(.scroll__bottom .list) {
-              --grid-num: 7;
+            .related {
+              grid-template-columns: repeat(7, 1fr);
+              :deep(.item:nth-child(n + 9)) {
+                display: block;
+              }
+              :deep(.item:nth-child(n + 15)) {
+                display: none;
+              }
+            }
+            .recommend {
+              grid-template-columns: repeat(5, 1fr);
             }
           }
         }
       }
       &__right {
         display: none;
+      }
+    }
+  }
+}
+@media (max-width: 865px) {
+  .game {
+    &__main {
+      &__left {
+        .main {
+          .module {
+            .related {
+              grid-template-columns: repeat(6, 1fr);
+              :deep(.item:nth-child(n + 13)) {
+                display: none;
+              }
+            }
+            .recommend {
+              grid-template-columns: repeat(4, 1fr);
+            }
+          }
+        }
       }
     }
   }
@@ -1201,19 +1388,44 @@ export default {
               line-height: 20 * $pr;
             }
           }
-          .h5ad {
+          .leftAd2 {
             margin-top: 20 * $pr;
-            display: block;
-            width: 100%;
-            height: 100 * $pr;
-            border-radius: 16 * $pr;
-            background: #000000;
           }
           .module {
             margin-top: 20 * $pr;
-            :deep(.scroll__bottom .list) {
-              --grid-num: 3;
+            &__title {
+              height: 34 * $pr;
+              line-height: 34 * $pr;
+              font-size: 28 * $pr;
             }
+            .related {
+              margin-top: 6 * $pr;
+              border-radius: 16 * $pr;
+              padding: 35 * $pr 17 * $pr 32 * $pr;
+              grid-template-columns: repeat(3, 1fr);
+              grid-gap: 28 * $pr 30 * $pr;
+              :deep(.item:nth-child(n + 10)) {
+                display: none;
+              }
+            }
+            .recommend {
+              margin-top: 6 * $pr;
+              grid-template-columns: repeat(3, 1fr);
+              grid-gap: 14 * $pr 12 * $pr;
+            }
+            .more {
+              width: 120 * $pr;
+              height: 30 * $pr;
+              border-radius: 15 * $pr;
+              margin: 10 * $pr auto 0;
+              &__text {
+                font-size: 12 * $pr;
+              }
+            }
+          }
+
+          .leftAd1 {
+            margin-top: 20 * $pr;
           }
           .comment {
             margin-top: 20 * $pr;

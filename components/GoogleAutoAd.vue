@@ -5,10 +5,10 @@
       v-if="visible"
       class="adsbygoogle"
       style="display: block"
-      :data-ad-client="googleAdId"
+      data-ad-client="ca-pub-6430486603399192"
       :data-ad-slot="id"
       data-ad-format="auto"
-      data-full-width-responsive="false"
+      data-full-width-responsive="true"
     ></ins>
   </div>
 </template>
@@ -23,7 +23,6 @@ export default {
     return {
       erd: null,
       googleInit: null,
-      googleAdId: 'ca-pub-6430486603399192',
       visible: false,
     }
   },

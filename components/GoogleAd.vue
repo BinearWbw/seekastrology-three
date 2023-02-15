@@ -9,7 +9,7 @@
         width: '100%',
         height: '100%',
       }"
-      :data-ad-client="googleAdId"
+      data-ad-client="ca-pub-6430486603399192"
       :data-ad-slot="id"
       data-full-width-responsive="false"
     ></ins>
@@ -26,7 +26,6 @@ export default {
     return {
       erd: null,
       googleInit: null,
-      googleAdId: 'ca-pub-6430486603399192',
       visible: false,
     }
   },
