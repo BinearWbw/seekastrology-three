@@ -3,6 +3,18 @@
     <Header></Header>
     <Nuxt class="main__page" />
     <Footer></Footer>
+    <transition name="fade">
+      <Privacy
+        v-if="visiblePrivacy"
+        @show="visibleDialogPrivacy = true"
+        @close="visiblePrivacy = false"
+      ></Privacy>
+    </transition>
+    <lazy-dialog-privacy
+      :visible="visibleDialogPrivacy"
+      @close="closeDialogPrivacy"
+    >
+    </lazy-dialog-privacy>
   </main>
 </template>
 
@@ -24,6 +36,13 @@ export default {
       url = `http://${window.location.host}`
     }
     this.$store.commit('UPDATE_INTERSPERSE_URL', url)
+    if (!navigator.language.includes('zh')) {
+      let cookiesPrivacy =
+        JSON.parse(localStorage.getItem('cookiesPrivacy')) || null
+      if (!cookiesPrivacy) {
+        this.visiblePrivacy = true
+      }
+    }
   },
   methods: {
     closeDialogPrivacy() {

@@ -29,7 +29,7 @@ export default {
     return {
       title: `${
         this.statusCode === 404 ? 'Refresh the page' : 'Rendering page error'
-      } - gameseeks`,
+      } - taptogame`,
     }
   },
   methods: {

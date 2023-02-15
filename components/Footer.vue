@@ -8,7 +8,7 @@
       </div>
       <div class="bottom">
         <div class="left">
-          <p class="p1">
+          <p>
             Taptogame.com is a game aggregation platform. Through this platform,
             you can play games on different devices that support Android and
             iOS. Our team goal is to enable all players to find a game they
@@ -25,7 +25,6 @@
             have any feedback on us, please feel free to contact us by email:
             <a href="mailto:service@taptogame.com">Service@taptogame.com</a>.
           </p>
-          <p class="p2">copyright © 2022 Taptogame All rights reserved.</p>
         </div>
         <div class="right">
           <p class="title">SUBSCRIPTION</p>
@@ -174,7 +173,7 @@ export default {
       }
     }
     .bottom {
-      padding: 25px 0 24px;
+      padding: 25px 0 17px;
       display: flex;
       display: -webkit-box;
       display: -webkit-flex;
@@ -188,12 +187,7 @@ export default {
         p {
           font-size: 14px;
           line-height: 22px;
-        }
-        .p1 {
           color: #808191;
-        }
-        .p2 {
-          margin-top: 17px;
         }
       }
       .right {
@@ -244,6 +238,7 @@ export default {
       }
     }
     .link {
+      padding-bottom: 24px;
       display: flex;
       display: -webkit-box;
       display: -webkit-flex;
@@ -265,26 +260,25 @@ export default {
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
         a {
-          font-family: 'Heebo';
-          font-size: 18px;
-          line-height: 34px;
-          height: 34px;
-          position: relative;
           padding: 0 12px 0 10px;
+          font-size: 14px;
+          height: 22px;
+          line-height: 22px;
+          position: relative;
           -webkit-transition: color 0.3s;
           transition: color 0.3s;
-          color: #fff;
+          color: #808191;
           &:hover {
-            color: #ff0;
+            color: #fff;
           }
           &::after {
             content: '';
             position: absolute;
             right: 0;
-            top: 7px;
+            top: 4px;
             width: 2px;
-            height: 20px;
-            background-color: #fff;
+            height: 14px;
+            background-color: #808191;
           }
           &:last-child {
             padding: 0 0 0 10px;
@@ -299,9 +293,8 @@ export default {
       }
       span {
         margin-left: auto;
-        margin-bottom: 2px;
-        line-height: 1;
-        font-size: 16px;
+        line-height: 22px;
+        font-size: 14px;
       }
     }
   }
@@ -325,6 +318,25 @@ export default {
         .right {
           padding-top: 0;
           width: 100%;
+        }
+      }
+    }
+  }
+}
+@media (max-width: (900px)) {
+  .footer {
+    &__main {
+      .link {
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-align-items: flex-start;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        span {
+          margin-top: 17px;
+          margin-left: 0;
         }
       }
     }
@@ -358,15 +370,12 @@ export default {
         }
       }
       .bottom {
-        padding: 14 * $pr 23 * $pr 17 * $pr;
+        padding: 14 * $pr 23 * $pr 8 * $pr;
         .left {
           margin-top: 20 * $pr;
           p {
             font-size: 9 * $pr;
             line-height: 14 * $pr;
-          }
-          .p2 {
-            margin-top: 13 * $pr;
           }
         }
         .right {
@@ -401,6 +410,42 @@ export default {
               line-height: 44 * $pr;
             }
           }
+        }
+      }
+      .link {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-bottom: 17 * $pr;
+        .list {
+          -webkit-box-pack: center;
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          a {
+            margin: 5 * $pr 0;
+            padding: 0 6 * $pr 0 5 * $pr;
+            font-size: 9 * $pr;
+            height: 14 * $pr;
+            line-height: 14 * $pr;
+            &::after {
+              top: 0;
+              width: 1 * $pr;
+              height: 100%;
+            }
+            &:last-child {
+              padding: 0 0 0 5 * $pr;
+            }
+            &:first-child {
+              padding: 0 6 * $pr 0 0;
+            }
+          }
+        }
+        span {
+          margin-top: 8 * $pr;
+          line-height: 14 * $pr;
+          font-size: 9 * $pr;
         }
       }
     }

@@ -19,7 +19,7 @@
         outline: none;
       }
       * {
-        scrollbar-color: var(--shadow-color) transparent;
+        scrollbar-color: #7a2ce5 transparent;
         scrollbar-width: thin;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -37,14 +37,13 @@
         overflow-x: hidden;
         font-size: 12px;
         line-height: 1.6;
-        background-color: #6e60f3;
+        background-color: #18191d;
         overscroll-behavior: contain;
         -webkit-text-size-adjust: 100%;
         -webkit-tap-highlight-color: transparent;
         scrollbar-width: thin;
         scrollbar-color: #20313d transparent;
-        color: #fff;
-        font-family: Heebo;
+        color: #808191;
       }
       body {
         scrollbar-width: none;
@@ -57,13 +56,13 @@
       ::-webkit-scrollbar {
         width: 10px;
         background-color: #211640;
-        border-radius: var(--border-radius);
+        border-radius: 5px;
       }
       ::-webkit-scrollbar-thumb {
-        background-color: var(--shadow-color);
+        background-color: #7a2ce5;
         -webkit-transition: all 0.5s;
         transition: all 0.5s;
-        border-radius: var(--border-radius);
+        border-radius: 5px;
       }
       ::-webkit-scrollbar-button {
         display: none;
@@ -74,26 +73,11 @@
         padding: 0;
       }
       a {
-        color: #ffff00;
+        color: #fff;
         text-decoration: none;
       }
       .main {
         min-height: 100vh;
-        position: relative;
-      }
-      .main::before {
-        content: '';
-        z-index: -1;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 350px;
-        background: linear-gradient(
-          180deg,
-          #130939 0%,
-          rgba(19, 9, 57, 0) 100%
-        );
       }
       .title {
         width: 100%;
@@ -114,7 +98,7 @@
       }
       .text h2,
       .text h4 {
-        color: #ffff00;
+        color: #fff;
       }
     </style>
   </head>
@@ -126,7 +110,7 @@
           <p>Last updated: January 01, 2023</p>
           <p>
             This end user license agreement (this “EULA”) is a legally binding
-            agreement between you and Gameseeks and our Affiliates (as defined
+            agreement between you and Taptogame and our Affiliates (as defined
             below) (“we”, “our” or “us”). By installing, using or otherwise
             accessing our services, you agree to the terms and conditions of
             this EULA. If you do not agree to any term of this EULA, please do
