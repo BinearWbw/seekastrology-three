@@ -11,7 +11,8 @@
             :item="item"
             :key="item.id"
           ></home-hot>
-          <google-ad :id="'ID1-pc'" classNames="ad" />
+          <google-auto-ad :id="'2930821029'" classNames="ad ad1" />
+          <google-auto-ad :id="'2448439440'" classNames="ad ad2" />
         </div>
       </section>
       <section class="module">
@@ -25,7 +26,6 @@
             :key="item.id"
           ></home-best2>
         </div>
-        <google-ad :id="'ID1-pc'" classNames="h5ad" />
       </section>
     </div>
   </article>
@@ -95,18 +95,14 @@ export default {
           grid-gap: 20px;
         }
         .ad {
-          height: 250px;
-          background: #000000;
-          border-radius: 16px;
           grid-column-end: span 7;
-          grid-row-end: 5;
+          &.ad1 {
+            grid-row-end: 5;
+          }
         }
       }
       &:first-child {
         padding-top: 34px;
-      }
-      .h5ad {
-        display: none;
       }
     }
   }
@@ -196,19 +192,11 @@ export default {
             grid-gap: 20 * $pr 0;
           }
           .ad {
-            display: none;
+            grid-column-end: span 3;
           }
         }
         &:first-child {
           padding-top: 30 * $pr;
-        }
-        .h5ad {
-          margin-top: 25 * $pr;
-          display: block;
-          width: 100%;
-          height: 100 * $pr;
-          border-radius: 16 * $pr;
-          background: #000000;
         }
       }
     }

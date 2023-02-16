@@ -189,7 +189,7 @@
         </div>
       </section>
       <section class="game__main__right">
-        <google-ad :id="'2317890582'" classNames="rightAd" />
+        <google-auto-ad :id="'2317890582'" classNames="rightAd" />
         <div class="best">Best Games</div>
         <div class="list">
           <home-best2
@@ -1124,7 +1124,7 @@ export default {
       top: 0;
       width: 336px;
       .rightAd {
-        height: 305px;
+        width: 100%;
       }
       .best {
         font-family: BebasNeue-Regular;
