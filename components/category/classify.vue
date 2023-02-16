@@ -16,6 +16,7 @@
       <p class="p1">{{ item.name }}</p>
       <p class="p2">{{ item.total }} Games</p>
     </div>
+    <div class="rec" v-if="item.rec"></div>
   </a>
 </template>
 
@@ -54,6 +55,7 @@ export default {
   cursor: pointer;
   -webkit-transition: background-color 0.3s, -webkit-transform 0.3s;
   transition: background-color 0.3s, transform 0.3s;
+  position: relative;
   &__left {
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
@@ -102,6 +104,15 @@ export default {
       -webkit-transition: color 0.3s;
       transition: color 0.3s;
     }
+  }
+  .rec {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 44px;
+    height: 37px;
+    background: url('~assets/img/category/rec.png') no-repeat center center;
+    background-size: contain;
   }
   &:hover {
     background-color: #7a78ff;
@@ -157,6 +168,10 @@ export default {
         font-size: 10 * $pr;
         line-height: 13 * $pr;
       }
+    }
+    .rec {
+      width: 44 * $pr;
+      height: 37 * $pr;
     }
   }
 }

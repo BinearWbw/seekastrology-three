@@ -3,7 +3,9 @@
     <div class="category__main">
       <div class="nav">
         <img class="first" src="~/assets/img/game/nav.svg" alt="nav" />
-        <a :href="`${getIntersperseUrl}/#from=${$route.name}`" title="HOME">Home</a>
+        <a :href="`${getIntersperseUrl}/#from=${$route.name}`" title="HOME"
+          >Home</a
+        >
         <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
         <p class="name">Games categories</p>
       </div>
@@ -18,7 +20,7 @@
         <div class="categoriesH5">
           <div class="item">
             <div class="item__left">
-              <img src="~/assets/img/category/all.png" alt="All Games" />
+              <img src="~/assets/img/category/all.webp" alt="All Games" />
             </div>
             <div class="item__right">
               <p class="p1">All Games</p>
@@ -94,6 +96,7 @@ export default {
             origin: process.env.origin,
             page: 1,
             size: 1000,
+            rec: true,
           })
           .then((res) => {
             return res || []

@@ -13,7 +13,7 @@
               key="0"
             >
               <div class="item__left">
-                <img src="~/assets/img/category/all.png" alt="All Games" />
+                <img src="~/assets/img/category/all.webp" alt="All Games" />
               </div>
               <div class="item__right">
                 <p class="p1">All Games</p>

@@ -95,6 +95,7 @@ export default {
             origin: process.env.origin,
             page: 1,
             size: 1000,
+            rec: true,
           })
           .then((res) => {
             return res || []

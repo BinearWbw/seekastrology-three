@@ -5,7 +5,9 @@
       <section class="game__main__left">
         <div class="nav">
           <img class="first" src="~/assets/img/game/nav.svg" alt="nav" />
-          <a :href="`${getIntersperseUrl}/#from=${$route.name}`" title="HOME">Home</a>
+          <a :href="`${getIntersperseUrl}/#from=${$route.name}`" title="HOME"
+            >Home</a
+          >
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
           <a
             :href="`${getIntersperseUrl}/category/${gameInfo.category}/#from=${$route.name}`"
@@ -581,7 +583,7 @@ export default {
                 'EE dd, YYYY'
               )
             })
-            res.list = this.$utils.shuffleArr(res.list).slice(0,10)
+            res.list = this.$utils.shuffleArr(res.list).slice(0, 10)
           }
           this.bestList = res.list || []
         })
