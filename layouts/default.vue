@@ -36,18 +36,33 @@ export default {
       url = `http://${window.location.host}`
     }
     this.$store.commit('UPDATE_INTERSPERSE_URL', url)
-    if (!navigator.language.includes('zh')) {
-      let cookiesPrivacy =
-        JSON.parse(localStorage.getItem('cookiesPrivacy')) || null
-      if (!cookiesPrivacy) {
-        this.visiblePrivacy = true
-      }
-    }
+    this.getLocation()
   },
   methods: {
     closeDialogPrivacy() {
       this.visibleDialogPrivacy = false
       this.visiblePrivacy = false
+    },
+    getLocation() {
+      let cookiesPrivacyLoc = localStorage.getItem('cookiesPrivacy')
+      let cookiesPrivacySes = sessionStorage.getItem('cookiesPrivacy')
+      if (!cookiesPrivacyLoc && !cookiesPrivacySes) {
+        this.$apiList.home
+          .getGameLocation()
+          .then((res) => {
+            if (!res.loc) {
+              localStorage.setItem(
+                'cookiesPrivacy',
+                JSON.stringify({ accept: 0 })
+              )
+            } else {
+              this.visiblePrivacy = true
+            }
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
     },
   },
 }

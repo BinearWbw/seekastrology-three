@@ -19,10 +19,10 @@
             >
           </p>
           <div class="btns">
-            <button class="common-btn btn" @click="accept('all')">
+            <button class="common-btn btn" @click="accept(0)">
               Accept All Cookies
             </button>
-            <button class="common-btn btn" @click="accept('only')">
+            <button class="common-btn btn" @click="accept(1)">
               Accept only essential cookies
             </button>
           </div>
@@ -68,10 +68,9 @@ export default {
       this.$emit('close')
     },
     accept(res) {
-      let data = {
-        accept: res,
-      }
-      localStorage.setItem('cookiesPrivacy', JSON.stringify(data))
+      let storage = res ? sessionStorage : localStorage
+      let data = { accept: res }
+      storage.setItem('cookiesPrivacy', JSON.stringify(data))
       this.closeVisibleMain()
     },
   },

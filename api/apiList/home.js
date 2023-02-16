@@ -43,4 +43,8 @@ export default (axios) => ({
   getAllGame(params) {
     return axios.get('api/game', { params })
   },
+  /* 欧盟 */
+  getGameLocation() {
+    return axios.get('api/user/loc')
+  },
 })

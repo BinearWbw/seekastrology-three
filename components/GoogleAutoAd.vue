@@ -27,11 +27,16 @@ export default {
     }
   },
   mounted() {
+    let cookiesPrivacySes = sessionStorage.getItem('cookiesPrivacy')
     if (window.getComputedStyle(this.$refs.googleAdStyle).display !== 'none') {
       this.visible = true
       this.googleInit = setTimeout(() => {
         if (typeof window !== 'undefined')
           try {
+            const requestNonPersonalizedAds = cookiesPrivacySes ? 1 : 0
+            ;(adsbygoogle =
+              window.adsbygoogle || []).requestNonPersonalizedAds =
+              requestNonPersonalizedAds
             ;(adsbygoogle = window.adsbygoogle || []).push({})
           } catch (error) {}
       }, 500)
@@ -44,6 +49,10 @@ export default {
           this.googleInit = setTimeout(() => {
             if (typeof window !== 'undefined')
               try {
+                const requestNonPersonalizedAds = cookiesPrivacySes ? 1 : 0
+                ;(adsbygoogle =
+                  window.adsbygoogle || []).requestNonPersonalizedAds =
+                  requestNonPersonalizedAds
                 ;(adsbygoogle = window.adsbygoogle || []).push({})
               } catch (error) {}
           }, 500)

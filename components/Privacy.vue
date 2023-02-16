@@ -69,7 +69,7 @@ export default {
   methods: {
     accept() {
       let data = {
-        accept: 'all',
+        accept: 0,
       }
       localStorage.setItem('cookiesPrivacy', JSON.stringify(data))
       this.$emit('close')
