@@ -1,7 +1,7 @@
 <template>
   <a
     class="item scroll-start"
-    :href="`${getIntersperseUrl}/game/${href}-${item.id}/?from=${path}`"
+    :href="`${getIntersperseUrl}/game/${href}-${item.id}/#from=${$route.name}`"
   >
     <div class="item__top">
       <img
@@ -26,16 +26,6 @@ export default {
     href() {
       let href = this.item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
       return href
-    },
-    path() {
-      let path = ''
-      if (this.$route.path == '/') {
-        path = 'home'
-      } else {
-        path = this.$route.path.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
-        path = path.substring(1, path.length)
-      }
-      return path
     },
     ...mapGetters(['getIntersperseUrl']),
   },

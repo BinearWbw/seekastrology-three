@@ -23,7 +23,7 @@
         <div class="module__top">
           <div class="title">BEST GAMES</div>
           <a
-            :href="`${getIntersperseUrl}/best/?from=home`"
+            :href="`${getIntersperseUrl}/best/#from=${$route.name}`"
             class="more"
             title="BEST GAMES"
             >MORE GAMES</a
@@ -48,7 +48,7 @@
         <div class="module__top">
           <div class="title">LATEST GAMES</div>
           <a
-            :href="`${getIntersperseUrl}/new/?from=home`"
+            :href="`${getIntersperseUrl}/new/#from=${$route.name}`"
             class="more"
             title="LATEST GAMES"
             >MORE GAMES</a
@@ -66,7 +66,7 @@
         <div class="module__top">
           <div class="title">HOT GAMES</div>
           <a
-            :href="`${getIntersperseUrl}/hot/?from=home`"
+            :href="`${getIntersperseUrl}/hot/#from=${$route.name}`"
             class="more"
             title="HOT GAMES"
             >MORE GAMES</a
@@ -119,7 +119,7 @@ export default {
   methods: {
     goRec(item) {
       let href = item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
-      window.location = `${this.getIntersperseUrl}/game/${href}-${item.id}/?from=home`
+      window.location = `${this.getIntersperseUrl}/game/${href}-${item.id}/#from=${this.$route.name}`
     },
   },
 }

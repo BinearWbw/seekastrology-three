@@ -5,10 +5,10 @@
       <section class="game__main__left">
         <div class="nav">
           <img class="first" src="~/assets/img/game/nav.svg" alt="nav" />
-          <a :href="`${getIntersperseUrl}/?from=${path}`" title="HOME">Home</a>
+          <a :href="`${getIntersperseUrl}/#from=${$route.name}`" title="HOME">Home</a>
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
           <a
-            :href="`${getIntersperseUrl}/category/${gameInfo.category}/?from=${path}`"
+            :href="`${getIntersperseUrl}/category/${gameInfo.category}/#from=${$route.name}`"
             >{{ gameInfo.category }}</a
           >
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
@@ -431,16 +431,6 @@ export default {
     }
   },
   computed: {
-    path() {
-      let path = ''
-      if (this.$route.path == '/') {
-        path = 'home'
-      } else {
-        path = this.$route.path.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
-        path = path.substring(1, path.length)
-      }
-      return path
-    },
     ...mapGetters(['getIntersperseUrl']),
   },
   mounted() {

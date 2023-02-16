@@ -8,7 +8,7 @@
           <div class="list">
             <a
               class="item"
-              :href="`${getIntersperseUrl}/category/?from=${path}`"
+              :href="`${getIntersperseUrl}/category/#from=${$route.name}`"
               :class="{ active: !info }"
               key="0"
             >
@@ -64,16 +64,6 @@ export default {
         total += item.total
       })
       return total
-    },
-    path() {
-      let path = ''
-      if (this.$route.path == '/') {
-        path = 'home'
-      } else {
-        path = this.$route.path.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
-        path = path.substring(1, path.length)
-      }
-      return path
     },
     ...mapGetters(['getIntersperseUrl']),
   },

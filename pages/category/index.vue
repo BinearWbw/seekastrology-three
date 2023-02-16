@@ -3,7 +3,7 @@
     <div class="category__main">
       <div class="nav">
         <img class="first" src="~/assets/img/game/nav.svg" alt="nav" />
-        <a :href="`${getIntersperseUrl}/?from=category`" title="HOME">Home</a>
+        <a :href="`${getIntersperseUrl}/#from=${$route.name}`" title="HOME">Home</a>
         <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
         <p class="name">Games categories</p>
       </div>

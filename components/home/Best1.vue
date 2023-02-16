@@ -1,7 +1,7 @@
 <template>
   <a
     class="item"
-    :href="`${getIntersperseUrl}/game/${href}-${item.id}/?from=home`"
+    :href="`${getIntersperseUrl}/game/${href}-${item.id}/#from=${$route.name}`"
   >
     <div class="item__top">
       <img

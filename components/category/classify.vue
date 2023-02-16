@@ -1,7 +1,9 @@
 <template>
   <a
     class="item"
-    :href="`${getIntersperseUrl}/category/${item.name.toLowerCase()}/?from=${path}`"
+    :href="`${getIntersperseUrl}/category/${item.name.toLowerCase()}/#from=${
+      $route.name
+    }`"
   >
     <div class="item__left">
       <img
@@ -26,16 +28,6 @@ export default {
     href() {
       let href = this.item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
       return href
-    },
-    path() {
-      let path = ''
-      if (this.$route.path == '/') {
-        path = 'home'
-      } else {
-        path = this.$route.path.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
-        path = path.substring(1, path.length)
-      }
-      return path
     },
     ...mapGetters(['getIntersperseUrl']),
   },
