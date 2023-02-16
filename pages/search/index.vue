@@ -36,6 +36,7 @@
       <p class="none" v-else>
         Sorry, No <span>"{{ searchInputResult }}"</span> found
       </p>
+      <google-auto-ad :id="'4679032874'" classNames="ad" />
       <section class="module">
         <div class="module__top">
           <div class="title">More Games</div>
@@ -296,8 +297,12 @@ export default {
         color: #ffc908;
       }
     }
+    .ad {
+      margin-top: 30px;
+      width: 100%;
+    }
     .module {
-      padding-top: 40px;
+      padding-top: 30px;
       &__top {
         width: 100%;
         height: 41px;
@@ -443,8 +448,12 @@ export default {
         line-height: 18 * $pr;
         padding: 0 13 * $pr;
       }
+      .ad {
+        margin-top: 20 * $pr;
+        padding: 0 13 * $pr;
+      }
       .module {
-        padding: 59 * $pr 13 * $pr 0;
+        padding: 20 * $pr 13 * $pr 0;
         &__top {
           height: 18 * $pr;
           .title {

@@ -45,6 +45,7 @@
           ></home-hot>
         </div>
       </section>
+      <google-auto-ad :id="'2024949372'" classNames="ad" />
       <section class="module">
         <div class="module__top">
           <div class="title">MORE GAMES</div>
@@ -202,7 +203,7 @@ export default {
     width: 1310px;
     position: relative;
     .module {
-      padding-top: 40px;
+      padding-top: 30px;
       &__top {
         width: 100%;
         height: 41px;
@@ -231,6 +232,10 @@ export default {
       .common__loading {
         margin-top: 20px;
       }
+    }
+    .ad {
+      margin-top: 30px;
+      width: 100%;
     }
   }
 }
@@ -275,7 +280,7 @@ export default {
     &__main {
       padding: 0 23 * $pr;
       .module {
-        padding-top: 40 * $pr;
+        padding-top: 20 * $pr;
         &__top {
           height: 41 * $pr;
           .title {
@@ -400,6 +405,9 @@ export default {
         .common__loading {
           margin-top: 20 * $pr;
         }
+      }
+      .ad {
+        margin-top: 20 * $pr;
       }
     }
   }

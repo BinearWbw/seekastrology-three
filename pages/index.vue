@@ -388,7 +388,7 @@ export default {
         }
       }
       &.hot {
-        margin-top: 50px;
+        margin-top: 48px;
         .list {
           margin-top: 20px;
           display: grid;
@@ -669,7 +669,7 @@ export default {
           }
         }
         &.hot {
-          margin-top: 41 * $pr;
+          margin-top: 40 * $pr;
           padding: 0 13 * $pr;
           .list {
             margin-top: 15 * $pr;

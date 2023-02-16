@@ -73,7 +73,7 @@ export default {
     width: 1310px;
     position: relative;
     .module {
-      padding-top: 40px;
+      padding-top: 30px;
       &__top {
         width: 100%;
         height: 41px;
