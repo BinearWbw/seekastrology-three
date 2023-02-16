@@ -192,7 +192,7 @@
         <div class="list">
           <home-best2
             class="active"
-            v-for="item in recList.slice(0, 10)"
+            v-for="item in bestList"
             :item="item"
             :key="item.id"
           ></home-best2>
@@ -295,6 +295,7 @@ export default {
         speed: 500,
         grabCursor: true,
       },
+      bestList: [],
     }
   },
   components: {
@@ -359,14 +360,7 @@ export default {
               Math.ceil(totalNumRec / searchRec.size) === 0
                 ? 1
                 : Math.ceil(totalNumRec / searchRec.size)
-            return res.list || []
-            // res.list &&
-            //   res.list.map((item) => {
-            //     item.updated = $utils.formatDate(
-            //       new Date(item.updated * 1000),
-            //       'EE dd, YYYY'
-            //     )
-            //   })
+            return $utils.shuffleArr(res.list) || []
           }),
         $apiList.home
           .getGameComment({
@@ -448,6 +442,32 @@ export default {
       return path
     },
     ...mapGetters(['getIntersperseUrl']),
+  },
+  mounted() {
+    this.$nextTick(() => {
+      if (this.gameOs[0].url) {
+        this.qrcodeObj1 = new QRCode('androidCode', {
+          text: this.gameOs[0].url,
+          width: 90,
+          height: 90,
+          colorDark: '#000',
+          colorLight: '#fff',
+          correctLevel: QRCode.CorrectLevel.H,
+        })
+      }
+      if (this.gameOs[1].url) {
+        this.qrcodeObj2 = new QRCode('iosCode', {
+          text: this.gameOs[1].url,
+          width: 90,
+          height: 90,
+          colorDark: '#000',
+          colorLight: '#fff',
+          correctLevel: QRCode.CorrectLevel.H,
+        })
+      }
+      this.show = false
+    })
+    this.getBestGame()
   },
   methods: {
     submit() {
@@ -557,31 +577,28 @@ export default {
           this.status = false
         })
     },
-  },
-  mounted() {
-    this.$nextTick(() => {
-      if (this.gameOs[0].url) {
-        this.qrcodeObj1 = new QRCode('androidCode', {
-          text: this.gameOs[0].url,
-          width: 90,
-          height: 90,
-          colorDark: '#000',
-          colorLight: '#fff',
-          correctLevel: QRCode.CorrectLevel.H,
+    getBestGame() {
+      this.$apiList.home
+        .getGameMenu({
+          origin: process.env.origin,
+          menu: 'best-games',
         })
-      }
-      if (this.gameOs[1].url) {
-        this.qrcodeObj2 = new QRCode('iosCode', {
-          text: this.gameOs[1].url,
-          width: 90,
-          height: 90,
-          colorDark: '#000',
-          colorLight: '#fff',
-          correctLevel: QRCode.CorrectLevel.H,
+        .then((res) => {
+          if (res.list) {
+            res.list.map((item) => {
+              item.updated = this.$utils.formatDate(
+                new Date(item.updated * 1000),
+                'EE dd, YYYY'
+              )
+            })
+            res.list = this.$utils.shuffleArr(res.list).slice(0,10)
+          }
+          this.bestList = res.list || []
         })
-      }
-      this.show = false
-    })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
   },
   filters: {
     detectionArr(arr) {
