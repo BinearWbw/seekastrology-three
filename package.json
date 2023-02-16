@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev:prod": "cross-env NODE_ENV=production PUBLIC_URL=https://taptogame.com PRIVATE_URL=https://taptogame.com PUBLIC_PATH=/.nuxt nuxt",
+    "dev:prod": "cross-env NODE_ENV=production PUBLIC_URL=https://api.taptogame.com PRIVATE_URL=https://api.taptogame.com PUBLIC_PATH=/.nuxt nuxt",
     "dev": "cross-env NODE_ENV=development PUBLIC_URL=http://47.108.105.189 PRIVATE_URL=http://47.108.105.189 PUBLIC_PATH=/.nuxt nuxt",
-    "build": "cross-env NODE_ENV=production PUBLIC_URL=https://taptogame.com PRIVATE_URL=http://127.0.0.1:9907 PUBLIC_PATH=/.nuxt nuxt build",
-    "start": "cross-env NODE_ENV=production PUBLIC_URL=https://taptogame.com PRIVATE_URL=http://127.0.0.1:9907 PUBLIC_PATH=/.nuxt nuxt start",
-    "generate": "cross-env NODE_ENV=production PUBLIC_URL=https://taptogame.com PRIVATE_URL=https://taptogame.com PUBLIC_PATH=/.nuxt nuxt generate --fail-on-error",
+    "build": "cross-env NODE_ENV=production PUBLIC_URL=https://api.taptogame.com PRIVATE_URL=http://127.0.0.1:9907 PUBLIC_PATH=/.nuxt nuxt build",
+    "start": "cross-env NODE_ENV=production PUBLIC_URL=https://api.taptogame.com PRIVATE_URL=http://127.0.0.1:9907 PUBLIC_PATH=/.nuxt nuxt start",
+    "generate": "cross-env NODE_ENV=production PUBLIC_URL=https://api.taptogame.com PRIVATE_URL=https://api.taptogame.com PUBLIC_PATH=/.nuxt nuxt generate --fail-on-error",
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:prettier",
     "lintfix": "prettier --write --list-different .",
-    "pm2": "cross-env NODE_ENV=production PUBLIC_URL=https://taptogame.com PRIVATE_URL=http://127.0.0.1:9907 PUBLIC_PATH=/.nuxt pm2 start ecosystem.config.js"
+    "pm2": "cross-env NODE_ENV=production PUBLIC_URL=https://api.taptogame.com PRIVATE_URL=http://127.0.0.1:9907 PUBLIC_PATH=/.nuxt pm2 start ecosystem.config.js"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
