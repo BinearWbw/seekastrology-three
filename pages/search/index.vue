@@ -18,7 +18,12 @@
         />
         <button class="button common__btn" @click="searchResult"></button>
       </div>
-      <section class="search" v-if="gameList.length > 0">
+      <div class="search__loading" v-if="searchLoading">
+        <div class="common__loading">
+          <div class="common__loading__loader"></div>
+        </div>
+      </div>
+      <section class="search" v-else-if="gameList.length > 0">
         <p class="title">
           <span>"{{ searchInput }}" </span>,
           {{ gameList.length > 1 ? gameList.length + ' results' : '1 result' }}
@@ -61,6 +66,7 @@ export default {
   name: 'Search',
   data() {
     return {
+      searchLoading: true,
       loading: false,
       status: false,
       gameList: [],
@@ -108,6 +114,8 @@ export default {
     if (this.$route.query.input) {
       this.searchInput = this.$route.query.input
       this.searchResult()
+    } else {
+      this.searchLoading = false
     }
   },
   methods: {
@@ -119,6 +127,7 @@ export default {
           msg: 'Search is required and the length cannot be less than 2',
         })
       } else {
+        this.searchLoading = true
         this.$apiList.home
           .getGameSearch({
             origin: process.env.origin,
@@ -134,6 +143,7 @@ export default {
                 )
               })
             this.gameList = res
+            this.searchLoading = false
           })
           .catch((error) => {
             this.$store.dispatch('toast', {
@@ -141,6 +151,7 @@ export default {
               msg: error.msg,
             })
             this.status = false
+            this.searchLoading = false
           })
       }
     },
@@ -252,7 +263,7 @@ export default {
       width: 100%;
       background: #282a31;
       border-radius: 18px;
-      margin-top: 21px;
+      margin-top: 20px;
       padding-top: 35px;
       .title {
         text-align: center;
@@ -273,12 +284,38 @@ export default {
         grid-gap: 28px 30px;
       }
     }
+    .search__loading {
+      width: 100%;
+      height: 200px;
+      background: #282a31;
+      border-radius: 18px;
+      margin-top: 20px;
+      overflow: hidden;
+      appearance: none;
+      backface-visibility: hidden;
+      transform: translate(0, 0, 0);
+      -webkit-appearance: none;
+      -webkit-backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+      display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
     .none {
       width: 100%;
       height: 200px;
       background: #282a31;
       border-radius: 18px;
-      margin-top: 21px;
+      margin-top: 20px;
       font-size: 24px;
       text-align: center;
       line-height: 204px;
@@ -433,6 +470,12 @@ export default {
           grid-template-columns: repeat(3, 1fr);
           grid-gap: 28 * $pr 30 * $pr;
         }
+      }
+      .search__loading {
+        height: 36 * $pr;
+        border-radius: 0;
+        background: transparent;
+        margin-top: 45 * $pr;
       }
       .none {
         height: 18 * $pr;

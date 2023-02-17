@@ -44,6 +44,7 @@
             :name="gameInfo.name"
             :desc="gameInfo.desc"
           ></game-info>
+          <google-auto-ad :id="'6150976776'" classNames="leftAd1" />
           <div class="module">
             <div class="module__title">RELATED GAMES</div>
             <div class="related">
@@ -54,7 +55,6 @@
               ></home-latest>
             </div>
           </div>
-          <google-auto-ad :id="'6150976776'" classNames="leftAd1" />
           <div class="info">
             <p class="info__title">Get The Game</p>
             <div class="info__main">

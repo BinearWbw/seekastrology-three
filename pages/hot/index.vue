@@ -96,6 +96,9 @@ export default {
         }
         .ad {
           grid-column-end: span 7;
+          :deep(.title) {
+            text-align: center;
+          }
           &.ad1 {
             grid-row-end: 5;
           }
@@ -123,6 +126,9 @@ export default {
           }
           .ad {
             grid-column-end: span 6;
+            :deep(.title) {
+              text-align: left;
+            }
           }
         }
       }
