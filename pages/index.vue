@@ -9,7 +9,31 @@
           :key="item.id"
           @click="goRec(item)"
         >
-          <img class="bg" :src="$config.cdnUrl + item.icon" :alt="item.name" />
+          <nuxt-img
+            class="bg"
+            :src="item.icon"
+            preload
+            fit="cover"
+            :width="
+              index === 0
+                ? 214
+                : index === 1
+                ? 658
+                : index === 2 || index === 3
+                ? 624
+                : 196
+            "
+            :height="
+              index === 0
+                ? 448
+                : index === 1
+                ? 470
+                : index === 2 || index === 3
+                ? 676
+                : 214
+            "
+            :alt="item.name"
+          ></nuxt-img>
           <div class="info">
             <p class="info__title">{{ item.name }}</p>
             <div class="info__bottom">
@@ -541,7 +565,7 @@ export default {
           -webkit-flex-shrink: 0;
           flex-shrink: 0;
           width: 156 * $pr;
-          height: 170 * $pr;
+          height: 169 * $pr;
           border-radius: 13 * $pr;
           .bg {
             border-radius: 13 * $pr;
@@ -573,7 +597,7 @@ export default {
         }
         .rec2 {
           width: 100%;
-          height: 228 * $pr;
+          height: 235 * $pr;
           .info {
             padding-top: 22 * $pr;
             padding-left: 17 * $pr;

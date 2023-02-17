@@ -76,7 +76,7 @@ export default {
   min-height: 100vh;
   &__page {
     overflow: hidden;
-    background: url('~assets/img/home/bg.png') no-repeat center top;
+    background: url('/img/bg.png') no-repeat center top;
     background-size: 100% 750px;
   }
 }
@@ -84,7 +84,7 @@ export default {
   $pr: math.div(1vw, 3.75);
   .main {
     &__page {
-      background: url('~assets/img/home/h5bg.png') no-repeat center top;
+      background: url('/img/h5bg.png') no-repeat center top;
       background-size: 375 * $pr 520 * $pr;
     }
   }

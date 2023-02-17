@@ -10,6 +10,8 @@
         width="210"
         height="210"
         :alt="item.name"
+        :modifiers="{ progressive: true }"
+        loading="lazy"
       ></nuxt-img>
     </div>
     <p class="item__title" :title="item.name">

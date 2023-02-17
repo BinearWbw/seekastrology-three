@@ -152,6 +152,8 @@ module.exports = {
       { rel: 'preconnect', href: 'https://asserts.gameseeks.com' },
       { rel: 'preconnect', href: 'https://www.taptogame.com' },
       { rel: 'preconnect', href: 'https://taptogame.com' },
+      { rel: 'preload', as: 'image', href: '/img/h5bg.png' },
+      { rel: 'preload', as: 'image', href: '/img/bg.png' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'shortcut icon', sizes: '512x512', href: '/favicon.png' },
       { rel: 'apple-touch-icon', href: '/favicon.png' },
