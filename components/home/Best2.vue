@@ -4,11 +4,13 @@
     :href="`${getIntersperseUrl}/game/${href}-${item.id}/#from=${$route.name}`"
   >
     <div class="item__left">
-      <img
-        v-lazy="$config.cdnUrl + item.icon"
-        :key="item.icon"
+      <nuxt-img
+        :src="item.icon"
+        fit="cover"
+        width="144"
+        height="192"
         :alt="item.name"
-      />
+      ></nuxt-img>
     </div>
     <div class="item__right">
       <div class="item__right-l">

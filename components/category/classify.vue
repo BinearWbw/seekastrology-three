@@ -6,11 +6,13 @@
     }`"
   >
     <div class="item__left">
-      <img
-        v-lazy="$config.cdnUrl + item.bg_icon"
-        :key="item.bg_icon"
+      <nuxt-img
+        :src="item.bg_icon"
+        fit="cover"
+        width="96"
+        height="96"
         :alt="item.name"
-      />
+      ></nuxt-img>
     </div>
     <div class="item__right">
       <p class="p1">{{ item.name }}</p>

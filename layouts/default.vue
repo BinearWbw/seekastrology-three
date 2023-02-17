@@ -85,7 +85,7 @@ export default {
   .main {
     &__page {
       background: url('~assets/img/home/h5bg.png') no-repeat center top;
-      background-size: 100% 520 * $pr;
+      background-size: 375 * $pr 520 * $pr;
     }
   }
 }

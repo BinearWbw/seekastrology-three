@@ -148,6 +148,7 @@ module.exports = {
       },
     ],
     link: [
+      { rel: 'preconnect', href: 'https://ik.imagekit.io' },
       { rel: 'preconnect', href: 'https://asserts.gameseeks.com' },
       { rel: 'preconnect', href: 'https://www.taptogame.com' },
       { rel: 'preconnect', href: 'https://taptogame.com' },
@@ -170,7 +171,7 @@ module.exports = {
   loading: false,
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~plugins/axios', '~plugins/utils', '~plugins/vue-lazyload'],
+  plugins: ['~plugins/axios', '~plugins/utils'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -212,7 +213,7 @@ module.exports = {
   sitemap: sitemap,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['@nuxtjs/pwa'],
+  buildModules: ['@nuxtjs/pwa', '@nuxt/image'],
 
   toast: {
     draggable: false,
@@ -232,6 +233,13 @@ module.exports = {
     // workbox: {
     //   dev: true,
     // },
+  },
+
+  image: {
+    provider: 'imagekit',
+    imagekit: {
+      baseURL: 'https://ik.imagekit.io/gameseeks/',
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

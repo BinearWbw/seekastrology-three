@@ -24,7 +24,13 @@
                 v-for="(item, index) in gameInfo.banner"
                 :key="index"
               >
-                <img :src="$config.cdnUrl + item" alt="swiper" />
+                <nuxt-img
+                  :src="item"
+                  fit="cover"
+                  width="640"
+                  height="360"
+                  alt="swiper"
+                ></nuxt-img>
               </swiper-slide>
             </swiper>
           </div>
@@ -1290,8 +1296,10 @@ export default {
         .main {
           margin-top: 24 * $pr;
           .banner {
+            width: calc(100% - 9 * $pr);
+            margin: 0 auto;
             padding: 0;
-            height: 171 * $pr;
+            height: 180 * $pr;
             border-radius: 16 * $pr;
             .swiper {
               &__item {
