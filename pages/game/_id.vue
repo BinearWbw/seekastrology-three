@@ -10,7 +10,7 @@
           >
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
           <a
-            :href="`${getIntersperseUrl}/category/${gameInfo.category}/#from=${$route.name}`"
+            :href="`${getIntersperseUrl}/category/${gameInfo.category.toLowerCase()}/#from=${$route.name}`"
             >{{ gameInfo.category }}</a
           >
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />

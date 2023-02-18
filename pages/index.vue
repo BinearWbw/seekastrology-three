@@ -12,7 +12,7 @@
           <nuxt-img
             class="bg"
             :src="item.icon"
-            preload
+            :preload="index === 0 ? false : index < 4 ? true : false"
             fit="cover"
             :width="
               index === 0
@@ -20,7 +20,7 @@
                 : index === 1
                 ? 658
                 : index === 2 || index === 3
-                ? 624
+                ? 312
                 : 196
             "
             :height="
@@ -29,7 +29,7 @@
                 : index === 1
                 ? 470
                 : index === 2 || index === 3
-                ? 676
+                ? 338
                 : 214
             "
             :alt="item.name"
