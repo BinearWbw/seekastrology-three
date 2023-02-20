@@ -123,7 +123,7 @@ export default {
       margin-top: 12px;
       font-size: 14px;
       line-height: 18px;
-      color: #808191;
+      color: #aaabbd;
       a {
         color: #fff;
       }

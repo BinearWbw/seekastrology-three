@@ -56,7 +56,7 @@ export default {
   &__main {
     margin-top: 24px;
     width: 100%;
-    color: #808191;
+    color: #aaabbd;
     max-height: 120px;
     overflow: hidden;
     p {

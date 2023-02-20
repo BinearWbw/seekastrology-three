@@ -375,7 +375,7 @@ export default {
                     white-space: nowrap;
                     text-overflow: ellipsis;
                     overflow: hidden;
-                    color: #808191;
+                    color: #aaabbd;
                   }
                 }
                 &.show {

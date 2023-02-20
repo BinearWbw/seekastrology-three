@@ -232,7 +232,7 @@ export default {
       a {
         font-size: 14px;
         line-height: 18px;
-        color: #808191;
+        color: #aaabbd;
         -webkit-transition: color 0.3s;
         transition: color 0.3s;
         &:hover {
@@ -460,7 +460,7 @@ export default {
           display: block;
           font-size: 14 * $pr;
           line-height: 18 * $pr;
-          color: #808191;
+          color: #aaabbd;
           font-family: 'Bahnschrift';
         }
         .list {
@@ -493,7 +493,7 @@ export default {
           .title {
             font-size: 14 * $pr;
             line-height: 18 * $pr;
-            color: #808191;
+            color: #aaabbd;
             font-family: 'Bahnschrift';
           }
         }

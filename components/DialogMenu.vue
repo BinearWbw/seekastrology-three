@@ -140,7 +140,7 @@ export default {
         width: 100%;
         height: 100%;
         font-size: 21px;
-        color: #808191;
+        color: #aaabbd;
         padding: 3px 85px 0 34px;
       }
       button {
@@ -158,7 +158,7 @@ export default {
       margin-top: 45px;
       font-size: 21px;
       line-height: 27px;
-      color: #808191;
+      color: #aaabbd;
       margin-bottom: 22px;
     }
     .menu {
@@ -199,7 +199,7 @@ export default {
         .name {
           font-size: 21px;
           line-height: 1;
-          color: #808191;
+          color: #aaabbd;
           -webkit-transition: color 0.3s;
           transition: color 0.3s;
         }

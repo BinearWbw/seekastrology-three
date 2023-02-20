@@ -374,7 +374,7 @@ export default {
           -webkit-flex-shrink: 0;
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
-          color: #808191;
+          color: #aaabbd;
         }
       }
       &.best {

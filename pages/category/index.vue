@@ -207,7 +207,7 @@ export default {
       a {
         font-size: 14px;
         line-height: 18px;
-        color: #808191;
+        color: #aaabbd;
         -webkit-transition: color 0.3s;
         transition: color 0.3s;
         &:hover {
@@ -392,7 +392,7 @@ export default {
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
-                color: #808191;
+                color: #aaabbd;
               }
             }
             &.show {

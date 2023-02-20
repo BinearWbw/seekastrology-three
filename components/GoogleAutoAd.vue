@@ -74,7 +74,7 @@ export default {
   .title {
     font-size: 20px;
     line-height: 1;
-    color: #808191;
+    color: #aaabbd;
     margin-bottom: 5px;
   }
 }

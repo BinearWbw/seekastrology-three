@@ -62,7 +62,7 @@ export default {
     margin-top: 14px;
     font-size: 15px;
     line-height: 18px;
-    color: #808191;
+    color: #aaabbd;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;

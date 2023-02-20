@@ -53,7 +53,7 @@ export default {
   &__top {
     width: 74px;
     height: 74px;
-    background-color: #808191;
+    background-color: #aaabbd;
     border-radius: 16px;
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
@@ -106,7 +106,7 @@ export default {
       margin-top: auto;
       font-size: 14px;
       line-height: 18px;
-      color: #808191;
+      color: #aaabbd;
       text-align: center;
       -webkit-transition: color 0.3s;
       transition: color 0.3s;

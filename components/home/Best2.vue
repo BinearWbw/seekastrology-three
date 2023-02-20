@@ -114,7 +114,7 @@ export default {
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        color: #808191;
+        color: #aaabbd;
         -webkit-transition: color 0.3s;
         transition: color 0.3s;
       }
@@ -123,7 +123,7 @@ export default {
         margin-top: 6px;
         font-size: 12px;
         line-height: 14px;
-        color: #808191;
+        color: #aaabbd;
         position: relative;
         -webkit-transition: color 0.3s;
         transition: color 0.3s;
@@ -152,7 +152,7 @@ export default {
       background: #1f2128;
       border-radius: 48px;
       font-size: 12px;
-      color: #808191;
+      color: #aaabbd;
     }
   }
   &.active {

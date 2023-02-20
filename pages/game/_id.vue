@@ -10,7 +10,9 @@
           >
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
           <a
-            :href="`${getIntersperseUrl}/category/${gameInfo.category.toLowerCase()}/#from=${$route.name}`"
+            :href="`${getIntersperseUrl}/category/${gameInfo.category.toLowerCase()}/#from=${
+              $route.name
+            }`"
             >{{ gameInfo.category }}</a
           >
           <img class="arrow" src="~/assets/img/game/arrow.png" alt="nav" />
@@ -637,7 +639,7 @@ export default {
         a {
           font-size: 14px;
           line-height: 18px;
-          color: #808191;
+          color: #aaabbd;
           -webkit-transition: color 0.3s;
           transition: color 0.3s;
           &:hover {
@@ -773,7 +775,7 @@ export default {
               width: 100%;
               height: 100%;
               border-radius: 50%;
-              background-color: #808191;
+              background-color: #aaabbd;
             }
             &:last-child {
               margin-right: 0;
@@ -826,7 +828,7 @@ export default {
                 color: #fff;
               }
               span:last-child {
-                color: #808191;
+                color: #aaabbd;
                 padding-left: 7px;
               }
               img {
@@ -965,7 +967,7 @@ export default {
           &__remark {
             margin-top: 38px;
             font-size: 14px;
-            color: #808191;
+            color: #aaabbd;
             line-height: 20px;
           }
         }
@@ -1057,7 +1059,7 @@ export default {
               background-color: rgba(0, 0, 0, 0.45);
               border-radius: 20px;
               font-size: 14px;
-              color: #808191;
+              color: #aaabbd;
               padding: 0 20px;
             }
             textarea {
@@ -1068,7 +1070,7 @@ export default {
               border-radius: 20px;
               font-size: 14px;
               line-height: 18px;
-              color: #808191;
+              color: #aaabbd;
               padding: 12px 20px;
               resize: none;
             }
@@ -1104,7 +1106,7 @@ export default {
                   }
                   span:last-child {
                     padding-left: 8px;
-                    color: #808191;
+                    color: #aaabbd;
                   }
                 }
                 .text {
@@ -1112,7 +1114,7 @@ export default {
                   margin-top: 14px;
                   font-size: 14px;
                   line-height: 18px;
-                  color: #808191;
+                  color: #aaabbd;
                 }
                 &:last-child {
                   border-bottom: none;
@@ -1334,7 +1336,7 @@ export default {
                 width: 100%;
                 height: 100%;
                 border-radius: 50%;
-                background-color: #808191;
+                background-color: #aaabbd;
               }
             }
             :deep(.swiper-pagination-customs-active) {

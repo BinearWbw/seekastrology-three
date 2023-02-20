@@ -187,7 +187,7 @@ export default {
         p {
           font-size: 14px;
           line-height: 22px;
-          color: #808191;
+          color: #aaabbd;
         }
       }
       .right {
@@ -218,7 +218,7 @@ export default {
             background: rgba(0, 0, 0, 0.45);
             border-radius: 48px;
             font-size: 14px;
-            color: #808191;
+            color: #aaabbd;
             padding: 0 16px;
             margin-right: 20px;
           }
@@ -267,7 +267,7 @@ export default {
           position: relative;
           -webkit-transition: color 0.3s;
           transition: color 0.3s;
-          color: #808191;
+          color: #aaabbd;
           &:hover {
             color: #fff;
           }
@@ -278,7 +278,7 @@ export default {
             top: 4px;
             width: 2px;
             height: 14px;
-            background-color: #808191;
+            background-color: #aaabbd;
           }
           &:last-child {
             padding: 0 0 0 10px;

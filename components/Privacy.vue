@@ -110,7 +110,7 @@ export default {
       margin-top: 12px;
       font-size: 14px;
       line-height: 18px;
-      color: #808191;
+      color: #aaabbd;
     }
     &.line {
       position: relative;
@@ -122,7 +122,7 @@ export default {
         right: 25px;
         width: 1px;
         height: calc(100% - 32px);
-        background-color: #808191;
+        background-color: #aaabbd;
       }
     }
   }
@@ -142,7 +142,7 @@ export default {
       border-radius: 12px;
       font-size: 16px;
       font-weight: bold;
-      color: #808191;
+      color: #aaabbd;
       &.accept {
         color: #fff;
         background: #6c5dd3;

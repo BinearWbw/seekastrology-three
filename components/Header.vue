@@ -42,7 +42,7 @@
           v-model="searchInput"
           placeholder="Search"
         />
-        <button class="button" @click="search"></button>
+        <button class="button" aria-label="Search" @click="search"></button>
       </div>
       <div class="menu common__btn" @click="visibleMenu = true"></div>
       <lazy-dialog-menu
@@ -207,7 +207,7 @@ export default {
           padding-left: 10px;
           font-size: 15px;
           line-height: 1;
-          color: #808191;
+          color: #aaabbd;
           -webkit-transition: color 0.3s;
           transition: color 0.3s;
         }
@@ -236,7 +236,7 @@ export default {
         width: 100%;
         height: 100%;
         font-size: 14px;
-        color: #808191;
+        color: #aaabbd;
         padding: 2px 57px 0 23px;
       }
       button {

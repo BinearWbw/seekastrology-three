@@ -220,15 +220,15 @@ input::-webkit-inner-spin-button {
 }
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
-  color: #808191;
+  color: #aaabbd;
 }
 input::-moz-input-placeholder,
 textarea::-moz-input-placeholder {
-  color: #808191;
+  color: #aaabbd;
 }
 input::-ms-input-placeholder,
 textarea::-ms-input-placeholder {
-  color: #808191;
+  color: #aaabbd;
 }
 [tpye='number'] {
   -moz-appearance: textfield;
@@ -328,7 +328,7 @@ body::-webkit-scrollbar {
     pointer-events: none;
   }
   .common__loading__loader {
-    background: #808191;
+    background: #aaabbd;
     position: relative;
     -webkit-animation: common__loader 1s ease-in-out infinite;
     animation: common__loader 1s ease-in-out infinite;
@@ -360,23 +360,23 @@ body::-webkit-scrollbar {
   @-webkit-keyframes common__loader {
     0%,
     100% {
-      -webkit-box-shadow: 0 0 0 #808191, 0 0 0 #808191;
-      box-shadow: 0 0 0 #808191, 0 0 0 #808191;
+      -webkit-box-shadow: 0 0 0 #aaabbd, 0 0 0 #aaabbd;
+      box-shadow: 0 0 0 #aaabbd, 0 0 0 #aaabbd;
     }
     50% {
-      -webkit-box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
-      box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
+      -webkit-box-shadow: 0 -0.25em 0 #aaabbd, 0 0.25em 0 #aaabbd;
+      box-shadow: 0 -0.25em 0 #aaabbd, 0 0.25em 0 #aaabbd;
     }
   }
   @keyframes common__loader {
     0%,
     100% {
-      -webkit-box-shadow: 0 0 0 #808191, 0 0 0 #808191;
-      box-shadow: 0 0 0 #808191, 0 0 0 #808191;
+      -webkit-box-shadow: 0 0 0 #aaabbd, 0 0 0 #aaabbd;
+      box-shadow: 0 0 0 #aaabbd, 0 0 0 #aaabbd;
     }
     50% {
-      -webkit-box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
-      box-shadow: 0 -0.25em 0 #808191, 0 0.25em 0 #808191;
+      -webkit-box-shadow: 0 -0.25em 0 #aaabbd, 0 0.25em 0 #aaabbd;
+      box-shadow: 0 -0.25em 0 #aaabbd, 0 0.25em 0 #aaabbd;
     }
   }
 }
