@@ -305,7 +305,7 @@ export default {
       .menu {
         margin-left: 30px;
         display: block;
-        width: 33px;
+        width: 48px;
         height: 100%;
         background: url('~assets/img/header/menu.png') no-repeat center center;
         background-size: contain;
