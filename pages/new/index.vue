@@ -97,8 +97,8 @@ export default {
         .ad {
           grid-column-end: span 7;
           :deep(.title) {
-              text-align: center;
-            }
+            text-align: center;
+          }
           &.ad1 {
             grid-row-end: 5;
           }

@@ -4,17 +4,8 @@
     <Nuxt class="main__page" />
     <Footer></Footer>
     <transition name="fade">
-      <Privacy
-        v-if="visiblePrivacy"
-        @show="visibleDialogPrivacy = true"
-        @close="visiblePrivacy = false"
-      ></Privacy>
+      <Privacy v-if="visiblePrivacy" @close="visiblePrivacy = false"></Privacy>
     </transition>
-    <lazy-dialog-privacy
-      :visible="visibleDialogPrivacy"
-      @close="closeDialogPrivacy"
-    >
-    </lazy-dialog-privacy>
   </main>
 </template>
 
@@ -23,7 +14,6 @@ export default {
   data() {
     return {
       visiblePrivacy: false,
-      visibleDialogPrivacy: false,
     }
   },
   mounted() {
@@ -39,10 +29,6 @@ export default {
     this.getLocation()
   },
   methods: {
-    closeDialogPrivacy() {
-      this.visibleDialogPrivacy = false
-      this.visiblePrivacy = false
-    },
     getLocation() {
       let cookiesPrivacyLoc = localStorage.getItem('cookiesPrivacy')
       let cookiesPrivacySes = sessionStorage.getItem('cookiesPrivacy')
@@ -50,7 +36,7 @@ export default {
         this.$apiList.home
           .getGameLocation()
           .then((res) => {
-            if (!res.loc) {
+            if (res.loc) {
               localStorage.setItem(
                 'cookiesPrivacy',
                 JSON.stringify({ accept: 0 })
