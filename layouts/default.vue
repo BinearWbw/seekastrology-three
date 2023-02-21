@@ -36,7 +36,7 @@ export default {
         this.$apiList.home
           .getGameLocation()
           .then((res) => {
-            if (res.loc) {
+            if (!res.loc) {
               localStorage.setItem(
                 'cookiesPrivacy',
                 JSON.stringify({ accept: 0 })
