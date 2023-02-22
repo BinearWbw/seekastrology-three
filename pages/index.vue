@@ -50,7 +50,7 @@
             :href="`${getIntersperseUrl}/best/#from=${$route.name}`"
             class="more"
             title="BEST GAMES"
-            >MORE GAMES</a
+            >More Games ></a
           >
         </div>
         <div class="list1">
@@ -75,7 +75,7 @@
             :href="`${getIntersperseUrl}/new/#from=${$route.name}`"
             class="more"
             title="LATEST GAMES"
-            >MORE GAMES</a
+            >More Games ></a
           >
         </div>
         <div class="list">
@@ -93,7 +93,7 @@
             :href="`${getIntersperseUrl}/hot/#from=${$route.name}`"
             class="more"
             title="HOT GAMES"
-            >MORE GAMES</a
+            >More Games ></a
           >
         </div>
         <div class="list">
