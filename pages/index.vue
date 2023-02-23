@@ -32,6 +32,7 @@
                 ? 338
                 : 214
             "
+            :loading="index === 0 ? 'lazy' : index < 4 ? 'auto' : 'lazy'"
             :alt="item.name"
           ></nuxt-img>
           <div class="info">
@@ -46,12 +47,9 @@
       <section class="module best">
         <div class="module__top">
           <div class="title">BEST GAMES</div>
-          <a
-            :href="`${getIntersperseUrl}/best/#from=${$route.name}`"
-            class="more"
-            title="BEST GAMES"
-            >More Games ></a
-          >
+          <div class="more" title="BEST GAMES" @click="goToPage('best')">
+            More Games >
+          </div>
         </div>
         <div class="list1">
           <home-best1
@@ -89,12 +87,6 @@
       <section class="module hot">
         <div class="module__top">
           <div class="title">HOT GAMES</div>
-          <a
-            :href="`${getIntersperseUrl}/hot/#from=${$route.name}`"
-            class="more"
-            title="HOT GAMES"
-            >More Games ></a
-          >
         </div>
         <div class="list">
           <home-hot
@@ -112,9 +104,6 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
-  data() {
-    return {}
-  },
   async asyncData({ error, $apiList, $utils }) {
     try {
       let gameList
@@ -144,6 +133,13 @@ export default {
     goRec(item) {
       let href = item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
       window.location = `${this.getIntersperseUrl}/game/${href}-${item.id}/#from=${this.$route.name}`
+    },
+    goToPage(item) {
+      let url = `${this.getIntersperseUrl}/${item}/#from=${this.$route.name}`
+      if (document.body.clientWidth <= 750) {
+        url += '&position=next'
+      }
+      window.location = url
     },
   },
 }
@@ -375,6 +371,12 @@ export default {
           flex-shrink: 0;
           font-family: BebasNeue-Regular;
           color: #aaabbd;
+          cursor: pointer;
+          -webkit-transition: color 0.3s;
+          transition: color 0.3s;
+          &:hover {
+            color: #fff;
+          }
         }
       }
       &.best {

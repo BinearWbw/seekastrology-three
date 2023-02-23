@@ -1,56 +1,62 @@
 <template>
   <header class="header">
-    <div>
-      <a :href="getIntersperseUrl" class="logo">
-        <img class="img" src="~/assets/img/header/logoImg.png" alt="logoImg" />
-        <img
-          class="title"
-          src="~/assets/img/header/logoTitle.png"
-          alt="logoTitle"
-        />
-      </a>
-      <Desktop></Desktop>
-      <nav class="nav">
-        <a
-          class="nav__item"
-          :href="`${getIntersperseUrl + item.href}`"
-          :class="{
-            active:
-              item.path == $route.path ||
-              (item.path !== '/' && $route.path.includes(item.path)),
-          }"
-          :title="item.title"
-          v-for="(item, index) in menu"
-          :key="index"
-        >
+    <div class="header__main">
+      <div>
+        <a :href="getIntersperseUrl" class="logo">
           <img
-            :src="
-              item.path == $route.path ||
-              (item.path !== '/' && $route.path.includes(item.path))
-                ? item.imgActive
-                : item.img
-            "
-            :alt="item.title"
+            class="img"
+            src="~/assets/img/header/logoImg.png"
+            alt="logoImg"
           />
-          <span> {{ item.title }}</span>
+          <img
+            class="title"
+            src="~/assets/img/header/logoTitle.png"
+            alt="logoTitle"
+          />
         </a>
-      </nav>
-      <div class="search">
-        <input
-          class="input"
-          type="text"
-          v-model="searchInput"
-          placeholder="Search"
-        />
-        <button class="button" aria-label="Search" @click="search"></button>
+        <Desktop></Desktop>
+        <nav class="nav">
+          <a
+            class="nav__item"
+            :href="`${getIntersperseUrl + item.href}`"
+            :class="{
+              active:
+                item.path == $route.path ||
+                (item.path !== '/' && $route.path.includes(item.path)),
+            }"
+            :title="item.title"
+            v-for="(item, index) in menu"
+            :key="index"
+          >
+            <img
+              :src="
+                item.path == $route.path ||
+                (item.path !== '/' && $route.path.includes(item.path))
+                  ? item.imgActive
+                  : item.img
+              "
+              :alt="item.title"
+            />
+            <span> {{ item.title }}</span>
+          </a>
+        </nav>
+        <div class="search">
+          <input
+            class="input"
+            type="text"
+            v-model="searchInput"
+            placeholder="Search"
+          />
+          <button class="button" aria-label="Search" @click="search"></button>
+        </div>
+        <div class="menu common__btn" @click="visibleMenu = true"></div>
+        <lazy-dialog-menu
+          :menu="menu"
+          :visible="visibleMenu"
+          @close="visibleMenu = false"
+        >
+        </lazy-dialog-menu>
       </div>
-      <div class="menu common__btn" @click="visibleMenu = true"></div>
-      <lazy-dialog-menu
-        :menu="menu"
-        :visible="visibleMenu"
-        @close="visibleMenu = false"
-      >
-      </lazy-dialog-menu>
     </div>
   </header>
 </template>
@@ -139,45 +145,16 @@ export default {
 .header {
   height: 90px;
   width: 100%;
-  background: #21242e;
-  > div {
-    margin: 0 auto;
+  &__main {
     width: 100%;
-    max-width: 1920px;
-    padding: 0 65px;
     height: 100%;
-    display: flex;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    .logo {
-      height: 40px;
-      display: flex;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      -webkit-flex-shrink: 0;
-      flex-shrink: 0;
-      img {
-        display: block;
-        object-fit: contain;
-      }
-      .img {
-        width: 40px;
-        height: 40px;
-      }
-      .title {
-        margin: 9px 0 0 15px;
-        width: 129px;
-        height: 22px;
-      }
-    }
-    .nav {
-      height: 44px;
+    background: #21242e;
+    > div {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1920px;
+      padding: 0 65px;
+      height: 100%;
       display: flex;
       display: -webkit-box;
       display: -webkit-flex;
@@ -186,14 +163,30 @@ export default {
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
-      -webkit-flex-shrink: 0;
-      flex-shrink: 0;
-      margin-left: auto;
-      margin-right: auto;
-      &__item {
-        padding: 0 18px;
-        border-radius: 6px;
-        height: 100%;
+      .logo {
+        height: 40px;
+        display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+        img {
+          display: block;
+          object-fit: contain;
+        }
+        .img {
+          width: 40px;
+          height: 40px;
+        }
+        .title {
+          margin: 9px 0 0 15px;
+          width: 129px;
+          height: 22px;
+        }
+      }
+      .nav {
+        height: 44px;
         display: flex;
         display: -webkit-box;
         display: -webkit-flex;
@@ -202,113 +195,137 @@ export default {
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        span {
-          margin-top: 2px;
-          padding-left: 10px;
-          font-size: 15px;
-          line-height: 1;
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+        margin-left: auto;
+        margin-right: auto;
+        &__item {
+          padding: 0 18px;
+          border-radius: 6px;
+          height: 100%;
+          display: flex;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          -webkit-align-items: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          span {
+            margin-top: 2px;
+            padding-left: 10px;
+            font-size: 15px;
+            line-height: 1;
+            color: #aaabbd;
+            -webkit-transition: color 0.3s;
+            transition: color 0.3s;
+          }
+          &:hover {
+            span {
+              color: #fff;
+            }
+          }
+          &.active {
+            background: rgba(255, 255, 255, 0.05);
+            span {
+              color: #fff;
+            }
+          }
+        }
+      }
+      .search {
+        width: 300px;
+        height: 44px;
+        background: rgba(0, 0, 0, 0.45);
+        border-radius: 48px;
+        position: relative;
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+        input {
+          width: 100%;
+          height: 100%;
+          font-size: 14px;
           color: #aaabbd;
-          -webkit-transition: color 0.3s;
-          transition: color 0.3s;
+          padding: 2px 57px 0 23px;
         }
-        &:hover {
-          span {
-            color: #fff;
-          }
-        }
-        &.active {
-          background: rgba(255, 255, 255, 0.05);
-          span {
-            color: #fff;
-          }
+        button {
+          position: absolute;
+          top: calc(50% - 8px);
+          right: 18px;
+          width: 16px;
+          height: 16px;
+          background: url('~assets/img/header/search.svg') no-repeat center
+            center;
+          background-size: contain;
         }
       }
-    }
-    .search {
-      width: 300px;
-      height: 44px;
-      background: rgba(0, 0, 0, 0.45);
-      border-radius: 48px;
-      position: relative;
-      -webkit-flex-shrink: 0;
-      flex-shrink: 0;
-      input {
-        width: 100%;
-        height: 100%;
-        font-size: 14px;
-        color: #aaabbd;
-        padding: 2px 57px 0 23px;
+      .menu {
+        display: none;
       }
-      button {
-        position: absolute;
-        top: calc(50% - 8px);
-        right: 18px;
-        width: 16px;
-        height: 16px;
-        background: url('~assets/img/header/search.svg') no-repeat center center;
-        background-size: contain;
-      }
-    }
-    .menu {
-      display: none;
     }
   }
 }
 @media (max-width: (1600px)) {
   .header {
-    > div {
-      padding: 0 30px;
-      .nav {
-        &__item {
-          padding: 0 10px;
+    &__main {
+      > div {
+        padding: 0 30px;
+        .nav {
+          &__item {
+            padding: 0 10px;
+          }
         }
-      }
-      .search {
-        width: 260px;
+        .search {
+          width: 260px;
+        }
       }
     }
   }
 }
 @media (max-width: (1366px)) {
   .header {
-    > div {
-      .nav {
-        &__item {
-          img {
-            display: none;
-          }
-          span {
-            margin-top: 0;
-            font-size: 12px;
-            padding-left: 0;
+    &__main {
+      > div {
+        .nav {
+          &__item {
+            img {
+              display: none;
+            }
+            span {
+              margin-top: 0;
+              font-size: 12px;
+              padding-left: 0;
+            }
           }
         }
-      }
-      .search {
-        width: 180px;
+        .search {
+          width: 180px;
+        }
       }
     }
   }
 }
 @media (max-width: (1024px)) {
   .header {
-    > div {
-      .logo {
-        margin-right: auto;
-      }
-      .nav {
-        display: none;
-      }
-      .search {
-        display: none;
-      }
-      .menu {
-        margin-left: 30px;
-        display: block;
-        width: 48px;
-        height: 100%;
-        background: url('~assets/img/header/menu.png') no-repeat center center;
-        background-size: contain;
+    &__main {
+      > div {
+        .logo {
+          margin-right: auto;
+        }
+        .nav {
+          display: none;
+        }
+        .search {
+          display: none;
+        }
+        .menu {
+          margin-left: 30px;
+          display: block;
+          width: 48px;
+          height: 100%;
+          background: url('~assets/img/header/menu.png') no-repeat center center;
+          background-size: contain;
+        }
       }
     }
   }
@@ -317,24 +334,31 @@ export default {
   $pr: math.div(1vw, 3.75);
   .header {
     height: 63 * $pr;
-    border-bottom: 1 * $pr solid #2f303e;
-    > div {
-      padding: 0 24 * $pr 0 21 * $pr;
-      .logo {
-        height: 40 * $pr;
-        .img {
-          width: 40 * $pr;
+    &__main {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 6;
+      height: 63 * $pr;
+      border-bottom: 1 * $pr solid #2f303e;
+      > div {
+        padding: 0 24 * $pr 0 21 * $pr;
+        .logo {
           height: 40 * $pr;
+          .img {
+            width: 40 * $pr;
+            height: 40 * $pr;
+          }
+          .title {
+            margin: 9 * $pr 0 0 11 * $pr;
+            width: 119 * $pr;
+            height: 22 * $pr;
+          }
         }
-        .title {
-          margin: 9 * $pr 0 0 11 * $pr;
-          width: 119 * $pr;
-          height: 22 * $pr;
+        .menu {
+          margin-left: 14 * $pr;
+          width: 22 * $pr;
         }
-      }
-      .menu {
-        margin-left: 14 * $pr;
-        width: 22 * $pr;
       }
     }
   }

@@ -63,6 +63,14 @@ export default {
       error({ statusCode: e.code, message: e.message })
     }
   },
+  mounted() {
+    if (this.$route.hash.includes('position')) {
+      this.$el.querySelector(`.ad1`).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+  },
 }
 </script>
 <style lang="scss" scoped>

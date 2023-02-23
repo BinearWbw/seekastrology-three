@@ -4,7 +4,15 @@
     <ins
       v-if="visible"
       class="adsbygoogle"
-      style="display: block; margin: 0 auto; max-width: 1200px"
+      style="
+        display: block;
+        margin: 0 auto;
+        max-width: 1200px;
+        min-width: 300px;
+        width: 100%;
+        min-height: 100px;
+        max-height: 400px;
+      "
       data-ad-client="ca-pub-6430486603399192"
       :data-ad-slot="id"
       data-ad-format="auto"
