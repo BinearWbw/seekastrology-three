@@ -1,6 +1,11 @@
 <template>
   <div class="explain">
-    <p class="explain__title" :title="name">{{ name }}</p>
+    <div class="explain__top">
+      <p class="explain__title" :title="name">{{ name }}</p>
+      <button class="explain__arrow common__btn" @click="goToPage">
+        <img src="~/assets/img/game/arrow.svg" alt="arrow" />
+      </button>
+    </div>
     <div class="explain__main" :class="{ active: show }">
       <p ref="explain">
         {{ desc }}
@@ -28,7 +33,12 @@ export default {
     }
   },
   mounted() {
-    this.visible = this.$refs.explain.clientHeight > 120 ? true : false
+    this.visible = this.$refs.explain.clientHeight > 40 ? true : false
+  },
+  methods: {
+    goToPage() {
+      this.$emit('goToPage')
+    },
   },
 }
 </script>
@@ -46,6 +56,18 @@ export default {
   -webkit-backface-visibility: hidden;
   -webkit-transform: translate3d(0, 0, 0);
   padding: 37px 36px 35px;
+  &__top {
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 32px;
+    width: 100%;
+  }
   &__title {
     font-size: 24px;
     line-height: 1;
@@ -53,11 +75,55 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  &__arrow {
+    margin-left: auto;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: #7a78ff;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    img {
+      -webkit-animation: bounce 2s 1s infinite;
+      animation: bounce 2s 1s infinite;
+    }
+    @-webkit-keyframes bounce {
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-5px);
+      }
+      60% {
+        transform: translateY(-2px);
+      }
+    }
+    @keyframes bounce {
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-5px);
+      }
+      60% {
+        transform: translateY(-2px);
+      }
+    }
+  }
   &__main {
     margin-top: 24px;
     width: 100%;
     color: #aaabbd;
-    max-height: 120px;
+    max-height: 40px;
     overflow: hidden;
     p {
       font-size: 14px;

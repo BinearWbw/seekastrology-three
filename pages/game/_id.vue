@@ -45,6 +45,7 @@
             class="parent"
             :name="gameInfo.name"
             :desc="gameInfo.desc"
+            @goToPage="goToPage"
           ></game-info>
           <google-auto-ad :id="'6150976776'" classNames="leftAd1" />
           <div class="module">
@@ -57,7 +58,7 @@
               ></home-latest>
             </div>
           </div>
-          <div class="info">
+          <div class="info" id="download">
             <p class="info__title">Get The Game</p>
             <div class="info__main">
               <p>
@@ -139,6 +140,7 @@
               approved, there are no viruses and malware.
             </p>
           </div>
+          <google-auto-ad :id="'3524813435'" classNames="leftAd2" />
           <div class="module">
             <div class="module__title">RECOMMEND GAMES</div>
             <div class="recommend">
@@ -161,7 +163,6 @@
               </div>
             </div>
           </div>
-          <google-auto-ad :id="'3524813435'" classNames="leftAd2" />
           <div class="comment">
             <p class="comment__title">COMMENT</p>
             <div class="comment__box">
@@ -598,6 +599,10 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    goToPage() {
+      let offsetTop = document.querySelector('#download').offsetTop + 50
+      window.scrollTo(0, offsetTop)
     },
   },
   filters: {
