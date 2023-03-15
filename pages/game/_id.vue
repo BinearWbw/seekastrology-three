@@ -454,26 +454,6 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      // if (this.gameOs[0].url) {
-      //   this.qrcodeObj1 = new QRCode('androidCode', {
-      //     text: this.gameOs[0].url,
-      //     width: 90,
-      //     height: 90,
-      //     colorDark: '#000',
-      //     colorLight: '#fff',
-      //     correctLevel: QRCode.CorrectLevel.H,
-      //   })
-      // }
-      // if (this.gameOs[1].url) {
-      //   this.qrcodeObj2 = new QRCode('iosCode', {
-      //     text: this.gameOs[1].url,
-      //     width: 90,
-      //     height: 90,
-      //     colorDark: '#000',
-      //     colorLight: '#fff',
-      //     correctLevel: QRCode.CorrectLevel.H,
-      //   })
-      // }
       this.show = false
     })
     this.getBestGame()

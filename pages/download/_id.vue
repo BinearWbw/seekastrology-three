@@ -189,7 +189,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  name: 'Game',
+  name: 'Download',
   head() {
     return {
       title:
