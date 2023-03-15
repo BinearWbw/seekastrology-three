@@ -11,11 +11,9 @@ const addRoutes = async () => {
     'https://api.taptogame.com/api/sitemap/games?origin=taptogame'
   )
   res1.data.data.map((item) => {
-    routes.push(
-      `/game/${item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()}-${
-        item.id
-      }`
-    )
+    const encodedName = item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
+    routes.push(`/game/${encodedName}-${item.id}`)
+    routes.push(`/download/${encodedName}-${item.id}`)
   })
   return routes
 }

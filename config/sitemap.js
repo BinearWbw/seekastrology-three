@@ -6,7 +6,7 @@ const sitemap = [
     cacheTime: 1000 * 60 * 60 * 24,
     gzip: true,
     generate: false,
-    exclude: ['/game', '/search'],
+    exclude: ['/game', '/search','/download'],
     defaults: {
       changefred: 'always',
       lastmod: new Date(),
@@ -55,10 +55,17 @@ const sitemap = [
         'https://api.taptogame.com/api/sitemap/games?origin=taptogame'
       )
       res1.data.data.map((item) => {
+        const encodedName = item.name
+          .replace(/[^a-zA-Z0-9\\s]/g, '-')
+          .toLowerCase()
         addArr.push({
-          url: `/game/${item.name
-            .replace(/[^a-zA-Z0-9\\s]/g, '-')
-            .toLowerCase()}-${item.id}`,
+          url: `/game/${encodedName}`,
+          changefreq: 'always',
+          priority: 0.8,
+          lastmod: new Date(),
+        })
+        addArr.push({
+          url: `/download/${encodedName}`,
           changefreq: 'always',
           priority: 0.8,
           lastmod: new Date(),

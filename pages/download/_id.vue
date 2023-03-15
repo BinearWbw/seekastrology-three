@@ -19,34 +19,89 @@
           <p class="name">{{ gameInfo.name }}</p>
         </div>
         <div class="main">
-          <div class="banner">
-            <swiper class="swiper" :options="swiperOptions">
-              <swiper-slide
-                class="swiper__item"
-                v-for="(item, index) in gameInfo.banner"
-                :key="index"
-              >
-                <nuxt-img
-                  :src="item"
-                  fit="cover"
-                  width="640"
-                  height="360"
-                  alt="swiper"
-                ></nuxt-img>
-              </swiper-slide>
-            </swiper>
+          <div class="content-info">
+            <div class="game-content">
+              <nuxt-img
+                class="img"
+                :src="gameInfo.icon"
+                fit="cover"
+                :alt="gameInfo.name"
+                :modifiers="{ progressive: true }"
+                loading="lazy"
+              ></nuxt-img>
+              <div class="info">
+                <p class="info__title">{{gameInfo.name}}</p>
+                <div class="info__main">
+                  <p>
+                    <span>Version :</span>
+                    <span
+                      >{{ gameOs[0].ver }}{{ gameOs | detectionArr
+                      }}{{ gameOs[1].ver }}</span
+                    >
+                  </p>
+                  <p>
+                    <span>Size :</span>
+                    <span
+                      >{{ gameOs[0].size }}{{ gameOs | detectionArr
+                      }}{{ gameOs[1].size }}</span
+                    >
+                  </p>
+                  <p>
+                    <span>Updated :</span>
+                    <span
+                      >{{ gameOs[0].updated }}{{ gameOs | detectionArr
+                      }}{{ gameOs[1].updated }}</span
+                    >
+                  </p>
+                </div>
+                <div class="info__download pc">
+                  <div class="android" v-if="gameOs[0].visible">
+                    <img src="~/assets/img/game/android.svg" alt="android" />
+                    <span>Andriod</span>
+                    <div class="code">
+                      <div class="code__item" v-if="gameOs[0].url">
+                        <p>Android</p>
+                        <div class="code__img" id="androidCode"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ios" v-if="gameOs[1].visible">
+                    <img src="~/assets/img/game/ios.svg" alt="ios" />
+                    <span>IOS</span>
+                    <div class="code">
+                      <div class="code__item" v-if="gameOs[1].url">
+                        <p>IOS</p>
+                        <div class="code__img" id="iosCode"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="info__download h5">
+                  <a
+                    class="android common__btn"
+                    :href="gameOs[0].url"
+                    title="Android"
+                    v-if="gameOs[0].visible"
+                  >
+                    <img src="~/assets/img/game/android.svg" alt="android" />
+                    <span>Android</span>
+                  </a>
+                  <a
+                    class="ios common__btn"
+                    :href="gameOs[1].url"
+                    title="IOS"
+                    v-if="gameOs[1].visible"
+                  >
+                    <img src="~/assets/img/game/ios.svg" alt="ios" />
+                    <span>IOS</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <download-info
+              :desc="gameInfo.desc"
+            ></download-info>
           </div>
-          <div class="pagination">
-            <button class="btn pagination__prev common__btn"></button>
-            <div class="pagination__page"></div>
-            <button class="btn pagination__next common__btn"></button>
-          </div>
-          <game-info
-            class="parent"
-            :name="gameInfo.name"
-            :desc="gameInfo.desc"
-            @goToPage="goToPage"
-          ></game-info>
           <google-auto-ad :id="'6150976776'" classNames="leftAd1" />
           <div class="module">
             <div class="module__title">RELATED GAMES</div>
@@ -59,92 +114,6 @@
             </div>
           </div>
           <google-auto-ad :id="'3524813435'" classNames="leftAd2" />
-          <div class="info" id="download">
-            <p class="info__title">Get The Game</p>
-            <div class="info__main">
-              <p>
-                <span>OS :</span>
-                <img
-                  v-if="gameOs[0].visible"
-                  src="~/assets/img/game/android.svg"
-                  alt="android"
-                />
-                <img
-                  v-if="gameOs[1].visible"
-                  src="~/assets/img/game/ios.svg"
-                  alt="ios"
-                />
-              </p>
-              <p>
-                <span>Version :</span>
-                <span
-                  >{{ gameOs[0].ver }}{{ gameOs | detectionArr
-                  }}{{ gameOs[1].ver }}</span
-                >
-              </p>
-              <p>
-                <span>Size :</span>
-                <span
-                  >{{ gameOs[0].size }}{{ gameOs | detectionArr
-                  }}{{ gameOs[1].size }}</span
-                >
-              </p>
-              <p>
-                <span>Updated :</span>
-                <span
-                  >{{ gameOs[0].updated }}{{ gameOs | detectionArr
-                  }}{{ gameOs[1].updated }}</span
-                >
-              </p>
-            </div>
-            <div class="info__download pc">
-              <a class="download" :href="`${getIntersperseUrl}/download/${href}-${gameInfo.id}`">
-                <img src="~/assets/img/game/download.svg" alt="download" />
-                <span>Download</span>
-                <!-- <div class="code">
-                  <div class="code__item" v-if="gameOs[0].url">
-                    <p>Android</p>
-                    <div class="code__img" id="androidCode"></div>
-                  </div>
-                  <div class="code__item" v-if="gameOs[1].url">
-                    <p>IOS</p>
-                    <div class="code__img" id="iosCode"></div>
-                  </div>
-                </div> -->
-              </a>
-            </div>
-            <div class="info__download h5">
-              <a class="download" :href="`${getIntersperseUrl}/download/${href}-${gameInfo.id}`">
-                <img src="~/assets/img/game/download.svg" alt="download" />
-                <span>Download</span>
-              </a>
-              <!-- <a
-                class="android common__btn"
-                :href="gameOs[0].url"
-                title="Android"
-                v-if="gameOs[0].visible"
-              >
-                <img src="~/assets/img/game/android.svg" alt="android" />
-                <span>Android</span>
-              </a>
-              <a
-                class="ios common__btn"
-                :href="gameOs[1].url"
-                title="IOS"
-                v-if="gameOs[1].visible"
-              >
-                <img src="~/assets/img/game/ios.svg" alt="ios" />
-                <span>IOS</span>
-              </a> -->
-            </div>
-            <p
-              class="info__remark"
-              :title="`* For reference, The ${gameInfo.name} game websites are all approved, there are no viruses and malware.`"
-            >
-              * For reference, The {{ gameInfo.name }} game websites are all
-              approved, there are no viruses and malware.
-            </p>
-          </div>
           <div class="module">
             <div class="module__title">RECOMMEND GAMES</div>
             <div class="recommend">
@@ -219,8 +188,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import 'swiper/css/swiper.css'
 export default {
   name: 'Game',
   head() {
@@ -278,44 +245,8 @@ export default {
       },
       qrcodeObj1: {},
       qrcodeObj2: {},
-      swiperOptions: {
-        slidesPerView: 'auto',
-        autoplay: {
-          delay: 8000,
-          stopOnLastSlide: false,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: '.pagination__page',
-          type: 'custom',
-          renderCustom: function (swiper, current, total) {
-            var customPaginationHtml = ''
-            for (var i = 0; i < total; i++) {
-              //判断哪个分页器此刻应该被激活
-              if (i == current - 1) {
-                customPaginationHtml +=
-                  '<div class="swiper-pagination-customs swiper-pagination-customs-active"></div>'
-              } else {
-                customPaginationHtml +=
-                  '<div class="swiper-pagination-customs"></div>'
-              }
-            }
-            return customPaginationHtml
-          },
-        },
-        navigation: {
-          nextEl: '.pagination__next',
-          prevEl: '.pagination__prev',
-        },
-        speed: 500,
-        grabCursor: true,
-      },
       bestList: [],
     }
-  },
-  components: {
-    Swiper,
-    SwiperSlide,
   },
   async asyncData({ error, $apiList, params, $utils }) {
     try {
@@ -447,33 +378,29 @@ export default {
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
-    href() {
-      let href = this.gameInfo.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
-      return href
-    },
   },
   mounted() {
     this.$nextTick(() => {
-      // if (this.gameOs[0].url) {
-      //   this.qrcodeObj1 = new QRCode('androidCode', {
-      //     text: this.gameOs[0].url,
-      //     width: 90,
-      //     height: 90,
-      //     colorDark: '#000',
-      //     colorLight: '#fff',
-      //     correctLevel: QRCode.CorrectLevel.H,
-      //   })
-      // }
-      // if (this.gameOs[1].url) {
-      //   this.qrcodeObj2 = new QRCode('iosCode', {
-      //     text: this.gameOs[1].url,
-      //     width: 90,
-      //     height: 90,
-      //     colorDark: '#000',
-      //     colorLight: '#fff',
-      //     correctLevel: QRCode.CorrectLevel.H,
-      //   })
-      // }
+      if (this.gameOs[0].url) {
+        this.qrcodeObj1 = new QRCode('androidCode', {
+          text: this.gameOs[0].url,
+          width: 90,
+          height: 90,
+          colorDark: '#000',
+          colorLight: '#fff',
+          correctLevel: QRCode.CorrectLevel.H,
+        })
+      }
+      if (this.gameOs[1].url) {
+        this.qrcodeObj2 = new QRCode('iosCode', {
+          text: this.gameOs[1].url,
+          width: 90,
+          height: 90,
+          colorDark: '#000',
+          colorLight: '#fff',
+          correctLevel: QRCode.CorrectLevel.H,
+        })
+      }
       this.show = false
     })
     this.getBestGame()
@@ -609,7 +536,7 @@ export default {
         })
     },
     goToPage() {
-      let offsetTop = document.querySelector('#download').offsetTop - document.getElementsByClassName("leftAd2")[0].clientHeight
+      let offsetTop = document.querySelector('#download').offsetTop - 255
       window.scrollTo(0, offsetTop)
     },
   },
@@ -684,306 +611,206 @@ export default {
         padding-right: 80px;
         width: 100%;
         overflow: hidden;
-        .banner {
-          padding: 20px;
-          width: 100%;
-          height: 310px;
-          background-color: #111216;
-          border-radius: 24px;
-          overflow: hidden;
-          appearance: none;
-          backface-visibility: hidden;
-          transform: translate(0, 0, 0);
-          -webkit-appearance: none;
-          -webkit-backface-visibility: hidden;
-          -webkit-transform: translate3d(0, 0, 0);
-          .swiper {
-            width: 100%;
-            height: 100%;
-            &__item {
-              width: 480px;
-              height: 100%;
-              border-radius: 24px;
-              overflow: hidden;
-              appearance: none;
-              backface-visibility: hidden;
-              transform: translate(0, 0, 0);
-              -webkit-appearance: none;
-              -webkit-backface-visibility: hidden;
-              -webkit-transform: translate3d(0, 0, 0);
-              margin-right: 20px;
-              img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-              }
-              &:last-child {
-                margin-right: 0;
-              }
-            }
-          }
-        }
-        .pagination {
-          margin-top: 10px;
-          display: flex;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          -webkit-align-items: center;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          align-items: center;
-          -webkit-box-pack: center;
-          -webkit-justify-content: center;
-          -ms-flex-pack: center;
-          justify-content: center;
-          height: 34px;
-          .btn {
-            width: 34px;
-            height: 100%;
-            border-radius: 50%;
-            background-color: #242731;
-            background-repeat: no-repeat;
-            background-position: center;
-            &:hover {
-              background-color: #7a78ff;
-            }
-          }
-          &__prev {
-            background-image: url('~assets/img/home/prev.svg');
-          }
-          &__next {
-            background-image: url('~assets/img/home/next.svg');
-          }
-          &__page {
-            height: 100%;
-            display: flex;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            -webkit-align-items: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            -webkit-justify-content: center;
-            -ms-flex-pack: center;
-            justify-content: center;
-            width: auto;
-            min-width: 126px;
-            padding: 0 30px;
-          }
-          :deep(.swiper-pagination-customs) {
-            width: 10px;
-            height: 10px;
-            margin-right: 10px;
-            border: solid 2px transparent;
-            border-radius: 50%;
-            position: relative;
-            &::before {
-              content: '';
-              position: absolute;
-              left: 0;
-              top: 0;
-              width: 100%;
-              height: 100%;
-              border-radius: 50%;
-              background-color: #aaabbd;
-            }
-            &:last-child {
-              margin-right: 0;
-            }
-          }
-          :deep(.swiper-pagination-customs-active) {
-            border-color: #fe27ee;
-            &::before {
-              background-color: #000000;
-            }
-          }
-        }
-        .parent {
-          margin-top: 20px;
-        }
-        .info {
-          margin-top: 30px;
+        .content-info {
           background-color: #282a31;
           border-radius: 24px;
-          padding: 37px 36px 25px;
-          &__title {
-            font-size: 24px;
-            line-height: 1;
-            color: #ffffff;
-          }
-          &__main {
-            margin-top: 24px;
+          padding: 38px 35px 20px;
+          .game-content {
             display: flex;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            -webkit-flex-wrap: wrap;
-            -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            grid-gap: 20px 76px;
-            p {
-              display: flex;
-              display: -webkit-box;
-              display: -webkit-flex;
-              display: -ms-flexbox;
-              -webkit-align-items: center;
-              -webkit-box-align: center;
-              -ms-flex-align: center;
-              align-items: center;
-              font-size: 14px;
-              line-height: 20px;
-              span:first-child {
-                -webkit-flex-shrink: 0;
-                flex-shrink: 0;
-                color: #fff;
-              }
-              span:last-child {
-                color: #aaabbd;
-                padding-left: 7px;
-              }
-              img {
-                height: 20px;
-                margin-left: 7px;
-              }
-            }
-          }
-          &__download {
-            margin-top: 40px;
-            display: flex;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            -webkit-align-items: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
             align-items: center;
-            -webkit-box-pack: center;
-            -webkit-justify-content: center;
-            -ms-flex-pack: center;
-            justify-content: center;
-            .download {
-              width: 164px;
-              height: 42px;
-              border-radius: 21px;
-              display: flex;
-              display: -webkit-box;
-              display: -webkit-flex;
-              display: -ms-flexbox;
-              -webkit-align-items: center;
-              -webkit-box-align: center;
-              -ms-flex-align: center;
-              align-items: center;
-              -webkit-box-pack: center;
-              -webkit-justify-content: center;
-              -ms-flex-pack: center;
-              justify-content: center;
-              background-color: #7a78ff;
-              cursor: pointer;
-              position: relative;
-              span {
-                padding-left: 10px;
-                margin-top: 2px;
-                font-size: 14px;
-                color: #ffffff;
+            .img {
+              margin-right: 32px;
+              border-radius: 24px;
+              width: 154px;
+              height: 154px;
+            }
+            .info {
+              // margin-top: 30px;
+              &__title {
+                font-size: 24px;
                 line-height: 1;
+                color: #ffffff;
               }
-              .code {
-                -webkit-transition: opacity 0.3s, visibility 0.3s;
-                transition: opacity 0.3s, visibility 0.3s;
-                position: absolute;
-                opacity: 0;
-                visibility: hidden;
-                bottom: -170px;
-                padding: 25px 30px 30px;
-                height: 165px;
-                border-radius: 16px;
-                background-color: #fff;
+              &__main {
+                margin-top: 24px;
                 display: flex;
                 display: -webkit-box;
                 display: -webkit-flex;
                 display: -ms-flexbox;
-                gap: 0 30px;
-                &__item {
-                  width: 90px;
-                  height: 100%;
-                  p {
-                    width: 100%;
+                -webkit-flex-wrap: wrap;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                grid-gap: 20px 76px;
+                p {
+                  display: flex;
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  -webkit-align-items: center;
+                  -webkit-box-align: center;
+                  -ms-flex-align: center;
+                  align-items: center;
+                  font-size: 14px;
+                  line-height: 20px;
+                  span:first-child {
+                    -webkit-flex-shrink: 0;
+                    flex-shrink: 0;
+                    color: #fff;
+                  }
+                  span:last-child {
+                    color: #aaabbd;
+                    padding-left: 7px;
+                  }
+                  img {
+                    height: 20px;
+                    margin-left: 7px;
+                  }
+                }
+              }
+              &__download {
+                margin-top: 40px;
+                display: flex;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: flex-start;
+                .android,
+                .ios {
+                  width: 240px;
+                  height: 48px;
+                  border-radius: 54px;
+                  display: flex;
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  -webkit-align-items: center;
+                  -webkit-box-align: center;
+                  -ms-flex-align: center;
+                  align-items: center;
+                  -webkit-box-pack: center;
+                  -webkit-justify-content: center;
+                  -ms-flex-pack: center;
+                  justify-content: center;
+                  cursor: pointer;
+                  position: relative;
+                  span {
+                    padding-left: 10px;
+                    margin-top: 2px;
                     font-size: 14px;
-                    line-height: 20px;
-                    color: #000000;
-                    text-align: center;
+                    color: #ffffff;
+                    line-height: 1;
                   }
-                  .code__img {
-                    width: 100%;
-                    height: 90px;
+                  .code {
+                    -webkit-transition: opacity 0.3s, visibility 0.3s;
+                    transition: opacity 0.3s, visibility 0.3s;
+                    position: absolute;
+                    opacity: 0;
+                    visibility: hidden;
+                    bottom: -170px;
+                    padding: 25px 30px 30px;
+                    height: 165px;
+                    border-radius: 16px;
+                    background-color: #fff;
+                    display: flex;
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    gap: 0 30px;
+                    &__item {
+                      width: 90px;
+                      height: 100%;
+                      p {
+                        width: 100%;
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: #000000;
+                        text-align: center;
+                      }
+                      .code__img {
+                        width: 100%;
+                        height: 90px;
+                      }
+                    }
+                  }
+                  &:hover {
+                    background-color: #8a88fc;
+                    .code {
+                      opacity: 1;
+                      visibility: visible;
+                      z-index: 1;
+                    }
                   }
                 }
+                .android {
+                  margin-right: 24px;
+                  background-color: #7ac450;
+                }
+                .ios {
+                  background-color: #3f8cff;
+                }
+                a {
+                  width: 164px;
+                  height: 42px;
+                  border-radius: 21px;
+                  display: flex;
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  -webkit-align-items: center;
+                  -webkit-box-align: center;
+                  -ms-flex-align: center;
+                  align-items: center;
+                  -webkit-box-pack: center;
+                  -webkit-justify-content: center;
+                  -ms-flex-pack: center;
+                  justify-content: center;
+                  img {
+                    margin-bottom: 2px;
+                  }
+                  span {
+                    padding-left: 10px;
+                    margin-top: 2px;
+                    font-size: 14px;
+                    color: #ffffff;
+                    line-height: 1;
+                  }
+                  &.android {
+                    background-color: #7ac450;
+                    &:hover {
+                      background-color: #96ef63;
+                    }
+                  }
+                  &.ios {
+                    background-color: #3f8cff;
+                    &:hover {
+                      background-color: #70a9ff;
+                    }
+                  }
+                  &:nth-child(2) {
+                    margin-left: 20px;
+                  }
+                }
+                &.h5 {
+                  display: none;
+                }
               }
-              &:hover {
-                background-color: #8a88fc;
-                // .code {
-                //   opacity: 1;
-                //   visibility: visible;
-                //   z-index: 1;
-                // }
-              }
-            }
-            a {
-              width: 164px;
-              height: 42px;
-              border-radius: 21px;
-              display: flex;
-              display: -webkit-box;
-              display: -webkit-flex;
-              display: -ms-flexbox;
-              -webkit-align-items: center;
-              -webkit-box-align: center;
-              -ms-flex-align: center;
-              align-items: center;
-              -webkit-box-pack: center;
-              -webkit-justify-content: center;
-              -ms-flex-pack: center;
-              justify-content: center;
-              img {
-                margin-bottom: 2px;
-              }
-              span {
-                padding-left: 10px;
-                margin-top: 2px;
+              &__remark {
+                margin-top: 38px;
                 font-size: 14px;
-                color: #ffffff;
-                line-height: 1;
-              }
-              &.android {
-                background-color: #7ac450;
-                &:hover {
-                  background-color: #96ef63;
-                }
-              }
-              &.ios {
-                background-color: #3f8cff;
-                &:hover {
-                  background-color: #70a9ff;
-                }
-              }
-              &:nth-child(2) {
-                margin-left: 20px;
+                color: #aaabbd;
+                line-height: 20px;
               }
             }
-            &.h5 {
-              display: none;
-            }
-          }
-          &__remark {
-            margin-top: 38px;
-            font-size: 14px;
-            color: #aaabbd;
-            line-height: 20px;
           }
         }
+        
         .module {
           margin-top: 30px;
           &__title {
@@ -1243,16 +1070,20 @@ export default {
       &__left {
         .main {
           padding-right: 0;
-          .info {
-            &__download {
-              &.pc {
-                display: none;
-              }
-              &.h5 {
-                display: flex;
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -ms-flexbox;
+          .content-info {
+            .game-content {
+              .info {
+                &__download {
+                  &.pc {
+                    display: none;
+                  }
+                  &.h5 {
+                    display: flex;
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                  }
+                }
               }
             }
           }
@@ -1310,116 +1141,156 @@ export default {
         }
         .main {
           margin-top: 24 * $pr;
-          .banner {
-            width: calc(100% - 9 * $pr);
-            margin: 0 auto;
-            padding: 0;
-            height: 180 * $pr;
-            border-radius: 16 * $pr;
-            .swiper {
-              &__item {
-                width: 100%;
-                border-radius: 16 * $pr;
-                margin-right: 10 * $pr;
-              }
-            }
-          }
-          .pagination {
-            margin-top: 8 * $pr;
-            height: 10 * $pr;
-            .btn {
-              display: none;
-            }
-            &__page {
-              min-width: auto;
-              padding: 0;
-            }
-            :deep(.swiper-pagination-customs) {
-              width: 10 * $pr;
-              height: 10 * $pr;
-              margin-right: 8 * $pr;
-              border: solid 2 * $pr transparent;
-              border-radius: 50%;
-              position: relative;
-              &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-                background-color: #aaabbd;
-              }
-            }
-            :deep(.swiper-pagination-customs-active) {
-              border-color: #fe27ee;
-              &::before {
-                background-color: #000000;
-              }
-            }
-          }
-          .parent {
-            margin-top: 20 * $pr;
-          }
-          .info {
-            margin-top: 20 * $pr;
-            border-radius: 16 * $pr;
+          .content-info {
+          border-radius: 16 * $pr;
             padding: 28 * $pr 23 * $pr 31 * $pr;
-            &__title {
-              font-size: 20 * $pr;
+          .game-content {
+            flex-direction: column;
+            .img {
+              margin-right: 0;
+              margin-bottom: 10 * $pr;
+              border-radius: 16 * $pr;
+              width: 80 * $pr;
+              height: 80 * $pr;
             }
-            &__main {
-              margin-top: 21 * $pr;
-              grid-gap: 0;
-              p {
-                min-width: 100%;
-                font-size: 14 * $pr;
-                line-height: 30 * $pr;
-                -webkit-align-items: flex-start;
-                -webkit-box-align: start;
-                -ms-flex-align: start;
-                align-items: flex-start;
-                span:last-child {
-                  padding-left: 9 * $pr;
-                }
-                img {
-                  margin-top: 5 * $pr;
-                  height: 20 * $pr;
-                  margin-left: 9 * $pr;
-                }
-              }
-            }
-            &__download {
-              margin-top: 24 * $pr;
-              -webkit-flex-direction: column;
-              -ms-flex-direction: column;
+            .info {
+              display: flex;
               flex-direction: column;
-              a {
-                width: 164 * $pr;
-                height: 42 * $pr;
-                border-radius: 21 * $pr;
-                img {
-                  height: 20 * $pr;
-                  margin-bottom: 2 * $pr;
-                }
-                span {
-                  padding-left: 10 * $pr;
-                  margin-top: 2 * $pr;
-                  font-size: 14 * $pr;
-                }
-                &:nth-child(2) {
-                  margin-left: 0;
-                  margin-top: 20 * $pr;
+              align-items: center;
+              &__title {
+                font-size: 20 * $pr;
+                margin: 0 auto;
+              }
+              &__main {
+                display: none;
+                // margin-top: 21 * $pr;
+                // grid-gap: 0;
+                // p {
+                //   min-width: 100%;
+                //   font-size: 14 * $pr;
+                //   line-height: 30 * $pr;
+                //   -webkit-align-items: flex-start;
+                //   -webkit-box-align: start;
+                //   -ms-flex-align: start;
+                //   align-items: flex-start;
+                //   span:last-child {
+                //     padding-left: 9 * $pr;
+                //   }
+                //   img {
+                //     margin-top: 5 * $pr;
+                //     height: 20 * $pr;
+                //     margin-left: 9 * $pr;
+                //   }
+                // }
+              }
+              &__download {
+                margin-top: 24 * $pr;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                
+                  .android,
+                  .ios {
+                    width: 240px;
+                    height: 48px;
+                    border-radius: 54px;
+                    display: flex;
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    -webkit-align-items: center;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    -webkit-justify-content: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    position: relative;
+                    span {
+                      padding-left: 10px;
+                      margin-top: 2px;
+                      font-size: 14px;
+                      color: #ffffff;
+                      line-height: 1;
+                    }
+                    .code {
+                      -webkit-transition: opacity 0.3s, visibility 0.3s;
+                      transition: opacity 0.3s, visibility 0.3s;
+                      position: absolute;
+                      opacity: 0;
+                      visibility: hidden;
+                      bottom: -170px;
+                      padding: 25px 30px 30px;
+                      height: 165px;
+                      border-radius: 16px;
+                      background-color: #fff;
+                      display: flex;
+                      display: -webkit-box;
+                      display: -webkit-flex;
+                      display: -ms-flexbox;
+                      gap: 0 30px;
+                      &__item {
+                        width: 90px;
+                        height: 100%;
+                        p {
+                          width: 100%;
+                          font-size: 14px;
+                          line-height: 20px;
+                          color: #000000;
+                          text-align: center;
+                        }
+                        .code__img {
+                          width: 100%;
+                          height: 90px;
+                        }
+                      }
+                    }
+                    &:hover {
+                      background-color: #8a88fc;
+                      .code {
+                        opacity: 1;
+                        visibility: visible;
+                        z-index: 1;
+                      }
+                    }
+                  }
+                  .android {
+                    margin-right: 0;
+                    background-color: #7ac450;
+                  }
+                  .ios {
+                    background-color: #3f8cff;
+                  }
+                a {
+                  width: 164 * $pr;
+                  height: 42 * $pr;
+                  border-radius: 21 * $pr;
+                  img {
+                    height: 20 * $pr;
+                    margin-bottom: 2 * $pr;
+                  }
+                  span {
+                    padding-left: 10 * $pr;
+                    margin-top: 2 * $pr;
+                    font-size: 14 * $pr;
+                  }
+                  &:nth-child(2) {
+                    margin-left: 0;
+                    margin-top: 20 * $pr;
+                  }
                 }
               }
-            }
-            &__remark {
-              margin-top: 32 * $pr;
-              font-size: 14 * $pr;
-              line-height: 20 * $pr;
+              &__remark {
+                margin-top: 32 * $pr;
+                font-size: 14 * $pr;
+                line-height: 20 * $pr;
+              }
             }
           }
+        }
+          
           .leftAd2 {
             margin-top: 20 * $pr;
           }
