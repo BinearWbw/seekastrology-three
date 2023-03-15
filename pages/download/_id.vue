@@ -102,7 +102,7 @@
               :desc="gameInfo.desc"
             ></download-info>
           </div>
-          <google-auto-ad :id="'6150976776'" classNames="leftAd1" />
+          <google-auto-ad :id="'3234952636'" classNames="leftAd1" />
           <div class="module">
             <div class="module__title">RELATED GAMES</div>
             <div class="related">
@@ -113,7 +113,7 @@
               ></home-latest>
             </div>
           </div>
-          <google-auto-ad :id="'3524813435'" classNames="leftAd2" />
+          <google-auto-ad :id="'7737041091'" classNames="leftAd2" />
           <div class="module">
             <div class="module__title">RECOMMEND GAMES</div>
             <div class="recommend">
@@ -171,7 +171,7 @@
         </div>
       </section>
       <section class="game__main__right">
-        <google-auto-ad :id="'2317890582'" classNames="rightAd" />
+        <google-auto-ad :id="'3278921330'" classNames="rightAd" />
         <div class="best">Best Games</div>
         <div class="list">
           <home-best2
