@@ -4,7 +4,7 @@
       <p class="explain__title" :title="name">{{ name }}</p>
       <button class="explain__arrow common__btn" @click="goToPage">
         <img src="~/assets/img/game/arrow.svg" alt="arrow" />
-        <span>Get Games</span>
+        <span>Get Game</span>
       </button>
     </div>
     <div class="explain__main" :class="{ active: show }">
@@ -81,12 +81,20 @@ export default {
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
     width: 128px;
-    height: 34px;
-    background: linear-gradient(90deg, #C14AFE 0%, #7A79FF 100%), #6C5DD3;
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
-    border-radius: 48px;
+    height: 32px;
+    background: linear-gradient(90deg, #c14afe 0%, #7a79ff 100%), #6c5dd3;
+    border-radius: 16px;
     display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
     img {
       -webkit-animation: bounce 2s 1s infinite;
@@ -96,7 +104,6 @@ export default {
       font-family: 'Bahnschrift';
       margin-left: 5px;
       font-size: 16px;
-      font-weight: 700;
     }
     @-webkit-keyframes bounce {
       0%,

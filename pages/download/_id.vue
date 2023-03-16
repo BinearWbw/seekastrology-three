@@ -25,12 +25,12 @@
                 class="img"
                 :src="gameInfo.icon"
                 fit="cover"
+                width="160"
+                height="160"
                 :alt="gameInfo.name"
-                :modifiers="{ progressive: true }"
-                loading="lazy"
               ></nuxt-img>
               <div class="info">
-                <p class="info__title">{{gameInfo.name}}</p>
+                <p class="info__title">{{ gameInfo.name }}</p>
                 <div class="info__main">
                   <p>
                     <span>Version :</span>
@@ -98,9 +98,7 @@
                 </div>
               </div>
             </div>
-            <download-info
-              :desc="gameInfo.desc"
-            ></download-info>
+            <download-info :desc="gameInfo.desc"></download-info>
           </div>
           <google-auto-ad :id="'3234952636'" classNames="leftAd1" />
           <div class="module">
@@ -245,7 +243,6 @@ export default {
       },
       qrcodeObj1: {},
       qrcodeObj2: {},
-      bestList: [],
     }
   },
   async asyncData({ error, $apiList, params, $utils }) {
@@ -282,7 +279,7 @@ export default {
           page: 1,
           size: 15,
         }
-      let [appInfo, recList, commentList] = await Promise.all([
+      let [appInfo, recList, commentList, bestList] = await Promise.all([
         $apiList.home
           .getGameDetail({
             origin: process.env.origin,
@@ -319,6 +316,21 @@ export default {
           })
           .then((res) => {
             return res || []
+          }),
+        $apiList.home
+          .getGameMenu({
+            origin: process.env.origin,
+            menu: 'best-games',
+          })
+          .then((res) => {
+            res.list &&
+              res.list.map((item) => {
+                item.updated = $utils.formatDate(
+                  new Date(item.updated * 1000),
+                  'EE dd, YYYY'
+                )
+              })
+            return res.list || []
           }),
       ])
       if (!appInfo.detail.banner) {
@@ -371,6 +383,7 @@ export default {
         totalPage,
         search,
         commentList,
+        bestList,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
@@ -380,6 +393,7 @@ export default {
     ...mapGetters(['getIntersperseUrl']),
   },
   mounted() {
+    this.bestList = this.$utils.shuffleArr(this.bestList).slice(0, 10)
     this.$nextTick(() => {
       if (this.gameOs[0].url) {
         this.qrcodeObj1 = new QRCode('androidCode', {
@@ -403,7 +417,6 @@ export default {
       }
       this.show = false
     })
-    this.getBestGame()
   },
   methods: {
     submit() {
@@ -513,28 +526,6 @@ export default {
           this.status = false
         })
     },
-    getBestGame() {
-      this.$apiList.home
-        .getGameMenu({
-          origin: process.env.origin,
-          menu: 'best-games',
-        })
-        .then((res) => {
-          if (res.list) {
-            res.list.map((item) => {
-              item.updated = this.$utils.formatDate(
-                new Date(item.updated * 1000),
-                'EE dd, YYYY'
-              )
-            })
-            res.list = this.$utils.shuffleArr(res.list).slice(0, 10)
-          }
-          this.bestList = res.list || []
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
     goToPage() {
       let offsetTop = document.querySelector('#download').offsetTop - 255
       window.scrollTo(0, offsetTop)
@@ -617,22 +608,34 @@ export default {
           padding: 38px 35px 20px;
           .game-content {
             display: flex;
-            align-items: center;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             .img {
+              -webkit-flex-shrink: 0;
+              flex-shrink: 0;
               margin-right: 32px;
               border-radius: 24px;
               width: 154px;
               height: 154px;
+              object-fit: cover;
             }
             .info {
-              // margin-top: 30px;
+              -webkit-box-flex: 1;
+              -moz-box-flex: 1;
+              -webkit-flex: 1;
+              -ms-flex: 1;
+              flex: 1;
+              min-width: 0;
               &__title {
                 font-size: 24px;
                 line-height: 1;
-                color: #ffffff;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
               &__main {
-                margin-top: 24px;
+                margin-top: 20px;
                 display: flex;
                 display: -webkit-box;
                 display: -webkit-flex;
@@ -640,16 +643,16 @@ export default {
                 -webkit-flex-wrap: wrap;
                 -ms-flex-wrap: wrap;
                 flex-wrap: wrap;
-                grid-gap: 20px 76px;
+                grid-gap: 20px 30px;
                 p {
                   display: flex;
                   display: -webkit-box;
                   display: -webkit-flex;
                   display: -ms-flexbox;
-                  -webkit-align-items: center;
-                  -webkit-box-align: center;
-                  -ms-flex-align: center;
-                  align-items: center;
+                  -webkit-align-items: flex-start;
+                  -webkit-box-align: start;
+                  -ms-flex-align: start;
+                  align-items: flex-start;
                   font-size: 14px;
                   line-height: 20px;
                   span:first-child {
@@ -661,14 +664,10 @@ export default {
                     color: #aaabbd;
                     padding-left: 7px;
                   }
-                  img {
-                    height: 20px;
-                    margin-left: 7px;
-                  }
                 }
               }
               &__download {
-                margin-top: 40px;
+                margin-top: 30px;
                 display: flex;
                 display: -webkit-box;
                 display: -webkit-flex;
@@ -685,7 +684,7 @@ export default {
                 .ios {
                   width: 240px;
                   height: 48px;
-                  border-radius: 54px;
+                  border-radius: 24px;
                   display: flex;
                   display: -webkit-box;
                   display: -webkit-flex;
@@ -723,6 +722,7 @@ export default {
                     display: -webkit-flex;
                     display: -ms-flexbox;
                     gap: 0 30px;
+                    z-index: 1;
                     &__item {
                       width: 90px;
                       height: 100%;
@@ -740,77 +740,32 @@ export default {
                     }
                   }
                   &:hover {
-                    background-color: #8a88fc;
                     .code {
                       opacity: 1;
                       visibility: visible;
-                      z-index: 1;
                     }
                   }
                 }
                 .android {
                   margin-right: 24px;
                   background-color: #7ac450;
+                  &:hover {
+                    background-color: #96ef63;
+                  }
                 }
                 .ios {
                   background-color: #3f8cff;
-                }
-                a {
-                  width: 164px;
-                  height: 42px;
-                  border-radius: 21px;
-                  display: flex;
-                  display: -webkit-box;
-                  display: -webkit-flex;
-                  display: -ms-flexbox;
-                  -webkit-align-items: center;
-                  -webkit-box-align: center;
-                  -ms-flex-align: center;
-                  align-items: center;
-                  -webkit-box-pack: center;
-                  -webkit-justify-content: center;
-                  -ms-flex-pack: center;
-                  justify-content: center;
-                  img {
-                    margin-bottom: 2px;
-                  }
-                  span {
-                    padding-left: 10px;
-                    margin-top: 2px;
-                    font-size: 14px;
-                    color: #ffffff;
-                    line-height: 1;
-                  }
-                  &.android {
-                    background-color: #7ac450;
-                    &:hover {
-                      background-color: #96ef63;
-                    }
-                  }
-                  &.ios {
-                    background-color: #3f8cff;
-                    &:hover {
-                      background-color: #70a9ff;
-                    }
-                  }
-                  &:nth-child(2) {
-                    margin-left: 20px;
+                  &:hover {
+                    background-color: #70a9ff;
                   }
                 }
                 &.h5 {
                   display: none;
                 }
               }
-              &__remark {
-                margin-top: 38px;
-                font-size: 14px;
-                color: #aaabbd;
-                line-height: 20px;
-              }
             }
           }
         }
-        
         .module {
           margin-top: 30px;
           &__title {
@@ -1134,7 +1089,7 @@ export default {
   $pr: math.div(1vw, 3.75);
   .game {
     &__main {
-      padding: 0 23 * $pr;
+      padding: 0;
       &__left {
         .nav {
           display: none;
@@ -1142,160 +1097,75 @@ export default {
         .main {
           margin-top: 24 * $pr;
           .content-info {
-          border-radius: 16 * $pr;
+            margin: 0 auto;
+            width: calc(100% - 46 * $pr);
+            border-radius: 16 * $pr;
             padding: 28 * $pr 23 * $pr 31 * $pr;
-          .game-content {
-            flex-direction: column;
-            .img {
-              margin-right: 0;
-              margin-bottom: 10 * $pr;
-              border-radius: 16 * $pr;
-              width: 80 * $pr;
-              height: 80 * $pr;
-            }
-            .info {
-              display: flex;
+            .game-content {
+              -webkit-flex-direction: column;
+              -ms-flex-direction: column;
               flex-direction: column;
-              align-items: center;
-              &__title {
-                font-size: 20 * $pr;
-                margin: 0 auto;
+              .img {
+                margin: 0 auto 10 * $pr;
+                border-radius: 16 * $pr;
+                width: 80 * $pr;
+                height: 80 * $pr;
               }
-              &__main {
-                display: none;
-                // margin-top: 21 * $pr;
-                // grid-gap: 0;
-                // p {
-                //   min-width: 100%;
-                //   font-size: 14 * $pr;
-                //   line-height: 30 * $pr;
-                //   -webkit-align-items: flex-start;
-                //   -webkit-box-align: start;
-                //   -ms-flex-align: start;
-                //   align-items: flex-start;
-                //   span:last-child {
-                //     padding-left: 9 * $pr;
-                //   }
-                //   img {
-                //     margin-top: 5 * $pr;
-                //     height: 20 * $pr;
-                //     margin-left: 9 * $pr;
-                //   }
-                // }
-              }
-              &__download {
-                margin-top: 24 * $pr;
+              .info {
+                display: flex;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
                 -webkit-flex-direction: column;
                 -ms-flex-direction: column;
                 flex-direction: column;
-                
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                &__title {
+                  font-size: 20 * $pr;
+                }
+                &__main {
+                  display: none;
+                }
+                &__download {
+                  margin-top: 12 * $pr;
+                  -webkit-flex-direction: column;
+                  -ms-flex-direction: column;
+                  flex-direction: column;
                   .android,
                   .ios {
-                    width: 240px;
-                    height: 48px;
-                    border-radius: 54px;
-                    display: flex;
-                    display: -webkit-box;
-                    display: -webkit-flex;
-                    display: -ms-flexbox;
-                    -webkit-align-items: center;
-                    -webkit-box-align: center;
-                    -ms-flex-align: center;
-                    align-items: center;
-                    -webkit-box-pack: center;
-                    -webkit-justify-content: center;
-                    -ms-flex-pack: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    position: relative;
+                    width: 160 * $pr;
+                    height: 32 * $pr;
+                    border-radius: 16 * $pr;
+                    img {
+                      height: 20 * $pr;
+                      margin-bottom: 2 * $pr;
+                    }
                     span {
-                      padding-left: 10px;
-                      margin-top: 2px;
-                      font-size: 14px;
-                      color: #ffffff;
-                      line-height: 1;
-                    }
-                    .code {
-                      -webkit-transition: opacity 0.3s, visibility 0.3s;
-                      transition: opacity 0.3s, visibility 0.3s;
-                      position: absolute;
-                      opacity: 0;
-                      visibility: hidden;
-                      bottom: -170px;
-                      padding: 25px 30px 30px;
-                      height: 165px;
-                      border-radius: 16px;
-                      background-color: #fff;
-                      display: flex;
-                      display: -webkit-box;
-                      display: -webkit-flex;
-                      display: -ms-flexbox;
-                      gap: 0 30px;
-                      &__item {
-                        width: 90px;
-                        height: 100%;
-                        p {
-                          width: 100%;
-                          font-size: 14px;
-                          line-height: 20px;
-                          color: #000000;
-                          text-align: center;
-                        }
-                        .code__img {
-                          width: 100%;
-                          height: 90px;
-                        }
-                      }
-                    }
-                    &:hover {
-                      background-color: #8a88fc;
-                      .code {
-                        opacity: 1;
-                        visibility: visible;
-                        z-index: 1;
-                      }
+                      padding-left: 10 * $pr;
+                      margin-top: 2 * $pr;
+                      font-size: 14 * $pr;
                     }
                   }
                   .android {
                     margin-right: 0;
-                    background-color: #7ac450;
-                  }
-                  .ios {
-                    background-color: #3f8cff;
-                  }
-                a {
-                  width: 164 * $pr;
-                  height: 42 * $pr;
-                  border-radius: 21 * $pr;
-                  img {
-                    height: 20 * $pr;
-                    margin-bottom: 2 * $pr;
-                  }
-                  span {
-                    padding-left: 10 * $pr;
-                    margin-top: 2 * $pr;
-                    font-size: 14 * $pr;
-                  }
-                  &:nth-child(2) {
-                    margin-left: 0;
-                    margin-top: 20 * $pr;
+                    margin-bottom: 10 * $pr;
                   }
                 }
               }
-              &__remark {
-                margin-top: 32 * $pr;
-                font-size: 14 * $pr;
-                line-height: 20 * $pr;
-              }
             }
           }
-        }
-          
           .leftAd2 {
             margin-top: 20 * $pr;
+            :deep(.title) {
+              padding-left: 23 * $pr;
+            }
           }
           .module {
-            margin-top: 20 * $pr;
+            width: calc(100% - 46 * $pr);
+            margin: 20 * $pr auto 0;
             &__title {
               height: 34 * $pr;
               line-height: 34 * $pr;
@@ -1326,12 +1196,15 @@ export default {
               }
             }
           }
-
           .leftAd1 {
             margin-top: 20 * $pr;
+            :deep(.title) {
+              padding-left: 23 * $pr;
+            }
           }
           .comment {
-            margin-top: 20 * $pr;
+            width: calc(100% - 46 * $pr);
+            margin: 20 * $pr auto 0;
             &__title {
               font-size: 28 * $pr;
               line-height: 34 * $pr;

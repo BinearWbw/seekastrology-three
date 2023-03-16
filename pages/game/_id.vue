@@ -97,45 +97,14 @@
                 >
               </p>
             </div>
-            <div class="info__download pc">
-              <a class="download" :href="`${getIntersperseUrl}/download/${href}-${gameInfo.id}`">
-                <img src="~/assets/img/game/download.svg" alt="download" />
-                <span>Download</span>
-                <!-- <div class="code">
-                  <div class="code__item" v-if="gameOs[0].url">
-                    <p>Android</p>
-                    <div class="code__img" id="androidCode"></div>
-                  </div>
-                  <div class="code__item" v-if="gameOs[1].url">
-                    <p>IOS</p>
-                    <div class="code__img" id="iosCode"></div>
-                  </div>
-                </div> -->
-              </a>
-            </div>
-            <div class="info__download h5">
-              <a class="download" :href="`${getIntersperseUrl}/download/${href}-${gameInfo.id}`">
-                <img src="~/assets/img/game/download.svg" alt="download" />
-                <span>Download</span>
-              </a>
-              <!-- <a
-                class="android common__btn"
-                :href="gameOs[0].url"
-                title="Android"
-                v-if="gameOs[0].visible"
-              >
-                <img src="~/assets/img/game/android.svg" alt="android" />
-                <span>Android</span>
-              </a>
+            <div class="info__download">
               <a
-                class="ios common__btn"
-                :href="gameOs[1].url"
-                title="IOS"
-                v-if="gameOs[1].visible"
+                class="download"
+                :href="`${getIntersperseUrl}/download/${href}-${gameInfo.id}`"
               >
-                <img src="~/assets/img/game/ios.svg" alt="ios" />
-                <span>IOS</span>
-              </a> -->
+                <img src="~/assets/img/game/download.svg" alt="download" />
+                <span>Download</span>
+              </a>
             </div>
             <p
               class="info__remark"
@@ -165,38 +134,6 @@
               <div class="common__loading" v-else>
                 <div class="common__loading__loader"></div>
               </div>
-            </div>
-          </div>
-          <div class="comment">
-            <p class="comment__title">COMMENT</p>
-            <div class="comment__box">
-              <input
-                type="text"
-                v-model="form.nick"
-                placeholder="Fill in your name"
-              />
-              <textarea
-                v-model="form.comment"
-                cols="30"
-                rows="10"
-                placeholder="Add a comment..."
-              ></textarea>
-              <button class="common__btn" @click="!status && submit()">
-                Submit
-              </button>
-              <ul class="message">
-                <li
-                  class="message__li"
-                  v-for="(item, index) in commentList"
-                  :key="index"
-                >
-                  <div class="top">
-                    <span :title="item.nick">{{ item.nick }}</span>
-                    <span>{{ item.updated_at }}</span>
-                  </div>
-                  <p class="text" :title="item.comment">{{ item.comment }}</p>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
@@ -259,12 +196,6 @@ export default {
             this.gameInfo.name,
         },
       ],
-      script: [
-        {
-          type: 'text/javascript',
-          src: '/js/qrcode.min.js',
-        },
-      ],
     }
   },
   data() {
@@ -272,12 +203,6 @@ export default {
       loadingRec: false,
       show: true,
       status: false,
-      form: {
-        nick: '',
-        comment: '',
-      },
-      qrcodeObj1: {},
-      qrcodeObj2: {},
       swiperOptions: {
         slidesPerView: 'auto',
         autoplay: {
@@ -310,7 +235,6 @@ export default {
         speed: 500,
         grabCursor: true,
       },
-      bestList: [],
     }
   },
   components: {
@@ -339,19 +263,13 @@ export default {
             url: null,
           },
         ],
-        totalNum = 0,
-        totalPage = 1,
-        search = {
-          page: 1,
-          size: 5,
-        },
         totalNumRec = 0,
         totalPageRec = 1,
         searchRec = {
           page: 1,
           size: 15,
         }
-      let [appInfo, recList, commentList] = await Promise.all([
+      let [appInfo, recList, bestList] = await Promise.all([
         $apiList.home
           .getGameDetail({
             origin: process.env.origin,
@@ -378,16 +296,19 @@ export default {
             return $utils.shuffleArr(res.list) || []
           }),
         $apiList.home
-          .getGameComment({
+          .getGameMenu({
             origin: process.env.origin,
-            game_id: params.id.replace(
-              /^.*?(\d*)$/,
-              (str, match, index) => match || '0'
-            ),
-            ...search,
+            menu: 'best-games',
           })
           .then((res) => {
-            return res || []
+            res.list &&
+              res.list.map((item) => {
+                item.updated = $utils.formatDate(
+                  new Date(item.updated * 1000),
+                  'EE dd, YYYY'
+                )
+              })
+            return res.list || []
           }),
       ])
       if (!appInfo.detail.banner) {
@@ -404,7 +325,6 @@ export default {
             new Date(appInfo.detail.apk_updated.split('/')[index] * 1000),
             'EE dd, YYYY'
           )
-          gameOs[0].url = appInfo.detail.url.split(',')[index]
         } else if (item.toLowerCase() == 'ios') {
           gameOs[1].visible = true
           gameOs[1].ver = appInfo.detail.version.split('/')[index]
@@ -413,7 +333,6 @@ export default {
             new Date(appInfo.detail.apk_updated.split('/')[index] * 1000),
             'EE dd, YYYY'
           )
-          gameOs[1].url = appInfo.detail.url.split(',')[index]
         }
       })
       gameInfo = appInfo.detail
@@ -422,12 +341,6 @@ export default {
         gameList.map((item) => {
           item.updated = $utils.formatPast(item.updated * 1000, 'dd AA,YYYY')
         })
-      commentList.map((item) => {
-        item.updated_at = $utils.formatDate(
-          new Date(item.updated_at * 1000),
-          'dd AA,YYYY'
-        )
-      })
       return {
         gameOs,
         gameInfo,
@@ -436,10 +349,7 @@ export default {
         totalPageRec,
         searchRec,
         recList,
-        totalNum,
-        totalPage,
-        search,
-        commentList,
+        bestList,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
@@ -448,95 +358,19 @@ export default {
   computed: {
     ...mapGetters(['getIntersperseUrl']),
     href() {
-      let href = this.gameInfo.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()
+      let href = this.gameInfo.name
+        .replace(/[^a-zA-Z0-9\\s]/g, '-')
+        .toLowerCase()
       return href
     },
   },
   mounted() {
+    this.bestList = this.$utils.shuffleArr(this.bestList).slice(0, 10)
     this.$nextTick(() => {
       this.show = false
     })
-    this.getBestGame()
   },
   methods: {
-    submit() {
-      let regNick = /^.{2,}$/
-      let regComment = /^.{6,}$/
-      if (
-        !this.form.nick.replace(/\s+/g, '') ||
-        !regNick.test(this.form.nick.replace(/\s+/g, ''))
-      ) {
-        this.$store.dispatch('toast', {
-          type: 'warning',
-          msg: 'Name is required and the length cannot be less than 2',
-        })
-      } else if (
-        !this.form.comment.replace(/\s+/g, '') ||
-        !regComment.test(this.form.comment.replace(/\s+/g, ''))
-      ) {
-        this.$store.dispatch('toast', {
-          type: 'warning',
-          msg: 'Comment is required and the length cannot be less than 6',
-        })
-      } else {
-        this.status = true
-        let data = {
-          origin: process.env.origin,
-          game_id: Number(
-            this.$route.params.id.replace(
-              /^.*?(\d*)$/,
-              (str, match, index) => match || '0'
-            )
-          ),
-          ...this.form,
-        }
-        this.$apiList.home
-          .postGameComment(data)
-          .then(() => {
-            this.$store.dispatch('toast', {
-              type: 'success',
-              msg: 'Comment successful',
-            })
-            this.getComment()
-            this.status = false
-          })
-          .catch(() => {
-            this.$store.dispatch('toast', {
-              type: 'error',
-              msg: 'Comment failure',
-            })
-            this.status = false
-          })
-      }
-    },
-    getComment() {
-      this.$apiList.home
-        .getGameComment({
-          origin: process.env.origin,
-          game_id: this.$route.params.id.replace(
-            /^.*?(\d*)$/,
-            (str, match, index) => match || '0'
-          ),
-          ...this.search,
-        })
-        .then((res) => {
-          let list = res || []
-          list.map((item) => {
-            item.updated_at = this.$utils.formatDate(
-              new Date(item.updated_at * 1000),
-              'dd AA,YYYY'
-            )
-          })
-          this.commentList = list
-        })
-        .catch(() => {
-          this.$store.dispatch('toast', {
-            type: 'error',
-            msg: 'No comment data was obtained',
-          })
-          this.status = false
-        })
-    },
     showMoreGame() {
       this.loadingRec = true
       this.status = true
@@ -566,30 +400,10 @@ export default {
           this.status = false
         })
     },
-    getBestGame() {
-      this.$apiList.home
-        .getGameMenu({
-          origin: process.env.origin,
-          menu: 'best-games',
-        })
-        .then((res) => {
-          if (res.list) {
-            res.list.map((item) => {
-              item.updated = this.$utils.formatDate(
-                new Date(item.updated * 1000),
-                'EE dd, YYYY'
-              )
-            })
-            res.list = this.$utils.shuffleArr(res.list).slice(0, 10)
-          }
-          this.bestList = res.list || []
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
     goToPage() {
-      let offsetTop = document.querySelector('#download').offsetTop - document.getElementsByClassName("leftAd2")[0].clientHeight
+      let offsetTop =
+        document.querySelector('#download').offsetTop -
+        document.getElementsByClassName('leftAd2')[0].clientHeight
       window.scrollTo(0, offsetTop)
     },
   },
@@ -870,91 +684,9 @@ export default {
                 color: #ffffff;
                 line-height: 1;
               }
-              .code {
-                -webkit-transition: opacity 0.3s, visibility 0.3s;
-                transition: opacity 0.3s, visibility 0.3s;
-                position: absolute;
-                opacity: 0;
-                visibility: hidden;
-                bottom: -170px;
-                padding: 25px 30px 30px;
-                height: 165px;
-                border-radius: 16px;
-                background-color: #fff;
-                display: flex;
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -ms-flexbox;
-                gap: 0 30px;
-                &__item {
-                  width: 90px;
-                  height: 100%;
-                  p {
-                    width: 100%;
-                    font-size: 14px;
-                    line-height: 20px;
-                    color: #000000;
-                    text-align: center;
-                  }
-                  .code__img {
-                    width: 100%;
-                    height: 90px;
-                  }
-                }
-              }
               &:hover {
                 background-color: #8a88fc;
-                // .code {
-                //   opacity: 1;
-                //   visibility: visible;
-                //   z-index: 1;
-                // }
               }
-            }
-            a {
-              width: 164px;
-              height: 42px;
-              border-radius: 21px;
-              display: flex;
-              display: -webkit-box;
-              display: -webkit-flex;
-              display: -ms-flexbox;
-              -webkit-align-items: center;
-              -webkit-box-align: center;
-              -ms-flex-align: center;
-              align-items: center;
-              -webkit-box-pack: center;
-              -webkit-justify-content: center;
-              -ms-flex-pack: center;
-              justify-content: center;
-              img {
-                margin-bottom: 2px;
-              }
-              span {
-                padding-left: 10px;
-                margin-top: 2px;
-                font-size: 14px;
-                color: #ffffff;
-                line-height: 1;
-              }
-              &.android {
-                background-color: #7ac450;
-                &:hover {
-                  background-color: #96ef63;
-                }
-              }
-              &.ios {
-                background-color: #3f8cff;
-                &:hover {
-                  background-color: #70a9ff;
-                }
-              }
-              &:nth-child(2) {
-                margin-left: 20px;
-              }
-            }
-            &.h5 {
-              display: none;
             }
           }
           &__remark {
@@ -1027,95 +759,6 @@ export default {
         .leftAd2 {
           margin-top: 30px;
         }
-        .comment {
-          margin-top: 30px;
-          &__title {
-            font-family: BebasNeue-Regular;
-            font-size: 28px;
-            line-height: 34px;
-          }
-          &__box {
-            margin-top: 20px;
-            background-color: #282a31;
-            border-radius: 16px;
-            padding: 56px 70px 34px;
-            display: flex;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-            flex-direction: column;
-            input {
-              width: 270px;
-              height: 40px;
-              background-color: rgba(0, 0, 0, 0.45);
-              border-radius: 20px;
-              font-size: 14px;
-              color: #aaabbd;
-              padding: 0 20px;
-            }
-            textarea {
-              margin-top: 20px;
-              width: 100%;
-              background-color: rgba(0, 0, 0, 0.45);
-              height: 147px;
-              border-radius: 20px;
-              font-size: 14px;
-              line-height: 18px;
-              color: #aaabbd;
-              padding: 12px 20px;
-              resize: none;
-            }
-            button {
-              margin-top: 25px;
-              width: 192px;
-              height: 46px;
-              background-color: #6c5dd3;
-              border-radius: 4px;
-              font-size: 14px;
-              color: #ffffff;
-              &:hover {
-                background-color: #7a78ff;
-              }
-            }
-            .message {
-              width: 100%;
-              margin-top: 30px;
-              &__li {
-                margin-top: 30px;
-                border-bottom: 1px solid #2e323d;
-                padding-bottom: 24px;
-                .top {
-                  display: flex;
-                  display: -webkit-box;
-                  display: -webkit-flex;
-                  display: -ms-flexbox;
-                  font-size: 14px;
-                  line-height: 1;
-                  span:first-child {
-                    color: #ffffff;
-                    padding-left: 6px;
-                  }
-                  span:last-child {
-                    padding-left: 8px;
-                    color: #aaabbd;
-                  }
-                }
-                .text {
-                  padding-left: 5px;
-                  margin-top: 14px;
-                  font-size: 14px;
-                  line-height: 18px;
-                  color: #aaabbd;
-                }
-                &:last-child {
-                  border-bottom: none;
-                }
-              }
-            }
-          }
-        }
       }
     }
     &__right {
@@ -1162,11 +805,6 @@ export default {
             }
             .recommend {
               grid-template-columns: repeat(4, 1fr);
-            }
-          }
-          .comment {
-            &__box {
-              padding: 56px 36px 34px;
             }
           }
         }
@@ -1223,19 +861,6 @@ export default {
       &__left {
         .main {
           padding-right: 0;
-          .info {
-            &__download {
-              &.pc {
-                display: none;
-              }
-              &.h5 {
-                display: flex;
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -ms-flexbox;
-              }
-            }
-          }
           .module {
             .related {
               grid-template-columns: repeat(7, 1fr);
@@ -1283,7 +908,7 @@ export default {
   $pr: math.div(1vw, 3.75);
   .game {
     &__main {
-      padding: 0 23 * $pr;
+      padding: 0;
       &__left {
         .nav {
           display: none;
@@ -1291,7 +916,7 @@ export default {
         .main {
           margin-top: 24 * $pr;
           .banner {
-            width: calc(100% - 9 * $pr);
+            width: calc(100% - 55 * $pr);
             margin: 0 auto;
             padding: 0;
             height: 180 * $pr;
@@ -1340,10 +965,12 @@ export default {
             }
           }
           .parent {
-            margin-top: 20 * $pr;
+            margin: 20 * $pr auto 0;
+            width: calc(100% - 46 * $pr);
           }
           .info {
-            margin-top: 20 * $pr;
+            width: calc(100% - 46 * $pr);
+            margin: 20 * $pr auto 0;
             border-radius: 16 * $pr;
             padding: 28 * $pr 23 * $pr 31 * $pr;
             &__title {
@@ -1372,25 +999,17 @@ export default {
             }
             &__download {
               margin-top: 24 * $pr;
-              -webkit-flex-direction: column;
-              -ms-flex-direction: column;
-              flex-direction: column;
-              a {
+              .download {
                 width: 164 * $pr;
                 height: 42 * $pr;
                 border-radius: 21 * $pr;
                 img {
                   height: 20 * $pr;
-                  margin-bottom: 2 * $pr;
                 }
                 span {
                   padding-left: 10 * $pr;
                   margin-top: 2 * $pr;
                   font-size: 14 * $pr;
-                }
-                &:nth-child(2) {
-                  margin-left: 0;
-                  margin-top: 20 * $pr;
                 }
               }
             }
@@ -1402,9 +1021,13 @@ export default {
           }
           .leftAd2 {
             margin-top: 20 * $pr;
+            :deep(.title) {
+              padding-left: 23 * $pr;
+            }
           }
           .module {
-            margin-top: 20 * $pr;
+            width: calc(100% - 46 * $pr);
+            margin: 20 * $pr auto 0;
             &__title {
               height: 34 * $pr;
               line-height: 34 * $pr;
@@ -1435,71 +1058,10 @@ export default {
               }
             }
           }
-
           .leftAd1 {
             margin-top: 20 * $pr;
-          }
-          .comment {
-            margin-top: 20 * $pr;
-            &__title {
-              font-size: 28 * $pr;
-              line-height: 34 * $pr;
-            }
-            &__box {
-              margin-top: 6 * $pr;
-              border-radius: 16 * $pr;
-              padding: 31 * $pr 23 * $pr 17 * $pr;
-              input {
-                width: 100%;
-                height: 38 * $pr;
-                border-radius: 19 * $pr;
-                font-size: 14 * $pr;
-                padding: 0 19 * $pr;
-              }
-              textarea {
-                margin-top: 21 * $pr;
-                height: 148 * $pr;
-                border-radius: 20 * $pr;
-                font-size: 14 * $pr;
-                line-height: 20 * $pr;
-                padding: 10 * $pr 19 * $pr;
-              }
-              button {
-                margin-top: 24 * $pr;
-                width: 100%;
-                height: 46 * $pr;
-                border-radius: 4 * $pr;
-                font-size: 14 * $pr;
-              }
-              .message {
-                margin-top: 30 * $pr;
-                &__li {
-                  margin-top: 30 * $pr;
-                  border-bottom: 1 * $pr solid #2e323d;
-                  padding-bottom: 16 * $pr;
-                  .top {
-                    font-size: 14 * $pr;
-                    span:first-child {
-                      padding-left: 0;
-                    }
-                    span:last-child {
-                      padding-left: 8 * $pr;
-                    }
-                  }
-                  .text {
-                    padding-left: 0;
-                    margin-top: 14 * $pr;
-                    font-size: 14 * $pr;
-                    line-height: 18 * $pr;
-                  }
-                  &:nth-child(n + 2) {
-                    margin-top: 21 * $pr;
-                  }
-                  &:last-child {
-                    border-bottom: 1 * $pr solid #2e323d;
-                  }
-                }
-              }
+            :deep(.title) {
+              padding-left: 23 * $pr;
             }
           }
         }
