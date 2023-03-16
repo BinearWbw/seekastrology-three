@@ -1039,6 +1039,14 @@ export default {
               padding: 35 * $pr 17 * $pr 32 * $pr;
               grid-template-columns: repeat(3, 1fr);
               grid-gap: 28 * $pr 30 * $pr;
+              :deep(.item) {
+                .name {
+                  margin-bottom: 0;
+                }
+                .time {
+                  display: none;
+                }
+              }
               :deep(.item:nth-child(n + 10)) {
                 display: none;
               }

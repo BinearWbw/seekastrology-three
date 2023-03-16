@@ -195,6 +195,13 @@ export default {
     &__title {
       font-size: 20 * $pr;
     }
+    &__arrow {
+      width: 32px;
+      border-radius: 8px;
+      span {
+        display: none;
+      }
+    }
     &__main {
       margin-top: 12 * $pr;
     }
