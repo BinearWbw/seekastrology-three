@@ -169,16 +169,20 @@
         </div>
       </section>
       <section class="game__main__right">
-        <google-auto-ad :id="'3278921330'" classNames="rightAd" />
         <div class="best">Best Games</div>
         <div class="list">
           <home-best2
-            class="active"
             v-for="item in bestList"
             :item="item"
             :key="item.id"
           ></home-best2>
         </div>
+        <google-ad
+          v-scroll
+          :id="'3278921330'"
+          classNames="rightAd"
+          :class="{ affix: affix }"
+        />
       </section>
     </div>
   </article>
@@ -243,6 +247,7 @@ export default {
       },
       qrcodeObj1: {},
       qrcodeObj2: {},
+      affix: false,
     }
   },
   async asyncData({ error, $apiList, params, $utils }) {
@@ -393,7 +398,8 @@ export default {
     ...mapGetters(['getIntersperseUrl']),
   },
   mounted() {
-    this.bestList = this.$utils.shuffleArr(this.bestList).slice(0, 10)
+    this.bestList = this.$utils.shuffleArr(this.bestList).slice(0, 4)
+    this.scrollLoad()
     this.$nextTick(() => {
       if (this.gameOs[0].url) {
         this.qrcodeObj1 = new QRCode('androidCode', {
@@ -530,6 +536,13 @@ export default {
       let offsetTop = document.querySelector('#download').offsetTop - 255
       window.scrollTo(0, offsetTop)
     },
+    scrollLoad() {
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop
+      this.affix = scrollTop >= 689
+    },
   },
   filters: {
     detectionArr(arr) {
@@ -543,6 +556,16 @@ export default {
       return active
     },
   },
+  directives: {
+    scroll: {
+      bind: function (el, binding, vnode) {
+        window.addEventListener('scroll', vnode.context.scrollLoad)
+      },
+      unbind: function (el, binding, vnode) {
+        window.removeEventListener('scroll', vnode.context.scrollLoad)
+      },
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -552,7 +575,7 @@ export default {
     margin: 0 auto;
     width: 1310px;
     padding-top: 33px;
-    padding-right: 336px;
+    padding-right: 300px;
     position: relative;
     &__left {
       width: 100%;
@@ -925,23 +948,25 @@ export default {
       position: absolute;
       right: 0;
       top: 0;
-      width: 336px;
+      width: 300px;
       .rightAd {
         width: 100%;
+        &.affix {
+          width: 300px;
+          position: fixed;
+          top: 20px;
+        }
       }
       .best {
         font-family: BebasNeue-Regular;
         font-size: 34px;
         line-height: 41px;
-        margin: 40px 0 20px;
+        margin-bottom: 20px;
       }
       .list {
         width: 100%;
         .item {
           margin-bottom: 20px;
-          &:last-child {
-            margin-bottom: 0;
-          }
         }
       }
     }
@@ -950,7 +975,7 @@ export default {
 @media (max-width: 1370px) {
   .game {
     &__main {
-      padding: 33px 380px 0 30px;
+      padding: 33px 344px 0 30px;
       width: 100%;
       &__left {
         .main {
