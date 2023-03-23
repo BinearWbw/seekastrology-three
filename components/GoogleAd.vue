@@ -70,9 +70,9 @@ export default {
 .googleAdStyle {
   .title {
     font-size: 20px;
-    line-height: 1;
-    color: #aaabbd;
-    margin-bottom: 5px;
+    line-height: 25px;
+    background: #282a31;
+    text-align: center;
   }
 }
 
@@ -81,7 +81,7 @@ export default {
   .googleAdStyle {
     .title {
       font-size: 12 * $pr;
-      margin-bottom: 5 * $pr;
+      line-height: 17 * $pr;
     }
   }
 }

@@ -879,6 +879,9 @@ export default {
       }
       &__right {
         display: none;
+        .rightAd {
+          display: none;
+        }
       }
     }
   }
