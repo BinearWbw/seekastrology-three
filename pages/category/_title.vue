@@ -238,9 +238,6 @@ export default {
     .ad {
       margin-top: 30px;
       width: 100%;
-      :deep(.title) {
-        text-align: center;
-      }
     }
   }
 }
@@ -252,11 +249,6 @@ export default {
       .module {
         .list {
           grid-template-columns: repeat(6, 1fr);
-        }
-      }
-      .ad {
-        :deep(.title) {
-          text-align: left;
         }
       }
     }
@@ -418,6 +410,19 @@ export default {
       }
       .ad {
         margin-top: 20 * $pr;
+      }
+    }
+  }
+}
+@media (max-width: 487px) {
+  $pr: math.div(1vw, 3.75);
+  .type {
+    &__main {
+      .ad {
+        :deep(.title) {
+          width: 100vw;
+          margin-left: -23 * $pr;
+        }
       }
     }
   }

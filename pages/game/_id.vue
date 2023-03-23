@@ -1024,9 +1024,6 @@ export default {
           }
           .leftAd2 {
             margin-top: 20 * $pr;
-            :deep(.title) {
-              padding-left: 23 * $pr;
-            }
           }
           .module {
             width: calc(100% - 46 * $pr);
@@ -1071,9 +1068,6 @@ export default {
           }
           .leftAd1 {
             margin-top: 20 * $pr;
-            :deep(.title) {
-              padding-left: 23 * $pr;
-            }
           }
         }
       }

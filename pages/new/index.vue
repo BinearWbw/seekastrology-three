@@ -96,9 +96,6 @@ export default {
         }
         .ad {
           grid-column-end: span 7;
-          :deep(.title) {
-            text-align: center;
-          }
           &.ad1 {
             grid-row-end: 5;
           }
@@ -126,9 +123,6 @@ export default {
           }
           .ad {
             grid-column-end: span 6;
-            :deep(.title) {
-              text-align: left;
-            }
           }
         }
       }
@@ -203,6 +197,19 @@ export default {
         }
         &:first-child {
           padding-top: 30 * $pr;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 487px) {
+  $pr: math.div(1vw, 3.75);
+  .type {
+    &__main {
+      .ad {
+        :deep(.title) {
+          width: 100vw;
+          margin-left: -23 * $pr;
         }
       }
     }
