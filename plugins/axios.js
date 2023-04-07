@@ -1,5 +1,6 @@
 import apiList from '@/api/index'
 export default ({ $axios, error: nuxtError }, inject) => {
+  $axios.defaults.withCredentials = true
   $axios.defaults.timeout = 30000
   $axios.onRequest((config) => {
     let url = config.url
