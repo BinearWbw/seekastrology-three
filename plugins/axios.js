@@ -1,5 +1,5 @@
 import apiList from '@/api/index'
-export default ({ $axios, error: nuxtError }, inject) => {
+export default ({ $axios }, inject) => {
   $axios.defaults.withCredentials = true
   $axios.defaults.timeout = 30000
   $axios.onRequest((config) => {
@@ -27,17 +27,7 @@ export default ({ $axios, error: nuxtError }, inject) => {
     }
   })
   $axios.onError((error) => {
-    if (error.response) {
-      nuxtError({
-        statusCode: error.response.status,
-        message: error.message,
-      })
-    } else {
-      nuxtError({
-        statusCode: error.status,
-        message: error.message,
-      })
-    }
+    console.log(error.message)
     return Promise.resolve(false)
   })
   var apiObject = {}
