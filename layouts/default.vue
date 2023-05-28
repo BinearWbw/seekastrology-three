@@ -60,11 +60,8 @@ export default {
 }
 .main {
   min-height: 100vh;
-  &__page {
-    overflow: hidden;
-    background: url('/img/bg.jpg') no-repeat center top;
-    background-size: 100% 750px;
-  }
+  background: url('/img/bg.png') no-repeat center top;
+  background-size: cover 1160px;
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);

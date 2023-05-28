@@ -2,54 +2,36 @@
   <footer class="footer">
     <div class="footer__main">
       <div class="top">
-        <button class="arrow common__btn" @click="goTop">
+        <!-- <button class="arrow common__btn" @click="goTop">
           <img src="~/assets/img/footer/arrow.svg" alt="arrow" />
-        </button>
-      </div>
-      <div class="bottom">
-        <div class="left">
-          <p>
-            Taptogame.com is a game aggregation platform. Through this platform,
-            you can play games on different devices that support Android and
-            iOS. Our team goal is to enable all players to find a game they
-            love.We offer many types of games. Including but not limited to
-            puzzle games, action games, sports games, racing games, shooting
-            games, arcade games, makeup games, matching games, cooking games,
-            etc. <br />Taptogame.com has collected the hottest, most classic and
-            most fun mobile games, each of which is handpicked by us.<br />Taptogame.com
-            is a website that supports genuine games. The website does not
-            provide game downloads, and our game download links will jump to
-            formal platforms such as Google Play and Apple Store. Players can
-            find the most suitable games in Taptogame.com for the first time.<br />Hope
-            you can find the best game for you on Taptogame.com platform. If you
-            have any feedback on us, please feel free to contact us by email:
-            <a href="mailto:service@taptogame.com">Service@taptogame.com</a>.
-          </p>
+        </button> -->
+        <div class="top_link">
+          <div class="top_list" v-for="item in footer_link" :key="item.id">
+            <a href="#" v-for="(cont, index) in item.content" :key="index">
+              {{ cont.link }}
+            </a>
+          </div>
         </div>
-        <div class="right">
-          <p class="title">SUBSCRIPTION</p>
-          <div class="handle">
-            <input type="text" v-model="email" placeholder="Email address" />
-            <button class="common__btn" @click="!status && subscribeEmaill()">
-              SUBMIT
-            </button>
+        <div class="top_last">
+          <img
+            class="logo_img"
+            src="~/assets/img/header/logoImg.png"
+            alt="logo"
+          />
+          <div class="media">
+            <a
+              :href="item.link"
+              v-for="(item, index) in footer_media"
+              :key="index"
+              target="_blank"
+            >
+              <img :src="item.imgs" :alt="item.link" />
+            </a>
           </div>
         </div>
       </div>
-      <div class="link">
-        <div class="list">
-          <a :href="`${getIntersperseUrl}/eula.html`" target="_blank"
-            >Terms of Service</a
-          >
-          <a :href="`${getIntersperseUrl}/privacy.html`" target="_blank"
-            >Privacy Policy</a
-          >
-          <a :href="`${getIntersperseUrl}/cookies.html`" target="_blank"
-            >Cookies Policy</a
-          >
-          <a href="mailto:service@taptogame.com">Contact Us</a>
-        </div>
-        <span>Copyright © 2023 Taptogame All rights reserved.</span>
+      <div class="bottom">
+        <p>©2022 NetStorm, All Rights Reserved.</p>
       </div>
     </div>
   </footer>
@@ -63,6 +45,122 @@ export default {
     return {
       email: '',
       status: false,
+      footer_link: [
+        {
+          id: '1',
+          content: [
+            {
+              link: 'Astrology',
+            },
+            {
+              link: 'Zodiac Signs',
+            },
+            {
+              link: 'Birth Chart',
+            },
+            {
+              link: 'Astrology Horosscope',
+            },
+            {
+              link: 'Astrologica Compatibility',
+            },
+          ],
+        },
+        {
+          id: '2',
+          content: [
+            {
+              link: 'Tarot',
+            },
+            {
+              link: 'Daily Tarot',
+            },
+            {
+              link: 'Love Tarot',
+            },
+            {
+              link: 'Career Tarot',
+            },
+            {
+              link: 'Tarot Meaning',
+            },
+          ],
+        },
+        {
+          id: '3',
+          content: [
+            {
+              link: 'Quizzes',
+            },
+            {
+              link: 'Personality Test',
+            },
+            {
+              link: 'Career Tarot',
+            },
+            {
+              link: 'Animal Quiz',
+            },
+            {
+              link: 'Trivia Quiz',
+            },
+          ],
+        },
+        {
+          id: '4',
+          content: [
+            {
+              link: 'Information',
+            },
+            {
+              link: 'Astrology',
+            },
+            {
+              link: 'Study',
+            },
+            {
+              link: 'Astrology Horosscope',
+            },
+            {
+              link: 'Study',
+            },
+          ],
+        },
+        {
+          id: '5',
+          content: [
+            {
+              link: 'About Us',
+            },
+            {
+              link: 'Zodiac Signs',
+            },
+            {
+              link: 'Advertise Ment',
+            },
+            {
+              link: 'Privacy',
+            },
+            {
+              link: 'Partner With Us',
+            },
+          ],
+        },
+      ],
+      footer_media: [
+        {
+          imgs: require('~/assets/img/footer/instagram.png'),
+          link: 'https://www.instagram.com',
+        },
+        {
+          imgs: require('~/assets/img/footer/facebook.png'),
+          link: 'https://www.facebook.com',
+        },
+        {
+          imgs: require('~/assets/img/footer/twitter.png'),
+          link: 'https://twitter.com',
+        },
+      ],
     }
   },
   computed: {
@@ -115,52 +213,18 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:math';
 .footer {
-  margin-top: 80px;
+  margin-top: 100px;
   width: 100%;
-  background: #18191d;
+  background: rgba(0, 0, 0, 0.65);
   &__main {
-    max-width: 1310px;
+    max-width: 1400px;
     width: 100%;
     margin: 0 auto;
+    padding-top: 48px;
     .top {
-      width: 100%;
-      height: 88px;
-      border-bottom: 1px solid #282a31;
       display: flex;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-      -webkit-align-items: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      &__left {
-        height: 100%;
-        display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        a {
-          -webkit-flex-shrink: 0;
-          flex-shrink: 0;
-          margin-right: 20px;
-          display: flex;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          &:last-child {
-            margin-right: 0;
-          }
-        }
-      }
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(217, 217, 217, 0.1);
       .arrow {
         margin-left: auto;
         width: 32px;
@@ -171,130 +235,69 @@ export default {
           background: #7a78ff;
         }
       }
+      &_link {
+        flex: 1;
+        display: flex;
+        .top_list {
+          flex: 1;
+          padding-right: 20px;
+          & > :first-child {
+            margin-top: 0;
+            font-size: 16px;
+            line-height: 22px;
+            color: #ffffff;
+          }
+          a {
+            display: block;
+            margin-top: 20px;
+            font-family: 'Rubik';
+            font-size: 14px;
+            line-height: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.3s;
+            &:hover {
+              color: #fff;
+            }
+          }
+        }
+      }
+      &_last {
+        margin-left: auto;
+        width: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .logo_img {
+          width: 108px;
+          margin-bottom: 30px;
+        }
+        .media {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          a {
+            display: block;
+            margin-right: 20px;
+            transition: transform 0.3s ease-out;
+            &:hover {
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
     }
     .bottom {
-      padding: 25px 0 17px;
+      width: 100%;
+      height: 80px;
       display: flex;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-      .left {
-        width: 759px;
-        p {
-          font-size: 14px;
-          line-height: 22px;
-          color: #aaabbd;
-        }
-      }
-      .right {
-        -webkit-flex-shrink: 0;
-        flex-shrink: 0;
-        padding-top: 7px;
-        width: 401px;
-        .title {
-          font-size: 14px;
-          line-height: 17px;
-          padding-left: 6px;
-        }
-        .handle {
-          margin-top: 13px;
-          display: flex;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          height: 44px;
-          input {
-            -webkit-box-flex: 1;
-            -moz-box-flex: 1;
-            -webkit-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            min-width: 0;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.45);
-            border-radius: 48px;
-            font-size: 14px;
-            color: #aaabbd;
-            padding: 0 16px;
-            margin-right: 20px;
-          }
-          button {
-            -webkit-flex-shrink: 0;
-            flex-shrink: 0;
-            width: 104px;
-            height: 100%;
-            background: #6c5dd3;
-            border-radius: 6px;
-            font-size: 14px;
-            &:hover {
-              background-color: #7a78ff;
-            }
-          }
-        }
-      }
-    }
-    .link {
-      padding-bottom: 24px;
-      display: flex;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      -webkit-align-items: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
+      justify-content: center;
       align-items: center;
-      .list {
-        display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        a {
-          padding: 0 12px 0 10px;
-          font-size: 14px;
-          height: 22px;
-          line-height: 22px;
-          position: relative;
-          -webkit-transition: color 0.3s;
-          transition: color 0.3s;
-          color: #aaabbd;
-          &:hover {
-            color: #fff;
-          }
-          &::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 4px;
-            width: 2px;
-            height: 14px;
-            background-color: #aaabbd;
-          }
-          &:last-child {
-            padding: 0 0 0 10px;
-            &::after {
-              content: none;
-            }
-          }
-          &:first-child {
-            padding: 0 12px 0 0;
-          }
-        }
-      }
-      span {
-        margin-left: auto;
-        line-height: 22px;
-        font-size: 14px;
+      p {
+        text-align: center;
+        font-family: 'Rufina';
+        font-size: 12px;
+        line-height: 16px;
+        color: rgba(255, 255, 255, 0.7);
       }
     }
   }

@@ -157,6 +157,13 @@ img:not([src]) {
   font-style: normal;
   font-display: block;
 }
+@font-face {
+  font-family: 'Cinzel Decorative';
+  src: url('../font/CinzelDecorative-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 html {
   overscroll-behavior: contain;
   scrollbar-width: thin;
@@ -381,7 +388,7 @@ body::-webkit-scrollbar {
 }
 :root {
   --text-color: #ffffff;
-  --background-color: #1f2128;
+  --background-color: #090909;
   --shadow-color: #7a2ce5;
   --border-radius: 5px;
   --cubic-bezier: cubic-bezier(0.36, 0.66, 0.04, 1);

@@ -8,13 +8,7 @@
             src="~/assets/img/header/logoImg.png"
             alt="logoImg"
           />
-          <img
-            class="title"
-            src="~/assets/img/header/logoTitle.png"
-            alt="logoTitle"
-          />
         </a>
-        <Desktop></Desktop>
         <nav class="nav">
           <a
             class="nav__item"
@@ -28,27 +22,9 @@
             v-for="(item, index) in menu"
             :key="index"
           >
-            <img
-              :src="
-                item.path == $route.path ||
-                (item.path !== '/' && $route.path.includes(item.path))
-                  ? item.imgActive
-                  : item.img
-              "
-              :alt="item.title"
-            />
             <span> {{ item.title }}</span>
           </a>
         </nav>
-        <div class="search">
-          <input
-            class="input"
-            type="text"
-            v-model="searchInput"
-            placeholder="Search"
-          />
-          <button class="button" aria-label="Search" @click="search"></button>
-        </div>
         <div class="menu common__btn" @click="visibleMenu = true"></div>
         <lazy-dialog-menu
           :menu="menu"
@@ -74,49 +50,31 @@ export default {
           title: 'Home',
           path: '/',
           href: '',
-          img: require('~/assets/img/header/navHome.svg'),
-          imgActive: require('~/assets/img/header/navHomeActive.svg'),
-          imgActive1: require('~/assets/img/header/navHomeActive1.svg'),
         },
         {
-          title: 'Hot Games',
+          title: 'Zodiac Signs',
           path: '/hot',
           href: '/hot',
-          img: require('~/assets/img/header/navHot.svg'),
-          imgActive: require('~/assets/img/header/navHotActive.svg'),
-          imgActive1: require('~/assets/img/header/navHotActive1.svg'),
         },
         {
-          title: 'Best Games',
+          title: 'Astrology',
           path: '/best',
           href: '/best',
-          img: require('~/assets/img/header/navBest.svg'),
-          imgActive: require('~/assets/img/header/navBestActive.svg'),
-          imgActive1: require('~/assets/img/header/navBestActive1.svg'),
         },
         {
-          title: 'Top Games',
+          title: 'Tarot',
           path: '/top',
           href: '/top',
-          img: require('~/assets/img/header/navTop.svg'),
-          imgActive: require('~/assets/img/header/navTopActive.svg'),
-          imgActive1: require('~/assets/img/header/navTopActive1.svg'),
         },
         {
-          title: 'New Games',
+          title: 'Quizzes',
           path: '/new',
           href: '/new',
-          img: require('~/assets/img/header/navNew.svg'),
-          imgActive: require('~/assets/img/header/navNewActive.svg'),
-          imgActive1: require('~/assets/img/header/navNewActive1.svg'),
         },
         {
-          title: 'Category',
+          title: 'Resources',
           path: '/category',
           href: '/category',
-          img: require('~/assets/img/header/navCategory.svg'),
-          imgActive: require('~/assets/img/header/navCategoryActive.svg'),
-          imgActive1: require('~/assets/img/header/navCategoryActive1.svg'),
         },
       ],
     }
@@ -148,115 +106,77 @@ export default {
   &__main {
     width: 100%;
     height: 100%;
-    background: #21242e;
+    background: rgba(0, 0, 0, 0.5);
     > div {
       margin: 0 auto;
       width: 100%;
-      max-width: 1920px;
-      padding: 0 65px;
+      max-width: 1400px;
       height: 100%;
       display: flex;
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
-      -webkit-align-items: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
+      justify-content: space-between;
       .logo {
-        height: 40px;
+        height: 100%;
         display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        -webkit-flex-shrink: 0;
-        flex-shrink: 0;
+        align-items: center;
+        padding-bottom: 6px;
         img {
           display: block;
           object-fit: contain;
         }
         .img {
-          width: 40px;
-          height: 40px;
-        }
-        .title {
-          margin: 9px 0 0 15px;
-          width: 129px;
-          height: 22px;
+          width: 72px;
+          height: 23px;
         }
       }
       .nav {
-        height: 44px;
         display: flex;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
         -webkit-flex-shrink: 0;
         flex-shrink: 0;
-        margin-left: auto;
-        margin-right: auto;
+        padding-top: 28px;
         &__item {
-          padding: 0 18px;
-          border-radius: 6px;
-          height: 100%;
-          display: flex;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          -webkit-align-items: center;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          align-items: center;
+          padding-left: 50px;
           span {
-            margin-top: 2px;
-            padding-left: 10px;
-            font-size: 15px;
-            line-height: 1;
-            color: #aaabbd;
-            -webkit-transition: color 0.3s;
-            transition: color 0.3s;
+            font-family: 'Cinzel Decorative';
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            color: #fff;
+            position: relative;
+            &::after {
+              content: '';
+              position: absolute;
+              left: 0;
+              bottom: -7px;
+              width: 100%;
+              height: 2px;
+              background-color: #fff;
+              transform: scaleX(0);
+              -webkit-transition: transform 0.3s ease-in-out;
+              transition: transform 0.3s ease-in-out;
+            }
           }
           &:hover {
             span {
-              color: #fff;
+              &::after {
+                -webkit-transform: scaleX(1);
+                transform: scaleX(1);
+              }
             }
           }
           &.active {
-            background: rgba(255, 255, 255, 0.05);
             span {
-              color: #fff;
+              &::after {
+                -webkit-transform: scaleX(1);
+                transform: scaleX(1);
+              }
             }
           }
-        }
-      }
-      .search {
-        width: 300px;
-        height: 44px;
-        background: rgba(0, 0, 0, 0.45);
-        border-radius: 48px;
-        position: relative;
-        -webkit-flex-shrink: 0;
-        flex-shrink: 0;
-        input {
-          width: 100%;
-          height: 100%;
-          font-size: 14px;
-          color: #aaabbd;
-          padding: 2px 57px 0 23px;
-        }
-        button {
-          position: absolute;
-          top: calc(50% - 8px);
-          right: 18px;
-          width: 16px;
-          height: 16px;
-          background: url('~assets/img/header/search.svg') no-repeat center
-            center;
-          background-size: contain;
         }
       }
       .menu {
@@ -344,10 +264,8 @@ export default {
       > div {
         padding: 0 24 * $pr 0 21 * $pr;
         .logo {
-          height: 40 * $pr;
           .img {
-            width: 40 * $pr;
-            height: 40 * $pr;
+            width: 48 * $pr;
           }
           .title {
             margin: 9 * $pr 0 0 11 * $pr;
