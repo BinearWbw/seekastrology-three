@@ -1,7 +1,7 @@
 <template>
-  <main class="main" v-cloak>
+  <main class="main" :class="{ home_bg: $route.path == '/' }" v-cloak>
     <Header></Header>
-    <Nuxt class="main__page" />
+    <Nuxt class="main__page" :class="{ home_bg: $route.path == '/' }" />
     <Footer></Footer>
     <transition name="fade">
       <Privacy v-if="visiblePrivacy" @close="visiblePrivacy = false"></Privacy>
@@ -27,6 +27,7 @@ export default {
     }
     this.$store.commit('UPDATE_INTERSPERSE_URL', url)
     this.getLocation()
+    console.log(this.$route.path)
   },
   methods: {
     getLocation() {
@@ -60,16 +61,24 @@ export default {
 }
 .main {
   min-height: 100vh;
-  background: url('/img/bg.png') no-repeat center top;
+  background: url('/img/bg.jpg') no-repeat center top;
   background-size: cover 1160px;
+  &.home_bg {
+    background: url('/img/bg_home.jpg') no-repeat center top;
+    background-size: cover 1160px;
+  }
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .main {
-    &__page {
-      background: url('/img/h5bg.jpg') no-repeat center top;
-      background-size: 375 * $pr 520 * $pr;
+    // &__page {
+    background: url('/img/h5bg.jpg') no-repeat center top;
+    background-size: 375 * $pr 812 * $pr;
+    &.home_bg {
+      background: url('/img/h5bg_home.jpg') no-repeat center top;
+      background-size: 375 * $pr 812 * $pr;
     }
+    // }
   }
 }
 </style>

@@ -1,5 +1,17 @@
 <template>
   <article class="home">
+    <div class="meteor">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <div class="home__main">
       <section class="various_ment">
         <home-various></home-various>
@@ -35,6 +47,123 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:math';
 .home {
+  position: relative;
+  .meteor {
+    span {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
+        0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 10px rgba(255, 255, 255, 1);
+      animation: animate 3s linear infinite;
+      z-index: 66;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, #fff, transparent);
+      }
+      &:nth-child(1) {
+        top: -10%;
+        right: 0;
+        left: initial;
+        animation-delay: 0.3s;
+        animation-duration: 1.6s;
+      }
+      &:nth-child(2) {
+        top: -5%;
+        right: 0;
+        left: initial;
+        animation-delay: 0.2s;
+        animation-duration: 3s;
+      }
+      &:nth-child(3) {
+        top: 0;
+        right: 30%;
+        left: initial;
+        animation-delay: 0.4s;
+        animation-duration: 2s;
+      }
+      &:nth-child(4) {
+        top: -1%;
+        right: 50%;
+        left: initial;
+        animation-delay: 0.6s;
+        animation-duration: 1.5s;
+      }
+      &:nth-child(5) {
+        top: 0;
+        right: 60%;
+        left: initial;
+        animation-delay: 0.8s;
+        animation-duration: 2.5s;
+      }
+      &:nth-child(6) {
+        top: 0;
+        right: 70%;
+        left: initial;
+        animation-delay: 1s;
+        animation-duration: 3s;
+      }
+      &:nth-child(7) {
+        top: -10%;
+        right: 60%;
+        left: initial;
+        animation-delay: 1.2s;
+        animation-duration: 1.75s;
+      }
+      &:nth-child(8) {
+        top: 5%;
+        right: 50%;
+        left: initial;
+        animation-delay: 1.4s;
+        animation-duration: 1.25s;
+      }
+      &:nth-child(9) {
+        top: 3%;
+        right: 10%;
+        left: initial;
+        animation-delay: 0.75s;
+        animation-duration: 2.25s;
+      }
+      &:nth-child(10) {
+        top: 0;
+        right: 0;
+        left: initial;
+        animation-delay: 2.75s;
+        animation-duration: 2.25s;
+      }
+      @keyframes animate {
+        0% {
+          transform: rotate(315deg) translateX(0);
+          opacity: 0;
+          visibility: hidden;
+        }
+        30% {
+          opacity: 0;
+          visibility: hidden;
+        }
+        60% {
+          opacity: 1;
+          visibility: visible;
+        }
+        90% {
+          opacity: 0;
+          visibility: hidden;
+        }
+        100% {
+          transform: rotate(315deg) translateX(-1000px);
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    }
+  }
   &__main {
     margin: 0 auto;
     width: 1400px;
@@ -47,19 +176,19 @@ export default {
 
       .google_ad {
         width: 924px;
-        max-height: 114px;
-        height: 114px;
         background-color: #555761;
         color: #808080;
       }
       &.choice {
         .google_ad {
           margin: 40px auto 0;
+          height: 114px;
         }
       }
       &.kundli {
         .google_ad {
           margin: 80px auto 0;
+          height: 114px;
         }
       }
       &.new_pop {
@@ -155,162 +284,83 @@ export default {
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .home {
-    &__main {
-      padding: 0 10 * $pr;
-      .rec {
-        height: auto;
-        padding: 26 * $pr 13 * $pr;
-        display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        gap: 0;
-        &__item {
-          -webkit-flex-shrink: 0;
-          flex-shrink: 0;
-          width: 156 * $pr;
-          height: 169 * $pr;
-          border-radius: 13 * $pr;
-          .bg {
-            border-radius: 13 * $pr;
-          }
-          .info {
-            height: 70 * $pr;
-            border-radius: 0 0 13 * $pr 13 * $pr;
-            backdrop-filter: blur(10 * $pr);
-            -webkit-backdrop-filter: blur(10 * $pr);
-            &__bottom {
-              margin-top: 3 * $pr;
-              .category {
-                border-radius: 13 * $pr;
-                padding: 0 7 * $pr;
-                height: 15 * $pr;
-                line-height: 17 * $pr;
-                font-size: 9 * $pr;
-              }
-              .company {
-                margin-top: 6 * $pr;
-                font-size: 12 * $pr;
-                line-height: 15 * $pr;
-              }
-            }
-          }
-        }
-        .rec1 {
+    .meteor {
+      span {
+        &:nth-child(3) {
           display: none;
         }
-        .rec2 {
-          width: 100%;
-          height: 235 * $pr;
-          .info {
-            padding-top: 22 * $pr;
-            padding-left: 17 * $pr;
-            height: 81 * $pr;
-            &__title {
-              font-size: 16 * $pr;
-              line-height: 16 * $pr;
-            }
-            &__bottom {
-              margin-top: 8 * $pr;
-              .category {
-                height: 16 * $pr;
-                line-height: 16 * $pr;
-                padding: 0 9 * $pr;
-              }
-              .company {
-                margin-left: 9 * $pr;
-                font-size: 12 * $pr;
-                line-height: 18 * $pr;
-              }
-            }
-          }
+        &:nth-child(4) {
+          top: 30 * $pr;
+          right: -20 * $pr;
+          left: initial;
+          animation-delay: 0.6s;
+          animation-duration: 1.5s;
         }
-        .rec3,
-        .rec4 {
-          margin-top: 15 * $pr;
-          .info {
-            padding-top: 6 * $pr;
-            padding-left: 12 * $pr;
-            height: 70 * $pr;
-            &__title {
-              font-size: 11 * $pr;
-              line-height: 15 * $pr;
-            }
+        &:nth-child(6) {
+          display: none;
+        }
+        &:nth-child(8) {
+          display: none;
+        }
+        &:nth-child(10) {
+          display: none;
+        }
+        @keyframes animate {
+          0% {
+            transform: rotate(315deg) translateX(0);
+            opacity: 0;
+            visibility: hidden;
+          }
+          30% {
+            opacity: 1;
+            visibility: visible;
+          }
+          40% {
+            opacity: 0;
+            visibility: hidden;
+          }
+          60% {
+            opacity: 0;
+            visibility: hidden;
+          }
+          90% {
+            opacity: 0;
+            visibility: hidden;
+          }
+          100% {
+            transform: rotate(315deg) translateX(-1000px);
+            opacity: 0;
+            visibility: hidden;
           }
         }
       }
+    }
+    &__main {
+      padding: 0 16 * $pr;
+      .various_ment {
+        margin-top: 75 * $pr;
+      }
       .module {
-        &__top {
-          height: 41 * $pr;
-          .title {
-            font-size: 34 * $pr;
-            line-height: 41 * $pr;
-          }
-          .more {
-            margin-top: 8 * $pr;
-            font-size: 22 * $pr;
-            line-height: 26 * $pr;
+        &.choice {
+          .google_ad {
+            margin: 40 * $pr auto 0;
+            width: 100%;
+            height: 300 * $pr;
           }
         }
-        &.best {
-          padding: 0 13 * $pr;
-          .list1 {
-            margin-top: 24 * $pr;
-            -webkit-flex-wrap: wrap;
-            -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            gap: 0;
-            :deep(.item:nth-child(5)) {
-              display: block;
-            }
-            :deep(.item:nth-child(6)) {
-              display: block;
-            }
-            :deep(.item:nth-child(n + 4)) {
-              margin-top: 34 * $pr;
-            }
-          }
-          .list2 {
-            margin-top: 28 * $pr;
-            grid-template-columns: repeat(1, 1fr);
-            grid-gap: 20 * $pr 0;
-            :deep(.item:nth-child(n + 3)) {
-              display: none;
-            }
+        &.tarot {
+          margin-top: 80 * $pr;
+        }
+
+        &.kundli {
+          .google_ad {
+            width: 100%;
+            margin: 117 * $pr auto 0;
+            height: 300 * $pr;
           }
         }
-        &.latest {
-          margin-top: 40 * $pr;
-          .module__top {
-            padding: 0 13 * $pr;
-          }
-          .list {
-            margin-top: 15 * $pr;
-            border-radius: 16 * $pr;
-            padding: 35 * $pr 17 * $pr 32 * $pr;
-            grid-template-rows: repeat(3, 1fr);
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 28 * $pr 30 * $pr;
-            :deep(.item:nth-child(n + 10)) {
-              display: none;
-            }
-          }
-        }
-        &.hot {
-          margin-top: 40 * $pr;
-          padding: 0 13 * $pr;
-          .list {
-            margin-top: 15 * $pr;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 14 * $pr 12 * $pr;
-          }
+        &.new_pop {
+          margin-top: 87 * $pr;
         }
       }
     }

@@ -154,7 +154,6 @@ export default {
       backface-visibility: hidden;
       -webkit-appearance: none;
       -webkit-backface-visibility: hidden;
-      position: relative;
       .swiper {
         width: 100%;
         height: 100%;
@@ -186,9 +185,6 @@ export default {
         }
       }
       .swiper_pagination {
-        position: absolute;
-        bottom: 0;
-        left: 0;
         display: none;
       }
     }
@@ -206,6 +202,91 @@ export default {
     transition: transform 0.3s ease;
     &:hover {
       transform: translate3d(0, -3px, 0);
+    }
+  }
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .quizzes {
+    width: 100%;
+    height: 100%;
+    padding: 0 24 * $pr 0;
+    background-size: cover;
+    h3 {
+      font-size: 36 * $pr;
+      line-height: 48 * $pr;
+      text-align: center;
+    }
+    &_sliding {
+      padding-top: 16 * $pr;
+      display: flex;
+      .banner {
+        display: none;
+      }
+      .swiper_list {
+        margin: 0;
+        .swiper {
+          width: 100%;
+          height: 100%;
+          &__item {
+            width: 100%;
+            height: 100%;
+            .banner_img {
+              width: 100%;
+              height: 295 * $pr;
+              object-fit: cover;
+              margin-bottom: 16 * $pr;
+            }
+            p {
+              font-size: 16 * $pr;
+              line-height: 22 * $pr;
+            }
+          }
+        }
+        .swiper_pagination {
+          display: block;
+          text-align: center;
+          padding: 15 * $pr 0 32 * $pr;
+          :deep(swiper-pagination-bullet) {
+            padding: 0 5px;
+          }
+        }
+        :deep(.swiper-pagination-bullet) {
+          width: 6 * $pr;
+          height: 6 * $pr;
+          margin-right: 8 * $pr;
+          border-radius: 50%;
+          position: relative;
+          transition: transform 0.5s ease;
+          &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #fff;
+          }
+        }
+        :deep(.swiper-pagination-bullet-active) {
+          border-color: #fff;
+          transform: scale(1.2);
+          &::before {
+            background-color: #ffffff;
+          }
+        }
+      }
+    }
+    .button {
+      width: 295 * $pr;
+      height: 44 * $pr;
+      background-color: transparent;
+      border-radius: 42 * $pr;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 16 * $pr;
+      line-height: 22 * $pr;
+      border: 1px solid #45454d;
     }
   }
 }

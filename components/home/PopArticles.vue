@@ -47,7 +47,7 @@ export default {
       news: [
         {
           title: 'Tarot.coms Tarot Guide',
-          text: 'Tarot is an ancient divination that began in 14th century Europe. Traditional Tarot decks consist of 78 cards ...',
+          text: 'Tarot is an ancient divination that lisin began in 14th century Europe. Traditional Tarot decks consist of 78 cards ...',
         },
         {
           title: 'Tarot.coms Tarot Guide',
@@ -61,6 +61,10 @@ export default {
           title: 'Tarot.coms Tarot Guide',
           text: 'Tarot is an ancient divination that began in 14th century Europe. Traditional Tarot decks consist of 78 cards ...',
         },
+        // {
+        //   title: 'Tarot.coms Tarot Guide',
+        //   text: 'Tarot is an ancient divination that began in 14th century Europe. Traditional Tarot decks consist of 78 cards ...',
+        // },
       ],
     }
   },
@@ -68,9 +72,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .pop_main {
   width: 100%;
-  height: 636px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,9 +99,8 @@ export default {
   .pop_news {
     flex: 1;
     width: 100%;
-    padding: 48px 0;
+    padding: 48px 0 36px;
     display: flex;
-    overflow: auto;
     .news_left {
       width: 691px;
       height: 100%;
@@ -164,7 +167,6 @@ export default {
     .news_right {
       flex: 1;
       width: 100%;
-      //   overflow: auto;
       & > :last-child {
         margin-bottom: 0;
       }
@@ -246,6 +248,151 @@ export default {
     &:hover {
       color: #000;
       background-color: #fff;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+
+  .pop_main {
+    height: 100%;
+    .bg_main {
+      position: absolute;
+      top: 0;
+      left: -50 * $pr;
+      width: 290 * $pr;
+      height: 290 * $pr;
+      z-index: -1;
+    }
+    h3 {
+      font-size: 36 * $pr;
+      line-height: 48 * $pr;
+    }
+    .pop_news {
+      flex: 1;
+      width: 100%;
+      padding: 16 * $pr 0 0;
+      display: block;
+      .news_left {
+        width: 100%;
+        height: 100%;
+        margin-right: 0;
+        .left_img {
+          width: 100%;
+          min-height: 159 * $pr;
+          margin-bottom: 16 * $pr;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        &_text {
+          position: relative;
+          .text_cont {
+            flex: 1;
+            padding-right: 0;
+            .cont_title {
+              font-size: 22 * $pr;
+              line-height: 30 * $pr;
+              color: #ffffff;
+            }
+            .cont_more {
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
+              margin: 8 * $pr 0;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 4;
+              -webkit-box-orient: vertical;
+            }
+            a {
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
+            }
+          }
+          .text_time {
+            position: absolute;
+            top: 10 * $pr;
+            right: 0;
+            width: 40 * $pr;
+            font-size: 14 * $pr;
+            line-height: 18 * $pr;
+            color: rgba(255, 255, 255, 0.7);
+          }
+        }
+      }
+      .news_right {
+        flex: 1;
+        width: 100%;
+        margin: 32 * $pr 0;
+        & > :last-child {
+          margin-bottom: 0;
+        }
+        li {
+          width: 100%;
+          margin-bottom: 24 * $pr;
+          transition: background-color 0.3s;
+          a {
+            width: 100%;
+            height: 62 * $pr;
+            display: flex;
+            justify-content: space-between;
+            .news_right_img {
+              width: 107 * $pr;
+              height: 100%;
+              margin-right: 11 * $pr;
+              box-sizing: border-box;
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+
+            .news_right_text {
+              width: auto;
+              flex: 1;
+              margin: 0;
+              & > :nth-child(1) {
+                font-size: 14 * $pr;
+                line-height: 18 * $pr;
+              }
+              & > :nth-child(2) {
+                font-size: 12 * $pr;
+                line-height: 16 * $pr;
+                margin-top: 8 * $pr;
+              }
+            }
+
+            .news_right_time {
+              position: absolute;
+              margin-left: 0;
+              right: 0;
+              font-family: 'Rubik';
+              font-size: 12 * $pr;
+              line-height: 16 * $pr;
+              color: #ffffff;
+              padding: 0;
+            }
+          }
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            .news_right_img {
+              img {
+                filter: grayscale(0);
+              }
+            }
+          }
+        }
+      }
+    }
+    .button {
+      width: 295 * $pr;
+      height: 44 * $pr;
+      border-radius: 42 * $pr;
+      font-size: 16 * $pr;
+      line-height: 22 * $pr;
     }
   }
 }

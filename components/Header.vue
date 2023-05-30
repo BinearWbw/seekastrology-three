@@ -195,18 +195,17 @@ export default {
             padding: 0 10px;
           }
         }
-        .search {
-          width: 260px;
-        }
       }
     }
   }
 }
 @media (max-width: (1366px)) {
   .header {
+    height: 60px;
     &__main {
       > div {
         .nav {
+          padding-top: 18px;
           &__item {
             img {
               display: none;
@@ -217,9 +216,6 @@ export default {
               padding-left: 0;
             }
           }
-        }
-        .search {
-          width: 180px;
         }
       }
     }
@@ -235,14 +231,10 @@ export default {
         .nav {
           display: none;
         }
-        .search {
-          display: none;
-        }
         .menu {
           margin-left: 30px;
           display: block;
-          width: 48px;
-          height: 100%;
+          width: 30px;
           background: url('~assets/img/header/menu.png') no-repeat center center;
           background-size: contain;
         }
@@ -253,29 +245,26 @@ export default {
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .header {
-    height: 63 * $pr;
+    height: 46 * $pr;
     &__main {
       position: fixed;
       left: 0;
       top: 0;
       z-index: 6;
-      height: 63 * $pr;
+      height: 46 * $pr;
       border-bottom: 1 * $pr solid #2f303e;
       > div {
-        padding: 0 24 * $pr 0 21 * $pr;
+        padding: 0 17 * $pr 0 16 * $pr;
         .logo {
+          padding-bottom: 0;
           .img {
             width: 48 * $pr;
-          }
-          .title {
-            margin: 9 * $pr 0 0 11 * $pr;
-            width: 119 * $pr;
-            height: 22 * $pr;
+            height: 15 * $pr;
           }
         }
         .menu {
           margin-left: 14 * $pr;
-          width: 22 * $pr;
+          width: 14 * $pr;
         }
       }
     }

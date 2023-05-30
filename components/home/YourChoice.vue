@@ -89,6 +89,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .choice {
   &__title {
     padding-bottom: 78px;
@@ -99,6 +100,7 @@ export default {
       line-height: 64px;
       color: #fff;
       text-align: center;
+      margin-bottom: 16px;
     }
     p {
       font-family: 'Rubik';
@@ -146,8 +148,60 @@ export default {
       }
       &:hover {
         border-color: rgba(255, 255, 255, 0.6);
-        .img__list{
-            transform: scale(1.2);
+        .img__list {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .choice {
+    &__title {
+      padding-bottom: 46 * $pr;
+      h3 {
+        font-size: 36 * $pr;
+        line-height: 48 * $pr;
+        margin-bottom: 8 * $pr;
+      }
+      p {
+        font-size: 22 * $pr;
+        line-height: 30 * $pr;
+      }
+    }
+    &__main {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 11 * $pr;
+      li {
+        height: 147 * $pr;
+        margin-bottom: 36 * $pr;
+        border: 0;
+        .choice__main__a {
+          height: 100%;
+          padding-bottom: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          .img__list {
+            width: 100%;
+            height: 100 * $pr;
+            object-fit: contain cover;
+          }
+          .title {
+            font-size: 16 * $pr;
+            line-height: 22 * $pr;
+          }
+          .time {
+            font-size: 12 * $pr;
+            line-height: 16 * $pr;
+          }
+        }
+        &:hover {
+          .img__list {
+            transform: scale(0);
+          }
         }
       }
     }

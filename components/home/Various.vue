@@ -11,6 +11,7 @@
           <p class="title">{{ item.title }}</p>
           <p class="text">{{ item.textCont }}</p>
           <button class="button">Read More</button>
+          <i class="button_icon"></i>
         </a>
       </li>
     </ul>
@@ -139,11 +140,70 @@ export default {
         -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
         transition: background-color 0.3s, color 0.3s;
       }
+      .button_icon {
+        display: none;
+      }
       &:hover {
         transform: translateY(-20px);
         .button {
           color: #000;
           background-color: #fff;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .various {
+    &__title {
+      margin-bottom: 24 * $pr;
+      h1 {
+        font-size: 46 * $pr;
+        line-height: 64 * $pr;
+      }
+      p {
+        font-size: 22 * $pr;
+        line-height: 30 * $pr;
+      }
+    }
+    &__main {
+      height: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 11 * $pr;
+      li {
+        height: 100%;
+      }
+      &__li {
+        padding: 24 * $pr 0;
+        img {
+          width: 118 * $pr;
+          height: 118 * $pr;
+          object-fit: cover;
+          margin-bottom: 11 * $pr;
+        }
+        .title {
+          font-size: 16 * $pr;
+          line-height: 22 * $pr;
+          margin-bottom: 8 * $pr;
+          padding: 0 10 * $pr;
+        }
+        .text {
+          display: none;
+        }
+        .button {
+          display: none;
+        }
+        .button_icon {
+          display: block;
+          width: 100%;
+          height: 22 * $pr;
+          background: url('../../assets/img/home/var_button.png') no-repeat
+            center;
+        }
+        &:hover {
+          transform: translateY(0);
         }
       }
     }

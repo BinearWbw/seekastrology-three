@@ -42,6 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .tarot {
   width: 100%;
   height: 610px;
@@ -149,6 +150,75 @@ export default {
           }
           &.list_3 {
             transform: matrix(0.97, 0.26, -0.26, 0.97, 247, 20);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .tarot {
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'item2' 'item1';
+    gap: 0;
+    &_text {
+      grid-area: item1;
+      height: 100%;
+      padding-top: 32 * $pr;
+      text-align: center;
+      h3 {
+        font-size: 36 * $pr;
+        line-height: 48 * $pr;
+        br {
+          display: none;
+        }
+      }
+      p {
+        margin: 16 * $pr 0 32 * $pr 0;
+        font-size: 22 * $pr;
+        line-height: 30 * $pr;
+      }
+      .button {
+        margin-top: 0;
+        width: 295 * $pr;
+        height: 44 * $pr;
+        font-size: 16 * $pr;
+        line-height: 22 * $pr;
+      }
+    }
+    &_img {
+      grid-area: item2;
+      height: 320 * $pr;
+      padding: 40 * $pr 0 0 10 * $pr;
+      .tarot_mian {
+        .button {
+          display: none;
+        }
+        .img_list {
+          width: 113 * $pr;
+          height: 226 * $pr;
+          border-radius: 12 * $pr;
+          border: 0;
+          a {
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          &.list_1 {
+            transform: rotate(-5deg) translateX(40px) translateY(20px);
+            z-index: 1;
+          }
+          &.list_2 {
+            transform: matrix(1, -0.03, 0.03, 1, 100, -2);
+            z-index: 2;
+          }
+          &.list_3 {
+            transform: matrix(1, 0.02, -0.02, 1, 160, 5);
+            z-index: 3;
           }
         }
       }

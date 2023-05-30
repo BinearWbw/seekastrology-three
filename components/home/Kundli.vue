@@ -8,43 +8,48 @@
         Get Your<br />
         Free Janam Kundli
       </h3>
-      <form class="form_main" action="#">
-        <label>
-          <p>Name</p>
-          <input type="text" name="username" placeholder="Enter Your Name" />
-        </label>
-        <label>
-          <p>Gender</p>
-          <input type="text" name="gender" placeholder="Enter Your Gender" />
-        </label>
-        <label>
-          <p>Birth Place</p>
-          <input
-            type="text"
-            name="birth_place"
-            placeholder="Enter Your Birth Place"
-          />
-        </label>
-        <label>
-          <p>Bith Date</p>
-          <div class="bith_date">
-            <input type="text" name="hour" placeholder="Hour" />
-            <input type="text" name="minute" placeholder="Minute" />
-            <input type="text" name="pm" placeholder="PM" />
+      <div class="mobile_btn" v-if="!isOpen">
+        <button class="button" @click="toggleBtn">Try To Now</button>
+      </div>
+      <transition>
+        <form class="form_main" :class="{ isopen: isOpen }" action="#">
+          <label>
+            <p>Name</p>
+            <input type="text" name="username" placeholder="Enter Your Name" />
+          </label>
+          <label>
+            <p>Gender</p>
+            <input type="text" name="gender" placeholder="Enter Your Gender" />
+          </label>
+          <label>
+            <p>Birth Place</p>
+            <input
+              type="text"
+              name="birth_place"
+              placeholder="Enter Your Birth Place"
+            />
+          </label>
+          <label>
+            <p>Bith Date</p>
+            <div class="bith_date">
+              <input type="text" name="hour" placeholder="Hour" />
+              <input type="text" name="minute" placeholder="Minute" />
+              <input type="text" name="pm" placeholder="PM" />
+            </div>
+          </label>
+          <label>
+            <p>Bith Date</p>
+            <div class="bith_date">
+              <input type="text" name="hour" placeholder="Hour" />
+              <input type="text" name="minute" placeholder="Minute" />
+              <input type="text" name="pm" placeholder="PM" />
+            </div>
+          </label>
+          <div class="form_button">
+            <button class="button">Read More</button>
           </div>
-        </label>
-        <label>
-          <p>Bith Date</p>
-          <div class="bith_date">
-            <input type="text" name="hour" placeholder="Hour" />
-            <input type="text" name="minute" placeholder="Minute" />
-            <input type="text" name="pm" placeholder="PM" />
-          </div>
-        </label>
-        <div class="form_button">
-          <button class="button">Read More</button>
-        </div>
-      </form>
+        </form>
+      </transition>
     </div>
   </div>
 </template>
@@ -52,10 +57,21 @@
 <script>
 export default {
   name: 'Kundli',
+  data() {
+    return {
+      isOpen: false,
+    }
+  },
+  methods: {
+    toggleBtn() {
+      this.isOpen = true
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .kundli_main {
   width: 100%;
   height: 590px;
@@ -89,6 +105,9 @@ export default {
       font-weight: 700;
       font-size: 46px;
       line-height: 64px;
+    }
+    .mobile_btn {
+      display: none;
     }
     .form_main {
       width: 100%;
@@ -150,6 +169,102 @@ export default {
             transform: translate3d(0, -3px, 0);
           }
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .kundli_main {
+    width: 100%;
+    height: 100%;
+    display: block;
+    .spin_img {
+      width: 100%;
+    }
+    .kundli_form {
+      height: 100%;
+      padding: 16 * $pr 0 0;
+      h3 {
+        font-size: 36 * $pr;
+        line-height: 48 * $pr;
+        text-align: center;
+        margin-bottom: 16 * $pr;
+        br {
+          display: none;
+        }
+      }
+      .mobile_btn {
+        display: block;
+        padding: 0 17 * $pr;
+        .button {
+          width: 100%;
+          height: 44 * $pr;
+          background: #fff;
+          box-sizing: border-box;
+          border-radius: 42px;
+          color: #000;
+          font-family: 'Rubik';
+          font-size: 16 * $pr;
+          line-height: 22 * $pr;
+        }
+      }
+      .form_main {
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        margin-top: 0;
+        padding: 0 17 * $pr;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16 * $pr;
+        transition: height 0.3s ease;
+        label {
+          font-family: 'Rubik';
+          p {
+            font-size: 16 * $pr;
+            line-height: 22 * $pr;
+            color: #ffffff;
+            margin-bottom: 8 * $pr;
+          }
+          input {
+            width: 100%;
+            height: 44 * $pr;
+            border-radius: 24 * $pr;
+            padding: 0 18 * $pr;
+            font-size: 14 * $pr;
+            line-height: 18 * $pr;
+            &::placeholder {
+              font-family: 'Rubik';
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
+              color: rgba(255, 255, 255, 0.7);
+            }
+            &:focus {
+              border-color: #fff;
+            }
+          }
+          .bith_date {
+            input:nth-of-type(2) {
+              margin: 0 7.5 * $pr;
+            }
+          }
+        }
+        .form_button {
+          position: relative;
+          .button {
+            position: relative;
+            margin-top: 22 * $pr;
+            height: 44 * $pr;
+            border-radius: 42 * $pr;
+            font-size: 16 * $pr;
+            line-height: 22 * $pr;
+          }
+        }
+      }
+      .isopen {
+        height: 516 * $pr !important;
       }
     }
   }
