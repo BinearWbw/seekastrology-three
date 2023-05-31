@@ -57,8 +57,7 @@ module.exports = {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title:
-      'Taptogame－dedicated to the dreams and wonders of the young crowd, play with your own colors in the game!',
+    title: 'Seekastrology',
     meta: [
       { charset: 'utf-8' },
       {
@@ -153,7 +152,9 @@ module.exports = {
       { rel: 'preconnect', href: 'https://www.taptogame.com' },
       { rel: 'preconnect', href: 'https://taptogame.com' },
       { rel: 'preload', as: 'image', href: '/img/h5bg.jpg' },
-      { rel: 'preload', as: 'image', href: '/img/bg.png' },
+      { rel: 'preload', as: 'image', href: '/img/h5bg_home.jpg' },
+      { rel: 'preload', as: 'image', href: '/img/bg.jpg' },
+      { rel: 'preload', as: 'image', href: '/img/bg_home.jpg' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'shortcut icon', sizes: '512x512', href: '/favicon.png' },
       { rel: 'apple-touch-icon', href: '/favicon.png' },

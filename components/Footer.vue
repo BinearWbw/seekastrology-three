@@ -1,6 +1,11 @@
 <template>
   <footer class="footer">
     <div class="footer__main">
+      <img
+        class="logo_mobile_img"
+        src="~/assets/img/header/logoImg.png"
+        alt="logo"
+      />
       <div class="top">
         <!-- <button class="arrow common__btn" @click="goTop">
           <img src="~/assets/img/footer/arrow.svg" alt="arrow" />
@@ -213,7 +218,6 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:math';
 .footer {
-  margin-top: 100px;
   width: 100%;
   background: rgba(0, 0, 0, 0.65);
   &__main {
@@ -221,6 +225,9 @@ export default {
     width: 100%;
     margin: 0 auto;
     padding-top: 48px;
+    .logo_mobile_img {
+      display: none;
+    }
     .top {
       display: flex;
       padding-bottom: 32px;
@@ -347,108 +354,73 @@ export default {
 }
 @media (max-width: (750px)) {
   $pr: math.div(1vw, 3.75);
+
   .footer {
-    margin-top: 40 * $pr;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.65);
     &__main {
-      padding: 0;
+      width: 100%;
+      margin: 0 auto;
+      padding: 48 * $pr 16 * $pr 0;
+      .logo_mobile_img {
+        display: block;
+        width: 107 * $pr;
+        margin: 0 auto 32 * $pr;
+      }
       .top {
-        padding: 0 23 * $pr;
-        height: 47 * $pr;
-        border-bottom: 1 * $pr solid #282a31;
-        &__left {
-          a {
-            margin-right: 15 * $pr;
-            img {
-              width: 20 * $pr;
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 0;
+        border-bottom: none;
+        position: relative;
+        &_link {
+          flex: 1;
+          display: flex;
+          flex-wrap: wrap;
+          .top_list {
+            flex-basis: 50%;
+            padding-right: 0;
+            padding: 16 * $pr 0;
+            border-bottom: 1 * $pr solid rgba(217, 217, 217, 0.1);
+            & > :first-child {
+              margin-top: 0;
+              font-size: 16 * $pr;
+              line-height: 22 * $pr;
+            }
+            a {
+              display: block;
+              margin-top: 20 * $pr;
+              font-family: 'Rubik';
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
             }
           }
         }
-        .arrow {
-          width: 20 * $pr;
-          height: 20 * $pr;
-          border-radius: 4 * $pr;
-          img {
-            height: 6 * $pr;
+        &_last {
+          margin-left: auto;
+          width: auto;
+          position: absolute;
+          right: 0;
+          bottom: 16 * $pr;
+          .logo_img {
+            display: none;
+          }
+          .media {
+            a {
+              margin-right: 24 * $pr;
+              img {
+                width: 33 * $pr;
+              }
+            }
           }
         }
       }
       .bottom {
-        padding: 14 * $pr 23 * $pr 8 * $pr;
-        .left {
-          margin-top: 20 * $pr;
-          p {
-            font-size: 9 * $pr;
-            line-height: 14 * $pr;
-          }
-        }
-        .right {
-          .title {
-            font-size: 14 * $pr;
-            line-height: 17 * $pr;
-            padding-left: 0;
-          }
-          .handle {
-            margin-top: 15 * $pr;
-            height: 90 * $pr;
-            -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-            flex-direction: column;
-            -webkit-box-pack: justify;
-            -webkit-justify-content: space-between;
-            -ms-flex-pack: justify;
-            justify-content: space-between;
-            input {
-              flex: none;
-              height: 40 * $pr;
-              border-radius: 48 * $pr;
-              font-size: 12 * $pr;
-              padding: 0 17 * $pr;
-              margin-right: 0;
-            }
-            button {
-              width: 104 * $pr;
-              height: 40 * $pr;
-              border-radius: 6 * $pr;
-              font-size: 14 * $pr;
-              line-height: 44 * $pr;
-            }
-          }
-        }
-      }
-      .link {
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        padding-bottom: 17 * $pr;
-        .list {
-          -webkit-box-pack: center;
-          -webkit-justify-content: center;
-          -ms-flex-pack: center;
-          justify-content: center;
-          a {
-            margin: 5 * $pr 0;
-            padding: 0 6 * $pr 0 5 * $pr;
-            font-size: 9 * $pr;
-            height: 14 * $pr;
-            line-height: 14 * $pr;
-            &::after {
-              top: 0;
-              width: 1 * $pr;
-              height: 100%;
-            }
-            &:last-child {
-              padding: 0 0 0 5 * $pr;
-            }
-            &:first-child {
-              padding: 0 6 * $pr 0 0;
-            }
-          }
-        }
-        span {
-          margin-top: 8 * $pr;
-          line-height: 14 * $pr;
-          font-size: 9 * $pr;
+        width: 100%;
+        height: 64 * $pr;
+        p {
+          font-size: 12 * $pr;
+          line-height: 16 * $pr;
         }
       }
     }

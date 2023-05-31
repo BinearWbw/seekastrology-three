@@ -53,8 +53,8 @@ export default {
         },
         {
           title: 'Zodiac Signs',
-          path: '/hot',
-          href: '/hot',
+          path: '/zodiac',
+          href: '/zodiac',
         },
         {
           title: 'Astrology',
@@ -252,7 +252,6 @@ export default {
       top: 0;
       z-index: 6;
       height: 46 * $pr;
-      border-bottom: 1 * $pr solid #2f303e;
       > div {
         padding: 0 17 * $pr 0 16 * $pr;
         .logo {

@@ -337,6 +337,7 @@ export default {
     }
     &__main {
       padding: 0 16 * $pr;
+      width: 100%;
       .various_ment {
         margin-top: 75 * $pr;
       }

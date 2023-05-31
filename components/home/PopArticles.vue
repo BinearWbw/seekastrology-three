@@ -79,6 +79,7 @@ export default {
   flex-direction: column;
   align-items: center;
   position: relative;
+  margin-bottom: 100px;
   .bg_main {
     position: absolute;
     top: -80px;
@@ -257,6 +258,7 @@ export default {
 
   .pop_main {
     height: 100%;
+    margin-bottom: 87 * $pr;
     .bg_main {
       position: absolute;
       top: 0;

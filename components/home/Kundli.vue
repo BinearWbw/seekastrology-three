@@ -11,7 +11,7 @@
       <div class="mobile_btn" v-if="!isOpen">
         <button class="button" @click="toggleBtn">Try To Now</button>
       </div>
-      <transition>
+      <transition name="fade">
         <form class="form_main" :class="{ isopen: isOpen }" action="#">
           <label>
             <p>Name</p>
