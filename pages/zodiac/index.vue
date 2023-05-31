@@ -25,7 +25,7 @@
       <div class="zodiac_main_list">
         <div class="zodiac_signs">
           <div class="each" v-for="(item, index) in zodiacSigns" :key="index">
-            <a href="#">
+            <a href="zodiac/details">
               <h4>{{ item.name }}</h4>
               <p class="time">{{ item.time }}</p>
               <p class="text">

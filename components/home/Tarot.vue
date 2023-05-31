@@ -58,6 +58,7 @@ export default {
       font-weight: 700;
       font-size: 46px;
       line-height: 64px;
+      color: #fff;
     }
     p {
       margin: 32px 0;

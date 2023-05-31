@@ -105,6 +105,7 @@ export default {
       font-weight: 700;
       font-size: 46px;
       line-height: 64px;
+      color: #fff;
     }
     .mobile_btn {
       display: none;
