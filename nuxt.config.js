@@ -166,12 +166,20 @@ module.exports = {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/scss/main.scss'],
+  css: [
+    '@/assets/scss/main.scss',
+    'ant-design-vue/lib/button/style/css',
+    'ant-design-vue/lib/tabs/style/css',
+  ],
 
   loading: false,
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~plugins/axios', '~plugins/utils'],
+  plugins: [
+    '~plugins/axios',
+    '~plugins/utils',
+    { src: '@/plugins/antd-ui', mode: 'client' },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
