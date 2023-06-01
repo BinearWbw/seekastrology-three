@@ -21,7 +21,8 @@ export default {
 @use 'sass:math';
 .main_list {
   width: 220px;
-  height: 370px;
+  height: 320px;
+  position: relative;
 }
 .internal__main__li {
   height: 100%;
@@ -42,6 +43,8 @@ export default {
   cursor: pointer;
   -webkit-transition: transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
+  position: absolute;
+  top: -49px;
   img {
     width: 132px;
     height: 132px;

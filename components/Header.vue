@@ -73,8 +73,8 @@ export default {
         },
         {
           title: 'Resources',
-          path: '/category',
-          href: '/category',
+          path: '/resources',
+          href: '/resources',
         },
       ],
     }
