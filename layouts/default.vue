@@ -27,7 +27,6 @@ export default {
     }
     this.$store.commit('UPDATE_INTERSPERSE_URL', url)
     this.getLocation()
-    console.log(this.$route.path)
   },
   methods: {
     getLocation() {

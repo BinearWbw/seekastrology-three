@@ -3,6 +3,7 @@
     <div class="zodiac_details_main">
       <div class="part_details">
         <h3>Zodiac Signs Features</h3>
+        <div class="pull_down"></div>
         <div class="introduce">
           <div class="left_tab">
             <div
@@ -57,28 +58,31 @@
           </div>
         </div>
         <google-ad class="google_ad"></google-ad>
+        <google-ad class="google_ad_left"></google-ad>
+        <google-ad class="google_ad_right"></google-ad>
       </div>
       <div class="tab_control">
         <div class="tab_main">
-          <a-tabs tab-position="top">
-            <a-tab-pane
-              :tab="item.tabs"
-              v-for="(item, index) in tabTextContent"
-              :key="index"
-            >
+          <el-tabs :tabs="tabTextContent">
+            <template v-slot="{ activeTab }">
               <div
-                class="tab_main_list"
-                v-for="(conts, index_i) in item.datas"
-                :key="index_i"
+                v-for="(item, index) in tabTextContent"
+                :key="index"
+                v-show="activeTab === index"
               >
-                <h4>{{ conts.name }}</h4>
-                <p>
-                  {{ conts.texts }}
-                </p>
+                <div
+                  class="tab_main_list"
+                  v-for="(conts, index_i) in item.datas"
+                  :key="index_i"
+                >
+                  <h4>{{ conts.name }}</h4>
+                  <p>{{ conts.texts }}</p>
+                </div>
               </div>
-            </a-tab-pane>
-          </a-tabs>
+            </template>
+          </el-tabs>
         </div>
+        <div class="tabs_max"></div>
         <google-ad class="google_ad"></google-ad>
       </div>
     </div>
@@ -93,6 +97,17 @@ export default {
   name: 'zodiac_details',
   data() {
     return {
+      tabs: [
+        { title: 'Tab 1', content: 'Content of Tab 1' },
+        { title: 'Tab 2', content: 'Content of Tab 2' },
+        { title: 'Tab 3', content: 'Content of Tab 3' },
+        { title: 'Tab 4', content: 'Content of Tab 4' },
+        { title: 'Tab 5', content: 'Content of Tab 5' },
+        { title: 'Tab 6', content: 'Content of Tab 6' },
+        { title: 'Tab 7', content: 'Content of Tab 7' },
+        { title: 'Tab 8', content: 'Content of Tab 8' },
+        { title: 'Tab 9', content: 'Content of Tab 9' },
+      ],
       tabList: [
         {
           name: 'Aries',
@@ -227,7 +242,7 @@ export default {
                 'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,youcan find your sign from 12 zodiacsins.',
             },
             {
-              name: 'ARIES Career',
+              name: 'ARIES Caree',
               texts:
                 'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign?',
             },
@@ -258,13 +273,12 @@ export default {
             },
             {
               name: 'ARIES Career',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign?',
+              texts: 'How do you find your zodiac sign?',
             },
             {
               name: 'ARIES Lover',
               texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign?',
+                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign?',
             },
             {
               name: 'ARIES Healthy',
@@ -278,6 +292,20 @@ export default {
             },
           ],
         },
+        {
+          tabs: 'Mans',
+          datas: [
+            {
+              name: 'Aries Traits',
+              texts:
+                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,youcan find your sign from 12 zodiacsins.',
+            },
+            {
+              name: 'ARIES Career',
+              texts: 'How do you find your zodiac sign?',
+            },
+          ],
+        },
       ],
     }
   },
@@ -285,6 +313,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .zodiac_details {
   &_main {
     margin: 0 auto;
@@ -292,6 +321,7 @@ export default {
     .part_details {
       width: 100%;
       padding-top: 48px;
+      position: relative;
       h3 {
         font-family: 'Cinzel Decorative';
         font-style: normal;
@@ -301,6 +331,13 @@ export default {
         text-align: center;
         color: #ffffff;
         margin-bottom: 64px;
+      }
+      .pull_down {
+        width: 338px;
+        height: 60px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 34px;
+        display: none;
       }
       .introduce {
         width: 100%;
@@ -441,6 +478,25 @@ export default {
         height: 114px;
         background-color: #555761;
         margin: 48px auto;
+        overflow: hidden;
+      }
+      .google_ad_left {
+        position: absolute;
+        top: 138px;
+        left: -192px;
+        width: 160px;
+        height: 600px;
+        overflow: hidden;
+        background-color: #555761;
+      }
+      .google_ad_right {
+        position: absolute;
+        top: 138px;
+        right: -192px;
+        width: 160px;
+        height: 600px;
+        overflow: hidden;
+        background-color: #555761;
       }
     }
     .tab_control {
@@ -449,52 +505,8 @@ export default {
         width: 100%;
         padding: 0 118px;
 
-        ::v-deep(.ant-tabs-top-bar) {
-          //第三方组件
-          //   margin: 0;
-          border: none;
-          position: relative;
-          &::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(
-              90deg,
-              rgba(255, 255, 255, 0) 0%,
-              rgba(255, 255, 255, 0.2) 50.52%,
-              rgba(255, 255, 255, 0) 100%
-            );
-          }
-          .ant-tabs-nav-wrap {
-            margin-bottom: 0;
-            .ant-tabs-nav-scroll {
-              display: flex;
-              justify-content: center;
-
-              .ant-tabs-tab {
-                padding: 7px 22px;
-                margin: 0 24px 0 0;
-                font-family: 'Rubik';
-                font-size: 14px;
-                line-height: 18px;
-                color: rgba(255, 255, 255, 0.7);
-                border-radius: 42px;
-                transition: background-color 0.3s ease-in-out;
-              }
-              .ant-tabs-tab-active {
-                color: #000;
-                text-shadow: none;
-                background-color: #fff;
-              }
-            }
-            .ant-tabs-ink-bar {
-              background-color: transparent;
-              height: 0;
-            }
-          }
+        ::v-deep(.tab-header) {
+          justify-content: center;
         }
 
         &_list {
@@ -511,6 +523,7 @@ export default {
             font-family: 'Rubik';
             font-size: 16px;
             line-height: 22px;
+            margin-top: 8px;
             color: rgba(255, 255, 255, 0.7);
           }
         }
@@ -520,6 +533,110 @@ export default {
         height: 114px;
         background-color: #555761;
         margin: 95px auto 48px;
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .zodiac_details {
+    &_main {
+      width: 100%;
+      padding: 0 16 * $pr;
+      .part_details {
+        width: 100%;
+        padding-top: 48 * $pr;
+        h3 {
+          font-size: 36 * $pr;
+          line-height: 48 * $pr;
+          margin-bottom: 16 * $pr;
+        }
+        .pull_down {
+          display: block;
+          margin-bottom: 48 * $pr;
+        }
+        .introduce {
+          width: 100%;
+          display: flex;
+          .left_tab {
+            display: none;
+          }
+          .right_cont {
+            width: 100%;
+            h4 {
+              font-size: 26 * $pr;
+              line-height: 36 * $pr;
+            }
+            .right_various {
+              font-size: 16 * $pr;
+              line-height: 22 * $pr;
+              margin-top: 16 * $pr;
+            }
+            .img_cont {
+              height: auto;
+              margin: 24 * $pr 0;
+            }
+            .right_minute {
+              &_min {
+                flex-direction: column;
+                padding-top: 18 * $pr;
+                padding-left: 8 * $pr;
+                .contents {
+                  margin-bottom: 16 * $pr;
+                  > span {
+                    width: 140 * $pr;
+                    font-size: 14 * $pr;
+                    line-height: 18 * $pr;
+                  }
+                  > p {
+                    font-size: 16 * $pr;
+                    line-height: 22 * $pr;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .google_ad {
+          width: 100%;
+          height: 299 * $pr;
+          margin: 32 * $pr auto 48 * $pr;
+          overflow: hidden;
+        }
+        .google_ad_left {
+          display: none;
+        }
+        .google_ad_right {
+          display: none;
+        }
+      }
+      .tab_control {
+        .tab_main {
+          padding: 0;
+
+          ::v-deep(.tab-header) {
+            justify-content: initial;
+          }
+
+          &_list {
+            margin-top: 24 * $pr;
+            h4 {
+              font-size: 26 * $pr;
+              line-height: 36 * $pr;
+            }
+            p {
+              font-size: 16 * $pr;
+              line-height: 22 * $pr;
+              margin-top: 8 * $pr;
+            }
+          }
+        }
+        .google_ad {
+          width: 100%;
+          height: 299 * $pr;
+          margin: 48 * $pr 0;
+        }
       }
     }
   }

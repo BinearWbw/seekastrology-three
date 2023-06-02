@@ -52,6 +52,11 @@ export default {
           href: '',
         },
         {
+          title: 'Horroscope',
+          path: '/horroscope',
+          href: '/horroscope',
+        },
+        {
           title: 'Zodiac Signs',
           path: '/zodiac',
           href: '/zodiac',
@@ -146,7 +151,7 @@ export default {
             font-weight: 700;
             font-size: 16px;
             line-height: 22px;
-            color: #fff;
+            color: rgba(255, 255, 255, 0.5);
             position: relative;
             &::after {
               content: '';
@@ -171,6 +176,7 @@ export default {
           }
           &.active {
             span {
+              color: #fff;
               &::after {
                 -webkit-transform: scaleX(1);
                 transform: scaleX(1);
