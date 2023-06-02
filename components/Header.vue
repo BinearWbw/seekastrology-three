@@ -77,7 +77,7 @@ export default {
           href: '/new',
         },
         {
-          title: 'Resources',
+          title: 'Articles',
           path: '/resources',
           href: '/resources',
         },

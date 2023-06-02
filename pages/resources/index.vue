@@ -2,34 +2,72 @@
  * @Author: jintao 542345709@qq.com
  * @Date: 2023-06-01 10:54:47
  * @LastEditors: jintao 542345709@qq.com
- * @LastEditTime: 2023-06-01 10:55:15
+ * @LastEditTime: 2023-06-02 18:35:37
  * @FilePath: /seekastrology/pages/resources/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <div class="resources">
-    <google-ad class="google_ad_left"></google-ad>
-    <google-ad class="google_ad_right"></google-ad>
+    <!-- <google-ad class="google_ad_left"></google-ad>
+    <google-ad class="google_ad_right"></google-ad> -->
     <div class="resources_main">
       <div class="resources_main_title">HOT Content</div>
       <div class="resources_main_top">
-        <div class="resources_main_top_left">
-          <img :src="list[0].imgUrl" alt="" />
-          <div class="resources_main_top_left_content">
-            <div class="resources_main_top_left_content_title">
-              <span class="resources_main_top_left_content_title_text">{{
-                list[0].title
-              }}</span>
-              <span class="resources_main_top_left_content_title_date">{{
-                list[0].date
-              }}</span>
+        <div class="resources_main_top_left" @click="jumpDetails(list[0])">
+          <div v-if="list[0].type == 1">
+            <div class="resources_main_top_left_img">
+              <img
+                :src="list[0].imgUrl"
+                alt=""
+                class="resources_main_top_left_img_video"
+              />
+              <img
+                src="../../assets/img/resources/play_icon.png"
+                alt=""
+                class="resources_main_top_left_img_play"
+              />
+              <div class="resources_main_top_left_img_time">
+                {{ list[0].time }}
+              </div>
+              <div class="resources_main_top_left_img_tarot">TAROT</div>
             </div>
-            <div class="resources_main_top_left_content_subscribe">
-              {{ list[0].subscribe }}
+            <!-- <img :src="item.imgUrl" alt="" /> -->
+            <div class="resources_main_top_left_content">
+              <div class="resources_main_top_left_content_title">
+                <span class="resources_main_top_left_content_title_text">{{
+                  list[0].title
+                }}</span>
+              </div>
+              <div class="resources_main_top_left_content_btn">Read More</div>
             </div>
-            <div class="resources_main_top_left_content_btn">Read More</div>
-            <div class="resources_main_top_left_content_h5date">
-              {{ list[0].date }}
+          </div>
+          <!-- 2图文 -->
+          <div v-if="list[0].type == 2">
+            <div class="resources_main_top_left_img">
+              <img
+                class="resources_main_top_left_img_pic"
+                :src="list[0].imgUrl"
+                alt=""
+              />
+              <div class="resources_main_top_left_img_tarot">TAROT</div>
+            </div>
+
+            <div class="resources_main_top_left_content">
+              <div class="resources_main_top_left_content_title">
+                <span class="resources_main_top_left_content_title_text">{{
+                  list[0].title
+                }}</span>
+                <div class="resources_main_top_left_content_title_date">
+                  <span>{{ list[0].date }}</span>
+                </div>
+              </div>
+              <div class="resources_main_top_left_content_subscribe">
+                {{ list[0].subscribe }}
+              </div>
+              <div class="resources_main_top_left_content_btn">Read More</div>
+              <div class="resources_main_top_left_content_h5date">
+                {{ list[0].date }}
+              </div>
             </div>
           </div>
         </div>
@@ -38,20 +76,60 @@
             class="resources_main_top_right_item"
             v-for="(item, index) in normalList"
             :key="item.id"
+            @click="jumpDetails(item)"
           >
-            <img :src="item.imgUrl" alt="" />
-            <div class="resources_main_top_right_item_content">
-              <div class="resources_main_top_right_item_content_title">
-                <span
-                  class="resources_main_top_right_item_content_title_text"
-                  >{{ item.title }}</span
-                >
+            <!-- 1视频 -->
+            <div v-if="item.type == 1">
+              <div class="resources_main_top_right_item_img">
+                <img
+                  :src="item.imgUrl"
+                  alt=""
+                  class="resources_main_top_right_item_img_video"
+                />
+                <img
+                  src="../../assets/img/resources/play_icon.png"
+                  alt=""
+                  class="resources_main_top_right_item_img_play"
+                />
+                <div class="resources_main_top_right_item_img_time">
+                  {{ item.time }}
+                </div>
+                <div class="resources_main_top_right_item_img_tarot">TAROT</div>
               </div>
-              <div class="resources_main_top_right_item_content_subscribe">
-                {{ item.subscribe }}
+              <!-- <img :src="item.imgUrl" alt="" /> -->
+              <div class="resources_main_top_right_item_content">
+                <div class="resources_main_top_right_item_content_title">
+                  <span
+                    class="resources_main_top_right_item_content_title_text"
+                    >{{ item.title }}</span
+                  >
+                </div>
               </div>
-              <div class="resources_main_top_right_item_content_date">
-                <span>{{ item.date }}</span>
+            </div>
+            <!-- 2图文 -->
+            <div v-if="item.type == 2">
+              <div class="resources_main_top_right_item_img">
+                <img
+                  class="resources_main_top_right_item_img_pic"
+                  :src="item.imgUrl"
+                  alt=""
+                />
+                <div class="resources_main_top_right_item_img_tarot">TAROT</div>
+              </div>
+
+              <div class="resources_main_top_right_item_content">
+                <div class="resources_main_top_right_item_content_title">
+                  <span
+                    class="resources_main_top_right_item_content_title_text"
+                    >{{ item.title }}</span
+                  >
+                </div>
+                <div class="resources_main_top_right_item_content_subscribe">
+                  {{ item.subscribe }}
+                </div>
+                <div class="resources_main_top_right_item_content_date">
+                  <span>{{ item.date }}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -94,17 +172,21 @@
                 <div class="resources_main_btm_main_item_img_time">
                   {{ item.time }}
                 </div>
+                <div class="resources_main_btm_main_item_img_tarot">TAROT</div>
               </div>
               <div class="resources_main_btm_main_item_vtitle">
                 {{ item.title }}
               </div>
             </div>
             <div v-if="item.type == 2">
-              <img
-                :src="item.imgUrl"
-                alt=""
-                class="resources_main_btm_main_item_img_rich"
-              />
+              <div class="resources_main_btm_main_item_img">
+                <img
+                  :src="item.imgUrl"
+                  alt=""
+                  class="resources_main_btm_main_item_img_pic"
+                />
+                <div class="resources_main_btm_main_item_img_tarot">TAROT</div>
+              </div>
               <div class="resources_main_btm_main_item_text">
                 <div class="resources_main_btm_main_item_text_title">
                   {{ item.title }}
@@ -134,14 +216,17 @@ export default {
       list: [
         {
           id: 1,
+          type: 2,
           imgUrl: require('../../assets/img/resources/p_01.png'),
           title: "Tarot.com's Tarot Guide",
           date: '07/24',
+          time: '37:25',
           subscribe:
             'Tarot is an ancient divination that began in 14th century Europe. symbolic archetypes that allow us to tap into......',
         },
         {
           id: 2,
+          type: 2,
           imgUrl: require('../../assets/img/resources/p_02.png'),
           title: 'LOVE Tarot Reading',
           subscribe:
@@ -150,6 +235,7 @@ export default {
         },
         {
           id: 3,
+          type: 2,
           imgUrl: require('../../assets/img/resources/p_03.png'),
           title: 'LOVE Tarot Reading',
           subscribe:
@@ -158,6 +244,8 @@ export default {
         },
         {
           id: 4,
+          type: 1,
+          time: '37:25',
           imgUrl: require('../../assets/img/resources/p_04.png'),
           title: 'LOVE Tarot Reading',
           subscribe:
@@ -166,6 +254,7 @@ export default {
         },
         {
           id: 5,
+          type: 2,
           imgUrl: require('../../assets/img/resources/p_05.png'),
           title: 'LOVE Tarot Reading',
           subscribe:
@@ -289,7 +378,15 @@ export default {
   },
   methods: {
     /**点击底部列表跳转 */
-    jumpDetails() {},
+    jumpDetails(item) {
+      console.log(item);
+      //
+      this.$router.push({
+          path: `/resources/details/?id=${item.id}`,
+          href: '/resources/details',
+          data:item
+        })
+    },
     /** 点击切换tabs*/
     changeTab(item, index) {
       this.currentTabIndex = index
@@ -357,7 +454,48 @@ $spacing: 16px;
       height: 100%;
       &_left {
         width: 574px;
-        height: 628px;
+        min-height: 628px;
+        &_img {
+          width: 574px;
+          height: 471px;
+          position: relative;
+          object-fit: cover;
+          &_video {
+            width: 574px;
+            height: 471px;
+          }
+          &_play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 82px;
+            height: 82px;
+          }
+
+          &_time {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 81px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 9px;
+            font-family: 'Rubik';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            /* identical to box height, or 138% */
+            color: #ffffff;
+          }
+          &_tarot {
+            display: none;
+          }
+        }
         &_content {
           margin: 27px 22px;
           &_title {
@@ -371,6 +509,11 @@ $spacing: 16px;
               line-height: 30px;
               /* identical to box height, or 136% */
               color: #ffffff;
+              overflow: hidden;
+              white-space: normal;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              display: -webkit-box;
             }
             &_date {
               font-family: 'Rubik';
@@ -416,10 +559,10 @@ $spacing: 16px;
           }
         }
 
-        img {
-          width: 574px;
-          height: 471px;
-        }
+        // img {
+        //   width: 574px;
+        //   height: 471px;
+        // }
       }
       &_right {
         flex: 1;
@@ -433,6 +576,46 @@ $spacing: 16px;
           display: flex;
           flex-direction: column;
           align-items: center;
+          &_img {
+            width: 397px;
+            height: 198px;
+            position: relative;
+
+            &_video,
+            &_pic {
+              width: 397px;
+              height: 198px;
+            }
+            &_play {
+              width: 82px;
+              height: 82px;
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+            }
+            &_time {
+              align-items: center;
+              background: rgba(0, 0, 0, 0.55);
+              border-radius: 9px;
+              bottom: 10px;
+              color: #fff;
+              display: flex;
+              font-family: Rubik;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              height: 32px;
+              justify-content: center;
+              line-height: 22px;
+              position: absolute;
+              right: 10px;
+              width: 81px;
+            }
+            &_tarot {
+              display: none;
+            }
+          }
           &_content {
             margin: 16px 0 0 0;
             display: flex;
@@ -450,6 +633,11 @@ $spacing: 16px;
                 line-height: 30px;
                 /* identical to box height, or 136% */
                 color: #ffffff;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
               }
             }
             &_date {
@@ -474,10 +662,10 @@ $spacing: 16px;
               text-align: center;
             }
           }
-          img {
-            width: 397px;
-            height: 198px;
-          }
+          // img {
+          //   width: 397px;
+          //   height: 198px;
+          // }
         }
       }
     }
@@ -542,7 +730,7 @@ $spacing: 16px;
         &_item {
           &_img {
             width: 456px;
-            height: 280px;
+            // height: 280px;
             position: relative;
             &_video {
               width: 456px;
@@ -576,9 +764,8 @@ $spacing: 16px;
               /* identical to box height, or 138% */
               color: #ffffff;
             }
-            &_rich {
-              width: 456px;
-              height: 228px;
+            &_tarot{
+              display: none;
             }
           }
           &_vtitle {
@@ -647,21 +834,71 @@ $spacing: 16px;
     }
   }
 }
-@media (max-width: (3 * $block + 2 * $spacing + 300px)) {
+@media (max-width: (3 * $block + 2 * $spacing + 450px)) {
   .resources {
-    &_main {
-      &_top {
-        flex-wrap: wrap;
-        &_right {
+    .google_ad_left {
+      left: 30px;
+    }
+    .google_ad_right {
+      right: 30px;
+    }
+  }
+}
+@media (max-width: (3 * $block + 2 * $spacing + 400px)) {
+  .resources {
+    .google_ad_left {
+      left: 10px;
+    }
+    .google_ad_right {
+      right: 10px;
+    }
+  }
+}
+@media (max-width: (3 * $block + 2 * $spacing + 350px)) {
+  .resources {
+    &_main{
+      &_top{
+        flex-direction: column;
+        align-items: center;
+        &_right{
+          margin-left: 0;
         }
       }
     }
-    // .google_ad_left {
-    //   left: 0;
-    // }
-    // .google_ad_right {
-    //   right: 0;
-    // }
+    .google_ad_left {
+      left: 100px;
+    }
+    .google_ad_right {
+      right: 100px;
+    }
+  }
+}
+@media (max-width: (3 * $block + 2 * $spacing)) {
+  .resources {
+    &_main{
+      &_title{
+        text-align: center;
+      }
+      &_top{
+        flex-direction: column;
+        align-items: center;
+      }
+      &_btm{
+        &_main{
+          grid-template-columns: repeat(2,456px);
+          justify-content: center;
+        }
+      }
+      .google_ad{
+        width: 900px;
+      }
+    }
+    .google_ad_left {
+      left: 50px;
+    }
+    .google_ad_right {
+      right: 50px;
+    }
   }
 }
 @media (max-width: 750px) {
@@ -679,7 +916,50 @@ $spacing: 16px;
         flex-wrap: wrap;
         &_left {
           width: 343 * $pr;
-          height: 256 * $pr;
+          min-height: 256 * $pr;
+          &_img {
+            width: 343 * $pr;
+            height: 193 * $pr;
+            object-fit: cover;
+            &_video,
+            &_pic {
+              width: 343 * $pr;
+              height: 193 * $pr;
+            }
+            &_play {
+              width: 38 * $pr;
+              height: 38 * $pr;
+            }
+            &_time {
+              top: 6 * $pr;
+              width: 47 * $pr;
+              height: 18 * $pr;
+              border-radius: 6 * $pr;
+              font-size: 12 * $pr;
+              line-height: 16 * $pr;
+            }
+            &_tarot {
+              display: block;
+              position: absolute;
+              width: 59 * $pr;
+              height: 22 * $pr;
+              background: #000000;
+              border-radius: 6 * $pr;
+              font-family: 'Rufina';
+              font-style: normal;
+              font-weight: 700;
+              font-size: 12 * $pr;
+              line-height: 16 * $pr;
+              display: flex;
+              align-items: center;
+              text-align: center;
+              justify-content: center;
+              color: #ffffff;
+              left: 50%;
+              transform: translate(-50%, 0);
+              bottom: -11 * $pr;
+            }
+          }
           &_content {
             &_title {
               justify-content: center;
@@ -688,6 +968,11 @@ $spacing: 16px;
                 font-size: 14 * $pr;
                 line-height: 18 * $pr;
                 color: rgba(255, 255, 255, 0.7);
+                overflow: hidden;
+                white-space: normal;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                display: -webkit-box;
               }
               &_date {
                 display: none;
@@ -707,31 +992,81 @@ $spacing: 16px;
               text-align: center;
             }
           }
-          img {
-            width: 343 * $pr;
-            height: 193 * $pr;
-          }
         }
         &_right {
           grid-template-columns: repeat(2, 169 * $pr);
           grid-gap: 5 * $pr;
           margin-left: 0;
           justify-content: center;
-          align-items: center;
           &_item {
             width: 169 * $pr;
-            height: 160 * $pr;
-            img {
+            min-height: 160 * $pr;
+            &_img {
               width: 169 * $pr;
               height: 95 * $pr;
+              &_video,
+              &_pic {
+                width: 169 * $pr;
+                height: 95 * $pr;
+              }
+              &_play {
+                width: 38 * $pr;
+                height: 38 * $pr;
+              }
+              &_time {
+                top: 6 * $pr;
+                width: 47 * $pr;
+                height: 18 * $pr;
+                border-radius: 6 * $pr;
+                font-size: 12 * $pr;
+                line-height: 16 * $pr;
+              }
+              &_tarot {
+                display: block;
+                position: absolute;
+                width: 59 * $pr;
+                height: 22 * $pr;
+                background: #000000;
+                border-radius: 6 * $pr;
+                font-family: 'Rufina';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12 * $pr;
+                line-height: 16 * $pr;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                color: #ffffff;
+                left: 50%;
+                transform: translate(-50%, 0);
+                bottom: -11 * $pr;
+              }
+            }
+            &_content {
+              &_title {
+                &_text {
+                  font-size: 14 * $pr;
+                  line-height: 18 * $pr;
+                  text-align: center;
+                  color: rgba(255, 255, 255, 0.7);
+                  text-align: left;
+                  word-break: break-all;
+                  margin-top: 12 * $pr;
+                }
+              }
+              &_subscribe {
+                display: none;
+              }
             }
           }
         }
       }
-      .google_ad {
+      .google_ad,.google_ad_btm {
         width: 343 * $pr;
         height: 299 * $pr;
       }
+      
       &_btm {
         width: 100%;
         &_tabs {
@@ -759,7 +1094,7 @@ $spacing: 16px;
               width: 169 * $pr;
               height: 95 * $pr;
               &_video,
-              &_rich {
+              &_pic {
                 width: 169 * $pr;
                 height: 95 * $pr;
               }
@@ -767,12 +1102,34 @@ $spacing: 16px;
                 width: 38 * $pr;
                 height: 38 * $pr;
               }
+              &_tarot {
+                display: block;
+                position: absolute;
+                width: 59 * $pr;
+                height: 22 * $pr;
+                background: #000000;
+                border-radius: 6 * $pr;
+                font-family: 'Rufina';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12 * $pr;
+                line-height: 16 * $pr;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                color: #ffffff;
+                left: 50%;
+                transform: translate(-50%, 0);
+                bottom: -11 * $pr;
+              }
             }
             &_vtitle {
               font-size: 14 * $pr;
               line-height: 18 * $pr;
               color: rgba(255, 255, 255, 0.7);
               width: 169 * $pr;
+              margin-top: 12 * $pr;
             }
             &_text {
               &_title,
@@ -781,12 +1138,14 @@ $spacing: 16px;
                 line-height: 18 * $pr;
                 color: rgba(255, 255, 255, 0.7);
                 width: 169 * $pr;
+                
               }
               &_title {
                 white-space: normal;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
                 display: -webkit-box;
+                margin-top: 12 * $pr;
               }
               &_subscribe {
                 display: none;
