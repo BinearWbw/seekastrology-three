@@ -341,7 +341,6 @@ $spacing: 16px;
   }
   &_main {
     width: 1400px;
-
     margin: 0 auto;
     &_title {
       font-family: 'Cinzel Decorative';
@@ -412,6 +411,9 @@ $spacing: 16px;
             /* identical to box height, or 129% */
             color: rgba(255, 255, 255, 0.7);
           }
+          &_h5date {
+            display: none;
+          }
         }
 
         img {
@@ -470,9 +472,6 @@ $spacing: 16px;
               color: rgba(255, 255, 255, 0.7);
               margin-top: 8px;
               text-align: center;
-            }
-            &_h5date {
-              display: none;
             }
           }
           img {
@@ -716,12 +715,82 @@ $spacing: 16px;
         &_right {
           grid-template-columns: repeat(2, 169 * $pr);
           grid-gap: 5 * $pr;
-          &_item{
+          margin-left: 0;
+          justify-content: center;
+          align-items: center;
+          &_item {
             width: 169 * $pr;
             height: 160 * $pr;
-            img{
+            img {
               width: 169 * $pr;
-            height: 95 * $pr;
+              height: 95 * $pr;
+            }
+          }
+        }
+      }
+      .google_ad {
+        width: 343 * $pr;
+        height: 299 * $pr;
+      }
+      &_btm {
+        width: 100%;
+        &_tabs {
+          margin: 0 16 * $pr auto;
+          justify-content: start;
+          overflow-x: scroll;
+          &_item {
+            width: 86 * $pr;
+            height: 32 * $pr;
+            flex-shrink: 0;
+            margin-right: 9 * $pr;
+            span {
+              font-size: 14 * $pr;
+            }
+          }
+        }
+        &_main {
+          grid-template-columns: repeat(2, 169 * $pr);
+          grid-gap: 5 * $pr;
+          width: 100%;
+          margin: 0 16 * $pr auto;
+          &_item {
+            width: 169 * $pr;
+            &_img {
+              width: 169 * $pr;
+              height: 95 * $pr;
+              &_video,
+              &_rich {
+                width: 169 * $pr;
+                height: 95 * $pr;
+              }
+              &_play {
+                width: 38 * $pr;
+                height: 38 * $pr;
+              }
+            }
+            &_vtitle {
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
+              color: rgba(255, 255, 255, 0.7);
+              width: 169 * $pr;
+            }
+            &_text {
+              &_title,
+              &_date {
+                font-size: 14 * $pr;
+                line-height: 18 * $pr;
+                color: rgba(255, 255, 255, 0.7);
+                width: 169 * $pr;
+              }
+              &_title {
+                white-space: normal;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                display: -webkit-box;
+              }
+              &_subscribe {
+                display: none;
+              }
             }
           }
         }
