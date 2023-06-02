@@ -47,13 +47,13 @@ module.exports = {
 
   telemetry: false,
 
-  hooks: {
-    'render:route': (url, result) => {
-      result.html = result.html
-        .replace(/ data-n-head=".*?"/gi, '')
-        .replace(/ data-hid=".*?"/gi, '')
-    },
-  },
+  // hooks: {
+  //   'render:route': (url, result) => {
+  //     result.html = result.html
+  //       .replace(/ data-n-head=".*?"/gi, '')
+  //       .replace(/ data-hid=".*?"/gi, '')
+  //   },
+  // },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -147,7 +147,7 @@ module.exports = {
       },
     ],
     link: [
-      { rel: 'preconnect', href: 'https://ik.imagekit.io' },
+      { rel: 'preconnect', href: 'https://www.doitme.link' },
       { rel: 'preconnect', href: 'https://asserts.gameseeks.com' },
       { rel: 'preconnect', href: 'https://www.taptogame.com' },
       { rel: 'preconnect', href: 'https://taptogame.com' },
@@ -244,9 +244,9 @@ module.exports = {
   },
 
   image: {
-    provider: 'imagekit',
-    imagekit: {
-      baseURL: 'https://ik.imagekit.io/gameseeks/',
+    provider: 'cloudflare',
+    cloudflare: {
+      baseURL: 'https://www.doitme.link/',
     },
   },
 
