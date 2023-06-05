@@ -201,6 +201,9 @@
             </div>
           </div>
         </div>
+        <div class="common__loading" v-scroll v-if="search.page < totalPage">
+          <div class="common__loading__loader" v-if="loading"></div>
+        </div>
       </div>
       <google-ad class="google_ad_btm"></google-ad>
     </div>
@@ -374,10 +377,22 @@ export default {
         { imgUrl: '', title: 'Tarot' },
         { imgUrl: '', title: 'Tarot' },
       ],
+      loading: false,
+      totalNum: 0,
+      totalPage: 1,
+      search: {
+        page: 1,
+        size: 6,
+      },
     }
   },
   async asyncData({ error, $apiList, params, $utils }) {
     try {
+      let search = {
+        page: 1,
+        size: 6,
+      }
+      let cateId = null
       let [list, tabs] = await Promise.all([
         /**顶部推荐 */
         $apiList.articles
@@ -395,6 +410,7 @@ export default {
             type: 4,
           })
           .then((res) => {
+            cateId = res[0].id
             return res || null
           }),
       ])
@@ -403,6 +419,7 @@ export default {
         .getNews({
           origin: process.env.origin,
           cate: tabs?.length > 0 ? tabs[0].id : 3,
+          ...search,
         })
         .then((res) => {
           return res?.list || null
@@ -411,6 +428,7 @@ export default {
         list,
         tabs,
         btmList,
+        cateId
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
@@ -418,14 +436,38 @@ export default {
   },
   mounted() {},
   methods: {
+    scrollLoad() {
+      let scrollTop =
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop
+      let bodyHeight =
+        document.body.scrollHeight || document.documentElement.scrollHeight
+      if (scrollTop + window.innerHeight >= bodyHeight - 150) {
+        console.log('scrollLoad',this.loading);
+        if (this.loading) return
+        this.search.page++
+        this.getNews({cateId:this.cateId})
+      }
+    },
     getNews(item) {
+      this.loading = true
       this.$apiList.articles
         .getNews({
           origin: process.env.origin,
           cate: item.id,
+          ...this.search,
         })
         .then((res) => {
-          this.btmList = res.list
+          this.btmList.push(...res.list) 
+          this.totalNum = res.count
+          this.totalPage = Math.ceil(res.count / this.search.size)
+          this.loading = false
+        })
+        .catch((error) => {
+          console.log(error)
+          this.search.page--
+          this.loading = false
         })
     },
     /**点击底部列表跳转 */
@@ -440,10 +482,20 @@ export default {
     },
     /** 点击切换tabs*/
     changeTab(item, index) {
+      this.btmList = []
       this.currentTabIndex = index
       //通过id请求对应的列表数据
       this.getNews(item)
-      
+    },
+  },
+  directives: {
+    scroll: {
+      bind: function (el, binding, vnode) {
+        window.addEventListener('scroll', vnode.context.scrollLoad)
+      },
+      unbind: function (el, binding, vnode) {
+        window.removeEventListener('scroll', vnode.context.scrollLoad)
+      },
     },
   },
   computed: {

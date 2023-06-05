@@ -89,15 +89,15 @@
               alt=""
             /> -->
             <div class="details_main_left_top_content_img">
-              <nuxt-img
+              <!-- <nuxt-img
                 :src="dataInfo.icon"
                 fit="cover"
                 :alt="dataInfo.name"
                 class="details_main_left_top_content_img_video"
                 v-if="!playState"
-              ></nuxt-img>
+              ></nuxt-img> -->
               <iframe
-                v-else
+                
                 id="video-element"
                 frameborder="0"
                 allow="accelerometer"
@@ -107,16 +107,16 @@
                 scrolling="no"
                 loading="lazy"
                 type="text/html"
-                src="https://www.youtube.com/embed/UhG97oUEE-I?autoplay=1&origin=http://example.com"
+                :src="dataInfo.desc"
                 :title="dataInfo.name"
               ></iframe>
-              <img
+              <!-- <img
                 src="../../../assets/img/resources/play_icon.png"
                 alt=""
                 class="details_main_left_top_content_img_play"
                 @click="playState = true"
                 v-if="!playState"
-              />
+              /> -->
             </div>
           </div>
         </div>
