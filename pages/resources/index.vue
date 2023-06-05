@@ -23,7 +23,6 @@
               ></nuxt-img>
               <div class="resources_main_top_left_img_tarot">TAROT</div>
             </div>
-
             <div class="resources_main_top_left_content">
               <div class="resources_main_top_left_content_title">
                 <span class="resources_main_top_left_content_title_text">{{
@@ -100,7 +99,6 @@
                 ></nuxt-img>
                 <div class="resources_main_top_right_item_img_tarot">TAROT</div>
               </div>
-
               <div class="resources_main_top_right_item_content">
                 <div class="resources_main_top_right_item_content_title">
                   <span
@@ -499,7 +497,11 @@ $spacing: 16px;
           width: 574px;
           height: 471px;
           position: relative;
-          object-fit: cover;
+          &_pic{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
           &_video {
             width: 574px;
             height: 471px;
@@ -629,8 +631,9 @@ $spacing: 16px;
 
             &_video,
             &_pic {
-              width: 397px;
-              height: 198px;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
             }
             &_play {
               width: 82px;
