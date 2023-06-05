@@ -5,11 +5,19 @@
       <p>Read Your Daily Horoscope Right Now</p>
     </div>
     <ul class="choice__main">
-      <li v-for="item in constellation" :key="item.title">
+      <li v-for="item_i in item" :key="item_i.id">
         <a class="choice__main__a" href="#">
-          <img class="img__list" :src="item.imgList" :alt="item.title" />
-          <p class="title">{{ item.title }}</p>
-          <p class="time">{{ item.time }}</p>
+          <div class="img__list">
+            <nuxt-img
+              :src="item_i.icon || '/'"
+              fit="cover"
+              width="218"
+              height="154"
+              :alt="item_i.name"
+            ></nuxt-img>
+          </div>
+          <p class="title">{{ item_i.name }}</p>
+          <p class="time">{{ item_i.dates }}</p>
         </a>
       </li>
     </ul>
@@ -19,71 +27,9 @@
 <script>
 export default {
   name: 'YourChoice',
+  props: ['item'],
   data() {
-    return {
-      constellation: [
-        {
-          imgList: require('~/assets/img/home/choice/Aries.png'),
-          title: 'Aries',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Taurus.png'),
-          title: 'Taurus',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Gemini.png'),
-          title: 'Gemini',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Cancer.png'),
-          title: 'Cancer',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Leo.png'),
-          title: 'Leo',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Virgo.png'),
-          title: 'Virgo',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Libra.png'),
-          title: 'Libra',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Scorpio.png'),
-          title: 'Scorpic',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Sagittarius.png'),
-          title: 'Sagittarius',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Capricorn.png'),
-          title: 'Capricorn',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Aquarius.png'),
-          title: 'Aquarius',
-          time: 'Mar 21 - Apr 20',
-        },
-        {
-          imgList: require('~/assets/img/home/choice/Pisces.png'),
-          title: 'Pisces',
-          time: 'Mar 21 - Apr 20',
-        },
-      ],
-    }
+    return {}
   },
 }
 </script>
@@ -128,8 +74,14 @@ export default {
         .img__list {
           width: 218px;
           height: 154px;
-          object-fit: cover;
-          transition: transform 0.3s;
+          border-radius: 6px;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+          }
         }
         .title {
           font-family: 'Rubik';
@@ -149,7 +101,9 @@ export default {
       &:hover {
         border-color: rgba(255, 255, 255, 0.6);
         .img__list {
-          transform: scale(1.2);
+          img {
+            transform: scale(1.2);
+          }
         }
       }
     }
@@ -187,7 +141,12 @@ export default {
           .img__list {
             width: 100%;
             height: 100 * $pr;
-            object-fit: contain cover;
+            margin-bottom: auto;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain cover;
+            }
           }
           .title {
             font-size: 16 * $pr;
