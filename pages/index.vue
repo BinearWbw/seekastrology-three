@@ -17,21 +17,21 @@
         <home-various></home-various>
       </section>
       <section class="module choice">
-        <home-your-choice></home-your-choice>
+        <home-your-choice :item="variousList"></home-your-choice>
         <div class="google_ad">AD</div>
       </section>
       <section class="module tarot">
         <home-tarot></home-tarot>
       </section>
       <section class="module quizzes">
-        <home-quizzes></home-quizzes>
+        <home-quizzes :homeQuizzes="homeQuizzes"></home-quizzes>
       </section>
-      <section class="module kundli">
+      <section class="module kundli" v-if="false">
         <home-kundli></home-kundli>
         <div class="google_ad">AD</div>
       </section>
       <section class="module new_pop">
-        <home-pop-articles></home-pop-articles>
+        <home-pop-articles :homeNews="homePopList"></home-pop-articles>
       </section>
     </div>
   </article>
@@ -41,7 +41,43 @@
 export default {
   name: 'Home',
   computed: {},
-  methods: {},
+  async asyncData({ error, $apiList }) {
+    try {
+      let [variousList, homePopList, homeQuizzes] = await Promise.all([
+        $apiList.home
+          .getZodiacHomeAstro({
+            origin: process.env.origin,
+          })
+          .then((res) => {
+            return res || []
+          }),
+
+        $apiList.articles
+          .getNewsRec({
+            origin: process.env.origin,
+          })
+          .then((res) => {
+            res = res.slice(0, 5)
+            return res || null
+          }),
+
+        $apiList.home
+          .getZodiacHomeQuiz({
+            origin: process.env.origin,
+          })
+          .then((res) => {
+            return res.list || null
+          }),
+      ])
+      return {
+        variousList,
+        homePopList,
+        homeQuizzes,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.message })
+    }
+  },
 }
 </script>
 <style lang="scss" scoped>

@@ -9,12 +9,19 @@
         <swiper class="swiper" :options="swiperOptions">
           <swiper-slide
             class="swiper__item"
-            v-for="(item, index) of swiperData"
-            :key="index"
+            v-for="item of homeQuizzes"
+            :key="item.id"
           >
-            <img class="banner_img" :src="item.imgs" alt="#" />
-            <p>{{ item.text }}</p>
-            <p>{{ item.time }}</p>
+            <div class="banner_img">
+              <nuxt-img
+                :src="item.icon || '/'"
+                fit="cover"
+                width="220"
+                height="220"
+                :alt="item.name"
+              ></nuxt-img>
+            </div>
+            <p>{{ item.name }}</p>
           </swiper-slide>
         </swiper>
         <div class="swiper_pagination"></div>
@@ -32,6 +39,7 @@ import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 export default {
   name: 'quizzes',
+  props: ['homeQuizzes'],
   data() {
     return {
       swiperOptions: {
@@ -173,8 +181,12 @@ export default {
           .banner_img {
             width: 220px;
             height: 220px;
-            object-fit: contain;
             margin-bottom: 6px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
           }
           p {
             font-family: 'Rubik';
@@ -235,8 +247,12 @@ export default {
             .banner_img {
               width: 100%;
               height: 295 * $pr;
-              object-fit: cover;
               margin-bottom: 16 * $pr;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
             }
             p {
               font-size: 16 * $pr;
