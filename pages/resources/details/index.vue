@@ -1,7 +1,7 @@
 <template>
   <div class="details">
-    <google-ad class="google_ad_left"></google-ad>
-    <google-ad class="google_ad_right"></google-ad>
+    <!-- <google-ad class="google_ad_left"></google-ad>
+    <google-ad class="google_ad_right"></google-ad> -->
     <div class="details_main">
       <div class="details_main_left">
         <div class="details_main_left_top">
@@ -237,9 +237,9 @@ $spacing: 16px;
     background-color: #555761;
     z-index: 9;
   }
-    .google_ad_footer{
-        display: none;
-    }
+  .google_ad_footer {
+    display: none;
+  }
   &_main {
     width: 1400px;
     margin: 0 auto;
@@ -497,9 +497,75 @@ $spacing: 16px;
     }
   }
 }
+//1400
+@media (max-width: (3 * $block + 2 * $spacing + 90px)) {
+  .details {
+    &_main {
+      justify-content: center;
+      width: 100%;
+      &_left {
+        width: 65%;
+        &_ad{
+            width: 100%;
+        }
+        &_top {
+          &_content {
+            padding: 0 60px 50px;
+            object-fit: cover;
+            &_img {
+              width: 100%;
+            }
+          }
+        }
+      }
+      &_right {
+        width: 25%;
+        &_ad {
+          width: 100%;
+          margin-left: 20px;
+          margin-top: 48px;
+        }
+      }
+    }
+    &_footer {
+        width: 100%;
+      &_title {
+        text-align: center;
+      }
+      &_list {
+        grid-template-columns: repeat(2, 456px);
+        justify-content: center;
+      }
+    }
+  }
+}
+@media (max-width: (2 * $block + 1 * $spacing + 90px)) {
+    .details {
+    &_main {
+      &_left {
+        &_top {
+          &_content {
+            padding: 0 30px 25px;
+            
+          }
+        }
+      }
+      &_right {
+        &_ad {
+          margin-left: 20px;
+          margin-top: 48px;
+        }
+      }
+    }
+    &_footer {
+      &_list {
+        grid-template-columns: repeat(1, 456px);
+      }
+    }
+  }
+}
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
-
   .details {
     &_main {
       width: 100%;
@@ -592,21 +658,22 @@ $spacing: 16px;
           object-fit: cover;
           &_img {
             width: 100%;
-            &_pic,&_video {
+            &_pic,
+            &_video {
               width: 100%;
             }
-            &_play{
-                width: 50 * $pr;
-                height: 50 * $pr;
+            &_play {
+              width: 50 * $pr;
+              height: 50 * $pr;
             }
-            &_time{
-                width: 40 * $pr;
-                height: 20 * $pr;
-                font-size: 12 * $pr;
-                right: 10 * $pr;
+            &_time {
+              width: 40 * $pr;
+              height: 20 * $pr;
+              font-size: 12 * $pr;
+              right: 10 * $pr;
             }
           }
-          &_vtitle{
+          &_vtitle {
             background: rgba(255, 255, 255, 0.1);
             margin-top: 0;
             width: 343 * $pr;
@@ -621,22 +688,21 @@ $spacing: 16px;
               width: 343 * $pr;
               margin-top: 0;
             }
-            &_subscribe,&_date {
+            &_subscribe,
+            &_date {
               font-size: 16 * $pr;
               line-height: 22 * $pr;
-              
             }
-           
           }
         }
       }
     }
-    .google_ad_footer{
-        margin: 0 auto;
-        display: block;
-        width: 343 * $pr;
-        height: 299 * $pr;
-        background: #555761;
+    .google_ad_footer {
+      margin: 0 auto;
+      display: block;
+      width: 343 * $pr;
+      height: 299 * $pr;
+      background: #555761;
     }
     .google_ad_left {
       display: none;

@@ -2,7 +2,7 @@
  * @Author: jintao 542345709@qq.com
  * @Date: 2023-06-01 10:54:47
  * @LastEditors: jintao 542345709@qq.com
- * @LastEditTime: 2023-06-02 18:35:37
+ * @LastEditTime: 2023-06-05 09:47:23
  * @FilePath: /seekastrology/pages/resources/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -876,6 +876,7 @@ $spacing: 16px;
 @media (max-width: (3 * $block + 2 * $spacing)) {
   .resources {
     &_main{
+      width: 100%;
       &_title{
         text-align: center;
       }
@@ -899,6 +900,51 @@ $spacing: 16px;
     .google_ad_right {
       right: 50px;
     }
+  }
+}
+@media (max-width: (2 * $block + 1 * $spacing + 100px)) {
+  .resources {
+    &_main{
+      
+      &_btm{
+        &_main{
+          grid-template-columns: repeat(1,456px);
+        }
+      }
+      .google_ad{
+        width: 800px;
+      }
+    }
+    
+  }
+}
+@media (max-width: (900px)) {
+  .resources {
+    &_main{
+      &_top{
+        &_right{
+          grid-template-columns: repeat(1,397px);
+        }
+      }
+      &_btm{
+        &_tabs{
+          width: 700px;
+          margin: 0 auto;
+          overflow-x: scroll;
+          justify-content: start;
+          &_item{
+            flex-shrink: 0
+          }
+        }
+        &_main{
+          grid-template-columns: repeat(1,456px);
+        }
+      }
+      .google_ad{
+        width: 700px;
+      }
+    }
+    
   }
 }
 @media (max-width: 750px) {
@@ -1070,7 +1116,9 @@ $spacing: 16px;
       &_btm {
         width: 100%;
         &_tabs {
-          margin: 0 16 * $pr auto;
+          width: 91%;
+          margin: 0 auto;
+          // margin: 0 16 * $pr auto;
           justify-content: start;
           overflow-x: scroll;
           &_item {
@@ -1088,6 +1136,7 @@ $spacing: 16px;
           grid-gap: 5 * $pr;
           width: 100%;
           margin: 0 16 * $pr auto;
+          margin-left: 0;
           &_item {
             width: 169 * $pr;
             &_img {
