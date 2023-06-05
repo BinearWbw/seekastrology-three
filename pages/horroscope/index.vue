@@ -3,8 +3,6 @@
     <div class="horroscope_main">
       <div class="horoscope_details">
         <google-ad class="google_ad"></google-ad>
-        <google-ad class="google_ad_left"></google-ad>
-        <google-ad class="google_ad_right"></google-ad>
         <div class="datails_list">
           <div class="list_top">
             <h3>
@@ -12,24 +10,29 @@
               <br />
               Daily Horoscope
             </h3>
-            <div class="pull_down"></div>
+            <div class="pull_down">
+              <el-selected
+                :options="tabList"
+                @change="handleDropdownChange"
+              ></el-selected>
+            </div>
           </div>
           <div class="list_main">
             <div class="list_tabs">
-              <a-tabs tab-position="top" :animated="false">
-                <a-tab-pane
-                  :tab="item.tabs"
-                  v-for="(item, index) in horroData"
-                  :key="index"
-                >
-                  <p class="texts">
-                    {{ item.texts }}
-                  </p>
-                </a-tab-pane>
-              </a-tabs>
+              <el-tabs :tabs="horroData">
+                <template v-slot="{ activeTab }">
+                  <div
+                    v-for="(item, index) in horroData"
+                    :key="index"
+                    v-show="activeTab === index"
+                  >
+                    <p class="texts">{{ item.texts }}</p>
+                  </div>
+                </template>
+              </el-tabs>
             </div>
-            <google-ad class="google_ad"></google-ad>
           </div>
+          <google-ad class="google_ad"></google-ad>
         </div>
       </div>
       <div class="horoscope_more">
@@ -61,6 +64,56 @@ export default {
   name: 'Horroscope',
   data() {
     return {
+      tabList: [
+        {
+          name: 'Aries',
+          imgUrl: require('~/assets/img/home/choice/Aries.png'),
+        },
+        {
+          name: 'Taurus',
+          imgUrl: require('~/assets/img/home/choice/Taurus.png'),
+        },
+        {
+          name: 'Gemini',
+          imgUrl: require('~/assets/img/home/choice/Gemini.png'),
+        },
+        {
+          name: 'Cancer',
+          imgUrl: require('~/assets/img/home/choice/Cancer.png'),
+        },
+        {
+          name: 'Leo',
+          imgUrl: require('~/assets/img/home/choice/Leo.png'),
+        },
+        {
+          name: 'Virgo',
+          imgUrl: require('~/assets/img/home/choice/Virgo.png'),
+        },
+        {
+          name: 'Libra',
+          imgUrl: require('~/assets/img/home/choice/Libra.png'),
+        },
+        {
+          name: 'Scorpic',
+          imgUrl: require('~/assets/img/home/choice/Scorpio.png'),
+        },
+        {
+          name: 'Sagittarius',
+          imgUrl: require('~/assets/img/home/choice/Sagittarius.png'),
+        },
+        {
+          name: 'Capricorn',
+          imgUrl: require('~/assets/img/home/choice/Capricorn.png'),
+        },
+        {
+          name: 'Aquarius',
+          imgUrl: require('~/assets/img/home/choice/Aquarius.png'),
+        },
+        {
+          name: 'Pisces',
+          imgUrl: require('~/assets/img/home/choice/Pisces.png'),
+        },
+      ],
       horroData: [
         {
           tabs: 'Today',
@@ -90,22 +143,27 @@ export default {
             'Personal: Single signs are going to have a wonderful day.Wear something that will make you feel confident and ready to take on the day.',
         },
         {
-          title: 'Love Horoscope',
+          title: 'Healthy Horoscope',
           texts:
             'Personal: Single signs are going to have a wonderful day.Wear something that will make you feel confident and ready to take on the day.',
         },
         {
-          title: 'Love Horoscope',
+          title: 'Work Horoscope',
           texts:
             'Personal: Single signs are going to have a wonderful day.Wear something that will make you feel confident and ready to take on the day.',
         },
         {
-          title: 'Love Horoscope',
+          title: 'Fortune Horoscope',
           texts:
             'Personal: Single signs are going to have a wonderful day.Wear something that will make you feel confident and ready to take on the day.',
         },
       ],
     }
+  },
+  methods: {
+    handleDropdownChange(option) {
+      console.log('selectd :', option)
+    },
   },
 }
 </script>
@@ -139,24 +197,6 @@ export default {
         height: 600px;
         background-color: #555761;
       }
-      .google_ad_left {
-        position: absolute;
-        top: 138px;
-        left: -192px;
-        width: 160px;
-        height: 600px;
-        overflow: hidden;
-        background-color: #555761;
-      }
-      .google_ad_right {
-        position: absolute;
-        top: 138px;
-        right: -192px;
-        width: 160px;
-        height: 600px;
-        overflow: hidden;
-        background-color: #555761;
-      }
       .datails_list {
         flex: 1;
         padding-left: 54px;
@@ -175,12 +215,12 @@ export default {
           .pull_down {
             width: 338px;
             height: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 34px;
           }
         }
         .list_main {
+          width: 100%;
           .list_tabs {
+            width: 100%;
             .texts {
               font-family: 'Rubik';
               font-style: normal;
@@ -190,57 +230,14 @@ export default {
               color: rgba(255, 255, 255, 0.7);
               padding-top: 24px;
             }
-            ::v-deep(.ant-tabs-top-bar) {
-              //第三方组件
-              border: none;
-              position: relative;
-              &::after {
-                content: '';
-                position: absolute;
-                bottom: -15px;
-                left: 0;
-                width: 100%;
-                height: 1px;
-                background: linear-gradient(
-                  90deg,
-                  rgba(255, 255, 255, 0) 0%,
-                  rgba(255, 255, 255, 0.2) 50.52%,
-                  rgba(255, 255, 255, 0) 100%
-                );
-              }
-              .ant-tabs-nav-wrap {
-                margin-bottom: 0;
-                .ant-tabs-nav-scroll {
-                  .ant-tabs-tab {
-                    padding: 7px 22px;
-                    margin: 0 24px 0 0;
-                    font-family: 'Rubik';
-                    font-size: 14px;
-                    line-height: 18px;
-                    color: rgba(255, 255, 255, 0.7);
-                    border-radius: 42px;
-                    transition: background-color 0.3s ease-in-out;
-                  }
-                  .ant-tabs-tab-active {
-                    color: #000;
-                    text-shadow: none;
-                    background-color: #fff;
-                  }
-                }
-                .ant-tabs-ink-bar {
-                  background-color: transparent;
-                  height: 0;
-                }
-              }
-            }
           }
-          .google_ad {
-            width: 924px;
-            height: 114px;
-            background-color: #555761;
-            margin: 48px auto 0;
-            overflow: hidden;
-          }
+        }
+        .google_ad {
+          width: 924px;
+          height: 114px;
+          background-color: #555761;
+          margin: 48px auto 0;
+          overflow: hidden;
         }
       }
     }
@@ -361,12 +358,6 @@ export default {
         > .google_ad {
           display: none;
         }
-        .google_ad_left {
-          display: none;
-        }
-        .google_ad_right {
-          display: none;
-        }
         .datails_list {
           flex: 1;
           padding-left: 0;
@@ -382,55 +373,33 @@ export default {
             }
             .pull_down {
               width: 100%;
-              height: 60 * $pr;
-              border: 1 * $pr solid rgba(255, 255, 255, 0.6);
-              border-radius: 34 * $pr;
+              height: auto;
               margin-bottom: 16 * $pr;
             }
           }
           .list_main {
+            width: 100%;
             .list_tabs {
               .texts {
                 font-size: 16 * $pr;
                 line-height: 28 * $pr;
                 padding-top: 24 * $pr;
               }
-              ::v-deep(.ant-tabs-top-bar) {
-                //第三方组件
-                &::after {
-                  bottom: -15 * $pr;
-                  height: 1 * $pr;
-                }
-                .ant-tabs-nav-wrap {
-                  margin-bottom: 0;
-                  .ant-tabs-nav-scroll {
-                    max-width: 100%;
-                    .ant-tabs-nav-animated {
-                      width: 100%;
-                      > div {
-                        width: 100%;
-                        display: flex;
-                        justify-content: space-around;
-                        height: 32 * $pr;
-                      }
-                    }
-                    .ant-tabs-tab {
-                      padding: 7 * $pr 15 * $pr;
-                      margin: 0;
-                      font-size: 14 * $pr;
-                      line-height: 18 * $pr;
-                      border-radius: 42 * $pr;
-                    }
-                  }
+              ::v-deep(.tab-header) {
+                justify-content: space-around;
+                .tab-item {
+                  flex: 1;
+                  margin: 0;
+                  padding: 7 * $pr 0;
                 }
               }
             }
-            .google_ad {
-              width: 100%;
-              height: 299 * $pr;
-              background-color: #555761;
-              margin: 23 * $pr auto 0;
-            }
+          }
+          .google_ad {
+            width: 100%;
+            height: 299 * $pr;
+            background-color: #555761;
+            margin: 23 * $pr auto 0;
           }
         }
       }

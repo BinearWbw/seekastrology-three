@@ -1,8 +1,11 @@
 <template>
-  <main class="main" :class="{ home_bg: $route.path == '/' }" v-cloak>
+  <main class="main" v-cloak>
     <Header></Header>
-    <Nuxt class="main__page" :class="{ home_bg: $route.path == '/' }" />
+    <Nuxt class="main__page" />
     <Footer></Footer>
+    <transition name="fade">
+      <i class="home_bg" v-if="$route.path == '/'"></i>
+    </transition>
     <transition name="fade">
       <Privacy v-if="visiblePrivacy" @close="visiblePrivacy = false"></Privacy>
     </transition>
@@ -60,24 +63,27 @@ export default {
 }
 .main {
   min-height: 100vh;
-  background: url('/img/bg.jpg') no-repeat center top;
-  background-size: cover 1160px;
-  &.home_bg {
-    background: url('/img/bg_home.jpg') no-repeat center top;
-    background-size: cover 1160px;
+  background: url('/img/bg.png');
+  position: relative;
+  .home_bg {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 613px;
+    z-index: -1;
+    background: url('/img/bg_home.png') no-repeat center;
   }
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .main {
-    // &__page {
-    background: url('/img/h5bg.jpg') no-repeat center top;
-    background-size: 375 * $pr 812 * $pr;
-    &.home_bg {
-      background: url('/img/h5bg_home.jpg') no-repeat center top;
-      background-size: 375 * $pr 812 * $pr;
+    background: url('/img/bg.png');
+    .home_bg {
+      height: 613 * $pr;
+      background: url('/img/h5bg_home.png') no-repeat top;
+      background-size: contain;
     }
-    // }
   }
 }
 </style>

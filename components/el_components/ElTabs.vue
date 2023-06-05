@@ -87,18 +87,15 @@ export default {
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .tabs {
+    width: 100%;
     .tab-header {
-      width: 100%;
-      display: flex;
-      overflow-x: auto;
-      white-space: nowrap;
       padding-bottom: 15 * $pr;
       position: relative;
       &::after {
         height: 1 * $pr;
       }
       .tab-item {
-        flex: 0 0 auto;
+        position: relative;
         padding: 7 * $pr 22 * $pr;
         font-size: 14 * $pr;
         line-height: 18 * $pr;

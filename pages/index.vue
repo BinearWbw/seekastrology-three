@@ -339,7 +339,7 @@ export default {
       padding: 0 16 * $pr;
       width: 100%;
       .various_ment {
-        margin-top: 75 * $pr;
+        margin-top: 48 * $pr;
       }
       .module {
         &.choice {

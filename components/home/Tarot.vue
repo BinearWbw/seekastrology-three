@@ -38,6 +38,14 @@
 <script>
 export default {
   name: 'Tarot',
+  data() {
+    return {
+      scrollWidth: '',
+      scrollHeight: '',
+    }
+  },
+  computed: {},
+  mounted() {},
 }
 </script>
 
