@@ -47,4 +47,5 @@ export default (axios) => ({
   getGameLocation() {
     return axios.get('api/user/loc')
   },
+  
 })

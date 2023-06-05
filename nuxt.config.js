@@ -23,7 +23,7 @@ module.exports = {
   },
 
   env: {
-    origin: 'taptogame',
+    origin: 'seekastrology',
   },
 
   axios: {

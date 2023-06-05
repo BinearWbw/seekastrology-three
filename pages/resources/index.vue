@@ -1,11 +1,3 @@
-<!--
- * @Author: jintao 542345709@qq.com
- * @Date: 2023-06-01 10:54:47
- * @LastEditors: jintao 542345709@qq.com
- * @LastEditTime: 2023-06-05 09:47:23
- * @FilePath: /seekastrology/pages/resources/index.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <template>
   <div class="resources">
     <!-- <google-ad class="google_ad_left"></google-ad>
@@ -14,13 +6,20 @@
       <div class="resources_main_title">HOT Content</div>
       <div class="resources_main_top">
         <div class="resources_main_top_left" @click="jumpDetails(list[0])">
-          <div v-if="list[0].type == 1">
+          <!-- (0-文章、1-视频） -->
+          <div v-if="list[0].kind == 1">
             <div class="resources_main_top_left_img">
-              <img
+              <!-- <img
                 :src="list[0].imgUrl"
                 alt=""
                 class="resources_main_top_left_img_video"
-              />
+              /> -->
+              <nuxt-img
+                  :src="list[0].icon"
+                  fit="cover"
+                  :alt="list[0].name"
+                  class="resources_main_top_left_item_img_video"
+                ></nuxt-img>
               <img
                 src="../../assets/img/resources/play_icon.png"
                 alt=""
@@ -35,34 +34,40 @@
             <div class="resources_main_top_left_content">
               <div class="resources_main_top_left_content_title">
                 <span class="resources_main_top_left_content_title_text">{{
-                  list[0].title
+                  list[0].name
                 }}</span>
               </div>
               <div class="resources_main_top_left_content_btn">Read More</div>
             </div>
           </div>
-          <!-- 2图文 -->
-          <div v-if="list[0].type == 2">
+          <!-- 0图文 -->
+          <div v-if="list[0].kind == 0">
             <div class="resources_main_top_left_img">
-              <img
+              <!-- <img
                 class="resources_main_top_left_img_pic"
                 :src="list[0].imgUrl"
                 alt=""
-              />
+              /> -->
+              <nuxt-img
+                  :src="list[0].icon"
+                  fit="cover"
+                  :alt="list[0].name"
+                  class="resources_main_top_left_img_pic"
+                ></nuxt-img>
               <div class="resources_main_top_left_img_tarot">TAROT</div>
             </div>
 
             <div class="resources_main_top_left_content">
               <div class="resources_main_top_left_content_title">
                 <span class="resources_main_top_left_content_title_text">{{
-                  list[0].title
+                  list[0].name
                 }}</span>
                 <div class="resources_main_top_left_content_title_date">
                   <span>{{ list[0].date }}</span>
                 </div>
               </div>
-              <div class="resources_main_top_left_content_subscribe">
-                {{ list[0].subscribe }}
+              <div class="resources_main_top_left_content_subscribe" v-html="list[0].desc">
+                
               </div>
               <div class="resources_main_top_left_content_btn">Read More</div>
               <div class="resources_main_top_left_content_h5date">
@@ -79,13 +84,19 @@
             @click="jumpDetails(item)"
           >
             <!-- 1视频 -->
-            <div v-if="item.type == 1">
+            <div v-if="item.kind == 1">
               <div class="resources_main_top_right_item_img">
-                <img
+                <!-- <img
                   :src="item.imgUrl"
                   alt=""
                   class="resources_main_top_right_item_img_video"
-                />
+                /> -->
+                <nuxt-img
+                  :src="item.icon"
+                  fit="cover"
+                  :alt="item.name"
+                  class="resources_main_top_right_item_img_video"
+                ></nuxt-img>
                 <img
                   src="../../assets/img/resources/play_icon.png"
                   alt=""
@@ -101,19 +112,25 @@
                 <div class="resources_main_top_right_item_content_title">
                   <span
                     class="resources_main_top_right_item_content_title_text"
-                    >{{ item.title }}</span
+                    >{{ item.name }}</span
                   >
                 </div>
               </div>
             </div>
             <!-- 2图文 -->
-            <div v-if="item.type == 2">
+            <div v-if="item.kind == 0">
               <div class="resources_main_top_right_item_img">
-                <img
+                <!-- <img
                   class="resources_main_top_right_item_img_pic"
                   :src="item.imgUrl"
                   alt=""
-                />
+                /> -->
+                <nuxt-img
+                  :src="item.icon"
+                  fit="cover"
+                  :alt="item.name"
+                  class="resources_main_top_right_item_img_pic"
+                ></nuxt-img>
                 <div class="resources_main_top_right_item_img_tarot">TAROT</div>
               </div>
 
@@ -121,11 +138,11 @@
                 <div class="resources_main_top_right_item_content_title">
                   <span
                     class="resources_main_top_right_item_content_title_text"
-                    >{{ item.title }}</span
+                    >{{ item.name }}</span
                   >
                 </div>
-                <div class="resources_main_top_right_item_content_subscribe">
-                  {{ item.subscribe }}
+                <div class="resources_main_top_right_item_content_subscribe" v-html="item.desc">
+                 
                 </div>
                 <div class="resources_main_top_right_item_content_date">
                   <span>{{ item.date }}</span>
@@ -376,16 +393,40 @@ export default {
       ],
     }
   },
+  async asyncData({ error, $apiList, params, $utils }) {
+    try {
+      let [list, tabsList] = await Promise.all([
+        $apiList.articles
+          .getNewsRec({
+            origin: process.env.origin,
+          })
+          .then((res) => {
+            res = res.slice(0,5)
+            console.log(res)
+            return res || null
+          }),
+        
+      ])
+      return {
+        list,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.msg })
+    }
+  },
+  mounted() {
+    
+  },
   methods: {
     /**点击底部列表跳转 */
     jumpDetails(item) {
-      console.log(item);
+      console.log(item)
       //
       this.$router.push({
-          path: `/resources/details/?id=${item.id}`,
-          href: '/resources/details',
-          data:item
-        })
+        path: `/resources/details/?id=${item.id}`,
+        href: '/resources/details',
+        data: item,
+      })
     },
     /** 点击切换tabs*/
     changeTab(item, index) {
@@ -534,6 +575,11 @@ $spacing: 16px;
             /* or 138% */
             color: rgba(255, 255, 255, 0.7);
             margin-top: 8px;
+            overflow: hidden;
+              white-space: normal;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              display: -webkit-box;
           }
           &_btn {
             margin-top: 16px;
@@ -660,6 +706,11 @@ $spacing: 16px;
               color: rgba(255, 255, 255, 0.7);
               margin-top: 8px;
               text-align: center;
+              overflow: hidden;
+              white-space: normal;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              display: -webkit-box;
             }
           }
           // img {
@@ -764,7 +815,7 @@ $spacing: 16px;
               /* identical to box height, or 138% */
               color: #ffffff;
             }
-            &_tarot{
+            &_tarot {
               display: none;
             }
           }
@@ -856,11 +907,11 @@ $spacing: 16px;
 }
 @media (max-width: (3 * $block + 2 * $spacing + 350px)) {
   .resources {
-    &_main{
-      &_top{
+    &_main {
+      &_top {
         flex-direction: column;
         align-items: center;
-        &_right{
+        &_right {
           margin-left: 0;
         }
       }
@@ -875,22 +926,22 @@ $spacing: 16px;
 }
 @media (max-width: (3 * $block + 2 * $spacing)) {
   .resources {
-    &_main{
+    &_main {
       width: 100%;
-      &_title{
+      &_title {
         text-align: center;
       }
-      &_top{
+      &_top {
         flex-direction: column;
         align-items: center;
       }
-      &_btm{
-        &_main{
-          grid-template-columns: repeat(2,456px);
+      &_btm {
+        &_main {
+          grid-template-columns: repeat(2, 456px);
           justify-content: center;
         }
       }
-      .google_ad{
+      .google_ad {
         width: 900px;
       }
     }
@@ -904,47 +955,44 @@ $spacing: 16px;
 }
 @media (max-width: (2 * $block + 1 * $spacing + 100px)) {
   .resources {
-    &_main{
-      
-      &_btm{
-        &_main{
-          grid-template-columns: repeat(1,456px);
+    &_main {
+      &_btm {
+        &_main {
+          grid-template-columns: repeat(1, 456px);
         }
       }
-      .google_ad{
+      .google_ad {
         width: 800px;
       }
     }
-    
   }
 }
 @media (max-width: (900px)) {
   .resources {
-    &_main{
-      &_top{
-        &_right{
-          grid-template-columns: repeat(1,397px);
+    &_main {
+      &_top {
+        &_right {
+          grid-template-columns: repeat(1, 397px);
         }
       }
-      &_btm{
-        &_tabs{
+      &_btm {
+        &_tabs {
           width: 700px;
           margin: 0 auto;
           overflow-x: scroll;
           justify-content: start;
-          &_item{
-            flex-shrink: 0
+          &_item {
+            flex-shrink: 0;
           }
         }
-        &_main{
-          grid-template-columns: repeat(1,456px);
+        &_main {
+          grid-template-columns: repeat(1, 456px);
         }
       }
-      .google_ad{
+      .google_ad {
         width: 700px;
       }
     }
-    
   }
 }
 @media (max-width: 750px) {
@@ -1108,11 +1156,12 @@ $spacing: 16px;
           }
         }
       }
-      .google_ad,.google_ad_btm {
+      .google_ad,
+      .google_ad_btm {
         width: 343 * $pr;
         height: 299 * $pr;
       }
-      
+
       &_btm {
         width: 100%;
         &_tabs {
@@ -1187,7 +1236,6 @@ $spacing: 16px;
                 line-height: 18 * $pr;
                 color: rgba(255, 255, 255, 0.7);
                 width: 169 * $pr;
-                
               }
               &_title {
                 white-space: normal;
