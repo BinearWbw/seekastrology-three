@@ -1,4 +1,12 @@
 export default (axios) => ({
+  /* 首页-星座 */
+  getZodiacHomeAstro(params) {
+    return axios.get('api/astro/basic', { params })
+  },
+  /* 首页-测验推荐 */
+  getZodiacHomeQuiz(params) {
+    return axios.get('api/quiz/rec', { params })
+  },
   /* 主页 */
   getGameHome(params) {
     return axios.get('api/game/home', { params })
@@ -47,5 +55,4 @@ export default (axios) => ({
   getGameLocation() {
     return axios.get('api/user/loc')
   },
-  
 })

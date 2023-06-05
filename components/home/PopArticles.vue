@@ -4,37 +4,49 @@
     <div class="pop_news">
       <div class="news_left">
         <div class="left_img">
-          <img src="../../assets/img/home/pop_left.png" alt="#" />
+          <nuxt-img
+            :src="homeNews[0].icon || '/'"
+            fit="cover"
+            width="691"
+            height="320"
+            :alt="homeNews[0].name"
+          ></nuxt-img>
         </div>
         <div class="news_left_text">
           <div class="text_cont">
-            <p class="cont_title">Tarot.com's Tarot Guide</p>
-            <p class="cont_more">
-              Tarot is an ancient divination that began in 14th century Europe.
-              Traditional Tarot decks consist of 78 cards depicting symbolic
-              archetypes that allow us to tap into...
-            </p>
+            <p class="cont_title">{{ homeNews[0].name }}</p>
+            <p class="cont_more" v-html="homeNews[0].desc"></p>
             <a href="#">Read More</a>
           </div>
-          <div class="text_time">07/12</div>
+          <div class="text_time">
+            {{ $utils.formatTime(homeNews[0].created_at) }}
+          </div>
         </div>
       </div>
       <ul class="news_right">
-        <li v-for="(item, index) in news" :key="index">
+        <li v-for="(item, index) in normalList" :key="index">
           <a href="#">
             <div class="news_right_img">
-              <img src="~/assets/img/home/pop_right.png" alt="#" />
+              <nuxt-img
+                :src="item.icon || '/'"
+                fit="cover"
+                width="118"
+                height="96"
+                :alt="item.name"
+              ></nuxt-img>
             </div>
             <div class="news_right_text">
-              <p>{{ item.title }}</p>
-              <p>{{ item.text }}</p>
+              <p>{{ item.name }}</p>
+              <p v-if="item.kind == 0" v-html="item.desc"></p>
             </div>
-            <div class="news_right_time">07/12</div>
+            <div class="news_right_time">
+              {{ $utils.formatTime(item.created_at) }}
+            </div>
           </a>
         </li>
       </ul>
     </div>
-    <button class="button">Read More</button>
+    <button class="button" @click="pathToPage">Read More</button>
     <img class="bg_main" src="~/assets/img/home/pop_bg.png" alt="#" />
   </div>
 </template>
@@ -42,31 +54,22 @@
 <script>
 export default {
   name: 'PopArticles',
+  props: ['homeNews'],
   data() {
-    return {
-      news: [
-        {
-          title: 'Tarot.coms Tarot Guide',
-          text: 'Tarot is an ancient divination that lisin began in 14th century Europe. Traditional Tarot decks consist of 78 cards ...',
-        },
-        {
-          title: 'Tarot.coms Tarot Guide',
-          text: 'Tarot is an ancient divination that began in 14th century Europe. Traditional Tarot decks consist of 78 cards ...',
-        },
-        {
-          title: 'Tarot.coms Tarot Guide',
-          text: 'Tarot is an ancient divination that began in 14th century Europe. Traditional Tarot decks consist of 78 cards ...',
-        },
-        {
-          title: 'Tarot.coms Tarot Guide',
-          text: 'Tarot is an ancient divination that began in 14th century Europe. Traditional Tarot decks consist of 78 cards ...',
-        },
-        // {
-        //   title: 'Tarot.coms Tarot Guide',
-        //   text: 'Tarot is an ancient divination that began in 14th century Europe. Traditional Tarot decks consist of 78 cards ...',
-        // },
-      ],
-    }
+    return {}
+  },
+  computed: {
+    normalList() {
+      return this.homeNews.filter((_, index) => index !== 0)
+    },
+  },
+  methods: {
+    pathToPage() {
+      this.$router.push({
+        path: '/resources',
+        href: '/resources',
+      })
+    },
   },
 }
 </script>
@@ -114,7 +117,7 @@ export default {
         img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
           filter: grayscale(100%);
           transition: filter 0.5s;
         }
@@ -188,7 +191,7 @@ export default {
             img {
               width: 100%;
               height: 100%;
-              object-fit: cover;
+              object-fit: contain;
               filter: grayscale(100%);
               transition: filter 0.3s;
             }
@@ -202,6 +205,11 @@ export default {
               font-size: 22px;
               line-height: 30px;
               color: #ffffff;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
             }
             & > :nth-child(2) {
               font-size: 16px;
@@ -343,7 +351,7 @@ export default {
             justify-content: space-between;
             .news_right_img {
               width: 107 * $pr;
-              height: 100%;
+              height: 62 * $pr;
               margin-right: 11 * $pr;
               box-sizing: border-box;
               img {
