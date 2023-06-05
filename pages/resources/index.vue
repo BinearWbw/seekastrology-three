@@ -7,6 +7,42 @@
       <div class="resources_main_top">
         <div class="resources_main_top_left" @click="jumpDetails(list[0])">
           <!-- (0-文章、1-视频） -->
+          <!-- 0图文 -->
+          <div v-if="list[0].kind == 0">
+            <div class="resources_main_top_left_img">
+              <!-- <img
+                class="resources_main_top_left_img_pic"
+                :src="list[0].imgUrl"
+                alt=""
+              /> -->
+              <nuxt-img
+                :src="list[0].icon"
+                fit="cover"
+                :alt="list[0].name"
+                class="resources_main_top_left_img_pic"
+              ></nuxt-img>
+              <div class="resources_main_top_left_img_tarot">TAROT</div>
+            </div>
+
+            <div class="resources_main_top_left_content">
+              <div class="resources_main_top_left_content_title">
+                <span class="resources_main_top_left_content_title_text">{{
+                  list[0].name
+                }}</span>
+                <div class="resources_main_top_left_content_title_date">
+                  <span>{{ list[0].date }}</span>
+                </div>
+              </div>
+              <div
+                class="resources_main_top_left_content_subscribe"
+                v-html="list[0].desc"
+              ></div>
+              <div class="resources_main_top_left_content_btn">Read More</div>
+              <div class="resources_main_top_left_content_h5date">
+                {{ list[0].date }}
+              </div>
+            </div>
+          </div>
           <div v-if="list[0].kind == 1">
             <div class="resources_main_top_left_img">
               <!-- <img
@@ -15,11 +51,11 @@
                 class="resources_main_top_left_img_video"
               /> -->
               <nuxt-img
-                  :src="list[0].icon"
-                  fit="cover"
-                  :alt="list[0].name"
-                  class="resources_main_top_left_item_img_video"
-                ></nuxt-img>
+                :src="list[0].icon"
+                fit="cover"
+                :alt="list[0].name"
+                class="resources_main_top_left_item_img_video"
+              ></nuxt-img>
               <img
                 src="../../assets/img/resources/play_icon.png"
                 alt=""
@@ -40,41 +76,6 @@
               <div class="resources_main_top_left_content_btn">Read More</div>
             </div>
           </div>
-          <!-- 0图文 -->
-          <div v-if="list[0].kind == 0">
-            <div class="resources_main_top_left_img">
-              <!-- <img
-                class="resources_main_top_left_img_pic"
-                :src="list[0].imgUrl"
-                alt=""
-              /> -->
-              <nuxt-img
-                  :src="list[0].icon"
-                  fit="cover"
-                  :alt="list[0].name"
-                  class="resources_main_top_left_img_pic"
-                ></nuxt-img>
-              <div class="resources_main_top_left_img_tarot">TAROT</div>
-            </div>
-
-            <div class="resources_main_top_left_content">
-              <div class="resources_main_top_left_content_title">
-                <span class="resources_main_top_left_content_title_text">{{
-                  list[0].name
-                }}</span>
-                <div class="resources_main_top_left_content_title_date">
-                  <span>{{ list[0].date }}</span>
-                </div>
-              </div>
-              <div class="resources_main_top_left_content_subscribe" v-html="list[0].desc">
-                
-              </div>
-              <div class="resources_main_top_left_content_btn">Read More</div>
-              <div class="resources_main_top_left_content_h5date">
-                {{ list[0].date }}
-              </div>
-            </div>
-          </div>
         </div>
         <div class="resources_main_top_right">
           <div
@@ -83,6 +84,39 @@
             :key="item.id"
             @click="jumpDetails(item)"
           >
+            <!-- 0图文 -->
+            <div v-if="item.kind == 0">
+              <div class="resources_main_top_right_item_img">
+                <!-- <img
+                  class="resources_main_top_right_item_img_pic"
+                  :src="item.imgUrl"
+                  alt=""
+                /> -->
+                <nuxt-img
+                  :src="item.icon"
+                  fit="cover"
+                  :alt="item.name"
+                  class="resources_main_top_right_item_img_pic"
+                ></nuxt-img>
+                <div class="resources_main_top_right_item_img_tarot">TAROT</div>
+              </div>
+
+              <div class="resources_main_top_right_item_content">
+                <div class="resources_main_top_right_item_content_title">
+                  <span
+                    class="resources_main_top_right_item_content_title_text"
+                    >{{ item.name }}</span
+                  >
+                </div>
+                <div
+                  class="resources_main_top_right_item_content_subscribe"
+                  v-html="item.desc"
+                ></div>
+                <div class="resources_main_top_right_item_content_date">
+                  <span>{{ item.date }}</span>
+                </div>
+              </div>
+            </div>
             <!-- 1视频 -->
             <div v-if="item.kind == 1">
               <div class="resources_main_top_right_item_img">
@@ -114,38 +148,6 @@
                     class="resources_main_top_right_item_content_title_text"
                     >{{ item.name }}</span
                   >
-                </div>
-              </div>
-            </div>
-            <!-- 2图文 -->
-            <div v-if="item.kind == 0">
-              <div class="resources_main_top_right_item_img">
-                <!-- <img
-                  class="resources_main_top_right_item_img_pic"
-                  :src="item.imgUrl"
-                  alt=""
-                /> -->
-                <nuxt-img
-                  :src="item.icon"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_top_right_item_img_pic"
-                ></nuxt-img>
-                <div class="resources_main_top_right_item_img_tarot">TAROT</div>
-              </div>
-
-              <div class="resources_main_top_right_item_content">
-                <div class="resources_main_top_right_item_content_title">
-                  <span
-                    class="resources_main_top_right_item_content_title_text"
-                    >{{ item.name }}</span
-                  >
-                </div>
-                <div class="resources_main_top_right_item_content_subscribe" v-html="item.desc">
-                 
-                </div>
-                <div class="resources_main_top_right_item_content_date">
-                  <span>{{ item.date }}</span>
                 </div>
               </div>
             </div>
@@ -401,11 +403,10 @@ export default {
             origin: process.env.origin,
           })
           .then((res) => {
-            res = res.slice(0,5)
+            res = res.slice(0, 5)
             console.log(res)
             return res || null
           }),
-        
       ])
       return {
         list,
@@ -414,9 +415,7 @@ export default {
       error({ statusCode: e.code, message: e.msg })
     }
   },
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
     /**点击底部列表跳转 */
     jumpDetails(item) {
@@ -542,6 +541,7 @@ $spacing: 16px;
           &_title {
             display: flex;
             justify-content: space-between;
+            
             &_text {
               font-family: 'Rubik';
               font-style: normal;
@@ -576,10 +576,10 @@ $spacing: 16px;
             color: rgba(255, 255, 255, 0.7);
             margin-top: 8px;
             overflow: hidden;
-              white-space: normal;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;
-              display: -webkit-box;
+            white-space: normal;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
           }
           &_btn {
             margin-top: 16px;
