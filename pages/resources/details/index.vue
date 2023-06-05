@@ -22,12 +22,15 @@
                 {{ $utils.formatYYYYMMDDHHMM(dataInfo.created_at) }}
               </div>
             </div>
-            <nuxt-img
-              :src="dataInfo.icon"
-              fit="cover"
-              :alt="dataInfo.name"
-              class="details_main_left_top_content_img"
-            ></nuxt-img>
+            <div class="details_main_left_top_content_img">
+              <nuxt-img
+                :src="dataInfo.icon"
+                fit="cover"
+                :alt="dataInfo.name"
+                class="details_main_left_top_content_img_pic"
+              ></nuxt-img>
+            </div>
+
             <div
               class="details_main_left_top_content_text"
               v-html="dataInfo.desc"
@@ -80,11 +83,41 @@
                 {{ $utils.formatYYYYMMDDHHMM(dataInfo.created_at) }}
               </div>
             </div>
-            <img
+            <!-- <img
               class="details_main_left_top_content_img"
               src="../../../assets/img/resources/d_03.png"
               alt=""
-            />
+            /> -->
+            <div class="details_main_left_top_content_img">
+              <nuxt-img
+                :src="dataInfo.icon"
+                fit="cover"
+                :alt="dataInfo.name"
+                class="details_main_left_top_content_img_video"
+                v-if="!playState"
+              ></nuxt-img>
+              <iframe
+                v-else
+                id="video-element"
+                frameborder="0"
+                allow="accelerometer"
+                autoplay="true"
+                allowfullscreen="allowfullscreen"
+                seamless="seamless"
+                scrolling="no"
+                loading="lazy"
+                type="text/html"
+                src="https://www.youtube.com/embed/UhG97oUEE-I?autoplay=1&origin=http://example.com"
+                :title="dataInfo.name"
+              ></iframe>
+              <img
+                src="../../../assets/img/resources/play_icon.png"
+                alt=""
+                class="details_main_left_top_content_img_play"
+                @click="playState = true"
+                v-if="!playState"
+              />
+            </div>
           </div>
         </div>
         <google-ad class="details_main_left_ad"></google-ad>
@@ -96,6 +129,7 @@
             class="details_main_right_list_item"
             v-for="(item, index) in immedList"
             :key="index"
+            @click="getDetailsInfo(item.id)"
           >
             <span>{{ item.name }}</span>
             <img src="../../../assets/img/resources/d_02.png" alt="" />
@@ -110,6 +144,7 @@
           class="details_footer_list_item"
           v-for="(item, index) in footList"
           :key="index"
+          @click="getDetailsInfo(item.id)"
         >
           <!-- (0-文章、1-视频） -->
           <div v-if="item.kind == 0">
@@ -170,7 +205,7 @@
 export default {
   data() {
     return {
-      kind: 2,
+      playState: false,
       immedList: [
         { title: "What's in your Immed", id: 1 },
         { title: "What's in your Immed", id: 2 },
@@ -222,6 +257,19 @@ export default {
     this.getNewsRec()
   },
   methods: {
+    /**获取对应详情数据 */
+    getDetailsInfo(id) {
+        this.playState = false
+      this.getDataInfo(id)
+      let top = document.documentElement.scrollTop || document.body.scrollTop
+      // 实现滚动效果
+      const timeTop = setInterval(() => {
+        document.body.scrollTop = document.documentElement.scrollTop = top -= 50
+        if (top <= 0) {
+          clearInterval(timeTop)
+        }
+      }, 10)
+    },
     /**
      * 获取右侧列表
      */
@@ -247,11 +295,11 @@ export default {
     },
 
     /**通过id获取数据详情 */
-    getDataInfo() {
+    getDataInfo(id = null) {
       this.$apiList.articles
         .getNewsDetail({
           origin: process.env.origin,
-          id: this.$route.query.id,
+          id: id == null ? this.$route.query.id : id,
         })
         .then((res) => {
           this.dataInfo = res
@@ -362,6 +410,25 @@ $spacing: 16px;
             width: 100%;
             height: 324px;
             object-fit: cover;
+            position: relative;
+            #video-element{
+                width: 100%;
+                height: 100%;
+            }
+            &_video,
+            &_pic {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+            &_play {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 82px;
+              height: 82px;
+            }
           }
           &_text {
             margin-top: 48px;
@@ -412,6 +479,7 @@ $spacing: 16px;
           align-items: center;
           height: 60px;
           margin-left: 32px;
+          cursor: pointer;
           span {
             font-family: 'Rubik';
             font-style: normal;

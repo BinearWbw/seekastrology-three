@@ -139,6 +139,9 @@ const formatPast = (param, format) => {
   }
 }
 const formatTime = (param, format) => {
+  if(param == '' || param == undefined || param == null){
+    return ''
+  }
   
   var date = new Date(param);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
 
@@ -158,8 +161,10 @@ const formatTime = (param, format) => {
 
 }
 const formatYYYYMMDDHHMM = (param, format) => {
+  if(param == '' || param == undefined || param == null){
+    return ''
+  }
   var date = new Date(param * 1000); // 将时间戳转换为毫秒级别
-
   var year = date.getFullYear();
   var month = ('0' + (date.getMonth() + 1)).slice(-2); // 月份从0开始，需要加1
   var day = ('0' + date.getDate()).slice(-2);

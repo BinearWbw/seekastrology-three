@@ -443,10 +443,7 @@ export default {
       this.currentTabIndex = index
       //通过id请求对应的列表数据
       this.getNews(item)
-      //模拟请求数据-打乱数组
-      // this.btmList = this.btmList.sort(() => {
-      //   return 0.5 - Math.random()
-      // })
+      
     },
   },
   computed: {
