@@ -19,8 +19,6 @@
           </p>
         </div>
         <google-ad class="google_ad"></google-ad>
-        <google-ad class="google_ad_left"></google-ad>
-        <google-ad class="google_ad_right"></google-ad>
       </div>
       <div class="zodiac_main_list">
         <div class="zodiac_signs">
@@ -169,22 +167,6 @@ export default {
         background-color: #555761;
         margin: 0 auto;
       }
-      .google_ad_left {
-        position: absolute;
-        top: 138px;
-        left: -192px;
-        width: 160px;
-        height: 600px;
-        background-color: #555761;
-      }
-      .google_ad_right {
-        position: absolute;
-        top: 138px;
-        right: -192px;
-        width: 160px;
-        height: 600px;
-        background-color: #555761;
-      }
     }
 
     &_list {
@@ -295,12 +277,6 @@ export default {
           height: 299 * $pr;
           background-color: #555761;
           margin: 0 auto;
-        }
-        .google_ad_left {
-          display: none;
-        }
-        .google_ad_right {
-          display: none;
         }
       }
 

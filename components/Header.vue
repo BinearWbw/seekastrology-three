@@ -63,8 +63,8 @@ export default {
         },
         {
           title: 'Astrology',
-          path: '/best',
-          href: '/best',
+          path: '/astrology',
+          href: '/astrology',
         },
         {
           title: 'Tarot',

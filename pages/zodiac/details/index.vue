@@ -3,7 +3,12 @@
     <div class="zodiac_details_main">
       <div class="part_details">
         <h3>Zodiac Signs Features</h3>
-        <div class="pull_down"></div>
+        <div class="pull_down">
+          <el-selected
+            :options="tabList"
+            @change="handleDropdownChange"
+          ></el-selected>
+        </div>
         <div class="introduce">
           <div class="left_tab">
             <div
@@ -58,8 +63,6 @@
           </div>
         </div>
         <google-ad class="google_ad"></google-ad>
-        <google-ad class="google_ad_left"></google-ad>
-        <google-ad class="google_ad_right"></google-ad>
       </div>
       <div class="tab_control">
         <div class="tab_main">
@@ -309,6 +312,11 @@ export default {
       ],
     }
   },
+  methods: {
+    handleDropdownChange(option) {
+      console.log('Selected :', option)
+    },
+  },
 }
 </script>
 
@@ -334,9 +342,6 @@ export default {
       }
       .pull_down {
         width: 338px;
-        height: 60px;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 34px;
         display: none;
       }
       .introduce {
@@ -480,24 +485,6 @@ export default {
         margin: 48px auto;
         overflow: hidden;
       }
-      .google_ad_left {
-        position: absolute;
-        top: 138px;
-        left: -192px;
-        width: 160px;
-        height: 600px;
-        overflow: hidden;
-        background-color: #555761;
-      }
-      .google_ad_right {
-        position: absolute;
-        top: 138px;
-        right: -192px;
-        width: 160px;
-        height: 600px;
-        overflow: hidden;
-        background-color: #555761;
-      }
     }
     .tab_control {
       width: 100%;
@@ -553,6 +540,7 @@ export default {
           margin-bottom: 16 * $pr;
         }
         .pull_down {
+          width: 100%;
           display: block;
           margin-bottom: 48 * $pr;
         }
@@ -603,12 +591,6 @@ export default {
           height: 299 * $pr;
           margin: 32 * $pr auto 48 * $pr;
           overflow: hidden;
-        }
-        .google_ad_left {
-          display: none;
-        }
-        .google_ad_right {
-          display: none;
         }
       }
       .tab_control {
