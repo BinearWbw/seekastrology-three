@@ -10,11 +10,6 @@
           <!-- 0图文 -->
           <div v-if="list[0].kind == 0">
             <div class="resources_main_top_left_img">
-              <!-- <img
-                class="resources_main_top_left_img_pic"
-                :src="list[0].imgUrl"
-                alt=""
-              /> -->
               <nuxt-img
                 :src="list[0].icon"
                 fit="cover"
@@ -29,7 +24,7 @@
                   list[0].name
                 }}</span>
                 <div class="resources_main_top_left_content_title_date">
-                  <span>{{ list[0].date }}</span>
+                  <span>{{ $utils.formatTime(list[0].created_at) }}</span>
                 </div>
               </div>
               <div
@@ -38,17 +33,12 @@
               ></div>
               <div class="resources_main_top_left_content_btn">Read More</div>
               <div class="resources_main_top_left_content_h5date">
-                {{ list[0].date }}
+                {{ list[0].created_at }}
               </div>
             </div>
           </div>
           <div v-if="list[0].kind == 1">
             <div class="resources_main_top_left_img">
-              <!-- <img
-                :src="list[0].imgUrl"
-                alt=""
-                class="resources_main_top_left_img_video"
-              /> -->
               <nuxt-img
                 :src="list[0].icon"
                 fit="cover"
@@ -86,11 +76,6 @@
             <!-- 0图文 -->
             <div v-if="item.kind == 0">
               <div class="resources_main_top_right_item_img">
-                <!-- <img
-                  class="resources_main_top_right_item_img_pic"
-                  :src="item.imgUrl"
-                  alt=""
-                /> -->
                 <nuxt-img
                   :src="item.icon"
                   fit="cover"
@@ -111,18 +96,13 @@
                   v-html="item.desc"
                 ></div>
                 <div class="resources_main_top_right_item_content_date">
-                  <span>{{ item.date }}</span>
+                  <span>{{ $utils.formatTime(item.created_at) }}</span>
                 </div>
               </div>
             </div>
             <!-- 1视频 -->
             <div v-if="item.kind == 1">
               <div class="resources_main_top_right_item_img">
-                <!-- <img
-                  :src="item.imgUrl"
-                  alt=""
-                  class="resources_main_top_right_item_img_video"
-                /> -->
                 <nuxt-img
                   :src="item.icon"
                   fit="cover"
@@ -173,14 +153,38 @@
             :key="item.id"
             @click="jumpDetails(item)"
           >
-            <!-- type1为视频，2为文本 -->
-            <div v-if="item.type == 1">
+            <!-- type0为文本 type1为视频， -->
+            <div v-if="item.kind == 0">
               <div class="resources_main_btm_main_item_img">
-                <img
-                  :src="item.imgUrl"
-                  alt=""
+                <nuxt-img
+                  :src="item.icon"
+                  fit="cover"
+                  :alt="item.name"
+                  class="resources_main_btm_main_item_img_pic"
+                ></nuxt-img>
+                <div class="resources_main_btm_main_item_img_tarot">TAROT</div>
+              </div>
+              <div class="resources_main_btm_main_item_text">
+                <div class="resources_main_btm_main_item_text_title">
+                  {{ item.name }}
+                </div>
+                <div
+                  class="resources_main_btm_main_item_text_subscribe"
+                  v-html="item.desc"
+                ></div>
+                <div class="resources_main_btm_main_item_text_date">
+                  {{ $utils.formatTime(item.created_at) }}
+                </div>
+              </div>
+            </div>
+            <div v-if="item.kind == 1">
+              <div class="resources_main_btm_main_item_img">
+                <nuxt-img
+                  :src="item.icon"
+                  fit="cover"
+                  :alt="item.name"
                   class="resources_main_btm_main_item_img_video"
-                />
+                ></nuxt-img>
                 <img
                   src="../../assets/img/resources/play_icon.png"
                   alt=""
@@ -192,28 +196,7 @@
                 <div class="resources_main_btm_main_item_img_tarot">TAROT</div>
               </div>
               <div class="resources_main_btm_main_item_vtitle">
-                {{ item.title }}
-              </div>
-            </div>
-            <div v-if="item.type == 2">
-              <div class="resources_main_btm_main_item_img">
-                <img
-                  :src="item.imgUrl"
-                  alt=""
-                  class="resources_main_btm_main_item_img_pic"
-                />
-                <div class="resources_main_btm_main_item_img_tarot">TAROT</div>
-              </div>
-              <div class="resources_main_btm_main_item_text">
-                <div class="resources_main_btm_main_item_text_title">
-                  {{ item.title }}
-                </div>
-                <div class="resources_main_btm_main_item_text_subscribe">
-                  {{ item.subscribe }}
-                </div>
-                <div class="resources_main_btm_main_item_text_date">
-                  {{ item.date }}
-                </div>
+                {{ item.name }}
               </div>
             </div>
           </div>
@@ -395,19 +378,39 @@ export default {
   },
   async asyncData({ error, $apiList, params, $utils }) {
     try {
-      let [list, tabsList] = await Promise.all([
+      let [list, tabs] = await Promise.all([
+        /**顶部推荐 */
         $apiList.articles
           .getNewsRec({
             origin: process.env.origin,
           })
           .then((res) => {
-            res = res.slice(0, 5)
-            console.log(res)
+            res = res?.length > 0 ? res.slice(0, 5) : null
+            return res || null
+          }),
+        /**中间tabs */
+        $apiList.articles
+          .getCate({
+            origin: process.env.origin,
+            type: 4,
+          })
+          .then((res) => {
             return res || null
           }),
       ])
+      /**默认请求tabs第一条对应的列表 */
+      let btmList = await $apiList.articles
+        .getNews({
+          origin: process.env.origin,
+          cate: tabs?.length > 0 ? tabs[0].id : 3,
+        })
+        .then((res) => {
+          return res?.list || null
+        })
       return {
         list,
+        tabs,
+        btmList,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
@@ -415,6 +418,16 @@ export default {
   },
   mounted() {},
   methods: {
+    getNews(item) {
+      this.$apiList.articles
+        .getNews({
+          origin: process.env.origin,
+          cate: item.id,
+        })
+        .then((res) => {
+          this.btmList = res.list
+        })
+    },
     /**点击底部列表跳转 */
     jumpDetails(item) {
       console.log(item)
@@ -428,10 +441,12 @@ export default {
     /** 点击切换tabs*/
     changeTab(item, index) {
       this.currentTabIndex = index
+      //通过id请求对应的列表数据
+      this.getNews(item)
       //模拟请求数据-打乱数组
-      this.btmList = this.btmList.sort(() => {
-        return 0.5 - Math.random()
-      })
+      // this.btmList = this.btmList.sort(() => {
+      //   return 0.5 - Math.random()
+      // })
     },
   },
   computed: {
@@ -497,7 +512,7 @@ $spacing: 16px;
           width: 574px;
           height: 471px;
           position: relative;
-          &_pic{
+          &_pic {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -543,7 +558,7 @@ $spacing: 16px;
           &_title {
             display: flex;
             justify-content: space-between;
-            
+
             &_text {
               font-family: 'Rubik';
               font-style: normal;
@@ -784,11 +799,18 @@ $spacing: 16px;
         &_item {
           &_img {
             width: 456px;
-            // height: 280px;
+            height: 280px;
             position: relative;
+            object-fit: cover;
+            &_pic {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
             &_video {
-              width: 456px;
-              height: 280px;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
             }
             &_play {
               position: absolute;
@@ -876,6 +898,11 @@ $spacing: 16px;
               color: rgba(255, 255, 255, 0.7);
               margin-top: 8px;
               text-align: center;
+              overflow: hidden;
+              white-space: normal;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              display: -webkit-box;
             }
           }
         }

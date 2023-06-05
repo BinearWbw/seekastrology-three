@@ -138,8 +138,42 @@ const formatPast = (param, format) => {
     return formatDate(date, format)
   }
 }
+const formatTime = (param, format) => {
+  
+  var date = new Date(param);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+
+  var Y = date.getFullYear() + '/';
+
+  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
+
+  var D = date.getDate();
+
+  var h = date.getHours() + ':';
+
+  var m = date.getMinutes() + ':';
+
+  var s = date.getSeconds();
+
+  return M + D;//时分秒可以根据自己的需求加上
+
+}
+const formatYYYYMMDDHHMM = (param, format) => {
+  var date = new Date(param * 1000); // 将时间戳转换为毫秒级别
+
+  var year = date.getFullYear();
+  var month = ('0' + (date.getMonth() + 1)).slice(-2); // 月份从0开始，需要加1
+  var day = ('0' + date.getDate()).slice(-2);
+  var hours = ('0' + date.getHours()).slice(-2);
+  var minutes = ('0' + date.getMinutes()).slice(-2); // 获取分钟并补零
+
+  var dateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
+
+  return dateTime;
+}
 export default {
   formatDate,
   formatPast,
   shuffleArr,
+  formatTime,
+  formatYYYYMMDDHHMM
 }

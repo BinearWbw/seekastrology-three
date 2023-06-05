@@ -9,26 +9,30 @@
             <a href="">Home</a> > <a href="">News</a> >
             <a href="">Quizzes Details</a>
           </div>
-          <div class="details_main_left_top_content" v-if="type == 2">
+          <!-- 0-文章、1-视频）-->
+          <div class="details_main_left_top_content" v-if="dataInfo.kind == 0">
             <div class="details_main_left_top_content_title">
-              2023 Money and Career Predictions for the 12 Signs! Many New
-              Beginnings for all Signs!
+              {{ dataInfo.name }}
             </div>
             <div class="details_main_left_top_content_subtitle">
               <div class="details_main_left_top_content_subtitle_btn">
-                Tarot
+                {{ dataInfo.main_type }}
               </div>
               <div class="details_main_left_top_content_subtitle_time">
-                2023-07-23 23:20
+                {{ $utils.formatYYYYMMDDHHMM(dataInfo.created_at) }}
               </div>
             </div>
-            <img
+            <nuxt-img
+              :src="dataInfo.icon"
+              fit="cover"
+              :alt="dataInfo.name"
               class="details_main_left_top_content_img"
-              src="../../../assets/img/resources/d_01.png"
-              alt=""
-            />
-            <div class="details_main_left_top_content_text">
-              <p>
+            ></nuxt-img>
+            <div
+              class="details_main_left_top_content_text"
+              v-html="dataInfo.desc"
+            >
+              <!-- <p>
                 This article's content includes contributions from Tarot.com
                 writer Christine Payne-Towler.
               </p>
@@ -61,20 +65,19 @@
                 heart, and your intuitions. From great joy to immense grief, the
                 Cups cards reveal how we truly feel -- and how others feel about
                 us.
-              </p>
+              </p> -->
             </div>
           </div>
-          <div class="details_main_left_top_content" v-if="type == 1">
+          <div class="details_main_left_top_content" v-if="dataInfo.kind == 1">
             <div class="details_main_left_top_content_title">
-              2023 Money and Career Predictions for the 12 Signs! Many New
-              Beginnings for all Signs!
+              {{ dataInfo.name }}
             </div>
             <div class="details_main_left_top_content_subtitle">
               <div class="details_main_left_top_content_subtitle_btn">
                 Tarot
               </div>
               <div class="details_main_left_top_content_subtitle_time">
-                2023-07-23 23:20
+                {{ $utils.formatYYYYMMDDHHMM(dataInfo.created_at) }}
               </div>
             </div>
             <img
@@ -94,7 +97,7 @@
             v-for="(item, index) in immedList"
             :key="index"
           >
-            <span>{{ item.title }}</span>
+            <span>{{ item.name }}</span>
             <img src="../../../assets/img/resources/d_02.png" alt="" />
           </div>
         </div>
@@ -108,14 +111,38 @@
           v-for="(item, index) in footList"
           :key="index"
         >
-          <!-- type1为视频，2为文本 -->
-          <div v-if="item.type == 1">
+          <!-- (0-文章、1-视频） -->
+          <div v-if="item.kind == 0">
             <div class="details_footer_list_item_img">
-              <img
-                :src="item.imgUrl"
-                alt=""
+              <nuxt-img
+                :src="item.icon"
+                fit="cover"
+                :alt="item.name"
+                class="details_footer_list_item_img_pic"
+              ></nuxt-img>
+              <div class="details_footer_list_item_img_tarot">TAROT</div>
+            </div>
+            <div class="details_footer_list_item_text">
+              <div class="details_footer_list_item_text_title">
+                {{ item.name }}
+              </div>
+              <div
+                class="details_footer_list_item_text_subscribe"
+                v-html="item.desc"
+              ></div>
+              <div class="details_footer_list_item_text_date">
+                {{ $utils.formatTime(item.created_at) }}
+              </div>
+            </div>
+          </div>
+          <div v-if="item.kind == 1">
+            <div class="details_footer_list_item_img">
+              <nuxt-img
+                :src="item.icon"
+                fit="cover"
+                :alt="item.name"
                 class="details_footer_list_item_img_video"
-              />
+              ></nuxt-img>
               <img
                 src="../../../assets/img/resources/play_icon.png"
                 alt=""
@@ -127,28 +154,7 @@
               <div class="details_footer_list_item_img_tarot">TAROT</div>
             </div>
             <div class="details_footer_list_item_vtitle">
-              {{ item.title }}
-            </div>
-          </div>
-          <div v-if="item.type == 2">
-            <div class="details_footer_list_item_img">
-              <img
-                :src="item.imgUrl"
-                alt=""
-                class="details_footer_list_item_img_pic"
-              />
-              <div class="details_footer_list_item_img_tarot">TAROT</div>
-            </div>
-            <div class="details_footer_list_item_text">
-              <div class="details_footer_list_item_text_title">
-                {{ item.title }}
-              </div>
-              <div class="details_footer_list_item_text_subscribe">
-                {{ item.subscribe }}
-              </div>
-              <div class="details_footer_list_item_text_date">
-                {{ item.date }}
-              </div>
+              {{ item.name }}
             </div>
           </div>
         </div>
@@ -164,7 +170,7 @@
 export default {
   data() {
     return {
-      type: 2,
+      kind: 2,
       immedList: [
         { title: "What's in your Immed", id: 1 },
         { title: "What's in your Immed", id: 2 },
@@ -208,9 +214,51 @@ export default {
           date: '07/23',
         },
       ],
+      dataInfo: {},
     }
   },
-  methods: {},
+  mounted() {
+    this.getDataInfo()
+    this.getNewsRec()
+  },
+  methods: {
+    /**
+     * 获取右侧列表
+     */
+    getNews() {
+      this.$apiList.articles
+        .getNews({
+          origin: process.env.origin,
+          cate: this.dataInfo.main_type_id,
+        })
+        .then((res) => {
+          this.immedList = res.list
+        })
+    },
+    /**获取推荐 */
+    getNewsRec() {
+      this.$apiList.articles
+        .getNewsRec({
+          origin: process.env.origin,
+        })
+        .then((res) => {
+          this.footList = res
+        })
+    },
+
+    /**通过id获取数据详情 */
+    getDataInfo() {
+      this.$apiList.articles
+        .getNewsDetail({
+          origin: process.env.origin,
+          id: this.$route.query.id,
+        })
+        .then((res) => {
+          this.dataInfo = res
+          this.getNews()
+        })
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -311,10 +359,15 @@ $spacing: 16px;
           }
           &_img {
             margin-top: 48px;
+            width: 100%;
+            height: 324px;
+            object-fit: cover;
           }
           &_text {
             margin-top: 48px;
-            p {
+            height: 374px;
+            overflow-y: auto;
+            :deep(p) {
               font-family: 'Rubik';
               font-style: normal;
               font-weight: 400;
@@ -367,6 +420,9 @@ $spacing: 16px;
             line-height: 22px;
             /* identical to box height, or 138% */
             color: rgba(255, 255, 255, 0.7);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
           img {
             width: 10px;
@@ -399,8 +455,14 @@ $spacing: 16px;
       &_item {
         &_img {
           width: 456px;
-          // height: 280px;
+          height: 280px;
           position: relative;
+          object-fit: cover;
+          &_pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
           &_video {
             width: 456px;
             height: 280px;
@@ -491,6 +553,11 @@ $spacing: 16px;
             color: rgba(255, 255, 255, 0.7);
             margin-top: 8px;
             text-align: center;
+            overflow: hidden;
+            white-space: normal;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
           }
         }
       }
@@ -505,8 +572,8 @@ $spacing: 16px;
       width: 100%;
       &_left {
         width: 65%;
-        &_ad{
-            width: 100%;
+        &_ad {
+          width: 100%;
         }
         &_top {
           &_content {
@@ -528,7 +595,7 @@ $spacing: 16px;
       }
     }
     &_footer {
-        width: 100%;
+      width: 100%;
       &_title {
         text-align: center;
       }
@@ -540,13 +607,12 @@ $spacing: 16px;
   }
 }
 @media (max-width: (2 * $block + 1 * $spacing + 90px)) {
-    .details {
+  .details {
     &_main {
       &_left {
         &_top {
           &_content {
             padding: 0 30px 25px;
-            
           }
         }
       }
