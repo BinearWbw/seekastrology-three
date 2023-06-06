@@ -62,7 +62,11 @@
               :key="item.id"
             >
               <div class="details_main_left_btm_list_item_img">
-                <img :src="item.icon" alt="" />
+                <nuxt-img
+                  :src="item.icon"
+                  fit="cover"
+                  :alt="item.name"
+                ></nuxt-img>
               </div>
               <div class="details_main_left_btm_list_item_text">
                 <div class="details_main_left_btm_list_item_text_name">
@@ -165,6 +169,46 @@ export default {
           icon: require('../../../assets/img/resources/d_03.png'),
         },
       ],
+    }
+  },
+  async asyncData({ error, route, $apiList, params, $utils }) {
+    try {
+        let totalNum = 0,
+        totalPage = 1,
+        search = {
+          page: 1,
+          size: 10,
+        }
+      let [dataInfo1, btmList] = await Promise.all([
+        /**顶部问答 */
+        $apiList.test
+          .getAstroDetail({
+            origin: process.env.origin,
+            id: route.query.id,
+          })
+          .then((res) => {
+            return res || null
+          }),
+        /**底部列表 */
+        $apiList.test
+          .getRecList({
+            origin: process.env.origin,
+            rand: true,
+          })
+          .then((res) => {
+            return res?.list || null
+          }),
+      ])
+
+      return {
+        dataInfo1,
+        btmList,
+        totalNum,
+        totalPage,
+        search,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.msg })
     }
   },
   methods: {
@@ -479,17 +523,17 @@ $spacing: 55px;
   }
 }
 @media (max-width: (2 * $block + 1 * $spacing + 350px)) {
-    .details{
-        &_main{
-            &_right{
-                align-items: flex-start;
-                margin-left: 20px;
-                .google_ad{
-                    width: 70%;
-                }
-            }
+  .details {
+    &_main {
+      &_right {
+        align-items: flex-start;
+        margin-left: 20px;
+        .google_ad {
+          width: 70%;
         }
+      }
     }
+  }
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);

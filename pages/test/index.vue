@@ -2,7 +2,7 @@
   <div class="test">
     <div class="test_main">
       <div class="test_main_top">
-        <div class="test_main_top_tabs" v-if="tabsStatus">
+        <!-- <div class="test_main_top_tabs" v-if="tabsStatus">
           <div
             v-for="(item, index) in tabs"
             :key="item.id"
@@ -12,7 +12,7 @@
           >
             <span>{{ item.name }}</span>
           </div>
-        </div>
+        </div> -->
         <input type="text" name="username" placeholder="Enter Your Name" />
         <img
           class="searchH5"
@@ -36,7 +36,11 @@
             @click="jumpDetails(item)"
           >
             <div class="test_main_center_list_item_img">
-              <img :src="item.icon" alt="" />
+              <nuxt-img
+                  :src="item.icon"
+                  fit="cover"
+                  :alt="item.name"
+                ></nuxt-img>
             </div>
             <div class="test_main_center_list_item_text">
               <div class="test_main_center_list_item_text_name">
@@ -44,9 +48,12 @@
               </div>
             </div>
           </div>
-          <google-ad class="google_ad top"></google-ad>
-          <google-ad class="google_ad center"></google-ad>
-          <google-ad class="google_ad btm"></google-ad>
+          <google-ad class="google_ad top" v-if="list.length >= 8"></google-ad>
+          <google-ad class="google_ad center" v-if="list.length >= 16"></google-ad>
+          <google-ad class="google_ad btm" v-if="list.length >= 32"></google-ad>
+        </div>
+        <div class="common__loading" v-scroll v-if="search.page < totalPage">
+          <div class="common__loading__loader" v-if="loading"></div>
         </div>
         <google-ad class="google_ad_h5btm"></google-ad>
         <div class="test_main_center_right">
@@ -202,11 +209,99 @@ export default {
           icon: require('../../assets/img/resources/d_03.png'),
         },
       ],
+      loading: false,
       currentTabIndex: 0,
       tabsStatus: true,
     }
   },
+  async asyncData({ error, $apiList, params, $utils }) {
+    try {
+      let item = null, 
+        totalNum = 0,
+        totalPage = 1,
+        search = {
+          page: 1,
+          size: 40,
+        }
+      // let [tabs] = await Promise.all([
+      //   /**顶部tabs */
+      //   $apiList.articles
+      //     .getCate({
+      //       origin: process.env.origin,
+      //       type: 3,
+      //     })
+      //     .then((res) => {
+      //       item = res[0]
+      //       return res || null
+      //     }),
+      // ])
+      /**默认请求tabs第一条对应的列表 */
+
+      //获取测试列表
+      let list = await $apiList.test
+        .getTestList({
+          origin: process.env.origin,
+          ...search,
+        })
+        .then((res) => {
+          totalNum = res.count
+          totalPage =
+            Math.ceil(totalNum / search.size) === 0
+              ? 1
+              : Math.ceil(totalNum / search.size)
+          
+          return res?.list || null
+        })
+      return {
+        item,
+        list,
+        totalNum,
+        totalPage,
+        search,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.msg })
+    }
+  },
   methods: {
+    getMoreList(){
+      this.loading = true
+      this.search.page += 1
+      this.$apiList.test
+        .getTestList({
+          origin: process.env.origin,
+          ...this.search,
+        })
+        .then((res) => {
+          res.list &&
+            res.list.map((item) => {
+              this.list.push(item)
+            })
+          this.totalNum = res.count
+          this.totalPage =
+            Math.ceil(this.totalNum / this.search.size) === 0
+              ? 1
+              : Math.ceil(this.totalNum / this.search.size)
+          this.loading = false
+        })
+        .catch((error) => {
+          console.log(error)
+          this.search.page -= 1
+          this.loading = false
+        })
+    },
+    scrollLoad() {
+      let scrollTop =
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop
+      let bodyHeight =
+        document.body.scrollHeight || document.documentElement.scrollHeight
+      if (scrollTop + window.innerHeight >= bodyHeight - 850) {
+        if (this.loading) return
+        this.getMoreList()
+      }
+    },
     /**跳转详情页 */
     jumpDetails(item){
       this.$router.push({
@@ -223,6 +318,16 @@ export default {
       this.currentTabIndex = index
       //通过id请求对应的列表数据
       //   this.getNews(item)
+    },
+  },
+  directives: {
+    scroll: {
+      bind: function (el, binding, vnode) {
+        window.addEventListener('scroll', vnode.context.scrollLoad)
+      },
+      unbind: function (el, binding, vnode) {
+        window.removeEventListener('scroll', vnode.context.scrollLoad)
+      },
     },
   },
 }
@@ -248,7 +353,9 @@ $spacing: 16px;
     &_top {
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      // justify-content: space-between;
+      justify-content: flex-end;
+      height: 44px;
       &_tabs {
         display: flex;
         // justify-content: center;
@@ -320,6 +427,7 @@ $spacing: 16px;
         display: grid;
         grid-template-columns: repeat(4, 220px);
         grid-gap: 16px;
+        align-self: flex-start;
         &_item {
           width: 220px;
           &_img {
