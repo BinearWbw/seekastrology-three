@@ -216,6 +216,7 @@
 export default {
   data() {
     return {
+      loading: false,
       list: [
         {
           id: 1,
@@ -377,22 +378,17 @@ export default {
         { imgUrl: '', title: 'Tarot' },
         { imgUrl: '', title: 'Tarot' },
       ],
-      loading: false,
-      totalNum: 0,
-      totalPage: 1,
-      search: {
-        page: 1,
-        size: 6,
-      },
     }
   },
   async asyncData({ error, $apiList, params, $utils }) {
     try {
-      let search = {
-        page: 1,
-        size: 6,
-      }
-      let cateId = null
+      let item = null, 
+        totalNum = 0,
+        totalPage = 1,
+        search = {
+          page: 1,
+          size: 10,
+        }
       let [list, tabs] = await Promise.all([
         /**顶部推荐 */
         $apiList.articles
@@ -410,7 +406,7 @@ export default {
             type: 4,
           })
           .then((res) => {
-            cateId = res[0].id
+            item = res[0]
             return res || null
           }),
       ])
@@ -422,13 +418,22 @@ export default {
           ...search,
         })
         .then((res) => {
+          totalNum = res.count
+          totalPage =
+            Math.ceil(totalNum / search.size) === 0
+              ? 1
+              : Math.ceil(totalNum / search.size)
+          
           return res?.list || null
         })
       return {
+        item,
         list,
         tabs,
         btmList,
-        cateId
+        totalNum,
+        totalPage,
+        search,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
@@ -436,37 +441,30 @@ export default {
   },
   mounted() {},
   methods: {
-    scrollLoad() {
-      let scrollTop =
-        document.documentElement.scrollTop ||
-        window.pageYOffset ||
-        document.body.scrollTop
-      let bodyHeight =
-        document.body.scrollHeight || document.documentElement.scrollHeight
-      if (scrollTop + window.innerHeight >= bodyHeight - 150) {
-        console.log('scrollLoad',this.loading);
-        if (this.loading) return
-        this.search.page++
-        this.getNews({cateId:this.cateId})
-      }
-    },
     getNews(item) {
       this.loading = true
+      this.search.page += 1
       this.$apiList.articles
         .getNews({
           origin: process.env.origin,
           cate: item.id,
-          ...this.search,
+          ...this.search
         })
         .then((res) => {
-          this.btmList.push(...res.list) 
+         res.list &&
+            res.list.map((item) => {
+              this.btmList.push(item)
+            })
           this.totalNum = res.count
-          this.totalPage = Math.ceil(res.count / this.search.size)
+          this.totalPage =
+            Math.ceil(this.totalNum / this.search.size) === 0
+              ? 1
+              : Math.ceil(this.totalNum / this.search.size)
           this.loading = false
+          this.status = false
         })
         .catch((error) => {
-          console.log(error)
-          this.search.page--
+          this.search.page -= 1
           this.loading = false
         })
     },
@@ -482,10 +480,29 @@ export default {
     },
     /** 点击切换tabs*/
     changeTab(item, index) {
+      this.item = item
       this.btmList = []
+      this.search.page = 0
       this.currentTabIndex = index
       //通过id请求对应的列表数据
       this.getNews(item)
+    },
+    scrollLoad() {
+      let scrollTop =
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop
+      let bodyHeight =
+        document.body.scrollHeight || document.documentElement.scrollHeight
+      if (scrollTop + window.innerHeight >= bodyHeight - 850) {
+        if (this.loading) return
+        this.getNews(this.item)
+      }
+    },
+  },
+  computed: {
+    normalList() {
+      return this.list.filter((_, index) => index !== 0)
     },
   },
   directives: {
@@ -496,11 +513,6 @@ export default {
       unbind: function (el, binding, vnode) {
         window.removeEventListener('scroll', vnode.context.scrollLoad)
       },
-    },
-  },
-  computed: {
-    normalList() {
-      return this.list.filter((_, index) => index !== 0)
     },
   },
 }

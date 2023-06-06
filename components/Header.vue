@@ -73,14 +73,15 @@ export default {
         },
         {
           title: 'Quizzes',
-          path: '/new',
-          href: '/new',
+          path: '/test',
+          href: '/test',
         },
         {
           title: 'Articles',
           path: '/resources',
           href: '/resources',
         },
+        
       ],
     }
   },
