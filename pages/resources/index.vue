@@ -470,7 +470,6 @@ export default {
     },
     /**点击底部列表跳转 */
     jumpDetails(item) {
-      console.log(item)
       //
       this.$router.push({
         path: `/resources/details/?id=${item.id}`,

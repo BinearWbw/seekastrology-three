@@ -2,7 +2,7 @@
   <div class="test">
     <div class="test_main">
       <div class="test_main_top">
-        <div class="test_main_top_tabs">
+        <div class="test_main_top_tabs" v-if="tabsStatus">
           <div
             v-for="(item, index) in tabs"
             :key="item.id"
@@ -18,7 +18,13 @@
           class="searchH5"
           src="../../assets/img/search/searchH5.png"
           alt=""
+          @click="tabsStatus = false"
+          v-if="tabsStatus"
         />
+        <div class="test_main_top_inputH5" v-if="!tabsStatus">
+          <input type="text" name="username" placeholder="Enter Your Name" />
+          <span @click="tabsStatus = true">Cancel</span>
+        </div>
       </div>
       <div class="test_main_line"></div>
       <div class="test_main_center">
@@ -27,6 +33,7 @@
             class="test_main_center_list_item"
             v-for="(item, index) in list"
             :key="item.id"
+            @click="jumpDetails(item)"
           >
             <div class="test_main_center_list_item_img">
               <img :src="item.icon" alt="" />
@@ -41,6 +48,7 @@
           <google-ad class="google_ad center"></google-ad>
           <google-ad class="google_ad btm"></google-ad>
         </div>
+        <google-ad class="google_ad_h5btm"></google-ad>
         <div class="test_main_center_right">
           <google-ad class="google_ad"></google-ad>
           <google-ad class="google_ad"></google-ad>
@@ -65,12 +73,12 @@ export default {
         { id: 5, name: 'Wealth' },
         { id: 6, name: 'Wealth' },
         { id: 7, name: 'Wealth' },
-        { id: 7, name: 'Fate' },
-        { id: 7, name: 'Fate' },
-        { id: 7, name: 'Fate' },
-        { id: 7, name: 'Pairing' },
-        { id: 7, name: 'Pairing' },
-        { id: 7, name: 'Pairing' },
+        { id: 8, name: 'Fate' },
+        { id: 9, name: 'Fate' },
+        { id: 10, name: 'Fate' },
+        { id: 11, name: 'Pairing' },
+        { id: 12, name: 'Pairing' },
+        { id: 13, name: 'Pairing' },
       ],
       list: [
         {
@@ -195,9 +203,18 @@ export default {
         },
       ],
       currentTabIndex: 0,
+      tabsStatus: true,
     }
   },
   methods: {
+    /**跳转详情页 */
+    jumpDetails(item){
+      this.$router.push({
+        path: `/test/details/?id=${item.id}`,
+        href: '/test/details',
+        data: item,
+      })
+    },
     /** 点击切换tabs*/
     changeTab(item, index) {
       //   this.item = item
@@ -284,6 +301,9 @@ $spacing: 16px;
       .searchH5 {
         display: none;
       }
+      &_inputH5 {
+        display: none;
+      }
     }
     &_line {
       margin-top: 20px;
@@ -334,24 +354,18 @@ $spacing: 16px;
           height: 114px;
           background: #555761;
           margin: 48px 0;
+          grid-column-end: 5;
+          grid-column-start: span 4;
+          grid-row-start: span 2;
         }
         .top {
-          grid-column-end: 5;
-          grid-column-start: span 4;
           grid-row-end: 5;
-          grid-row-start: span 2;
         }
         .center {
-          grid-column-end: 5;
-          grid-column-start: span 4;
           grid-row-end: 9;
-          grid-row-start: span 2;
         }
         .btm {
-          grid-column-end: 5;
-          grid-column-start: span 4;
           grid-row-end: 13;
-          grid-row-start: span 2;
         }
       }
       &_right {
@@ -361,6 +375,9 @@ $spacing: 16px;
           background: #555761;
           margin-bottom: 202px;
         }
+      }
+      .google_ad_h5btm {
+        display: none;
       }
     }
   }
@@ -372,11 +389,18 @@ $spacing: 16px;
       width: 100%;
       padding: 0 16 * $pr;
       &_top {
+        align-items: center;
         &_tabs {
           width: 340 * $pr;
+          height: 44 * $pr;
           &_item {
+            height: 38 * $pr;
             padding: 7 * $pr 22 * $pr;
             margin-right: 0;
+            span {
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
+            }
           }
         }
         input {
@@ -387,12 +411,35 @@ $spacing: 16px;
           width: 19 * $pr;
           height: 19 * $pr;
         }
+        &_inputH5 {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          input {
+            display: block;
+            height: 44 * $pr;
+            width: 285 * $pr;
+            background: rgba(7, 6, 6, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24 * $pr;
+          }
+          span {
+            font-family: 'Rubik';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14 * $pr;
+            line-height: 18 * $pr;
+            color: rgba(255, 255, 255, 0.7);
+          }
+        }
       }
       &_line {
         margin-top: 21 * $pr;
       }
       &_center {
         margin-top: 16 * $pr;
+        flex-direction: column;
         &_list {
           width: 100%;
           grid-template-columns: repeat(2, 169 * $pr);
@@ -409,13 +456,13 @@ $spacing: 16px;
               }
             }
           }
-          .google_ad{
-             grid-column-end: 3;
-              grid-column-start: span 2;
-              grid-row-start: span 2;
-              width: 100%;
-              height: 299 * $pr;
-              margin: 48 * $pr 0;
+          .google_ad {
+            grid-column-end: 3;
+            grid-column-start: span 2;
+            grid-row-start: span 2;
+            width: 100%;
+            height: 299 * $pr;
+            margin: 48 * $pr 0;
           }
           .top {
             grid-row-end: 6;
@@ -424,11 +471,18 @@ $spacing: 16px;
             grid-row-end: 11;
           }
           .btm {
-            grid-row-end: 16;
+            display: none;
           }
         }
         &_right {
           display: none;
+        }
+        .google_ad_h5btm {
+          display: block;
+          width: 100%;
+          height: 299 * $pr;
+          margin-top: 48 * $pr;
+          background: #555761;
         }
       }
     }
