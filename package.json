@@ -19,6 +19,7 @@
     "core-js": "^3.25.3",
     "cross-env": "^7.0.3",
     "element-resize-detector": "^1.2.4",
+    "ipx": "^1.1.0",
     "nuxt": "^2.15.8",
     "nuxt-precompress": "^0.5.9",
     "swiper": "^5.3.8",

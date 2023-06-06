@@ -1,3 +1,10 @@
+<!--
+ * @Date: 2023-06-06 09:29:25
+ * @LastEditors: tianjun
+ * @LastEditTime: 2023-06-06 09:37:15
+ * @FilePath: /seekastrology/pages/index.vue
+ * @Description: 
+-->
 <template>
   <article class="home">
     <div class="meteor">
