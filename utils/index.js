@@ -175,7 +175,20 @@ const formatYYYYMMDDHHMM = (param, format) => {
 
   return dateTime;
 }
+const formatMMSS = (param) => {
+  if(param == '' || param == undefined || param == null){
+    return ''
+  }
+  const minutes = Math.floor(param / 60);
+  const remainingSeconds = param % 60;
+
+  const formattedMinutes = String(minutes).padStart(2, '0');
+  const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+  return `${formattedMinutes}:${formattedSeconds}`;
+}
 export default {
+  formatMMSS,
   formatDate,
   formatPast,
   shuffleArr,

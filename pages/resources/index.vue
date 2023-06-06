@@ -51,7 +51,7 @@
                 class="resources_main_top_left_img_play"
               />
               <div class="resources_main_top_left_img_time">
-                {{ list[0].time }}
+                {{ $utils.formatMMSS(list[0].sec) }}
               </div>
               <div class="resources_main_top_left_img_tarot">TAROT</div>
             </div>
@@ -96,7 +96,7 @@
                   v-html="item.desc"
                 ></div>
                 <div class="resources_main_top_right_item_content_date">
-                  <span>{{ $utils.formatTime(item.created_at) }}</span>
+                  <span> {{ $utils.formatTime(item.created_at) }}</span>
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@
                   class="resources_main_top_right_item_img_play"
                 />
                 <div class="resources_main_top_right_item_img_time">
-                  {{ item.time }}
+                  {{ $utils.formatMMSS(item.sec) }}
                 </div>
                 <div class="resources_main_top_right_item_img_tarot">TAROT</div>
               </div>
@@ -191,7 +191,7 @@
                   class="resources_main_btm_main_item_img_play"
                 />
                 <div class="resources_main_btm_main_item_img_time">
-                  {{ item.time }}
+                  {{ $utils.formatMMSS(item.sec) }}
                 </div>
                 <div class="resources_main_btm_main_item_img_tarot">TAROT</div>
               </div>
@@ -218,53 +218,53 @@ export default {
     return {
       loading: false,
       list: [
-        {
-          id: 1,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_01.png'),
-          title: "Tarot.com's Tarot Guide",
-          date: '07/24',
-          time: '37:25',
-          subscribe:
-            'Tarot is an ancient divination that began in 14th century Europe. symbolic archetypes that allow us to tap into......',
-        },
-        {
-          id: 2,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_02.png'),
-          title: 'LOVE Tarot Reading',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 3,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_03.png'),
-          title: 'LOVE Tarot Reading',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 4,
-          type: 1,
-          time: '37:25',
-          imgUrl: require('../../assets/img/resources/p_04.png'),
-          title: 'LOVE Tarot Reading',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 5,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_05.png'),
-          title: 'LOVE Tarot Reading',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
+        // {
+        //   id: 1,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_01.png'),
+        //   title: "Tarot.com's Tarot Guide",
+        //   date: '07/24',
+        //   time: '37:25',
+        //   subscribe:
+        //     'Tarot is an ancient divination that began in 14th century Europe. symbolic archetypes that allow us to tap into......',
+        // },
+        // {
+        //   id: 2,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_02.png'),
+        //   title: 'LOVE Tarot Reading',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 3,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_03.png'),
+        //   title: 'LOVE Tarot Reading',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 4,
+        //   type: 1,
+        //   time: '37:25',
+        //   imgUrl: require('../../assets/img/resources/p_04.png'),
+        //   title: 'LOVE Tarot Reading',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 5,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_05.png'),
+        //   title: 'LOVE Tarot Reading',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
       ],
       currentTabIndex: 0,
       tabs: [
@@ -277,101 +277,101 @@ export default {
         { id: 7, name: 'Tab 07' },
       ],
       btmList: [
-        {
-          id: 1,
-          type: 1,
-          imgUrl: require('../../assets/img/resources/p_06.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 2,
-          type: 1,
-          imgUrl: require('../../assets/img/resources/p_07.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 3,
-          type: 1,
-          imgUrl: require('../../assets/img/resources/p_08.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 4,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_09.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 5,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_10.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 6,
-          type: 1,
-          imgUrl: require('../../assets/img/resources/p_11.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 7,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_12.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 8,
-          type: 1,
-          imgUrl: require('../../assets/img/resources/p_13.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 9,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_14.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
+        // {
+        //   id: 1,
+        //   type: 1,
+        //   imgUrl: require('../../assets/img/resources/p_06.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        //   time: '37:25',
+        // },
+        // {
+        //   id: 2,
+        //   type: 1,
+        //   imgUrl: require('../../assets/img/resources/p_07.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        //   time: '37:25',
+        // },
+        // {
+        //   id: 3,
+        //   type: 1,
+        //   imgUrl: require('../../assets/img/resources/p_08.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        //   time: '37:25',
+        // },
+        // {
+        //   id: 4,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_09.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 5,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_10.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 6,
+        //   type: 1,
+        //   imgUrl: require('../../assets/img/resources/p_11.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        //   time: '37:25',
+        // },
+        // {
+        //   id: 7,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_12.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 8,
+        //   type: 1,
+        //   imgUrl: require('../../assets/img/resources/p_13.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        //   time: '37:25',
+        // },
+        // {
+        //   id: 9,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_14.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
       ],
       variousList: [
         { imgUrl: '', title: 'Tarot' },
