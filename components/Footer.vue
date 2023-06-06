@@ -7,9 +7,9 @@
         alt="logo"
       />
       <div class="top">
-        <!-- <button class="arrow common__btn" @click="goTop">
+        <button class="arrow common__btn" @click="goTop">
           <img src="~/assets/img/footer/arrow.svg" alt="arrow" />
-        </button> -->
+        </button>
         <div class="top_link">
           <div class="top_list" v-for="item in footer_link" :key="item.id">
             <a href="#" v-for="(cont, index) in item.content" :key="index">
@@ -232,12 +232,15 @@ export default {
       display: flex;
       padding-bottom: 32px;
       border-bottom: 1px solid rgba(217, 217, 217, 0.1);
+      position: relative;
       .arrow {
-        margin-left: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
         width: 32px;
         height: 32px;
         background: #242731;
-        border-radius: 4px;
+        border-radius: 6px;
         &:hover {
           background: #7a78ff;
         }
@@ -373,6 +376,9 @@ export default {
         padding-bottom: 0;
         border-bottom: none;
         position: relative;
+        .arrow {
+          display: none;
+        }
         &_link {
           flex: 1;
           display: flex;
