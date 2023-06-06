@@ -65,10 +65,7 @@ export default {
   },
   methods: {
     pathToPage() {
-      this.$router.push({
-        path: '/resources',
-        href: '/resources',
-      })
+      this.$router.push('/resources')
     },
   },
 }
@@ -367,6 +364,7 @@ export default {
               & > :nth-child(1) {
                 font-size: 14 * $pr;
                 line-height: 18 * $pr;
+                padding-right: 30 * $pr;
               }
               & > :nth-child(2) {
                 font-size: 12 * $pr;
@@ -382,7 +380,7 @@ export default {
               font-family: 'Rubik';
               font-size: 12 * $pr;
               line-height: 16 * $pr;
-              color: #ffffff;
+              color: rgba(255, 255, 255, 0.7);
               padding: 0;
             }
           }
