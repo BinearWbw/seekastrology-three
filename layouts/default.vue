@@ -6,11 +6,11 @@
     <transition name="fade">
       <i class="home_bg" v-if="$route.path == '/'"></i>
     </transition>
-    <transform name="fade">
+    <transition name="fade">
       <button v-if="showScrollToTop" @click="scrollToTop" class="scroll_to_top">
         <img src="~/assets/img/footer/arrow.svg" alt="totop" />
       </button>
-    </transform>
+    </transition>
     <transition name="fade">
       <Privacy v-if="visiblePrivacy" @close="visiblePrivacy = false"></Privacy>
     </transition>
@@ -104,17 +104,7 @@ export default {
     z-index: 99;
     border-radius: 50%;
     background-color: #9747ff;
-    transition: display 0.3s;
     display: none;
-  }
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.3s;
-  }
-
-  .fade-enter,
-  .fade-leave-to {
-    opacity: 0;
   }
 }
 @media (max-width: 750px) {
