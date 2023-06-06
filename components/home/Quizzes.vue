@@ -61,34 +61,6 @@ export default {
         speed: 500,
         grabCursor: true,
       },
-
-      swiperData: [
-        {
-          imgs: require('~/assets/img/home/swiper1.png'),
-          text: 'Text AaBbCcDd 123456789',
-          time: 'Rubik 16/22 Regular',
-        },
-        {
-          imgs: require('~/assets/img/home/swiper2.png'),
-          text: 'Text AaBbCcDd 123456789',
-          time: 'Rubik 16/22 Regular',
-        },
-        {
-          imgs: require('~/assets/img/home/swiper3.png'),
-          text: 'Text AaBbCcDd 123456789',
-          time: 'Rubik 16/22 Regular',
-        },
-        {
-          imgs: require('~/assets/img/home/swiper4.png'),
-          text: 'Text AaBbCcDd 123456789',
-          time: 'Rubik 16/22 Regular',
-        },
-        {
-          imgs: require('~/assets/img/home/swiper5.png'),
-          text: 'Text AaBbCcDd 123456789',
-          time: 'Rubik 16/22 Regular',
-        },
-      ],
     }
   },
   components: {
