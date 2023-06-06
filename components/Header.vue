@@ -62,14 +62,14 @@ export default {
           href: '/zodiac',
         },
         {
-          title: 'Astrology',
-          path: '/astrology',
-          href: '/astrology',
-        },
-        {
           title: 'Tarot',
           path: '/top',
           href: '/top',
+        },
+        {
+          title: 'Compatibility',
+          path: '/astrology',
+          href: '/astrology',
         },
         {
           title: 'Quizzes',
@@ -144,44 +144,47 @@ export default {
         display: -ms-flexbox;
         -webkit-flex-shrink: 0;
         flex-shrink: 0;
-        padding-top: 28px;
         &__item {
-          padding-left: 50px;
+          margin-left: 26px;
+          padding: 0 10px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          position: relative;
           span {
             font-family: 'Cinzel Decorative';
             font-weight: 700;
             font-size: 16px;
             line-height: 22px;
             color: rgba(255, 255, 255, 0.5);
-            position: relative;
-            &::after {
-              content: '';
-              position: absolute;
-              left: 0;
-              bottom: -7px;
-              width: 100%;
-              height: 2px;
-              background-color: #fff;
-              transform: scaleX(0);
-              -webkit-transition: transform 0.3s ease-in-out;
-              transition: transform 0.3s ease-in-out;
-            }
+          }
+          &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #9747ff;
+            transform: scaleX(0);
+            -webkit-transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out;
           }
           &:hover {
+            &::after {
+              -webkit-transform: scaleX(1);
+              transform: scaleX(1);
+            }
             span {
-              &::after {
-                -webkit-transform: scaleX(1);
-                transform: scaleX(1);
-              }
             }
           }
           &.active {
+            &::after {
+              -webkit-transform: scaleX(1);
+              transform: scaleX(1);
+            }
             span {
               color: #fff;
-              &::after {
-                -webkit-transform: scaleX(1);
-                transform: scaleX(1);
-              }
             }
           }
         }
@@ -212,7 +215,6 @@ export default {
     &__main {
       > div {
         .nav {
-          padding-top: 18px;
           &__item {
             img {
               display: none;
