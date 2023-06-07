@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-06 16:15:31
+ * @LastEditTime: 2023-06-07 17:06:47
  * @FilePath: /seekastrology/components/tarot/MoreTarot.vue
  * @Description: 
 -->
@@ -14,8 +14,7 @@
           <img src="~/assets/img/tarot/love.png" alt="" />
           <p class="item-title">LOVE Tarot Reading</p>
           <p class="item-sub-title">
-            We have so many opportunities for love in our lifetimes! You can
-            consul
+            Receive personalized advice for your romantic dilemmas
           </p>
           <button class="button">Read More</button>
         </nuxt-link>
@@ -24,10 +23,9 @@
       <div class="more-tarot-items">
         <nuxt-link :to="{ path: '/tarot/type', query: { type: 'cause' } }">
           <img src="~/assets/img/tarot/cause.png" alt="" />
-          <p class="item-title">LOVE Tarot Reading</p>
+          <p class="item-title">Tarot Career Reading</p>
           <p class="item-sub-title">
-            We have so many opportunities for love in our lifetimes! You can
-            consul
+            This free career Tarot reading is here to help you find success
           </p>
           <button class="button">Read More</button>
         </nuxt-link>
@@ -36,10 +34,9 @@
       <div class="more-tarot-items">
         <nuxt-link :to="{ path: '/tarot/type', query: { type: 'general' } }">
           <img src="~/assets/img/tarot/general.png" alt="" />
-          <p class="item-title">LOVE Tarot Reading</p>
+          <p class="item-title">Universal Tarot Reading</p>
           <p class="item-sub-title">
-            We have so many opportunities for love in our lifetimes! You can
-            consul
+            Get the answers you need with this 3-card Tarot spread
           </p>
           <button class="button">Read More</button>
         </nuxt-link>

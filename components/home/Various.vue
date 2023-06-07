@@ -41,7 +41,7 @@ export default {
           title: 'Tarot',
           textCont: 'Read your freedaily horoscopes and learn more about your',
           imgUrl: require('~/assets/img/home/tarot.png'),
-          path: '#',
+          path: '/tarot',
         },
         {
           title: 'Compatibility',

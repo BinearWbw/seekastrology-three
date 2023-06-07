@@ -1,8 +1,8 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-06 17:31:17
- * @FilePath: /seekastrology/pages/tarot/explain/index.vue
+ * @LastEditTime: 2023-06-07 18:08:03
+ * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
 <template>
@@ -120,7 +120,7 @@ export default {
   background-color: #555761;
 }
 .main-content {
-  margin: 124px 32px 0; 
+  margin: 124px 32px 0;
   .content-list-item {
     display: flex;
     .card {

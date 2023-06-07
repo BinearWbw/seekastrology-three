@@ -3,11 +3,13 @@
     <div class="title">Choose 1 Cards From The Deck Below:</div>
     <div class="tarot-section">
       <div class="ad-box"></div>
-      <div class="tarot-box"></div>
+      <div class="tarot-box">
+        <tarot-play></tarot-play>
+      </div>
       <div class="ad-box"></div>
     </div>
     <div class="ad-box_row mt-48"></div>
-    <more-tarot></more-tarot>
+    <more-tarot class="mt-48"></more-tarot>
     <div class="ad-box_row mt-32"></div>
     <div class="cards-box">
       <div class="card-wrapper">
@@ -15,13 +17,51 @@
           The 78 Tarot cards are divided into two main <br />sections, the Major
           Arcana and Minor Arcana, <br />and further into four suits:
         </div>
-        <button class="button">View All</button>
+        <nuxt-link to="/tarot/cards">
+          <button class="button">View All</button>
+        </nuxt-link>
       </div>
 
       <ul class="card-list">
-        <li class="card-items" v-for="(item, index) in cardsData" :key="index">
-          <img :src="item.img" alt="" class="card-item-img" />
-          <div class="card-text">{{ item.text }}</div>
+        <li class="card-items">
+          <img
+            src="~/assets/img/tarot/card0.png"
+            alt=""
+            class="card-item-img"
+          />
+          <div class="card-text">The Fool</div>
+        </li>
+        <li class="card-items">
+          <img
+            src="~/assets/img/tarot/card1.png"
+            alt=""
+            class="card-item-img"
+          />
+          <div class="card-text">The Magician</div>
+        </li>
+        <li class="card-items">
+          <img
+            src="~/assets/img/tarot/card2.png"
+            alt=""
+            class="card-item-img"
+          />
+          <div class="card-text">The High Priestess</div>
+        </li>
+        <li class="card-items">
+          <img
+            src="~/assets/img/tarot/card3.png"
+            alt=""
+            class="card-item-img"
+          />
+          <div class="card-text">The Empress</div>
+        </li>
+        <li class="card-items">
+          <img
+            src="~/assets/img/tarot/card4.png"
+            alt=""
+            class="card-item-img"
+          />
+          <div class="card-text">The Emperor</div>
         </li>
       </ul>
     </div>
@@ -31,53 +71,15 @@
 
 <script>
 import MoreTarot from '../../components/tarot/MoreTarot.vue'
+import TarotPlay from '../../components/tarot/TarotPlay.vue'
 export default {
   name: 'tarot',
   components: {
     MoreTarot,
+    TarotPlay,
   },
   data() {
-    return {
-      more: [
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          title: 'LOVE Tarot Reading',
-          text: 'We have so many opportunities for love in our lifetimes! You can consul',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          title: 'LOVE Tarot Reading',
-          text: 'We have so many opportunities for love in our lifetimes! You can consul',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          title: 'LOVE Tarot Reading',
-          text: 'We have so many opportunities for love in our lifetimes! You can consul',
-        },
-      ],
-      cardsData: [
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          text: 'The Fool',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          text: 'The Fool',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          text: 'The Fool',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          text: 'The Fool',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          text: 'The Fool',
-        },
-      ],
-    }
+    return {}
   },
 }
 </script>
@@ -106,6 +108,8 @@ export default {
   .tarot-box {
     margin-left: 32px;
     margin-right: 32px;
+    flex: 1;
+    max-width: 1400px;
   }
 }
 .ad-box_row {

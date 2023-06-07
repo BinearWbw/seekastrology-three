@@ -68,8 +68,8 @@ export default {
         },
         {
           title: 'Tarot',
-          path: '/top',
-          href: '/top',
+          path: '/tarot',
+          href: '/tarot',
         },
         {
           title: 'Quizzes',
