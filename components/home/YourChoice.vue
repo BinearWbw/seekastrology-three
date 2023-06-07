@@ -6,10 +6,15 @@
     </div>
     <ul class="choice__main">
       <li v-for="item_i in item" :key="item_i.id">
-        <a class="choice__main__a" href="#">
+        <a
+          class="choice__main__a"
+          :href="`${getIntersperseUrl}/horroscope/${item_i.name
+            .replace(/[^a-zA-Z0-9\\s]/g, '-')
+            .toLowerCase()}-${item_i.id}/`"
+        >
           <div class="img__list">
             <nuxt-img
-              :src="item_i.icon || '/'"
+              :src="item_i.hot_icon || '/'"
               fit="cover"
               width="218"
               height="154"
@@ -25,11 +30,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'YourChoice',
   props: ['item'],
   data() {
     return {}
+  },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
   },
 }
 </script>
@@ -209,6 +218,7 @@ export default {
       grid-template-columns: repeat(3, 1fr);
       gap: 11 * $pr;
       li {
+        width: 100%;
         height: 147 * $pr;
         margin-bottom: 36 * $pr;
         border: 0;

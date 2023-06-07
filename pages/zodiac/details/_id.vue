@@ -33,7 +33,7 @@
             </p>
             <div class="img_cont">
               <nuxt-img
-                :src="zodiacIData.icon || '/'"
+                :src="zodiacIData.banner || '/'"
                 fit="cover"
                 height="325"
                 :alt="zodiacIData.name"
@@ -211,12 +211,35 @@ export default {
         },
       ],
       tabTitle: [{ tabs: '' }, { tabs: 'Man' }, { tabs: 'Woman' }],
-      zodiacIData: {},
-      ids: this.$route.query.id,
     }
   },
-  mounted() {
-    this.getZodiacIData()
+  async asyncData({ error, $apiList, params }) {
+    try {
+      let ids = params.id.replace(
+        /^.*?(\d*)$/,
+        (str, match, index) => match || '0'
+      )
+      let [zodiacIData] = await Promise.all([
+        $apiList.home
+          .getZodiacDetails({
+            origin: process.env.origin,
+            id: params.id.replace(
+              /^.*?(\d*)$/,
+              (str, match, index) => match || '0'
+            ),
+          })
+          .then((res) => {
+            ids = res.id
+            return res
+          }),
+      ])
+      return {
+        zodiacIData,
+        ids,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.message })
+    }
   },
   methods: {
     handleDropdownChange(option) {
@@ -224,11 +247,11 @@ export default {
         typeof option === 'object' && option !== null ? option.id : option
       this.getZodiacIData(selectValue)
     },
-    async getZodiacIData(id = null) {
-      await this.$apiList.home
+    getZodiacIData(id = null) {
+      this.$apiList.home
         .getZodiacDetails({
           origin: process.env.origin,
-          id: id || this.$route.query.id,
+          id: id,
         })
         .then((res) => {
           this.zodiacIData = res

@@ -23,7 +23,11 @@
       <div class="zodiac_main_list">
         <div class="zodiac_signs">
           <div class="each" v-for="(item, index) in zodiacList" :key="index">
-            <a :href="`${getIntersperseUrl}/zodiac/details?id=${item.id}`">
+            <a
+              :href="`${getIntersperseUrl}/zodiac/details/${item.name
+                .replace(/[^a-zA-Z0-9\\s]/g, '-')
+                .toLowerCase()}-${item.id}/`"
+            >
               <h4>{{ item.name }}</h4>
               <p class="time">{{ item.dates }}</p>
               <div class="text" v-html="item.desc"></div>
@@ -277,6 +281,7 @@ export default {
                 right: -24 * $pr;
                 top: -24 * $pr;
                 width: 111 * $pr;
+                height: auto;
               }
             }
           }
