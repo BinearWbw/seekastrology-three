@@ -115,8 +115,6 @@ export default {
           width: 100%;
           height: 100%;
           object-fit: contain;
-          filter: grayscale(100%);
-          transition: filter 0.5s;
         }
       }
       &_text {
@@ -157,13 +155,6 @@ export default {
           color: #ffffff;
         }
       }
-      &:hover {
-        .left_img {
-          img {
-            filter: grayscale(0);
-          }
-        }
-      }
     }
     .news_right {
       flex: 1;
@@ -189,8 +180,6 @@ export default {
               width: 100%;
               height: 100%;
               object-fit: contain;
-              filter: grayscale(100%);
-              transition: filter 0.3s;
             }
           }
 
@@ -231,11 +220,6 @@ export default {
         }
         &:hover {
           background-color: rgba(255, 255, 255, 0.08);
-          .news_right_img {
-            img {
-              filter: grayscale(0);
-            }
-          }
         }
       }
     }

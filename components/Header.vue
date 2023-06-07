@@ -53,8 +53,8 @@ export default {
         },
         {
           title: 'Horroscope',
-          path: '/horroscope',
-          href: '/horroscope',
+          path: '/horroscope/aries-1/',
+          href: '/horroscope/aries-1/',
         },
         {
           title: 'Zodiac Signs',
