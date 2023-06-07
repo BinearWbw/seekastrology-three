@@ -5,7 +5,12 @@
     <div class="resources_main">
       <div class="resources_main_title">HOT Content</div>
       <div class="resources_main_top">
-        <div class="resources_main_top_left" @click="jumpDetails(list[0])">
+        <a
+          class="resources_main_top_left"
+          :href="`${getIntersperseUrl}/resources/details/${list[0].name
+            .replace(/[^a-zA-Z0-9\\s]/g, '-')
+            .toLowerCase()}-${list[0].id}/`"
+        >
           <!-- (0-文章、1-视频） -->
           <!-- 0图文 -->
           <div v-if="list[0].kind == 0">
@@ -17,7 +22,7 @@
                 class="resources_main_top_left_img_pic"
               ></nuxt-img>
               <div class="resources_main_top_left_img_tarot">
-                {{list[0].main_label}}
+                {{ list[0].main_label }}
               </div>
             </div>
             <div class="resources_main_top_left_content">
@@ -38,103 +43,105 @@
                 {{ list[0].created_at }}
               </div>
             </div>
-          </div>
-          <div v-if="list[0].kind == 1">
-            <div class="resources_main_top_left_img">
-              <nuxt-img
-                :src="list[0].icon"
-                fit="cover"
-                :alt="list[0].name"
-                class="resources_main_top_left_item_img_video"
-              ></nuxt-img>
-              <img
-                src="../../assets/img/resources/play_icon.png"
-                alt=""
-                class="resources_main_top_left_img_play"
-              />
-              <div class="resources_main_top_left_img_time">
-                {{ $utils.formatMMSS(list[0].sec) }}
-              </div>
-              <div class="resources_main_top_left_img_tarot">TAROT</div>
-            </div>
-            <!-- <img :src="item.imgUrl" alt="" /> -->
-            <div class="resources_main_top_left_content">
-              <div class="resources_main_top_left_content_title">
-                <span class="resources_main_top_left_content_title_text">{{
-                  list[0].name
-                }}</span>
-              </div>
-              <div class="resources_main_top_left_content_btn">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div class="resources_main_top_right">
-          <div
-            class="resources_main_top_right_item"
-            v-for="(item, index) in normalList"
-            :key="item.id"
-            @click="jumpDetails(item)"
-          >
-            <!-- 0图文 -->
-            <div v-if="item.kind == 0">
-              <div class="resources_main_top_right_item_img">
+            <div v-if="list[0].kind == 1">
+              <div class="resources_main_top_left_img">
                 <nuxt-img
-                  :src="item.icon"
+                  :src="list[0].icon"
                   fit="cover"
-                  :alt="item.name"
-                  class="resources_main_top_right_item_img_pic"
-                ></nuxt-img>
-                <div class="resources_main_top_right_item_img_tarot">
-                  {{item.main_label}}
-                </div>
-              </div>
-              <div class="resources_main_top_right_item_content">
-                <div class="resources_main_top_right_item_content_title">
-                  <span
-                    class="resources_main_top_right_item_content_title_text"
-                    >{{ item.name }}</span
-                  >
-                </div>
-                <div
-                  class="resources_main_top_right_item_content_subscribe"
-                  v-html="item.desc"
-                ></div>
-                <div class="resources_main_top_right_item_content_date">
-                  <span> {{ $utils.formatTime(item.created_at) }}</span>
-                </div>
-              </div>
-            </div>
-            <!-- 1视频 -->
-            <div v-if="item.kind == 1">
-              <div class="resources_main_top_right_item_img">
-                <nuxt-img
-                  :src="item.icon"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_top_right_item_img_video"
+                  :alt="list[0].name"
+                  class="resources_main_top_left_item_img_video"
                 ></nuxt-img>
                 <img
                   src="../../assets/img/resources/play_icon.png"
                   alt=""
-                  class="resources_main_top_right_item_img_play"
+                  class="resources_main_top_left_img_play"
                 />
-                <div class="resources_main_top_right_item_img_time">
-                  {{ $utils.formatMMSS(item.sec) }}
+                <div class="resources_main_top_left_img_time">
+                  {{ $utils.formatMMSS(list[0].sec) }}
                 </div>
-                <div class="resources_main_top_right_item_img_tarot">
-                  {{item.main_label}}
-                </div>
+                <div class="resources_main_top_left_img_tarot">TAROT</div>
               </div>
               <!-- <img :src="item.imgUrl" alt="" /> -->
-              <div class="resources_main_top_right_item_content">
-                <div class="resources_main_top_right_item_content_title">
-                  <span
-                    class="resources_main_top_right_item_content_title_text"
-                    >{{ item.name }}</span
-                  >
+              <div class="resources_main_top_left_content">
+                <div class="resources_main_top_left_content_title">
+                  <span class="resources_main_top_left_content_title_text">{{
+                    list[0].name
+                  }}</span>
                 </div>
+                <div class="resources_main_top_left_content_btn">Read More</div>
               </div>
             </div>
+          </div>
+        </a>
+        <div class="resources_main_top_right">
+          <div v-for="(item, index) in normalList" :key="item.id">
+            <a
+              class="resources_main_top_right_item"
+              :href="`${getIntersperseUrl}/resources/details/${item.name
+                .replace(/[^a-zA-Z0-9\\s]/g, '-')
+                .toLowerCase()}-${item.id}/`"
+            >
+              <!-- 0图文 -->
+              <div v-if="item.kind == 0">
+                <div class="resources_main_top_right_item_img">
+                  <nuxt-img
+                    :src="item.icon"
+                    fit="cover"
+                    :alt="item.name"
+                    class="resources_main_top_right_item_img_pic"
+                  ></nuxt-img>
+                  <div class="resources_main_top_right_item_img_tarot">
+                    {{ item.main_label }}
+                  </div>
+                </div>
+                <div class="resources_main_top_right_item_content">
+                  <div class="resources_main_top_right_item_content_title">
+                    <span
+                      class="resources_main_top_right_item_content_title_text"
+                      >{{ item.name }}</span
+                    >
+                  </div>
+                  <div
+                    class="resources_main_top_right_item_content_subscribe"
+                    v-html="item.desc"
+                  ></div>
+                  <div class="resources_main_top_right_item_content_date">
+                    <span> {{ $utils.formatTime(item.created_at) }}</span>
+                  </div>
+                </div>
+              </div>
+              <!-- 1视频 -->
+              <div v-if="item.kind == 1">
+                <div class="resources_main_top_right_item_img">
+                  <nuxt-img
+                    :src="item.icon"
+                    fit="cover"
+                    :alt="item.name"
+                    class="resources_main_top_right_item_img_video"
+                  ></nuxt-img>
+                  <img
+                    src="../../assets/img/resources/play_icon.png"
+                    alt=""
+                    class="resources_main_top_right_item_img_play"
+                  />
+                  <div class="resources_main_top_right_item_img_time">
+                    {{ $utils.formatMMSS(item.sec) }}
+                  </div>
+                  <div class="resources_main_top_right_item_img_tarot">
+                    {{ item.main_label }}
+                  </div>
+                </div>
+                <!-- <img :src="item.imgUrl" alt="" /> -->
+                <div class="resources_main_top_right_item_content">
+                  <div class="resources_main_top_right_item_content_title">
+                    <span
+                      class="resources_main_top_right_item_content_title_text"
+                      >{{ item.name }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -153,69 +160,71 @@
         </div>
         <div class="resources_main_btm_line"></div>
         <div class="resources_main_btm_main">
-          <div
-            class="resources_main_btm_main_item"
-            v-for="(item, index) in btmList"
-            :key="item.id"
-            @click="jumpDetails(item)"
-          >
-            <!-- type0为文本 type1为视频， -->
-            <div v-if="item.kind == 0">
-              <div class="resources_main_btm_main_item_img">
-                <nuxt-img
-                  :src="item.icon"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_btm_main_item_img_pic"
-                ></nuxt-img>
-                <div class="resources_main_btm_main_item_img_tarot">
-                  {{item.main_label}}
+          <div v-for="(item, index) in btmList" :key="item.id">
+            <a
+              class="resources_main_btm_main_item"
+              :href="`${getIntersperseUrl}/resources/details/${item.name
+                .replace(/[^a-zA-Z0-9\\s]/g, '-')
+                .toLowerCase()}-${item.id}/`"
+            >
+              <!-- type0为文本 type1为视频， -->
+              <div v-if="item.kind == 0">
+                <div class="resources_main_btm_main_item_img">
+                  <nuxt-img
+                    :src="item.icon"
+                    fit="cover"
+                    :alt="item.name"
+                    class="resources_main_btm_main_item_img_pic"
+                  ></nuxt-img>
+                  <div class="resources_main_btm_main_item_img_tarot">
+                    {{ item.main_label }}
+                  </div>
+                </div>
+                <div class="resources_main_btm_main_item_text">
+                  <div class="resources_main_btm_main_item_text_title">
+                    {{ item.name }}
+                  </div>
+                  <div
+                    class="resources_main_btm_main_item_text_subscribe"
+                    v-html="item.desc"
+                  ></div>
+                  <div class="resources_main_btm_main_item_text_date">
+                    {{ $utils.formatTime(item.created_at) }}
+                  </div>
                 </div>
               </div>
-              <div class="resources_main_btm_main_item_text">
-                <div class="resources_main_btm_main_item_text_title">
+              <div v-if="item.kind == 1">
+                <div class="resources_main_btm_main_item_img">
+                  <nuxt-img
+                    :src="item.icon"
+                    fit="cover"
+                    :alt="item.name"
+                    class="resources_main_btm_main_item_img_video"
+                  ></nuxt-img>
+                  <img
+                    src="../../assets/img/resources/play_icon.png"
+                    alt=""
+                    class="resources_main_btm_main_item_img_play"
+                  />
+                  <div class="resources_main_btm_main_item_img_time">
+                    {{ $utils.formatMMSS(item.sec) }}
+                  </div>
+                  <div class="resources_main_btm_main_item_img_tarot">
+                    {{ item.main_label }}
+                  </div>
+                </div>
+                <div class="resources_main_btm_main_item_vtitle">
                   {{ item.name }}
                 </div>
-                <div
-                  class="resources_main_btm_main_item_text_subscribe"
-                  v-html="item.desc"
-                ></div>
-                <div class="resources_main_btm_main_item_text_date">
-                  {{ $utils.formatTime(item.created_at) }}
-                </div>
               </div>
-            </div>
-            <div v-if="item.kind == 1">
-              <div class="resources_main_btm_main_item_img">
-                <nuxt-img
-                  :src="item.icon"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_btm_main_item_img_video"
-                ></nuxt-img>
-                <img
-                  src="../../assets/img/resources/play_icon.png"
-                  alt=""
-                  class="resources_main_btm_main_item_img_play"
-                />
-                <div class="resources_main_btm_main_item_img_time">
-                  {{ $utils.formatMMSS(item.sec) }}
-                </div>
-                <div class="resources_main_btm_main_item_img_tarot">
-                  {{item.main_label}}
-                </div>
-              </div>
-              <div class="resources_main_btm_main_item_vtitle">
-                {{ item.name }}
-              </div>
-            </div>
+            </a>
           </div>
         </div>
         <div class="common__loading" v-scroll v-if="search.page < totalPage">
           <div class="common__loading__loader" v-if="loading"></div>
         </div>
       </div>
-      <google-ad class="google_ad_btm"></google-ad>
+      <google-ad classNames="google_ad_btm"></google-ad>
     </div>
     <transition name="fade">
       <InternalSite></InternalSite>
@@ -223,6 +232,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -392,7 +402,7 @@ export default {
   },
   async asyncData({ error, $apiList, params, $utils }) {
     try {
-      let item = null, 
+      let item = null,
         totalNum = 0,
         totalPage = 1,
         search = {
@@ -433,7 +443,7 @@ export default {
             Math.ceil(totalNum / search.size) === 0
               ? 1
               : Math.ceil(totalNum / search.size)
-          
+
           return res?.list || null
         })
       return {
@@ -458,10 +468,10 @@ export default {
         .getNews({
           origin: process.env.origin,
           cate: item.id,
-          ...this.search
+          ...this.search,
         })
         .then((res) => {
-         res.list &&
+          res.list &&
             res.list.map((item) => {
               this.btmList.push(item)
             })
@@ -479,14 +489,7 @@ export default {
         })
     },
     /**点击底部列表跳转 */
-    jumpDetails(item) {
-      //
-      this.$router.push({
-        path: `/resources/details/?id=${item.id}`,
-        href: '/resources/details',
-        data: item,
-      })
-    },
+    
     /** 点击切换tabs*/
     changeTab(item, index) {
       this.item = item
@@ -503,8 +506,8 @@ export default {
         document.body.scrollTop
       let bodyHeight =
         document.body.scrollHeight || document.documentElement.scrollHeight
-      let screenWidth = window.innerWidth;
-      console.log("屏幕宽度：" + screenWidth);
+      let screenWidth = window.innerWidth
+      console.log('屏幕宽度：' + screenWidth)
       if (scrollTop + window.innerHeight >= bodyHeight - 850) {
         if (this.loading) return
         this.getNews(this.item)
@@ -515,6 +518,7 @@ export default {
     normalList() {
       return this.list.filter((_, index) => index !== 0)
     },
+    ...mapGetters(['getIntersperseUrl']),
   },
   directives: {
     scroll: {
@@ -580,6 +584,7 @@ $spacing: 16px;
       &_left {
         width: 574px;
         min-height: 628px;
+        display: block;
         &_img {
           width: 574px;
           height: 471px;
@@ -711,6 +716,7 @@ $spacing: 16px;
           display: flex;
           flex-direction: column;
           align-items: center;
+
           &_img {
             width: 397px;
             height: 198px;

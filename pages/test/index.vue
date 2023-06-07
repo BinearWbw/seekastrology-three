@@ -29,28 +29,39 @@
       <div class="test_main_line"></div>
       <div class="test_main_center">
         <div class="test_main_center_list">
-          <div
-            class="test_main_center_list_item"
-            v-for="(item, index) in list"
-            :key="item.id"
-            @click="jumpDetails(item)"
-          >
-            <div class="test_main_center_list_item_img">
-              <nuxt-img
+          <div v-for="(item, index) in list" :key="item.id">
+            <a
+              class="test_main_center_list_item"
+              :href="`${getIntersperseUrl}/test/details/${item.name
+                .replace(/[^a-zA-Z0-9\\s]/g, '-')
+                .toLowerCase()}-${item.id}/`"
+            >
+              <div class="test_main_center_list_item_img">
+                <nuxt-img
                   :src="item.icon"
                   fit="cover"
                   :alt="item.name"
                 ></nuxt-img>
-            </div>
-            <div class="test_main_center_list_item_text">
-              <div class="test_main_center_list_item_text_name">
-                {{ item.name }}
               </div>
-            </div>
+              <div class="test_main_center_list_item_text">
+                <div class="test_main_center_list_item_text_name">
+                  {{ item.name }}
+                </div>
+              </div>
+            </a>
           </div>
-          <google-ad classNames="google_ad top" v-if="list.length >= 8"></google-ad>
-          <google-ad classNames="google_ad center" v-if="list.length >= 16"></google-ad>
-          <google-ad classNames="google_ad btm" v-if="list.length >= 32"></google-ad>
+          <google-ad
+            classNames="google_ad top"
+            v-if="list.length >= 8"
+          ></google-ad>
+          <google-ad
+            classNames="google_ad center"
+            v-if="list.length >= 16"
+          ></google-ad>
+          <google-ad
+            classNames="google_ad btm"
+            v-if="list.length >= 32"
+          ></google-ad>
         </div>
         <div class="common__loading" v-scroll v-if="search.page < totalPage">
           <div class="common__loading__loader" v-if="loading"></div>
@@ -69,6 +80,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -216,7 +228,7 @@ export default {
   },
   async asyncData({ error, $apiList, params, $utils }) {
     try {
-      let item = null, 
+      let item = null,
         totalNum = 0,
         totalPage = 1,
         search = {
@@ -249,7 +261,7 @@ export default {
             Math.ceil(totalNum / search.size) === 0
               ? 1
               : Math.ceil(totalNum / search.size)
-          
+
           return res?.list || null
         })
       return {
@@ -264,7 +276,7 @@ export default {
     }
   },
   methods: {
-    getMoreList(){
+    getMoreList() {
       this.loading = true
       this.search.page += 1
       this.$apiList.test
@@ -303,7 +315,7 @@ export default {
       }
     },
     /**跳转详情页 */
-    jumpDetails(item){
+    jumpDetails(item) {
       this.$router.push({
         path: `/test/details/?id=${item.id}`,
         href: '/test/details',
@@ -329,6 +341,9 @@ export default {
         window.removeEventListener('scroll', vnode.context.scrollLoad)
       },
     },
+  },
+  computed:{
+    ...mapGetters(['getIntersperseUrl']),
   },
 }
 </script>
@@ -430,6 +445,7 @@ $spacing: 16px;
         align-self: flex-start;
         &_item {
           width: 220px;
+          display: block;
           &_img {
             width: 220px;
             height: 220px;

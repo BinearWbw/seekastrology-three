@@ -60,6 +60,7 @@
               class="details_main_left_btm_list_item"
               v-for="(item, index) in btmList"
               :key="item.id"
+              @click="getDataInfo(item)"
             >
               <div class="details_main_left_btm_list_item_img">
                 <nuxt-img
@@ -173,18 +174,22 @@ export default {
   },
   async asyncData({ error, route, $apiList, params, $utils }) {
     try {
-        let totalNum = 0,
+      let totalNum = 0,
         totalPage = 1,
         search = {
           page: 1,
           size: 10,
         }
-      let [dataInfo1, btmList] = await Promise.all([
+      console.log(params.id)
+      let [dataInfo, btmList] = await Promise.all([
         /**顶部问答 */
         $apiList.test
-          .getAstroDetail({
+          .getQuizDetail({
             origin: process.env.origin,
-            id: route.query.id,
+            id: params.id.replace(
+              /^.*?(\d*)$/,
+              (str, match, index) => match || '0'
+            ),
           })
           .then((res) => {
             return res || null
@@ -201,7 +206,7 @@ export default {
       ])
 
       return {
-        dataInfo1,
+        dataInfo,
         btmList,
         totalNum,
         totalPage,
@@ -212,14 +217,35 @@ export default {
     }
   },
   methods: {
+    /**选择答案 */
     chooseAnswer(item) {
       console.log(item)
     },
+    /**下一题 */
     nextQuestion() {
       if (this.currentQuestionIndex + 1 == this.dataInfo.questions.length) {
         return
       }
       this.currentQuestionIndex++
+    },
+    /**获取问题详情 */
+    getDataInfo(item) {
+      this.$apiList.test
+        .getQuizDetail({
+          origin: process.env.origin,
+          id: item.id,
+        })
+        .then((res) => {
+          this.dataInfo = res
+        })
+      let top = document.documentElement.scrollTop || document.body.scrollTop
+      // 实现滚动效果
+      const timeTop = setInterval(() => {
+        document.body.scrollTop = document.documentElement.scrollTop = top -= 50
+        if (top <= 0) {
+          clearInterval(timeTop)
+        }
+      }, 10)
     },
   },
 }
