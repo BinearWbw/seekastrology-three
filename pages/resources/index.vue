@@ -13,7 +13,7 @@
         >
           <!-- (0-文章、1-视频） -->
           <!-- 0图文 -->
-          <div v-if="list[0].kind == 0">
+          <template v-if="list[0].kind == 0">
             <div class="resources_main_top_left_img">
               <nuxt-img
                 :src="list[0].icon"
@@ -43,8 +43,8 @@
                 {{ list[0].created_at }}
               </div>
             </div>
-          </div>
-          <div v-if="list[0].kind == 1">
+          </template>
+          <template v-else>
             <div class="resources_main_top_left_img">
               <nuxt-img
                 :src="list[0].icon"
@@ -71,10 +71,10 @@
               </div>
               <div class="resources_main_top_left_content_btn">Read More</div>
             </div>
-          </div>
+          </template>
         </a>
         <div class="resources_main_top_right">
-          <div v-for="(item, index) in normalList" :key="item.id">
+          <div v-for="item in normalList" :key="item.id">
             <a
               class="resources_main_top_right_item"
               :href="`${getIntersperseUrl}/resources/details/${item.name
@@ -82,7 +82,7 @@
                 .toLowerCase()}-${item.id}/`"
             >
               <!-- 0图文 -->
-              <div v-if="item.kind == 0">
+              <template v-if="item.kind == 0">
                 <div class="resources_main_top_right_item_img">
                   <nuxt-img
                     :src="item.icon"
@@ -109,9 +109,9 @@
                     <span> {{ $utils.formatTime(item.created_at) }}</span>
                   </div>
                 </div>
-              </div>
+              </template>
               <!-- 1视频 -->
-              <div v-if="item.kind == 1">
+              <template v-else>
                 <div class="resources_main_top_right_item_img">
                   <nuxt-img
                     :src="item.icon"
@@ -140,7 +140,7 @@
                     >
                   </div>
                 </div>
-              </div>
+              </template>
             </a>
           </div>
         </div>
@@ -160,7 +160,7 @@
         </div>
         <div class="resources_main_btm_line"></div>
         <div class="resources_main_btm_main">
-          <div v-for="(item, index) in btmList" :key="item.id">
+          <div v-for="item in btmList" :key="item.id">
             <a
               class="resources_main_btm_main_item"
               :href="`${getIntersperseUrl}/resources/details/${item.name
@@ -168,7 +168,7 @@
                 .toLowerCase()}-${item.id}/`"
             >
               <!-- type0为文本 type1为视频， -->
-              <div v-if="item.kind == 0">
+              <template v-if="item.kind == 0">
                 <div class="resources_main_btm_main_item_img">
                   <nuxt-img
                     :src="item.icon"
@@ -192,8 +192,8 @@
                     {{ $utils.formatTime(item.created_at) }}
                   </div>
                 </div>
-              </div>
-              <div v-if="item.kind == 1">
+              </template>
+              <template v-else>
                 <div class="resources_main_btm_main_item_img">
                   <nuxt-img
                     :src="item.icon"
@@ -216,7 +216,7 @@
                 <div class="resources_main_btm_main_item_vtitle">
                   {{ item.name }}
                 </div>
-              </div>
+              </template>
             </a>
           </div>
         </div>
@@ -237,162 +237,7 @@ export default {
   data() {
     return {
       loading: false,
-      list: [
-        // {
-        //   id: 1,
-        //   type: 2,
-        //   imgUrl: require('../../assets/img/resources/p_01.png'),
-        //   title: "Tarot.com's Tarot Guide",
-        //   date: '07/24',
-        //   time: '37:25',
-        //   subscribe:
-        //     'Tarot is an ancient divination that began in 14th century Europe. symbolic archetypes that allow us to tap into......',
-        // },
-        // {
-        //   id: 2,
-        //   type: 2,
-        //   imgUrl: require('../../assets/img/resources/p_02.png'),
-        //   title: 'LOVE Tarot Reading',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        // },
-        // {
-        //   id: 3,
-        //   type: 2,
-        //   imgUrl: require('../../assets/img/resources/p_03.png'),
-        //   title: 'LOVE Tarot Reading',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        // },
-        // {
-        //   id: 4,
-        //   type: 1,
-        //   time: '37:25',
-        //   imgUrl: require('../../assets/img/resources/p_04.png'),
-        //   title: 'LOVE Tarot Reading',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        // },
-        // {
-        //   id: 5,
-        //   type: 2,
-        //   imgUrl: require('../../assets/img/resources/p_05.png'),
-        //   title: 'LOVE Tarot Reading',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        // },
-      ],
       currentTabIndex: 0,
-      tabs: [
-        { id: 1, name: 'Tab 01' },
-        { id: 2, name: 'Tab 02' },
-        { id: 3, name: 'Tab 03' },
-        { id: 4, name: 'Tab 04' },
-        { id: 5, name: 'Tab 05' },
-        { id: 6, name: 'Tab 06' },
-        { id: 7, name: 'Tab 07' },
-      ],
-      btmList: [
-        // {
-        //   id: 1,
-        //   type: 1,
-        //   imgUrl: require('../../assets/img/resources/p_06.png'),
-        //   title:
-        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        //   time: '37:25',
-        // },
-        // {
-        //   id: 2,
-        //   type: 1,
-        //   imgUrl: require('../../assets/img/resources/p_07.png'),
-        //   title:
-        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        //   time: '37:25',
-        // },
-        // {
-        //   id: 3,
-        //   type: 1,
-        //   imgUrl: require('../../assets/img/resources/p_08.png'),
-        //   title:
-        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        //   time: '37:25',
-        // },
-        // {
-        //   id: 4,
-        //   type: 2,
-        //   imgUrl: require('../../assets/img/resources/p_09.png'),
-        //   title:
-        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        // },
-        // {
-        //   id: 5,
-        //   type: 2,
-        //   imgUrl: require('../../assets/img/resources/p_10.png'),
-        //   title:
-        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        // },
-        // {
-        //   id: 6,
-        //   type: 1,
-        //   imgUrl: require('../../assets/img/resources/p_11.png'),
-        //   title:
-        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        //   time: '37:25',
-        // },
-        // {
-        //   id: 7,
-        //   type: 2,
-        //   imgUrl: require('../../assets/img/resources/p_12.png'),
-        //   title:
-        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        // },
-        // {
-        //   id: 8,
-        //   type: 1,
-        //   imgUrl: require('../../assets/img/resources/p_13.png'),
-        //   title:
-        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        //   time: '37:25',
-        // },
-        // {
-        //   id: 9,
-        //   type: 2,
-        //   imgUrl: require('../../assets/img/resources/p_14.png'),
-        //   title:
-        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-        //   subscribe:
-        //     'We have so many opportunities for love in our lifetimes! You can consul',
-        //   date: '07/23',
-        // },
-      ],
       variousList: [
         { imgUrl: '', title: 'Tarot' },
         { imgUrl: '', title: 'Tarot' },
@@ -400,7 +245,7 @@ export default {
       ],
     }
   },
-  async asyncData({ error, $apiList, params, $utils }) {
+  async asyncData({ error, $apiList }) {
     try {
       let item = null,
         totalNum = 0,

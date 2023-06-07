@@ -95,7 +95,7 @@ export default {
 .mask-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   height: 100%;
   padding-bottom: 34px;
