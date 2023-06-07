@@ -40,7 +40,7 @@
               <div class="determine_button">
                 <button class="button">Get Your Compatibility</button>
               </div>
-              <google-ad class="google_ad"></google-ad>
+              <google-ad classNames="google_ad"></google-ad>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
             src="../../assets/img/astrology/astr_bg2.png"
             alt="#"
           />
-          <google-ad class="google_ad"></google-ad>
+          <google-ad classNames="google_ad"></google-ad>
         </div>
       </div>
     </div>

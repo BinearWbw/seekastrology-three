@@ -81,7 +81,6 @@ export default {
           path: '/resources',
           href: '/resources',
         },
-        
       ],
     }
   },
@@ -151,6 +150,7 @@ export default {
           display: flex;
           align-items: center;
           position: relative;
+          transition: background-color 0.3s ease-in-out;
           span {
             font-family: 'Cinzel Decorative';
             font-weight: 700;
@@ -171,11 +171,10 @@ export default {
             transition: transform 0.3s ease-in-out;
           }
           &:hover {
+            background-color: rgba(255, 255, 255, 0.06);
             &::after {
               -webkit-transform: scaleX(1);
               transform: scaleX(1);
-            }
-            span {
             }
           }
           &.active {

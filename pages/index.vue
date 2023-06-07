@@ -18,7 +18,7 @@
       </section>
       <section class="module choice">
         <home-your-choice :item="variousList"></home-your-choice>
-        <div class="google_ad">AD</div>
+        <google-ad classNames="google_ad"></google-ad>
       </section>
       <section class="module tarot">
         <home-tarot></home-tarot>
@@ -28,7 +28,7 @@
       </section>
       <section class="module kundli" v-if="false">
         <home-kundli></home-kundli>
-        <div class="google_ad">AD</div>
+        <google-ad classNames="google_ad"></google-ad>
       </section>
       <section class="module new_pop">
         <home-pop-articles :homeNews="homePopList"></home-pop-articles>

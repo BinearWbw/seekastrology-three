@@ -1,5 +1,5 @@
 export const state = () => ({
-  intersperseUrl: 'https://taptogame.com',
+  intersperseUrl: 'http://47.108.105.189:3000',
   toastCfg: {
     position: 'bottom-left',
     timeout: 3000,
