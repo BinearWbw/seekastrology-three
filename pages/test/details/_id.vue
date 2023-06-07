@@ -316,13 +316,16 @@ export default {
     chooseAnswer(item, index) {
       //1为对错 2为分数
       if (!this.disabledFlag) {
-        //判断回答数组当前下标是否为undefined，如果是才赋值
-        if (this.answers[this.currentQuestionIndex] == undefined) {
-          this.answers[this.currentQuestionIndex] = item.bucket
-          if (this.dataInfo.quest_type == 1) {
+        //对错
+        if (this.dataInfo.quest_type == 1) {
+          //判断回答数组当前下标是否为undefined，如果是才赋值
+          if (this.answers[this.currentQuestionIndex] == undefined) {
+            this.answers[this.currentQuestionIndex] = item.bucket
             //不让用户重新选答案,禁用radio
             this.disabledFlag = true
           }
+        } else {
+          this.answers[this.currentQuestionIndex] = item.bucket
         }
       }
       if (this.dataInfo.quest_type == 1) {
