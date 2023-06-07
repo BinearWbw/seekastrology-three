@@ -43,33 +43,33 @@
                 {{ list[0].created_at }}
               </div>
             </div>
-            <div v-if="list[0].kind == 1">
-              <div class="resources_main_top_left_img">
-                <nuxt-img
-                  :src="list[0].icon"
-                  fit="cover"
-                  :alt="list[0].name"
-                  class="resources_main_top_left_item_img_video"
-                ></nuxt-img>
-                <img
-                  src="../../assets/img/resources/play_icon.png"
-                  alt=""
-                  class="resources_main_top_left_img_play"
-                />
-                <div class="resources_main_top_left_img_time">
-                  {{ $utils.formatMMSS(list[0].sec) }}
-                </div>
-                <div class="resources_main_top_left_img_tarot">TAROT</div>
+          </div>
+          <div v-if="list[0].kind == 1">
+            <div class="resources_main_top_left_img">
+              <nuxt-img
+                :src="list[0].icon"
+                fit="cover"
+                :alt="list[0].name"
+                class="resources_main_top_left_item_img_video"
+              ></nuxt-img>
+              <img
+                src="../../assets/img/resources/play_icon.png"
+                alt=""
+                class="resources_main_top_left_img_play"
+              />
+              <div class="resources_main_top_left_img_time">
+                {{ $utils.formatMMSS(list[0].sec) }}
               </div>
-              <!-- <img :src="item.imgUrl" alt="" /> -->
-              <div class="resources_main_top_left_content">
-                <div class="resources_main_top_left_content_title">
-                  <span class="resources_main_top_left_content_title_text">{{
-                    list[0].name
-                  }}</span>
-                </div>
-                <div class="resources_main_top_left_content_btn">Read More</div>
+              <div class="resources_main_top_left_img_tarot">TAROT</div>
+            </div>
+            <!-- <img :src="item.imgUrl" alt="" /> -->
+            <div class="resources_main_top_left_content">
+              <div class="resources_main_top_left_content_title">
+                <span class="resources_main_top_left_content_title_text">{{
+                  list[0].name
+                }}</span>
               </div>
+              <div class="resources_main_top_left_content_btn">Read More</div>
             </div>
           </div>
         </a>
@@ -488,8 +488,7 @@ export default {
           this.loading = false
         })
     },
-    /**点击底部列表跳转 */
-    
+
     /** 点击切换tabs*/
     changeTab(item, index) {
       this.item = item

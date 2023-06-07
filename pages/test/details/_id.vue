@@ -35,7 +35,8 @@
                     :checked="item.checked"
                     @click="chooseAnswer(item)"
                   />
-                  {{ item.answer }}</label
+                  <span>{{ item.answer }}</span>
+                </label
                 >
               </div>
             </div>
@@ -319,11 +320,12 @@ $spacing: 55px;
             margin-top: 16px;
             &_item {
               width: 338px;
-              height: 60px;
+              min-height: 60px;
               background: rgba(255, 255, 255, 0.1);
               border-radius: 18px;
               display: flex;
               align-items: center;
+              padding: 10px 10px;
               label {
                 font-family: 'Rubik';
                 font-style: normal;
@@ -331,6 +333,13 @@ $spacing: 55px;
                 font-size: 16px;
                 line-height: 22px;
                 color: #ffffff;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                span{
+                  width: 100%;
+                  // word-break: break-all;
+                }
                 input {
                   margin-left: 31px;
                   margin-right: 22px;
@@ -341,6 +350,7 @@ $spacing: 55px;
                   border-radius: 50%;
                   appearance: none;
                   -webkit-appearance: none; /**隐藏原生控件**/
+                  flex-shrink: 0;
                   &:checked {
                     position: relative;
                     &::before {
