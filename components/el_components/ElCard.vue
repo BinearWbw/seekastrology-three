@@ -1,9 +1,8 @@
 <template>
   <div class="main_list">
-    <a class="internal__main__li" href="#">
-      <img src="~/assets/img/home/stars.png" alt="stars" />
+    <a class="internal__main__li" :href="`${getIntersperseUrl + item.path}`">
+      <img :src="item.imgUrl" alt="stars" />
       <p class="title">{{ item.title }}</p>
-      <p class="text">{{ item.textCont }}</p>
       <button class="button">Read More</button>
       <i class="button_icon"></i>
     </a>
@@ -11,9 +10,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'card',
   props: ['item'],
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
+  },
 }
 </script>
 
@@ -21,13 +24,12 @@ export default {
 @use 'sass:math';
 .main_list {
   width: 220px;
-  height: 320px;
-  position: relative;
 }
 .internal__main__li {
-  height: 100%;
+  width: 100%;
+  height: 298px;
   display: flex;
-  padding-top: 44px;
+  padding-top: 34px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -43,33 +45,20 @@ export default {
   cursor: pointer;
   -webkit-transition: transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
-  position: absolute;
-  top: -49px;
   img {
-    width: 132px;
-    height: 132px;
+    width: 152px;
+    height: 152px;
     object-fit: cover;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
   }
   .title {
     font-size: 22px;
     line-height: 30px;
     color: #fff;
-  }
-  .text {
-    margin-top: 8px;
-    padding: 0 22px;
-    font-size: 14px;
-    line-height: 18px;
-    color: #ffffffb3;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    text-align: center;
   }
   .button {
-    margin-top: 18px;
+    margin-top: 8px;
     width: 124px;
     height: 32px;
     border: 1px solid #45454d;
@@ -99,28 +88,30 @@ export default {
     height: 100%;
   }
   .internal__main__li {
-    padding: 24 * $pr 0;
+    height: 79 * $pr;
+    padding: 8 * $pr 79 * $pr 8 * $pr 16 * $pr;
+    flex-direction: initial;
+    align-items: center;
+    position: relative;
     img {
-      width: 118 * $pr;
-      height: 118 * $pr;
+      width: 63 * $pr;
+      height: 63 * $pr;
       object-fit: cover;
-      margin-bottom: 11 * $pr;
+      margin-bottom: 0;
     }
     .title {
       font-size: 16 * $pr;
       line-height: 22 * $pr;
-      margin-bottom: 8 * $pr;
-      padding: 0 10 * $pr;
-    }
-    .text {
-      display: none;
+      flex: 1;
     }
     .button {
       display: none;
     }
     .button_icon {
+      position: absolute;
+      right: -20 * $pr;
       display: block;
-      width: 100%;
+      width: 134 * $pr;
       height: 22 * $pr;
       background: url('../../assets/img/home/var_button.png') no-repeat center;
     }

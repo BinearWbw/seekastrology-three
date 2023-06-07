@@ -22,14 +22,18 @@
       </div>
       <div class="zodiac_main_list">
         <div class="zodiac_signs">
-          <div class="each" v-for="(item, index) in zodiacSigns" :key="index">
-            <a href="zodiac/details">
+          <div class="each" v-for="(item, index) in zodiacList" :key="index">
+            <a :href="`${getIntersperseUrl}/zodiac/details?id=${item.id}`">
               <h4>{{ item.name }}</h4>
-              <p class="time">{{ item.time }}</p>
-              <p class="text">
-                {{ item.text }}
-              </p>
-              <img :src="item.imgs" alt="#" />
+              <p class="time">{{ item.dates }}</p>
+              <div class="text" v-html="item.desc"></div>
+              <nuxt-img
+                :src="item.icon"
+                fit="cover"
+                width="220"
+                height="154"
+                :alt="item.name"
+              ></nuxt-img>
             </a>
           </div>
         </div>
@@ -44,85 +48,30 @@
 
 <script>
 import GoogleAd from '../../components/GoogleAd.vue'
+import { mapGetters } from 'vuex'
 export default {
   components: { GoogleAd },
   name: 'Zodiac',
   data() {
-    return {
-      zodiacSigns: [
-        {
-          name: 'Aries',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Aries.png'),
-        },
-        {
-          name: 'Taurus',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Taurus.png'),
-        },
-        {
-          name: 'Gemini',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Gemini.png'),
-        },
-        {
-          name: 'Cancer',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Cancer.png'),
-        },
-        {
-          name: 'Leo',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Leo.png'),
-        },
-        {
-          name: 'Virgo',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Virgo.png'),
-        },
-        {
-          name: 'Libra',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Libra.png'),
-        },
-        {
-          name: 'Scorpic',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Scorpio.png'),
-        },
-        {
-          name: 'Sagittarius',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Sagittarius.png'),
-        },
-        {
-          name: 'Capricorn',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Capricorn.png'),
-        },
-        {
-          name: 'Aquarius',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou',
-          imgs: require('~/assets/img/zodiac/Aquarius.png'),
-        },
-        {
-          name: 'Pisces',
-          time: 'Mar 21 - Apr 20',
-          text: 'Means you are a personwho dare to do anythingyou want, you do everything very straightly.And you are an honestperson.',
-          imgs: require('~/assets/img/zodiac/Pisces.png'),
-        },
-      ],
+    return {}
+  },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
+  },
+  async asyncData({ error, $apiList }) {
+    try {
+      let zodiacList = await $apiList.home
+        .getZodiacHomeAstro({
+          origin: process.env.origin,
+        })
+        .then((res) => {
+          return res || []
+        })
+      return {
+        zodiacList,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.message })
     }
   },
 }

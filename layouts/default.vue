@@ -7,6 +7,11 @@
       <i class="home_bg" v-if="$route.path == '/'"></i>
     </transition>
     <transition name="fade">
+      <button v-if="showScrollToTop" @click="scrollToTop" class="scroll_to_top">
+        <img src="~/assets/img/footer/arrow.svg" alt="totop" />
+      </button>
+    </transition>
+    <transition name="fade">
       <Privacy v-if="visiblePrivacy" @close="visiblePrivacy = false"></Privacy>
     </transition>
   </main>
@@ -17,6 +22,7 @@ export default {
   data() {
     return {
       visiblePrivacy: false,
+      showScrollToTop: false,
     }
   },
   mounted() {
@@ -30,6 +36,10 @@ export default {
     }
     this.$store.commit('UPDATE_INTERSPERSE_URL', url)
     this.getLocation()
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     getLocation() {
@@ -53,6 +63,20 @@ export default {
           })
       }
     },
+    handleScroll() {
+      const scrollThreshold = 500
+      this.showScrollToTop =
+        document.documentElement.scrollTop > scrollThreshold
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth', // 平滑滚动到顶部
+      })
+      setTimeout(() => {
+        this.showScrollToTop = false
+      }, 500)
+    },
   },
 }
 </script>
@@ -74,6 +98,14 @@ export default {
     z-index: -1;
     background: url('/img/bg_home.png') no-repeat center;
   }
+
+  .scroll_to_top {
+    position: fixed;
+    z-index: 99;
+    border-radius: 50%;
+    background-color: #9747ff;
+    display: none;
+  }
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
@@ -83,6 +115,16 @@ export default {
       height: 613 * $pr;
       background: url('/img/h5bg_home.png') no-repeat top;
       background-size: contain;
+    }
+    .scroll_to_top {
+      display: block;
+      top: 200 * $pr;
+      right: 5 * $pr;
+      width: 48 * $pr;
+      height: 48 * $pr;
+      img {
+        width: 20 * $pr;
+      }
     }
   }
 }

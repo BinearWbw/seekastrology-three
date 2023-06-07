@@ -7,7 +7,7 @@
         :class="['tab-item', { active: activeTab === index }]"
         @click="selectTab(index)"
       >
-        {{ tab.tabs }}
+        {{ upTitle + ' ' + tab.tabs }}
       </div>
     </div>
     <div class="tab-content">
@@ -18,20 +18,24 @@
 
 <script>
 export default {
+  props: ['tabs', 'title'],
   data() {
     return {
       activeTab: 0,
+      upTitle: '',
     }
   },
-  props: {
-    tabs: {
-      type: Array,
-      required: true,
+  watch: {
+    title(value) {
+      this.upTitle = this.toUpperBig(value)
     },
   },
   methods: {
     selectTab(index) {
       this.activeTab = index
+    },
+    toUpperBig(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1)
     },
   },
 }

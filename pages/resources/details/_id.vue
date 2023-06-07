@@ -97,7 +97,6 @@
                 v-if="!playState"
               ></nuxt-img> -->
               <iframe
-                
                 id="video-element"
                 frameborder="0"
                 allow="accelerometer"
@@ -120,10 +119,10 @@
             </div>
           </div>
         </div>
-        <google-ad class="details_main_left_ad"></google-ad>
+        <google-ad classNames="leftAd"></google-ad>
       </div>
       <div class="details_main_right">
-        <google-ad class="details_main_right_ad"></google-ad>
+        <google-ad classNames="rightAd"></google-ad>
         <div class="details_main_right_list">
           <div
             class="details_main_right_list_item"
@@ -184,7 +183,7 @@
                 class="details_footer_list_item_img_play"
               />
               <div class="details_footer_list_item_img_time">
-                {{ item.time }}
+                {{ $utils.formatMMSS(item.sec) }}
               </div>
               <div class="details_footer_list_item_img_tarot">TAROT</div>
             </div>
@@ -195,7 +194,7 @@
         </div>
       </div>
     </div>
-    <google-ad class="google_ad_footer"></google-ad>
+    <google-ad classNames="google_ad_footer"></google-ad>
     <transition name="fade">
       <InternalSite></InternalSite>
     </transition>
@@ -253,13 +252,61 @@ export default {
     }
   },
   mounted() {
-    this.getDataInfo()
-    this.getNewsRec()
+  },
+  async asyncData({ error, $apiList, params }) {
+    try {
+      let totalNum = 0,
+        totalPage = 1,
+        search = {
+          page: 1,
+          size: 10,
+        }
+      let [dataInfo, footList] = await Promise.all([
+        /**详情 */
+        $apiList.articles
+          .getNewsDetail({
+            origin: process.env.origin,
+            id: params.id.replace(
+              /^.*?(\d*)$/,
+              (str, match, index) => match || '0'
+            ),
+          })
+          .then((res) => {
+            return res || null
+          }),
+        /**底部推荐 */
+        $apiList.articles
+          .getNewsRec({
+            origin: process.env.origin,
+          })
+          .then((res) => {
+            return res || null
+          }),
+      ])
+      let immedList = await $apiList.articles
+        .getNews({
+          origin: process.env.origin,
+          cate: dataInfo.main_type_id,
+        })
+        .then((res) => {
+          return res?.list || null
+        })
+      return {
+        footList,
+        immedList,
+        dataInfo,
+        totalNum,
+        totalPage,
+        search,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.msg })
+    }
   },
   methods: {
     /**获取对应详情数据 */
     getDetailsInfo(id) {
-        this.playState = false
+      this.playState = false
       this.getDataInfo(id)
       let top = document.documentElement.scrollTop || document.body.scrollTop
       // 实现滚动效果
@@ -283,17 +330,6 @@ export default {
           this.immedList = res.list
         })
     },
-    /**获取推荐 */
-    getNewsRec() {
-      this.$apiList.articles
-        .getNewsRec({
-          origin: process.env.origin,
-        })
-        .then((res) => {
-          this.footList = res
-        })
-    },
-
     /**通过id获取数据详情 */
     getDataInfo(id = null) {
       this.$apiList.articles
@@ -303,6 +339,7 @@ export default {
         })
         .then((res) => {
           this.dataInfo = res
+          //获取对应右侧列表
           this.getNews()
         })
     },
@@ -411,9 +448,9 @@ $spacing: 16px;
             height: 324px;
             object-fit: cover;
             position: relative;
-            #video-element{
-                width: 100%;
-                height: 100%;
+            #video-element {
+              width: 100%;
+              height: 100%;
             }
             &_video,
             &_pic {
@@ -432,8 +469,8 @@ $spacing: 16px;
           }
           &_text {
             margin-top: 48px;
-            height: 374px;
-            overflow-y: auto;
+            // height: 374px;
+            // overflow-y: auto;
             :deep(p) {
               font-family: 'Rubik';
               font-style: normal;
@@ -448,7 +485,7 @@ $spacing: 16px;
           }
         }
       }
-      &_ad {
+      .leftAd {
         width: 924px;
         height: 114px;
         background: #555761;
@@ -461,7 +498,7 @@ $spacing: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      &_ad {
+      .rightAd {
         width: 300px;
         height: 600px;
         background: #555761;

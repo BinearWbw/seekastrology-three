@@ -32,7 +32,7 @@
               </el-tabs>
             </div>
           </div>
-          <google-ad class="google_ad"></google-ad>
+          <google-ad classNames="google_ad"></google-ad>
         </div>
       </div>
       <div class="horoscope_more">
@@ -50,7 +50,7 @@
             </a>
           </div>
         </div>
-        <google-ad class="google_ad"></google-ad>
+        <google-ad classNames="google_ad"></google-ad>
       </div>
     </div>
     <transition name="fade">
@@ -242,7 +242,7 @@ export default {
       }
     }
     .horoscope_more {
-      padding: 48px 0;
+      padding: 48px 0 0;
       h3 {
         font-family: 'Cinzel Decorative';
         font-style: normal;
@@ -404,7 +404,7 @@ export default {
         }
       }
       .horoscope_more {
-        padding: 24 * $pr 0;
+        padding: 24 * $pr 0 0;
         h3 {
           font-size: 26 * $pr;
           line-height: 36 * $pr;

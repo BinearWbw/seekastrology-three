@@ -25,7 +25,7 @@
       </section>
       <section class="module choice">
         <home-your-choice :item="variousList"></home-your-choice>
-        <div class="google_ad">AD</div>
+        <google-ad classNames="google_ad"></google-ad>
       </section>
       <section class="module tarot">
         <home-tarot></home-tarot>
@@ -35,7 +35,7 @@
       </section>
       <section class="module kundli" v-if="false">
         <home-kundli></home-kundli>
-        <div class="google_ad">AD</div>
+        <google-ad classNames="google_ad"></google-ad>
       </section>
       <section class="module new_pop">
         <home-pop-articles :homeNews="homePopList"></home-pop-articles>
@@ -240,90 +240,82 @@ export default {
     }
   }
 }
-@media (max-width: 1370px) {
+@media (max-width: 1435px) {
   .home {
+    position: relative;
     &__main {
-      padding: 0 30px;
-      width: 100%;
-      .module {
+      margin: 0 auto;
+      width: 1200px;
+      position: relative;
+      .various_ment {
+        margin-top: 100px;
       }
-    }
-  }
-}
-@media (max-width: 1154px) {
-  .home {
-    &__main {
-    }
-  }
-}
-@media (max-width: 1104px) {
-  .home {
-    &__main {
       .module {
-        &.best {
-          .list1 {
-            :deep(.item:nth-child(6)) {
-              display: none;
-            }
-          }
-          .list2 {
-            grid-template-columns: repeat(3, 1fr);
-            :deep(.item:nth-child(n + 7)) {
-              display: none;
-            }
+        margin-top: 100px;
+
+        .google_ad {
+          width: 924px;
+          background-color: #555761;
+          color: #808080;
+        }
+        &.choice {
+          .google_ad {
+            margin: 40px auto 0;
+            height: 114px;
           }
         }
-        &.latest {
-          .list {
-            grid-template-columns: repeat(8, 1fr);
-            :deep(.item:nth-child(n + 17)) {
-              display: none;
-            }
+        &.kundli {
+          .google_ad {
+            margin: 80px auto 0;
+            height: 114px;
           }
         }
-        &.hot {
-          .list {
-            grid-template-columns: repeat(5, 1fr);
-          }
+        &.new_pop {
+          margin-top: 80px;
         }
       }
     }
   }
 }
-@media (max-width: 890px) {
+
+@media (max-width: 1200px) {
   .home {
+    position: relative;
     &__main {
+      margin: 0 auto;
+      width: 1000px;
+      position: relative;
+      .various_ment {
+        margin-top: 100px;
+      }
       .module {
-        &.best {
-          .list1 {
-            :deep(.item:nth-child(5)) {
-              display: none;
-            }
-          }
-          .list2 {
-            grid-template-columns: repeat(2, 1fr);
-            :deep(.item:nth-child(n + 5)) {
-              display: none;
-            }
+        margin-top: 100px;
+
+        .google_ad {
+          width: 924px;
+          background-color: #555761;
+          color: #808080;
+        }
+        &.choice {
+          .google_ad {
+            margin: 40px auto 0;
+            height: 114px;
           }
         }
-        &.latest {
-          .list {
-            grid-template-columns: repeat(6, 1fr);
-            :deep(.item:nth-child(n + 13)) {
-              display: none;
-            }
+        &.kundli {
+          .google_ad {
+            margin: 80px auto 0;
+            height: 114px;
           }
         }
-        &.hot {
-          .list {
-            grid-template-columns: repeat(4, 1fr);
-          }
+        &.new_pop {
+          margin-top: 80px;
         }
       }
     }
   }
 }
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .home {

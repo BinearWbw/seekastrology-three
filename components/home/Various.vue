@@ -170,6 +170,107 @@ export default {
   }
 }
 
+@media (max-width: 1435px) {
+  .various {
+    width: 100%;
+    &__title {
+      margin-bottom: 60px;
+      h1 {
+        font-family: 'Cinzel Decorative';
+        font-weight: 700;
+        font-size: 82px;
+        line-height: 106px;
+        color: #fff;
+        text-align: center;
+      }
+      p {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 30px;
+        color: #ffffffb3;
+        text-align: center;
+      }
+    }
+    &__main {
+      display: grid;
+      height: auto;
+      grid-template-columns: repeat(3, 220px);
+      justify-content: center;
+      gap: 16px;
+      li {
+        height: 100%;
+      }
+      &__li {
+        height: 370px;
+        display: flex;
+        padding-top: 34px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        font-family: 'Rubik';
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 6px;
+        background: linear-gradient(
+          0.13deg,
+          #08070f 0.11%,
+          rgba(6, 5, 6, 0) 99.89%
+        );
+        backdrop-filter: blur(4px);
+        cursor: pointer;
+        -webkit-transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
+        img {
+          width: 152px;
+          height: 152px;
+          object-fit: cover;
+          margin-bottom: 14px;
+        }
+        .title {
+          font-size: 22px;
+          line-height: 30px;
+          color: #fff;
+        }
+        .text {
+          margin-top: 8px;
+          padding: 0 22px;
+          font-size: 14px;
+          line-height: 18px;
+          color: #ffffffb3;
+        }
+        .button {
+          margin-top: 18px;
+          width: 124px;
+          height: 32px;
+          border: 1px solid #45454d;
+          border-radius: 42px;
+          font-family: 'Rubik';
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 14px;
+          line-height: 18px;
+          -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
+          transition: background-color 0.3s, color 0.3s;
+        }
+        .button_icon {
+          display: none;
+        }
+        &:hover {
+          transform: translateY(-20px);
+          .button {
+            color: #000;
+            background-color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .various {

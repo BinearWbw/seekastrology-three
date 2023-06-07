@@ -5,7 +5,12 @@
     <div class="resources_main">
       <div class="resources_main_title">HOT Content</div>
       <div class="resources_main_top">
-        <div class="resources_main_top_left" @click="jumpDetails(list[0])">
+        <a
+          class="resources_main_top_left"
+          :href="`${getIntersperseUrl}/resources/details/${list[0].name
+            .replace(/[^a-zA-Z0-9\\s]/g, '-')
+            .toLowerCase()}-${list[0].id}/`"
+        >
           <!-- (0-文章、1-视频） -->
           <!-- 0图文 -->
           <div v-if="list[0].kind == 0">
@@ -16,7 +21,9 @@
                 :alt="list[0].name"
                 class="resources_main_top_left_img_pic"
               ></nuxt-img>
-              <div class="resources_main_top_left_img_tarot">TAROT</div>
+              <div class="resources_main_top_left_img_tarot">
+                {{ list[0].main_label }}
+              </div>
             </div>
             <div class="resources_main_top_left_content">
               <div class="resources_main_top_left_content_title">
@@ -51,7 +58,7 @@
                 class="resources_main_top_left_img_play"
               />
               <div class="resources_main_top_left_img_time">
-                {{ list[0].time }}
+                {{ $utils.formatMMSS(list[0].sec) }}
               </div>
               <div class="resources_main_top_left_img_tarot">TAROT</div>
             </div>
@@ -65,74 +72,80 @@
               <div class="resources_main_top_left_content_btn">Read More</div>
             </div>
           </div>
-        </div>
+        </a>
         <div class="resources_main_top_right">
-          <div
-            class="resources_main_top_right_item"
-            v-for="(item, index) in normalList"
-            :key="item.id"
-            @click="jumpDetails(item)"
-          >
-            <!-- 0图文 -->
-            <div v-if="item.kind == 0">
-              <div class="resources_main_top_right_item_img">
-                <nuxt-img
-                  :src="item.icon"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_top_right_item_img_pic"
-                ></nuxt-img>
-                <div class="resources_main_top_right_item_img_tarot">TAROT</div>
-              </div>
-              <div class="resources_main_top_right_item_content">
-                <div class="resources_main_top_right_item_content_title">
-                  <span
-                    class="resources_main_top_right_item_content_title_text"
-                    >{{ item.name }}</span
-                  >
+          <div v-for="(item, index) in normalList" :key="item.id">
+            <a
+              class="resources_main_top_right_item"
+              :href="`${getIntersperseUrl}/resources/details/${item.name
+                .replace(/[^a-zA-Z0-9\\s]/g, '-')
+                .toLowerCase()}-${item.id}/`"
+            >
+              <!-- 0图文 -->
+              <div v-if="item.kind == 0">
+                <div class="resources_main_top_right_item_img">
+                  <nuxt-img
+                    :src="item.icon"
+                    fit="cover"
+                    :alt="item.name"
+                    class="resources_main_top_right_item_img_pic"
+                  ></nuxt-img>
+                  <div class="resources_main_top_right_item_img_tarot">
+                    {{ item.main_label }}
+                  </div>
                 </div>
-                <div
-                  class="resources_main_top_right_item_content_subscribe"
-                  v-html="item.desc"
-                ></div>
-                <div class="resources_main_top_right_item_content_date">
-                  <span>{{ $utils.formatTime(item.created_at) }}</span>
-                </div>
-              </div>
-            </div>
-            <!-- 1视频 -->
-            <div v-if="item.kind == 1">
-              <div class="resources_main_top_right_item_img">
-                <nuxt-img
-                  :src="item.icon"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_top_right_item_img_video"
-                ></nuxt-img>
-                <img
-                  src="../../assets/img/resources/play_icon.png"
-                  alt=""
-                  class="resources_main_top_right_item_img_play"
-                />
-                <div class="resources_main_top_right_item_img_time">
-                  {{ item.time }}
-                </div>
-                <div class="resources_main_top_right_item_img_tarot">TAROT</div>
-              </div>
-              <!-- <img :src="item.imgUrl" alt="" /> -->
-              <div class="resources_main_top_right_item_content">
-                <div class="resources_main_top_right_item_content_title">
-                  <span
-                    class="resources_main_top_right_item_content_title_text"
-                    >{{ item.name }}</span
-                  >
+                <div class="resources_main_top_right_item_content">
+                  <div class="resources_main_top_right_item_content_title">
+                    <span
+                      class="resources_main_top_right_item_content_title_text"
+                      >{{ item.name }}</span
+                    >
+                  </div>
+                  <div
+                    class="resources_main_top_right_item_content_subscribe"
+                    v-html="item.desc"
+                  ></div>
+                  <div class="resources_main_top_right_item_content_date">
+                    <span> {{ $utils.formatTime(item.created_at) }}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+              <!-- 1视频 -->
+              <div v-if="item.kind == 1">
+                <div class="resources_main_top_right_item_img">
+                  <nuxt-img
+                    :src="item.icon"
+                    fit="cover"
+                    :alt="item.name"
+                    class="resources_main_top_right_item_img_video"
+                  ></nuxt-img>
+                  <img
+                    src="../../assets/img/resources/play_icon.png"
+                    alt=""
+                    class="resources_main_top_right_item_img_play"
+                  />
+                  <div class="resources_main_top_right_item_img_time">
+                    {{ $utils.formatMMSS(item.sec) }}
+                  </div>
+                  <div class="resources_main_top_right_item_img_tarot">
+                    {{ item.main_label }}
+                  </div>
+                </div>
+                <!-- <img :src="item.imgUrl" alt="" /> -->
+                <div class="resources_main_top_right_item_content">
+                  <div class="resources_main_top_right_item_content_title">
+                    <span
+                      class="resources_main_top_right_item_content_title_text"
+                      >{{ item.name }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
-      <google-ad class="google_ad"></google-ad>
+      <google-ad classNames="google_ad"></google-ad>
       <div class="resources_main_btm">
         <div class="resources_main_btm_tabs">
           <div
@@ -147,65 +160,71 @@
         </div>
         <div class="resources_main_btm_line"></div>
         <div class="resources_main_btm_main">
-          <div
-            class="resources_main_btm_main_item"
-            v-for="(item, index) in btmList"
-            :key="item.id"
-            @click="jumpDetails(item)"
-          >
-            <!-- type0为文本 type1为视频， -->
-            <div v-if="item.kind == 0">
-              <div class="resources_main_btm_main_item_img">
-                <nuxt-img
-                  :src="item.icon"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_btm_main_item_img_pic"
-                ></nuxt-img>
-                <div class="resources_main_btm_main_item_img_tarot">TAROT</div>
+          <div v-for="(item, index) in btmList" :key="item.id">
+            <a
+              class="resources_main_btm_main_item"
+              :href="`${getIntersperseUrl}/resources/details/${item.name
+                .replace(/[^a-zA-Z0-9\\s]/g, '-')
+                .toLowerCase()}-${item.id}/`"
+            >
+              <!-- type0为文本 type1为视频， -->
+              <div v-if="item.kind == 0">
+                <div class="resources_main_btm_main_item_img">
+                  <nuxt-img
+                    :src="item.icon"
+                    fit="cover"
+                    :alt="item.name"
+                    class="resources_main_btm_main_item_img_pic"
+                  ></nuxt-img>
+                  <div class="resources_main_btm_main_item_img_tarot">
+                    {{ item.main_label }}
+                  </div>
+                </div>
+                <div class="resources_main_btm_main_item_text">
+                  <div class="resources_main_btm_main_item_text_title">
+                    {{ item.name }}
+                  </div>
+                  <div
+                    class="resources_main_btm_main_item_text_subscribe"
+                    v-html="item.desc"
+                  ></div>
+                  <div class="resources_main_btm_main_item_text_date">
+                    {{ $utils.formatTime(item.created_at) }}
+                  </div>
+                </div>
               </div>
-              <div class="resources_main_btm_main_item_text">
-                <div class="resources_main_btm_main_item_text_title">
+              <div v-if="item.kind == 1">
+                <div class="resources_main_btm_main_item_img">
+                  <nuxt-img
+                    :src="item.icon"
+                    fit="cover"
+                    :alt="item.name"
+                    class="resources_main_btm_main_item_img_video"
+                  ></nuxt-img>
+                  <img
+                    src="../../assets/img/resources/play_icon.png"
+                    alt=""
+                    class="resources_main_btm_main_item_img_play"
+                  />
+                  <div class="resources_main_btm_main_item_img_time">
+                    {{ $utils.formatMMSS(item.sec) }}
+                  </div>
+                  <div class="resources_main_btm_main_item_img_tarot">
+                    {{ item.main_label }}
+                  </div>
+                </div>
+                <div class="resources_main_btm_main_item_vtitle">
                   {{ item.name }}
                 </div>
-                <div
-                  class="resources_main_btm_main_item_text_subscribe"
-                  v-html="item.desc"
-                ></div>
-                <div class="resources_main_btm_main_item_text_date">
-                  {{ $utils.formatTime(item.created_at) }}
-                </div>
               </div>
-            </div>
-            <div v-if="item.kind == 1">
-              <div class="resources_main_btm_main_item_img">
-                <nuxt-img
-                  :src="item.icon"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_btm_main_item_img_video"
-                ></nuxt-img>
-                <img
-                  src="../../assets/img/resources/play_icon.png"
-                  alt=""
-                  class="resources_main_btm_main_item_img_play"
-                />
-                <div class="resources_main_btm_main_item_img_time">
-                  {{ item.time }}
-                </div>
-                <div class="resources_main_btm_main_item_img_tarot">TAROT</div>
-              </div>
-              <div class="resources_main_btm_main_item_vtitle">
-                {{ item.name }}
-              </div>
-            </div>
+            </a>
           </div>
         </div>
         <div class="common__loading" v-scroll v-if="search.page < totalPage">
           <div class="common__loading__loader" v-if="loading"></div>
         </div>
       </div>
-      <google-ad class="google_ad_btm"></google-ad>
+      <google-ad classNames="google_ad_btm"></google-ad>
     </div>
     <transition name="fade">
       <InternalSite></InternalSite>
@@ -213,57 +232,59 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
+      loading: false,
       list: [
-        {
-          id: 1,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_01.png'),
-          title: "Tarot.com's Tarot Guide",
-          date: '07/24',
-          time: '37:25',
-          subscribe:
-            'Tarot is an ancient divination that began in 14th century Europe. symbolic archetypes that allow us to tap into......',
-        },
-        {
-          id: 2,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_02.png'),
-          title: 'LOVE Tarot Reading',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 3,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_03.png'),
-          title: 'LOVE Tarot Reading',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 4,
-          type: 1,
-          time: '37:25',
-          imgUrl: require('../../assets/img/resources/p_04.png'),
-          title: 'LOVE Tarot Reading',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 5,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_05.png'),
-          title: 'LOVE Tarot Reading',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
+        // {
+        //   id: 1,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_01.png'),
+        //   title: "Tarot.com's Tarot Guide",
+        //   date: '07/24',
+        //   time: '37:25',
+        //   subscribe:
+        //     'Tarot is an ancient divination that began in 14th century Europe. symbolic archetypes that allow us to tap into......',
+        // },
+        // {
+        //   id: 2,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_02.png'),
+        //   title: 'LOVE Tarot Reading',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 3,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_03.png'),
+        //   title: 'LOVE Tarot Reading',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 4,
+        //   type: 1,
+        //   time: '37:25',
+        //   imgUrl: require('../../assets/img/resources/p_04.png'),
+        //   title: 'LOVE Tarot Reading',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 5,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_05.png'),
+        //   title: 'LOVE Tarot Reading',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
       ],
       currentTabIndex: 0,
       tabs: [
@@ -276,123 +297,118 @@ export default {
         { id: 7, name: 'Tab 07' },
       ],
       btmList: [
-        {
-          id: 1,
-          type: 1,
-          imgUrl: require('../../assets/img/resources/p_06.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 2,
-          type: 1,
-          imgUrl: require('../../assets/img/resources/p_07.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 3,
-          type: 1,
-          imgUrl: require('../../assets/img/resources/p_08.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 4,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_09.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 5,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_10.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 6,
-          type: 1,
-          imgUrl: require('../../assets/img/resources/p_11.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 7,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_12.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 8,
-          type: 1,
-          imgUrl: require('../../assets/img/resources/p_13.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 9,
-          type: 2,
-          imgUrl: require('../../assets/img/resources/p_14.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
+        // {
+        //   id: 1,
+        //   type: 1,
+        //   imgUrl: require('../../assets/img/resources/p_06.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        //   time: '37:25',
+        // },
+        // {
+        //   id: 2,
+        //   type: 1,
+        //   imgUrl: require('../../assets/img/resources/p_07.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        //   time: '37:25',
+        // },
+        // {
+        //   id: 3,
+        //   type: 1,
+        //   imgUrl: require('../../assets/img/resources/p_08.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        //   time: '37:25',
+        // },
+        // {
+        //   id: 4,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_09.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 5,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_10.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 6,
+        //   type: 1,
+        //   imgUrl: require('../../assets/img/resources/p_11.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        //   time: '37:25',
+        // },
+        // {
+        //   id: 7,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_12.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
+        // {
+        //   id: 8,
+        //   type: 1,
+        //   imgUrl: require('../../assets/img/resources/p_13.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        //   time: '37:25',
+        // },
+        // {
+        //   id: 9,
+        //   type: 2,
+        //   imgUrl: require('../../assets/img/resources/p_14.png'),
+        //   title:
+        //     '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+        //   subscribe:
+        //     'We have so many opportunities for love in our lifetimes! You can consul',
+        //   date: '07/23',
+        // },
       ],
       variousList: [
         { imgUrl: '', title: 'Tarot' },
         { imgUrl: '', title: 'Tarot' },
         { imgUrl: '', title: 'Tarot' },
       ],
-      loading: false,
-      totalNum: 0,
-      totalPage: 1,
-      search: {
-        page: 1,
-        size: 6,
-      },
     }
   },
   async asyncData({ error, $apiList, params, $utils }) {
     try {
-      let search = {
-        page: 1,
-        size: 6,
-      }
-      let cateId = null
+      let item = null,
+        totalNum = 0,
+        totalPage = 1,
+        search = {
+          page: 1,
+          size: 10,
+        }
       let [list, tabs] = await Promise.all([
         /**顶部推荐 */
         $apiList.articles
@@ -410,7 +426,7 @@ export default {
             type: 4,
           })
           .then((res) => {
-            cateId = res[0].id
+            item = res[0]
             return res || null
           }),
       ])
@@ -422,13 +438,22 @@ export default {
           ...search,
         })
         .then((res) => {
+          totalNum = res.count
+          totalPage =
+            Math.ceil(totalNum / search.size) === 0
+              ? 1
+              : Math.ceil(totalNum / search.size)
+
           return res?.list || null
         })
       return {
+        item,
         list,
         tabs,
         btmList,
-        cateId
+        totalNum,
+        totalPage,
+        search,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
@@ -436,22 +461,9 @@ export default {
   },
   mounted() {},
   methods: {
-    scrollLoad() {
-      let scrollTop =
-        document.documentElement.scrollTop ||
-        window.pageYOffset ||
-        document.body.scrollTop
-      let bodyHeight =
-        document.body.scrollHeight || document.documentElement.scrollHeight
-      if (scrollTop + window.innerHeight >= bodyHeight - 150) {
-        console.log('scrollLoad',this.loading);
-        if (this.loading) return
-        this.search.page++
-        this.getNews({cateId:this.cateId})
-      }
-    },
     getNews(item) {
       this.loading = true
+      this.search.page += 1
       this.$apiList.articles
         .getNews({
           origin: process.env.origin,
@@ -459,34 +471,53 @@ export default {
           ...this.search,
         })
         .then((res) => {
-          this.btmList.push(...res.list) 
+          res.list &&
+            res.list.map((item) => {
+              this.btmList.push(item)
+            })
           this.totalNum = res.count
-          this.totalPage = Math.ceil(res.count / this.search.size)
+          this.totalPage =
+            Math.ceil(this.totalNum / this.search.size) === 0
+              ? 1
+              : Math.ceil(this.totalNum / this.search.size)
           this.loading = false
+          this.status = false
         })
         .catch((error) => {
-          console.log(error)
-          this.search.page--
+          this.search.page -= 1
           this.loading = false
         })
     },
-    /**点击底部列表跳转 */
-    jumpDetails(item) {
-      console.log(item)
-      //
-      this.$router.push({
-        path: `/resources/details/?id=${item.id}`,
-        href: '/resources/details',
-        data: item,
-      })
-    },
+
     /** 点击切换tabs*/
     changeTab(item, index) {
+      this.item = item
       this.btmList = []
+      this.search.page = 0
       this.currentTabIndex = index
       //通过id请求对应的列表数据
       this.getNews(item)
     },
+    scrollLoad() {
+      let scrollTop =
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop
+      let bodyHeight =
+        document.body.scrollHeight || document.documentElement.scrollHeight
+      let screenWidth = window.innerWidth
+      console.log('屏幕宽度：' + screenWidth)
+      if (scrollTop + window.innerHeight >= bodyHeight - 850) {
+        if (this.loading) return
+        this.getNews(this.item)
+      }
+    },
+  },
+  computed: {
+    normalList() {
+      return this.list.filter((_, index) => index !== 0)
+    },
+    ...mapGetters(['getIntersperseUrl']),
   },
   directives: {
     scroll: {
@@ -496,11 +527,6 @@ export default {
       unbind: function (el, binding, vnode) {
         window.removeEventListener('scroll', vnode.context.scrollLoad)
       },
-    },
-  },
-  computed: {
-    normalList() {
-      return this.list.filter((_, index) => index !== 0)
     },
   },
 }
@@ -557,6 +583,7 @@ $spacing: 16px;
       &_left {
         width: 574px;
         min-height: 628px;
+        display: block;
         &_img {
           width: 574px;
           height: 471px;
@@ -688,6 +715,7 @@ $spacing: 16px;
           display: flex;
           flex-direction: column;
           align-items: center;
+
           &_img {
             width: 397px;
             height: 198px;
