@@ -120,10 +120,10 @@
             </div>
           </div>
         </div>
-        <google-ad class="details_main_left_ad"></google-ad>
+        <google-ad classNames="leftAd"></google-ad>
       </div>
       <div class="details_main_right">
-        <google-ad class="details_main_right_ad"></google-ad>
+        <google-ad classNames="rightAd"></google-ad>
         <div class="details_main_right_list">
           <div
             class="details_main_right_list_item"
@@ -195,7 +195,7 @@
         </div>
       </div>
     </div>
-    <google-ad class="google_ad_footer"></google-ad>
+    <google-ad classNames="google_ad_footer"></google-ad>
     <transition name="fade">
       <InternalSite></InternalSite>
     </transition>
@@ -432,8 +432,8 @@ $spacing: 16px;
           }
           &_text {
             margin-top: 48px;
-            height: 374px;
-            overflow-y: auto;
+            // height: 374px;
+            // overflow-y: auto;
             :deep(p) {
               font-family: 'Rubik';
               font-style: normal;
@@ -448,7 +448,7 @@ $spacing: 16px;
           }
         }
       }
-      &_ad {
+      .leftAd {
         width: 924px;
         height: 114px;
         background: #555761;
@@ -461,7 +461,7 @@ $spacing: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      &_ad {
+      .rightAd {
         width: 300px;
         height: 600px;
         background: #555761;

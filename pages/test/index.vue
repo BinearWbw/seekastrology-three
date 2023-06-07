@@ -48,18 +48,18 @@
               </div>
             </div>
           </div>
-          <google-ad class="google_ad top" v-if="list.length >= 8"></google-ad>
-          <google-ad class="google_ad center" v-if="list.length >= 16"></google-ad>
-          <google-ad class="google_ad btm" v-if="list.length >= 32"></google-ad>
+          <google-ad classNames="google_ad top" v-if="list.length >= 8"></google-ad>
+          <google-ad classNames="google_ad center" v-if="list.length >= 16"></google-ad>
+          <google-ad classNames="google_ad btm" v-if="list.length >= 32"></google-ad>
         </div>
         <div class="common__loading" v-scroll v-if="search.page < totalPage">
           <div class="common__loading__loader" v-if="loading"></div>
         </div>
-        <google-ad class="google_ad_h5btm"></google-ad>
+        <google-ad classNames="google_ad_h5btm"></google-ad>
         <div class="test_main_center_right">
-          <google-ad class="google_ad"></google-ad>
-          <google-ad class="google_ad"></google-ad>
-          <google-ad class="google_ad"></google-ad>
+          <google-ad classNames="google_ad"></google-ad>
+          <google-ad classNames="google_ad"></google-ad>
+          <google-ad classNames="google_ad"></google-ad>
         </div>
       </div>
     </div>

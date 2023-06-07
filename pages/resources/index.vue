@@ -138,7 +138,7 @@
           </div>
         </div>
       </div>
-      <google-ad class="google_ad"></google-ad>
+      <google-ad classNames="google_ad"></google-ad>
       <div class="resources_main_btm">
         <div class="resources_main_btm_tabs">
           <div
