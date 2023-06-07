@@ -7,7 +7,7 @@
             <a href="">Quizzes</a> > <a href="">News</a> >
             <a href="">Quizzes Details</a>
           </div>
-          <div class="details_main_left_top_content">
+          <div class="details_main_left_top_content" v-if="!showResult">
             <div class="details_main_left_top_content_name">
               {{ dataInfo.name }}
             </div>
@@ -15,15 +15,12 @@
               class="details_main_left_top_content_desc"
               v-html="dataInfo.desc"
             ></div>
-            <div class="details_main_left_top_content_questions" v-if="!showResult">
+            <div class="details_main_left_top_content_questions">
               {{ currentQuestionIndex + 1 }}.{{
                 dataInfo.questions[currentQuestionIndex].question
               }}
             </div>
-            <div
-              class="details_main_left_top_content_answer"
-              v-if="!showResult"
-            >
+            <div class="details_main_left_top_content_answer">
               <div
                 class="details_main_left_top_content_answer_item"
                 v-for="(item, index) in dataInfo.questions[currentQuestionIndex]
@@ -49,13 +46,14 @@
                     name="radio"
                     :value="index"
                     v-model="checkedAnswer"
-                    @click="chooseAnswer(item, index)"
+                    @change="chooseAnswer(item, index)"
+                    :disabled="disabledFlag"
                   />
                   <span>{{ item.answer }}</span>
                 </label>
               </div>
             </div>
-            <div class="details_main_left_top_content_btm" v-if="!showResult">
+            <div class="details_main_left_top_content_btm">
               <div class="details_main_left_top_content_btm_count">
                 {{ currentQuestionIndex + 1 }}/{{ dataInfo.questions.length }}
               </div>
@@ -83,7 +81,30 @@
                 Next >>
               </div>
             </div>
-            <div v-else>showResult</div>
+          </div>
+          <div v-else>
+            <div
+              class="details_main_left_top_result"
+              v-if="dataInfo.quest_type == 1"
+            >
+              <div class="details_main_left_top_result_score">
+                Result:<span> {{ result.score }}</span>
+              </div>
+            </div>
+            <div
+              class="details_main_left_top_result"
+              v-if="dataInfo.quest_type == 2"
+            >
+              <div class="details_main_left_top_result_title">
+                {{ result.title }}
+              </div>
+              <div class="details_main_left_top_result_desc">
+                {{ result.desc }}
+              </div>
+            </div>
+            <div class="details_main_left_top_result_retake" @click="retake()">
+              Retake This Result
+            </div>
           </div>
         </div>
         <google-ad class="google_ad"></google-ad>
@@ -211,6 +232,8 @@ export default {
       checkedAnswer: -1, //
       trueIndex: -1,
       showResult: false,
+      result: {},
+      disabledFlag: false,
     }
   },
   async asyncData({ error, route, $apiList, params, $utils }) {
@@ -258,7 +281,24 @@ export default {
     }
   },
   methods: {
-    /**获取最终分数 */
+    /**重新做题 */
+    retake() {
+      //改变showResult
+      this.showResult = false
+      //将currentQuestionIndex改为0
+      this.currentQuestionIndex = 0
+      //更改radio禁用状态
+      this.disabledFlag = false
+      //禁用下一题按钮
+      this.nextFlag = false
+      //重置单选框选中状态
+      this.checkedAnswer = -1
+      //重置正确答案下标
+      this.trueIndex = -1
+      //重置回答数组
+      this.answers = []
+    },
+    /**获取最终分数或者正确答案和描述 */
     getQuizResult() {
       this.$apiList.test
         .getQuizResult({
@@ -269,13 +309,23 @@ export default {
         .then((res) => {
           this.showResult = true
           console.log(res)
+          this.result = res
         })
     },
     /**选择答案 */
     chooseAnswer(item, index) {
       //1为对错 2为分数
+      if (!this.disabledFlag) {
+        //判断回答数组当前下标是否为undefined，如果是才赋值
+        if (this.answers[this.currentQuestionIndex] == undefined) {
+          this.answers[this.currentQuestionIndex] = item.bucket
+          if (this.dataInfo.quest_type == 1) {
+            //不让用户重新选答案,禁用radio
+            this.disabledFlag = true
+          }
+        }
+      }
       if (this.dataInfo.quest_type == 1) {
-        this.answers[this.currentQuestionIndex] = item.bucket
         //获取用户点击的下标
         this.checkedAnswer = index
         //获取本道题对的答案下标
@@ -289,8 +339,6 @@ export default {
          * 否则：
          * 将用户选择的答案标记绿色边框
          */
-      } else if (this.dataInfo.quest_type == 2) {
-        this.answers[this.currentQuestionIndex] = item.bucket
       }
       //选择答案后才能点击下一题
       this.nextFlag = true
@@ -303,6 +351,8 @@ export default {
       if (this.currentQuestionIndex + 1 == this.dataInfo.questions.length) {
         return
       }
+      //更改radio禁用状态
+      this.disabledFlag = false
       //禁用下一题按钮
       this.nextFlag = false
       //重置单选框选中状态
@@ -513,6 +563,55 @@ $spacing: 55px;
               color: #ffffff;
               margin-left: 9px;
             }
+          }
+        }
+        &_result {
+          margin-top: 46px;
+          &_score {
+            font-family: 'Rubik';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 22px;
+            line-height: 30px;
+            /* identical to box height, or 136% */
+            color: #ffffff;
+            span {
+              color: #9747ff;
+            }
+          }
+          &_title {
+            font-family: 'Rubik';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 22px;
+            line-height: 30px;
+            color: rgba(255, 255, 255, 0.7);
+          }
+          &_desc {
+            font-family: 'Rubik';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 16px;
+          }
+          &_retake {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 300px;
+            height: 46px;
+            background: rgba(1, 1, 2, 0.9);
+            border-radius: 30px;
+            font-family: 'Rubik';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            margin-top: 50px;
           }
         }
       }
