@@ -15,42 +15,75 @@
               class="details_main_left_top_content_desc"
               v-html="dataInfo.desc"
             ></div>
-            <div class="details_main_left_top_content_questions">
+            <div class="details_main_left_top_content_questions" v-if="!showResult">
               {{ currentQuestionIndex + 1 }}.{{
                 dataInfo.questions[currentQuestionIndex].question
               }}
             </div>
-            <div class="details_main_left_top_content_answer">
+            <div
+              class="details_main_left_top_content_answer"
+              v-if="!showResult"
+            >
               <div
                 class="details_main_left_top_content_answer_item"
                 v-for="(item, index) in dataInfo.questions[currentQuestionIndex]
                   .answers"
                 :key="index"
+                :class="[
+                  {
+                    'green-border':
+                      index == trueIndex && dataInfo.quest_type == 1,
+                  },
+                  {
+                    'red-border':
+                      index != trueIndex &&
+                      checkedAnswer == index &&
+                      dataInfo.quest_type == 1,
+                  },
+                ]"
               >
                 <label
                   ><input
                     class="radio"
                     type="radio"
                     name="radio"
-                    :checked="item.checked"
-                    @click="chooseAnswer(item)"
+                    :value="index"
+                    v-model="checkedAnswer"
+                    @click="chooseAnswer(item, index)"
                   />
                   <span>{{ item.answer }}</span>
-                </label
-                >
+                </label>
               </div>
             </div>
-            <div class="details_main_left_top_content_btm">
+            <div class="details_main_left_top_content_btm" v-if="!showResult">
               <div class="details_main_left_top_content_btm_count">
                 {{ currentQuestionIndex + 1 }}/{{ dataInfo.questions.length }}
               </div>
               <div
+                class="details_main_left_top_content_btm_resultbtn"
+                @click="getQuizResult()"
+                v-if="
+                  currentQuestionIndex + 1 == dataInfo.questions.length &&
+                  nextFlag
+                "
+              >
+                Get Your Result
+              </div>
+              <div
+                v-else
                 class="details_main_left_top_content_btm_btn"
                 @click="nextQuestion"
+                :class="
+                  nextFlag &&
+                  currentQuestionIndex + 1 < dataInfo.questions.length
+                    ? ''
+                    : 'stop-next'
+                "
               >
                 Next >>
               </div>
             </div>
+            <div v-else>showResult</div>
           </div>
         </div>
         <google-ad class="google_ad"></google-ad>
@@ -98,7 +131,7 @@ export default {
       dataInfo: {
         name: 'What’s In Your Immediate Future',
         desc: '<p>Will you find love, job success, more friends, or increased fortune? Select the answer that sounds most like you.</p>',
-        quest_type: 2, //题目类型 (1 -> score; 2 -> bucket) 1是最终分数 2是对错
+        quest_type: 2, //题目类型 (1 -> score; 2 -> bucket) 1是对错 2是最终分数
         questions: [
           //问题数组
           {
@@ -128,6 +161,8 @@ export default {
             question: 'string', //问题标题
           },
         ],
+        quest_type: 2,
+        //题目类型 (1 -> score; 2 -> bucket) 1为对错题，及时反馈 2为最终分数
       },
       btmList: [
         {
@@ -171,6 +206,11 @@ export default {
           icon: require('../../../assets/img/resources/d_03.png'),
         },
       ],
+      answers: [], //回答问题分数
+      nextFlag: false,
+      checkedAnswer: -1, //
+      trueIndex: -1,
+      showResult: false,
     }
   },
   async asyncData({ error, route, $apiList, params, $utils }) {
@@ -218,19 +258,65 @@ export default {
     }
   },
   methods: {
+    /**获取最终分数 */
+    getQuizResult() {
+      this.$apiList.test
+        .getQuizResult({
+          origin: process.env.origin,
+          id: this.dataInfo.id,
+          answers: this.answers,
+        })
+        .then((res) => {
+          this.showResult = true
+          console.log(res)
+        })
+    },
     /**选择答案 */
-    chooseAnswer(item) {
-      console.log(item)
+    chooseAnswer(item, index) {
+      //1为对错 2为分数
+      if (this.dataInfo.quest_type == 1) {
+        this.answers[this.currentQuestionIndex] = item.bucket
+        //获取用户点击的下标
+        this.checkedAnswer = index
+        //获取本道题对的答案下标
+        this.trueIndex = this.dataInfo.questions[
+          this.currentQuestionIndex
+        ].answers.findIndex((item) => item.correct === true)
+        /**
+         * 如果用户选择的不正确：
+         * 1.将用户选择的答案标记红色边框
+         * 2.标正确答案标记绿色变边框
+         * 否则：
+         * 将用户选择的答案标记绿色边框
+         */
+      } else if (this.dataInfo.quest_type == 2) {
+        this.answers[this.currentQuestionIndex] = item.bucket
+      }
+      //选择答案后才能点击下一题
+      this.nextFlag = true
     },
     /**下一题 */
     nextQuestion() {
+      if (!this.nextFlag) {
+        return
+      }
       if (this.currentQuestionIndex + 1 == this.dataInfo.questions.length) {
         return
       }
+      //禁用下一题按钮
+      this.nextFlag = false
+      //重置单选框选中状态
+      this.checkedAnswer = -1
+      //重置正确答案下标
+      this.trueIndex = -1
+      //翻页
       this.currentQuestionIndex++
     },
     /**获取问题详情 */
     getDataInfo(item) {
+      this.answers = []
+      this.checkedAnswer = -1
+      this.trueIndex = -1
       this.$apiList.test
         .getQuizDetail({
           origin: process.env.origin,
@@ -255,6 +341,19 @@ export default {
 @use 'sass:math';
 $block: 220px;
 $spacing: 55px;
+
+.green-border {
+  border: 1px solid green !important;
+}
+
+.red-border {
+  border: 1px solid red !important;
+}
+.stop-next {
+  color: rgba(255, 255, 255, 0.7) !important;
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+}
 .details {
   width: 100%;
   &_main {
@@ -326,6 +425,7 @@ $spacing: 55px;
               display: flex;
               align-items: center;
               padding: 10px 10px;
+              border: 1px solid transparent;
               label {
                 font-family: 'Rubik';
                 font-style: normal;
@@ -336,7 +436,7 @@ $spacing: 55px;
                 width: 100%;
                 display: flex;
                 align-items: center;
-                span{
+                span {
                   width: 100%;
                   // word-break: break-all;
                 }
@@ -396,6 +496,22 @@ $spacing: 55px;
               display: flex;
               align-items: center;
               justify-content: center;
+            }
+            &_resultbtn {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 179px;
+              height: 44px;
+              background: #9747ff;
+              border-radius: 42px;
+              font-family: 'Rubik';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 22px;
+              color: #ffffff;
+              margin-left: 9px;
             }
           }
         }

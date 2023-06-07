@@ -13,4 +13,9 @@ export default (axios) => ({
     getRecList(params) {
         return axios.get('api/quiz/rec', { params })
     },
+
+    /**测验分数 */
+    getQuizResult(data) {
+        return axios.post('api/quiz/result', data )
+    },
 })
