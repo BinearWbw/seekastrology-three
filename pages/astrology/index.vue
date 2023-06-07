@@ -45,9 +45,9 @@
           </div>
         </div>
         <div class="pairing_text">
-          <div class="text_list" v-for="(itme, index) in textData" :key="index">
-            <p class="title">{{ itme.title }}</p>
-            <p class="introduce">{{ itme.text }}</p>
+          <div class="text_list">
+            <!-- <p class="title">{{ itme.title }}</p> -->
+            <div class="introduce" v-html="compatibilityData"></div>
           </div>
           <img
             class="img_bg"
@@ -149,10 +149,30 @@ export default {
       ],
     }
   },
+  async asyncData({ error, $apiList, params }) {
+    try {
+      let [compatibilityData] = await Promise.all([
+        $apiList.home
+          .getZodiacComp({
+            origin: process.env.origin,
+            male: 'aries',
+            female: 'aries',
+          })
+          .then((res) => {
+            return res
+          }),
+      ])
+      return {
+        compatibilityData,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.message })
+    }
+  },
   methods: {
     handleDropdownChangeLeft(option) {
       this.selectImgLeft = option.imgUrl
-      console.log('Selected 左:', option.imgUrl)
+      console.log('Selected 左:', option.name)
     },
     handleDropdownChangeRight(option) {
       this.selectImgRight = option.imgUrl

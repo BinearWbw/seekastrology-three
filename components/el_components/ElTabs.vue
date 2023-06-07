@@ -5,7 +5,7 @@
         v-for="(tab, index) in tabs"
         :key="index"
         :class="['tab-item', { active: activeTab === index }]"
-        @click="selectTab(index)"
+        @click="selectTab(tab, index)"
       >
         {{ upTitle + ' ' + tab.tabs }}
       </div>
@@ -30,9 +30,13 @@ export default {
       this.upTitle = this.toUpperBig(value)
     },
   },
+  mounted() {
+    this.title ? (this.upTitle = this.toUpperBig(this.title)) : false
+  },
   methods: {
-    selectTab(index) {
+    selectTab(tab, index) {
       this.activeTab = index
+      this.$emit('click', tab)
     },
     toUpperBig(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)

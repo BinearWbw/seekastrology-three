@@ -6,28 +6,30 @@
         <div class="datails_list">
           <div class="list_top">
             <h3>
-              Sagittarius
+              {{ moreData[comentId].name }}
               <br />
-              Daily Horoscope
+              Horoscope
             </h3>
             <div class="pull_down">
               <el-selected
                 :options="tabList"
+                :pint="ids"
                 @change="handleDropdownChange"
               ></el-selected>
             </div>
           </div>
           <div class="list_main">
             <div class="list_tabs">
-              <el-tabs :tabs="horroData">
-                <template v-slot="{ activeTab }">
-                  <div
+              <el-tabs :tabs="horroData" @click="correspondingTime">
+                <template>
+                  <!-- v-slot="{ activeTab }" -->
+                  <!-- <div
                     v-for="(item, index) in horroData"
                     :key="index"
                     v-show="activeTab === index"
-                  >
-                    <p class="texts">{{ item.texts }}</p>
-                  </div>
+                  > -->
+                  <div class="texts" v-html="moreData[comentId].texts"></div>
+                  <!-- </div> -->
                 </template>
               </el-tabs>
             </div>
@@ -38,16 +40,19 @@
       <div class="horoscope_more">
         <h3>Read More Horoscope</h3>
         <div class="more_main">
-          <div class="more_list" v-for="(item, index) in moreData" :key="index">
-            <a href="#">
-              <div class="more_title">
-                <p>{{ item.title }}</p>
-              </div>
-              <div class="more_text">
-                <p>{{ item.texts }}</p>
-                <button class="button">Get Your Horoscope</button>
-              </div>
-            </a>
+          <div
+            class="more_list"
+            v-for="(item, index) in horoscopeData"
+            :key="index"
+            @click="setCorresponding(index)"
+          >
+            <div class="more_title">
+              <p>{{ item.title }}</p>
+            </div>
+            <div class="more_text">
+              <div class="p_text" v-html="item.texts"></div>
+              <button class="button">Get Your Horoscope</button>
+            </div>
           </div>
         </div>
         <google-ad classNames="google_ad"></google-ad>
@@ -68,101 +73,208 @@ export default {
         {
           name: 'Aries',
           imgUrl: require('~/assets/img/home/choice/Aries.png'),
+          id: 1,
         },
         {
           name: 'Taurus',
           imgUrl: require('~/assets/img/home/choice/Taurus.png'),
+          id: 2,
         },
         {
           name: 'Gemini',
           imgUrl: require('~/assets/img/home/choice/Gemini.png'),
+          id: 3,
         },
         {
           name: 'Cancer',
           imgUrl: require('~/assets/img/home/choice/Cancer.png'),
+          id: 4,
         },
         {
           name: 'Leo',
           imgUrl: require('~/assets/img/home/choice/Leo.png'),
+          id: 5,
         },
         {
           name: 'Virgo',
           imgUrl: require('~/assets/img/home/choice/Virgo.png'),
+          id: 6,
         },
         {
           name: 'Libra',
           imgUrl: require('~/assets/img/home/choice/Libra.png'),
+          id: 7,
         },
         {
           name: 'Scorpic',
           imgUrl: require('~/assets/img/home/choice/Scorpio.png'),
+          id: 8,
         },
         {
           name: 'Sagittarius',
           imgUrl: require('~/assets/img/home/choice/Sagittarius.png'),
+          id: 9,
         },
         {
           name: 'Capricorn',
           imgUrl: require('~/assets/img/home/choice/Capricorn.png'),
+          id: 10,
         },
         {
           name: 'Aquarius',
           imgUrl: require('~/assets/img/home/choice/Aquarius.png'),
+          id: 11,
         },
         {
           name: 'Pisces',
           imgUrl: require('~/assets/img/home/choice/Pisces.png'),
+          id: 12,
         },
       ],
       horroData: [
         {
           tabs: 'Today',
-          texts:
-            'Personal: Single signs are going to have a wonderful day. Wear something that will make you feel confident and ready to take on the day. Taken signs will feel the passion that Venus is sending them.Travel: If you are traveling sometime soon, remember to buy some space saver bags. It’s going to make a huge difference when you’re packing your bagsMoney: The number 77 is going to bring you lots of good luck today.Career: A co-worker might flirt with you today. You are going to receive some money that you weren’t expecting, and it’s going to be very welcome.Health: Your health is good but you need to start paying more attention to the food that you are eating. Avoid eating a lot of processed foods.Emotions: Today, it might be a little harder for you to maintain a positive mindset. A family get together might help you relax.',
+          type: 'd',
         },
         {
           tabs: 'Weekly',
-          texts:
-            'Personal: Single signs are going to have a wonderful day. Wear something that will make you feel confident and ready to take on the day. Taken signs will feel the passion that Venus is sending them.Travel: If you are traveling sometime soon, remember to buy some space saver bags. It’s going to make a huge difference when you’re packing your bagsMoney: The number 77 is going to bring you lots of good luck today.Career: A co-worker might flirt with you today. You are going to receive some money that you weren’t expecting, and it’s going to be very welcome.Health: Your health is good but you need to start paying more attention to the food that you are eating. Avoid eating a lot of processed foods.',
+          type: 'w',
         },
         {
           tabs: 'Monthly',
-          texts:
-            'Personal: Single signs are going to have a wonderful day. Wear something that will make you feel confident and ready to take on the day. Taken signs will feel the passion that Venus is sending them.Travel: If you are traveling sometime soon, remember to buy some space saver bags. but you need to start paying more attention to the food that you are eating. Avoid eating a lot of processed foods.Emotions: Today, it might be a little harder for you to maintain a positive mindset. A family get together might help you relax.',
+          type: 'm',
         },
         {
           tabs: '2023',
-          texts:
-            'Personal: Single signs are going to have a wonderful day. Wear something that will make you feel confident and ready to take on the day. Taken signs will feel the passion that Venus is sending them.Travel: If you are traveling sometime soon, remember to buy some space saver bags. It’s going to make a huge difference when you’re packing your bagsMoney: The number 77 is going to bring you lots of good luck today.Career: A co-worker might flirt with you today. You are going to receive some money that you weren’t expecting, and it’s going to be very welcome.Health: Your health is good but you need to start paying more attention to the food that you are eating. Avoid eating a lot of processed foods.Emotions: Today, it might be a little harder for you to maintain a positive mindset. A family get together',
+          type: 'y',
         },
       ],
-      moreData: [
-        {
-          title: 'Love Horoscope',
-          texts:
-            'Personal: Single signs are going to have a wonderful day.Wear something that will make you feel confident and ready to take on the day.',
-        },
-        {
-          title: 'Healthy Horoscope',
-          texts:
-            'Personal: Single signs are going to have a wonderful day.Wear something that will make you feel confident and ready to take on the day.',
-        },
-        {
-          title: 'Work Horoscope',
-          texts:
-            'Personal: Single signs are going to have a wonderful day.Wear something that will make you feel confident and ready to take on the day.',
-        },
-        {
-          title: 'Fortune Horoscope',
-          texts:
-            'Personal: Single signs are going to have a wonderful day.Wear something that will make you feel confident and ready to take on the day.',
-        },
-      ],
+      comentId: 0,
+      horoscopeData: [],
     }
+  },
+  async asyncData({ error, $apiList, params }) {
+    try {
+      let ids = 1,
+        youlistData = {}
+      let [horoscoreData] = await Promise.all([
+        $apiList.home
+          .getZodiacHoroscope({
+            origin: process.env.origin,
+            id: params.id.replace(
+              /^.*?(\d*)$/,
+              (str, match, index) => match || '0'
+            ),
+            kind: 'd',
+          })
+          .then((res) => {
+            ids = res.id
+            youlistData = res.horoscope
+            // console.log('horoscoreData', res)
+            return res
+          }),
+      ])
+      return {
+        horoscoreData,
+        ids,
+        youlistData,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.message })
+    }
+  },
+  mounted() {
+    console.log(this.youlistData)
+  },
+  created() {
+    this.horoscopeData = [
+      {
+        name: 'General',
+        title: 'General Horoscope',
+        texts: this.youlistData.general,
+      },
+      {
+        name: 'Love',
+        title: 'Love Horoscope',
+        texts: this.youlistData.love,
+      },
+      {
+        name: 'Health',
+        title: 'Health Horoscope',
+        texts: this.youlistData.health,
+      },
+      {
+        name: 'Career',
+        title: 'Career Horoscope',
+        texts: this.youlistData.career,
+      },
+      {
+        name: 'Finances',
+        title: 'Finances Horoscope',
+        texts: this.youlistData.finances,
+      },
+    ]
+  },
+  computed: {
+    moreData() {
+      return [
+        {
+          name: 'General',
+          title: 'General Horoscope',
+          texts: this.youlistData.general,
+        },
+        {
+          name: 'Love',
+          title: 'Love Horoscope',
+          texts: this.youlistData.love,
+        },
+        {
+          name: 'Health',
+          title: 'Health Horoscope',
+          texts: this.youlistData.health,
+        },
+        {
+          name: 'Career',
+          title: 'Career Horoscope',
+          texts: this.youlistData.career,
+        },
+        {
+          name: 'Finances',
+          title: 'Finances Horoscope',
+          texts: this.youlistData.finances,
+        },
+      ]
+    },
   },
   methods: {
     handleDropdownChange(option) {
       console.log('selectd :', option)
+    },
+    // async getZodiacHoroscope() {
+    //   await this.$apiList.home
+    //     .getZodiacHoroscope({
+    //       origin: process.env.origin,
+    //       id: id || this.$route.query.id,
+    //     })
+    //     .then((res) => {
+    //       return res
+    //     })
+    // },
+    setCorresponding(i) {
+      // 点击其他运势
+      //   console.log(i, this.moreData)
+      this.comentId = i
+      this.horoscopeData.splice(i, 1)
+      //   this.horoscopeData = this.moreData
+      //   console.log('删除后的数组', this.horoscopeData)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    },
+    correspondingTime(i) {
+      // 点击tabs
+      console.log(i.type)
     },
   },
 }
@@ -264,58 +376,60 @@ export default {
           border-radius: 6px;
           cursor: pointer;
           transition: transform 0.3s ease-in-out;
-          a {
-            display: inline-block;
-            .more_title {
-              padding-bottom: 16px;
-              position: relative;
-              &::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 1px;
-                background: linear-gradient(
-                  90deg,
-                  rgba(255, 255, 255, 0) 0%,
-                  rgba(255, 255, 255, 0.2) 50.52%,
-                  rgba(255, 255, 255, 0) 100%
-                );
-              }
-              p {
-                font-family: 'Rubik';
-                font-size: 22px;
-                line-height: 30px;
-                text-align: center;
-                color: #ffffff;
-                padding: 0 70px;
-              }
+          .more_title {
+            padding-bottom: 16px;
+            position: relative;
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 1px;
+              background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.2) 50.52%,
+                rgba(255, 255, 255, 0) 100%
+              );
             }
-            .more_text {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              p {
-                font-family: 'Rubik';
-                font-size: 16px;
-                line-height: 22px;
-                text-align: center;
-                color: rgba(255, 255, 255, 0.7);
-                padding: 16px 0;
-              }
-              .button {
-                width: 220px;
-                height: 32px;
-                border: 1px solid #45454d;
-                border-radius: 42px;
-                font-family: 'Rubik';
-                font-size: 14px;
-                line-height: 18px;
-                color: rgba(255, 255, 255, 0.7);
-                -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
-                transition: background-color 0.3s, color 0.3s;
-              }
+            p {
+              font-family: 'Rubik';
+              font-size: 22px;
+              line-height: 30px;
+              text-align: center;
+              color: #ffffff;
+              padding: 0 70px;
+            }
+          }
+          .more_text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .p_text {
+              font-family: 'Rubik';
+              font-size: 16px;
+              line-height: 22px;
+              text-align: center;
+              color: rgba(255, 255, 255, 0.7);
+              margin: 16px 0;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 4;
+              -webkit-box-orient: vertical;
+            }
+            .button {
+              width: 220px;
+              height: 32px;
+              border: 1px solid #45454d;
+              border-radius: 42px;
+              font-family: 'Rubik';
+              font-size: 14px;
+              line-height: 18px;
+              color: rgba(255, 255, 255, 0.7);
+              -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
+              transition: background-color 0.3s, color 0.3s;
             }
           }
           &:hover {
@@ -418,32 +532,30 @@ export default {
             padding: 24 * $pr;
             border: 1 * $pr solid rgba(255, 255, 255, 0.7);
             border-radius: 6 * $pr;
-            a {
-              .more_title {
-                padding-bottom: 16 * $pr;
-                &::after {
-                  height: 1 * $pr;
-                }
-                p {
-                  font-size: 22 * $pr;
-                  line-height: 30 * $pr;
-                  padding: 0 70 * $pr;
-                }
+            .more_title {
+              padding-bottom: 16 * $pr;
+              &::after {
+                height: 1 * $pr;
               }
-              .more_text {
-                p {
-                  font-size: 16 * $pr;
-                  line-height: 22 * $pr;
-                  padding: 16 * $pr 0;
-                }
-                .button {
-                  width: 220 * $pr;
-                  height: 32 * $pr;
-                  border: 1 * $pr solid #45454d;
-                  border-radius: 42 * $pr;
-                  font-size: 14 * $pr;
-                  line-height: 18 * $pr;
-                }
+              p {
+                font-size: 22 * $pr;
+                line-height: 30 * $pr;
+                padding: 0 70 * $pr;
+              }
+            }
+            .more_text {
+              .p_text {
+                font-size: 16 * $pr;
+                line-height: 22 * $pr;
+                margin: 16 * $pr 0;
+              }
+              .button {
+                width: 220 * $pr;
+                height: 32 * $pr;
+                border: 1 * $pr solid #45454d;
+                border-radius: 42 * $pr;
+                font-size: 14 * $pr;
+                line-height: 18 * $pr;
               }
             }
             &:hover {

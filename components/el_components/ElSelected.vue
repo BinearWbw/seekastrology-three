@@ -41,6 +41,9 @@ export default {
       this.selectedOption = this.options[value - 1]
     },
   },
+  mounted() {
+    this.pint ? (this.selectedOption = this.options[this.pint - 1]) : false
+  },
   methods: {
     toggleDropdown() {
       this.isOpen = !this.isOpen

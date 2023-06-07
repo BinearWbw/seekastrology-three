@@ -286,14 +286,15 @@ export default {
       }
     }
     &__main {
-      height: 100%;
+      height: auto;
       grid-template-columns: repeat(2, 1fr);
       gap: 11 * $pr;
       li {
-        height: 100%;
+        height: auto;
       }
       &__li {
         padding: 13 * $pr 0 7 * $pr;
+        height: auto;
         img {
           width: 93 * $pr;
           height: 93 * $pr;

@@ -11,6 +11,14 @@ export default (axios) => ({
   getZodiacDetails(params) {
     return axios.get('/api/astro/detail', { params })
   },
+  /* 星座运势页 */
+  getZodiacHoroscope(params) {
+    return axios.get('/api/astro/horoscope', { params })
+  },
+  /* 星座-配对 */
+  getZodiacComp(params) {
+    return axios.get('/api/astro/comp', { params })
+  },
   /*---------------以下旧接口--------------*/
   /* 主页 */
   getGameHome(params) {
