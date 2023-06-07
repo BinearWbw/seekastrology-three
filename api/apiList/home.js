@@ -7,6 +7,11 @@ export default (axios) => ({
   getZodiacHomeQuiz(params) {
     return axios.get('api/quiz/rec', { params })
   },
+  /* 星座详情页 */
+  getZodiacDetails(params) {
+    return axios.get('/api/astro/detail', { params })
+  },
+  /*---------------以下旧接口--------------*/
   /* 主页 */
   getGameHome(params) {
     return axios.get('api/game/home', { params })

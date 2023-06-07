@@ -32,7 +32,7 @@
               </el-tabs>
             </div>
           </div>
-          <google-ad class="google_ad"></google-ad>
+          <google-ad classNames="google_ad"></google-ad>
         </div>
       </div>
       <div class="horoscope_more">
@@ -50,7 +50,7 @@
             </a>
           </div>
         </div>
-        <google-ad class="google_ad"></google-ad>
+        <google-ad classNames="google_ad"></google-ad>
       </div>
     </div>
     <transition name="fade">

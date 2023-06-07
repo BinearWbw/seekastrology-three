@@ -6,6 +6,7 @@
         <div class="pull_down">
           <el-selected
             :options="tabList"
+            :pint="ids"
             @change="handleDropdownChange"
           ></el-selected>
         </div>
@@ -15,47 +16,82 @@
               class="left_tab_list"
               v-for="(item, index) in tabList"
               :key="index"
+              @click="handleDropdownChange(item.id)"
             >
               <div class="imgs">
                 <img :src="item.imgUrl" alt="#" />
               </div>
-              <p class="active">{{ item.name }}</p>
+              <p :class="{ active: item.id === ids }">
+                {{ item.name }}
+              </p>
             </div>
           </div>
           <div class="right_cont">
-            <h4>The taurus Zodiac Sign</h4>
+            <h4>{{ `The ${zodiacIData.name} Zodiac Sign` }}</h4>
             <p class="right_various">
-              The kundis mosty rered to as 'anam Patirka’or Hcrosope. t would
-              contain the details ofll mnajor asrological aspects of a person at
-              the time of hisherbirth.hischartels the location of various zodiac
-              signs, planet and other aspect which are considered in an
-              astrological analyis.Kundiceation is to be onlydone by an expert
-              andexperienced
+              {{ zodiacIData.desc }}
             </p>
             <div class="img_cont">
-              <img src="~/assets/img/zodiac/details.png" alt="#" />
+              <nuxt-img
+                :src="zodiacIData.icon || '/'"
+                fit="cover"
+                height="325"
+                :alt="zodiacIData.name"
+              ></nuxt-img>
             </div>
             <div class="right_minute">
-              <h4>OVERVIEW OF ARIES</h4>
+              <h4>{{ `OVERVIEW OF ${zodiacIData.name}` }}</h4>
               <div class="right_minute_min">
                 <div class="part_one">
-                  <div
-                    class="contents"
-                    v-for="(items, index) in partOne"
-                    :key="index"
-                  >
-                    <span>{{ items.name }}:</span>
-                    <p>{{ items.text }}</p>
+                  <div class="contents">
+                    <span>Tauaus Date:</span>
+                    <p>{{ zodiacIData.basic?.dates || '' }}</p>
+                  </div>
+                  <div class="contents">
+                    <span>Symbil:</span>
+                    <p>{{ zodiacIData.basic?.symbol || '' }}</p>
+                  </div>
+                  <div class="contents">
+                    <span>Ruler Planet:</span>
+                    <p>{{ zodiacIData.basic?.planet || '' }}</p>
+                  </div>
+                  <div class="contents">
+                    <span>Basic Color:</span>
+                    <p>{{ zodiacIData.basic?.color || '' }}</p>
+                  </div>
+                  <div class="contents">
+                    <span>Mode And Elemnt:</span>
+                    <p>{{ zodiacIData.basic?.mode_element || '' }}</p>
+                  </div>
+                  <div class="contents">
+                    <span>House:</span>
+                    <p>{{ zodiacIData.basic?.house || '' }}</p>
                   </div>
                 </div>
                 <div class="part_two">
-                  <div
-                    class="contents"
-                    v-for="(items, index) in partTwo"
-                    :key="index"
-                  >
-                    <span>{{ items.name }}:</span>
-                    <p>{{ items.text }}</p>
+                  <div class="contents">
+                    <span>Best Compatibility:</span>
+                    <p>{{ zodiacIData.basic?.compatibility || '' }}</p>
+                  </div>
+                  <div class="contents">
+                    <span>Lucky Metal:</span>
+                    <p>{{ zodiacIData.basic?.lucky_metal || '' }}</p>
+                  </div>
+                  <div class="contents">
+                    <span>Ruler Worthy Days:</span>
+                    <p>{{ zodiacIData.basic?.worth_days || '' }}</p>
+                  </div>
+                  <div class="contents">
+                    <span>Lucky Numbers:</span>
+                    <p>{{ zodiacIData.basic?.lucky_numbers || '' }}</p>
+                  </div>
+                  <div class="contents">
+                    <span>Lucky Gem:</span>
+                    <p>{{ zodiacIData.basic?.lucky_gem || '' }}</p>
+                  </div>
+                  <div class="contents">
+                    <span>Tarot Card:</span>
+                    <p>{{ zodiacIData.basic?.tarot_card || '' }}</p>
                   </div>
                 </div>
               </div>
@@ -66,27 +102,39 @@
       </div>
       <div class="tab_control">
         <div class="tab_main">
-          <el-tabs :tabs="tabTextContent">
+          <el-tabs :tabs="tabTitle" :title="zodiacIData.name">
             <template v-slot="{ activeTab }">
               <div
-                v-for="(item, index) in tabTextContent"
+                v-for="(item, index) in zodiacIData?.traits"
                 :key="index"
                 v-show="activeTab === index"
               >
-                <div
-                  class="tab_main_list"
-                  v-for="(conts, index_i) in item.datas"
-                  :key="index_i"
-                >
-                  <h4>{{ conts.name }}</h4>
-                  <p>{{ conts.texts }}</p>
+                <div class="tab_main_list" v-if="item.traits">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} Traits` }}</h4>
+                  <div class="p_text" v-html="item.traits"></div>
+                </div>
+                <div class="tab_main_list" v-if="item.career">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} Career` }}</h4>
+                  <div class="p_text" v-html="item.career"></div>
+                </div>
+                <div class="tab_main_list" v-if="item.lover">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} Lover` }}</h4>
+                  <div class="p_text" v-html="item.lover"></div>
+                </div>
+                <div class="tab_main_list" v-if="item.health">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} Healthy` }}</h4>
+                  <div class="p_text" v-html="item.health"></div>
+                </div>
+                <div class="tab_main_list" v-if="item.love_reasons">
+                  <h4>LOVE Reasons</h4>
+                  <div class="p_text" v-html="item.love_reasons"></div>
                 </div>
               </div>
             </template>
           </el-tabs>
         </div>
         <div class="tabs_max"></div>
-        <google-ad class="google_ad"></google-ad>
+        <google-ad classNames="google_ad"></google-ad>
       </div>
     </div>
     <transition name="fade">
@@ -100,221 +148,92 @@ export default {
   name: 'zodiac_details',
   data() {
     return {
-      tabs: [
-        { title: 'Tab 1', content: 'Content of Tab 1' },
-        { title: 'Tab 2', content: 'Content of Tab 2' },
-        { title: 'Tab 3', content: 'Content of Tab 3' },
-        { title: 'Tab 4', content: 'Content of Tab 4' },
-        { title: 'Tab 5', content: 'Content of Tab 5' },
-        { title: 'Tab 6', content: 'Content of Tab 6' },
-        { title: 'Tab 7', content: 'Content of Tab 7' },
-        { title: 'Tab 8', content: 'Content of Tab 8' },
-        { title: 'Tab 9', content: 'Content of Tab 9' },
-      ],
       tabList: [
         {
           name: 'Aries',
           imgUrl: require('~/assets/img/home/choice/Aries.png'),
+          id: 1,
         },
         {
           name: 'Taurus',
           imgUrl: require('~/assets/img/home/choice/Taurus.png'),
+          id: 2,
         },
         {
           name: 'Gemini',
           imgUrl: require('~/assets/img/home/choice/Gemini.png'),
+          id: 3,
         },
         {
           name: 'Cancer',
           imgUrl: require('~/assets/img/home/choice/Cancer.png'),
+          id: 4,
         },
         {
           name: 'Leo',
           imgUrl: require('~/assets/img/home/choice/Leo.png'),
+          id: 5,
         },
         {
           name: 'Virgo',
           imgUrl: require('~/assets/img/home/choice/Virgo.png'),
+          id: 6,
         },
         {
           name: 'Libra',
           imgUrl: require('~/assets/img/home/choice/Libra.png'),
+          id: 7,
         },
         {
           name: 'Scorpic',
           imgUrl: require('~/assets/img/home/choice/Scorpio.png'),
+          id: 8,
         },
         {
           name: 'Sagittarius',
           imgUrl: require('~/assets/img/home/choice/Sagittarius.png'),
+          id: 9,
         },
         {
           name: 'Capricorn',
           imgUrl: require('~/assets/img/home/choice/Capricorn.png'),
+          id: 10,
         },
         {
           name: 'Aquarius',
           imgUrl: require('~/assets/img/home/choice/Aquarius.png'),
+          id: 11,
         },
         {
           name: 'Pisces',
           imgUrl: require('~/assets/img/home/choice/Pisces.png'),
+          id: 12,
         },
       ],
-      partOne: [
-        {
-          name: 'Tauaus Date',
-          text: '4.20 - 5.20',
-        },
-        {
-          name: 'Symbil',
-          text: 'The Bull',
-        },
-        {
-          name: 'Ruler Planet',
-          text: 'Venus',
-        },
-        {
-          name: 'Basic Color',
-          text: 'Green, Pink',
-        },
-        {
-          name: 'Mode And Elemnt',
-          text: 'Fixed Earth',
-        },
-      ],
-      partTwo: [
-        {
-          name: 'Best Compatibility',
-          text: 'Scorpio and Cancer',
-        },
-        {
-          name: 'Lucky Metal',
-          text: 'Copper',
-        },
-        {
-          name: 'Ruler Worthy Days',
-          text: 'Monday and Friday',
-        },
-        {
-          name: 'Lucky Numbers',
-          text: '2, 6, 9, 12, 24',
-        },
-        {
-          name: 'Ruler Worthy Days',
-          text: 'Emerald, Chrysoprase',
-        },
-      ],
-      tabTextContent: [
-        {
-          tabs: 'Aries',
-          datas: [
-            {
-              name: 'Aries Traits',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,youcan find your sign from 12 zodiacsins.',
-            },
-            {
-              name: 'ARIES Career',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign?',
-            },
-            {
-              name: 'ARIES Lover',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign?',
-            },
-            {
-              name: 'ARIES Healthy',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. ',
-            },
-            {
-              name: 'ARIES Lover',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. ',
-            },
-          ],
-        },
-        {
-          tabs: 'Aries Woman',
-          datas: [
-            {
-              name: 'Aries Traits',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,youcan find your sign from 12 zodiacsins.',
-            },
-            {
-              name: 'ARIES Caree',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign?',
-            },
-            {
-              name: 'ARIES Lover',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign?',
-            },
-            {
-              name: 'ARIES Healthy',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. ',
-            },
-            {
-              name: 'ARIES Lover',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. ',
-            },
-          ],
-        },
-        {
-          tabs: 'Aries Man',
-          datas: [
-            {
-              name: 'Aries Traits',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,youcan find your sign from 12 zodiacsins.',
-            },
-            {
-              name: 'ARIES Career',
-              texts: 'How do you find your zodiac sign?',
-            },
-            {
-              name: 'ARIES Lover',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign?',
-            },
-            {
-              name: 'ARIES Healthy',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. ',
-            },
-            {
-              name: 'ARIES Lover',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. ',
-            },
-          ],
-        },
-        {
-          tabs: 'Mans',
-          datas: [
-            {
-              name: 'Aries Traits',
-              texts:
-                'How do you find your zodiac sign? Here,you can find your sign from 12 zodiacsins. How do you find your zodiac sign? Here,youcan find your sign from 12 zodiacsins.',
-            },
-            {
-              name: 'ARIES Career',
-              texts: 'How do you find your zodiac sign?',
-            },
-          ],
-        },
-      ],
+      tabTitle: [{ tabs: '' }, { tabs: 'Man' }, { tabs: 'Woman' }],
+      zodiacIData: {},
+      ids: this.$route.query.id,
     }
+  },
+  mounted() {
+    this.getZodiacIData()
   },
   methods: {
     handleDropdownChange(option) {
-      console.log('Selected :', option)
+      const selectValue =
+        typeof option === 'object' && option !== null ? option.id : option
+      this.getZodiacIData(selectValue)
+    },
+    async getZodiacIData(id = null) {
+      await this.$apiList.home
+        .getZodiacDetails({
+          origin: process.env.origin,
+          id: id || this.$route.query.id,
+        })
+        .then((res) => {
+          this.zodiacIData = res
+          this.ids = res.id
+        })
     },
   },
 }
@@ -506,7 +425,7 @@ export default {
             line-height: 36px;
             color: #ffffff;
           }
-          p {
+          .p_text {
             font-family: 'Rubik';
             font-size: 16px;
             line-height: 22px;
@@ -607,7 +526,7 @@ export default {
               font-size: 26 * $pr;
               line-height: 36 * $pr;
             }
-            p {
+            .p_text {
               font-size: 16 * $pr;
               line-height: 22 * $pr;
               margin-top: 8 * $pr;

@@ -28,26 +28,27 @@
 
 <script>
 export default {
-  props: {
-    options: {
-      type: Array,
-      required: true,
-    },
-  },
+  props: ['options', 'pint'],
   data() {
     return {
       isOpen: false,
-      selectedOption: this.options[0] || '',
+      selectedOption: this.options[0],
     }
+  },
+  watch: {
+    // 监听点击的id值
+    pint(value) {
+      this.selectedOption = this.options[value - 1]
+    },
   },
   methods: {
     toggleDropdown() {
       this.isOpen = !this.isOpen
     },
     selectOption(option) {
+      this.$emit('change', option)
       this.selectedOption = option
       this.isOpen = false
-      this.$emit('change', option)
     },
     closeDropdown() {
       // 失焦时隐藏
