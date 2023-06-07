@@ -16,7 +16,9 @@
                 :alt="list[0].name"
                 class="resources_main_top_left_img_pic"
               ></nuxt-img>
-              <div class="resources_main_top_left_img_tarot">TAROT</div>
+              <div class="resources_main_top_left_img_tarot">
+                {{list[0].main_label}}
+              </div>
             </div>
             <div class="resources_main_top_left_content">
               <div class="resources_main_top_left_content_title">
@@ -82,7 +84,9 @@
                   :alt="item.name"
                   class="resources_main_top_right_item_img_pic"
                 ></nuxt-img>
-                <div class="resources_main_top_right_item_img_tarot">TAROT</div>
+                <div class="resources_main_top_right_item_img_tarot">
+                  {{item.main_label}}
+                </div>
               </div>
               <div class="resources_main_top_right_item_content">
                 <div class="resources_main_top_right_item_content_title">
@@ -117,7 +121,9 @@
                 <div class="resources_main_top_right_item_img_time">
                   {{ $utils.formatMMSS(item.sec) }}
                 </div>
-                <div class="resources_main_top_right_item_img_tarot">TAROT</div>
+                <div class="resources_main_top_right_item_img_tarot">
+                  {{item.main_label}}
+                </div>
               </div>
               <!-- <img :src="item.imgUrl" alt="" /> -->
               <div class="resources_main_top_right_item_content">
@@ -162,7 +168,9 @@
                   :alt="item.name"
                   class="resources_main_btm_main_item_img_pic"
                 ></nuxt-img>
-                <div class="resources_main_btm_main_item_img_tarot">TAROT</div>
+                <div class="resources_main_btm_main_item_img_tarot">
+                  {{item.main_label}}
+                </div>
               </div>
               <div class="resources_main_btm_main_item_text">
                 <div class="resources_main_btm_main_item_text_title">
@@ -193,7 +201,9 @@
                 <div class="resources_main_btm_main_item_img_time">
                   {{ $utils.formatMMSS(item.sec) }}
                 </div>
-                <div class="resources_main_btm_main_item_img_tarot">TAROT</div>
+                <div class="resources_main_btm_main_item_img_tarot">
+                  {{item.main_label}}
+                </div>
               </div>
               <div class="resources_main_btm_main_item_vtitle">
                 {{ item.name }}
@@ -493,6 +503,8 @@ export default {
         document.body.scrollTop
       let bodyHeight =
         document.body.scrollHeight || document.documentElement.scrollHeight
+      let screenWidth = window.innerWidth;
+      console.log("屏幕宽度：" + screenWidth);
       if (scrollTop + window.innerHeight >= bodyHeight - 850) {
         if (this.loading) return
         this.getNews(this.item)

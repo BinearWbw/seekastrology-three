@@ -184,7 +184,7 @@
                 class="details_footer_list_item_img_play"
               />
               <div class="details_footer_list_item_img_time">
-                {{ item.time }}
+                 {{ $utils.formatMMSS(item.sec) }}
               </div>
               <div class="details_footer_list_item_img_tarot">TAROT</div>
             </div>
