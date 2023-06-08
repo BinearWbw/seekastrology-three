@@ -6,7 +6,12 @@ const sitemap = [
     cacheTime: 1000 * 60 * 60 * 24,
     gzip: true,
     generate: false,
-    exclude: ['/test/details', '/resources/details', '/zodiac/details'],
+    exclude: [
+      '/test/details',
+      '/resources/details',
+      '/zodiac/details',
+      '/horroscope',
+    ],
     defaults: {
       changefred: 'always',
       lastmod: new Date(),
@@ -21,12 +26,6 @@ const sitemap = [
         },
         {
           url: '/astrology',
-          changefreq: 'always',
-          priority: 0.7,
-          lastmod: new Date(),
-        },
-        {
-          url: '/horroscope',
           changefreq: 'always',
           priority: 0.7,
           lastmod: new Date(),
