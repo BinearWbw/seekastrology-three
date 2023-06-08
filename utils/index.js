@@ -151,7 +151,7 @@ const formatMMDD = (param) => {
   month = month < 10 ? '0' + month : month;
   day = day < 10 ? '0' + day : day;
   // 返回格式化后的字符串
-  return month + '-' + day;
+  return month + '/' + day;
 
 }
 const formatYYYYMMDDHHMM = (param, format) => {
