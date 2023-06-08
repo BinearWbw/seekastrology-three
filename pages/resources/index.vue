@@ -36,8 +36,9 @@
               </div>
               <div
                 class="resources_main_top_left_content_subscribe"
-                v-html="list[0].desc"
-              ></div>
+              >
+              {{list[0].text}}
+              </div>
               <div class="resources_main_top_left_content_btn">Read More</div>
               <div class="resources_main_top_left_content_h5date">
                 {{ list[0].created_at }}
@@ -104,8 +105,9 @@
                 </div>
                 <div
                   class="resources_main_top_right_item_content_subscribe"
-                  v-html="item.desc"
-                ></div>
+                >
+                {{item.text}}
+                </div>
                 <div class="resources_main_top_right_item_content_date">
                   <span> {{ $utils.formatMMDD(item.created_at) }}</span>
                 </div>
@@ -187,8 +189,9 @@
                 </div>
                 <div
                   class="resources_main_btm_main_item_text_subscribe"
-                  v-html="item.desc"
-                ></div>
+                >
+                {{item.text}}
+                </div>
                 <div class="resources_main_btm_main_item_text_date">
                   {{ $utils.formatMMDD(item.created_at) }}
                 </div>
@@ -286,6 +289,7 @@ export default {
 
           return res?.list || null
         })
+        console.log(btmList);
       return {
         item,
         list,
