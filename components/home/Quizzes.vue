@@ -190,6 +190,75 @@ export default {
     }
   }
 }
+@media (max-width: 1435px) {
+  .quizzes {
+    &_sliding {
+      .banner {
+        button {
+          width: 54px;
+          height: 54px;
+        }
+        &.banner_left {
+          button {
+            background-position-x: 15px;
+          }
+        }
+        &.banner_right {
+          button {
+            right: 0;
+            left: initial;
+          }
+        }
+      }
+      .swiper_list {
+        .swiper {
+          &__item {
+            width: 230px;
+            .banner_img {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .quizzes {
+    &_sliding {
+      .swiper_list {
+        .swiper {
+          &__item {
+            width: 245px;
+          }
+          p {
+            padding: 0 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: (1024px)) {
+  .quizzes {
+    padding: 0;
+    &_sliding {
+      width: 730px;
+      padding: 48px 50px 0;
+      .swiper_list {
+        margin: 0 15px;
+        .swiper {
+          &__item {
+            width: 227px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .quizzes {
@@ -203,7 +272,8 @@ export default {
       text-align: center;
     }
     &_sliding {
-      padding-top: 16 * $pr;
+      width: 100%;
+      padding: 16 * $pr 0 0;
       display: flex;
       .banner {
         display: none;
@@ -229,6 +299,7 @@ export default {
             p {
               font-size: 16 * $pr;
               line-height: 22 * $pr;
+              padding: 0;
             }
           }
         }

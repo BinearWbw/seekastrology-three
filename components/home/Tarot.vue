@@ -10,10 +10,10 @@
         you find answers to questions about love, relationships, career, health,
         and more.
       </p>
-      <button class="button">Read More</button>
+      <button class="button" @click="handleScroll">Read More</button>
     </div>
     <div class="tarot_img">
-      <div class="tarot_mian">
+      <div class="tarot_mian" ref="animated">
         <div class="img_list list_1">
           <a href="#">
             <img src="~/assets/img/home/tarot_card.png" alt="#" />
@@ -40,12 +40,38 @@ export default {
   name: 'Tarot',
   data() {
     return {
-      scrollWidth: '',
-      scrollHeight: '',
+      scrollTimeInfo: null,
     }
   },
   computed: {},
-  mounted() {},
+  mounted() {
+    if (window.innerWidth <= 1024) {
+      window.addEventListener('scroll', this.handleScroll)
+    }
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
+    if (this.scrollTimeInfo) clearTimeout(this.scrollTimeInfo)
+  },
+  methods: {
+    handleScroll() {
+      const targetElement = this.$refs.animated
+      const isVisible =
+        targetElement.getBoundingClientRect().top < window.innerHeight
+      if (isVisible && window.innerWidth >= 750) {
+        targetElement.classList.remove('animatedH5_active')
+        this.scrollTimeInfo = setTimeout(() => {
+          targetElement.classList.add('animated_active')
+        }, 500)
+        console.log(this.scrollTimeInfo)
+      } else if (isVisible && window.innerWidth <= 750) {
+        targetElement.classList.remove('animated_active')
+        this.scrollTimeInfo = setTimeout(() => {
+          targetElement.classList.add('animatedH5_active')
+        }, 500)
+      }
+    },
+  },
 }
 </script>
 
@@ -166,6 +192,98 @@ export default {
   }
 }
 
+@media (max-width: 1435px) {
+  .tarot {
+    &_img {
+      padding: 90px 0 0 60px;
+      .tarot_mian {
+        &:hover {
+          .img_list {
+            &.list_2 {
+              transform: matrix(0.99, 0.11, -0.11, 0.99, 120, -30);
+            }
+            &.list_3 {
+              transform: matrix(0.97, 0.26, -0.26, 0.97, 200, 15);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .tarot {
+    &_img {
+      padding: 90px 0 0 30px;
+      .tarot_mian {
+        &:hover {
+          .img_list {
+            &.list_2 {
+              transform: matrix(0.99, 0.1, -0.1, 0.99, 80, -20);
+            }
+            &.list_3 {
+              transform: matrix(0.97, 0.2, -0.2, 0.97, 130, 5);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: (1024px)) {
+  .tarot {
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'item2' 'item1';
+    gap: 0;
+    &_text {
+      grid-area: item1;
+      height: 100%;
+      padding-top: 30px;
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+    &_img {
+      grid-area: item2;
+      height: 500px;
+      padding: 0 0 30px;
+      .tarot_mian {
+        pointer-events: none;
+        height: 100%;
+        .img_list {
+          left: 20%;
+          &.list_1 {
+            transform: rotate(-5deg) translateX(50px) translateY(10px);
+            z-index: 1;
+          }
+          &.list_2 {
+            transform: matrix(1, -0.03, 0.03, 1, 100, -10);
+            z-index: 2;
+          }
+          &.list_3 {
+            transform: matrix(1, 0.04, -0.04, 1, 150, -3);
+            z-index: 3;
+          }
+        }
+      }
+      .animated_active {
+        .button {
+          opacity: 1;
+          visibility: visible;
+        }
+        .img_list {
+          &.list_2 {
+            transform: matrix(0.99, 0.1, -0.1, 0.99, 150, -40);
+          }
+          &.list_3 {
+            transform: matrix(0.97, 0.3, -0.3, 0.97, 250, -20);
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .tarot {
@@ -177,6 +295,8 @@ export default {
       grid-area: item1;
       height: 100%;
       padding-top: 32 * $pr;
+      padding-left: 0;
+      padding-right: 0;
       text-align: center;
       h3 {
         font-size: 36 * $pr;
@@ -203,6 +323,7 @@ export default {
       height: 320 * $pr;
       padding: 40 * $pr 0 0 10 * $pr;
       .tarot_mian {
+        pointer-events: none;
         .button {
           display: none;
         }
@@ -211,6 +332,7 @@ export default {
           height: 226 * $pr;
           border-radius: 12 * $pr;
           border: 0;
+          left: 0;
           a {
             img {
               width: 100%;
@@ -218,7 +340,7 @@ export default {
             }
           }
           &.list_1 {
-            transform: rotate(-5deg) translateX(40px) translateY(20px);
+            transform: rotate(-5deg) translateX(40 * $pr) translateY(20 * $pr);
             z-index: 1;
           }
           &.list_2 {
@@ -228,6 +350,16 @@ export default {
           &.list_3 {
             transform: matrix(1, 0.02, -0.02, 1, 160, 5);
             z-index: 3;
+          }
+        }
+      }
+      .animatedH5_active {
+        .img_list {
+          &.list_2 {
+            transform: matrix(0.99, 0.1, -0.1, 0.99, 150, -40);
+          }
+          &.list_3 {
+            transform: matrix(0.97, 0.3, -0.3, 0.97, 250, -20);
           }
         }
       }

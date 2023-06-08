@@ -126,82 +126,19 @@ export default {
 
 @media (max-width: 1435px) {
   .choice {
-    &__title {
-      padding-bottom: 78px;
-      h3 {
-        font-family: 'Cinzel Decorative';
-        font-weight: 700;
-        font-size: 46px;
-        line-height: 64px;
-        color: #fff;
-        text-align: center;
-        margin-bottom: 16px;
-      }
-      p {
-        font-family: 'Rubik';
-        font-size: 22px;
-        line-height: 30px;
-        text-align: center;
-        color: rgba(255, 255, 255, 0.7);
-        text-align: center;
-      }
-    }
     &__main {
-      display: grid;
       grid-template-columns: repeat(4, auto);
       justify-content: center;
-      gap: 16px;
-      li {
-        width: 218px;
-        box-sizing: border-box;
-        border: 1px solid #090909;
-        border-radius: 6px;
-        transition: border-color 0.3s;
-        .choice__main__a {
-          box-sizing: border-box;
-          height: 100%;
-          display: block;
-          padding-bottom: 40px;
-          .img__list {
-            width: 218px;
-            height: 154px;
-            border-radius: 6px;
-            overflow: hidden;
-            img {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              transition: transform 0.3s;
-            }
-          }
-          .title {
-            font-family: 'Rubik';
-            font-size: 22px;
-            line-height: 30px;
-            color: #fff;
-            text-align: center;
-          }
-          .time {
-            font-family: 'Rubik';
-            font-size: 14px;
-            line-height: 18px;
-            color: rgba(255, 255, 255, 0.7);
-            text-align: center;
-          }
-        }
-        &:hover {
-          border-color: rgba(255, 255, 255, 0.6);
-          .img__list {
-            img {
-              transform: scale(1.2);
-            }
-          }
-        }
-      }
     }
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 947px) {
+  .choice {
+    &__main {
+      grid-template-columns: repeat(3, auto);
+      justify-content: center;
+    }
+  }
 }
 
 @media (max-width: 750px) {
