@@ -6,8 +6,8 @@
       <div class="details_main_left">
         <div class="details_main_left_top">
           <div class="details_main_left_top_menu">
-            <a href="">Home</a> > <a href="">News</a> >
-            <a href="">Quizzes Details</a>
+            <a href="javascript:history.back(-1)">Article</a> >
+            <a href="" style="color:#FFFFFF">Article Details</a>
           </div>
           <!-- 0-文章、1-视频）-->
           <div class="details_main_left_top_content" v-if="dataInfo.kind == 0">

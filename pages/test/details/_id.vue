@@ -4,8 +4,8 @@
       <div class="details_main_left">
         <div class="details_main_left_top">
           <div class="details_main_left_top_menu">
-            <a href="">Quizzes</a> > <a href="">News</a> >
-            <a href="">Quizzes Details</a>
+            <a href="javascript:history.back(-1)">Quizzes</a>  >
+            <a href="" style="color:#FFFFFF">Quizzes Details</a>
           </div>
           <div class="details_main_left_top_content" v-if="!showResult">
             <div class="details_main_left_top_content_name">
@@ -393,11 +393,11 @@ $block: 220px;
 $spacing: 55px;
 
 .green-border {
-  border: 1px solid green !important;
+  border: 1px solid #4BEB6E !important;
 }
 
 .red-border {
-  border: 1px solid red !important;
+  border: 1px solid #FF3E3E !important;
 }
 .stop-next {
   color: rgba(255, 255, 255, 0.7) !important;

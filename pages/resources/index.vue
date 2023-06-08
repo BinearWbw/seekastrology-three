@@ -8,7 +8,7 @@
         <a
           class="resources_main_top_left"
           :href="`${getIntersperseUrl}/resources/details/${list[0].name
-            .replace(/[^a-zA-Z0-9\\s]/g, '-')
+            .trim().replace(/\?/g, '').replace(/\s+/g, '-')
             .toLowerCase()}-${list[0].id}/`"
         >
           <!-- (0-文章、1-视频） -->
@@ -79,7 +79,7 @@
             :key="item.id"
             class="resources_main_top_right_item"
             :href="`${getIntersperseUrl}/resources/details/${item.name
-              .replace(/[^a-zA-Z0-9\\s]/g, '-')
+              .trim().replace(/\?/g, '').replace(/\s+/g, '-')
               .toLowerCase()}-${item.id}/`"
           >
             <!-- 0图文 -->
@@ -165,7 +165,7 @@
             :key="item.id"
             class="resources_main_btm_main_item"
             :href="`${getIntersperseUrl}/resources/details/${item.name
-              .replace(/[^a-zA-Z0-9\\s]/g, '-')
+              .trim().replace(/\?/g, '').replace(/\s+/g, '-')
               .toLowerCase()}-${item.id}/`"
           >
             <!-- type0为文本 type1为视频， -->
@@ -238,11 +238,6 @@ export default {
     return {
       loading: false,
       currentTabIndex: 0,
-      variousList: [
-        { imgUrl: '', title: 'Tarot' },
-        { imgUrl: '', title: 'Tarot' },
-        { imgUrl: '', title: 'Tarot' },
-      ],
     }
   },
   async asyncData({ error, $apiList }) {
@@ -275,6 +270,7 @@ export default {
             return res || null
           }),
       ])
+      console.log(tabs);
       /**默认请求tabs第一条对应的列表 */
       let btmList = await $apiList.articles
         .getNews({

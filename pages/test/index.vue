@@ -33,7 +33,7 @@
             <a
               class="test_main_center_list_item"
               :href="`${getIntersperseUrl}/test/details/${item.name
-                .replace(/[^a-zA-Z0-9\\s]/g, '-')
+                .trim().replace(/\?/g, '').replace(/\s+/g, '-')
                 .toLowerCase()}-${item.id}/`"
             >
               <div class="test_main_center_list_item_img">
@@ -508,10 +508,65 @@ $spacing: 16px;
     }
   }
 }
+@media (max-width: (4 * $block + 3 * $spacing + 500px)) {
+  .test {
+    &_main {
+      width: 95%;
+      &_center {
+        &_right {
+          .google_ad {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
 @media (max-width: (4 * $block + 3 * $spacing + 400px)) {
+  .test {
+    &_main {
+      &_center {
+        &_list {
+          width: 100%;
+          grid-template-columns: repeat(3, 220px);
+          justify-content: center;
+          .google_ad {
+            grid-column-start: span 3;
+            grid-column-end: 4;
+            width: 100%;
+          }
+        }
+      
+      }
+    }
+  }
+}
+@media (max-width: (3 * $block + 2 * $spacing + 350px)) {
+  .test {
+    &_main {
+      &_center {
+        &_list {
+          grid-template-columns: repeat(2, 220px);
+          .google_ad {
+            grid-column-start: span 2;
+            grid-column-end: 3;
+          }
+        }
+      
+      }
+    }
+  }
+}
+@media (max-width: (2 * $block + 1 * $spacing + 350px)) {
   .test{
     &_main{
-      width: 100%;
+      &_center{
+        &_right{
+          .google_ad{
+            width: 200px;
+          }
+        }
+      }
     }
   }
 
