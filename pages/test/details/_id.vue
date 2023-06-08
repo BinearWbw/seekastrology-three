@@ -495,6 +495,7 @@ $spacing: 55px;
                 align-items: center;
                 word-break: break-all;
                 cursor: pointer;
+                height: 100%;
                 span {
                   width: 100%;
                   cursor: pointer;
