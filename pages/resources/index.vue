@@ -8,7 +8,7 @@
         <a
           class="resources_main_top_left"
           :href="`${getIntersperseUrl}/resources/details/${list[0].name
-            .trim().replace(/\?/g, '').replace(/\s+/g, '-')
+            .trim().replace(/[^\w\d]/g, '-')
             .toLowerCase()}-${list[0].id}/`"
         >
           <!-- (0-文章、1-视频） -->
@@ -79,7 +79,7 @@
             :key="item.id"
             class="resources_main_top_right_item"
             :href="`${getIntersperseUrl}/resources/details/${item.name
-              .trim().replace(/\?/g, '').replace(/\s+/g, '-')
+              .trim().replace(/[^\w\d]/g, '-')
               .toLowerCase()}-${item.id}/`"
           >
             <!-- 0图文 -->
@@ -165,7 +165,7 @@
             :key="item.id"
             class="resources_main_btm_main_item"
             :href="`${getIntersperseUrl}/resources/details/${item.name
-              .trim().replace(/\?/g, '').replace(/\s+/g, '-')
+              .trim().replace(/[^\w\d]/g, '-')
               .toLowerCase()}-${item.id}/`"
           >
             <!-- type0为文本 type1为视频， -->

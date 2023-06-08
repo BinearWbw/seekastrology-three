@@ -33,7 +33,7 @@
             <a
               class="test_main_center_list_item"
               :href="`${getIntersperseUrl}/test/details/${item.name
-                .trim().replace(/\?/g, '').replace(/\s+/g, '-')
+                .trim().replace(/[^\w\d]/g, '-')
                 .toLowerCase()}-${item.id}/`"
             >
               <div class="test_main_center_list_item_img">

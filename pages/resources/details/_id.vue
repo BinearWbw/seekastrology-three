@@ -7,7 +7,7 @@
         <div class="details_main_left_top">
           <div class="details_main_left_top_menu">
             <a href="javascript:history.back(-1)">Article</a> >
-            <a href="" style="color:#FFFFFF">Article Details</a>
+            <a href="" style="color: #ffffff">Article Details</a>
           </div>
           <!-- 0-文章、1-视频）-->
           <div class="details_main_left_top_content" v-if="dataInfo.kind == 0">
@@ -124,26 +124,32 @@
       <div class="details_main_right">
         <google-ad classNames="rightAd"></google-ad>
         <div class="details_main_right_list">
-          <div
+          <a
+            :href="`${getIntersperseUrl}/resources/details/${item.name
+              .trim()
+              .replace(/[^\w\d]/g, '-')
+              .toLowerCase()}-${item.id}/`"
             class="details_main_right_list_item"
             v-for="(item, index) in immedList"
             :key="index"
-            @click="getDetailsInfo(item.id)"
           >
             <span>{{ item.name }}</span>
             <img src="../../../assets/img/resources/d_02.png" alt="" />
-          </div>
+          </a>
         </div>
       </div>
     </div>
     <div class="details_footer">
       <div class="details_footer_title">Trending Articles</div>
       <div class="details_footer_list">
-        <div
+        <a
+          :href="`${getIntersperseUrl}/resources/details/${item.name
+            .trim()
+            .replace(/[^\w\d]/g, '-')
+            .toLowerCase()}-${item.id}/`"
           class="details_footer_list_item"
           v-for="(item, index) in footList"
           :key="index"
-          @click="getDetailsInfo(item.id)"
         >
           <!-- (0-文章、1-视频） -->
           <template v-if="item.kind == 0">
@@ -191,7 +197,7 @@
               {{ item.name }}
             </div>
           </template>
-        </div>
+        </a>
       </div>
     </div>
     <google-ad classNames="google_ad_footer"></google-ad>
@@ -201,58 +207,58 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
       playState: false,
-      immedList: [
-        { title: "What's in your Immed", id: 1 },
-        { title: "What's in your Immed", id: 2 },
-        { title: "What's in your Immed", id: 3 },
-        { title: "What's in your Immed", id: 4 },
-        { title: "What's in your Immed", id: 5 },
-        { title: "What's in your Immed", id: 6 },
-        { title: "What's in your Immed", id: 7 },
-        { title: "What's in your Immed", id: 8 },
-      ],
-      footList: [
-        {
-          id: 7,
-          type: 2,
-          imgUrl: require('../../../assets/img/resources/p_12.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-        {
-          id: 8,
-          type: 1,
-          imgUrl: require('../../../assets/img/resources/p_13.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-          time: '37:25',
-        },
-        {
-          id: 9,
-          type: 2,
-          imgUrl: require('../../../assets/img/resources/p_14.png'),
-          title:
-            '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-          subscribe:
-            'We have so many opportunities for love in our lifetimes! You can consul',
-          date: '07/23',
-        },
-      ],
-      dataInfo: {},
+      // immedList: [
+      //   { title: "What's in your Immed", id: 1 },
+      //   { title: "What's in your Immed", id: 2 },
+      //   { title: "What's in your Immed", id: 3 },
+      //   { title: "What's in your Immed", id: 4 },
+      //   { title: "What's in your Immed", id: 5 },
+      //   { title: "What's in your Immed", id: 6 },
+      //   { title: "What's in your Immed", id: 7 },
+      //   { title: "What's in your Immed", id: 8 },
+      // ],
+      // footList: [
+      //   {
+      //     id: 7,
+      //     type: 2,
+      //     imgUrl: require('../../../assets/img/resources/p_12.png'),
+      //     title:
+      //       '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+      //     subscribe:
+      //       'We have so many opportunities for love in our lifetimes! You can consul',
+      //     date: '07/23',
+      //   },
+      //   {
+      //     id: 8,
+      //     type: 1,
+      //     imgUrl: require('../../../assets/img/resources/p_13.png'),
+      //     title:
+      //       '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+      //     subscribe:
+      //       'We have so many opportunities for love in our lifetimes! You can consul',
+      //     date: '07/23',
+      //     time: '37:25',
+      //   },
+      //   {
+      //     id: 9,
+      //     type: 2,
+      //     imgUrl: require('../../../assets/img/resources/p_14.png'),
+      //     title:
+      //       '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
+      //     subscribe:
+      //       'We have so many opportunities for love in our lifetimes! You can consul',
+      //     date: '07/23',
+      //   },
+      // ],
+      // dataInfo: {},
     }
   },
-  mounted() {
-  },
+  mounted() {},
   async asyncData({ error, $apiList, params }) {
     try {
       let totalNum = 0,
@@ -343,6 +349,9 @@ export default {
           this.getNews()
         })
     },
+  },
+  computed:{
+    ...mapGetters(['getIntersperseUrl']),
   },
 }
 </script>
@@ -558,6 +567,7 @@ $spacing: 16px;
       grid-gap: 16px;
       margin-bottom: 130px;
       &_item {
+        display: block;
         &_img {
           width: 456px;
           height: 280px;
