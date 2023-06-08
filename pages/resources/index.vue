@@ -3,12 +3,14 @@
     <!-- <google-ad class="google_ad_left"></google-ad>
     <google-ad class="google_ad_right"></google-ad> -->
     <div class="resources_main">
+      <google-ad classNames="google_ad"></google-ad>
       <div class="resources_main_title">HOT Content</div>
-      <div class="resources_main_top">
+      <div class="resources_main_top" v-if="list.length > 0">
         <a
           class="resources_main_top_left"
           :href="`${getIntersperseUrl}/resources/details/${list[0].name
-            .trim().replace(/[^\w\d]/g, '-')
+            .trim()
+            .replace(/[^\w\d]/g, '-')
             .toLowerCase()}-${list[0].id}/`"
         >
           <!-- (0-文章、1-视频） -->
@@ -34,15 +36,13 @@
                   <span>{{ $utils.formatMMDD(list[0].created_at) }}</span>
                 </div>
               </div>
-              <div
-                class="resources_main_top_left_content_subscribe"
-              >
-              {{list[0].text}}
+              <div class="resources_main_top_left_content_subscribe">
+                {{ list[0].text }}
               </div>
-              <div class="resources_main_top_left_content_btn">Read More</div>
-              <div class="resources_main_top_left_content_h5date">
-                {{ list[0].created_at }}
-              </div>
+              <!-- <div class="resources_main_top_left_content_btn">Read More</div> -->
+              <!-- <div class="resources_main_top_left_content_h5date">
+                {{ $utils.formatMMDD(list[0].created_at) }}
+              </div> -->
             </div>
           </template>
           <template v-else>
@@ -80,7 +80,8 @@
             :key="item.id"
             class="resources_main_top_right_item"
             :href="`${getIntersperseUrl}/resources/details/${item.name
-              .trim().replace(/[^\w\d]/g, '-')
+              .trim()
+              .replace(/[^\w\d]/g, '-')
               .toLowerCase()}-${item.id}/`"
           >
             <!-- 0图文 -->
@@ -103,10 +104,8 @@
                     >{{ item.name }}</span
                   >
                 </div>
-                <div
-                  class="resources_main_top_right_item_content_subscribe"
-                >
-                {{item.text}}
+                <div class="resources_main_top_right_item_content_subscribe">
+                  {{ item.text }}
                 </div>
                 <div class="resources_main_top_right_item_content_date">
                   <span> {{ $utils.formatMMDD(item.created_at) }}</span>
@@ -161,13 +160,14 @@
           </div>
         </div>
         <div class="resources_main_btm_line"></div>
-        <div class="resources_main_btm_main">
+        <div class="resources_main_btm_main" v-if="btmList">
           <a
             v-for="item in btmList"
             :key="item.id"
             class="resources_main_btm_main_item"
             :href="`${getIntersperseUrl}/resources/details/${item.name
-              .trim().replace(/[^\w\d]/g, '-')
+              .trim()
+              .replace(/[^\w\d]/g, '-')
               .toLowerCase()}-${item.id}/`"
           >
             <!-- type0为文本 type1为视频， -->
@@ -187,10 +187,8 @@
                 <div class="resources_main_btm_main_item_text_title">
                   {{ item.name }}
                 </div>
-                <div
-                  class="resources_main_btm_main_item_text_subscribe"
-                >
-                {{item.text}}
+                <div class="resources_main_btm_main_item_text_subscribe">
+                  {{ item.text }}
                 </div>
                 <div class="resources_main_btm_main_item_text_date">
                   {{ $utils.formatMMDD(item.created_at) }}
@@ -642,18 +640,13 @@ $spacing: 16px;
               /* or 138% */
               color: rgba(255, 255, 255, 0.7);
               margin-top: 8px;
-              text-align: center;
               overflow: hidden;
               white-space: normal;
               -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;
+              -webkit-line-clamp: 1;
               display: -webkit-box;
             }
           }
-          // img {
-          //   width: 397px;
-          //   height: 198px;
-          // }
         }
       }
     }
@@ -661,7 +654,8 @@ $spacing: 16px;
       width: 970px;
       height: 90px;
       background-color: #555761;
-      margin: 8px auto 0;
+      margin: 40px auto 0;
+      margin-bottom: 40px;
     }
     .google_ad_btm {
       width: 924px;
@@ -788,13 +782,17 @@ $spacing: 16px;
               font-size: 22px;
               line-height: 30px;
               /* or 136% */
-              text-align: center;
               color: #ffffff;
               margin-top: 16px;
               width: 456px;
+              // overflow: hidden;
+              // white-space: nowrap;
+              // text-overflow: ellipsis;
               overflow: hidden;
-              white-space: nowrap;
               text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
             }
             &_date {
               font-family: 'Rubik';
@@ -816,11 +814,10 @@ $spacing: 16px;
               /* or 138% */
               color: rgba(255, 255, 255, 0.7);
               margin-top: 8px;
-              text-align: center;
               overflow: hidden;
               white-space: normal;
               -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;
+              -webkit-line-clamp: 1;
               display: -webkit-box;
             }
           }
