@@ -235,64 +235,36 @@ export default {
 }
 @media (max-width: 1435px) {
   .home {
-    position: relative;
     &__main {
-      margin: 0 auto;
       width: 1200px;
-      position: relative;
-      .various_ment {
-        padding-top: 100px;
-      }
-      .module {
-        margin-top: 100px;
-
-        .google_ad {
-          width: 924px;
-          background-color: #555761;
-          color: #808080;
-        }
-        &.choice {
-          .google_ad {
-            margin: 40px auto 0;
-            height: 114px;
-          }
-        }
-        &.kundli {
-          .google_ad {
-            margin: 80px auto 0;
-            height: 114px;
-          }
-        }
-        &.new_pop {
-          margin-top: 80px;
-        }
-      }
     }
   }
 }
 
 @media (max-width: 1200px) {
   .home {
-    position: relative;
     &__main {
-      margin: 0 auto;
       width: 1000px;
-      position: relative;
-      .various_ment {
-        padding-top: 100px;
-      }
+    }
+  }
+}
+
+@media (max-width: (1024px)) {
+  .home {
+    &__main {
+      width: 100%;
       .module {
         margin-top: 100px;
 
         .google_ad {
-          width: 924px;
-          background-color: #555761;
-          color: #808080;
+          width: 100%;
         }
         &.choice {
           .google_ad {
             margin: 40px auto 0;
             height: 114px;
+            padding: 0 50px;
+            background-color: initial;
           }
         }
         &.kundli {
@@ -375,6 +347,8 @@ export default {
             margin: 40 * $pr auto 0;
             width: 100%;
             height: 300 * $pr;
+            padding: 0;
+            background-color: #555761;
           }
         }
         &.tarot {
