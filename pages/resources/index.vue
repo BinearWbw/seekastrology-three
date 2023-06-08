@@ -31,7 +31,7 @@
                   list[0].name
                 }}</span>
                 <div class="resources_main_top_left_content_title_date">
-                  <span>{{ $utils.formatTime(list[0].created_at) }}</span>
+                  <span>{{ $utils.formatMMDD(list[0].created_at) }}</span>
                 </div>
               </div>
               <div
@@ -106,7 +106,7 @@
                     v-html="item.desc"
                   ></div>
                   <div class="resources_main_top_right_item_content_date">
-                    <span> {{ $utils.formatTime(item.created_at) }}</span>
+                    <span> {{ $utils.formatMMDD(item.created_at) }}</span>
                   </div>
                 </div>
               </template>
@@ -189,7 +189,7 @@
                     v-html="item.desc"
                   ></div>
                   <div class="resources_main_btm_main_item_text_date">
-                    {{ $utils.formatTime(item.created_at) }}
+                    {{ $utils.formatMMDD(item.created_at) }}
                   </div>
                 </div>
               </template>

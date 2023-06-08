@@ -138,30 +138,24 @@ const formatPast = (param, format) => {
     return formatDate(date, format)
   }
 }
-const formatTime = (param, format) => {
-  if(param == '' || param == undefined || param == null){
+const formatMMDD = (param) => {
+  if (param == '' || param == undefined || param == null) {
     return ''
   }
-  
-  var date = new Date(param);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-
-  var Y = date.getFullYear() + '/';
-
-  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
-
-  var D = date.getDate();
-
-  var h = date.getHours() + ':';
-
-  var m = date.getMinutes() + ':';
-
-  var s = date.getSeconds();
-
-  return M + D;//时分秒可以根据自己的需求加上
+  //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+  var date = new Date(param * 1000);
+  // 获取月份和日期
+  var month = date.getMonth() + 1; // 月份从 0 开始，所以需要加 1
+  var day = date.getDate();
+  // 格式化月份和日期为两位数（如果小于 10）
+  month = month < 10 ? '0' + month : month;
+  day = day < 10 ? '0' + day : day;
+  // 返回格式化后的字符串
+  return month + '-' + day;
 
 }
 const formatYYYYMMDDHHMM = (param, format) => {
-  if(param == '' || param == undefined || param == null){
+  if (param == '' || param == undefined || param == null) {
     return ''
   }
   var date = new Date(param * 1000); // 将时间戳转换为毫秒级别
@@ -176,7 +170,7 @@ const formatYYYYMMDDHHMM = (param, format) => {
   return dateTime;
 }
 const formatMMSS = (param) => {
-  if(param == '' || param == undefined || param == null){
+  if (param == '' || param == undefined || param == null) {
     return ''
   }
   const minutes = Math.floor(param / 60);
@@ -192,6 +186,6 @@ export default {
   formatDate,
   formatPast,
   shuffleArr,
-  formatTime,
+  formatMMDD,
   formatYYYYMMDDHHMM
 }

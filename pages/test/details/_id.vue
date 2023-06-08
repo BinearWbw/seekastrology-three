@@ -93,7 +93,7 @@
             </div>
             <div
               class="details_main_left_top_result"
-              v-if="dataInfo.quest_type == 2"
+              v-else
             >
               <div class="details_main_left_top_result_title">
                 {{ result.title }}
@@ -149,91 +149,91 @@ export default {
   data() {
     return {
       currentQuestionIndex: 0, //当前问题下标，默认0
-      dataInfo: {
-        name: 'What’s In Your Immediate Future',
-        desc: '<p>Will you find love, job success, more friends, or increased fortune? Select the answer that sounds most like you.</p>',
-        quest_type: 2, //题目类型 (1 -> score; 2 -> bucket) 1是对错 2是最终分数
-        questions: [
-          //问题数组
-          {
-            //回答选项列表
-            answers: [
-              { answer: 'Someone you like', bucket: 0, correct: true },
-              { answer: 'Someone you like', bucket: 0, correct: false },
-              { answer: 'Someone you like', bucket: 0, correct: false },
-              { answer: 'Someone you like', bucket: 0, correct: false },
-            ],
-            explanation: ['string'],
-            hint: ['string'],
-            icon: 'string',
-            question: "When you daydream, you're usually thinking about:", //问题标题
-          },
-          {
-            //回答选项列表
-            answers: [
-              { answer: 'string', bucket: 0, correct: true },
-              { answer: 'string', bucket: 0, correct: false },
-              { answer: 'string', bucket: 0, correct: false },
-              { answer: 'string', bucket: 0, correct: false },
-            ],
-            explanation: ['string'],
-            hint: ['string'],
-            icon: 'string',
-            question: 'string', //问题标题
-          },
-        ],
-        quest_type: 2,
-        //题目类型 (1 -> score; 2 -> bucket) 1为对错题，及时反馈 2为最终分数
-      },
-      btmList: [
-        {
-          id: 1,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 2,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 3,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 4,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 5,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 6,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 7,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 8,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../../assets/img/resources/d_03.png'),
-        },
-      ],
-      answers: [], //回答问题分数
-      nextFlag: false,
-      checkedAnswer: -1, //
-      trueIndex: -1,
-      showResult: false,
-      result: {},
-      disabledFlag: false,
+      // dataInfo: {
+      //   name: 'What’s In Your Immediate Future',
+      //   desc: '<p>Will you find love, job success, more friends, or increased fortune? Select the answer that sounds most like you.</p>',
+      //   quest_type: 2, //题目类型 (1 -> score; 2 -> bucket) 1是对错 2是最终分数
+      //   questions: [
+      //     //问题数组
+      //     {
+      //       //回答选项列表
+      //       answers: [
+      //         { answer: 'Someone you like', bucket: 0, correct: true },
+      //         { answer: 'Someone you like', bucket: 0, correct: false },
+      //         { answer: 'Someone you like', bucket: 0, correct: false },
+      //         { answer: 'Someone you like', bucket: 0, correct: false },
+      //       ],
+      //       explanation: ['string'],
+      //       hint: ['string'],
+      //       icon: 'string',
+      //       question: "When you daydream, you're usually thinking about:", //问题标题
+      //     },
+      //     {
+      //       //回答选项列表
+      //       answers: [
+      //         { answer: 'string', bucket: 0, correct: true },
+      //         { answer: 'string', bucket: 0, correct: false },
+      //         { answer: 'string', bucket: 0, correct: false },
+      //         { answer: 'string', bucket: 0, correct: false },
+      //       ],
+      //       explanation: ['string'],
+      //       hint: ['string'],
+      //       icon: 'string',
+      //       question: 'string', //问题标题
+      //     },
+      //   ],
+      //   quest_type: 2,
+      //   //题目类型 (1 -> score; 2 -> bucket) 1为对错题，及时反馈 2为最终分数
+      // },
+      // btmList: [
+      //   {
+      //     id: 1,
+      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
+      //     icon: require('../../../assets/img/resources/d_03.png'),
+      //   },
+      //   {
+      //     id: 2,
+      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
+      //     icon: require('../../../assets/img/resources/d_03.png'),
+      //   },
+      //   {
+      //     id: 3,
+      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
+      //     icon: require('../../../assets/img/resources/d_03.png'),
+      //   },
+      //   {
+      //     id: 4,
+      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
+      //     icon: require('../../../assets/img/resources/d_03.png'),
+      //   },
+      //   {
+      //     id: 5,
+      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
+      //     icon: require('../../../assets/img/resources/d_03.png'),
+      //   },
+      //   {
+      //     id: 6,
+      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
+      //     icon: require('../../../assets/img/resources/d_03.png'),
+      //   },
+      //   {
+      //     id: 7,
+      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
+      //     icon: require('../../../assets/img/resources/d_03.png'),
+      //   },
+      //   {
+      //     id: 8,
+      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
+      //     icon: require('../../../assets/img/resources/d_03.png'),
+      //   },
+      // ],
+      answers: [], //用户选择的每道问题答案
+      nextFlag: false,//下一题状态
+      checkedAnswer: -1, //用户点击答案的下标
+      trueIndex: -1,//正确答案下标
+      showResult: false,//展示结果
+      result: {},//返回的数据
+      disabledFlag: false,//禁用单选框状态
     }
   },
   async asyncData({ error, route, $apiList, params, $utils }) {
@@ -244,7 +244,6 @@ export default {
           page: 1,
           size: 10,
         }
-      console.log(params.id)
       let [dataInfo, btmList] = await Promise.all([
         /**顶部问答 */
         $apiList.test
@@ -285,9 +284,9 @@ export default {
     retake() {
       //改变showResult
       this.showResult = false
-      //将currentQuestionIndex改为0
+      //将currentQuestionIndex改为0，回到第一题
       this.currentQuestionIndex = 0
-      //更改radio禁用状态
+      //更改radio禁用状态，用户可以点击
       this.disabledFlag = false
       //禁用下一题按钮
       this.nextFlag = false
@@ -318,6 +317,19 @@ export default {
       if (!this.disabledFlag) {
         //对错
         if (this.dataInfo.quest_type == 1) {
+          /**
+           * 如果用户选择的不正确：
+           * 1.将用户选择的答案标记红色边框
+           * 2.标正确答案标记绿色变边框
+           * 否则：
+           * 将用户选择的答案标记绿色边框
+           */
+          //获取用户点击的下标
+          this.checkedAnswer = index
+          //获取本道题对的答案下标
+          this.trueIndex = this.dataInfo.questions[
+            this.currentQuestionIndex
+          ].answers.findIndex((item) => item.correct === true)
           //判断回答数组当前下标是否为undefined，如果是才赋值
           if (this.answers[this.currentQuestionIndex] == undefined) {
             this.answers[this.currentQuestionIndex] = item.bucket
@@ -325,23 +337,9 @@ export default {
             this.disabledFlag = true
           }
         } else {
+          //非对错题-直接赋值 用户可改变选择的答案
           this.answers[this.currentQuestionIndex] = item.bucket
         }
-      }
-      if (this.dataInfo.quest_type == 1) {
-        //获取用户点击的下标
-        this.checkedAnswer = index
-        //获取本道题对的答案下标
-        this.trueIndex = this.dataInfo.questions[
-          this.currentQuestionIndex
-        ].answers.findIndex((item) => item.correct === true)
-        /**
-         * 如果用户选择的不正确：
-         * 1.将用户选择的答案标记红色边框
-         * 2.标正确答案标记绿色变边框
-         * 否则：
-         * 将用户选择的答案标记绿色边框
-         */
       }
       //选择答案后才能点击下一题
       this.nextFlag = true
@@ -367,9 +365,8 @@ export default {
     },
     /**获取问题详情 */
     getDataInfo(item) {
-      this.answers = []
-      this.checkedAnswer = -1
-      this.trueIndex = -1
+      //重置状态
+      this.retake()
       this.$apiList.test
         .getQuizDetail({
           origin: process.env.origin,
@@ -378,8 +375,8 @@ export default {
         .then((res) => {
           this.dataInfo = res
         })
-      let top = document.documentElement.scrollTop || document.body.scrollTop
       // 实现滚动效果
+      let top = document.documentElement.scrollTop || document.body.scrollTop
       const timeTop = setInterval(() => {
         document.body.scrollTop = document.documentElement.scrollTop = top -= 50
         if (top <= 0) {
@@ -489,6 +486,7 @@ $spacing: 55px;
                 width: 100%;
                 display: flex;
                 align-items: center;
+                word-break: break-all;
                 span {
                   width: 100%;
                   // word-break: break-all;

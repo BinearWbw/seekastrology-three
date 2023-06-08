@@ -71,7 +71,7 @@
               </p> -->
             </div>
           </div>
-          <div class="details_main_left_top_content" v-if="dataInfo.kind == 1">
+          <div class="details_main_left_top_content" v-else>
             <div class="details_main_left_top_content_title">
               {{ dataInfo.name }}
             </div>
@@ -146,7 +146,7 @@
           @click="getDetailsInfo(item.id)"
         >
           <!-- (0-文章、1-视频） -->
-          <div v-if="item.kind == 0">
+          <template v-if="item.kind == 0">
             <div class="details_footer_list_item_img">
               <nuxt-img
                 :src="item.icon"
@@ -165,11 +165,11 @@
                 v-html="item.desc"
               ></div>
               <div class="details_footer_list_item_text_date">
-                {{ $utils.formatTime(item.created_at) }}
+                {{ $utils.formatMMDD(item.created_at) }}
               </div>
             </div>
-          </div>
-          <div v-if="item.kind == 1">
+          </template>
+          <template v-else>
             <div class="details_footer_list_item_img">
               <nuxt-img
                 :src="item.icon"
@@ -190,7 +190,7 @@
             <div class="details_footer_list_item_vtitle">
               {{ item.name }}
             </div>
-          </div>
+          </template>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@
             <a href="#">Read More</a>
           </div>
           <div class="text_time">
-            {{ $utils.formatTime(homeNews[0].created_at) }}
+            {{ $utils.formatMMDD(homeNews[0].created_at) }}
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
               <p v-if="item.kind == 0" v-html="item.desc"></p>
             </div>
             <div class="news_right_time">
-              {{ $utils.formatTime(item.created_at) }}
+              {{ $utils.formatMMDD(item.created_at) }}
             </div>
           </a>
         </li>
