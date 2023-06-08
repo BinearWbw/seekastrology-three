@@ -266,7 +266,7 @@ export default {
             type: 4,
           })
           .then((res) => {
-            item = res?.lengh > 0 ? res[0] : null
+            item = res?.length > 0 ? res[0] : null
             return res || null
           }),
       ])
@@ -274,7 +274,7 @@ export default {
       let btmList = await $apiList.articles
         .getNews({
           origin: process.env.origin,
-          cate: tabs?.length > 0 ? tabs[0]?.id : 3,
+          cate: item.id ? item.id : 3,
           ...search,
         })
         .then((res) => {
@@ -346,7 +346,7 @@ export default {
       let bodyHeight =
         document.body.scrollHeight || document.documentElement.scrollHeight
       let screenWidth = window.innerWidth
-      console.log('屏幕宽度：' + screenWidth)
+      // console.log('屏幕宽度：' + screenWidth)
       if (scrollTop + window.innerHeight >= bodyHeight - 850) {
         if (this.loading) return
         this.getNews(this.item)

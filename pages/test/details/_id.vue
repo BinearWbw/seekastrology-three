@@ -316,7 +316,7 @@ export default {
     },
     /**选择答案 */
     chooseAnswer(item, index) {
-      //1为对错 2为分数
+      //1为对错 2为非对错题
       if (!this.disabledFlag) {
         //对错
         if (this.dataInfo.quest_type == 1) {
