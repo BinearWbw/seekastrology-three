@@ -266,16 +266,15 @@ export default {
             type: 4,
           })
           .then((res) => {
-            item = res[0]
+            item = res?.lengh > 0 ? res[0] : null
             return res || null
           }),
       ])
-      console.log(tabs);
       /**默认请求tabs第一条对应的列表 */
       let btmList = await $apiList.articles
         .getNews({
           origin: process.env.origin,
-          cate: tabs?.length > 0 ? tabs[0].id : 3,
+          cate: tabs?.length > 0 ? tabs[0]?.id : 3,
           ...search,
         })
         .then((res) => {

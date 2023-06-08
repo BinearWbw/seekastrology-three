@@ -476,6 +476,7 @@ $spacing: 55px;
               align-items: center;
               padding: 10px 10px;
               border: 1px solid transparent;
+              cursor: pointer;
               label {
                 font-family: 'Rubik';
                 font-style: normal;
@@ -487,8 +488,10 @@ $spacing: 55px;
                 display: flex;
                 align-items: center;
                 word-break: break-all;
+                cursor: pointer;
                 span {
                   width: 100%;
+                  cursor: pointer;
                   // word-break: break-all;
                 }
                 input {
@@ -502,6 +505,7 @@ $spacing: 55px;
                   appearance: none;
                   -webkit-appearance: none; /**隐藏原生控件**/
                   flex-shrink: 0;
+                  cursor: pointer;
                   &:checked {
                     position: relative;
                     &::before {
