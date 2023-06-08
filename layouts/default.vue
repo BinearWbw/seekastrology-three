@@ -26,11 +26,11 @@ export default {
     }
   },
   mounted() {
-    let url = 'https://taptogame.com'
-    if (window.location.host == 'taptogame.com') {
-      url = 'https://www.taptogame.com'
-    } else if (window.location.host == 'www.taptogame.com') {
-      url = 'https://taptogame.com'
+    let url = 'https://seekastrology.com'
+    if (window.location.host == 'seekastrology.com') {
+      url = 'https://www.seekastrology.com'
+    } else if (window.location.host == 'www.seekastrology.com') {
+      url = 'https://seekastrology.com'
     } else {
       url = `http://${window.location.host}`
     }

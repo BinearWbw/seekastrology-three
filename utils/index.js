@@ -143,43 +143,42 @@ const formatMMDD = (param) => {
     return ''
   }
   //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-  var date = new Date(param * 1000);
+  var date = new Date(param * 1000)
   // 获取月份和日期
-  var month = date.getMonth() + 1; // 月份从 0 开始，所以需要加 1
-  var day = date.getDate();
+  var month = date.getMonth() + 1 // 月份从 0 开始，所以需要加 1
+  var day = date.getDate()
   // 格式化月份和日期为两位数（如果小于 10）
-  month = month < 10 ? '0' + month : month;
-  day = day < 10 ? '0' + day : day;
+  month = month < 10 ? '0' + month : month
+  day = day < 10 ? '0' + day : day
   // 返回格式化后的字符串
-  return month + '/' + day;
-
+  return month + '/' + day
 }
 const formatYYYYMMDDHHMM = (param, format) => {
   if (param == '' || param == undefined || param == null) {
     return ''
   }
-  var date = new Date(param * 1000); // 将时间戳转换为毫秒级别
-  var year = date.getFullYear();
-  var month = ('0' + (date.getMonth() + 1)).slice(-2); // 月份从0开始，需要加1
-  var day = ('0' + date.getDate()).slice(-2);
-  var hours = ('0' + date.getHours()).slice(-2);
-  var minutes = ('0' + date.getMinutes()).slice(-2); // 获取分钟并补零
+  var date = new Date(param * 1000) // 将时间戳转换为毫秒级别
+  var year = date.getFullYear()
+  var month = ('0' + (date.getMonth() + 1)).slice(-2) // 月份从0开始，需要加1
+  var day = ('0' + date.getDate()).slice(-2)
+  var hours = ('0' + date.getHours()).slice(-2)
+  var minutes = ('0' + date.getMinutes()).slice(-2) // 获取分钟并补零
 
-  var dateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
+  var dateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes
 
-  return dateTime;
+  return dateTime
 }
 const formatMMSS = (param) => {
   if (param == '' || param == undefined || param == null) {
     return ''
   }
-  const minutes = Math.floor(param / 60);
-  const remainingSeconds = param % 60;
+  const minutes = Math.floor(param / 60)
+  const remainingSeconds = param % 60
 
-  const formattedMinutes = String(minutes).padStart(2, '0');
-  const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+  const formattedMinutes = String(minutes).padStart(2, '0')
+  const formattedSeconds = String(remainingSeconds).padStart(2, '0')
 
-  return `${formattedMinutes}:${formattedSeconds}`;
+  return `${formattedMinutes}:${formattedSeconds}`
 }
 export default {
   formatMMSS,
@@ -187,5 +186,5 @@ export default {
   formatPast,
   shuffleArr,
   formatMMDD,
-  formatYYYYMMDDHHMM
+  formatYYYYMMDDHHMM,
 }

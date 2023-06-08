@@ -79,9 +79,7 @@ export default {
     TarotPlay,
   },
   data() {
-    return {
-
-    }
+    return {}
   },
 }
 </script>

@@ -350,7 +350,7 @@ export default {
         })
     },
   },
-  computed:{
+  computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
 }

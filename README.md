@@ -1,4 +1,4 @@
-# taptogame
+# seekastrology
 
 ## Build Setup
 

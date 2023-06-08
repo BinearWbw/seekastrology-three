@@ -33,7 +33,8 @@
             <a
               class="test_main_center_list_item"
               :href="`${getIntersperseUrl}/test/details/${item.name
-                .trim().replace(/[^\w\d]/g, '-')
+                .trim()
+                .replace(/[^\w\d]/g, '-')
                 .toLowerCase()}-${item.id}/`"
             >
               <div class="test_main_center_list_item_img">
@@ -70,7 +71,6 @@
         <google-ad classNames="google_ad_h5btm"></google-ad>
         <div class="test_main_center_right">
           <google-ad classNames="google_ad"></google-ad>
-         
         </div>
       </div>
     </div>
@@ -502,7 +502,6 @@ $spacing: 16px;
           margin-bottom: 202px;
           position: fixed;
           top: 200px;
-          
         }
       }
       .google_ad_h5btm {
@@ -539,8 +538,8 @@ $spacing: 16px;
             width: 100%;
           }
         }
-        &_right{
-          .google_ad{
+        &_right {
+          .google_ad {
             right: 20px;
             width: 250px;
           }
@@ -560,27 +559,25 @@ $spacing: 16px;
             grid-column-end: 3;
           }
         }
-      
       }
     }
   }
 }
 @media (max-width: (2 * $block + 1 * $spacing + 350px)) {
-  .test{
-    &_main{
-      &_center{
-        &_list{
+  .test {
+    &_main {
+      &_center {
+        &_list {
           width: 80%;
         }
-        &_right{
-          .google_ad{
+        &_right {
+          .google_ad {
             right: 10px;
           }
         }
       }
     }
   }
-
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);

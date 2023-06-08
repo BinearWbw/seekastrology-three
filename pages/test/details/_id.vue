@@ -4,8 +4,8 @@
       <div class="details_main_left">
         <div class="details_main_left_top">
           <div class="details_main_left_top_menu">
-            <a href="javascript:history.back(-1)">Quizzes</a>  >
-            <a href="" style="color:#FFFFFF">Quizzes Details</a>
+            <a href="javascript:history.back(-1)">Quizzes</a> >
+            <a href="" style="color: #ffffff">Quizzes Details</a>
           </div>
           <div class="details_main_left_top_content" v-if="!showResult">
             <div class="details_main_left_top_content_name">
@@ -91,10 +91,7 @@
                 Result:<span> {{ result.score }}</span>
               </div>
             </div>
-            <div
-              class="details_main_left_top_result"
-              v-else
-            >
+            <div class="details_main_left_top_result" v-else>
               <div class="details_main_left_top_result_title">
                 {{ result.title }}
               </div>
@@ -113,7 +110,8 @@
           <div class="details_main_left_btm_list">
             <a
               :href="`${getIntersperseUrl}/test/details/${item.name
-                .trim().replace(/[^\w\d]/g, '-')
+                .trim()
+                .replace(/[^\w\d]/g, '-')
                 .toLowerCase()}-${item.id}/`"
               class="details_main_left_btm_list_item"
               v-for="(item, index) in btmList"
@@ -231,12 +229,12 @@ export default {
       //   },
       // ],
       answers: [], //用户选择的每道问题答案
-      nextFlag: false,//下一题状态
+      nextFlag: false, //下一题状态
       checkedAnswer: -1, //用户点击答案的下标
-      trueIndex: -1,//正确答案下标
-      showResult: false,//展示结果
-      result: {},//返回的数据
-      disabledFlag: false,//禁用单选框状态
+      trueIndex: -1, //正确答案下标
+      showResult: false, //展示结果
+      result: {}, //返回的数据
+      disabledFlag: false, //禁用单选框状态
     }
   },
   async asyncData({ error, route, $apiList, params, $utils }) {
@@ -399,11 +397,11 @@ $block: 220px;
 $spacing: 55px;
 
 .green-border {
-  border: 1px solid #4BEB6E !important;
+  border: 1px solid #4beb6e !important;
 }
 
 .red-border {
-  border: 1px solid #FF3E3E !important;
+  border: 1px solid #ff3e3e !important;
 }
 .stop-next {
   color: rgba(255, 255, 255, 0.7) !important;

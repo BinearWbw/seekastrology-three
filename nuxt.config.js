@@ -3,7 +3,7 @@ import routes from './config/routes'
 const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
-  target: 'static',
+  // target: 'static',
 
   generate: {
     // crawler: false,
@@ -19,7 +19,7 @@ module.exports = {
    */
   server: {
     port: 3001,
-    host: '127.0.0.1',
+    host: '0.0.0.0',
   },
 
   env: {
@@ -70,7 +70,7 @@ module.exports = {
         name: 'apple-mobile-web-app-status-bar-style',
         content: 'black-translucent',
       },
-      { name: 'apple-mobile-web-app-title', content: 'taptogame' },
+      { name: 'apple-mobile-web-app-title', content: 'seekastrology' },
       { name: 'HandheldFriendly', content: 'true' },
       { name: 'mobile-web-app-capable', content: 'yes' },
       { 'http-equiv': 'x-ua-compatible', content: 'ie=edge' },
@@ -83,7 +83,7 @@ module.exports = {
         hid: 'description',
         name: 'description',
         content:
-          'Taptogame is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Taptogame will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
+          'Seekastrology is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Seekastrology will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
       },
       {
         hid: 'keywords',
@@ -95,23 +95,23 @@ module.exports = {
         hid: 'og:title',
         property: 'og:title',
         content:
-          'Taptogame－dedicated to the dreams and wonders of the young crowd, play with your own colors in the game!',
+          'Seekastrology－dedicated to the dreams and wonders of the young crowd, play with your own colors in the game!',
       },
       {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'Taptogame is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Taptogame will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
+          'Seekastrology is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Seekastrology will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
       },
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://taptogame.com/',
+        content: 'https://seekastrology.com/',
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://taptogame.com/favicon.png',
+        content: 'https://seekastrology.com/favicon.png',
       },
       {
         hid: 'twitter:card',
@@ -121,36 +121,36 @@ module.exports = {
       {
         hid: 'twitter:domain',
         name: 'twitter:domain',
-        content: 'taptogame.com',
+        content: 'seekastrology.com',
       },
       {
         hid: 'twitter:url',
         name: 'twitter:url',
-        content: 'https://taptogame.com/',
+        content: 'https://seekastrology.com/',
       },
       {
         hid: 'twitter:title',
         name: 'twitter:title',
         content:
-          'Taptogame－dedicated to the dreams and wonders of the young crowd, play with your own colors in the game!',
+          'Seekastrology－dedicated to the dreams and wonders of the young crowd, play with your own colors in the game!',
       },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          'Taptogame is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Taptogame will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
+          'Seekastrology is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Seekastrology will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
       },
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: 'https://taptogame.com/favicon.png',
+        content: 'https://seekastrology.com/favicon.png',
       },
     ],
     link: [
       { rel: 'preconnect', href: 'https://www.doitme.link' },
       { rel: 'preconnect', href: 'https://asserts.gameseeks.com' },
-      { rel: 'preconnect', href: 'https://www.taptogame.com' },
-      { rel: 'preconnect', href: 'https://taptogame.com' },
+      { rel: 'preconnect', href: 'https://www.seekastrology.com' },
+      { rel: 'preconnect', href: 'https://seekastrology.com' },
       { rel: 'preload', as: 'image', href: '/img/bg.png' },
       { rel: 'preload', as: 'image', href: '/img/h5bg_home.png' },
       { rel: 'preload', as: 'image', href: '/img/bg.png' },
@@ -233,10 +233,10 @@ module.exports = {
       fileName: 'favicon.png',
     },
     manifest: {
-      name: 'taptogame',
-      short_name: 'taptogame',
+      name: 'seekastrology',
+      short_name: 'seekastrology',
       description:
-        'Taptogame is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Taptogame will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
+        'Seekastrology is a platform that gathers countless young gamers with the best free online games. All of our games are designed to provide young people with a better way to relax and have fun, with healthy gameplay and a wide range of styles waiting for your selection. When you are looking for fun through games, Seekastrology will be your faithful choice, offering you a more comprehensive range of games, the most diverse selection and as many new surprises as possible!',
     },
     // workbox: {
     //   dev: true,

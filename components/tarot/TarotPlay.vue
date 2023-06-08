@@ -106,8 +106,7 @@ export default {
       numbers: 3,
     }
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     async handleClike(index) {
       this.selectIndex = index
