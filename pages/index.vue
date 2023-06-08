@@ -1,10 +1,3 @@
-<!--
- * @Date: 2023-06-06 09:29:25
- * @LastEditors: tianjun
- * @LastEditTime: 2023-06-06 09:37:15
- * @FilePath: /seekastrology/pages/index.vue
- * @Description: 
--->
 <template>
   <article class="home">
     <div class="meteor">
@@ -212,7 +205,7 @@ export default {
     width: 1400px;
     position: relative;
     .various_ment {
-      margin-top: 100px;
+      padding-top: 100px;
     }
     .module {
       margin-top: 100px;
@@ -248,7 +241,7 @@ export default {
       width: 1200px;
       position: relative;
       .various_ment {
-        margin-top: 100px;
+        padding-top: 100px;
       }
       .module {
         margin-top: 100px;
@@ -286,7 +279,7 @@ export default {
       width: 1000px;
       position: relative;
       .various_ment {
-        margin-top: 100px;
+        padding-top: 100px;
       }
       .module {
         margin-top: 100px;
@@ -374,7 +367,7 @@ export default {
       padding: 0 16 * $pr;
       width: 100%;
       .various_ment {
-        margin-top: 48 * $pr;
+        padding-top: 48 * $pr;
       }
       .module {
         &.choice {

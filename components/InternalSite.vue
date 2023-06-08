@@ -22,7 +22,7 @@ export default {
           title: 'Horoscope',
           textCont: 'Read your freedaily horoscopes and learn more about your',
           imgUrl: require('~/assets/img/home/horoscope.png'),
-          path: '/horroscope',
+          path: '/horroscope/aries-1/',
         },
         {
           title: 'Zodiac Signs',

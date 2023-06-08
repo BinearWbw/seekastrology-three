@@ -73,13 +73,13 @@ export default {
         },
         {
           title: 'Quizzes',
-          path: '/test',
-          href: '/test',
+          path: '/test/',
+          href: '/test/',
         },
         {
           title: 'Articles',
-          path: '/resources',
-          href: '/resources',
+          path: '/resources/',
+          href: '/resources/',
         },
       ],
     }
@@ -110,7 +110,11 @@ export default {
   width: 100%;
   &__main {
     width: 100%;
-    height: 100%;
+    height: 90px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
     background: rgba(0, 0, 0, 0.5);
     > div {
       margin: 0 auto;
@@ -212,6 +216,7 @@ export default {
   .header {
     height: 60px;
     &__main {
+      height: 60px;
       > div {
         .nav {
           &__item {

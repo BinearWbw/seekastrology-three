@@ -35,10 +35,12 @@
                 <img :src="selectImgRight" alt="#" />
               </div>
             </div>
-            <div class="dynamic_determine">
+            <div class="dynamic_determine" ref="target">
               <p>Please choose your partners horoscope</p>
               <div class="determine_button">
-                <button class="button">Get Your Compatibility</button>
+                <button class="button" @click="getStartPairing">
+                  Get Your Compatibility
+                </button>
               </div>
               <google-ad classNames="google_ad"></google-ad>
             </div>
@@ -111,7 +113,7 @@ export default {
           imgUrl: require('~/assets/img/home/choice/Libra.png'),
         },
         {
-          name: 'Scorpic',
+          name: 'Scorpio',
           imgUrl: require('~/assets/img/home/choice/Scorpio.png'),
         },
         {
@@ -133,30 +135,18 @@ export default {
       ],
       selectImgLeft: require('~/assets/img/home/choice/Aries.png'),
       selectImgRight: require('~/assets/img/home/choice/Aries.png'),
-      textData: [
-        {
-          title: 'Aquarius Man And Aries Woman: Nature Of Bonding',
-          text: 'Aries and Aquarius are generally considered a very compatible zodiac pairing.Both signs share similar traits such as independence, energy,and enthusiasm, which make them natural partners in crime.Aries is known for their boldness and spontaneity, while Aquarius is known for their creativityand intellectualism. Together, they can explore new ideas, take risks, and enjoy a dynamic and exciting relationship.However, every individualIts important toconsider other factors, such as moon signs and rising signs, in addition to sun signs, for a moreaccurate assessment of compatibility.',
-        },
-        {
-          title: 'Cancer Man And Capricorn Woman: Love Affair',
-          text: 'Aries and Aquarius are generally considered a very compatible zodiac pairing.Both signs share similar traits such as independence, energy,and enthusiasm, which make them natural partners in crime.Aries is known for their boldness and spontaneity, while Aquarius is known for their creativityand intellectualism. Together, they can explore new ideas',
-        },
-        {
-          title: 'Cancer Man And Capricorn Woman: Love Affair',
-          text: 'Aries and Aquarius are generally considered a very compatible zodiac pairing.Both signs share similar traits such as independence, energy,and enthusiasm, which make them natural partners in crime.Aries is known for their boldness and spontaneity, while Aquarius is known for their creativityand intellectualism. Together, they can explore new ideas',
-        },
-      ],
     }
   },
   async asyncData({ error, $apiList, params }) {
     try {
+      let males = 'aries',
+        females = 'aries'
       let [compatibilityData] = await Promise.all([
         $apiList.home
           .getZodiacComp({
             origin: process.env.origin,
-            male: 'aries',
-            female: 'aries',
+            male: males,
+            female: females,
           })
           .then((res) => {
             return res
@@ -164,6 +154,8 @@ export default {
       ])
       return {
         compatibilityData,
+        males,
+        females,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
@@ -172,11 +164,23 @@ export default {
   methods: {
     handleDropdownChangeLeft(option) {
       this.selectImgLeft = option.imgUrl
-      console.log('Selected 左:', option.name)
+      this.females = option.name.toLowerCase()
     },
     handleDropdownChangeRight(option) {
       this.selectImgRight = option.imgUrl
-      console.log('Selected 右:', option)
+      this.males = option.name.toLowerCase()
+    },
+    getStartPairing() {
+      this.$apiList.home
+        .getZodiacComp({
+          origin: process.env.origin,
+          male: this.males,
+          female: this.females,
+        })
+        .then((res) => {
+          this.compatibilityData = res
+        })
+      this.$refs.target.scrollIntoView({ behavior: 'smooth', block: 'start' })
     },
   },
 }
@@ -203,7 +207,7 @@ export default {
     width: 1400px;
     z-index: 5;
     .pairing {
-      padding: 88px 0 64px;
+      padding: 88px 0 0;
 
       > h3 {
         font-family: 'Cinzel Decorative';
@@ -442,7 +446,7 @@ export default {
       width: 100%;
       padding: 0 16 * $pr;
       .pairing {
-        padding: 80 * $pr 0 48 * $pr;
+        padding: 80 * $pr 0 0;
         > h3 {
           font-size: 36 * $pr;
           line-height: 48 * $pr;

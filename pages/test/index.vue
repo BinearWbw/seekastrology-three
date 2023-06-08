@@ -33,7 +33,7 @@
             <a
               class="test_main_center_list_item"
               :href="`${getIntersperseUrl}/test/details/${item.name
-                .replace(/[^a-zA-Z0-9\\s]/g, '-')
+                .trim().replace(/[^\w\d]/g, '-')
                 .toLowerCase()}-${item.id}/`"
             >
               <div class="test_main_center_list_item_img">
@@ -62,15 +62,15 @@
             classNames="google_ad btm"
             v-if="list.length >= 32"
           ></google-ad>
+          <div class="common__loading" v-scroll v-if="search.page < totalPage">
+            <div class="common__loading__loader" v-if="loading"></div>
+          </div>
         </div>
-        <div class="common__loading" v-scroll v-if="search.page < totalPage">
-          <div class="common__loading__loader" v-if="loading"></div>
-        </div>
+
         <google-ad classNames="google_ad_h5btm"></google-ad>
         <div class="test_main_center_right">
           <google-ad classNames="google_ad"></google-ad>
-          <google-ad classNames="google_ad"></google-ad>
-          <google-ad classNames="google_ad"></google-ad>
+         
         </div>
       </div>
     </div>
@@ -342,7 +342,7 @@ export default {
       },
     },
   },
-  computed:{
+  computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
 }
@@ -481,6 +481,7 @@ $spacing: 16px;
           grid-column-end: 5;
           grid-column-start: span 4;
           grid-row-start: span 2;
+          overflow: hidden;
         }
         .top {
           grid-row-end: 5;
@@ -493,11 +494,15 @@ $spacing: 16px;
         }
       }
       &_right {
+        width: 300px;
         .google_ad {
           width: 300px;
           height: 600px;
           background: #555761;
           margin-bottom: 202px;
+          position: fixed;
+          top: 200px;
+          
         }
       }
       .google_ad_h5btm {
@@ -505,6 +510,77 @@ $spacing: 16px;
       }
     }
   }
+}
+@media (max-width: (4 * $block + 3 * $spacing + 500px)) {
+  .test {
+    &_main {
+      width: 95%;
+      &_center {
+        &_right {
+          .google_ad {
+            right: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: (4 * $block + 3 * $spacing + 400px)) {
+  .test {
+    &_main {
+      &_center {
+        &_list {
+          width: 100%;
+          grid-template-columns: repeat(3, 220px);
+          justify-content: center;
+          .google_ad {
+            grid-column-start: span 3;
+            grid-column-end: 4;
+            width: 100%;
+          }
+        }
+        &_right{
+          .google_ad{
+            right: 20px;
+            width: 250px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: (3 * $block + 2 * $spacing + 350px)) {
+  .test {
+    &_main {
+      &_center {
+        &_list {
+          grid-template-columns: repeat(2, 220px);
+          .google_ad {
+            grid-column-start: span 2;
+            grid-column-end: 3;
+          }
+        }
+      
+      }
+    }
+  }
+}
+@media (max-width: (2 * $block + 1 * $spacing + 350px)) {
+  .test{
+    &_main{
+      &_center{
+        &_list{
+          width: 80%;
+        }
+        &_right{
+          .google_ad{
+            right: 10px;
+          }
+        }
+      }
+    }
+  }
+
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
