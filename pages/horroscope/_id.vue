@@ -22,14 +22,7 @@
             <div class="list_tabs">
               <el-tabs :tabs="horroData" @click="correspondingTime">
                 <template>
-                  <!-- v-slot="{ activeTab }" -->
-                  <!-- <div
-                    v-for="(item, index) in horroData"
-                    :key="index"
-                    v-show="activeTab === index"
-                  > -->
                   <div class="texts" v-html="moreData[comentId].texts"></div>
-                  <!-- </div> -->
                 </template>
               </el-tabs>
             </div>
@@ -42,9 +35,10 @@
         <div class="more_main">
           <div
             class="more_list"
-            v-for="(item, index) in horoscopeData"
+            v-for="(item, index) in moreData"
             :key="index"
             @click="setCorresponding(index)"
+            v-show="index !== comentId"
           >
             <div class="more_title">
               <p>{{ item.title }}</p>
@@ -150,14 +144,13 @@ export default {
         },
       ],
       comentId: 0,
-      horoscopeData: [],
+      currentTime: 'd',
     }
   },
   async asyncData({ error, $apiList, params }) {
     try {
-      let ids = 1,
-        youlistData = {}
-      let [horoscoreData] = await Promise.all([
+      let ids = 1
+      let [youlistData] = await Promise.all([
         $apiList.home
           .getZodiacHoroscope({
             origin: process.env.origin,
@@ -169,51 +162,16 @@ export default {
           })
           .then((res) => {
             ids = res.id
-            youlistData = res.horoscope
-            // console.log('horoscoreData', res)
-            return res
+            return res.horoscope
           }),
       ])
       return {
-        horoscoreData,
         ids,
         youlistData,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
     }
-  },
-  mounted() {
-    console.log(this.youlistData)
-  },
-  created() {
-    this.horoscopeData = [
-      {
-        name: 'General',
-        title: 'General Horoscope',
-        texts: this.youlistData.general,
-      },
-      {
-        name: 'Love',
-        title: 'Love Horoscope',
-        texts: this.youlistData.love,
-      },
-      {
-        name: 'Health',
-        title: 'Health Horoscope',
-        texts: this.youlistData.health,
-      },
-      {
-        name: 'Career',
-        title: 'Career Horoscope',
-        texts: this.youlistData.career,
-      },
-      {
-        name: 'Finances',
-        title: 'Finances Horoscope',
-        texts: this.youlistData.finances,
-      },
-    ]
   },
   computed: {
     moreData() {
@@ -247,26 +205,25 @@ export default {
     },
   },
   methods: {
-    handleDropdownChange(option) {
-      console.log('selectd :', option)
+    async getHoroscopeData(id = 1, kind = 'd') {
+      await this.$apiList.home
+        .getZodiacHoroscope({
+          origin: process.env.origin,
+          id,
+          kind,
+        })
+        .then((res) => {
+          this.youlistData = res.horoscope
+        })
     },
-    // async getZodiacHoroscope() {
-    //   await this.$apiList.home
-    //     .getZodiacHoroscope({
-    //       origin: process.env.origin,
-    //       id: id || this.$route.query.id,
-    //     })
-    //     .then((res) => {
-    //       return res
-    //     })
-    // },
+    handleDropdownChange(option) {
+      // 点击下拉框
+      this.ids = option.id
+      this.getHoroscopeData(option.id, this.currentTime)
+    },
     setCorresponding(i) {
       // 点击其他运势
-      //   console.log(i, this.moreData)
       this.comentId = i
-      this.horoscopeData.splice(i, 1)
-      //   this.horoscopeData = this.moreData
-      //   console.log('删除后的数组', this.horoscopeData)
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
@@ -274,7 +231,8 @@ export default {
     },
     correspondingTime(i) {
       // 点击tabs
-      console.log(i.type)
+      this.currentTime = i.type
+      this.getHoroscopeData(this.ids, i.type)
     },
   },
 }
@@ -435,12 +393,10 @@ export default {
           &:hover {
             transform: translateY(-10px);
             border-color: rgba(255, 255, 255, 0.7);
-            a {
-              .more_text {
-                .button {
-                  color: #000;
-                  background-color: #fff;
-                }
+            .more_text {
+              .button {
+                color: #000;
+                background-color: #fff;
               }
             }
           }
