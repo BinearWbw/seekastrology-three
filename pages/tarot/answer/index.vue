@@ -1,45 +1,39 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-07 18:08:03
+ * @LastEditTime: 2023-06-08 16:33:19
  * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
 <template>
   <div class="tarot-container">
-    <div class="title">Choose 1 Cards From The Deck Below:</div>
+    <div class="title">What the Tarot Cards Mean in This Reading</div>
     <div class="ad-box_row mt-48"></div>
     <div class="tarot-section">
       <div class="ad-box"></div>
       <div class="main-content">
         <ul class="content-list">
-          <li class="content-list-item">
-            <img
-              class="card"
-              src="https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281"
-              alt=""
-            />
+          <li
+            class="content-list-item"
+            v-for="(item, index) in cardsInfo"
+            :key="index"
+          >
+            <div class="card-wrapper">
+              <nuxt-img
+                class="card-img"
+                :class="{ 'card-img-rotate': item.type == 2 }"
+                :src="item.icon"
+                fit="cover"
+                height="390"
+                width="220"
+                :alt="item.name"
+                loading="lazy"
+              ></nuxt-img>
+              <div class="card-text">{{ item.card_name }}</div>
+            </div>
             <div class="desc">
-              <div class="desc-title">The First Card (The Past):</div>
-              <div class="desc-text">
-                The 6 of Cups brings some respite and relief after the stress of
-                the subtle changes that come with the number 5 in the Tarot. On
-                this card, we see a bright and sunny day, children playing in
-                the forefront. One of the children is offering the other a token
-                in the form of a cup, overflowing with gifts and flowers. There
-                are 6 cups all around these figures, and they are all filled
-                with love and gifts. The cups are larger here than in other cups
-                in the Tarot, suggesting love is overflowing. There is a strong
-                sense of nostalgia and the past in this picture. This card could
-                symbolize children as well, and a strong sense of family is also
-                evoked often in readings when this card appears. Memory lane,
-                reminiscing about family time and the past are all central
-                themes when the 6 of Cups appears in your day. You may also
-                receive a token of the past, a visitor from the past, or even a
-                loving apology when this card appears for you. There is nothing
-                to fear when the 6 of Cups card arrives, it is a symbolic token
-                of love all around you that is strongly rooted in the past.
-              </div>
+              <div class="desc-title">{{ subTitleText[type][index] }}</div>
+              <div class="desc-text">{{ item.desc }}</div>
             </div>
           </li>
         </ul>
@@ -55,38 +49,48 @@
 <script>
 import MoreTarot from '../../../components/tarot/MoreTarot.vue'
 export default {
-  name: 'explain',
+  name: 'answer',
   components: {
     MoreTarot,
   },
   data() {
     return {
-      cardsData: [
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          text: 'The Fool',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          text: 'The Fool',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          text: 'The Fool',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          text: 'The Fool',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          text: 'The Fool',
-        },
-      ],
+      cardsInfo: [],
+      type: 1,
+      titleText: {
+        1: 'Love Tarot Reading',
+        2: 'Tarot Career Reading',
+        3: 'Universal Tarot Reading',
+        4: 'Choose 1 Cards From The Deck Below:',
+      },
+      subTitleText: {
+        //类型:1-爱情、2-事业、3-通用、4-日常
+        1: [
+          'First Position: Do Our Souls Already Know Each Other',
+          'Second Position: Should I Invest My Time in This Relationship',
+          'Third Position: How Does the Future of This Relationship Look',
+        ],
+        2: [
+          'purpose ： Why did you choose this job in the first place?',
+          'responsibilities：- What is your role here?',
+          'Progress - Your current state - How do you feel about the work?',
+          'rewards - What you stand to gain from this job, financially, spiritually, or otherwise?',
+          'future - What is a possible future that is coming from all of this',
+        ],
+        3: ['Past', 'Present', 'Future'],
+        4: ['card name'],
+      },
     }
   },
-  asyncData({ query }) {
-    console.log('query', query)
+  mounted() {
+    this.type = this.$route.query.type
+    const cardsInfo = sessionStorage.getItem('cardsInfo')
+    if (cardsInfo) {
+      this.cardsInfo = JSON.parse(cardsInfo)
+    }
+    if (this.type == 4) {
+      this.subTitleText[this.type][0] = this.cardsInfo[0].card_name
+    }
   },
 }
 </script>
@@ -121,15 +125,28 @@ export default {
 }
 .main-content {
   margin: 124px 32px 0;
+  flex: 1;
+  max-width: 1400px;
   .content-list-item {
     display: flex;
-    .card {
-      width: 220px;
-      height: 390px;
+    &:not(:first-child) {
+      margin-top: 97px;
+    }
+    .card-wrapper {
       margin-right: 137px;
     }
-    .desc {
-      width: 600px;
+    .card-img-rotate {
+      transform: rotate(180deg);
+    }
+    .card-text {
+      text-align: center;
+      font-family: 'Rubik';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 30px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 12px;
     }
     .desc-title {
       font-family: 'Cinzel Decorative';
@@ -144,6 +161,7 @@ export default {
       font-weight: 400;
       font-size: 16px;
       line-height: 28px;
+      margin-top: 40px;
     }
   }
 }

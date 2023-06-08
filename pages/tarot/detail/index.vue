@@ -1,0 +1,158 @@
+<!--
+ * @Date: 2023-06-06 16:51:37
+ * @LastEditors: tianjun
+ * @LastEditTime: 2023-06-08 15:23:53
+ * @FilePath: /seekastrology/pages/tarot/detail/index.vue
+ * @Description: 
+-->
+<template>
+  <div class="tarot-container">
+    <div class="title mt-75">{{ cardsInfo.name }} Card Meaning</div>
+    <div class="tarot-section">
+      <div class="ad-box"></div>
+      <div class="main-content">
+        <div class="ad-box_row" style="width: 100%"></div>
+        <ul class="content-list">
+          <li class="content-list-item">
+            <div class="card-wrapper">
+              <nuxt-img
+                :src="cardsInfo.icon || '/'"
+                fit="cover"
+                height="390"
+                width="220"
+                :alt="cardsInfo.name"
+              ></nuxt-img>
+              <div class="card-text">{{ cardsInfo.name }}</div>
+            </div>
+            <div class="desc">
+              <!-- <div class="desc-title">{{ titleText[type][index] }}</div> -->
+              <div class="desc-text" v-html="cardsInfo.desc"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="ad-box"></div>
+    </div>
+    <div class="ad-box_row mt-48 mb-48"></div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'detail',
+  data() {
+    return {
+      cardsInfo: {},
+    }
+  },
+  async asyncData({ query, error, $apiList }) {
+    try {
+      const cardsInfo = await $apiList.tarot.getDetail({
+        origin: process.env.origin,
+        id: query.id,
+      })
+      return {
+        cardsInfo,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.message })
+    }
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+.tarot-container {
+  color: #fff;
+  ::v-deep h2,
+  ::v-deep h3 {
+    font-family: 'Cinzel Decorative';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 36px;
+    color: #ffffff !important;
+  }
+}
+.title {
+  font-family: 'Cinzel Decorative';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 64px;
+  text-align: center;
+}
+
+.tarot-section {
+  display: flex;
+  justify-content: center;
+  .ad-box {
+    width: 160px;
+    height: 600px;
+    background-color: #555761;
+  }
+}
+.ad-box_row {
+  width: 924px;
+  height: 114px;
+  margin: 0 auto;
+  background-color: #555761;
+}
+.main-content {
+  margin: 40px 32px 0;
+  flex: 1;
+  max-width: 1400px;
+  .content-list-item {
+    margin-top: 92px;
+    display: flex;
+    &:not(:first-child) {
+      margin-top: 97px;
+    }
+    .card-wrapper {
+      margin-right: 137px;
+    }
+    .card-text {
+      text-align: center;
+      font-family: 'Rubik';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 30px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 12px;
+    }
+    .desc-title {
+      font-family: 'Cinzel Decorative';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 48px;
+    }
+    .desc-text {
+      font-family: 'Rubik';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 28px;
+    }
+  }
+}
+.mt-48 {
+  margin-top: 48px;
+}
+.mb-48 {
+  margin-bottom: 48px;
+}
+.mt-48_minus {
+  margin-top: -48px;
+}
+.mt-32 {
+  margin-top: 32px;
+}
+.mt-75 {
+  margin-top: 75px;
+}
+.mt-200 {
+  margin-top: 200px;
+}
+</style>

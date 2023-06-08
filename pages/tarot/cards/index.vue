@@ -1,24 +1,31 @@
 <template>
   <div class="tarot-container">
-    <div class="title">the major</div>
+    <Loading v-if="loading" />
+    <div class="title mt-75">the major</div>
     <div class="tarot-section">
-      <div class="ad-box"></div>
+      <div class="ad-box mt-48_minus"></div>
       <div class="tarot-box">
         <ul class="major-list">
           <li class="major-list-item" v-for="(item, index) in majorList">
-            <nuxt-img
-              :src="item.icon || '/'"
-              fit="cover"
-              height="385"
-              width="100%"
-              :alt="item.name"
-              loading="lazy"
-            ></nuxt-img>
-            <div class="item-text">{{ item.name }}</div>
+            <nuxt-link :to="{ path: '/tarot/detail', query: { id: item.id } }">
+              <nuxt-img
+                class="item-img"
+                :src="item.icon || '/'"
+                fit="cover"
+                height="385"
+                width="100%"
+                :alt="item.name"
+                loading="lazy"
+                :data-id="item.id"
+              ></nuxt-img>
+              <div class="item-text" :data-id="item.id">
+                {{ item.name }}
+              </div></nuxt-link
+            >
           </li>
         </ul>
       </div>
-      <div class="ad-box"></div>
+      <div class="ad-box mt-48_minus"></div>
     </div>
     <div class="ad-box_row mt-32"></div>
     <div class="title mt-48">minor arcana definitions</div>
@@ -54,15 +61,18 @@
     </div>
     <ul class="minor-list">
       <li class="minor-list-item" v-for="(item, index) in minorList">
-        <nuxt-img
-          :src="item.icon || '/'"
-          fit="cover"
-          height="385"
-          width="100%"
-          :alt="item.name"
-          loading="lazy"
-        ></nuxt-img>
-        <div class="item-text">{{ item.name }}</div>
+        <nuxt-link :to="{ path: '/tarot/detail', query: { id: item.id } }">
+          <nuxt-img
+            class="item-img"
+            :src="item.icon || '/'"
+            fit="cover"
+            height="385"
+            width="100%"
+            :alt="item.name"
+            loading="lazy"
+          ></nuxt-img>
+          <div class="item-text">{{ item.name }}</div>
+        </nuxt-link>
       </li>
     </ul>
     <div class="ad-box_row mt-48"></div>
@@ -70,10 +80,15 @@
 </template>
 
 <script>
+import Loading from '../../../components/Loading.vue'
 export default {
   name: 'cards',
+  components: {
+    Loading,
+  },
   data() {
     return {
+      loading: true,
       minorType: 'wandsList',
       majorList: [],
       minorList: [],
@@ -122,9 +137,11 @@ export default {
   },
   methods: {
     async getDatas() {
+      this.loading = true
       const data = await this.$apiList.tarot.getTarotList({
         origin: process.env.origin,
       })
+      this.loading = false
       const result = this.formatData(data)
       this.majorList = result.majorList
       this.minorList = result.minorList
@@ -193,6 +210,7 @@ export default {
   }
   .tarot-box {
     flex: 1;
+    max-width: 1400px;
   }
   .major-list {
     display: grid;
@@ -201,6 +219,12 @@ export default {
     .major-list-item {
       text-align: center;
       margin-bottom: 40px;
+      -webkit-transition: transform 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        transform: translateY(-20px);
+      }
     }
   }
 }
@@ -213,6 +237,12 @@ export default {
   .minor-list-item {
     text-align: center;
     margin-bottom: 40px;
+    -webkit-transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      transform: translateY(-20px);
+    }
   }
 }
 .item-text {
@@ -235,7 +265,7 @@ export default {
   margin-top: 24px;
   position: relative;
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     height: 1px;
     left: 0px;
@@ -271,8 +301,14 @@ export default {
 .mt-48 {
   margin-top: 48px;
 }
+.mt-48_minus {
+  margin-top: -48px;
+}
 .mt-32 {
   margin-top: 32px;
+}
+.mt-75 {
+  margin-top: 75px;
 }
 .mt-200 {
   margin-top: 200px;

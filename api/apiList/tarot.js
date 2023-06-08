@@ -23,7 +23,7 @@ export default (axios) => ({
      * @param {*} id
      * @returns 
      */
-    getCategory(params) {
+    getDetail(params) {
         return axios.get('api/tarot/detail', { params })
     },
     // postSubscribe(data) {

@@ -1,10 +1,10 @@
 <template>
-  <div class="tarot-container">
-    <div class="title">Choose 1 Cards From The Deck Below:</div>
+  <div class="tarot-container" ref="container">
+    <div class="title">{{ titleText[type] }}</div>
     <div class="tarot-section">
       <div class="ad-box"></div>
       <div class="tarot-box">
-        <tarot-play></tarot-play>
+        <tarot-play :type="type" ref="play"></tarot-play>
       </div>
       <div class="ad-box"></div>
     </div>
@@ -70,19 +70,34 @@ export default {
     MoreTarot,
     TarotPlay,
   },
+  watch: {
+    $route(to, from) {
+      if (to.query.type != from.query.type) {
+        window.scrollTo(0, 0)
+        this.$refs.play.resetData()
+        this.type = to.query.type
+      }
+    },
+  },
   data() {
     return {
-      type: 'love',
+      type: '1',
+      titleText: {
+        1: 'Love Tarot Reading',
+        2: 'Tarot Career Reading',
+        3: 'Universal Tarot Reading',
+        4: 'Choose 1 Cards From The Deck Below:',
+      },
       textObj: {
-        love: {
+        1: {
           title: 'About The Love Tarot Reading',
           desc: "When you have a problem in your love life -- no matter how simple or complex it is -- it has a way of taking over everything! You can't think straight, everything about your circumstances feels frustrating, and you're confused about your next steps. Fortunately, our Free Love Tarot Reading provides the help you need by offering personalized guidance for your situation!<br/>This love Tarot spread is perfect for those moments when you're searching for answers about your love life. Based on the popular Celtic Cross spread, this 3-card reading gets to the heart of the matter to help you better understand the specific challenges you are facing and the ways your circumstances can be helped or hurt. Each position in this free online love Tarot reading offers just the right amount of insight, making it easy to understand and act on.<br />Don't wait for your romantic situation to change itself! Start creating the romantic future you deserve with a Free Love Tarot Reading NOW!",
         },
-        cause: {
+        2: {
           title: 'About The Career Tarot Reading',
           desc: 'Sometimes we know what we want, but we don’t necessarily have a path to achieve it. This spread is here for you to help you find that path, and the things within you that can help you achieve your goals. Unlike the previous spread, which was more along the lines of using the day to day as a foundation to build a future, this spread uses the first card, your goal, as a means to ground the entire spread, and how you can earn it.',
         },
-        general: {
+        3: {
           title: 'About The Universal Tarot Reading',
           desc: "Based on the classic Celtic Cross spread, this Free Tarot Reading is designed to help you move through whatever issues you're facing with greater clarity and confidence. From personal matters to questions about love, career, finances, or a major decision you need to make, this versatile spread has advice for any area of your life.<br />When you need more guidance than just one card can provide, a 3-card Tarot spread is just right. In this free reading you'll get a card that represents your feelings and mindset in this moment, another that represents your current situation, and one that represents the challenges you may experience. With this new knowledge, you'll have a greater understanding of your circumstances and influences, as well as a better idea of the tools and solutions currently available to you.<br />Don't spend another day stressing about your situation! Use the personalized insight in this free online Tarot reading to get the answers you need NOW!",
         },

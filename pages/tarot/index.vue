@@ -4,7 +4,7 @@
     <div class="tarot-section">
       <div class="ad-box"></div>
       <div class="tarot-box">
-        <tarot-play></tarot-play>
+        <tarot-play type="4"></tarot-play>
       </div>
       <div class="ad-box"></div>
     </div>
@@ -79,7 +79,9 @@ export default {
     TarotPlay,
   },
   data() {
-    return {}
+    return {
+
+    }
   },
 }
 </script>
