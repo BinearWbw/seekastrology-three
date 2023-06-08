@@ -2,7 +2,7 @@ import axios from 'axios'
 const sitemap = [
   {
     path: '/sitemap.xml',
-    hostname: 'https://taptogame.com/',
+    hostname: 'https://seekastrology.com/',
     cacheTime: 1000 * 60 * 60 * 24,
     gzip: true,
     generate: false,
