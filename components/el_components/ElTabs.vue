@@ -82,6 +82,9 @@ export default {
       margin-right: 24px;
       cursor: pointer;
       transition: background-color 0.3s ease-in-out;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
     }
     & > :last-child {
       margin-right: 0;
