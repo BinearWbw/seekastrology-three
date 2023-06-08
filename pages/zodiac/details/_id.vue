@@ -185,7 +185,7 @@ export default {
           id: 7,
         },
         {
-          name: 'Scorpic',
+          name: 'Scorpio',
           imgUrl: require('~/assets/img/home/choice/Scorpio.png'),
           id: 8,
         },

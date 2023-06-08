@@ -113,7 +113,7 @@ export default {
           imgUrl: require('~/assets/img/home/choice/Libra.png'),
         },
         {
-          name: 'Scorpic',
+          name: 'Scorpio',
           imgUrl: require('~/assets/img/home/choice/Scorpio.png'),
         },
         {
