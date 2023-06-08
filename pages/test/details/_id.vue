@@ -111,11 +111,13 @@
         <div class="details_main_left_btm">
           <div class="details_main_left_btm_title">MOST POPULAR QUIZZES</div>
           <div class="details_main_left_btm_list">
-            <div
+            <a
+              :href="`${getIntersperseUrl}/test/details/${item.name
+                .trim().replace(/[^\w\d]/g, '-')
+                .toLowerCase()}-${item.id}/`"
               class="details_main_left_btm_list_item"
               v-for="(item, index) in btmList"
               :key="item.id"
-              @click="getDataInfo(item)"
             >
               <div class="details_main_left_btm_list_item_img">
                 <nuxt-img
@@ -129,7 +131,7 @@
                   {{ item.name }}
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
         <google-ad class="google_ad"></google-ad>
@@ -145,6 +147,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -384,6 +387,9 @@ export default {
         }
       }, 10)
     },
+  },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
   },
 }
 </script>
@@ -638,6 +644,7 @@ $spacing: 55px;
           grid-gap: 55px;
           margin-top: 24px;
           &_item {
+            display: block;
             width: 220px;
             &_img {
               width: 220px;
