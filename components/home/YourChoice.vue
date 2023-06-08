@@ -21,7 +21,7 @@
               :alt="item_i.name"
             ></nuxt-img>
           </div>
-          <p class="title">{{ item_i.name }}</p>
+          <p class="title">{{ upPercase(item_i.name) }}</p>
           <p class="time">{{ item_i.dates }}</p>
         </a>
       </li>
@@ -39,6 +39,11 @@ export default {
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
+  },
+  methods: {
+    upPercase(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1)
+    },
   },
 }
 </script>
