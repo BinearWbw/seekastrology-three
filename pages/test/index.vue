@@ -481,6 +481,7 @@ $spacing: 16px;
           grid-column-end: 5;
           grid-column-start: span 4;
           grid-row-start: span 2;
+          overflow: hidden;
         }
         .top {
           grid-row-end: 5;
@@ -506,6 +507,7 @@ $spacing: 16px;
     }
   }
 }
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .test {
