@@ -70,8 +70,7 @@
         <google-ad classNames="google_ad_h5btm"></google-ad>
         <div class="test_main_center_right">
           <google-ad classNames="google_ad"></google-ad>
-          <google-ad classNames="google_ad"></google-ad>
-          <google-ad classNames="google_ad"></google-ad>
+         
         </div>
       </div>
     </div>
@@ -495,11 +494,15 @@ $spacing: 16px;
         }
       }
       &_right {
+        width: 300px;
         .google_ad {
           width: 300px;
           height: 600px;
           background: #555761;
           margin-bottom: 202px;
+          position: fixed;
+          top: 200px;
+          
         }
       }
       .google_ad_h5btm {
@@ -515,7 +518,7 @@ $spacing: 16px;
       &_center {
         &_right {
           .google_ad {
-            width: 100%;
+            right: 50px;
           }
         }
       }
@@ -536,7 +539,12 @@ $spacing: 16px;
             width: 100%;
           }
         }
-      
+        &_right{
+          .google_ad{
+            right: 20px;
+            width: 250px;
+          }
+        }
       }
     }
   }
@@ -561,9 +569,12 @@ $spacing: 16px;
   .test{
     &_main{
       &_center{
+        &_list{
+          width: 80%;
+        }
         &_right{
           .google_ad{
-            width: 200px;
+            right: 10px;
           }
         }
       }

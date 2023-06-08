@@ -286,10 +286,8 @@ export default {
             Math.ceil(totalNum / search.size) === 0
               ? 1
               : Math.ceil(totalNum / search.size)
-
           return res?.list || null
         })
-        console.log(btmList);
       return {
         item,
         list,
