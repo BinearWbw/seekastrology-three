@@ -1,12 +1,12 @@
 import axios from 'axios'
 const addRoutes = async () => {
   let routes = []
-  // let res2 = await axios.get(
-  //   'https://api.taptogame.com/api/category?origin=taptogame&page=1&size=10000'
-  // )
-  // res2.data.data.map((item) => {
-  //   routes.push(`/category/${item.name.toLowerCase()}`)
-  // })
+  let res2 = await axios.get(
+    'http://47.108.105.189:3000/api/news/all?origin=seekastrology&page=1&size=10000'
+  )
+  res2.data.data.list.map((item) => {
+    routes.push(`/resources/details/${item.name.replace(/[^a-zA-Z0-9\\s]/g, '-').toLowerCase()}-${item.id}/`)
+  })
   // let res1 = await axios.get(
   //   'https://api.taptogame.com/api/sitemap/games?origin=taptogame'
   // )

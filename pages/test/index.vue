@@ -62,10 +62,11 @@
             classNames="google_ad btm"
             v-if="list.length >= 32"
           ></google-ad>
+          <div class="common__loading" v-scroll v-if="search.page < totalPage">
+            <div class="common__loading__loader" v-if="loading"></div>
+          </div>
         </div>
-        <div class="common__loading" v-scroll v-if="search.page < totalPage">
-          <div class="common__loading__loader" v-if="loading"></div>
-        </div>
+
         <google-ad classNames="google_ad_h5btm"></google-ad>
         <div class="test_main_center_right">
           <google-ad classNames="google_ad"></google-ad>
@@ -342,7 +343,7 @@ export default {
       },
     },
   },
-  computed:{
+  computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
 }
@@ -507,7 +508,14 @@ $spacing: 16px;
     }
   }
 }
+@media (max-width: (4 * $block + 3 * $spacing + 400px)) {
+  .test{
+    &_main{
+      width: 100%;
+    }
+  }
 
+}
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .test {
