@@ -243,11 +243,11 @@ export default {
         padding-bottom: 6px;
         img {
           display: block;
-          object-fit: contain;
+          object-fit: cover;
         }
         .img {
-          width: 72px;
-          height: 23px;
+          width: 248px;
+          height: 65px;
         }
       }
       .nav {
@@ -373,9 +373,9 @@ export default {
 }
 @media (max-width: (1366px)) {
   .header {
-    height: 60px;
+    // height: 60px;
     &__main {
-      height: 60px;
+      // height: 60px;
       > div {
         .nav {
           &__item {
@@ -429,8 +429,8 @@ export default {
         .logo {
           padding-bottom: 0;
           .img {
-            width: 48 * $pr;
-            height: 15 * $pr;
+            width: 118 * $pr;
+            height: 24 * $pr;
           }
         }
         .menu {
