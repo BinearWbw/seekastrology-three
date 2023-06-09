@@ -23,9 +23,9 @@
                 :alt="list[0].name"
                 class="resources_main_top_left_img_pic"
               ></nuxt-img>
-              <div class="resources_main_top_left_img_tarot">
+              <!-- <div class="resources_main_top_left_img_tarot">
                 {{ list[0].main_label }}
-              </div>
+              </div> -->
             </div>
             <div class="resources_main_top_left_content">
               <div class="resources_main_top_left_content_title">
@@ -93,9 +93,9 @@
                   :alt="item.name"
                   class="resources_main_top_right_item_img_pic"
                 ></nuxt-img>
-                <div class="resources_main_top_right_item_img_tarot">
+                <!-- <div class="resources_main_top_right_item_img_tarot">
                   {{ item.main_label }}
-                </div>
+                </div> -->
               </div>
               <div class="resources_main_top_right_item_content">
                 <div class="resources_main_top_right_item_content_title">
@@ -129,9 +129,9 @@
                 <div class="resources_main_top_right_item_img_time">
                   {{ $utils.formatMMSS(item.sec) }}
                 </div>
-                <div class="resources_main_top_right_item_img_tarot">
+                <!-- <div class="resources_main_top_right_item_img_tarot">
                   {{ item.main_label }}
-                </div>
+                </div> -->
               </div>
               <!-- <img :src="item.imgUrl" alt="" /> -->
               <div class="resources_main_top_right_item_content">
@@ -179,9 +179,9 @@
                   :alt="item.name"
                   class="resources_main_btm_main_item_img_pic"
                 ></nuxt-img>
-                <div class="resources_main_btm_main_item_img_tarot">
+                <!-- <div class="resources_main_btm_main_item_img_tarot">
                   {{ item.main_label }}
-                </div>
+                </div> -->
               </div>
               <div class="resources_main_btm_main_item_text">
                 <div class="resources_main_btm_main_item_text_title">
@@ -211,9 +211,9 @@
                 <div class="resources_main_btm_main_item_img_time">
                   {{ $utils.formatMMSS(item.sec) }}
                 </div>
-                <div class="resources_main_btm_main_item_img_tarot">
+                <!-- <div class="resources_main_btm_main_item_img_tarot">
                   {{ item.main_label }}
-                </div>
+                </div> -->
               </div>
               <div class="resources_main_btm_main_item_vtitle">
                 {{ item.name }}
@@ -228,7 +228,9 @@
       <google-ad classNames="google_ad_btm"></google-ad>
     </div>
     <transition name="fade">
-      <InternalSite></InternalSite>
+      <div class="foot_components">
+        <InternalSite></InternalSite>
+      </div>
     </transition>
   </div>
 </template>
@@ -349,10 +351,10 @@ export default {
         document.body.scrollHeight || document.documentElement.scrollHeight
       //加载动画的盒子底部的三个元素
       let googleAdEl = document.querySelector('.google_ad_btm')
-      let internalEl = document.querySelector('.internal')
+      let footComponentsEl = document.querySelector('.foot_components')
       let footerEl = document.querySelector('.footer')
       //加载动画的盒子距离底部的距离
-      let height = googleAdEl.offsetHeight + internalEl.offsetHeight + footerEl.offsetHeight
+      let height = googleAdEl.offsetHeight + footComponentsEl.offsetHeight + footerEl.offsetHeight
       if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
         if (this.loading) return
         this.getNews(this.item)
