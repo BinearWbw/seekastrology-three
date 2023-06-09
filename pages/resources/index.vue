@@ -33,7 +33,7 @@
                   list[0].name
                 }}</span>
                 <div class="resources_main_top_left_content_title_date">
-                  <span>{{ $utils.formatMMDD(list[0].created_at) }}</span>
+                  <!-- <span>{{ $utils.formatMMDD(list[0].created_at) }}</span> -->
                 </div>
               </div>
               <div class="resources_main_top_left_content_subscribe">
@@ -70,7 +70,7 @@
                   list[0].name
                 }}</span>
               </div>
-              <div class="resources_main_top_left_content_btn">Read More</div>
+              <!-- <div class="resources_main_top_left_content_btn">Read More</div> -->
             </div>
           </template>
         </a>
@@ -107,9 +107,9 @@
                 <div class="resources_main_top_right_item_content_subscribe">
                   {{ item.text }}
                 </div>
-                <div class="resources_main_top_right_item_content_date">
+                <!-- <div class="resources_main_top_right_item_content_date">
                   <span> {{ $utils.formatMMDD(item.created_at) }}</span>
-                </div>
+                </div> -->
               </div>
             </template>
             <!-- 1视频 -->
@@ -190,9 +190,9 @@
                 <div class="resources_main_btm_main_item_text_subscribe">
                   {{ item.text }}
                 </div>
-                <div class="resources_main_btm_main_item_text_date">
+                <!-- <div class="resources_main_btm_main_item_text_date">
                   {{ $utils.formatMMDD(item.created_at) }}
-                </div>
+                </div> -->
               </div>
             </template>
             <template v-else>
