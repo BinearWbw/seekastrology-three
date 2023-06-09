@@ -69,7 +69,7 @@ export default {
         {
           title: 'Home',
           path: '/',
-          href: '',
+          href: '/',
         },
         {
           title: 'Horroscope',
@@ -78,8 +78,8 @@ export default {
         },
         {
           title: 'Zodiac Signs',
-          path: '/zodiac',
-          href: '/zodiac',
+          path: '/zodiac/',
+          href: '/zodiac/',
           children: [
             {
               title: 'Aries ( Mar 21 - Apr 19 )',
@@ -145,8 +145,8 @@ export default {
         },
         {
           title: 'Tarot',
-          path: '/tarot',
-          href: '/tarot',
+          path: '/tarot/',
+          href: '/tarot/',
           children: [
             {
               title: 'Tarot Predictions',
@@ -162,8 +162,8 @@ export default {
         },
         {
           title: 'Compatibility',
-          path: '/astrology',
-          href: '/astrology',
+          path: '/astrology/',
+          href: '/astrology/',
         },
         {
           title: 'Quizzes',

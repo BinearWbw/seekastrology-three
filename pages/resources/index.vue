@@ -339,15 +339,21 @@ export default {
       this.getNews(item)
     },
     scrollLoad() {
+      //滚动条位置
       let scrollTop =
         document.documentElement.scrollTop ||
         window.pageYOffset ||
         document.body.scrollTop
+      //页面总高度
       let bodyHeight =
         document.body.scrollHeight || document.documentElement.scrollHeight
-      let screenWidth = window.innerWidth
-      // console.log('屏幕宽度：' + screenWidth)
-      if (scrollTop + window.innerHeight >= bodyHeight - 850) {
+      //加载动画的盒子底部的三个元素
+      let googleAdEl = document.querySelector('.google_ad_btm')
+      let internalEl = document.querySelector('.internal')
+      let footerEl = document.querySelector('.footer')
+      //加载动画的盒子距离底部的距离
+      let height = googleAdEl.offsetHeight + internalEl.offsetHeight + footerEl.offsetHeight
+      if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
         if (this.loading) return
         this.getNews(this.item)
       }
@@ -793,6 +799,7 @@ $spacing: 16px;
               display: -webkit-box;
               -webkit-box-orient: vertical;
               -webkit-line-clamp: 2;
+              // min-height: 60px;
             }
             &_date {
               font-family: 'Rubik';
