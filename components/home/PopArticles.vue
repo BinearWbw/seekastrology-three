@@ -242,6 +242,37 @@ export default {
   }
 }
 
+@media (max-width: 1250px) {
+  .pop_main {
+    .pop_news {
+      padding: 48px 30px 36px;
+      .news_left {
+        flex: 1;
+        width: auto;
+        margin-right: 16px;
+        .left_img {
+          min-height: auto;
+        }
+      }
+      .news_right {
+        li {
+          a {
+            height: auto;
+            .news_right_img {
+              width: 95px;
+            }
+
+            .news_right_text {
+              width: auto;
+              flex: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
 
