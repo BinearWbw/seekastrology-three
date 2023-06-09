@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div class="header__main">
+    <div class="header__main" :class="{ header_black: isScrolled }">
       <div>
         <a :href="getIntersperseUrl" class="logo">
           <img
@@ -21,8 +21,26 @@
             :title="item.title"
             v-for="(item, index) in menu"
             :key="index"
+            @mouseenter="showDropdown(index)"
+            @mouseleave="hideDropdown"
           >
             <span> {{ item.title }}</span>
+            <transition name="fade">
+              <div
+                class="nav__item_children"
+                v-if="isDropdownVisible === index && item.children"
+              >
+                <a
+                  class="nav_children"
+                  :title="item_i.title"
+                  v-for="(item_i, index_i) in item.children"
+                  :href="`${getIntersperseUrl + item_i.href}`"
+                  :key="index_i"
+                >
+                  {{ item_i.title }}
+                </a>
+              </div>
+            </transition>
           </a>
         </nav>
         <div class="menu common__btn" @click="visibleMenu = true"></div>
@@ -45,6 +63,8 @@ export default {
     return {
       visibleMenu: false,
       searchInput: '',
+      isDropdownVisible: -1,
+      isScrolled: false,
       menu: [
         {
           title: 'Home',
@@ -60,11 +80,85 @@ export default {
           title: 'Zodiac Signs',
           path: '/zodiac',
           href: '/zodiac',
+          children: [
+            {
+              title: 'Aries ( Mar 21 - Apr 19 )',
+              path: '/zodiac/details/aries-1/',
+              href: '/zodiac/details/aries-1/',
+            },
+            {
+              title: 'Taurus (Apr 20 - May 20 )',
+              path: '/zodiac/details/taurus-2/',
+              href: '/zodiac/details/taurus-2/',
+            },
+            {
+              title: 'Gemini ( May 21 - Jun 20 )',
+              path: '/zodiac/details/gemini-3/',
+              href: '/zodiac/details/gemini-3/',
+            },
+            {
+              title: 'Cancer ( Jun 21 - Jul 22 )',
+              path: '/zodiac/details/cancer-4/',
+              href: '/zodiac/details/cancer-4/',
+            },
+            {
+              title: 'Leo ( Jul 23 - Aug 22 )',
+              path: '/zodiac/details/Leo-5/',
+              href: '/zodiac/details/Leo-5/',
+            },
+            {
+              title: 'Virgo ( Aug 23 - Sep 22 )',
+              path: '/zodiac/details/virgo-6/',
+              href: '/zodiac/details/virgo-6/',
+            },
+            {
+              title: 'Libra ( Sep 23 - Oct 22 )',
+              path: '/zodiac/details/libra-7/',
+              href: '/zodiac/details/libra-7/',
+            },
+            {
+              title: 'Scorpio ( Oct 23 - Nov 21 )',
+              path: '/zodiac/details/scorpio-8/',
+              href: '/zodiac/details/scorpio-8/',
+            },
+            {
+              title: 'Sagittarius ( Nov 22 - Dec 21 )',
+              path: '/zodiac/details/sagittarius-9/',
+              href: '/zodiac/details/sagittarius-9/',
+            },
+            {
+              title: 'Capricorn ( Dec 22 - Jan 19 )',
+              path: '/zodiac/details/capricorn-10/',
+              href: '/zodiac/details/capricorn-10/',
+            },
+            {
+              title: 'Aquarius ( Jan 20 - Feb 18 )',
+              path: '/zodiac/details/aquarius-11/',
+              href: '/zodiac/details/aquarius-11/',
+            },
+            {
+              title: 'Pisces ( Feb 19 - Mar 20 )',
+              path: '/zodiac/details/pisces-12/',
+              href: '/zodiac/details/pisces-12/',
+            },
+          ],
         },
         {
           title: 'Tarot',
           path: '/tarot',
           href: '/tarot',
+          children: [
+            {
+              title: 'Tarot Predictions',
+              path: '/tarot',
+              href: '/tarot',
+            },
+            {
+              title: 'Tarot Cards',
+              path: '/tarot',
+              href: '/tarot',
+            },
+          ],
         },
         {
           title: 'Compatibility',
@@ -87,6 +181,12 @@ export default {
   computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
     search() {
       let regSearch = /^.{2,}$/
@@ -99,6 +199,15 @@ export default {
       } else {
         window.location = `/search/?input=${search}`
       }
+    },
+    showDropdown(item) {
+      this.isDropdownVisible = item
+    },
+    hideDropdown() {
+      this.isDropdownVisible = -1
+    },
+    handleScroll() {
+      this.isScrolled = window.scrollY > 10
     },
   },
 }
@@ -116,6 +225,7 @@ export default {
     top: 0;
     z-index: 99;
     background: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease-in-out;
     > div {
       margin: 0 auto;
       width: 100%;
@@ -190,12 +300,61 @@ export default {
               color: #fff;
             }
           }
+          &_children {
+            position: absolute;
+            top: 100%;
+            left: -40%;
+            padding: 10px 0;
+            width: auto;
+            background-color: #000;
+            border-radius: 6px;
+            .nav_children {
+              min-width: 260px;
+              height: 42px;
+              display: block;
+              font-family: 'Rubik';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 42px;
+              color: rgba(255, 255, 255, 0.7);
+              position: relative;
+              padding: 0 20px;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+              transition: background-color 0.3s, color 0.3s ease-in-out;
+              &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(
+                  90deg,
+                  rgba(255, 255, 255, 0) 0%,
+                  rgba(255, 255, 255, 0.2) 50.52%,
+                  rgba(255, 255, 255, 0) 100%
+                );
+              }
+              &:hover {
+                color: #fff;
+                background-color: rgba(255, 255, 255, 0.2);
+              }
+            }
+          }
         }
       }
       .menu {
         display: none;
       }
     }
+  }
+  .header_black {
+    background-color: #000;
   }
 }
 @media (max-width: (1600px)) {
