@@ -12,16 +12,23 @@
             v-for="item of homeQuizzes"
             :key="item.id"
           >
-            <div class="banner_img">
-              <nuxt-img
-                :src="item.icon || '/'"
-                fit="cover"
-                width="220"
-                height="220"
-                :alt="item.name"
-              ></nuxt-img>
-            </div>
-            <p>{{ item.name }}</p>
+            <a
+              :href="`${getIntersperseUrl}/test/details/${item.name
+                .trim()
+                .replace(/[^\w\d]/g, '-')
+                .toLowerCase()}-${item.id}/`"
+            >
+              <div class="banner_img">
+                <nuxt-img
+                  :src="item.icon || '/'"
+                  fit="cover"
+                  width="220"
+                  height="220"
+                  :alt="item.name"
+                ></nuxt-img>
+              </div>
+              <p>{{ item.name }}</p>
+            </a>
           </swiper-slide>
         </swiper>
         <div class="swiper_pagination"></div>
@@ -30,13 +37,14 @@
         <button class="banner_next"></button>
       </div>
     </div>
-    <button class="button">Read More</button>
+    <button class="button" @click="pathToTestPage">Read More</button>
   </div>
 </template>
 
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
+import { mapGetters } from 'vuex'
 export default {
   name: 'quizzes',
   props: ['homeQuizzes'],
@@ -66,6 +74,14 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+  },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
+  },
+  methods: {
+    pathToTestPage() {
+      this.$router.push('/test/')
+    },
   },
 }
 </script>

@@ -4,31 +4,31 @@
       <h3>Popular Articles</h3>
       <div class="pop_news">
         <div class="news_left">
-          <div class="left_img">
-            <nuxt-img
-              :src="getHomeNewsData[0]?.icon || '/'"
-              fit="cover"
-              width="691"
-              height="320"
-              :alt="getHomeNewsData[0]?.name"
-            ></nuxt-img>
-          </div>
-          <div class="news_left_text">
-            <div class="text_cont">
-              <p class="cont_title">{{ getHomeNewsData[0]?.name }}</p>
-              <p class="cont_more" v-html="getHomeNewsData[0]?.desc"></p>
-              <a
-                :href="`${getIntersperseUrl}/resources/details/${getHomeNewsData[0]?.name
-                  .trim()
-                  .replace(/[^\w\d]/g, '-')
-                  .toLowerCase()}-${getHomeNewsData[0]?.id}/`"
-                >Read More</a
-              >
+          <a
+            :href="`${getIntersperseUrl}/resources/details/${getHomeNewsData[0]?.name
+              .trim()
+              .replace(/[^\w\d]/g, '-')
+              .toLowerCase()}-${getHomeNewsData[0]?.id}/`"
+          >
+            <div class="left_img">
+              <nuxt-img
+                :src="getHomeNewsData[0]?.icon || '/'"
+                fit="cover"
+                width="691"
+                height="320"
+                :alt="getHomeNewsData[0]?.name"
+              ></nuxt-img>
             </div>
-            <div class="text_time">
-              {{ $utils.formatMMDD(getHomeNewsData[0]?.created_at) }}
+            <div class="news_left_text">
+              <div class="text_cont">
+                <p class="cont_title">{{ getHomeNewsData[0]?.name }}</p>
+                <p class="cont_more" v-html="getHomeNewsData[0]?.desc"></p>
+              </div>
+              <div class="text_time">
+                {{ $utils.formatMMDD(getHomeNewsData[0]?.created_at) }}
+              </div>
             </div>
-          </div>
+          </a>
         </div>
         <ul class="news_right">
           <li v-for="(item, index) in normalList" :key="index">
