@@ -5,7 +5,7 @@
       <p>Read Your Daily Horoscope Right Now</p>
     </div>
     <ul class="choice__main">
-      <li v-for="item_i in item" :key="item_i.id">
+      <li v-for="item_i in variousListData" :key="item_i.id">
         <a
           class="choice__main__a"
           :href="`${getIntersperseUrl}/horroscope/${item_i.name
@@ -35,14 +35,28 @@ export default {
   name: 'YourChoice',
   props: ['item'],
   data() {
-    return {}
+    return {
+      variousListData: [],
+    }
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
+  mounted() {
+    this.getVariousList()
+  },
   methods: {
     upPercase(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
+    },
+    async getVariousList() {
+      await this.$apiList.home
+        .getZodiacHomeAstro({
+          origin: process.env.origin,
+        })
+        .then((res) => {
+          this.variousListData = res
+        })
     },
   },
 }
@@ -51,6 +65,8 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:math';
 .choice {
+  width: 1400px;
+  margin: 48px auto 0;
   &__title {
     padding-bottom: 78px;
     h3 {
@@ -126,6 +142,8 @@ export default {
 
 @media (max-width: 1435px) {
   .choice {
+    width: 100%;
+    padding: 0 30px;
     &__main {
       grid-template-columns: repeat(4, auto);
       justify-content: center;

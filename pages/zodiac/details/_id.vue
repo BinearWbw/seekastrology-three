@@ -138,7 +138,10 @@
       </div>
     </div>
     <transition name="fade">
-      <InternalSite></InternalSite>
+      <home-pop-articles></home-pop-articles>
+    </transition>
+    <transition name="fade">
+      <el-pairing></el-pairing>
     </transition>
   </div>
 </template>
