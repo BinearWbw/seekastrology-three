@@ -202,7 +202,19 @@
     </div>
     <google-ad classNames="google_ad_footer"></google-ad>
     <transition name="fade">
-      <InternalSite></InternalSite>
+      <el-daily-horoscope></el-daily-horoscope>
+    </transition>
+    <transition name="fade">
+      <home-your-choice :item="[]"></home-your-choice>
+    </transition>
+    <transition name="fade">
+      <home-pop-articles :homeNews="[{}]"></home-pop-articles>
+    </transition>
+    <transition name="fade"> 
+
+    </transition>
+    <transition name="fade">
+      <el-pairing></el-pairing>
     </transition>
   </div>
 </template>
