@@ -1,14 +1,14 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-12 11:03:39
+ * @LastEditTime: 2023-06-12 17:34:54
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
 <template>
   <div class="tarot-container">
-    <div class="tip-box" v-show="!isSelected">
-      <div class="tip-img-wrapper">
+    <div class="tip-box" v-show="!isSelected && questionTop">
+      <div class="tip-img-wrapper" v-show="!showList.length">
         <img
           src="~/assets/img/tarot/Vector2.png"
           style="margin-right: -8px"
@@ -17,28 +17,44 @@
         />
         <img src="~/assets/img/tarot/Vector1.png" alt="" class="tip-img" />
       </div>
+      <div class="tip-img-list" v-if="showList.length">
+        <nuxt-img
+          v-for="(item, index) in showList"
+          :key="index"
+          class="tip-img-item"
+          height="80px"
+          :src="item.icon"
+          :alt="item.name"
+        ></nuxt-img>
+      </div>
       <div class="tip-text">
         You can also draw
         <span>{{ numbers }}</span>
         tarot card！
       </div>
     </div>
-    <div class="tarot-wrapper" ref="tarotWrapper" v-show="!isSelected">
+    <div
+      class="question-box"
+      :class="{ 'question-top': questionTop }"
+      v-if="type != 4"
+    >
+      <input
+        @keyup.enter="handleInput"
+        type="text"
+        v-model="question"
+        :disabled="questionTop"
+        maxlength="100"
+        placeholder="Enter your question here"
+        class="question-input"
+      />
+    </div>
+    <div
+      class="tarot-wrapper"
+      ref="tarotWrapper"
+      v-if="!isSelected && questionTop"
+      :key="'tarotWrapper' + type"
+    >
       <div class="card-row" @mouseover="shuffleCards('topCard', $event)">
-        <!-- <div
-          class="card-wrapper"
-          v-for="index of 39"
-          :key="'top-' + index"
-          :style="{
-            top: 160 + 'px',
-            left: 57 + index * 20 + 'px',
-          }"
-          :class="{ selected: selectIndex == index }"
-          @click="handleClike(index)"
-        >
-          <img class="card-img" src="~/assets/img/tarot/card.png" alt="Card" /> -->
-        <!-- :style="{ top: 160 + 'px', left: calc( (100% - 890+ 'px')/2 + index * 20 ) }" -->
-        <!-- </div> -->
         <div
           class="card-wrapper"
           v-for="index of 39"
@@ -117,6 +133,7 @@ export default {
         } else if (newVal === '2') {
           this.numbers = 5
         } else {
+          this.questionTop = true
           this.numbers = 1
         }
       },
@@ -133,8 +150,9 @@ export default {
   },
   data() {
     return {
-      selectIndex: 0,
       isSelected: false,
+      questionTop: false,
+      question: '',
       cardsInfo: [],
       showList: [],
       numbers: 3,
@@ -143,9 +161,14 @@ export default {
   },
   mounted() {},
   methods: {
-    async handleClike(index) {
-      this.selectIndex = index
-      //   this.isSelected = true
+    handleInput() {
+      if (!this.question) {
+        this.$toast('Please enter your question')
+        return
+      }
+      this.questionTop = true
+    },
+    async handleClike() {
       if (this.cardsInfo.length === 0) {
         await this.drawCard()
       }
@@ -154,19 +177,22 @@ export default {
     async drawCard() {
       const res = await await this.$apiList.tarot.drawTarot({
         origin: process.env.origin,
-        type: this.type,
+        type: Number(this.type),
+        question: '123?',
       })
       if (res && res.length) {
         this.cardsInfo = res
         sessionStorage.setItem('cardsInfo', JSON.stringify(res))
-        this.showList.push(res[0])
       }
     },
     judgeShow() {
       switch (this.type) {
         case '1':
         case '3':
-          if (this.showList.length == 3) {
+          if (this.showList.length == 2) {
+            this.showList.push(this.cardsInfo[this.showList.length])
+            this.numbers--
+            this.count--
             this.isSelected = true
           } else {
             this.showList.push(this.cardsInfo[this.showList.length])
@@ -175,7 +201,10 @@ export default {
           }
           break
         case '2':
-          if (this.showList.length == 5) {
+          if (this.showList.length == 4) {
+            this.showList.push(this.cardsInfo[this.showList.length])
+            this.numbers--
+            this.count--
             this.isSelected = true
           } else {
             this.showList.push(this.cardsInfo[this.showList.length])
@@ -184,9 +213,8 @@ export default {
           }
           break
         case '4':
-          if (this.showList.length == 1) {
-            this.isSelected = true
-          }
+          this.showList.push(this.cardsInfo[this.showList.length])
+          this.isSelected = true
           break
       }
     },
@@ -195,42 +223,33 @@ export default {
       if (!index) {
         return
       }
-
-      const tarotWrapper = this.$refs.tarotWrapper
-      const wrapperWidth = this.$refs.tarotWrapper.offsetWidth
-      const wrapperHeight = this.$refs.tarotWrapper.offsetHeight
-
-      // console.log("%c Line:192 🍔 tarotWrapper", "color:#fca650", tarotWrapper);
-      // console.log("%c Line:192 🍔 tarotWrapper", "color:#fca650", wrapperWidth);
-      // console.log("%c Line:192 🍔 tarotWrapper", "color:#fca650", wrapperHeight);
       let flag = Math.random() * 10 > 5 ? '+' : '-' // 正负数标识
 
       let card = this.$refs[`${param}${index}`][0]
-
+      //  元素之前的位置
       let leftValue = parseInt(card.style.left, 10)
       let topValue = parseInt(card.style.top, 10)
+      // 根据元素之前位置，靠修改正负值限制在容器内
+      if (leftValue < -130 || topValue < 140) {
+        flag = '+'
+      } else if (leftValue > 890 || topValue > 440) {
+        flag = '-'
+      }
 
-      // card.style.transform = `translate(-140px, 20px) rotate(20deg)`
-      // card.style.zIndex = index++
-      // card.style.left = `${leftValue} + ${flag}${Math.floor(Math.random() * 220)}px`
       card.style.left =
         leftValue + Number(flag + Math.floor(Math.random() * 130)) + 'px'
       card.style.top =
-        topValue + Number(flag + Math.floor(Math.random() * 110)) + 'px'
+        topValue + Number(flag + Math.floor((Math.random() * 220) / 2)) + 'px'
       card.style.transform = `rotate(${flag}${Math.floor(
-        Math.random() * 120
+        Math.random() * 90
       )}deg)`
-
-      // card.style.transform = `translate(${flag}${Math.floor(
-      //   Math.random() * (wrapperWidth / 3 - 150)
-      // )}px, ${Math.floor(
-      //   Math.random() * (wrapperHeight / 3 - 180)
-      // )}px) rotate(${flag}${Math.floor(Math.random() * 120)}deg)`
     },
     resetData() {
       this.cardsInfo = []
       this.showList = []
       this.isSelected = false
+      this.questionTop = false
+      this.question = ''
       this.count = 39
     },
   },
@@ -245,12 +264,41 @@ export default {
   padding: 5px;
   border: 1px solid hsla(0, 0%, 100%, 0.5);
   position: relative;
+  .question-box {
+    position: absolute;
+    width: 647px;
+    height: 44px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+    transition: top 0.7s ease-out;
+    .question-input {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      background: rgba(7, 6, 6, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 24px;
+      text-align: center;
+      font-family: 'Rubik';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #ffffff;
+    }
+  }
+  .question-top {
+    top: 48px;
+  }
   .tarot-wrapper {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
     border: 1px solid #45454d;
     position: relative;
+    overflow: hidden;
   }
   .card-row {
     width: 890px;
@@ -262,9 +310,10 @@ export default {
   }
   .card-wrapper {
     position: absolute;
+    z-index: 1;
     // left: 180px;
     display: inline-block;
-    transition: all 0.8s;
+    transition: all 0.8s ease-out;
     width: 130px;
     height: 220px;
     cursor: pointer;
@@ -274,6 +323,7 @@ export default {
     &:hover {
       border: 1px solid #9747ff;
       border-radius: 8px;
+      z-index: 3;
       // transform: translate(random(20) + px, random(20) + px)
       //   rotate(random(100) + deg);
     }
@@ -296,6 +346,7 @@ export default {
 }
 .tip-box {
   box-sizing: border-box;
+  z-index: 9;
   position: absolute;
   top: 20px;
   left: 20px;
@@ -313,6 +364,13 @@ export default {
   align-items: center;
   .tip-img-wrapper {
     opacity: 0.6;
+  }
+  .tip-img-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 40px);
+    grid-gap: 6px;
+    justify-content: center;
   }
   .tip-text {
     font-family: 'Rubik';

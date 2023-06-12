@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-08 15:23:53
+ * @LastEditTime: 2023-06-12 14:40:50
  * @FilePath: /seekastrology/pages/tarot/detail/index.vue
  * @Description: 
 -->
@@ -9,7 +9,7 @@
   <div class="tarot-container">
     <div class="title mt-75">{{ cardsInfo.name }} Card Meaning</div>
     <div class="tarot-section">
-      <div class="ad-box"></div>
+      <div class="add-box-wrapper"><div class="ad-box"></div></div>
       <div class="main-content">
         <div class="ad-box_row" style="width: 100%"></div>
         <ul class="content-list">
@@ -31,7 +31,7 @@
           </li>
         </ul>
       </div>
-      <div class="ad-box"></div>
+      <div class="add-box-wrapper"><div class="ad-box"></div></div>
     </div>
     <div class="ad-box_row mt-48 mb-48"></div>
   </div>
@@ -86,7 +86,12 @@ export default {
 .tarot-section {
   display: flex;
   justify-content: center;
+  .add-box-wrapper {
+    width: 160px;
+    height: 600px;
+  }
   .ad-box {
+    position: fixed;
     width: 160px;
     height: 600px;
     background-color: #555761;

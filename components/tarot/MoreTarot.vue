@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-09 15:45:22
+ * @LastEditTime: 2023-06-12 15:22:02
  * @FilePath: /seekastrology/components/tarot/MoreTarot.vue
  * @Description: 
 -->
@@ -9,7 +9,17 @@
   <div>
     <div class="title">More Tarot Readings</div>
     <div class="more-tarot">
-      <nuxt-link class="link" :to="{ path: '/tarot/type', query: { type: '1' } }">
+      <nuxt-link class="link" :to="{ path: '/tarot' }" v-if="showTarotType != 4">
+        <div class="more-tarot-items">
+          <img src="~/assets/img/tarot/daily.png" alt="" />
+          <p class="item-title">Daily Tarot</p>
+          <p class="item-sub-title">
+            What does the future have in store for you? Now is time to discover the day’s possibilities!
+          </p>
+          <button class="button">Read More</button>
+        </div>
+      </nuxt-link>
+      <nuxt-link class="link" :to="{ path: '/tarot/type', query: { type: '1' } }" v-if="showTarotType != 1">
         <div class="more-tarot-items">
           <img src="~/assets/img/tarot/love.png" alt="" />
           <p class="item-title">LOVE Tarot Reading</p>
@@ -19,7 +29,7 @@
           <button class="button">Read More</button>
         </div>
       </nuxt-link>
-      <nuxt-link class="link" :to="{ path: '/tarot/type', query: { type: '2' } }">
+      <nuxt-link class="link" :to="{ path: '/tarot/type', query: { type: '2' } }" v-if="showTarotType != 2">
         <div class="more-tarot-items">
           <img src="~/assets/img/tarot/cause.png" alt="" />
           <p class="item-title">Tarot Career Reading</p>
@@ -29,7 +39,7 @@
           <button class="button">Read More</button>
         </div>
       </nuxt-link>
-      <nuxt-link class="link" :to="{ path: '/tarot/type', query: { type: '3' } }">
+      <nuxt-link class="link" :to="{ path: '/tarot/type', query: { type: '3' } }" v-if="showTarotType != 3">
         <div class="more-tarot-items">
           <img src="~/assets/img/tarot/general.png" alt="" />
           <p class="item-title">Universal Tarot Reading</p>
@@ -46,6 +56,13 @@
 <script>
 export default {
   name: 'MoreTarot',
+  computed: {
+    showTarotType() {
+      let type = this.$route.query.type || '4'
+      console.log("%c Line:52 🍒 type", "color:#93c0a4", type);
+      return type
+    }
+  },
   data() {
     return {
       more: [
@@ -101,7 +118,7 @@ export default {
     transition: transform 0.3s ease-in-out;
     img {
       width: 100%;
-      height: 174px;
+      height: 178px;
     }
     &:hover {
       transform: translateY(-20px);

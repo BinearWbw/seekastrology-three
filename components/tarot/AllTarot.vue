@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-12 11:05:40
+ * @LastEditTime: 2023-06-12 11:11:30
  * @FilePath: /seekastrology/components/tarot/AllTarot.vue
  * @Description: 
 -->
@@ -86,6 +86,23 @@ export default {
     .card-text {
       margin-top: 16px;
     }
+  }
+}
+.button {
+  margin-top: 18px;
+  width: 124px;
+  height: 32px;
+  border: 1px solid #45454d;
+  border-radius: 42px;
+  font-family: 'Rubik';
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  line-height: 18px;
+  -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+  &:hover {
+    color: #000;
+    background-color: #fff;
   }
 }
 </style>

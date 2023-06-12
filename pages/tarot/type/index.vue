@@ -2,11 +2,11 @@
   <div class="tarot-container" ref="container">
     <div class="title">{{ titleText[type] }}</div>
     <div class="tarot-section">
-      <div class="ad-box"></div>
+      <div class="add-box-wrapper"><div class="ad-box"></div></div>
       <div class="tarot-box">
         <tarot-play :type="type" ref="play"></tarot-play>
       </div>
-      <div class="ad-box"></div>
+      <div class="add-box-wrapper"><div class="ad-box"></div></div>
     </div>
     <div class="introduce-box">
       <div class="intro">
@@ -129,9 +129,14 @@ export default {
   margin-top: 32px;
   display: flex;
   justify-content: center;
+  .add-box-wrapper {
+    width: 160px;
+    height: 600px;
+  }
   .ad-box {
     width: 160px;
     height: 600px;
+    position: fixed;
     background-color: #555761;
   }
   .tarot-box {

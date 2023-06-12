@@ -3,7 +3,7 @@
     <Loading v-if="loading" />
     <div class="title mt-75">the major</div>
     <div class="tarot-section">
-      <div class="ad-box mt-48_minus"></div>
+      <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div>
       <div class="tarot-box">
         <ul class="major-list">
           <li class="major-list-item" v-for="(item, index) in majorList">
@@ -25,7 +25,7 @@
           </li>
         </ul>
       </div>
-      <div class="ad-box mt-48_minus"></div>
+      <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div>
     </div>
     <div class="ad-box_row mt-32"></div>
     <div class="title mt-48">minor arcana definitions</div>
@@ -203,7 +203,12 @@ export default {
   margin-top: 32px;
   display: flex;
   justify-content: center;
+  .add-box-wrapper {
+    width: 160px;
+    height: 600px;
+  }
   .ad-box {
+    position: fixed;
     width: 160px;
     height: 600px;
     background-color: #555761;
@@ -230,10 +235,11 @@ export default {
 }
 .minor-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 189px);
+  grid-template-columns: repeat(auto-fill, 188px);
   justify-content: center;
   grid-column-gap: 12px;
-  margin-top: 40px;
+  max-width: 1400px;
+  margin: 40px auto 0;
   .minor-list-item {
     text-align: center;
     margin-bottom: 40px;

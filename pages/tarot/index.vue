@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-09 09:27:30
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-12 11:05:31
+ * @LastEditTime: 2023-06-12 14:26:56
  * @FilePath: /seekastrology/pages/tarot/index.vue
  * @Description: 
 -->
@@ -9,11 +9,11 @@
   <div class="tarot-container">
     <div class="title">Choose 1 Cards From The Deck Below:</div>
     <div class="tarot-section">
-      <div class="ad-box"></div>
+      <div class="add-box-wrapper"><div class="ad-box"></div></div>
       <div class="tarot-box">
         <tarot-play type="4"></tarot-play>
       </div>
-      <div class="ad-box"></div>
+      <div class="add-box-wrapper"><div class="ad-box"></div></div>
     </div>
     <div class="ad-box_row mt-48"></div>
     <more-tarot class="mt-48"></more-tarot>
@@ -32,7 +32,7 @@ export default {
   components: {
     MoreTarot,
     TarotPlay,
-    AllTarot
+    AllTarot,
   },
   data() {
     return {}
@@ -56,10 +56,15 @@ export default {
   margin-top: 32px;
   display: flex;
   justify-content: center;
+  .add-box-wrapper {
+    width: 160px;
+    height: 600px;
+  }
   .ad-box {
     width: 160px;
     height: 600px;
     background-color: #555761;
+    position: fixed;
   }
   .tarot-box {
     margin-left: 32px;

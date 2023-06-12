@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-06-07 09:43:31
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-07 10:05:07
+ * @LastEditTime: 2023-06-12 15:58:45
  * @FilePath: /seekastrology/api/apiList/tarot.js
  * @Description:
  */
@@ -15,8 +15,8 @@ export default (axios) => ({
    * @param type 类型:1-爱情、2-事业、3-通用、4-日常
    * @returns
    */
-  drawTarot(params) {
-    return axios.get('api/tarot/cards', { params })
+  drawTarot(data) {
+    return axios.post('api/tarot/cards', data)
   },
   /**
    * 塔罗牌详情
