@@ -55,10 +55,11 @@
             </div>
             <div class="details_main_left_top_content_btm">
               <div class="details_main_left_top_content_btm_count">
-                {{ currentQuestionIndex + 1 }}/{{ dataInfo.questions.length }}
+                <span id="currentQuestion">{{ currentQuestionIndex + 1 }}</span>/{{ dataInfo.questions.length }}
               </div>
               <div
                 class="details_main_left_top_content_btm_resultbtn"
+                id="RESULTBTN"
                 @click="getQuizResult()"
                 v-if="
                   currentQuestionIndex + 1 == dataInfo.questions.length &&
@@ -71,6 +72,7 @@
                 v-else
                 class="details_main_left_top_content_btm_btn"
                 @click="nextQuestion"
+                id="NEXTBTN"
                 :class="
                   nextFlag &&
                   currentQuestionIndex + 1 < dataInfo.questions.length
@@ -99,7 +101,7 @@
                 {{ result.desc }}
               </div>
             </div>
-            <div class="details_main_left_top_result_retake" @click="retake()">
+            <div id="RETAKE" class="details_main_left_top_result_retake" @click="retake()">
               Retake This Result
             </div>
           </div>
@@ -419,6 +421,7 @@ $spacing: 55px;
   color: rgba(255, 255, 255, 0.7) !important;
   background: transparent !important;
   border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  pointer-events:none !important;
 }
 .details {
   width: 100%;
@@ -568,6 +571,7 @@ $spacing: 55px;
               display: flex;
               align-items: center;
               justify-content: center;
+              cursor: pointer;
             }
             &_resultbtn {
               display: flex;
@@ -584,6 +588,7 @@ $spacing: 55px;
               line-height: 22px;
               color: #ffffff;
               margin-left: 9px;
+              cursor: pointer;
             }
           }
         }
@@ -634,6 +639,7 @@ $spacing: 55px;
             color: rgba(255, 255, 255, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.7);
             margin-top: 50px;
+            cursor: pointer;
           }
         }
       }
