@@ -10,7 +10,7 @@
         you find answers to questions about love, relationships, career, health,
         and more.
       </p>
-      <button class="button" @click="handleScroll">Read More</button>
+      <button class="button">Read More</button>
     </div>
     <div class="tarot_img">
       <div class="tarot_mian" ref="animated">
@@ -63,7 +63,6 @@ export default {
         this.scrollTimeInfo = setTimeout(() => {
           targetElement.classList.add('animated_active')
         }, 500)
-        console.log(this.scrollTimeInfo)
       } else if (isVisible && window.innerWidth <= 750) {
         targetElement.classList.remove('animated_active')
         this.scrollTimeInfo = setTimeout(() => {
@@ -331,7 +330,7 @@ export default {
           width: 113 * $pr;
           height: 226 * $pr;
           border-radius: 12 * $pr;
-          border: 0;
+          border: 1 * $pr solid rgba(255, 255, 255, 0.6);
           left: 0;
           a {
             img {
@@ -344,11 +343,11 @@ export default {
             z-index: 1;
           }
           &.list_2 {
-            transform: matrix(1, -0.03, 0.03, 1, 100, -2);
+            transform: rotate(-4deg) translateX(80 * $pr) translateY(-1 * $pr);
             z-index: 2;
           }
           &.list_3 {
-            transform: matrix(1, 0.02, -0.02, 1, 160, 5);
+            transform: rotate(1deg) translateX(100 * $pr) translateY(0 * $pr);
             z-index: 3;
           }
         }
@@ -356,10 +355,10 @@ export default {
       .animatedH5_active {
         .img_list {
           &.list_2 {
-            transform: matrix(0.99, 0.1, -0.1, 0.99, 150, -40);
+            transform: rotate(7deg) translateX(90 * $pr) translateY(-20 * $pr);
           }
           &.list_3 {
-            transform: matrix(0.97, 0.3, -0.3, 0.97, 250, -20);
+            transform: rotate(15deg) translateX(140 * $pr) translateY(-20 * $pr);
           }
         }
       }

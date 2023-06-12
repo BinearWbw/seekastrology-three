@@ -53,13 +53,16 @@
       </div>
     </div>
     <transition name="fade">
-      <InternalSite></InternalSite>
+      <el-pairing></el-pairing>
     </transition>
   </div>
 </template>
 
 <script>
+import ElDailyHoroscope from '../../components/el_components/ElDailyHoroscope.vue'
+import ElPairing from '../../components/el_components/ElPairing.vue'
 export default {
+  components: { ElPairing, ElDailyHoroscope },
   name: 'Horroscope',
   data() {
     return {
@@ -179,27 +182,27 @@ export default {
         {
           name: 'General',
           title: 'General Horoscope',
-          texts: this.youlistData.general,
+          texts: this.youlistData?.general,
         },
         {
           name: 'Love',
           title: 'Love Horoscope',
-          texts: this.youlistData.love,
+          texts: this.youlistData?.love,
         },
         {
           name: 'Health',
           title: 'Health Horoscope',
-          texts: this.youlistData.health,
+          texts: this.youlistData?.health,
         },
         {
           name: 'Career',
           title: 'Career Horoscope',
-          texts: this.youlistData.career,
+          texts: this.youlistData?.career,
         },
         {
           name: 'Finances',
           title: 'Finances Horoscope',
-          texts: this.youlistData.finances,
+          texts: this.youlistData?.finances,
         },
       ]
     },
@@ -407,6 +410,63 @@ export default {
         height: 114px;
         background-color: #555761;
         margin: 0 auto;
+      }
+    }
+  }
+}
+@media (max-width: 1450px) {
+  .horroscope {
+    &_main {
+      width: 100%;
+      padding: 0 30px;
+      .horoscope_details {
+        .datails_list {
+          padding-left: 30px;
+          .google_ad {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1350px) {
+  .horroscope {
+    &_main {
+      .horoscope_more {
+        .more_main {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .google_ad {
+          width: 924px;
+          height: 114px;
+          background-color: #555761;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .horroscope {
+    &_main {
+      .horoscope_details {
+        > .google_ad {
+          display: none;
+        }
+        .datails_list {
+          padding-left: 0;
+        }
+      }
+      .horoscope_more {
+        .google_ad {
+          width: 100%;
+          height: 114px;
+          background-color: #555761;
+          margin: 0 auto;
+        }
       }
     }
   }

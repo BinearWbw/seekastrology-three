@@ -23,9 +23,9 @@
                 :alt="list[0].name"
                 class="resources_main_top_left_img_pic"
               ></nuxt-img>
-              <div class="resources_main_top_left_img_tarot">
+              <!-- <div class="resources_main_top_left_img_tarot">
                 {{ list[0].main_label }}
-              </div>
+              </div> -->
             </div>
             <div class="resources_main_top_left_content">
               <div class="resources_main_top_left_content_title">
@@ -33,7 +33,7 @@
                   list[0].name
                 }}</span>
                 <div class="resources_main_top_left_content_title_date">
-                  <span>{{ $utils.formatMMDD(list[0].created_at) }}</span>
+                  <!-- <span>{{ $utils.formatMMDD(list[0].created_at) }}</span> -->
                 </div>
               </div>
               <div class="resources_main_top_left_content_subscribe">
@@ -70,7 +70,7 @@
                   list[0].name
                 }}</span>
               </div>
-              <div class="resources_main_top_left_content_btn">Read More</div>
+              <!-- <div class="resources_main_top_left_content_btn">Read More</div> -->
             </div>
           </template>
         </a>
@@ -93,9 +93,9 @@
                   :alt="item.name"
                   class="resources_main_top_right_item_img_pic"
                 ></nuxt-img>
-                <div class="resources_main_top_right_item_img_tarot">
+                <!-- <div class="resources_main_top_right_item_img_tarot">
                   {{ item.main_label }}
-                </div>
+                </div> -->
               </div>
               <div class="resources_main_top_right_item_content">
                 <div class="resources_main_top_right_item_content_title">
@@ -107,9 +107,9 @@
                 <div class="resources_main_top_right_item_content_subscribe">
                   {{ item.text }}
                 </div>
-                <div class="resources_main_top_right_item_content_date">
+                <!-- <div class="resources_main_top_right_item_content_date">
                   <span> {{ $utils.formatMMDD(item.created_at) }}</span>
-                </div>
+                </div> -->
               </div>
             </template>
             <!-- 1视频 -->
@@ -129,9 +129,9 @@
                 <div class="resources_main_top_right_item_img_time">
                   {{ $utils.formatMMSS(item.sec) }}
                 </div>
-                <div class="resources_main_top_right_item_img_tarot">
+                <!-- <div class="resources_main_top_right_item_img_tarot">
                   {{ item.main_label }}
-                </div>
+                </div> -->
               </div>
               <!-- <img :src="item.imgUrl" alt="" /> -->
               <div class="resources_main_top_right_item_content">
@@ -179,9 +179,9 @@
                   :alt="item.name"
                   class="resources_main_btm_main_item_img_pic"
                 ></nuxt-img>
-                <div class="resources_main_btm_main_item_img_tarot">
+                <!-- <div class="resources_main_btm_main_item_img_tarot">
                   {{ item.main_label }}
-                </div>
+                </div> -->
               </div>
               <div class="resources_main_btm_main_item_text">
                 <div class="resources_main_btm_main_item_text_title">
@@ -190,9 +190,9 @@
                 <div class="resources_main_btm_main_item_text_subscribe">
                   {{ item.text }}
                 </div>
-                <div class="resources_main_btm_main_item_text_date">
+                <!-- <div class="resources_main_btm_main_item_text_date">
                   {{ $utils.formatMMDD(item.created_at) }}
-                </div>
+                </div> -->
               </div>
             </template>
             <template v-else>
@@ -211,9 +211,9 @@
                 <div class="resources_main_btm_main_item_img_time">
                   {{ $utils.formatMMSS(item.sec) }}
                 </div>
-                <div class="resources_main_btm_main_item_img_tarot">
+                <!-- <div class="resources_main_btm_main_item_img_tarot">
                   {{ item.main_label }}
-                </div>
+                </div> -->
               </div>
               <div class="resources_main_btm_main_item_vtitle">
                 {{ item.name }}
@@ -227,9 +227,11 @@
       </div>
       <google-ad classNames="google_ad_btm"></google-ad>
     </div>
-    <transition name="fade">
-      <InternalSite></InternalSite>
-    </transition>
+    <div class="foot_components">
+      <transition name="fade">
+        <InternalSite></InternalSite>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -339,15 +341,24 @@ export default {
       this.getNews(item)
     },
     scrollLoad() {
+      //滚动条位置
       let scrollTop =
         document.documentElement.scrollTop ||
         window.pageYOffset ||
         document.body.scrollTop
+      //页面总高度
       let bodyHeight =
         document.body.scrollHeight || document.documentElement.scrollHeight
-      let screenWidth = window.innerWidth
-      // console.log('屏幕宽度：' + screenWidth)
-      if (scrollTop + window.innerHeight >= bodyHeight - 850) {
+      //加载动画的盒子底部的三个元素
+      let googleAdEl = document.querySelector('.google_ad_btm')
+      let footComponentsEl = document.querySelector('.foot_components')
+      let footerEl = document.querySelector('.footer')
+      //加载动画的盒子距离底部的距离
+      let height =
+        googleAdEl.offsetHeight +
+        footComponentsEl.offsetHeight +
+        footerEl.offsetHeight
+      if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
         if (this.loading) return
         this.getNews(this.item)
       }
@@ -678,7 +689,8 @@ $spacing: 16px;
           justify-content: center;
           align-items: center;
           gap: 10px;
-          width: 86px;
+          // width: 86px;
+          padding: 7px 22px;
           height: 32px;
           // background: #ffffff;
           border-radius: 42px;
@@ -793,6 +805,7 @@ $spacing: 16px;
               display: -webkit-box;
               -webkit-box-orient: vertical;
               -webkit-line-clamp: 2;
+              // min-height: 60px;
             }
             &_date {
               font-family: 'Rubik';
@@ -1117,7 +1130,8 @@ $spacing: 16px;
           justify-content: start;
           overflow-x: scroll;
           &_item {
-            width: 86 * $pr;
+            // width: 86 * $pr;
+            padding: 7 * $pr 22 * $pr;
             height: 32 * $pr;
             flex-shrink: 0;
             margin-right: 9 * $pr;

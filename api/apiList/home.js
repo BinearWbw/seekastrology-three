@@ -9,16 +9,21 @@ export default (axios) => ({
   },
   /* 星座详情页 */
   getZodiacDetails(params) {
-    return axios.get('/api/astro/detail', { params })
+    return axios.get('api/astro/detail', { params })
   },
   /* 星座运势页 */
   getZodiacHoroscope(params) {
-    return axios.get('/api/astro/horoscope', { params })
+    return axios.get('api/astro/horoscope', { params })
   },
   /* 星座-配对 */
   getZodiacComp(params) {
-    return axios.get('/api/astro/comp', { params })
+    return axios.get('api/astro/comp', { params })
   },
+  /* 星座-所有 */
+  getZodiacAll(params) {
+    return axios.get('api/astro/all', { params })
+  },
+
   /*---------------以下旧接口--------------*/
   /* 主页 */
   getGameHome(params) {

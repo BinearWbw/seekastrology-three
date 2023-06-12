@@ -199,11 +199,52 @@ export default {
     }
   }
 }
+
+@media (max-width: 1450px) {
+  .zodiac {
+    &_main {
+      width: 100%;
+      padding: 0 30px;
+    }
+  }
+}
+
+@media (max-width: 1025px) {
+  .zodiac {
+    &_main {
+      &_top {
+        .top_text {
+          width: 100%;
+        }
+        .google_ad {
+          width: 100%;
+          height: 114px;
+          background-color: #555761;
+          margin: 0 auto;
+        }
+      }
+
+      &_list {
+        .zodiac_signs {
+          .each {
+            padding: 16px;
+            pointer-events: none;
+          }
+        }
+        .google_ad {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .zodiac {
     &_main {
       width: 100%;
+      padding: 0;
       &_top {
         padding: 0 16 * $pr 24 * $pr;
         width: 100%;
