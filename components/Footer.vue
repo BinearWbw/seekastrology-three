@@ -23,7 +23,7 @@
             src="~/assets/img/header/logoImg.png"
             alt="logo"
           />
-          <div class="media">
+          <div class="media" v-if="false">
             <a
               :href="item.link"
               v-for="(item, index) in footer_media"
@@ -61,13 +61,10 @@ export default {
               link: 'Zodiac Signs',
             },
             {
-              link: 'Birth Chart',
+              link: 'Horosscope',
             },
             {
-              link: 'Astrology Horosscope',
-            },
-            {
-              link: 'Astrologica Compatibility',
+              link: 'Compatibility',
             },
           ],
         },
@@ -75,19 +72,16 @@ export default {
           id: '2',
           content: [
             {
-              link: 'Tarot',
-            },
-            {
-              link: 'Daily Tarot',
-            },
-            {
-              link: 'Love Tarot',
+              link: 'TarotDaily',
             },
             {
               link: 'Career Tarot',
             },
             {
-              link: 'Tarot Meaning',
+              link: 'Love Tarot',
+            },
+            {
+              link: 'Universal Tarot',
             },
           ],
         },
@@ -98,16 +92,10 @@ export default {
               link: 'Quizzes',
             },
             {
-              link: 'Personality Test',
+              link: 'Personality',
             },
             {
-              link: 'Career Tarot',
-            },
-            {
-              link: 'Animal Quiz',
-            },
-            {
-              link: 'Trivia Quiz',
+              link: 'TarotAnimal',
             },
           ],
         },
@@ -115,42 +103,39 @@ export default {
           id: '4',
           content: [
             {
-              link: 'Information',
+              link: 'Articles',
             },
             {
               link: 'Astrology',
             },
             {
-              link: 'Study',
+              link: 'tarot',
             },
             {
-              link: 'Astrology Horosscope',
-            },
-            {
-              link: 'Study',
+              link: 'love',
             },
           ],
         },
-        {
-          id: '5',
-          content: [
-            {
-              link: 'About Us',
-            },
-            {
-              link: 'Zodiac Signs',
-            },
-            {
-              link: 'Advertise Ment',
-            },
-            {
-              link: 'Privacy',
-            },
-            {
-              link: 'Partner With Us',
-            },
-          ],
-        },
+        // {
+        //   id: '5',
+        //   content: [
+        //     {
+        //       link: 'About Us',
+        //     },
+        //     {
+        //       link: 'Zodiac Signs',
+        //     },
+        //     {
+        //       link: 'Advertise Ment',
+        //     },
+        //     {
+        //       link: 'Privacy',
+        //     },
+        //     {
+        //       link: 'Partner With Us',
+        //     },
+        //   ],
+        // },
       ],
       footer_media: [
         {
@@ -315,7 +300,7 @@ export default {
 @media (max-width: (1370px)) {
   .footer {
     &__main {
-      padding: 0 30px;
+      padding: 48px 30px 0;
     }
   }
 }

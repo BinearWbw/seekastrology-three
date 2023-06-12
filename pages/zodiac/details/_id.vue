@@ -472,6 +472,75 @@ export default {
   }
 }
 
+@media (max-width: 1450px) {
+  .zodiac_details {
+    &_main {
+      width: 100%;
+      padding: 0 30px;
+      .part_details {
+        .introduce {
+          .left_tab {
+            width: 300px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .zodiac_details {
+    &_main {
+      .part_details {
+        .introduce {
+          .left_tab {
+            width: 230px;
+          }
+          .right_cont {
+            flex: 1;
+            .img_cont {
+              height: 260px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1025px) {
+  .zodiac_details {
+    &_main {
+      .part_details {
+        .introduce {
+          .left_tab {
+            width: 170px;
+            &_list {
+              pointer-events: none;
+              .imgs {
+                display: none;
+              }
+            }
+          }
+        }
+        .google_ad {
+          width: 100%;
+        }
+      }
+      .tab_control {
+        width: 100%;
+        .tab_main {
+          width: 100%;
+          padding: 0 50px;
+        }
+        .google_ad {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .zodiac_details {
