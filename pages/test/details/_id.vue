@@ -139,9 +139,21 @@
         <google-ad class="google_ad"></google-ad>
       </div>
     </div>
-    <transition name="fade">
-      <InternalSite></InternalSite>
-    </transition>
+    <div class="foot_components">
+      <transition name="fade">
+        <!-- <InternalSite></InternalSite> -->
+        <el-daily-horoscope></el-daily-horoscope>
+      </transition>
+      <transition name="fade">
+        <home-your-choice :item="[]"></home-your-choice>
+      </transition>
+      <transition name="fade">
+        <tarot-all-tarot></tarot-all-tarot>
+      </transition>
+      <transition name="fade">
+        <el-pairing></el-pairing>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
