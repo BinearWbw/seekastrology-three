@@ -366,6 +366,49 @@ export default {
   }
 }
 
+@media (max-width: 1450px) {
+  //   .astrology {
+  //     &_main {
+  //       width: 100%;
+  //       padding: 0 30px;
+  //     }
+  //   }
+  .pairing_max_main {
+    .pairing_module {
+      width: 100%;
+      margin: 96px auto 0;
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .pairing_max_main {
+    .pairing_module {
+      .pairing_main {
+        .dynamic {
+          &_love {
+            padding: 10px 212px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1025px) {
+  .pairing_max_main {
+    .pairing_module {
+      .pairing_main {
+        .dynamic {
+          &_love {
+            padding: 10px 80px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
 

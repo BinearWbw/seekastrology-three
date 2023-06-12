@@ -80,6 +80,12 @@
     <transition name="fade">
       <el-daily-horoscope></el-daily-horoscope>
     </transition>
+    <transition name="fade">
+      <home-your-choice></home-your-choice>
+    </transition>
+    <transition name="fade">
+      <home-pop-articles></home-pop-articles>
+    </transition>
   </div>
 </template>
 

@@ -17,7 +17,7 @@
         <home-various></home-various>
       </section>
       <section class="module choice">
-        <home-your-choice :item="variousList"></home-your-choice>
+        <home-your-choice></home-your-choice>
         <google-ad classNames="google_ad"></google-ad>
       </section>
       <section class="module tarot">
@@ -31,7 +31,7 @@
         <google-ad classNames="google_ad"></google-ad>
       </section>
       <section class="module new_pop">
-        <home-pop-articles :homeNews="homePopList"></home-pop-articles>
+        <home-pop-articles></home-pop-articles>
       </section>
     </div>
   </article>
@@ -43,15 +43,7 @@ export default {
   computed: {},
   async asyncData({ error, $apiList }) {
     try {
-      let [variousList, homePopList, homeQuizzes] = await Promise.all([
-        $apiList.home
-          .getZodiacHomeAstro({
-            origin: process.env.origin,
-          })
-          .then((res) => {
-            return res || []
-          }),
-
+      let [homePopList, homeQuizzes] = await Promise.all([
         $apiList.articles
           .getNewsRec({
             origin: process.env.origin,
@@ -70,7 +62,6 @@ export default {
           }),
       ])
       return {
-        variousList,
         homePopList,
         homeQuizzes,
       }
@@ -228,7 +219,7 @@ export default {
         }
       }
       &.new_pop {
-        margin-top: 80px;
+        margin-bottom: 100px;
       }
     }
   }
