@@ -95,7 +95,6 @@ export default {
         })
         .then((res) => {
           res = res.slice(0, 5)
-          console.log(res)
           this.getHomeNewsData = res
         })
     },

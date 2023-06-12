@@ -28,9 +28,12 @@
           </div>
           <div class="right_cont">
             <h4>{{ `The ${zodiacIData.name} Zodiac Sign` }}</h4>
-            <p class="right_various">
+            <p class="right_various" :class="{ unfold_active: openExpand }">
               {{ zodiacIData.desc }}
             </p>
+            <button class="blank_space" @click="setOpenExpand">
+              {{ openExpand ? 'SHOW LESS' : 'SHOW MORE' }}
+            </button>
             <div class="img_cont">
               <nuxt-img
                 :src="zodiacIData.banner || '/'"
@@ -217,6 +220,7 @@ export default {
         },
       ],
       tabTitle: [{ tabs: '' }, { tabs: 'Man' }, { tabs: 'Woman' }],
+      openExpand: false,
     }
   },
   async asyncData({ error, $apiList, params }) {
@@ -263,6 +267,10 @@ export default {
           this.zodiacIData = res
           this.ids = res.id
         })
+    },
+    setOpenExpand() {
+      this.openExpand = !this.openExpand
+      console.log(this.openExpand)
     },
   },
 }
@@ -386,6 +394,16 @@ export default {
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
+            position: relative;
+
+            &.unfold_active {
+              -webkit-line-clamp: unset;
+            }
+          }
+          .blank_space {
+            color: #9747ff;
+            text-decoration: underline;
+            margin-top: 8px;
           }
           .img_cont {
             width: 100%;
