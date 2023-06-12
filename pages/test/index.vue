@@ -51,18 +51,9 @@
               </div>
             </a>
           </div>
-          <google-ad
-            classNames="google_ad top"
-            v-if="list.length >= 8"
-          ></google-ad>
-          <google-ad
-            classNames="google_ad center"
-            v-if="list.length >= 16"
-          ></google-ad>
-          <google-ad
-            classNames="google_ad btm"
-            v-if="list.length >= 32"
-          ></google-ad>
+          <google-ad classNames="google_ad top" v-if="list.length >= 8"></google-ad>
+          <google-ad classNames="google_ad center" v-if="list.length >= 16"></google-ad>
+          <google-ad classNames="google_ad btm" v-if="list.length >= 32" ></google-ad>
           <div class="common__loading" v-scroll v-if="search.page < totalPage">
             <div class="common__loading__loader" v-if="loading"></div>
           </div>
@@ -96,143 +87,6 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      tabs: [
-        { id: 1, name: 'Most Popular Quizzes' },
-        { id: 2, name: 'Love' },
-        { id: 3, name: 'Love' },
-        { id: 4, name: 'Love' },
-        { id: 5, name: 'Wealth' },
-        { id: 6, name: 'Wealth' },
-        { id: 7, name: 'Wealth' },
-        { id: 8, name: 'Fate' },
-        { id: 9, name: 'Fate' },
-        { id: 10, name: 'Fate' },
-        { id: 11, name: 'Pairing' },
-        { id: 12, name: 'Pairing' },
-        { id: 13, name: 'Pairing' },
-      ],
-      list: [
-        {
-          id: 1,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 2,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 3,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 4,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 5,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 6,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 7,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 8,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 9,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 10,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 11,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 12,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 13,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 14,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 15,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 16,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 17,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 18,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 19,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 20,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 21,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 22,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 23,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 24,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-      ],
       loading: false,
       currentTabIndex: 0,
       tabsStatus: true,
