@@ -227,11 +227,11 @@
       </div>
       <google-ad classNames="google_ad_btm"></google-ad>
     </div>
-    <transition name="fade">
-      <div class="foot_components">
+    <div class="foot_components">
+      <transition name="fade">
         <InternalSite></InternalSite>
-      </div>
-    </transition>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -354,7 +354,10 @@ export default {
       let footComponentsEl = document.querySelector('.foot_components')
       let footerEl = document.querySelector('.footer')
       //加载动画的盒子距离底部的距离
-      let height = googleAdEl.offsetHeight + footComponentsEl.offsetHeight + footerEl.offsetHeight
+      let height =
+        googleAdEl.offsetHeight +
+        footComponentsEl.offsetHeight +
+        footerEl.offsetHeight
       if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
         if (this.loading) return
         this.getNews(this.item)
@@ -686,7 +689,8 @@ $spacing: 16px;
           justify-content: center;
           align-items: center;
           gap: 10px;
-          width: 86px;
+          // width: 86px;
+          padding: 7px 22px;
           height: 32px;
           // background: #ffffff;
           border-radius: 42px;
@@ -1126,7 +1130,8 @@ $spacing: 16px;
           justify-content: start;
           overflow-x: scroll;
           &_item {
-            width: 86 * $pr;
+            // width: 86 * $pr;
+            padding: 7 * $pr 22 * $pr;
             height: 32 * $pr;
             flex-shrink: 0;
             margin-right: 9 * $pr;
