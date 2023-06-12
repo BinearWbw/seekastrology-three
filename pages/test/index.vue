@@ -58,7 +58,6 @@
             <div class="common__loading__loader" v-if="loading"></div>
           </div>
         </div>
-
         <google-ad classNames="google_ad_h5btm"></google-ad>
         <div class="test_main_center_right">
           <google-ad classNames="google_ad"></google-ad>
@@ -71,7 +70,7 @@
         <el-daily-horoscope></el-daily-horoscope>
       </transition>
       <transition name="fade">
-        <home-your-choice :item="[]"></home-your-choice>
+        <home-your-choice></home-your-choice>
       </transition>
       <transition name="fade">
         <tarot-all-tarot></tarot-all-tarot>

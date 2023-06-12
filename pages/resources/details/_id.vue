@@ -206,10 +206,10 @@
         <el-daily-horoscope></el-daily-horoscope>
       </transition>
       <transition name="fade">
-        <home-your-choice :item="[]"></home-your-choice>
+        <home-your-choice></home-your-choice>
       </transition>
       <transition name="fade">
-        <home-pop-articles :homeNews="[{}]"></home-pop-articles>
+        <home-pop-articles></home-pop-articles>
       </transition>
       <transition name="fade">
         <tarot-all-tarot></tarot-all-tarot>
