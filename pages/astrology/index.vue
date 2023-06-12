@@ -86,6 +86,9 @@
     <transition name="fade">
       <home-pop-articles></home-pop-articles>
     </transition>
+    <transition name="fade">
+      <tarot-all-tarot></tarot-all-tarot>
+    </transition>
   </div>
 </template>
 

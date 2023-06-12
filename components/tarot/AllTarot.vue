@@ -57,6 +57,7 @@ export default {
   background-image: url('~assets/img/tarot/card_bg.png');
   background-size: 100%;
   background-repeat: no-repeat;
+  margin-top: 48px;
   .card-wrapper {
     display: flex;
     width: 1400px;
