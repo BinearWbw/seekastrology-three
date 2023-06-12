@@ -10,26 +10,26 @@
         you find answers to questions about love, relationships, career, health,
         and more.
       </p>
-      <button class="button">Read More</button>
+      <button class="button" @click="pathToTarotPage">Read More</button>
     </div>
     <div class="tarot_img">
       <div class="tarot_mian" ref="animated">
         <div class="img_list list_1">
-          <a href="#">
+          <div>
             <img src="~/assets/img/home/tarot_card.png" alt="#" />
-          </a>
+          </div>
         </div>
         <div class="img_list list_2">
-          <a href="#">
+          <div>
             <img src="~/assets/img/home/tarot_card.png" alt="#" />
-          </a>
+          </div>
         </div>
         <div class="img_list list_3">
-          <a href="#">
+          <div>
             <img src="~/assets/img/home/tarot_card.png" alt="#" />
-          </a>
+          </div>
         </div>
-        <button class="button">Try it now >></button>
+        <button class="button" @click="pathToTarotPage">Try it now >></button>
       </div>
     </div>
   </div>
@@ -69,6 +69,9 @@ export default {
           targetElement.classList.add('animatedH5_active')
         }, 500)
       }
+    },
+    pathToTarotPage() {
+      this.$router.push('/tarot')
     },
   },
 }
@@ -332,7 +335,7 @@ export default {
           border-radius: 12 * $pr;
           border: 1 * $pr solid rgba(255, 255, 255, 0.6);
           left: 0;
-          a {
+          > div {
             img {
               width: 100%;
               height: 100%;

@@ -240,7 +240,6 @@ export default {
         height: 100%;
         display: flex;
         align-items: center;
-        padding-bottom: 6px;
         img {
           display: block;
           object-fit: cover;
@@ -373,10 +372,18 @@ export default {
 }
 @media (max-width: (1366px)) {
   .header {
-    // height: 60px;
+    height: 60px;
     &__main {
-      // height: 60px;
+      height: 60px;
       > div {
+        .logo {
+          height: 100%;
+          padding-bottom: 0;
+          .img {
+            width: auto;
+            height: 50px;
+          }
+        }
         .nav {
           &__item {
             img {

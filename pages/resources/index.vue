@@ -229,7 +229,17 @@
     </div>
     <div class="foot_components">
       <transition name="fade">
-        <InternalSite></InternalSite>
+        <!-- <InternalSite></InternalSite> -->
+        <el-daily-horoscope></el-daily-horoscope>
+      </transition>
+      <transition name="fade">
+        <home-your-choice></home-your-choice>
+      </transition>
+      <transition name="fade">
+        <tarot-all-tarot></tarot-all-tarot>
+      </transition>
+      <transition name="fade">
+         <el-pairing></el-pairing>
       </transition>
     </div>
   </div>

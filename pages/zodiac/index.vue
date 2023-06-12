@@ -3,6 +3,7 @@
     <div class="zodiac_main">
       <div class="zodiac_main_top">
         <div class="top_text">
+          <google-ad class="google_ad"></google-ad>
           <h3>Zodiac Signs Meanings and Characteristics</h3>
           <p>
             By knowing the date of your zodiac sign, you can discover the
@@ -18,7 +19,6 @@
             belong to, the planets that rule your sign and much more!
           </p>
         </div>
-        <google-ad class="google_ad"></google-ad>
       </div>
       <div class="zodiac_main_list">
         <div class="zodiac_signs">
@@ -30,7 +30,7 @@
             >
               <h4>{{ item.name }}</h4>
               <p class="time">{{ item.dates }}</p>
-              <div class="text" v-html="item.desc"></div>
+              <div class="text">{{ item.main_label }}</div>
               <nuxt-img
                 :src="item.icon"
                 fit="cover"
@@ -45,7 +45,13 @@
       </div>
     </div>
     <transition name="fade">
-      <InternalSite></InternalSite>
+      <home-pop-articles></home-pop-articles>
+    </transition>
+    <transition name="fade">
+      <tarot-all-tarot></tarot-all-tarot>
+    </transition>
+    <transition name="fade">
+      <el-pairing></el-pairing>
     </transition>
   </div>
 </template>
@@ -96,7 +102,7 @@ export default {
       position: relative;
       .top_text {
         width: 810px;
-        padding: 96px 0;
+        padding: 48px 0 96px;
         margin-right: auto;
         h3 {
           font-family: 'Cinzel Decorative';
@@ -113,12 +119,12 @@ export default {
           line-height: 22px;
           color: rgba(255, 255, 255, 0.7);
         }
-      }
-      .google_ad {
-        width: 924px;
-        height: 114px;
-        background-color: #555761;
-        margin: 0 auto;
+        .google_ad {
+          width: 100%;
+          height: 114px;
+          background-color: #555761;
+          margin: 0 auto 24px;
+        }
       }
     }
 
@@ -216,12 +222,6 @@ export default {
         .top_text {
           width: 100%;
         }
-        .google_ad {
-          width: 100%;
-          height: 114px;
-          background-color: #555761;
-          margin: 0 auto;
-        }
       }
 
       &_list {
@@ -265,12 +265,12 @@ export default {
             font-size: 16 * $pr;
             line-height: 22 * $pr;
           }
-        }
-        .google_ad {
-          width: 100%;
-          height: 299 * $pr;
-          background-color: #555761;
-          margin: 0 auto;
+          .google_ad {
+            width: 100%;
+            height: 299 * $pr;
+            background-color: #555761;
+            margin: 24 * $pr auto;
+          }
         }
       }
 

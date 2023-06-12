@@ -41,6 +41,9 @@
             v-show="index !== comentId"
           >
             <div class="more_title">
+              <div class="img_top">
+                <img :src="item.imgUrl" alt="#" />
+              </div>
               <p>{{ item.title }}</p>
             </div>
             <div class="more_text">
@@ -52,6 +55,12 @@
         <google-ad classNames="google_ad"></google-ad>
       </div>
     </div>
+    <transition name="fade">
+      <home-pop-articles></home-pop-articles>
+    </transition>
+    <transition name="fade">
+      <tarot-all-tarot></tarot-all-tarot>
+    </transition>
     <transition name="fade">
       <el-pairing></el-pairing>
     </transition>
@@ -180,28 +189,33 @@ export default {
     moreData() {
       return [
         {
-          name: 'General',
-          title: 'General Horoscope',
+          name: 'Daily',
+          title: 'Daily Horoscope',
+          imgUrl: require('../../assets/img/horroscope/daily_horoscope.png'),
           texts: this.youlistData?.general,
         },
         {
           name: 'Love',
           title: 'Love Horoscope',
+          imgUrl: require('../../assets/img/horroscope/love_horoscope.png'),
           texts: this.youlistData?.love,
         },
         {
           name: 'Health',
           title: 'Health Horoscope',
+          imgUrl: require('../../assets/img/horroscope/health_horoscope.png'),
           texts: this.youlistData?.health,
         },
         {
           name: 'Career',
           title: 'Career Horoscope',
+          imgUrl: require('../../assets/img/horroscope/career_horoscope.png'),
           texts: this.youlistData?.career,
         },
         {
-          name: 'Finances',
-          title: 'Finances Horoscope',
+          name: 'Money',
+          title: 'Money Horoscope',
+          imgUrl: require('../../assets/img/horroscope/money_horoscope.png'),
           texts: this.youlistData?.finances,
         },
       ]
@@ -331,7 +345,7 @@ export default {
         gap: 16px;
         padding: 48px 0;
         .more_list {
-          padding: 34px 24px 24px;
+          padding: 30px 24px 24px;
           box-sizing: border-box;
           border: 1px solid transparent;
           border-radius: 6px;
@@ -354,13 +368,19 @@ export default {
                 rgba(255, 255, 255, 0) 100%
               );
             }
+            .img_top {
+              height: auto;
+              text-align: center;
+              img {
+                object-fit: contain;
+              }
+            }
             p {
               font-family: 'Rubik';
               font-size: 22px;
               line-height: 30px;
               text-align: center;
               color: #ffffff;
-              padding: 0 70px;
             }
           }
           .more_text {
@@ -552,6 +572,9 @@ export default {
               padding-bottom: 16 * $pr;
               &::after {
                 height: 1 * $pr;
+              }
+              .img_top {
+                display: none;
               }
               p {
                 font-size: 22 * $pr;

@@ -51,32 +51,34 @@
               </div>
             </a>
           </div>
-          <google-ad
-            classNames="google_ad top"
-            v-if="list.length >= 8"
-          ></google-ad>
-          <google-ad
-            classNames="google_ad center"
-            v-if="list.length >= 16"
-          ></google-ad>
-          <google-ad
-            classNames="google_ad btm"
-            v-if="list.length >= 32"
-          ></google-ad>
+          <google-ad classNames="google_ad top" v-if="list.length >= 8"></google-ad>
+          <google-ad classNames="google_ad center" v-if="list.length >= 16"></google-ad>
+          <google-ad classNames="google_ad btm" v-if="list.length >= 32" ></google-ad>
           <div class="common__loading" v-scroll v-if="search.page < totalPage">
             <div class="common__loading__loader" v-if="loading"></div>
           </div>
         </div>
-
         <google-ad classNames="google_ad_h5btm"></google-ad>
         <div class="test_main_center_right">
           <google-ad classNames="google_ad"></google-ad>
         </div>
       </div>
     </div>
-    <transition name="fade">
-      <InternalSite></InternalSite>
-    </transition>
+    <div class="foot_components">
+      <transition name="fade">
+        <!-- <InternalSite></InternalSite> -->
+        <el-daily-horoscope></el-daily-horoscope>
+      </transition>
+      <transition name="fade">
+        <home-your-choice></home-your-choice>
+      </transition>
+      <transition name="fade">
+        <tarot-all-tarot></tarot-all-tarot>
+      </transition>
+      <transition name="fade">
+        <el-pairing></el-pairing>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -84,143 +86,6 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      tabs: [
-        { id: 1, name: 'Most Popular Quizzes' },
-        { id: 2, name: 'Love' },
-        { id: 3, name: 'Love' },
-        { id: 4, name: 'Love' },
-        { id: 5, name: 'Wealth' },
-        { id: 6, name: 'Wealth' },
-        { id: 7, name: 'Wealth' },
-        { id: 8, name: 'Fate' },
-        { id: 9, name: 'Fate' },
-        { id: 10, name: 'Fate' },
-        { id: 11, name: 'Pairing' },
-        { id: 12, name: 'Pairing' },
-        { id: 13, name: 'Pairing' },
-      ],
-      list: [
-        {
-          id: 1,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 2,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 3,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 4,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 5,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 6,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 7,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 8,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 9,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 10,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 11,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 12,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 13,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 14,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 15,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 16,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 17,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 18,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 19,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 20,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 21,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 22,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 23,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-        {
-          id: 24,
-          name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-          icon: require('../../assets/img/resources/d_03.png'),
-        },
-      ],
       loading: false,
       currentTabIndex: 0,
       tabsStatus: true,
@@ -303,13 +168,20 @@ export default {
         })
     },
     scrollLoad() {
+      //滚动条位置
       let scrollTop =
         document.documentElement.scrollTop ||
         window.pageYOffset ||
         document.body.scrollTop
+      //页面总高度
       let bodyHeight =
         document.body.scrollHeight || document.documentElement.scrollHeight
-      if (scrollTop + window.innerHeight >= bodyHeight - 850) {
+      //加载动画的盒子底部的元素
+      let footComponentsEl = document.querySelector('.foot_components')
+      let footerEl = document.querySelector('.footer')
+      //加载动画的盒子距离底部的距离
+      let height = footComponentsEl.offsetHeight + footerEl.offsetHeight
+      if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
         if (this.loading) return
         this.getMoreList()
       }
@@ -323,14 +195,14 @@ export default {
       })
     },
     /** 点击切换tabs*/
-    changeTab(item, index) {
-      //   this.item = item
-      //   this.btmList = []
-      //   this.search.page = 0
-      this.currentTabIndex = index
-      //通过id请求对应的列表数据
-      //   this.getNews(item)
-    },
+    // changeTab(item, index) {
+    //     this.item = item
+    //     this.btmList = []
+    //     this.search.page = 0
+    //   this.currentTabIndex = index
+    //   //通过id请求对应的列表数据
+    //     this.getNews(item)
+    // },
   },
   directives: {
     scroll: {
