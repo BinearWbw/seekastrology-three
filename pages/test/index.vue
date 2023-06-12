@@ -74,9 +74,21 @@
         </div>
       </div>
     </div>
-    <transition name="fade">
-      <InternalSite></InternalSite>
-    </transition>
+    <div class="foot_components">
+      <transition name="fade">
+        <!-- <InternalSite></InternalSite> -->
+        <el-daily-horoscope></el-daily-horoscope>
+      </transition>
+      <transition name="fade">
+        <home-your-choice :item="[]"></home-your-choice>
+      </transition>
+      <transition name="fade">
+        <tarot-all-tarot></tarot-all-tarot>
+      </transition>
+      <transition name="fade">
+        <el-pairing></el-pairing>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -303,13 +315,20 @@ export default {
         })
     },
     scrollLoad() {
+      //滚动条位置
       let scrollTop =
         document.documentElement.scrollTop ||
         window.pageYOffset ||
         document.body.scrollTop
+      //页面总高度
       let bodyHeight =
         document.body.scrollHeight || document.documentElement.scrollHeight
-      if (scrollTop + window.innerHeight >= bodyHeight - 850) {
+      //加载动画的盒子底部的元素
+      let footComponentsEl = document.querySelector('.foot_components')
+      let footerEl = document.querySelector('.footer')
+      //加载动画的盒子距离底部的距离
+      let height = footComponentsEl.offsetHeight + footerEl.offsetHeight
+      if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
         if (this.loading) return
         this.getMoreList()
       }
@@ -323,14 +342,14 @@ export default {
       })
     },
     /** 点击切换tabs*/
-    changeTab(item, index) {
-      //   this.item = item
-      //   this.btmList = []
-      //   this.search.page = 0
-      this.currentTabIndex = index
-      //通过id请求对应的列表数据
-      //   this.getNews(item)
-    },
+    // changeTab(item, index) {
+    //     this.item = item
+    //     this.btmList = []
+    //     this.search.page = 0
+    //   this.currentTabIndex = index
+    //   //通过id请求对应的列表数据
+    //     this.getNews(item)
+    // },
   },
   directives: {
     scroll: {

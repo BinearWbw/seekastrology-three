@@ -201,21 +201,23 @@
       </div>
     </div>
     <google-ad classNames="google_ad_footer"></google-ad>
-    <transition name="fade">
-      <el-daily-horoscope></el-daily-horoscope>
-    </transition>
-    <transition name="fade">
-      <home-your-choice :item="[]"></home-your-choice>
-    </transition>
-    <transition name="fade">
-      <home-pop-articles :homeNews="[{}]"></home-pop-articles>
-    </transition>
-    <transition name="fade"> 
-
-    </transition>
-    <transition name="fade">
-      <el-pairing></el-pairing>
-    </transition>
+    <div class="foot_components">
+      <transition name="fade">
+        <el-daily-horoscope></el-daily-horoscope>
+      </transition>
+      <transition name="fade">
+        <home-your-choice :item="[]"></home-your-choice>
+      </transition>
+      <transition name="fade">
+        <home-pop-articles :homeNews="[{}]"></home-pop-articles>
+      </transition>
+      <transition name="fade">
+        <tarot-all-tarot></tarot-all-tarot>
+      </transition>
+      <transition name="fade">
+        <el-pairing></el-pairing>
+      </transition>
+    </div>
   </div>
 </template>
 <script>

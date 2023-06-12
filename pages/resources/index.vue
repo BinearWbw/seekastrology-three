@@ -236,7 +236,7 @@
         <home-your-choice :item="[]"></home-your-choice>
       </transition>
       <transition name="fade">
-
+        <tarot-all-tarot></tarot-all-tarot>
       </transition>
       <transition name="fade">
          <el-pairing></el-pairing>
