@@ -8,21 +8,25 @@
             <div class="selects">
               <el-selected
                 :options="selectOptions"
+                :pint="malesId"
                 @change="handleDropdownChangeLeft"
               ></el-selected>
             </div>
             <div class="selects">
               <el-selected
                 :options="selectOptions"
+                :pint="femalesId"
                 @change="handleDropdownChangeRight"
               ></el-selected>
             </div>
-            <p class="select_p">Please choose your partners horoscope</p>
           </div>
           <div class="dynamic">
             <div class="dynamic_love">
               <div class="dynamic_love_left">
-                <img :src="selectImgLeft" alt="#" />
+                <div class="love_left_img">
+                  <img :src="selectOptions[selectImgLeft].imgUrl" alt="#" />
+                </div>
+                <span class="gender">Male</span>
               </div>
               <div class="dynamic_love_middle">
                 <img src="~/assets/img/astrology/astr_love.png" alt="#" />
@@ -32,7 +36,10 @@
                 <i class="right_line2"></i>
               </div>
               <div class="dynamic_love_right">
-                <img :src="selectImgRight" alt="#" />
+                <div class="love_left_img">
+                  <img :src="selectOptions[selectImgRight].imgUrl" alt="#" />
+                </div>
+                <span class="gender">Female</span>
               </div>
             </div>
             <div class="dynamic_determine" ref="target">
@@ -71,7 +78,7 @@
       alt="#"
     />
     <transition name="fade">
-      <InternalSite></InternalSite>
+      <el-daily-horoscope></el-daily-horoscope>
     </transition>
   </div>
 </template>
@@ -87,54 +94,68 @@ export default {
         {
           name: 'Aries',
           imgUrl: require('~/assets/img/home/choice/Aries.png'),
+          id: 1,
         },
         {
           name: 'Taurus',
           imgUrl: require('~/assets/img/home/choice/Taurus.png'),
+          id: 2,
         },
         {
           name: 'Gemini',
           imgUrl: require('~/assets/img/home/choice/Gemini.png'),
+          id: 3,
         },
         {
           name: 'Cancer',
           imgUrl: require('~/assets/img/home/choice/Cancer.png'),
+          id: 4,
         },
         {
           name: 'Leo',
           imgUrl: require('~/assets/img/home/choice/Leo.png'),
+          id: 5,
         },
         {
           name: 'Virgo',
           imgUrl: require('~/assets/img/home/choice/Virgo.png'),
+          id: 6,
         },
         {
           name: 'Libra',
           imgUrl: require('~/assets/img/home/choice/Libra.png'),
+          id: 7,
         },
         {
           name: 'Scorpio',
           imgUrl: require('~/assets/img/home/choice/Scorpio.png'),
+          id: 8,
         },
         {
           name: 'Sagittarius',
           imgUrl: require('~/assets/img/home/choice/Sagittarius.png'),
+          id: 9,
         },
         {
           name: 'Capricorn',
           imgUrl: require('~/assets/img/home/choice/Capricorn.png'),
+          id: 10,
         },
         {
           name: 'Aquarius',
           imgUrl: require('~/assets/img/home/choice/Aquarius.png'),
+          id: 11,
         },
         {
           name: 'Pisces',
           imgUrl: require('~/assets/img/home/choice/Pisces.png'),
+          id: 12,
         },
       ],
-      selectImgLeft: require('~/assets/img/home/choice/Aries.png'),
-      selectImgRight: require('~/assets/img/home/choice/Aries.png'),
+      selectImgLeft: 0,
+      selectImgRight: 0,
+      malesId: 1,
+      femalesId: 1,
     }
   },
   async asyncData({ error, $apiList, params }) {
@@ -161,14 +182,17 @@ export default {
       error({ statusCode: e.code, message: e.message })
     }
   },
+  mounted() {
+    this.infoGetStartPairing()
+  },
   methods: {
     handleDropdownChangeLeft(option) {
-      this.selectImgLeft = option.imgUrl
-      this.females = option.name.toLowerCase()
+      this.selectImgLeft = option.id - 1
+      this.males = option.name.toLowerCase()
     },
     handleDropdownChangeRight(option) {
-      this.selectImgRight = option.imgUrl
-      this.males = option.name.toLowerCase()
+      this.selectImgRight = option.id - 1
+      this.females = option.name.toLowerCase()
     },
     getStartPairing() {
       this.$apiList.home
@@ -178,9 +202,23 @@ export default {
           female: this.females,
         })
         .then((res) => {
+          sessionStorage.removeItem('genderList')
           this.compatibilityData = res
         })
       this.$refs.target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    },
+    infoGetStartPairing() {
+      const storedObject = JSON.parse(sessionStorage.getItem('genderList'))
+      if (storedObject) {
+        const { malesId, femalesId, males, females } = storedObject
+        this.malesId = malesId
+        this.femalesId = femalesId
+        this.selectImgLeft = malesId - 1
+        this.selectImgRight = femalesId - 1
+        this.males = males
+        this.females = females
+        this.getStartPairing()
+      }
     },
   },
 }
@@ -227,14 +265,11 @@ export default {
           .selects {
             width: 338px;
           }
-          .select_p {
-            display: none;
-          }
         }
         .dynamic {
           &_love {
             height: 257px;
-            padding: 0 312px;
+            padding: 10px 312px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -243,12 +278,30 @@ export default {
               height: 154px;
               border-radius: 50%;
               border: 1px solid #ffffff;
-              overflow: hidden;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              img {
-                object-fit: cover;
+              position: relative;
+              .love_left_img {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                  object-fit: cover;
+                }
+              }
+              .gender {
+                position: absolute;
+                top: -35px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-family: 'Rubik';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: center;
+                color: #ffffff;
               }
             }
             &_middle {
@@ -299,12 +352,30 @@ export default {
               height: 154px;
               border-radius: 50%;
               border: 1px solid #ffffff;
-              overflow: hidden;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              img {
-                object-fit: cover;
+              position: relative;
+              .love_left_img {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                  object-fit: cover;
+                }
+              }
+              .gender {
+                position: absolute;
+                top: -35px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-family: 'Rubik';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: center;
+                color: #ffffff;
               }
             }
           }
@@ -430,6 +501,61 @@ export default {
     }
   }
 }
+@media (max-width: 1450px) {
+  .astrology {
+    &_main {
+      width: 100%;
+      padding: 0 30px;
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .astrology {
+    &_main {
+      .pairing {
+        .pairing_main {
+          .dynamic {
+            &_love {
+              padding: 10px 212px 0;
+            }
+          }
+        }
+        .pairing_text {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1025px) {
+  .astrology {
+    &_main {
+      .pairing {
+        .pairing_main {
+          .dynamic {
+            &_love {
+              padding: 10px 80px 0;
+            }
+            &_determine {
+              .google_ad {
+                width: 100%;
+              }
+            }
+          }
+        }
+        .pairing_text {
+          width: 100%;
+          .google_ad {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .astrology {
@@ -460,14 +586,6 @@ export default {
               width: 100%;
               margin-bottom: 16 * $pr;
             }
-            .select_p {
-              display: block;
-              font-family: 'Rubik';
-              font-size: 16 * $pr;
-              line-height: 22 * $pr;
-              text-align: center;
-              color: rgba(255, 255, 255, 0.7);
-            }
           }
           .dynamic {
             &_love {
@@ -478,10 +596,18 @@ export default {
                 width: 112 * $pr;
                 height: 112 * $pr;
                 border: 1 * $pr solid #ffffff;
-                img {
-                  width: 130%;
-                  height: auto;
-                  object-fit: cover;
+                .love_left_img {
+                  img {
+                    width: 130%;
+                    height: auto;
+                    object-fit: cover;
+                  }
+                }
+                .gender {
+                  top: -35 * $pr;
+                  left: 50%;
+                  font-size: 16 * $pr;
+                  line-height: 22 * $pr;
                 }
               }
               &_middle {
@@ -515,17 +641,27 @@ export default {
                 width: 112 * $pr;
                 height: 112 * $pr;
                 border: 1 * $pr solid #ffffff;
-                img {
-                  width: 130%;
-                  height: auto;
-                  object-fit: cover;
+                .love_left_img {
+                  img {
+                    width: 130%;
+                    height: auto;
+                    object-fit: cover;
+                  }
+                }
+                .gender {
+                  top: -35 * $pr;
+                  left: 50%;
+                  font-size: 16 * $pr;
+                  line-height: 22 * $pr;
                 }
               }
             }
 
             &_determine {
+              margin-top: 16 * $pr;
               p {
-                display: none;
+                font-size: 14 * $pr;
+                line-height: 18 * $pr;
               }
               .determine_button {
                 width: 277 * $pr;
