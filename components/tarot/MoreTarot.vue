@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-08 17:19:05
+ * @LastEditTime: 2023-06-09 15:45:22
  * @FilePath: /seekastrology/components/tarot/MoreTarot.vue
  * @Description: 
 -->
@@ -9,38 +9,36 @@
   <div>
     <div class="title">More Tarot Readings</div>
     <div class="more-tarot">
-      <div class="more-tarot-items">
-        <nuxt-link :to="{ path: '/tarot/type', query: { type: '1' } }">
+      <nuxt-link class="link" :to="{ path: '/tarot/type', query: { type: '1' } }">
+        <div class="more-tarot-items">
           <img src="~/assets/img/tarot/love.png" alt="" />
           <p class="item-title">LOVE Tarot Reading</p>
           <p class="item-sub-title">
             Receive personalized advice for your romantic dilemmas
           </p>
           <button class="button">Read More</button>
-        </nuxt-link>
-      </div>
-
-      <div class="more-tarot-items">
-        <nuxt-link :to="{ path: '/tarot/type', query: { type: '2' } }">
+        </div>
+      </nuxt-link>
+      <nuxt-link class="link" :to="{ path: '/tarot/type', query: { type: '2' } }">
+        <div class="more-tarot-items">
           <img src="~/assets/img/tarot/cause.png" alt="" />
           <p class="item-title">Tarot Career Reading</p>
           <p class="item-sub-title">
             This free career Tarot reading is here to help you find success
           </p>
           <button class="button">Read More</button>
-        </nuxt-link>
-      </div>
-
-      <div class="more-tarot-items">
-        <nuxt-link :to="{ path: '/tarot/type', query: { type: '3' } }">
+        </div>
+      </nuxt-link>
+      <nuxt-link class="link" :to="{ path: '/tarot/type', query: { type: '3' } }">
+        <div class="more-tarot-items">
           <img src="~/assets/img/tarot/general.png" alt="" />
           <p class="item-title">Universal Tarot Reading</p>
           <p class="item-sub-title">
             Get the answers you need with this 3-card Tarot spread
           </p>
           <button class="button">Read More</button>
-        </nuxt-link>
-      </div>
+        </div>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -113,7 +111,7 @@ export default {
       }
     }
   }
-  .more-tarot-items:not(:first-child) {
+  .link:not(:first-child) {
     margin-left: 16px;
   }
   .item-title {

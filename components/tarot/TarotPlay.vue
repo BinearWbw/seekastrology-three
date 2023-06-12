@@ -1,13 +1,13 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-08 18:26:31
+ * @LastEditTime: 2023-06-12 11:03:39
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
 <template>
   <div class="tarot-container">
-    <div class="tip-box" v-if="!isSelected">
+    <div class="tip-box" v-show="!isSelected">
       <div class="tip-img-wrapper">
         <img
           src="~/assets/img/tarot/Vector2.png"
@@ -23,9 +23,9 @@
         tarot card！
       </div>
     </div>
-    <div class="tarot-wrapper" v-show="!isSelected">
-      <div class="card-row">
-        <div
+    <div class="tarot-wrapper" ref="tarotWrapper" v-show="!isSelected">
+      <div class="card-row" @mouseover="shuffleCards('topCard', $event)">
+        <!-- <div
           class="card-wrapper"
           v-for="index of 39"
           :key="'top-' + index"
@@ -36,30 +36,56 @@
           :class="{ selected: selectIndex == index }"
           @click="handleClike(index)"
         >
-          <img class="card-img" src="~/assets/img/tarot/card.png" alt="Card" />
-          <!-- :style="{ top: 160 + 'px', left: calc( (100% - 890+ 'px')/2 + index * 20 ) }" -->
-        </div>
-      </div>
-      <div class="card-row">
+          <img class="card-img" src="~/assets/img/tarot/card.png" alt="Card" /> -->
+        <!-- :style="{ top: 160 + 'px', left: calc( (100% - 890+ 'px')/2 + index * 20 ) }" -->
+        <!-- </div> -->
         <div
           class="card-wrapper"
           v-for="index of 39"
           :key="'top-' + index"
-          :style="{ top: 403 + 'px', left: 57 + index * 20 + 'px' }"
+          :ref="'topCard' + index"
+          :style="{
+            top: 160 + 'px',
+            left: (index - 1) * 20 + 'px',
+          }"
           @click="handleClike(index)"
         >
-          <img class="card-img" src="~/assets/img/tarot/card.png" alt="Card" />
+          <img
+            class="card-img"
+            :data-index="index"
+            src="~/assets/img/tarot/card.png"
+            alt="Card"
+          />
+        </div>
+      </div>
+      <div class="card-row" @mouseover="shuffleCards('bottomCard', $event)">
+        <div
+          class="card-wrapper"
+          v-for="index of count"
+          :key="'bottom-' + index"
+          :ref="'bottomCard' + index"
+          :style="{
+            top: 404 + 'px',
+            left: (index - 1) * 20 + 'px',
+          }"
+          @click="handleClike(index)"
+        >
+          <img
+            class="card-img"
+            :data-index="index"
+            src="~/assets/img/tarot/card.png"
+            alt="Card"
+          />
         </div>
       </div>
     </div>
-    <div class="mask-wrapper" v-if="isSelected">
-      <div class="show-wrapper">
+    <div class="mask-wrapper" v-show="isSelected">
+      <div class="show-wrapper" :class="styleObj">
         <nuxt-img
           class="item-img"
           v-for="(item, index) in showList"
           :key="index"
           :src="item.icon || '/'"
-          fit="cover"
           height="440"
           width="260"
           :alt="item.name"
@@ -97,6 +123,14 @@ export default {
       immediate: true,
     },
   },
+  computed: {
+    styleObj() {
+      return {
+        'rotate-start': this.isSelected && this.type == 4,
+        'rotate-status': this.isSelected && this.type == 4,
+      }
+    },
+  },
   data() {
     return {
       selectIndex: 0,
@@ -104,6 +138,7 @@ export default {
       cardsInfo: [],
       showList: [],
       numbers: 3,
+      count: 39,
     }
   },
   mounted() {},
@@ -129,12 +164,14 @@ export default {
     },
     judgeShow() {
       switch (this.type) {
-        case '1' || '3':
+        case '1':
+        case '3':
           if (this.showList.length == 3) {
             this.isSelected = true
           } else {
             this.showList.push(this.cardsInfo[this.showList.length])
             this.numbers--
+            this.count--
           }
           break
         case '2':
@@ -143,6 +180,7 @@ export default {
           } else {
             this.showList.push(this.cardsInfo[this.showList.length])
             this.numbers--
+            this.count--
           }
           break
         case '4':
@@ -152,10 +190,48 @@ export default {
           break
       }
     },
+    shuffleCards(param, event) {
+      let index = event.target.dataset.index
+      if (!index) {
+        return
+      }
+
+      const tarotWrapper = this.$refs.tarotWrapper
+      const wrapperWidth = this.$refs.tarotWrapper.offsetWidth
+      const wrapperHeight = this.$refs.tarotWrapper.offsetHeight
+
+      // console.log("%c Line:192 🍔 tarotWrapper", "color:#fca650", tarotWrapper);
+      // console.log("%c Line:192 🍔 tarotWrapper", "color:#fca650", wrapperWidth);
+      // console.log("%c Line:192 🍔 tarotWrapper", "color:#fca650", wrapperHeight);
+      let flag = Math.random() * 10 > 5 ? '+' : '-' // 正负数标识
+
+      let card = this.$refs[`${param}${index}`][0]
+
+      let leftValue = parseInt(card.style.left, 10)
+      let topValue = parseInt(card.style.top, 10)
+
+      // card.style.transform = `translate(-140px, 20px) rotate(20deg)`
+      // card.style.zIndex = index++
+      // card.style.left = `${leftValue} + ${flag}${Math.floor(Math.random() * 220)}px`
+      card.style.left =
+        leftValue + Number(flag + Math.floor(Math.random() * 130)) + 'px'
+      card.style.top =
+        topValue + Number(flag + Math.floor(Math.random() * 110)) + 'px'
+      card.style.transform = `rotate(${flag}${Math.floor(
+        Math.random() * 120
+      )}deg)`
+
+      // card.style.transform = `translate(${flag}${Math.floor(
+      //   Math.random() * (wrapperWidth / 3 - 150)
+      // )}px, ${Math.floor(
+      //   Math.random() * (wrapperHeight / 3 - 180)
+      // )}px) rotate(${flag}${Math.floor(Math.random() * 120)}deg)`
+    },
     resetData() {
       this.cardsInfo = []
       this.showList = []
       this.isSelected = false
+      this.count = 39
     },
   },
 }
@@ -176,23 +252,46 @@ export default {
     border: 1px solid #45454d;
     position: relative;
   }
+  .card-row {
+    width: 890px;
+    // margin: 0 auto;
+    // display: flex;
+    position: absolute;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
   .card-wrapper {
     position: absolute;
-    left: 180px;
-    transform-style: preserve-3d;
-    transition: transform 1s;
-    .card-img {
-      cursor: pointer;
+    // left: 180px;
+    display: inline-block;
+    transition: all 0.8s;
+    width: 130px;
+    height: 220px;
+    cursor: pointer;
+    // &:not(:first-child) {
+    //   margin-left: -110px;
+    // }
+    &:hover {
+      border: 1px solid #9747ff;
+      border-radius: 8px;
+      // transform: translate(random(20) + px, random(20) + px)
+      //   rotate(random(100) + deg);
     }
   }
   .card-img {
-    width: 130px;
-    height: 220px;
+    width: 100%;
+    height: 100%;
   }
   .show-wrapper {
     width: 100%;
     display: flex;
     justify-content: space-around;
+  }
+  .mt-160 {
+    margin-top: 160px;
+  }
+  .mt-24 {
+    margin-top: 24px;
   }
 }
 .tip-box {
@@ -235,6 +334,21 @@ export default {
   .btn-img {
     margin-top: 36px;
     cursor: pointer;
+  }
+}
+
+.rotate-start {
+  opacity: 0.4;
+  transform: scale(0.4) rotate(40deg) translateY(20px);
+}
+.rotate-status {
+  animation: rotate_status 0.6s ease-in;
+  animation-fill-mode: forwards;
+}
+@keyframes rotate_status {
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg) translateY(0);
   }
 }
 </style>
