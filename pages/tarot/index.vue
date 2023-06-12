@@ -1,3 +1,10 @@
+<!--
+ * @Date: 2023-06-09 09:27:30
+ * @LastEditors: tianjun
+ * @LastEditTime: 2023-06-12 11:05:31
+ * @FilePath: /seekastrology/pages/tarot/index.vue
+ * @Description: 
+-->
 <template>
   <div class="tarot-container">
     <div class="title">Choose 1 Cards From The Deck Below:</div>
@@ -11,60 +18,7 @@
     <div class="ad-box_row mt-48"></div>
     <more-tarot class="mt-48"></more-tarot>
     <div class="ad-box_row mt-32"></div>
-    <div class="cards-box">
-      <div class="card-wrapper">
-        <div class="card-title">
-          The 78 Tarot cards are divided into two main <br />sections, the Major
-          Arcana and Minor Arcana, <br />and further into four suits:
-        </div>
-        <nuxt-link to="/tarot/cards">
-          <button class="button">View All</button>
-        </nuxt-link>
-      </div>
-
-      <ul class="card-list">
-        <li class="card-items">
-          <img
-            src="~/assets/img/tarot/card0.png"
-            alt=""
-            class="card-item-img"
-          />
-          <div class="card-text">The Fool</div>
-        </li>
-        <li class="card-items">
-          <img
-            src="~/assets/img/tarot/card1.png"
-            alt=""
-            class="card-item-img"
-          />
-          <div class="card-text">The Magician</div>
-        </li>
-        <li class="card-items">
-          <img
-            src="~/assets/img/tarot/card2.png"
-            alt=""
-            class="card-item-img"
-          />
-          <div class="card-text">The High Priestess</div>
-        </li>
-        <li class="card-items">
-          <img
-            src="~/assets/img/tarot/card3.png"
-            alt=""
-            class="card-item-img"
-          />
-          <div class="card-text">The Empress</div>
-        </li>
-        <li class="card-items">
-          <img
-            src="~/assets/img/tarot/card4.png"
-            alt=""
-            class="card-item-img"
-          />
-          <div class="card-text">The Emperor</div>
-        </li>
-      </ul>
-    </div>
+    <all-tarot class="mt-48"></all-tarot>
     <div class="ad-box_row mt-32"></div>
   </div>
 </template>
@@ -72,11 +26,13 @@
 <script>
 import MoreTarot from '../../components/tarot/MoreTarot.vue'
 import TarotPlay from '../../components/tarot/TarotPlay.vue'
+import AllTarot from '../../components/tarot/AllTarot.vue'
 export default {
   name: 'tarot',
   components: {
     MoreTarot,
     TarotPlay,
+    AllTarot
   },
   data() {
     return {}
@@ -133,43 +89,6 @@ export default {
   &:hover {
     color: #000;
     background-color: #fff;
-  }
-}
-.cards-box {
-  padding-top: 96px;
-  margin-top: 48px;
-  background-image: url('~assets/img/tarot/card_bg.png');
-  background-size: 100%;
-  background-repeat: no-repeat;
-  .card-wrapper {
-    display: flex;
-    width: 1400px;
-    margin: 0 auto;
-    .button {
-      margin-left: 315px;
-    }
-  }
-  .card-title {
-    font-family: 'Cinzel Decorative';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 36px;
-  }
-  .card-list {
-    width: 1400px;
-    margin: 60px auto 0;
-    display: grid;
-    grid-gap: 75px;
-    grid-template-columns: repeat(5, 220px);
-    text-align: center;
-    .card-item-img {
-      height: 440px;
-      width: 100%;
-    }
-    .card-text {
-      margin-top: 16px;
-    }
   }
 }
 .mt-48 {
