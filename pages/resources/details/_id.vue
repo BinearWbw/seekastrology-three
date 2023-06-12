@@ -701,6 +701,7 @@ $spacing: 16px;
       width: 100%;
       &_left {
         width: 65%;
+        margin-left: 30px;
         &_ad {
           width: 100%;
         }
@@ -716,7 +717,8 @@ $spacing: 16px;
       }
       &_right {
         width: 25%;
-        &_ad {
+        padding: 0 20px;
+        .rightAd {
           width: 100%;
           margin-left: 20px;
           margin-top: 48px;
@@ -768,6 +770,7 @@ $spacing: 16px;
       justify-content: center;
       &_left {
         width: 343 * $pr;
+        margin-left: 0;
         &_top {
           &_menu {
             margin-left: 16 * $pr;
@@ -809,7 +812,8 @@ $spacing: 16px;
             }
           }
         }
-        &_ad {
+        
+        .leftAd{
           width: 343 * $pr;
           height: 299 * $pr;
         }
@@ -835,6 +839,9 @@ $spacing: 16px;
               margin-right: 21 * $pr;
             }
           }
+        }
+        .rightAd{
+          display: none;
         }
       }
     }
