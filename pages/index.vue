@@ -43,16 +43,7 @@ export default {
   computed: {},
   async asyncData({ error, $apiList }) {
     try {
-      let [homePopList, homeQuizzes] = await Promise.all([
-        $apiList.articles
-          .getNewsRec({
-            origin: process.env.origin,
-          })
-          .then((res) => {
-            res = res.slice(0, 5)
-            return res || null
-          }),
-
+      let [homeQuizzes] = await Promise.all([
         $apiList.home
           .getZodiacHomeQuiz({
             origin: process.env.origin,
@@ -62,7 +53,6 @@ export default {
           }),
       ])
       return {
-        homePopList,
         homeQuizzes,
       }
     } catch (e) {

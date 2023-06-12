@@ -53,7 +53,7 @@ export default {
           title: 'Quizzes',
           textCont: 'Read your freedaily horoscopes and learn more about your',
           imgUrl: require('~/assets/img/home/quizzes.png'),
-          path: '#',
+          path: '/test/',
         },
         {
           title: 'Articles',
