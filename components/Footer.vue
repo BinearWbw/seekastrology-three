@@ -72,6 +72,9 @@ export default {
           id: '2',
           content: [
             {
+              link: 'Tarot',
+            },
+            {
               link: 'TarotDaily',
             },
             {
