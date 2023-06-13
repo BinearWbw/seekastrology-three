@@ -700,6 +700,7 @@ $spacing: 55px;
         height: 114px;
         background: #555761;
         margin-top: 48px;
+        overflow: hidden;
       }
     }
     &_right {
