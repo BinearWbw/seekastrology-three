@@ -13,7 +13,7 @@
       <button class="button" @click="pathToTarotPage">Read More</button>
     </div>
     <div class="tarot_img">
-      <div class="tarot_mian" ref="animated">
+      <div class="tarot_mian" ref="animated" @click="pathToTarotPage">
         <div class="img_list list_1">
           <div>
             <img src="~/assets/img/home/tarot_card.png" alt="#" />
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Tarot',
   data() {
@@ -43,7 +44,9 @@ export default {
       scrollTimeInfo: null,
     }
   },
-  computed: {},
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
+  },
   mounted() {
     if (window.innerWidth <= 1024) {
       window.addEventListener('scroll', this.handleScroll)
@@ -71,7 +74,7 @@ export default {
       }
     },
     pathToTarotPage() {
-      this.$router.push('/tarot')
+      this.$router.push(`/tarot/?from=home`)
     },
   },
 }
@@ -250,7 +253,6 @@ export default {
       height: 500px;
       padding: 0 0 30px;
       .tarot_mian {
-        pointer-events: none;
         height: 100%;
         .img_list {
           left: 20%;
@@ -325,7 +327,6 @@ export default {
       height: 320 * $pr;
       padding: 40 * $pr 0 0 10 * $pr;
       .tarot_mian {
-        pointer-events: none;
         .button {
           display: none;
         }

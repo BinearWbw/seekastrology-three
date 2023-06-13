@@ -2,7 +2,7 @@
   <div class="astrology">
     <div class="astrology_main">
       <div class="pairing">
-        <h3>The Pisces Zodiac Sign</h3>
+        <h3>ZODIAC COMPATIBILITY</h3>
         <div class="pairing_main">
           <div class="pairing_select">
             <div class="selects">
@@ -497,6 +497,14 @@ export default {
             font-size: 16px;
             line-height: 22px;
             color: rgba(255, 255, 255, 0.7);
+            :deep(h1),
+            :deep(h2),
+            :deep(h3),
+            :deep(h4),
+            :deep(h5),
+            :deep(h6) {
+              color: #fff;
+            }
           }
         }
         .google_ad {

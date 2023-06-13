@@ -10,7 +10,7 @@
           class="choice__main__a"
           :href="`${getIntersperseUrl}/horroscope/${item_i.name
             .replace(/[^a-zA-Z0-9\\s]/g, '-')
-            .toLowerCase()}-${item_i.id}/`"
+            .toLowerCase()}-${item_i.id}/${getCurrentRoute}`"
         >
           <div class="img__list">
             <nuxt-img
@@ -41,6 +41,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
+    getCurrentRoute() {
+      return this.$route.path === '/' ? '?from=home' : ''
+    },
   },
   mounted() {
     this.getVariousList()

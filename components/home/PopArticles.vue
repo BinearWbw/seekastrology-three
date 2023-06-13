@@ -8,7 +8,7 @@
             :href="`${getIntersperseUrl}/resources/details/${getHomeNewsData[0]?.name
               .trim()
               .replace(/[^\w\d]/g, '-')
-              .toLowerCase()}-${getHomeNewsData[0]?.id}/`"
+              .toLowerCase()}-${getHomeNewsData[0]?.id}/${getCurrentRoute}`"
           >
             <div class="left_img">
               <nuxt-img
@@ -37,7 +37,7 @@
               :href="`${getIntersperseUrl}/resources/details/${item.name
                 .trim()
                 .replace(/[^\w\d]/g, '-')
-                .toLowerCase()}-${item.id}/`"
+                .toLowerCase()}-${item.id}/${getCurrentRoute}`"
             >
               <div class="news_right_img">
                 <nuxt-img
@@ -80,6 +80,9 @@ export default {
       return this.getHomeNewsData?.filter((_, index) => index !== 0)
     },
     ...mapGetters(['getIntersperseUrl']),
+    getCurrentRoute() {
+      return this.$route.path === '/' ? '?from=home' : ''
+    },
   },
   mounted() {
     this.getHomeNews()

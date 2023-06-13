@@ -12,7 +12,13 @@
         </button>
         <div class="top_link">
           <div class="top_list" v-for="item in footer_link" :key="item.id">
-            <a href="#" v-for="(cont, index) in item.content" :key="index">
+            <a
+              :href="`${getIntersperseUrl + cont.path}${
+                cont.id ? '?id=' + cont.id : ''
+              }`"
+              v-for="(cont, index) in item.content"
+              :key="index"
+            >
               {{ cont.link }}
             </a>
           </div>
@@ -35,9 +41,9 @@
           </div>
         </div>
       </div>
-      <div class="bottom">
-        <p>©2022 NetStorm, All Rights Reserved.</p>
-      </div>
+    </div>
+    <div class="bottom">
+      <p>©2022 NetStorm, All Rights Reserved.</p>
     </div>
   </footer>
 </template>
@@ -56,15 +62,19 @@ export default {
           content: [
             {
               link: 'Astrology',
+              path: '/astrology/',
             },
             {
               link: 'Zodiac Signs',
+              path: '/zodiac/',
             },
             {
               link: 'Horosscope',
+              path: '/horroscope/aries-1/',
             },
             {
               link: 'Compatibility',
+              path: '/astrology/',
             },
           ],
         },
@@ -73,18 +83,23 @@ export default {
           content: [
             {
               link: 'Tarot',
+              path: '/tarot/',
             },
             {
               link: 'TarotDaily',
+              path: '/tarot/',
             },
             {
               link: 'Career Tarot',
+              path: '/tarot/type?type=1',
             },
             {
               link: 'Love Tarot',
+              path: '/tarot/type?type=2',
             },
             {
               link: 'Universal Tarot',
+              path: '/tarot/type?type=3',
             },
           ],
         },
@@ -93,12 +108,15 @@ export default {
           content: [
             {
               link: 'Quizzes',
+              path: '/test/',
             },
             {
               link: 'Personality',
+              path: '/',
             },
             {
               link: 'TarotAnimal',
+              path: '/',
             },
           ],
         },
@@ -107,15 +125,22 @@ export default {
           content: [
             {
               link: 'Articles',
+              path: '/resources/',
             },
             {
               link: 'Astrology',
+              path: '/resources/',
+              id: 4,
             },
             {
               link: 'tarot',
+              path: '/resources/',
+              id: 3,
             },
             {
               link: 'love',
+              path: '/resources/',
+              id: 5,
             },
           ],
         },
@@ -239,6 +264,7 @@ export default {
         .top_list {
           flex: 1;
           padding-right: 20px;
+          position: relative;
           & > :first-child {
             margin-top: 0;
             font-size: 16px;
@@ -257,6 +283,24 @@ export default {
               color: #fff;
             }
           }
+          &::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            right: 25%;
+            bottom: 0;
+            background: linear-gradient(
+              rgba(255, 255, 255, 0) 0%,
+              rgba(255, 255, 255, 0.2) 50.52%,
+              rgba(255, 255, 255, 0) 100%
+            );
+          }
+          &:last-child {
+            &::after {
+              background: none;
+            }
+          }
         }
       }
       &_last {
@@ -266,8 +310,8 @@ export default {
         flex-direction: column;
         justify-content: center;
         .logo_img {
-          width: 108px;
-          margin-bottom: 30px;
+          width: 150px;
+          margin-bottom: 10px;
         }
         .media {
           width: 100%;
@@ -284,19 +328,20 @@ export default {
         }
       }
     }
-    .bottom {
-      width: 100%;
-      height: 80px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      p {
-        text-align: center;
-        font-family: 'Rufina';
-        font-size: 12px;
-        line-height: 16px;
-        color: rgba(255, 255, 255, 0.7);
-      }
+  }
+  .bottom {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    p {
+      text-align: center;
+      font-family: 'Rufina';
+      font-size: 12px;
+      line-height: 16px;
+      color: rgba(255, 255, 255, 0.7);
     }
   }
 }
@@ -310,16 +355,16 @@ export default {
 @media (max-width: (1250px)) {
   .footer {
     &__main {
-      .bottom {
-        flex-direction: column-reverse;
-        .left {
-          margin-top: 30px;
-          width: 100%;
-        }
-        .right {
-          padding-top: 0;
-          width: 100%;
-        }
+    }
+    .bottom {
+      flex-direction: column-reverse;
+      .left {
+        margin-top: 30px;
+        width: 100%;
+      }
+      .right {
+        padding-top: 0;
+        width: 100%;
       }
     }
   }
@@ -375,7 +420,7 @@ export default {
             flex-basis: 50%;
             padding-right: 0;
             padding: 16 * $pr 0;
-            border-bottom: 1 * $pr solid rgba(217, 217, 217, 0.1);
+            position: relative;
             & > :first-child {
               margin-top: 0;
               font-size: 16 * $pr;
@@ -387,6 +432,53 @@ export default {
               font-family: 'Rubik';
               font-size: 14 * $pr;
               line-height: 18 * $pr;
+            }
+            &::after {
+              position: absolute;
+              content: '';
+              left: 0;
+              right: initial;
+              bottom: 0;
+              width: 100%;
+              height: 1 * $pr;
+              background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.2) 50.52%,
+                rgba(255, 255, 255, 0) 100%
+              );
+            }
+            &:nth-child(odd) {
+              &::after {
+                background: linear-gradient(
+                  90deg,
+                  rgba(255, 255, 255, 0) 0%,
+                  rgba(255, 255, 255, 0.2) 100%
+                );
+              }
+            }
+            &:nth-child(even) {
+              &::after {
+                background: linear-gradient(
+                  90deg,
+                  rgba(255, 255, 255, 0.2) 0%,
+                  rgba(255, 255, 255, 0) 100%
+                );
+              }
+            }
+            &:nth-child(odd):last-child {
+              &::after {
+                background: none;
+              }
+            }
+            &:nth-child(even):last-child {
+              &::after {
+                background: linear-gradient(
+                  90deg,
+                  rgba(255, 255, 255, 0.2) 0%,
+                  rgba(255, 255, 255, 0) 100%
+                );
+              }
             }
           }
         }
@@ -409,13 +501,13 @@ export default {
           }
         }
       }
-      .bottom {
-        width: 100%;
-        height: 64 * $pr;
-        p {
-          font-size: 12 * $pr;
-          line-height: 16 * $pr;
-        }
+    }
+    .bottom {
+      width: 100%;
+      height: 64 * $pr;
+      p {
+        font-size: 12 * $pr;
+        line-height: 16 * $pr;
       }
     }
   }

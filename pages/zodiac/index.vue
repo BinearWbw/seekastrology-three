@@ -228,7 +228,6 @@ export default {
         .zodiac_signs {
           .each {
             padding: 16px;
-            pointer-events: none;
           }
         }
         .google_ad {

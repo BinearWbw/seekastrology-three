@@ -6,7 +6,10 @@
     </div>
     <ul class="various__main">
       <li v-for="(item, index) in divination" :key="index">
-        <a class="various__main__li" :href="`${getIntersperseUrl + item.path}`">
+        <a
+          class="various__main__li"
+          :href="`${getIntersperseUrl + item.path + getCurrentRoute}`"
+        >
           <img :src="item.imgUrl" alt="stars" />
           <p class="title">{{ item.title }}</p>
           <p class="text">{{ item.textCont }}</p>
@@ -66,6 +69,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
+    getCurrentRoute() {
+      return this.$route.path === '/' ? '?from=home' : ''
+    },
   },
 }
 </script>
