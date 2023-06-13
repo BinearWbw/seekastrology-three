@@ -114,6 +114,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .tarot-container {
   color: #fff;
 }
@@ -213,5 +214,42 @@ export default {
 }
 .mt-200 {
   margin-top: 200px;
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .tarot-container {
+    padding: 16 * $pr;
+  }
+  .add-box-wrapper {
+    display: none;
+  }
+  .ad-box_row {
+    width: 100%;
+    height: 300 * $pr;
+  }
+  .introduce-box {
+    width: 100%;
+    margin: 68px auto 0;
+    .intro {
+      display: flex;
+      flex-direction: column;
+      .intro-title {
+        font-family: 'Cinzel Decorative';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
+        text-align: center;
+      }
+      .intro-content {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18 * $pr;
+        line-height: 28 * $pr;
+        color: #d2d3d7;
+      }
+    }
+  }
 }
 </style>

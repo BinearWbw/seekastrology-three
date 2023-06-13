@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-12 17:34:54
+ * @LastEditTime: 2023-06-13 14:41:44
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->

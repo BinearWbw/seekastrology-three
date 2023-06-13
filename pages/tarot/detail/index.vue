@@ -1,13 +1,15 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-12 14:40:50
+ * @LastEditTime: 2023-06-13 15:42:39
  * @FilePath: /seekastrology/pages/tarot/detail/index.vue
  * @Description: 
 -->
 <template>
   <div class="tarot-container">
-    <div class="title mt-75">{{ cardsInfo.name }} Card Meaning</div>
+    <div class="title mt-75 mt-44-mobile">
+      {{ cardsInfo.name }} Card Meaning
+    </div>
     <div class="tarot-section">
       <div class="add-box-wrapper"><div class="ad-box"></div></div>
       <div class="main-content">
@@ -16,10 +18,9 @@
           <li class="content-list-item">
             <div class="card-wrapper">
               <nuxt-img
+                class="card-img"
                 :src="cardsInfo.icon || '/'"
                 fit="cover"
-                height="390"
-                width="220"
                 :alt="cardsInfo.name"
               ></nuxt-img>
               <div class="card-text">{{ cardsInfo.name }}</div>
@@ -62,6 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .tarot-container {
   color: #fff;
   ::v-deep h2,
@@ -115,6 +117,9 @@ export default {
     }
     .card-wrapper {
       margin-right: 137px;
+      .card-img {
+        height: 600px;
+      }
     }
     .card-text {
       text-align: center;
@@ -159,5 +164,45 @@ export default {
 }
 .mt-200 {
   margin-top: 200px;
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .tarot-container {
+    padding: 16 * $pr;
+  }
+  .main-content {
+    margin: 0;
+  }
+  .add-box-wrapper {
+    display: none;
+  }
+  .ad-box_row {
+    width: 100%;
+    height: 300 * $pr;
+    display: none;
+  }
+
+  .title {
+    font-family: 'Cinzel Decorative';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36 * $pr;
+    line-height: 48 * $pr;
+  }
+  .content-list {
+    .content-list-item {
+      flex-direction: column;
+      margin-top: 26px;
+      .card-wrapper {
+        margin: 0 auto 26px;
+        .card-img {
+          height: 400px;
+        }
+      }
+    }
+  }
+  .mt-44-mobile {
+    margin-top: 44px;
+  }
 }
 </style>

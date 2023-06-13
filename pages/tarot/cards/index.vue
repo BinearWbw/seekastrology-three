@@ -1,19 +1,19 @@
 <template>
   <div class="tarot-container">
     <Loading v-if="loading" />
-    <div class="title mt-75">the major</div>
+    <div class="title mt-75 mt-44-mobile">the major</div>
     <div class="tarot-section">
       <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div>
       <div class="tarot-box">
         <ul class="major-list">
           <li class="major-list-item" v-for="(item, index) in majorList">
-            <nuxt-link :to="{ path: '/tarot/detail', query: { id: item.id } }">
+            <nuxt-link
+              class="major-list-link"
+              :to="{ path: '/tarot/detail', query: { id: item.id } }"
+            >
               <nuxt-img
-                class="item-img"
+                class="major-item-img"
                 :src="item.icon || '/'"
-                fit="cover"
-                height="385"
-                width="100%"
                 :alt="item.name"
                 loading="lazy"
                 :data-id="item.id"
@@ -60,14 +60,16 @@
       </button>
     </div>
     <ul class="minor-list">
-      <li class="minor-list-item" v-for="(item, index) in minorList">
+      <li
+        class="minor-list-item"
+        v-for="(item, index) in minorList"
+        :key="index"
+      >
         <nuxt-link :to="{ path: '/tarot/detail', query: { id: item.id } }">
           <nuxt-img
-            class="item-img"
+            class="minor-item-img"
             :src="item.icon || '/'"
             fit="cover"
-            height="385"
-            width="100%"
             :alt="item.name"
             loading="lazy"
           ></nuxt-img>
@@ -188,6 +190,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .tarot-container {
   color: #fff;
 }
@@ -231,6 +234,9 @@ export default {
         transform: translateY(-20px);
       }
     }
+    .major-item-img {
+      height: 388px;
+    }
   }
 }
 .minor-list {
@@ -248,6 +254,9 @@ export default {
     cursor: pointer;
     &:hover {
       transform: translateY(-20px);
+    }
+    .minor-item-img {
+      height: 388px;
     }
   }
 }
@@ -293,6 +302,7 @@ export default {
   color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
   line-height: 18px;
+  white-space: nowrap;
   &:hover {
     color: #000;
     background-color: #fff;
@@ -318,5 +328,69 @@ export default {
 }
 .mt-200 {
   margin-top: 200px;
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .tarot-container {
+    padding: 16 * $pr;
+  }
+  .add-box-wrapper {
+    display: none;
+  }
+  .ad-box_row {
+    width: 100%;
+    height: 300 * $pr;
+  }
+  .title {
+    font-family: 'Cinzel Decorative';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36 * $pr;
+    line-height: 48 * $pr;
+    text-align: center;
+  }
+  .tarot-section {
+    .major-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .major-list-item {
+        .major-item-img {
+          height: 213px;
+        }
+        .item-text {
+          font-family: 'Rubik';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14 * $pr;
+          line-height: 18 * $pr;
+        }
+      }
+    }
+  }
+  .minor-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 107px);
+    .minor-list-item {
+      .minor-item-img {
+        height: 213px;
+      }
+      .item-text {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+  }
+  .minor-tab {
+    display: flex;
+    overflow-x: auto;
+  }
+  
+  .mt-44-mobile {
+    margin-top: 44px;
+  }
 }
 </style>

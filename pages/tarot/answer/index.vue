@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-08 16:33:19
+ * @LastEditTime: 2023-06-13 16:13:41
  * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
@@ -24,8 +24,6 @@
                 :class="{ 'card-img-rotate': item.type == 2 }"
                 :src="item.icon"
                 fit="cover"
-                height="390"
-                width="220"
                 :alt="item.name"
                 loading="lazy"
               ></nuxt-img>
@@ -96,6 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .tarot-container {
   color: #fff;
 }
@@ -135,6 +134,9 @@ export default {
     .card-wrapper {
       margin-right: 137px;
     }
+    .card-img {
+      height: 390px;
+    }
     .card-img-rotate {
       transform: rotate(180deg);
     }
@@ -173,5 +175,69 @@ export default {
 }
 .mt-200 {
   margin-top: 200px;
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .tarot-container {
+    padding: 16 * $pr;
+  }
+  .add-box-wrapper {
+    display: none;
+  }
+  .ad-box_row {
+    width: 100%;
+    height: 300 * $pr;
+  }
+  .title {
+    font-family: 'Cinzel Decorative';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36 * $pr;
+    line-height: 48 * $pr;
+  }
+  .tarot-section {
+    .ad-box {
+      display: none;
+    }
+  }
+  .main-content {
+    margin: 48px 0 0;
+    width: 100%;
+    .content-list {
+      .content-list-item {
+        flex-direction: column;
+        margin-top: 26px;
+        .card-wrapper {
+          margin: 0 auto 26px;
+          .card-img {
+            height: 400px;
+          }
+        }
+        .card-text {
+          font-family: 'Rufina';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 30px;
+        }
+        .desc-title {
+          font-family: 'Rubik';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 22px;
+          line-height: 30px;
+        }
+        .desc-text {
+          font-family: 'Rubik';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 18px;
+          color: rgba(255, 255, 255, 0.7);
+          margin-top: 8px;
+        }
+      }
+    }
+  }
 }
 </style>

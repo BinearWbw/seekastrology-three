@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-12 11:11:30
+ * @LastEditTime: 2023-06-13 13:52:23
  * @FilePath: /seekastrology/components/tarot/AllTarot.vue
  * @Description: 
 -->
@@ -39,6 +39,29 @@
         <div class="card-text">The Emperor</div>
       </li>
     </ul>
+    <ul class="card-list-mobile">
+      <li class="list-mobile">
+        <img
+          src="~/assets/img/home/tarot_card.png"
+          alt=""
+          class="list-mobile-img"
+        />
+      </li>
+      <li class="list-mobile">
+        <img
+          src="~/assets/img/home/tarot_card.png"
+          alt=""
+          class="list-mobile-img"
+        />
+      </li>
+      <li class="list-mobile">
+        <img
+          src="~/assets/img/home/tarot_card.png"
+          alt=""
+          class="list-mobile-img"
+        />
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -52,6 +75,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .cards-box {
   padding-top: 96px;
   background-image: url('~assets/img/tarot/card_bg.png');
@@ -88,6 +112,9 @@ export default {
       margin-top: 16px;
     }
   }
+  .card-list-mobile {
+    display: none;
+  }
 }
 .button {
   margin-top: 18px;
@@ -104,6 +131,59 @@ export default {
   &:hover {
     color: #000;
     background-color: #fff;
+  }
+}
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .cards-box {
+    background: url('~assets/img/tarot/card_bg_mobile.png');
+    background-size: 100%;
+    margin-left: -16 * $pr;
+    margin-right: -16 * $pr;
+    padding-top: 32 * $pr;
+    height: 480px;
+    .card-wrapper {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      .button {
+        margin-left: 0;
+      }
+    }
+    .card-title {
+      font-family: 'Rubik';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22 * $pr;
+      line-height: 30 * $pr;
+      text-align: center;
+    }
+    .card-list {
+      display: none;
+    }
+    .card-list-mobile {
+      display: flex;
+      justify-content: center;
+      transform: translateY(40px);
+      background-image: url('~assets/img/tarot/card_bg_list.png');
+      background-size: 100%;
+      background-repeat: no-repeat;
+      .list-mobile {
+        width: 114px;
+      }
+      .list-mobile:nth-child(1) {
+        transform: translateX(50%) rotate(-5deg);
+      }
+      .list-mobile:nth-child(2) {
+        transform: translateY(-16px) rotate(7deg);
+      }
+      .list-mobile:nth-child(3) {
+        transform: translate(-50%, 16px) rotate(15deg);
+      }
+      .list-mobile-img {
+        width: 100%;
+      }
+    }
   }
 }
 </style>
