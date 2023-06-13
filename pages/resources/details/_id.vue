@@ -191,50 +191,6 @@ export default {
   data() {
     return {
       playState: false,
-      // immedList: [
-      //   { title: "What's in your Immed", id: 1 },
-      //   { title: "What's in your Immed", id: 2 },
-      //   { title: "What's in your Immed", id: 3 },
-      //   { title: "What's in your Immed", id: 4 },
-      //   { title: "What's in your Immed", id: 5 },
-      //   { title: "What's in your Immed", id: 6 },
-      //   { title: "What's in your Immed", id: 7 },
-      //   { title: "What's in your Immed", id: 8 },
-      // ],
-      // footList: [
-      //   {
-      //     id: 7,
-      //     type: 2,
-      //     imgUrl: require('../../../assets/img/resources/p_12.png'),
-      //     title:
-      //       '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-      //     subscribe:
-      //       'We have so many opportunities for love in our lifetimes! You can consul',
-      //     date: '07/23',
-      //   },
-      //   {
-      //     id: 8,
-      //     type: 1,
-      //     imgUrl: require('../../../assets/img/resources/p_13.png'),
-      //     title:
-      //       '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-      //     subscribe:
-      //       'We have so many opportunities for love in our lifetimes! You can consul',
-      //     date: '07/23',
-      //     time: '37:25',
-      //   },
-      //   {
-      //     id: 9,
-      //     type: 2,
-      //     imgUrl: require('../../../assets/img/resources/p_14.png'),
-      //     title:
-      //       '2023 Money and Career Predictions for the 12 Signs! Many New Beginnings for all Sig··',
-      //     subscribe:
-      //       'We have so many opportunities for love in our lifetimes! You can consul',
-      //     date: '07/23',
-      //   },
-      // ],
-      // dataInfo: {},
     }
   },
   mounted() {},
