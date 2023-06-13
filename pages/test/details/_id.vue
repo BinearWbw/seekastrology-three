@@ -13,8 +13,10 @@
             </div>
             <div
               class="details_main_left_top_content_desc"
-              v-html="dataInfo.desc"
-            ></div>
+              
+            >
+            {{dataInfo.desc}}
+            </div>
             <div class="details_main_left_top_content_questions">
               {{ currentQuestionIndex + 1 }}.{{
                 dataInfo.questions[currentQuestionIndex].question
@@ -379,26 +381,26 @@ export default {
       this.currentQuestionIndex++
     },
     /**获取问题详情 */
-    getDataInfo(item) {
-      //重置状态
-      this.retake()
-      this.$apiList.test
-        .getQuizDetail({
-          origin: process.env.origin,
-          id: item.id,
-        })
-        .then((res) => {
-          this.dataInfo = res
-        })
-      // 实现滚动效果
-      let top = document.documentElement.scrollTop || document.body.scrollTop
-      const timeTop = setInterval(() => {
-        document.body.scrollTop = document.documentElement.scrollTop = top -= 50
-        if (top <= 0) {
-          clearInterval(timeTop)
-        }
-      }, 10)
-    },
+    // getDataInfo(item) {
+    //   //重置状态
+    //   this.retake()
+    //   this.$apiList.test
+    //     .getQuizDetail({
+    //       origin: process.env.origin,
+    //       id: item.id,
+    //     })
+    //     .then((res) => {
+    //       this.dataInfo = res
+    //     })
+    //   // 实现滚动效果
+    //   let top = document.documentElement.scrollTop || document.body.scrollTop
+    //   const timeTop = setInterval(() => {
+    //     document.body.scrollTop = document.documentElement.scrollTop = top -= 50
+    //     if (top <= 0) {
+    //       clearInterval(timeTop)
+    //     }
+    //   }, 10)
+    // },
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
@@ -698,6 +700,7 @@ $spacing: 55px;
         height: 114px;
         background: #555761;
         margin-top: 48px;
+        overflow: hidden;
       }
     }
     &_right {
@@ -710,6 +713,7 @@ $spacing: 55px;
         height: 600px;
         background: #555761;
         margin-bottom: 96px;
+        overflow: hidden;
       }
     }
   }

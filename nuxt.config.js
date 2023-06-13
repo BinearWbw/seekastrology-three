@@ -159,6 +159,9 @@ module.exports = {
       { rel: 'shortcut icon', sizes: '512x512', href: '/favicon.png' },
       { rel: 'apple-touch-icon', href: '/favicon.png' },
     ],
+    htmlAttrs: {
+      translate: 'no'
+    },
   },
 
   router: {
