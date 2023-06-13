@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-13 17:22:57
+ * @LastEditTime: 2023-06-13 17:56:26
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -48,7 +48,7 @@
         placeholder="Enter your question here"
         class="question-input"
       />
-      <button class="button">Submit</button>
+      <button v-if="!questionTop" class="button" @click="handleInput">Submit</button>
     </div>
     <div
       class="tarot-wrapper"
