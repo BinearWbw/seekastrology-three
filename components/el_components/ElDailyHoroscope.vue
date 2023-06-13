@@ -1,6 +1,7 @@
 <template>
   <div class="daily_horoscope" v-if="horoscopeData[0]">
     <div class="daily_horoscope_main">
+      <h3>Know Your Sun Signs</h3>
       <div class="main_primary">
         <div class="main_primary_content">
           <a
@@ -84,6 +85,16 @@ export default {
   &_main {
     width: 1400px;
     margin: 96px auto 0;
+    > h3 {
+      margin-bottom: 24px;
+      font-family: 'Cinzel Decorative';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 46px;
+      line-height: 64px;
+      text-align: center;
+      color: #ffffff;
+    }
     .main_primary {
       width: 100%;
       padding-bottom: 24px;
@@ -166,6 +177,12 @@ export default {
     &_main {
       margin: 96 * $pr auto 0;
       padding: 0 16 * $pr;
+      > h3 {
+        margin-bottom: 32 * $pr;
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
+        padding: 0 20 * $pr;
+      }
       .main_primary {
         padding-bottom: 24 * $pr;
         grid-template-columns: repeat(1, 1fr);

@@ -16,7 +16,7 @@
               :href="`${getIntersperseUrl}/test/details/${item.name
                 .trim()
                 .replace(/[^\w\d]/g, '-')
-                .toLowerCase()}-${item.id}/`"
+                .toLowerCase()}-${item.id}/${getCurrentRoute}`"
             >
               <div class="banner_img">
                 <nuxt-img
@@ -77,10 +77,13 @@ export default {
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
+    getCurrentRoute() {
+      return this.$route.path === '/' ? '?from=home' : ''
+    },
   },
   methods: {
     pathToTestPage() {
-      this.$router.push('/test/')
+      this.$router.push('/test/?from=home')
     },
   },
 }

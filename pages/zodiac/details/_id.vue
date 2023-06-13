@@ -132,6 +132,22 @@
                   <h4>LOVE Reasons</h4>
                   <div class="p_text" v-html="item.love_reasons"></div>
                 </div>
+                <div class="tab_main_list" v-if="item.positives">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} Positivesy` }}</h4>
+                  <div class="p_text" v-html="item.positives"></div>
+                </div>
+                <div class="tab_main_list" v-if="item.negatives">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} Negativesy` }}</h4>
+                  <div class="p_text" v-html="item.negatives"></div>
+                </div>
+                <div class="tab_main_list" v-if="item.in_love">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} In Love` }}</h4>
+                  <div class="p_text" v-html="item.in_love"></div>
+                </div>
+                <div class="tab_main_list" v-if="item.attract">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} Attracty` }}</h4>
+                  <div class="p_text" v-html="item.attract"></div>
+                </div>
               </div>
             </template>
           </el-tabs>
@@ -483,6 +499,14 @@ export default {
             line-height: 22px;
             margin-top: 8px;
             color: rgba(255, 255, 255, 0.7);
+            :deep(h1),
+            :deep(h2),
+            :deep(h3),
+            :deep(h4),
+            :deep(h5),
+            :deep(h6) {
+              color: #fff;
+            }
           }
         }
       }
@@ -540,7 +564,6 @@ export default {
           .left_tab {
             width: 170px;
             &_list {
-              pointer-events: none;
               .imgs {
                 display: none;
               }
