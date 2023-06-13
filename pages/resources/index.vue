@@ -239,7 +239,7 @@
         <tarot-all-tarot></tarot-all-tarot>
       </transition>
       <transition name="fade">
-         <el-pairing></el-pairing>
+        <el-pairing></el-pairing>
       </transition>
     </div>
   </div>
@@ -250,12 +250,13 @@ export default {
   data() {
     return {
       loading: false,
-      currentTabIndex: 0,
     }
   },
-  async asyncData({ error, $apiList }) {
+  async asyncData({ error, $apiList, query }) {
     try {
-      let item = null,
+      //获取
+      let item = query?.id ? { id: Number(query.id) } : null,
+        currentTabIndex = 0,
         totalNum = 0,
         totalPage = 1,
         search = {
@@ -279,7 +280,8 @@ export default {
             type: 4,
           })
           .then((res) => {
-            item = res?.length > 0 ? res[0] : null
+            if (item == null) item = res?.length > 0 ? res[0] : null
+            currentTabIndex = 'id' in item ? res.findIndex((tab) => tab.id == item.id) : 0
             return res || null
           }),
       ])
@@ -306,6 +308,7 @@ export default {
         totalNum,
         totalPage,
         search,
+        currentTabIndex,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
