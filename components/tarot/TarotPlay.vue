@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tianjun
- * @LastEditTime: 2023-06-13 14:41:44
+ * @LastEditTime: 2023-06-13 17:22:57
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -38,6 +38,7 @@
       :class="{ 'question-top': questionTop }"
       v-if="type != 4"
     >
+      <img class="icon-img" src="~/assets/img/tarot/edit_icon.png" alt="" />
       <input
         @keyup.enter="handleInput"
         type="text"
@@ -47,6 +48,7 @@
         placeholder="Enter your question here"
         class="question-input"
       />
+      <button class="button">Submit</button>
     </div>
     <div
       class="tarot-wrapper"
@@ -264,15 +266,26 @@ export default {
   padding: 5px;
   border: 1px solid hsla(0, 0%, 100%, 0.5);
   position: relative;
+  background-image: url('~assets/img/tarot/tarot_play_bg.png');
+  background-repeat: no-repeat;
+  background-position: right 400px;
   .question-box {
+    display: flex;
     position: absolute;
-    width: 647px;
+    width: 48%;
     height: 44px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9;
     transition: top 0.7s ease-out;
+    .icon-img {
+      position: absolute;
+      width: 20px;
+      height: 16px;
+      left: 46px;
+      top: 14px;
+    }
     .question-input {
       width: 100%;
       height: 100%;
@@ -280,7 +293,8 @@ export default {
       background: rgba(7, 6, 6, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.6);
       border-radius: 24px;
-      text-align: center;
+      padding: 0 46px 0 76px;
+      text-align: left;
       font-family: 'Rubik';
       font-style: normal;
       font-weight: 400;
@@ -394,7 +408,23 @@ export default {
     cursor: pointer;
   }
 }
-
+.button {
+  margin-left: 16px;
+  width: 160px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 22px;
+  font-family: 'Rubik';
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  line-height: 18px;
+  -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+  &:hover {
+    color: #000;
+    background-color: #fff;
+  }
+}
 .rotate-start {
   opacity: 0.4;
   transform: scale(0.4) rotate(40deg) translateY(20px);

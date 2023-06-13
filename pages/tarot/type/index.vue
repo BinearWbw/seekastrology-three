@@ -153,23 +153,6 @@ export default {
   margin: 0 auto;
   background-color: #555761;
 }
-.button {
-  margin-top: 18px;
-  width: 124px;
-  height: 32px;
-  border: 1px solid #45454d;
-  border-radius: 42px;
-  font-family: 'Rubik';
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
-  line-height: 18px;
-  -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
-  transition: background-color 0.3s, color 0.3s;
-  &:hover {
-    color: #000;
-    background-color: #fff;
-  }
-}
 .divination {
   margin-top: 80px;
 }
