@@ -160,67 +160,69 @@
           </div>
         </div>
         <div class="resources_main_btm_line"></div>
-        <div class="resources_main_btm_main" v-if="btmList">
-          <a
-            v-for="item in btmList"
-            :key="item.id"
-            class="resources_main_btm_main_item"
-            :href="`${getIntersperseUrl}/resources/details/${item.name
-              .trim()
-              .replace(/[^\w\d]/g, '-')
-              .toLowerCase()}-${item.id}/`"
-          >
-            <!-- type0为文本 type1为视频， -->
-            <template v-if="item.kind == 0">
-              <div class="resources_main_btm_main_item_img">
-                <nuxt-img
-                  :src="item.icon"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_btm_main_item_img_pic"
-                ></nuxt-img>
-                <!-- <div class="resources_main_btm_main_item_img_tarot">
+        <transition name="slide">
+          <div class="resources_main_btm_main" v-if="btmList?.length > 0">
+            <a
+              v-for="item in btmList"
+              :key="item.id"
+              class="resources_main_btm_main_item"
+              :href="`${getIntersperseUrl}/resources/details/${item.name
+                .trim()
+                .replace(/[^\w\d]/g, '-')
+                .toLowerCase()}-${item.id}/`"
+            >
+              <!-- type0为文本 type1为视频， -->
+              <template v-if="item.kind == 0">
+                <div class="resources_main_btm_main_item_img">
+                  <nuxt-img
+                    :src="item.icon"
+                    fit="cover"
+                    :alt="item.name"
+                    class="resources_main_btm_main_item_img_pic"
+                  ></nuxt-img>
+                  <!-- <div class="resources_main_btm_main_item_img_tarot">
                   {{ item.main_label }}
                 </div> -->
-              </div>
-              <div class="resources_main_btm_main_item_text">
-                <div class="resources_main_btm_main_item_text_title">
-                  {{ item.name }}
                 </div>
-                <div class="resources_main_btm_main_item_text_subscribe">
-                  {{ item.text }}
-                </div>
-                <!-- <div class="resources_main_btm_main_item_text_date">
+                <div class="resources_main_btm_main_item_text">
+                  <div class="resources_main_btm_main_item_text_title">
+                    {{ item.name }}
+                  </div>
+                  <div class="resources_main_btm_main_item_text_subscribe">
+                    {{ item.text }}
+                  </div>
+                  <!-- <div class="resources_main_btm_main_item_text_date">
                   {{ $utils.formatMMDD(item.created_at) }}
                 </div> -->
-              </div>
-            </template>
-            <template v-else>
-              <div class="resources_main_btm_main_item_img">
-                <nuxt-img
-                  :src="item.icon"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_btm_main_item_img_video"
-                ></nuxt-img>
-                <img
-                  src="../../assets/img/resources/play_icon.png"
-                  alt=""
-                  class="resources_main_btm_main_item_img_play"
-                />
-                <div class="resources_main_btm_main_item_img_time">
-                  {{ $utils.formatMMSS(item.sec) }}
                 </div>
-                <!-- <div class="resources_main_btm_main_item_img_tarot">
+              </template>
+              <template v-else>
+                <div class="resources_main_btm_main_item_img">
+                  <nuxt-img
+                    :src="item.icon"
+                    fit="cover"
+                    :alt="item.name"
+                    class="resources_main_btm_main_item_img_video"
+                  ></nuxt-img>
+                  <img
+                    src="../../assets/img/resources/play_icon.png"
+                    alt=""
+                    class="resources_main_btm_main_item_img_play"
+                  />
+                  <div class="resources_main_btm_main_item_img_time">
+                    {{ $utils.formatMMSS(item.sec) }}
+                  </div>
+                  <!-- <div class="resources_main_btm_main_item_img_tarot">
                   {{ item.main_label }}
                 </div> -->
-              </div>
-              <div class="resources_main_btm_main_item_vtitle">
-                {{ item.name }}
-              </div>
-            </template>
-          </a>
-        </div>
+                </div>
+                <div class="resources_main_btm_main_item_vtitle">
+                  {{ item.name }}
+                </div>
+              </template>
+            </a>
+          </div>
+        </transition>
         <div class="common__loading" v-scroll v-if="search.page < totalPage">
           <div class="common__loading__loader" v-if="loading"></div>
         </div>
@@ -283,7 +285,8 @@ export default {
             //如果为null说明不是从其他页面跳转进来的，就取请求tabs结果中的第一条
             if (item == null) item = res?.length > 0 ? res[0] : null
             //如果有item中有id值，说明是从其他页面跳转进来的，这时找到对应的下标值设置选中的tab样式，反之默认给第一个设置样式
-            currentTabIndex = 'id' in item ? res.findIndex((tab) => tab.id == item.id) : 0
+            currentTabIndex =
+              'id' in item ? res.findIndex((tab) => tab.id == item.id) : 0
             return res || null
           }),
       ])
@@ -406,6 +409,9 @@ $spacing: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  &:hover{
+    background: #ffffff !important;
+  }
   span {
     color: #000000 !important;
   }
@@ -709,6 +715,10 @@ $spacing: 16px;
           // background: #ffffff;
           border-radius: 42px;
           margin-right: 24px;
+          transition: background-color .3s ease-in-out;
+          &:hover{
+            background-color: hsla(0,0%,100%,.1);
+          }
           span {
             font-family: 'Rubik';
             font-style: normal;
