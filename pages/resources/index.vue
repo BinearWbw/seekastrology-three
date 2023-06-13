@@ -254,7 +254,7 @@ export default {
   },
   async asyncData({ error, $apiList, query }) {
     try {
-      //获取
+      //获取是否从其他页面跳转进来，如果是就给item赋值，item为当前中间导航tabs选中的值
       let item = query?.id ? { id: Number(query.id) } : null,
         currentTabIndex = 0,
         totalNum = 0,
@@ -280,12 +280,14 @@ export default {
             type: 4,
           })
           .then((res) => {
+            //如果为null说明不是从其他页面跳转进来的，就取请求tabs结果中的第一条
             if (item == null) item = res?.length > 0 ? res[0] : null
+            //如果有item中有id值，说明是从其他页面跳转进来的，这时找到对应的下标值设置选中的tab样式，反之默认给第一个设置样式
             currentTabIndex = 'id' in item ? res.findIndex((tab) => tab.id == item.id) : 0
             return res || null
           }),
       ])
-      /**默认请求tabs第一条对应的列表 */
+      /**根据id获取对应数据，如果不是从其他它页面跳转过来的就默认请求tabs第一条对应的列表 */
       let btmList = await $apiList.articles
         .getNews({
           origin: process.env.origin,
