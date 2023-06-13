@@ -260,7 +260,7 @@ export default {
         totalPage = 1,
         search = {
           page: 1,
-          size: 10,
+          size: 9,
         }
       let [list, tabs] = await Promise.all([
         /**顶部推荐 */

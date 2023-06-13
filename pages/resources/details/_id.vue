@@ -35,40 +35,6 @@
               class="details_main_left_top_content_text"
               v-html="dataInfo.desc"
             >
-              <!-- <p>
-                This article's content includes contributions from Tarot.com
-                writer Christine Payne-Towler.
-              </p>
-              <p>
-                Your cup runneth over! This saying refers to an abundance of
-                feelings, luck, and joy, and it's a great way to think about
-                Tarot's suit of Cups.
-              </p>
-              <p>
-                The suit of Cups is connected to our emotions, our
-                relationships, and matters of the soul. When a Cups card comes
-                up in your Tarot reading, pay attention to your dreams, your
-                heart, and your intuitions. From great joy to immense grief, the
-                Cups cards reveal how we truly feel -- and how others feel about
-                us.
-              </p>
-              <p>
-                This article's content includes contributions from Tarot.com
-                writer Christine Payne-Towler.
-              </p>
-              <p>
-                Your cup runneth over! This saying refers to an abundance of
-                feelings, luck, and joy, and it's a great way to think about
-                Tarot's suit of Cups.
-              </p>
-              <p>
-                The suit of Cups is connected to our emotions, our
-                relationships, and matters of the soul. When a Cups card comes
-                up in your Tarot reading, pay attention to your dreams, your
-                heart, and your intuitions. From great joy to immense grief, the
-                Cups cards reveal how we truly feel -- and how others feel about
-                us.
-              </p> -->
             </div>
           </div>
           <div class="details_main_left_top_content" v-else>
@@ -166,10 +132,9 @@
               <div class="details_footer_list_item_text_title">
                 {{ item.name }}
               </div>
-              <div
-                class="details_footer_list_item_text_subscribe"
-                v-html="item.desc"
-              ></div>
+              <div class="details_footer_list_item_text_subscribe">
+                {{ item.text }}
+              </div>
               <div class="details_footer_list_item_text_date">
                 {{ $utils.formatMMDD(item.created_at) }}
               </div>
@@ -494,16 +459,15 @@ $spacing: 16px;
             margin-top: 48px;
             // height: 374px;
             // overflow-y: auto;
-            :deep(p) {
+            :deep(*) {
               font-family: 'Rubik';
               font-style: normal;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              /* or 138% */
               color: rgba(255, 255, 255, 0.7);
               margin-bottom: 20px;
-              word-break: break-all;
+              // word-break: break-all;
             }
           }
         }
@@ -812,8 +776,8 @@ $spacing: 16px;
             }
           }
         }
-        
-        .leftAd{
+
+        .leftAd {
           width: 343 * $pr;
           height: 299 * $pr;
         }
@@ -840,7 +804,7 @@ $spacing: 16px;
             }
           }
         }
-        .rightAd{
+        .rightAd {
           display: none;
         }
       }

@@ -13,7 +13,7 @@
             <span>{{ item.name }}</span>
           </div>
         </div> -->
-        <input type="text" name="username" placeholder="Enter Your Name" />
+        <!-- <input type="text" name="username" placeholder="Enter Your Name" /> -->
         <img
           class="searchH5"
           src="../../assets/img/search/searchH5.png"
@@ -281,6 +281,7 @@ $spacing: 16px;
         background: rgba(7, 6, 6, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.6);
         border-radius: 24px;
+        padding: 0 20px;
         &::placeholder {
           font-family: 'Rubik';
           font-size: 14px;

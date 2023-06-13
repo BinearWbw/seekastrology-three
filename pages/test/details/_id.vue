@@ -13,8 +13,10 @@
             </div>
             <div
               class="details_main_left_top_content_desc"
-              v-html="dataInfo.desc"
-            ></div>
+              
+            >
+            {{dataInfo.desc}}
+            </div>
             <div class="details_main_left_top_content_questions">
               {{ currentQuestionIndex + 1 }}.{{
                 dataInfo.questions[currentQuestionIndex].question
