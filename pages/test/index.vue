@@ -375,10 +375,12 @@ $spacing: 16px;
           margin-bottom: 202px;
           position: fixed;
           top: 200px;
+          overflow: hidden;
         }
       }
       .google_ad_h5btm {
         display: none;
+        overflow: hidden;
       }
     }
   }

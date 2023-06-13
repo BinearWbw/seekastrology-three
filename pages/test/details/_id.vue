@@ -713,6 +713,7 @@ $spacing: 55px;
         height: 600px;
         background: #555761;
         margin-bottom: 96px;
+        overflow: hidden;
       }
     }
   }

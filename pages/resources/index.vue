@@ -680,16 +680,15 @@ $spacing: 16px;
       width: 970px;
       height: 90px;
       background-color: #555761;
-      margin: 40px auto 0;
-      margin-bottom: 40px;
+      margin: 40px auto;
+      overflow: hidden;
     }
     .google_ad_btm {
       width: 924px;
       height: 114px;
       background-color: #555761;
-
-      margin: 48px auto 0;
-      margin-bottom: 93px;
+      overflow: hidden;
+      margin: 48px auto 93px;
     }
     &_btm {
       margin-top: 55px;

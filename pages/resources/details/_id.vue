@@ -316,6 +316,7 @@ $spacing: 16px;
   }
   .google_ad_footer {
     display: none;
+    overflow: hidden;
   }
   &_main {
     width: 1400px;
@@ -825,6 +826,7 @@ $spacing: 16px;
       width: 343 * $pr;
       height: 299 * $pr;
       background: #555761;
+      overflow: hidden;
     }
     .google_ad_left {
       display: none;
