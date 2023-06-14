@@ -463,7 +463,7 @@ export default {
           .right_various {
             font-family: 'Rubik';
             font-size: 16px;
-            line-height: 22px;
+            line-height: 28px;
             color: rgba(255, 255, 255, 0.7);
             margin-top: 16px;
             overflow: hidden;
@@ -557,19 +557,19 @@ export default {
           .p_text {
             font-family: 'Rubik';
             font-size: 16px;
-            line-height: 22px;
+            line-height: 28px;
             margin-top: 8px;
             color: rgba(255, 255, 255, 0.7);
-            :deep(span),
-            :deep(p) {
-              color: rgba(255, 255, 255, 0.7) !important;
-            }
             :deep(h1),
             :deep(h2),
             :deep(h3),
             :deep(h4),
             :deep(h5) {
               color: #fff;
+            }
+            :deep(span),
+            :deep(p) {
+              color: rgba(255, 255, 255, 0.7) !important;
             }
           }
         }
@@ -685,7 +685,7 @@ export default {
             }
             .right_various {
               font-size: 16 * $pr;
-              line-height: 22 * $pr;
+              line-height: 24 * $pr;
               margin-top: 16 * $pr;
             }
             .img_cont {
@@ -736,7 +736,7 @@ export default {
             }
             .p_text {
               font-size: 16 * $pr;
-              line-height: 22 * $pr;
+              line-height: 24 * $pr;
               margin-top: 8 * $pr;
             }
           }

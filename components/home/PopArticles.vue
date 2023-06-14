@@ -22,7 +22,7 @@
             <div class="news_left_text">
               <div class="text_cont">
                 <p class="cont_title">{{ getHomeNewsData[0]?.name }}</p>
-                <p class="cont_more" v-html="getHomeNewsData[0]?.desc"></p>
+                <p class="cont_more" v-html="getHomeNewsData[0]?.text"></p>
               </div>
               <div class="text_time">
                 {{ $utils.formatMMDD(getHomeNewsData[0]?.created_at) }}
@@ -50,7 +50,7 @@
               </div>
               <div class="news_right_text">
                 <p>{{ item.name }}</p>
-                <p v-if="item.kind == 0" v-html="item.desc"></p>
+                <p v-if="item.kind == 0" v-html="item.text"></p>
               </div>
               <div class="news_right_time">
                 {{ $utils.formatMMDD(item.created_at) }}
@@ -225,7 +225,7 @@ export default {
             .news_right_text {
               width: 424px;
               font-family: 'Rubik';
-              margin: 8px 0;
+              padding: 8px 0 0;
               & > :nth-child(1) {
                 font-size: 22px;
                 line-height: 30px;
@@ -239,6 +239,7 @@ export default {
               & > :nth-child(2) {
                 font-size: 16px;
                 line-height: 22px;
+                margin-top: 8px;
                 color: rgba(255, 255, 255, 0.7);
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -437,6 +438,7 @@ export default {
                 width: auto;
                 flex: 1;
                 margin: 0;
+                padding: 0;
                 & > :nth-child(1) {
                   font-size: 14 * $pr;
                   line-height: 18 * $pr;
