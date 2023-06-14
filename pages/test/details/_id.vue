@@ -13,10 +13,8 @@
             </div>
             <div
               class="details_main_left_top_content_desc"
-              
-            >
-            {{dataInfo.desc}}
-            </div>
+              v-html="dataInfo.desc"
+            ></div>
             <div class="details_main_left_top_content_questions">
               {{ currentQuestionIndex + 1 }}.{{
                 dataInfo.questions[currentQuestionIndex].question
@@ -57,7 +55,8 @@
             </div>
             <div class="details_main_left_top_content_btm">
               <div class="details_main_left_top_content_btm_count">
-                <span id="currentQuestion">{{ currentQuestionIndex + 1 }}</span>/{{ dataInfo.questions.length }}
+                <span id="currentQuestion">{{ currentQuestionIndex + 1 }}</span
+                >/{{ dataInfo.questions.length }}
               </div>
               <div
                 class="details_main_left_top_content_btm_resultbtn"
@@ -103,7 +102,11 @@
                 {{ result.desc }}
               </div>
             </div>
-            <div id="RETAKE" class="details_main_left_top_result_retake" @click="retake()">
+            <div
+              id="RETAKE"
+              class="details_main_left_top_result_retake"
+              @click="retake()"
+            >
               Retake This Result
             </div>
           </div>
@@ -423,7 +426,7 @@ $spacing: 55px;
   color: rgba(255, 255, 255, 0.7) !important;
   background: transparent !important;
   border: 1px solid rgba(255, 255, 255, 0.7) !important;
-  pointer-events:none !important;
+  pointer-events: none !important;
 }
 .details {
   width: 100%;
