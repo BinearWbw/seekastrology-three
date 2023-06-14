@@ -425,6 +425,7 @@ $spacing: 16px;
               color: rgba(255, 255, 255, 0.7);
               margin-bottom: 20px;
               // word-break: break-all;
+              background: transparent !important;
             }
           }
         }

@@ -282,6 +282,8 @@ export default {
             type: 4,
           })
           .then((res) => {
+            //首位增加一个all
+            res.unshift({ name: 'all' })
             //如果为null说明不是从其他页面跳转进来的，就取请求tabs结果中的第一条
             if (item == null) item = res?.length > 0 ? res[0] : null
             //如果有item中有id值，说明是从其他页面跳转进来的，这时找到对应的下标值设置选中的tab样式，反之默认给第一个设置样式
@@ -291,12 +293,14 @@ export default {
           }),
       ])
       /**根据id获取对应数据，如果不是从其他它页面跳转过来的就默认请求tabs第一条对应的列表 */
+      let getNewsParams = {
+        origin: process.env.origin,
+        cate: item.id ? item.id : undefined,
+        ...search,
+      }
+      if (currentTabIndex == 0) delete getNewsParams.cate
       let btmList = await $apiList.articles
-        .getNews({
-          origin: process.env.origin,
-          cate: item.id ? item.id : 3,
-          ...search,
-        })
+        .getNews(getNewsParams)
         .then((res) => {
           totalNum = res.count
           totalPage =
@@ -324,12 +328,13 @@ export default {
     getNews(item) {
       this.loading = true
       this.search.page += 1
-      this.$apiList.articles
-        .getNews({
-          origin: process.env.origin,
-          cate: item.id,
-          ...this.search,
-        })
+      let getNewsParams = {
+        origin: process.env.origin,
+        cate: item.id ? item.id : undefined,
+        ...this.search,
+      }
+      if (this.currentTabIndex == 0) delete getNewsParams.cate
+        this.$apiList.articles.getNews(getNewsParams)
         .then((res) => {
           res.list &&
             res.list.map((item) => {
@@ -409,7 +414,7 @@ $spacing: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover{
+  &:hover {
     background: #ffffff !important;
   }
   span {
@@ -715,9 +720,9 @@ $spacing: 16px;
           // background: #ffffff;
           border-radius: 42px;
           margin-right: 24px;
-          transition: background-color .3s ease-in-out;
-          &:hover{
-            background-color: hsla(0,0%,100%,.1);
+          transition: background-color 0.3s ease-in-out;
+          &:hover {
+            background-color: hsla(0, 0%, 100%, 0.1);
           }
           span {
             font-family: 'Rubik';
@@ -870,6 +875,11 @@ $spacing: 16px;
 }
 @media (max-width: (3 * $block + 2 * $spacing + 450px)) {
   .resources {
+    &_main {
+      &_title {
+        text-align: center;
+      }
+    }
     .google_ad_left {
       left: 30px;
     }
