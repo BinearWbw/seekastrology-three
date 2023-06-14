@@ -1,103 +1,166 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-14 10:50:29
+ * @LastEditTime: 2023-06-14 17:32:34
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
 <template>
-  <div class="tarot-container">
-    <div class="tip-box" v-show="!isSelected && questionTop">
-      <div class="tip-img-wrapper" v-show="!showList.length">
-        <img
-          src="~/assets/img/tarot/Vector2.png"
-          style="margin-right: -8px"
-          alt=""
-          class="tip-img"
+  <div class="play-container">
+    <div class="pc-wrapper">
+      <div class="tip-box" v-show="!isSelected && questionTop">
+        <div class="tip-img-wrapper" v-show="!showList.length">
+          <img
+            src="~/assets/img/tarot/Vector2.png"
+            style="margin-right: -8px"
+            alt=""
+            class="tip-img"
+          />
+          <img src="~/assets/img/tarot/Vector1.png" alt="" class="tip-img" />
+        </div>
+        <div class="tip-img-list" v-if="showList.length">
+          <nuxt-img
+            v-for="(item, index) in showList"
+            :key="index"
+            class="tip-img-item"
+            :class="{ 'img-rotate': item.desc_type == 2 }"
+            height="80px"
+            :src="item.icon"
+            :alt="item.name"
+          ></nuxt-img>
+        </div>
+        <div class="tip-text">
+          You can also draw
+          <span>{{ numbers }}</span>
+          tarot card！
+        </div>
+      </div>
+      <div
+        class="question-box"
+        :class="{ 'question-top': questionTop }"
+        v-if="type != 4"
+      >
+        <img class="icon-img" src="~/assets/img/tarot/edit_icon.png" alt="" />
+        <input
+          @keyup.enter="handleInput"
+          type="text"
+          v-model="question"
+          :disabled="questionTop"
+          maxlength="100"
+          placeholder="Enter your question here"
+          class="question-input"
         />
-        <img src="~/assets/img/tarot/Vector1.png" alt="" class="tip-img" />
+        <button v-if="!questionTop" class="button" @click="handleInput">
+          Submit
+        </button>
       </div>
-      <div class="tip-img-list" v-if="showList.length">
-        <nuxt-img
-          v-for="(item, index) in showList"
-          :key="index"
-          class="tip-img-item"
-          :class="{ 'img-rotate': item.desc_type == 2 }"
-          height="80px"
-          :src="item.icon"
-          :alt="item.name"
-        ></nuxt-img>
-      </div>
-      <div class="tip-text">
-        You can also draw
-        <span>{{ numbers }}</span>
-        tarot card！
-      </div>
-    </div>
-    <div
-      class="question-box"
-      :class="{ 'question-top': questionTop }"
-      v-if="type != 4"
-    >
-      <img class="icon-img" src="~/assets/img/tarot/edit_icon.png" alt="" />
-      <input
-        @keyup.enter="handleInput"
-        type="text"
-        v-model="question"
-        :disabled="questionTop"
-        maxlength="100"
-        placeholder="Enter your question here"
-        class="question-input"
-      />
-      <button v-if="!questionTop" class="button" @click="handleInput">
-        Submit
-      </button>
-    </div>
-    <div
-      class="tarot-wrapper"
-      ref="tarotWrapper"
-      v-if="!isSelected && questionTop"
-      :key="'tarotWrapper' + type"
-    >
-      <div class="card-row" @mouseover="shuffleCards('topCard', $event)">
-        <div
-          class="card-wrapper"
-          v-for="index of 39"
-          :key="'top-' + index"
-          :ref="'topCard' + index"
-          :style="{
-            top: 160 + 'px',
-            left: (index - 1) * 20 + 'px',
-          }"
-          @click="handleClike(index)"
-        >
-          <img
-            class="card-img"
-            :data-index="index"
-            src="~/assets/img/tarot/card.png"
-            alt="Card"
-          />
+      <div
+        class="tarot-wrapper"
+        ref="tarotWrapper"
+        v-if="!isSelected && questionTop"
+        :key="'tarotWrapper' + type"
+      >
+        <div class="card-row" @mouseover="shuffleCards('topCard', $event)">
+          <div
+            class="card-wrapper"
+            v-for="index of 39"
+            :key="'top-' + index"
+            :ref="'topCard' + index"
+            :style="{
+              top: 160 + 'px',
+              left: (index - 1) * 20 + 'px',
+            }"
+            @click="handleClike(index)"
+          >
+            <img
+              class="card-img"
+              :data-index="index"
+              src="~/assets/img/tarot/card.png"
+              alt="Card"
+            />
+          </div>
+        </div>
+        <div class="card-row" @mouseover="shuffleCards('bottomCard', $event)">
+          <div
+            class="card-wrapper"
+            v-for="index of count"
+            :key="'bottom-' + index"
+            :ref="'bottomCard' + index"
+            :style="{
+              top: 404 + 'px',
+              left: (index - 1) * 20 + 'px',
+            }"
+            @click="handleClike(index)"
+          >
+            <img
+              class="card-img"
+              :data-index="index"
+              src="~/assets/img/tarot/card.png"
+              alt="Card"
+            />
+          </div>
         </div>
       </div>
-      <div class="card-row" @mouseover="shuffleCards('bottomCard', $event)">
-        <div
-          class="card-wrapper"
-          v-for="index of count"
-          :key="'bottom-' + index"
-          :ref="'bottomCard' + index"
-          :style="{
-            top: 404 + 'px',
-            left: (index - 1) * 20 + 'px',
-          }"
-          @click="handleClike(index)"
-        >
-          <img
-            class="card-img"
-            :data-index="index"
-            src="~/assets/img/tarot/card.png"
-            alt="Card"
-          />
+    </div>
+
+    <div class="mobile-wrapper">
+      <div class="mobile-tarot-box" v-show="!inPlay">
+        <div class="card-list-wrapper" v-if="type == 4">
+          <ul class="card-list">
+            <li
+              class="card-list-item"
+              v-for="index of 6"
+              :key="index"
+              :style="'transform: translateY(-' + index * 4 + 'px)'"
+            >
+              <img
+                class="card-img-mobile"
+                src="~/assets/img/tarot/card.png"
+                alt="Card"
+              />
+            </li>
+          </ul>
+          <div
+            class="mobile-btn po-center"
+            style="position: absolute"
+            @click="handleMobileShow"
+          >
+            Extract 1 Sheet
+          </div>
         </div>
+        <div class="mobile-question" v-else>
+          <textarea
+            v-model="question"
+            maxlength="100"
+            placeholder="Enter your question here"
+            class="question-input"
+          >
+          </textarea>
+          <button
+            class="mobile-btn"
+            @click="handleMobileInpit"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+      <div class="in-play" v-show="inPlay">
+        <ul class="play-list">
+          <li
+            class="play-list-item"
+            v-for="index of count"
+            :key="'mobile-' + index"
+            :ref="'mobile' + index"
+            @click="handleClike(index)"
+          >
+            <img
+              class="card-img-mobile"
+              src="~/assets/img/tarot/card.png"
+              alt="Card"
+            />
+          </li>
+        </ul>
+        <div class="in-play-ad"></div>
       </div>
     </div>
     <div class="mask-wrapper" v-show="isSelected">
@@ -145,6 +208,11 @@ export default {
       },
       immediate: true,
     },
+    inPlay(newVal, oldVal) {
+      if (newVal) {
+        this.randomCards()
+      }
+    },
   },
   computed: {
     styleObj() {
@@ -156,6 +224,8 @@ export default {
   },
   data() {
     return {
+      isMobile: false,
+      inPlay: false,
       isSelected: false,
       questionTop: false,
       question: '',
@@ -165,7 +235,9 @@ export default {
       count: 39,
     }
   },
-  mounted() {},
+  mounted() {
+    this.isMobile = window.innerWidth <= 750
+  },
   methods: {
     handleInput() {
       if (!this.question) {
@@ -173,6 +245,12 @@ export default {
         return
       }
       this.questionTop = true
+    },
+    handleMobileInpit() {
+      if (!this.question) {
+        return
+      }
+      this.inPlay = true
     },
     async handleClike() {
       if (this.cardsInfo.length === 0) {
@@ -188,6 +266,7 @@ export default {
       })
       if (res && res.length) {
         this.cardsInfo = res
+        sessionStorage.removeItem('cardsInfo');
         sessionStorage.setItem('cardsInfo', JSON.stringify(res))
       }
     },
@@ -250,6 +329,7 @@ export default {
         Math.random() * 90
       )}deg)`
     },
+    randomCards() {},
     resetData() {
       this.cardsInfo = []
       this.showList = []
@@ -258,21 +338,32 @@ export default {
       this.question = ''
       this.count = 39
     },
+    handleMobileShow() {
+      this.inPlay = true
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.tarot-container {
-  width: 100%;
+@use 'sass:math';
+.play-container {
+  // width: 100%;
   box-sizing: border-box;
   height: 725px;
   padding: 5px;
-  border: 1px solid hsla(0, 0%, 100%, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   position: relative;
   background-image: url('~assets/img/tarot/tarot_play_bg.png');
   background-repeat: no-repeat;
   background-position: right 400px;
+  .pc-wrapper {
+    display: block;
+    height: 100%;
+  }
+  .mobile-wrapper {
+    display: none;
+  }
   .question-box {
     display: flex;
     position: absolute;
@@ -407,6 +498,11 @@ export default {
   align-items: center;
   height: 100%;
   padding-bottom: 34px;
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  width: 100%;
   .btn-img {
     margin-top: 36px;
     cursor: pointer;
@@ -444,6 +540,94 @@ export default {
   to {
     opacity: 1;
     transform: scale(1) rotate(0deg) translateY(0);
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .play-container {
+    width: calc(100vw - 1 * $pr);
+    height: 375 * $pr;
+    .pc-wrapper {
+      display: none;
+    }
+    .mask-wrapper {
+      justify-content: unset;
+    }
+    .mobile-wrapper {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .mobile-tarot-box {
+      height: 100%;
+    }
+    .in-play {
+      position: fixed;
+      width: 100vw;
+      height: calc(100vh - 122px);
+      top: 0;
+      left: 0;
+      z-index: 7;
+      background-image: url('~assets/img/tarot/paly_bg.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    .in-play-ad {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 122px;
+      background-color: #555761;
+    }
+    .card-list-wrapper {
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mobile-question {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      .question-input {
+        background: rgba(7, 6, 6, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 24px;
+        height: 138px;
+        margin: 0 35px;
+        padding: 10px 20px;
+      }
+      .mobile-btn {
+        margin: 16px 35px 0;
+      }
+    }
+    .card-list {
+      width: 130px;
+      height: 220px;
+    }
+    .card-list-item {
+      position: absolute;
+    }
+    .play-list {
+      .play-list-item {
+        position: absolute;
+      }
+    }
+    .mobile-btn {
+      box-sizing: border-box;
+      padding: 8px 32px;
+      background: #ffffff;
+      border-radius: 42px;
+      font-family: 'Rubik';
+      font-size: 16px;
+      line-height: 22px;
+      color: #000000;
+    }
   }
 }
 </style>

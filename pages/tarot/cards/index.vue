@@ -6,7 +6,7 @@
       <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div>
       <div class="tarot-box">
         <ul class="major-list">
-          <li class="major-list-item" v-for="(item, index) in majorList">
+          <li class="major-list-item" v-for="(item, index) in majorList" :key="index">
             <nuxt-link
               class="major-list-link"
               :to="{ path: '/tarot/detail', query: { id: item.id } }"

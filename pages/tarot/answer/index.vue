@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-14 10:49:57
+ * @LastEditTime: 2023-06-14 17:41:59
  * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
@@ -80,7 +80,7 @@ export default {
       },
     }
   },
-  mounted() {
+  created() {
     this.type = this.$route.query.type
     const cardsInfo = sessionStorage.getItem('cardsInfo')
     if (cardsInfo) {
@@ -128,7 +128,7 @@ export default {
   max-width: 1400px;
   .content-list-item {
     display: flex;
-    &:not(:first-child) {
+    &:not(:first-child) { 
       margin-top: 97px;
     }
     .card-wrapper {
@@ -136,6 +136,7 @@ export default {
     }
     .card-img {
       height: 390px;
+      width: 220px;
     }
     .card-img-rotate {
       transform: rotate(180deg);
