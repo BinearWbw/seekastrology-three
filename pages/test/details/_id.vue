@@ -126,7 +126,7 @@
             >
               <div class="details_main_left_btm_list_item_img">
                 <nuxt-img
-                  :src="item.icon"
+                  :src="item.icon || '/'"
                   fit="cover"
                   :alt="item.name"
                 ></nuxt-img>

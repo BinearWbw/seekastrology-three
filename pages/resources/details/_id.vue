@@ -24,7 +24,7 @@
             </div>
             <div class="details_main_left_top_content_img">
               <nuxt-img
-                :src="dataInfo.icon"
+                :src="dataInfo.icon || '/'"
                 fit="cover"
                 :alt="dataInfo.name"
                 class="details_main_left_top_content_img_pic"
@@ -121,7 +121,7 @@
           <template v-if="item.kind == 0">
             <div class="details_footer_list_item_img">
               <nuxt-img
-                :src="item.icon"
+                :src="item.icon || '/'"
                 fit="cover"
                 :alt="item.name"
                 class="details_footer_list_item_img_pic"
@@ -143,7 +143,7 @@
           <template v-else>
             <div class="details_footer_list_item_img">
               <nuxt-img
-                :src="item.icon"
+                :src="item.icon || '/'"
                 fit="cover"
                 :alt="item.name"
                 class="details_footer_list_item_img_video"

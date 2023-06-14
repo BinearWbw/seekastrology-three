@@ -39,7 +39,7 @@
             >
               <div class="test_main_center_list_item_img">
                 <nuxt-img
-                  :src="item.icon"
+                  :src="item.icon || '/'"
                   fit="cover"
                   :alt="item.name"
                 ></nuxt-img>

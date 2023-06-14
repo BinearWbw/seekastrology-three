@@ -18,7 +18,7 @@
           <template v-if="list[0].kind == 0">
             <div class="resources_main_top_left_img">
               <nuxt-img
-                :src="list[0].icon"
+                :src="list[0].icon || '/'"
                 fit="cover"
                 :alt="list[0].name"
                 class="resources_main_top_left_img_pic"
@@ -48,7 +48,7 @@
           <template v-else>
             <div class="resources_main_top_left_img">
               <nuxt-img
-                :src="list[0].icon"
+                :src="list[0].icon || '/'"
                 fit="cover"
                 :alt="list[0].name"
                 class="resources_main_top_left_item_img_video"
@@ -88,7 +88,7 @@
             <template v-if="item.kind == 0">
               <div class="resources_main_top_right_item_img">
                 <nuxt-img
-                  :src="item.icon"
+                  :src="item.icon || '/'"
                   fit="cover"
                   :alt="item.name"
                   class="resources_main_top_right_item_img_pic"
@@ -116,7 +116,7 @@
             <template v-else>
               <div class="resources_main_top_right_item_img">
                 <nuxt-img
-                  :src="item.icon"
+                  :src="item.icon || '/'"
                   fit="cover"
                   :alt="item.name"
                   class="resources_main_top_right_item_img_video"
@@ -175,7 +175,7 @@
               <template v-if="item.kind == 0">
                 <div class="resources_main_btm_main_item_img">
                   <nuxt-img
-                    :src="item.icon"
+                    :src="item.icon || '/'"
                     fit="cover"
                     :alt="item.name"
                     class="resources_main_btm_main_item_img_pic"
@@ -199,7 +199,7 @@
               <template v-else>
                 <div class="resources_main_btm_main_item_img">
                   <nuxt-img
-                    :src="item.icon"
+                    :src="item.icon || '/'"
                     fit="cover"
                     :alt="item.name"
                     class="resources_main_btm_main_item_img_video"
@@ -295,7 +295,7 @@ export default {
       /**根据id获取对应数据，如果不是从其他它页面跳转过来的就默认请求tabs第一条对应的列表 */
       let getNewsParams = {
         origin: process.env.origin,
-        cate: item.id ? item.id : undefined,
+        cate: 'id' in item ? item.id : undefined,
         ...search,
       }
       if (currentTabIndex == 0) delete getNewsParams.cate
@@ -330,11 +330,12 @@ export default {
       this.search.page += 1
       let getNewsParams = {
         origin: process.env.origin,
-        cate: item.id ? item.id : undefined,
+        cate: 'id' in item ? item.id : undefined,
         ...this.search,
       }
       if (this.currentTabIndex == 0) delete getNewsParams.cate
-        this.$apiList.articles.getNews(getNewsParams)
+      this.$apiList.articles
+        .getNews(getNewsParams)
         .then((res) => {
           res.list &&
             res.list.map((item) => {
