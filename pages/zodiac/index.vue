@@ -262,7 +262,7 @@ export default {
           }
           p {
             font-size: 16 * $pr;
-            line-height: 22 * $pr;
+            line-height: 24 * $pr;
           }
           .google_ad {
             width: 100%;

@@ -58,6 +58,8 @@
     </div>
     <more-tarot class="mt-48"></more-tarot>
     <div class="ad-box_row mt-32"></div>
+    <home-your-choice class="mt-32"></home-your-choice>
+    <home-pop-articles class="mb-32"></home-pop-articles>
   </div>
 </template>
 
@@ -194,6 +196,9 @@ export default {
 }
 .mt-32 {
   margin-top: 32px;
+}
+.mb-32 {
+  margin-bottom: 32px;
 }
 .mt-200 {
   margin-top: 200px;

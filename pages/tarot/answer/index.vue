@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
- * @LastEditors: tianjun
- * @LastEditTime: 2023-06-13 16:13:41
+ * @LastEditors: tian 249682049@qq.com
+ * @LastEditTime: 2023-06-14 17:52:12
  * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
@@ -21,7 +21,7 @@
             <div class="card-wrapper">
               <nuxt-img
                 class="card-img"
-                :class="{ 'card-img-rotate': item.type == 2 }"
+                :class="{ 'card-img-rotate': item.desc_type == 2 }"
                 :src="item.icon"
                 fit="cover"
                 :alt="item.name"
@@ -40,7 +40,7 @@
     </div>
     <div class="ad-box_row mt-48"></div>
     <more-tarot class="mt-48"></more-tarot>
-    <div class="ad-box_row mt-32"></div>
+    <div class="ad-box_row mt-32 mb-32"></div>
   </div>
 </template>
 
@@ -80,7 +80,7 @@ export default {
       },
     }
   },
-  mounted() {
+  created() {
     this.type = this.$route.query.type
     const cardsInfo = sessionStorage.getItem('cardsInfo')
     if (cardsInfo) {
@@ -128,7 +128,7 @@ export default {
   max-width: 1400px;
   .content-list-item {
     display: flex;
-    &:not(:first-child) {
+    &:not(:first-child) { 
       margin-top: 97px;
     }
     .card-wrapper {
@@ -136,6 +136,7 @@ export default {
     }
     .card-img {
       height: 390px;
+      width: 220px;
     }
     .card-img-rotate {
       transform: rotate(180deg);
@@ -172,6 +173,9 @@ export default {
 }
 .mt-32 {
   margin-top: 32px;
+}
+.mb-32 {
+  margin-bottom: 32px;
 }
 .mt-200 {
   margin-top: 200px;

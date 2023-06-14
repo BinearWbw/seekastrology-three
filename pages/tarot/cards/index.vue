@@ -6,7 +6,7 @@
       <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div>
       <div class="tarot-box">
         <ul class="major-list">
-          <li class="major-list-item" v-for="(item, index) in majorList">
+          <li class="major-list-item" v-for="(item, index) in majorList" :key="index">
             <nuxt-link
               class="major-list-link"
               :to="{ path: '/tarot/detail', query: { id: item.id } }"
@@ -77,7 +77,7 @@
         </nuxt-link>
       </li>
     </ul>
-    <div class="ad-box_row mt-48"></div>
+    <div class="ad-box_row mt-48 mb-32"></div>
   </div>
 </template>
 
@@ -322,6 +322,9 @@ export default {
 }
 .mt-32 {
   margin-top: 32px;
+}
+.mb-32 {
+  margin-bottom: 32px;
 }
 .mt-75 {
   margin-top: 75px;
