@@ -1,8 +1,8 @@
 <template>
   <div class="test">
     <div class="test_main">
-      <div class="test_main_top">
-        <!-- <div class="test_main_top_tabs" v-if="tabsStatus">
+      <!-- <div class="test_main_top">
+        <div class="test_main_top_tabs" v-if="tabsStatus">
           <div
             v-for="(item, index) in tabs"
             :key="item.id"
@@ -12,8 +12,8 @@
           >
             <span>{{ item.name }}</span>
           </div>
-        </div> -->
-        <!-- <input type="text" name="username" placeholder="Enter Your Name" /> -->
+        </div>
+        <input type="text" name="username" placeholder="Enter Your Name" />
         <img
           class="searchH5"
           src="../../assets/img/search/searchH5.png"
@@ -25,7 +25,7 @@
           <input type="text" name="username" placeholder="Enter Your Name" />
           <span @click="tabsStatus = true">Cancel</span>
         </div>
-      </div>
+      </div> -->
       <div class="test_main_line"></div>
       <div class="test_main_center">
         <div class="test_main_center_list">
@@ -520,6 +520,7 @@ $spacing: 16px;
             width: 169 * $pr;
             &_img {
               width: 169 * $pr;
+              height: 169 * $pr;
             }
             &_text {
               &_name {

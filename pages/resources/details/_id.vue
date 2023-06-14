@@ -6,7 +6,7 @@
       <div class="details_main_left">
         <div class="details_main_left_top">
           <div class="details_main_left_top_menu">
-            <a href="javascript:history.back(-1)">Article</a> >
+            <a href="javascript:history.back(-1)">Article</a> <span>></span>
             <a href="" style="color: #ffffff">Article Details</a>
           </div>
           <!-- 0-文章、1-视频）-->
@@ -331,7 +331,8 @@ $spacing: 16px;
         &_menu {
           margin-left: 118px;
           padding-top: 24px;
-          a {
+          a,
+          span {
             font-family: 'Rubik';
             font-style: normal;
             font-weight: 400;
@@ -339,6 +340,9 @@ $spacing: 16px;
             line-height: 16px;
             /* identical to box height, or 133% */
             color: rgba(255, 255, 255, 0.7);
+          }
+          span {
+            margin: 0 5px;
           }
         }
         &_content {
@@ -419,7 +423,7 @@ $spacing: 16px;
               font-style: normal;
               font-weight: 400;
               font-size: 16px;
-              line-height: 22px;
+              line-height: 28px;
               color: rgba(255, 255, 255, 0.7);
               margin-bottom: 20px;
               // word-break: break-all;
@@ -512,11 +516,11 @@ $spacing: 16px;
           width: 456px;
           height: 280px;
           position: relative;
-          object-fit: contain;
+          object-fit: cover;
           &_pic {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
           }
           &_video {
             width: 456px;
@@ -699,17 +703,25 @@ $spacing: 16px;
         margin-left: 0;
         &_top {
           &_menu {
-            margin-left: 16 * $pr;
+            margin-left: 0;
+            margin-top: 0;
             font-size: 12 * $pr;
             padding-top: 24 * $pr;
-            a {
+            a,
+            span {
               font-size: 12 * $pr;
+              line-height: 16 * $pr;
+            }
+            span {
+              margin: 0 5 * $pr;
             }
           }
           &_content {
-            padding: 0 16 * $pr;
+            padding: 0;
+            margin-top: 32 * $pr;
             &_title {
               font-size: 22 * $pr;
+              line-height: 30 * $pr;
               word-break: break-all;
             }
             &_subtitle {
@@ -728,12 +740,13 @@ $spacing: 16px;
             }
             &_img {
               width: 100%;
+              margin-top: 32 * $pr;
             }
             &_text {
               margin-top: 32 * $pr;
               :deep(*) {
                 font-size: 14 * $pr;
-                line-height: 18 * $pr;
+                line-height: 24 * $pr;
                 margin-bottom: 20 * $pr;
               }
             }
@@ -746,24 +759,27 @@ $spacing: 16px;
         }
       }
       &_right {
+        margin-left: 0;
         &_ad {
           display: none;
         }
         &_list {
           width: 343 * $pr;
-          height: 492 * $pr;
+          // height: 492 * $pr;
           border-radius: 30 * $pr;
+          margin-top: 48 * $pr;
+          margin-left: 0;
+          padding: 0 21 * $pr 0 32 * $pr;
           &_item {
             height: 54 * $pr;
+            margin-left: 0;
             span {
               font-size: 16 * $pr;
               line-height: 22 * $pr;
-              margin-left: 32 * $pr;
             }
             img {
               width: 10 * $pr;
               height: 10 * $pr;
-              margin-right: 21 * $pr;
             }
           }
         }
@@ -787,6 +803,7 @@ $spacing: 16px;
           object-fit: contain;
           &_img {
             width: 100%;
+            height: 179 * $pr;
             &_pic,
             &_video {
               width: 100%;
@@ -816,6 +833,7 @@ $spacing: 16px;
               line-height: 30 * $pr;
               width: 343 * $pr;
               margin-top: 0;
+              padding-top: 16 * $pr;
             }
             &_subscribe,
             &_date {

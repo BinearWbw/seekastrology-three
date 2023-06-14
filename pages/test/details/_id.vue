@@ -7,7 +7,90 @@
             <a href="javascript:history.back(-1)">Quizzes</a> <span>></span>
             <a href="" style="color: #ffffff">Quizzes Details</a>
           </div>
-          <div class="details_main_left_top_content" v-if="!showResult">
+          <div class="details_main_left_top_content">
+            <div class="details_main_left_top_content_main" v-if="!showResult">
+              <div class="details_main_left_top_content_name">
+                {{ dataInfo.name }}
+              </div>
+              <div
+                class="details_main_left_top_content_desc"
+                v-html="dataInfo.desc"
+              ></div>
+              <div class="details_main_left_top_content_main_questions">
+                {{ currentQuestionIndex + 1 }}.{{
+                  dataInfo.questions[currentQuestionIndex].question
+                }}
+              </div>
+              <div class="details_main_left_top_content_main_answer">
+                <div
+                  class="details_main_left_top_content_main_answer_item"
+                  v-for="(item, index) in dataInfo.questions[
+                    currentQuestionIndex
+                  ].answers"
+                  :key="index"
+                  :class="[
+                    {
+                      'green-border':
+                        index == trueIndex && dataInfo.quest_type == 1,
+                    },
+                    {
+                      'red-border':
+                        index != trueIndex &&
+                        checkedAnswer == index &&
+                        dataInfo.quest_type == 1,
+                    },
+                  ]"
+                >
+                  <label
+                    ><input
+                      class="radio"
+                      type="radio"
+                      name="radio"
+                      :value="index"
+                      v-model="checkedAnswer"
+                      @change="chooseAnswer(item, index)"
+                      :disabled="disabledFlag"
+                    />
+                    <span>{{ item.answer }}</span>
+                  </label>
+                </div>
+              </div>
+              <div class="details_main_left_top_content_main_btm">
+                <div class="details_main_left_top_content_main_btm_count">
+                  <span id="currentQuestion">{{
+                    currentQuestionIndex + 1
+                  }}</span
+                  >/{{ dataInfo.questions.length }}
+                </div>
+                <div
+                  class="details_main_left_top_content_main_btm_resultbtn"
+                  id="RESULTBTN"
+                  @click="getQuizResult()"
+                  v-if="
+                    currentQuestionIndex + 1 == dataInfo.questions.length &&
+                    nextFlag
+                  "
+                >
+                  Get Your Result
+                </div>
+                <div
+                  v-else
+                  class="details_main_left_top_content_main_btm_btn"
+                  @click="nextQuestion"
+                  id="NEXTBTN"
+                  :class="
+                    nextFlag &&
+                    currentQuestionIndex + 1 < dataInfo.questions.length
+                      ? ''
+                      : 'stop-next'
+                  "
+                >
+                  Next >>
+                </div>
+              </div>
+            </div>
+          </div>
+          <template v-if="showResult">
             <div class="details_main_left_top_content_name">
               {{ dataInfo.name }}
             </div>
@@ -15,77 +98,6 @@
               class="details_main_left_top_content_desc"
               v-html="dataInfo.desc"
             ></div>
-            <div class="details_main_left_top_content_questions">
-              {{ currentQuestionIndex + 1 }}.{{
-                dataInfo.questions[currentQuestionIndex].question
-              }}
-            </div>
-            <div class="details_main_left_top_content_answer">
-              <div
-                class="details_main_left_top_content_answer_item"
-                v-for="(item, index) in dataInfo.questions[currentQuestionIndex]
-                  .answers"
-                :key="index"
-                :class="[
-                  {
-                    'green-border':
-                      index == trueIndex && dataInfo.quest_type == 1,
-                  },
-                  {
-                    'red-border':
-                      index != trueIndex &&
-                      checkedAnswer == index &&
-                      dataInfo.quest_type == 1,
-                  },
-                ]"
-              >
-                <label
-                  ><input
-                    class="radio"
-                    type="radio"
-                    name="radio"
-                    :value="index"
-                    v-model="checkedAnswer"
-                    @change="chooseAnswer(item, index)"
-                    :disabled="disabledFlag"
-                  />
-                  <span>{{ item.answer }}</span>
-                </label>
-              </div>
-            </div>
-            <div class="details_main_left_top_content_btm">
-              <div class="details_main_left_top_content_btm_count">
-                <span id="currentQuestion">{{ currentQuestionIndex + 1 }}</span
-                >/{{ dataInfo.questions.length }}
-              </div>
-              <div
-                class="details_main_left_top_content_btm_resultbtn"
-                id="RESULTBTN"
-                @click="getQuizResult()"
-                v-if="
-                  currentQuestionIndex + 1 == dataInfo.questions.length &&
-                  nextFlag
-                "
-              >
-                Get Your Result
-              </div>
-              <div
-                v-else
-                class="details_main_left_top_content_btm_btn"
-                @click="nextQuestion"
-                id="NEXTBTN"
-                :class="
-                  nextFlag &&
-                  currentQuestionIndex + 1 < dataInfo.questions.length
-                    ? ''
-                    : 'stop-next'
-                "
-              >
-                Next >>
-              </div>
-            </div>
-          </div>
-          <div v-else>
             <div
               class="details_main_left_top_result"
               v-if="dataInfo.quest_type == 1"
@@ -109,6 +121,109 @@
             >
               Retake This Result
             </div>
+          </template>
+          <div class="details_main_left_top_H5content">
+            <template v-if="!showQuestions">
+              <div class="details_main_left_top_H5content_img">
+                <nuxt-img
+                  :src="dataInfo.icon || '/'"
+                  fit="cover"
+                  :alt="dataInfo.name"
+                ></nuxt-img>
+              </div>
+              <div class="details_main_left_top_H5content_name">
+                {{ dataInfo.name }}
+              </div>
+              <div
+                class="details_main_left_top_H5content_desc"
+                v-html="dataInfo.desc"
+              ></div>
+              <div
+                class="details_main_left_top_H5content_btn"
+                @click="startTest"
+              >
+                Start Test
+              </div>
+            </template>
+            <template v-else>
+              <div
+                class="details_main_left_top_content_main"
+                v-if="!showResult"
+              >
+                <div class="details_main_left_top_content_main_questions">
+                  {{ currentQuestionIndex + 1 }}.{{
+                    dataInfo.questions[currentQuestionIndex].question
+                  }}
+                </div>
+                <div class="details_main_left_top_content_main_answer">
+                  <div
+                    class="details_main_left_top_content_main_answer_item"
+                    v-for="(item, index) in dataInfo.questions[
+                      currentQuestionIndex
+                    ].answers"
+                    :key="index"
+                    :class="[
+                      {
+                        'green-border':
+                          index == trueIndex && dataInfo.quest_type == 1,
+                      },
+                      {
+                        'red-border':
+                          index != trueIndex &&
+                          checkedAnswer == index &&
+                          dataInfo.quest_type == 1,
+                      },
+                    ]"
+                  >
+                    <label
+                      ><input
+                        class="radio"
+                        type="radio"
+                        name="radio"
+                        :value="index"
+                        v-model="checkedAnswer"
+                        @change="chooseAnswer(item, index)"
+                        :disabled="disabledFlag"
+                      />
+                      <span>{{ item.answer }}</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="details_main_left_top_content_main_btm">
+                  <div class="details_main_left_top_content_main_btm_count">
+                    <span id="currentQuestion">{{
+                      currentQuestionIndex + 1
+                    }}</span
+                    >/{{ dataInfo.questions.length }}
+                  </div>
+                  <div
+                    class="details_main_left_top_content_main_btm_resultbtn"
+                    id="RESULTBTN"
+                    @click="getQuizResult()"
+                    v-if="
+                      currentQuestionIndex + 1 == dataInfo.questions.length &&
+                      nextFlag
+                    "
+                  >
+                    Get Your Result
+                  </div>
+                  <div
+                    v-else
+                    class="details_main_left_top_content_main_btm_btn"
+                    @click="nextQuestion"
+                    id="NEXTBTN"
+                    :class="
+                      nextFlag &&
+                      currentQuestionIndex + 1 < dataInfo.questions.length
+                        ? ''
+                        : 'stop-next'
+                    "
+                  >
+                    Next >>
+                  </div>
+                </div>
+              </div>
+            </template>
           </div>
         </div>
         <google-ad class="google_ad"></google-ad>
@@ -254,6 +369,7 @@ export default {
       showResult: false, //展示结果
       result: {}, //返回的数据
       disabledFlag: false, //禁用单选框状态
+      showQuestions: false, //展示问答
     }
   },
   async asyncData({ error, route, $apiList, params, $utils }) {
@@ -300,6 +416,14 @@ export default {
     }
   },
   methods: {
+    /**开始答题 */
+    startTest() {
+      this.showQuestions = true
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    },
     /**重新做题 */
     retake() {
       //改变showResult
@@ -481,125 +605,130 @@ $spacing: 55px;
             color: rgba(255, 255, 255, 0.7);
             margin-top: 16px;
           }
-          &_questions {
-            margin-top: 48px;
-            font-family: 'Rubik';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 22px;
-            line-height: 30px;
-            color: #ffffff;
-          }
-          &_answer {
-            display: grid;
-            grid-template-columns: repeat(2, 338px);
-            grid-gap: 16px;
-            margin-top: 16px;
-            &_item {
-              width: 338px;
-              min-height: 60px;
-              background: rgba(255, 255, 255, 0.1);
-              border-radius: 18px;
+          &_main {
+            &_questions {
+              margin-top: 48px;
+              font-family: 'Rubik';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 22px;
+              line-height: 30px;
+              color: #ffffff;
+            }
+            &_answer {
+              display: grid;
+              grid-template-columns: repeat(2, 338px);
+              grid-gap: 16px;
+              margin-top: 16px;
+              &_item {
+                width: 338px;
+                min-height: 60px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 18px;
+                display: flex;
+                align-items: center;
+                padding: 10px 10px;
+                border: 1px solid transparent;
+                cursor: pointer;
+                label {
+                  font-family: 'Rubik';
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 16px;
+                  line-height: 22px;
+                  color: #ffffff;
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  word-break: break-all;
+                  cursor: pointer;
+                  height: 100%;
+                  span {
+                    width: 100%;
+                    cursor: pointer;
+                    // word-break: break-all;
+                  }
+                  input {
+                    margin-left: 31px;
+                    margin-right: 22px;
+                    border: 1px solid rgba(255, 255, 255, 0.6);
+                    height: 18px;
+                    width: 18px;
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
+                    appearance: none;
+                    -webkit-appearance: none; /**隐藏原生控件**/
+                    flex-shrink: 0;
+                    cursor: pointer;
+                    &:checked {
+                      position: relative;
+                      &::before {
+                        display: block;
+                        position: absolute;
+                        content: '';
+                        background: url('../../../assets/img/resources/checked.png')
+                          no-repeat center center;
+                        width: 21px;
+                        height: 16px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            &_btm {
+              margin-top: 32px;
               display: flex;
               align-items: center;
-              padding: 10px 10px;
-              border: 1px solid transparent;
-              cursor: pointer;
-              label {
+              &_count {
+                font-family: 'Rubik';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 22px;
+                line-height: 30px;
+                color: rgba(255, 255, 255, 0.7);
+              }
+              &_btn {
+                margin-left: 6px;
+                width: 119px;
+                height: 44px;
+                left: 171px;
+                top: 302px;
+                background: #ffffff;
+                border-radius: 42px;
+                font-family: 'Rubik';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 22px;
+                color: #000000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+              }
+              &_resultbtn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 179px;
+                height: 44px;
+                background: #9747ff;
+                border-radius: 42px;
                 font-family: 'Rubik';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 22px;
                 color: #ffffff;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                word-break: break-all;
+                margin-left: 9px;
                 cursor: pointer;
-                height: 100%;
-                span {
-                  width: 100%;
-                  cursor: pointer;
-                  // word-break: break-all;
-                }
-                input {
-                  margin-left: 31px;
-                  margin-right: 22px;
-                  border: 1px solid rgba(255, 255, 255, 0.6);
-                  height: 18px;
-                  width: 18px;
-                  background: rgba(255, 255, 255, 0.1);
-                  border-radius: 50%;
-                  appearance: none;
-                  -webkit-appearance: none; /**隐藏原生控件**/
-                  flex-shrink: 0;
-                  cursor: pointer;
-                  &:checked {
-                    position: relative;
-                    &::before {
-                      display: block;
-                      position: absolute;
-                      content: '';
-                      background: url('../../../assets/img/resources/checked.png')
-                        no-repeat center center;
-                      width: 21px;
-                      height: 16px;
-                    }
-                  }
-                }
               }
             }
           }
-          &_btm {
-            margin-top: 32px;
-            display: flex;
-            align-items: center;
-            &_count {
-              font-family: 'Rubik';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 22px;
-              line-height: 30px;
-              color: rgba(255, 255, 255, 0.7);
-            }
-            &_btn {
-              margin-left: 6px;
-              width: 119px;
-              height: 44px;
-              left: 171px;
-              top: 302px;
-              background: #ffffff;
-              border-radius: 42px;
-              font-family: 'Rubik';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 16px;
-              line-height: 22px;
-              color: #000000;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              cursor: pointer;
-            }
-            &_resultbtn {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 179px;
-              height: 44px;
-              background: #9747ff;
-              border-radius: 42px;
-              font-family: 'Rubik';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 16px;
-              line-height: 22px;
-              color: #ffffff;
-              margin-left: 9px;
-              cursor: pointer;
-            }
-          }
+        }
+        &_H5content {
+          display: none;
         }
         &_result {
           margin-top: 46px;
@@ -832,13 +961,16 @@ $spacing: 55px;
     &_main {
       width: 100%;
       padding: 0 16 * $pr;
+      margin-top: 0;
+
       &_left {
         width: 100%;
         &_top {
-          padding: 0 16 * $pr;
+          padding: 24 * $pr 16 * $pr 48 * $pr;
           &_menu {
             margin-top: 24 * $pr;
             padding: 0;
+            display: none;
             a,
             span {
               font-size: 12 * $pr;
@@ -849,62 +981,132 @@ $spacing: 55px;
             }
           }
           &_content {
+            display: none;
             margin-top: 32 * $pr;
             &_name {
               font-size: 16 * $pr;
               line-height: 22 * $pr;
+              color: #ffffff;
             }
             &_desc {
               font-size: 14 * $pr;
               line-height: 18 * $pr;
             }
-            &_questions {
-              font-size: 22 * $pr;
-              line-height: 30 * $pr;
-            }
-            &_answer {
-              grid-gap: 8 * $pr;
-              grid-template-columns: repeat(1, 311 * $pr);
-              margin-top: 16 * $pr;
-              &_item {
-                width: 311 * $pr;
-                height: 60 * $pr;
-                border-radius: 18 * $pr;
-                label {
-                  font-size: 16 * $pr;
-                  line-height: 22 * $pr;
-                  input {
-                    margin-left: 31 * $pr;
-                    margin-right: 22 * $pr;
-                    height: 18 * $pr;
-                    width: 18 * $pr;
-                    &:checked {
-                      &::before {
-                        width: 18 * $pr;
-                        height: 18 * $pr;
+            &_main {
+              &_questions {
+                font-size: 22 * $pr;
+                line-height: 30 * $pr;
+              }
+              &_answer {
+                grid-gap: 8 * $pr;
+                grid-template-columns: repeat(1, 311 * $pr);
+                margin-top: 16 * $pr;
+                &_item {
+                  width: 311 * $pr;
+                  height: 60 * $pr;
+                  border-radius: 18 * $pr;
+                  label {
+                    font-size: 16 * $pr;
+                    line-height: 22 * $pr;
+                    input {
+                      margin-left: 31 * $pr;
+                      margin-right: 22 * $pr;
+                      height: 18 * $pr;
+                      width: 18 * $pr;
+                      &:checked {
+                        &::before {
+                          width: 18 * $pr;
+                          height: 18 * $pr;
+                        }
                       }
                     }
                   }
                 }
               }
+              &_btm {
+                justify-content: flex-end;
+                &_count {
+                  font-family: 'Rufina';
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 22 * $pr;
+                  line-height: 30 * $pr;
+                }
+                &_btn {
+                  width: 119 * $pr;
+                  height: 44 * $pr;
+                  font-size: 16 * $pr;
+                  line-height: 22 * $pr;
+                  border-radius: 42 * $pr;
+                  margin-left: 12 * $pr;
+                }
+                &_resultbtn {
+                  width: 179 * $pr;
+                  height: 44 * $pr;
+                  font-size: 16 * $pr;
+                }
+              }
             }
-            &_btm {
-              justify-content: flex-end;
-              &_count {
-                font-family: 'Rufina';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 22 * $pr;
-                line-height: 30 * $pr;
+          }
+          &_H5content {
+            display: block;
+            &_img {
+              object-fit: contain;
+              img {
+                width: 100%;
+                object-fit: contain;
+                border-radius: 8 * $pr;
               }
-              &_btn {
-                width: 119 * $pr;
-                height: 44 * $pr;
-                font-size: 16 * $pr;
-                line-height: 22 * $pr;
-                border-radius: 42 * $pr;
-                margin-left: 12 * $pr;
-              }
+            }
+            &_name {
+              font-family: 'Rubik';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 16 * $pr;
+              line-height: 22 * $pr;
+              color: #ffffff;
+              margin-top: 32 * $pr;
+            }
+            &_desc {
+              margin-top: 16 * $pr;
+              font-family: 'Rubik';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
+              color: rgba(255, 255, 255, 0.7);
+            }
+            &_btn {
+              width: 136 * $pr;
+              height: 44 * $pr;
+              background: #ffffff;
+              border-radius: 42 * $pr;
+              margin: 0 auto;
+              font-family: 'Rubik';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 16 * $pr;
+              color: #000000;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-top: 32 * $pr;
+            }
+          }
+          &_result {
+            &_score {
+              font-size: 22 * $pr;
+              line-height: 30 * $pr;
+            }
+
+            &_retake {
+              margin: 0 auto;
+              width: 200 * $pr;
+              height: 40 * $pr;
+              font-size: 16 * $pr;
+              line-height: 22 * $pr;
+              border-radius: 20 * $pr;
+              margin-top: 10 * $pr;
             }
           }
         }
