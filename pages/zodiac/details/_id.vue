@@ -108,7 +108,7 @@
           <el-tabs :tabs="tabTitle" :title="zodiacIData.name">
             <template v-slot="{ activeTab }">
               <div
-                v-for="(item, index) in zodiacIData?.traits"
+                v-for="(item, index) in tabsDataList"
                 :key="index"
                 v-show="activeTab === index"
               >
@@ -147,6 +147,56 @@
                 <div class="tab_main_list" v-if="item.attract">
                   <h4>{{ `${zodiacIData.name.toUpperCase()} Attracty` }}</h4>
                   <div class="p_text" v-html="item.attract"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.aquarius">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Aquarius` }}</h4>
+                  <div class="p_text" v-html="item.aquarius"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.aries">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Aries` }}</h4>
+                  <div class="p_text" v-html="item.aries"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.cancer">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Cancer` }}</h4>
+                  <div class="p_text" v-html="item.cancer"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.capricorn">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Capricorn` }}</h4>
+                  <div class="p_text" v-html="item.capricorn"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.gemini">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Gemini` }}</h4>
+                  <div class="p_text" v-html="item.gemini"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.leo">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Leo` }}</h4>
+                  <div class="p_text" v-html="item.leo"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.libra">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Libra` }}</h4>
+                  <div class="p_text" v-html="item.libra"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.pisces">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Pisces` }}</h4>
+                  <div class="p_text" v-html="item.pisces"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.sagittarius">
+                  <h4>
+                    {{ `${zodiacIData.name.toUpperCase()} & Sagittarius` }}
+                  </h4>
+                  <div class="p_text" v-html="item.sagittarius"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.scorpio">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Scorpio` }}</h4>
+                  <div class="p_text" v-html="item.scorpio"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.taurus">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Taurus` }}</h4>
+                  <div class="p_text" v-html="item.taurus"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.virgo">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Virgo` }}</h4>
+                  <div class="p_text" v-html="item.virgo"></div>
                 </div>
               </div>
             </template>
@@ -235,16 +285,22 @@ export default {
           id: 12,
         },
       ],
-      tabTitle: [{ tabs: '' }, { tabs: 'Man' }, { tabs: 'Woman' }],
+      tabTitle: [
+        { tabs: '' },
+        { tabs: 'Man' },
+        { tabs: 'Woman' },
+        { tabs: 'Comratible' },
+      ],
       openExpand: false,
     }
   },
   async asyncData({ error, $apiList, params }) {
     try {
       let ids = params.id.replace(
-        /^.*?(\d*)$/,
-        (str, match, index) => match || '0'
-      )
+          /^.*?(\d*)$/,
+          (str, match, index) => match || '0'
+        ),
+        tabsDataList = null
       let [zodiacIData] = await Promise.all([
         $apiList.home
           .getZodiacDetails({
@@ -256,12 +312,15 @@ export default {
           })
           .then((res) => {
             ids = res.id
+            tabsDataList = res?.traits
+            tabsDataList.push(res?.comp)
             return res
           }),
       ])
       return {
         zodiacIData,
         ids,
+        tabsDataList,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
@@ -282,6 +341,8 @@ export default {
         .then((res) => {
           this.zodiacIData = res
           this.ids = res.id
+          this.tabsDataList = res?.traits
+          this.tabsDataList.push(res?.comp)
         })
     },
     setOpenExpand() {
@@ -499,12 +560,15 @@ export default {
             line-height: 22px;
             margin-top: 8px;
             color: rgba(255, 255, 255, 0.7);
+            :deep(span),
+            :deep(p) {
+              color: rgba(255, 255, 255, 0.7) !important;
+            }
             :deep(h1),
             :deep(h2),
             :deep(h3),
             :deep(h4),
-            :deep(h5),
-            :deep(h6) {
+            :deep(h5) {
               color: #fff;
             }
           }
