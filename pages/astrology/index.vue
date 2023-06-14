@@ -489,7 +489,7 @@ export default {
           .introduce {
             font-family: 'Rubik';
             font-size: 16px;
-            line-height: 22px;
+            line-height: 28px;
             color: rgba(255, 255, 255, 0.7);
             :deep(h1),
             :deep(h2),
@@ -497,7 +497,17 @@ export default {
             :deep(h4),
             :deep(h5),
             :deep(h6) {
+              font-family: 'Rubik';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 22px;
+              line-height: 30px;
+              margin: 48px 0 8px;
               color: #fff;
+            }
+            :deep(a) {
+              color: rgba(255, 255, 255, 0.7);
+              pointer-events: none;
             }
           }
         }
@@ -718,7 +728,18 @@ export default {
             }
             .introduce {
               font-size: 16 * $pr;
-              line-height: 22 * $pr;
+              line-height: 24 * $pr;
+              :deep(h1),
+              :deep(h2),
+              :deep(h3),
+              :deep(h4),
+              :deep(h5),
+              :deep(h6) {
+                font-size: 22 * $pr;
+                line-height: 30 * $pr;
+                margin: 24 * $pr 0 8 * $pr;
+                color: #fff;
+              }
             }
           }
           .google_ad {
