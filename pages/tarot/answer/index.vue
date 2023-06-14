@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
- * @LastEditors: tianjun
- * @LastEditTime: 2023-06-13 16:13:41
+ * @LastEditors: tian 249682049@qq.com
+ * @LastEditTime: 2023-06-14 10:49:57
  * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
@@ -21,7 +21,7 @@
             <div class="card-wrapper">
               <nuxt-img
                 class="card-img"
-                :class="{ 'card-img-rotate': item.type == 2 }"
+                :class="{ 'card-img-rotate': item.desc_type == 2 }"
                 :src="item.icon"
                 fit="cover"
                 :alt="item.name"

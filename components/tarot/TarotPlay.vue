@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
- * @LastEditors: tianjun
- * @LastEditTime: 2023-06-13 17:56:26
+ * @LastEditors: tian 249682049@qq.com
+ * @LastEditTime: 2023-06-14 10:50:29
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -22,6 +22,7 @@
           v-for="(item, index) in showList"
           :key="index"
           class="tip-img-item"
+          :class="{ 'img-rotate': item.desc_type == 2 }"
           height="80px"
           :src="item.icon"
           :alt="item.name"
@@ -48,7 +49,9 @@
         placeholder="Enter your question here"
         class="question-input"
       />
-      <button v-if="!questionTop" class="button" @click="handleInput">Submit</button>
+      <button v-if="!questionTop" class="button" @click="handleInput">
+        Submit
+      </button>
     </div>
     <div
       class="tarot-wrapper"
@@ -102,6 +105,7 @@
         <nuxt-img
           class="item-img"
           v-for="(item, index) in showList"
+          :class="{ 'img-rotate': item.desc_type == 2 }"
           :key="index"
           :src="item.icon || '/'"
           height="440"
@@ -180,7 +184,7 @@ export default {
       const res = await await this.$apiList.tarot.drawTarot({
         origin: process.env.origin,
         type: Number(this.type),
-        question: '123?',
+        question: this.question,
       })
       if (res && res.length) {
         this.cardsInfo = res
@@ -424,6 +428,9 @@ export default {
     color: #000;
     background-color: #fff;
   }
+}
+.img-rotate {
+  transform: rotate(180deg);
 }
 .rotate-start {
   opacity: 0.4;
