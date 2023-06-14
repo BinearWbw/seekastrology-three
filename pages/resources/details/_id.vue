@@ -34,8 +34,7 @@
             <div
               class="details_main_left_top_content_text"
               v-html="dataInfo.desc"
-            >
-            </div>
+            ></div>
           </div>
           <div class="details_main_left_top_content" v-else>
             <div class="details_main_left_top_content_title">
@@ -344,8 +343,6 @@ $spacing: 16px;
         }
         &_content {
           margin-top: 48px;
-          padding: 0 118px;
-          padding-bottom: 96px;
           &_title {
             font-family: 'Rubik';
             font-style: normal;
@@ -428,7 +425,11 @@ $spacing: 16px;
               // word-break: break-all;
               background: transparent !important;
               width: 100%;
+              height: 100%;
               object-fit: contain;
+            }
+            :deep(img) {
+              margin-bottom: 0;
             }
           }
         }
@@ -730,9 +731,10 @@ $spacing: 16px;
             }
             &_text {
               margin-top: 32 * $pr;
-              p {
+              :deep(*) {
                 font-size: 14 * $pr;
                 line-height: 18 * $pr;
+                margin-bottom: 20 * $pr;
               }
             }
           }
