@@ -56,10 +56,7 @@
       </div>
     </div>
     <transition name="fade">
-      <home-pop-articles></home-pop-articles>
-    </transition>
-    <transition name="fade">
-      <tarot-all-tarot></tarot-all-tarot>
+      <el-daily-horoscope></el-daily-horoscope>
     </transition>
     <transition name="fade">
       <el-pairing></el-pairing>

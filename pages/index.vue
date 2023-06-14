@@ -24,7 +24,7 @@
         <home-tarot></home-tarot>
       </section>
       <section class="module quizzes">
-        <home-quizzes :homeQuizzes="homeQuizzes"></home-quizzes>
+        <home-quizzes></home-quizzes>
       </section>
       <section class="module kundli" v-if="false">
         <home-kundli></home-kundli>
@@ -41,24 +41,6 @@
 export default {
   name: 'Home',
   computed: {},
-  async asyncData({ error, $apiList }) {
-    try {
-      let [homeQuizzes] = await Promise.all([
-        $apiList.home
-          .getZodiacHomeQuiz({
-            origin: process.env.origin,
-          })
-          .then((res) => {
-            return res.list || null
-          }),
-      ])
-      return {
-        homeQuizzes,
-      }
-    } catch (e) {
-      error({ statusCode: e.code, message: e.message })
-    }
-  },
 }
 </script>
 <style lang="scss" scoped>
