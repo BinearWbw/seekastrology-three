@@ -47,54 +47,68 @@
               <div class="right_minute_min">
                 <div class="part_one">
                   <div class="contents">
-                    <span>Tauaus Date:</span>
-                    <p>{{ zodiacIData.basic?.dates || '' }}</p>
+                    <p class="p_title">Tauaus Date:</p>
+                    <p class="p_texts">{{ zodiacIData.basic?.dates || '' }}</p>
                   </div>
                   <div class="contents">
-                    <span>Symbil:</span>
-                    <p>{{ zodiacIData.basic?.symbol || '' }}</p>
+                    <p class="p_title">Symbil:</p>
+                    <p class="p_texts">{{ zodiacIData.basic?.symbol || '' }}</p>
                   </div>
                   <div class="contents">
-                    <span>Ruler Planet:</span>
-                    <p>{{ zodiacIData.basic?.planet || '' }}</p>
+                    <p class="p_title">Ruler Planet:</p>
+                    <p class="p_texts">{{ zodiacIData.basic?.planet || '' }}</p>
                   </div>
                   <div class="contents">
-                    <span>Basic Color:</span>
-                    <p>{{ zodiacIData.basic?.color || '' }}</p>
+                    <p class="p_title">Basic Color:</p>
+                    <p class="p_texts">{{ zodiacIData.basic?.color || '' }}</p>
                   </div>
                   <div class="contents">
-                    <span>Mode And Elemnt:</span>
-                    <p>{{ zodiacIData.basic?.mode_element || '' }}</p>
+                    <p class="p_title">Mode And Elemnt:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.mode_element || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>House:</span>
-                    <p>{{ zodiacIData.basic?.house || '' }}</p>
+                    <p class="p_title">House:</p>
+                    <p class="p_texts">{{ zodiacIData.basic?.house || '' }}</p>
                   </div>
                 </div>
                 <div class="part_two">
                   <div class="contents">
-                    <span>Best Compatibility:</span>
-                    <p>{{ zodiacIData.basic?.compatibility || '' }}</p>
+                    <p class="p_title">Best Compatibility:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.compatibility || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>Lucky Metal:</span>
-                    <p>{{ zodiacIData.basic?.lucky_metal || '' }}</p>
+                    <p class="p_title">Lucky Metal:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.lucky_metal || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>Ruler Worthy Days:</span>
-                    <p>{{ zodiacIData.basic?.worth_days || '' }}</p>
+                    <p class="p_title">Ruler Worthy Days:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.worth_days || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>Lucky Numbers:</span>
-                    <p>{{ zodiacIData.basic?.lucky_numbers || '' }}</p>
+                    <p class="p_title">Lucky Numbers:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.lucky_numbers || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>Lucky Gem:</span>
-                    <p>{{ zodiacIData.basic?.lucky_gem || '' }}</p>
+                    <p class="p_title">Lucky Gem:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.lucky_gem || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>Tarot Card:</span>
-                    <p>{{ zodiacIData.basic?.tarot_card || '' }}</p>
+                    <p class="p_title">Tarot Card:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.tarot_card || '' }}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -509,16 +523,17 @@ export default {
                 font-style: normal;
                 font-weight: 400;
                 margin-bottom: 16px;
-                > span {
+                .p_title {
                   display: inline-block;
                   width: 170px;
                   font-size: 16px;
                   line-height: 22px;
                   color: rgba(255, 255, 255, 0.7);
                 }
-                > p {
-                  font-size: 22px;
-                  line-height: 30px;
+                .p_texts {
+                  flex: 1;
+                  font-size: 20px;
+                  line-height: 28px;
                   color: #ffffff;
                 }
               }
@@ -699,12 +714,12 @@ export default {
                 padding-left: 8 * $pr;
                 .contents {
                   margin-bottom: 16 * $pr;
-                  > span {
+                  .p_title {
                     width: 140 * $pr;
                     font-size: 14 * $pr;
                     line-height: 18 * $pr;
                   }
-                  > p {
+                  .p_texts {
                     font-size: 16 * $pr;
                     line-height: 22 * $pr;
                   }
