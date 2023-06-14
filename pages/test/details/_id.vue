@@ -1106,7 +1106,7 @@ $spacing: 55px;
               font-size: 16 * $pr;
               line-height: 22 * $pr;
               border-radius: 20 * $pr;
-              margin-top: 10 * $pr;
+              margin-top: 30 * $pr;
             }
           }
         }
