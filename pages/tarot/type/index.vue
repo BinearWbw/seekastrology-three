@@ -57,7 +57,9 @@
       </div> -->
     </div>
     <more-tarot class="mt-48"></more-tarot>
-    <div class="ad-box_row mt-32 mb-32"></div>
+    <div class="ad-box_row mt-32"></div>
+    <home-your-choice class="mt-32"></home-your-choice>
+    <home-pop-articles class="mb-32"></home-pop-articles>
   </div>
 </template>
 
