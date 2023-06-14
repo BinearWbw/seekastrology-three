@@ -390,8 +390,9 @@ $spacing: 16px;
           &_img {
             margin-top: 48px;
             width: 100%;
-            height: 324px;
-            object-fit: cover;
+            // height: 324px;
+            height: auto;
+            object-fit: contain;
             position: relative;
             #video-element {
               width: 100%;
@@ -426,6 +427,8 @@ $spacing: 16px;
               margin-bottom: 20px;
               // word-break: break-all;
               background: transparent !important;
+              width: 100%;
+              object-fit: contain;
             }
           }
         }
@@ -508,11 +511,11 @@ $spacing: 16px;
           width: 456px;
           height: 280px;
           position: relative;
-          object-fit: cover;
+          object-fit: contain;
           &_pic {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
           }
           &_video {
             width: 456px;
@@ -630,7 +633,7 @@ $spacing: 16px;
         &_top {
           &_content {
             padding: 0 60px 50px;
-            object-fit: cover;
+            object-fit: contain;
             &_img {
               width: 100%;
             }
@@ -779,7 +782,7 @@ $spacing: 16px;
         margin-bottom: 48 * $pr;
         &_item {
           width: 343 * $pr;
-          object-fit: cover;
+          object-fit: contain;
           &_img {
             width: 100%;
             &_pic,

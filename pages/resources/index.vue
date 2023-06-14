@@ -874,34 +874,12 @@ $spacing: 16px;
     }
   }
 }
-@media (max-width: (3 * $block + 2 * $spacing + 450px)) {
+@media (max-width: (3 * $block + 2 * $spacing + 350px)) {
   .resources {
     &_main {
       &_title {
         text-align: center;
       }
-    }
-    .google_ad_left {
-      left: 30px;
-    }
-    .google_ad_right {
-      right: 30px;
-    }
-  }
-}
-@media (max-width: (3 * $block + 2 * $spacing + 400px)) {
-  .resources {
-    .google_ad_left {
-      left: 10px;
-    }
-    .google_ad_right {
-      right: 10px;
-    }
-  }
-}
-@media (max-width: (3 * $block + 2 * $spacing + 350px)) {
-  .resources {
-    &_main {
       &_top {
         flex-direction: column;
         align-items: center;
