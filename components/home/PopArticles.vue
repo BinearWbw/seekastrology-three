@@ -89,9 +89,10 @@ export default {
   },
   methods: {
     pathToPage() {
-      this.$route.path === '/'
-        ? this.$router.push('/resources/?from=home')
-        : this.$router.push('/resources/')
+      window.location =
+        window.location.pathname === '/'
+          ? '/resources/?from=home'
+          : '/resources/'
     },
     async getHomeNews() {
       await this.$apiList.articles

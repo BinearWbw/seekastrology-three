@@ -116,7 +116,8 @@ export default {
         })
     },
     pathToTestPage() {
-      this.$router.push('/test/?from=home')
+      window.location =
+        window.location.pathname === '/' ? '/test/?from=home' : '/test/'
     },
   },
 }
