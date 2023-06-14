@@ -38,19 +38,19 @@ export default {
           title: 'Zodiac Signs',
           textCont: 'Read your freedaily horoscopes and learn more about your',
           imgUrl: require('~/assets/img/home/zodiac.png'),
-          path: '/zodiac',
+          path: '/zodiac/',
         },
         {
           title: 'Tarot',
           textCont: 'Read your freedaily horoscopes and learn more about your',
           imgUrl: require('~/assets/img/home/tarot.png'),
-          path: '/tarot',
+          path: '/tarot/',
         },
         {
           title: 'Compatibility',
           textCont: 'Read your freedaily horoscopes and learn more about your',
           imgUrl: require('~/assets/img/home/compatibility.png'),
-          path: '/astrology',
+          path: '/astrology/',
         },
         {
           title: 'Quizzes',
@@ -62,7 +62,7 @@ export default {
           title: 'Articles',
           textCont: 'Read your freedaily horoscopes and learn more about your',
           imgUrl: require('~/assets/img/home/articles.png'),
-          path: '/resources',
+          path: '/resources/',
         },
       ],
     }

@@ -5,16 +5,6 @@
         <div class="dialog__main__top">
           <button class="close common__btn" @click="close"></button>
         </div>
-        <div class="search">
-          <input
-            class="input"
-            type="text"
-            v-model="searchInput"
-            placeholder="Search"
-          />
-          <button class="button" @click="search"></button>
-        </div>
-        <p class="title">Navigation</p>
         <div class="menu">
           <a
             class="href"
@@ -27,17 +17,6 @@
             v-for="(item, index) in menu"
             :key="index"
           >
-            <div class="img">
-              <img
-                :src="
-                  item.path == $route.path ||
-                  (item.path !== '/' && $route.path.includes(item.path))
-                    ? item.imgActive1
-                    : item.img
-                "
-                :alt="item.title"
-              />
-            </div>
             <div class="name">{{ item.title }}</div>
           </a>
         </div>
@@ -99,9 +78,8 @@ export default {
   height: 100%;
   overflow: hidden;
   z-index: 7;
-  background: #1f2128;
+  background: rgba(0, 0, 0, 0.75);
   &__main {
-    padding: 0 30px;
     width: 100%;
     height: 100%;
     overflow-x: hidden;
@@ -110,6 +88,8 @@ export default {
       width: 100%;
       height: 90px;
       display: flex;
+      background-color: #000;
+      padding: 0 30px;
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -128,46 +108,14 @@ export default {
         background-size: contain;
       }
     }
-    .search {
-      width: 100%;
-      height: 66px;
-      background: rgba(0, 0, 0, 0.45);
-      border-radius: 72px;
-      position: relative;
-      -webkit-flex-shrink: 0;
-      flex-shrink: 0;
-      input {
-        width: 100%;
-        height: 100%;
-        font-size: 21px;
-        color: #aaabbd;
-        padding: 3px 85px 0 34px;
-      }
-      button {
-        position: absolute;
-        top: calc(50% - 12px);
-        right: 27px;
-        width: 24px;
-        height: 24px;
-        background: url('~assets/img/header/search.svg') no-repeat center center;
-        background-size: contain;
-      }
-    }
-    .title {
-      padding-left: 30px;
-      margin-top: 45px;
-      font-size: 21px;
-      line-height: 27px;
-      color: #aaabbd;
-      margin-bottom: 22px;
-    }
     .menu {
       width: 100%;
       overflow: hidden;
+      background-color: #000;
+      padding: 0 0 30px;
       .href {
         width: 100%;
-        height: 84px;
-        padding-left: 33px;
+        height: 42px;
         display: flex;
         display: -webkit-box;
         display: -webkit-flex;
@@ -176,30 +124,29 @@ export default {
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        border-radius: 18px;
-        .img {
-          width: 60px;
-          height: 100%;
-          display: flex;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          -webkit-align-items: center;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          align-items: center;
-          -webkit-box-pack: start;
-          -webkit-justify-content: flex-start;
-          -ms-flex-pack: start;
-          justify-content: flex-start;
-          img {
-            width: 30px;
-          }
+        justify-content: center;
+        position: relative;
+        &::after {
+          position: absolute;
+          content: '';
+          left: 0;
+          bottom: 0;
+          height: 1px;
+          width: 100%;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.2) 50.52%,
+            rgba(255, 255, 255, 0) 100%
+          );
         }
         .name {
-          font-size: 21px;
-          line-height: 1;
-          color: #aaabbd;
+          font-family: 'Cinzel Decorative';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 22px;
+          color: #ffffff;
           -webkit-transition: color 0.3s;
           transition: color 0.3s;
         }
@@ -209,7 +156,12 @@ export default {
           }
         }
         &.active {
-          background-color: #6c5dd3;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.2) 50.52%,
+            rgba(255, 255, 255, 0) 100%
+          );
           .name {
             color: #fff;
           }
@@ -225,46 +177,16 @@ export default {
   $pr: math.div(1vw, 3.75);
   .dialog {
     &__main {
-      padding: 0 24 * $pr;
       &__top {
-        height: 62 * $pr;
+        height: 60 * $pr;
         .close {
           width: 18 * $pr;
           height: 18 * $pr;
         }
       }
-      .search {
-        height: 46 * $pr;
-        border-radius: 23 * $pr;
-        input {
-          font-size: 14 * $pr;
-          padding: 2 * $pr 52 * $pr 0 22 * $pr;
-        }
-        button {
-          top: calc(50% - 8 * $pr);
-          right: 15 * $pr;
-          width: 15 * $pr;
-          height: 15 * $pr;
-        }
-      }
-      .title {
-        padding-left: 20 * $pr;
-        margin-top: 30 * $pr;
-        font-size: 14 * $pr;
-        line-height: 18 * $pr;
-        margin-bottom: 16 * $pr;
-      }
       .menu {
         .href {
-          height: 56 * $pr;
-          padding-left: 22 * $pr;
-          border-radius: 12 * $pr;
-          .img {
-            width: 39 * $pr;
-            img {
-              width: 20 * $pr;
-            }
-          }
+          height: 42 * $pr;
           .name {
             margin-top: 2 * $pr;
             font-size: 14 * $pr;

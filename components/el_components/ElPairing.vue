@@ -1,7 +1,7 @@
 <template>
   <div class="pairing_max_main">
     <div class="pairing_module">
-      <h3>The Pisces Zodiac Sign</h3>
+      <h3>ZODIAC COMPATIBILITY</h3>
       <div class="pairing_main">
         <div class="pairing_select">
           <div class="selects">
