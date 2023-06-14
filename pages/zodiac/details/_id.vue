@@ -47,54 +47,68 @@
               <div class="right_minute_min">
                 <div class="part_one">
                   <div class="contents">
-                    <span>Tauaus Date:</span>
-                    <p>{{ zodiacIData.basic?.dates || '' }}</p>
+                    <p class="p_title">Tauaus Date:</p>
+                    <p class="p_texts">{{ zodiacIData.basic?.dates || '' }}</p>
                   </div>
                   <div class="contents">
-                    <span>Symbil:</span>
-                    <p>{{ zodiacIData.basic?.symbol || '' }}</p>
+                    <p class="p_title">Symbil:</p>
+                    <p class="p_texts">{{ zodiacIData.basic?.symbol || '' }}</p>
                   </div>
                   <div class="contents">
-                    <span>Ruler Planet:</span>
-                    <p>{{ zodiacIData.basic?.planet || '' }}</p>
+                    <p class="p_title">Ruler Planet:</p>
+                    <p class="p_texts">{{ zodiacIData.basic?.planet || '' }}</p>
                   </div>
                   <div class="contents">
-                    <span>Basic Color:</span>
-                    <p>{{ zodiacIData.basic?.color || '' }}</p>
+                    <p class="p_title">Basic Color:</p>
+                    <p class="p_texts">{{ zodiacIData.basic?.color || '' }}</p>
                   </div>
                   <div class="contents">
-                    <span>Mode And Elemnt:</span>
-                    <p>{{ zodiacIData.basic?.mode_element || '' }}</p>
+                    <p class="p_title">Mode And Elemnt:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.mode_element || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>House:</span>
-                    <p>{{ zodiacIData.basic?.house || '' }}</p>
+                    <p class="p_title">House:</p>
+                    <p class="p_texts">{{ zodiacIData.basic?.house || '' }}</p>
                   </div>
                 </div>
                 <div class="part_two">
                   <div class="contents">
-                    <span>Best Compatibility:</span>
-                    <p>{{ zodiacIData.basic?.compatibility || '' }}</p>
+                    <p class="p_title">Best Compatibility:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.compatibility || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>Lucky Metal:</span>
-                    <p>{{ zodiacIData.basic?.lucky_metal || '' }}</p>
+                    <p class="p_title">Lucky Metal:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.lucky_metal || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>Ruler Worthy Days:</span>
-                    <p>{{ zodiacIData.basic?.worth_days || '' }}</p>
+                    <p class="p_title">Ruler Worthy Days:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.worth_days || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>Lucky Numbers:</span>
-                    <p>{{ zodiacIData.basic?.lucky_numbers || '' }}</p>
+                    <p class="p_title">Lucky Numbers:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.lucky_numbers || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>Lucky Gem:</span>
-                    <p>{{ zodiacIData.basic?.lucky_gem || '' }}</p>
+                    <p class="p_title">Lucky Gem:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.lucky_gem || '' }}
+                    </p>
                   </div>
                   <div class="contents">
-                    <span>Tarot Card:</span>
-                    <p>{{ zodiacIData.basic?.tarot_card || '' }}</p>
+                    <p class="p_title">Tarot Card:</p>
+                    <p class="p_texts">
+                      {{ zodiacIData.basic?.tarot_card || '' }}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -108,7 +122,7 @@
           <el-tabs :tabs="tabTitle" :title="zodiacIData.name">
             <template v-slot="{ activeTab }">
               <div
-                v-for="(item, index) in zodiacIData?.traits"
+                v-for="(item, index) in tabsDataList"
                 :key="index"
                 v-show="activeTab === index"
               >
@@ -147,6 +161,56 @@
                 <div class="tab_main_list" v-if="item.attract">
                   <h4>{{ `${zodiacIData.name.toUpperCase()} Attracty` }}</h4>
                   <div class="p_text" v-html="item.attract"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.aquarius">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Aquarius` }}</h4>
+                  <div class="p_text" v-html="item.aquarius"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.aries">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Aries` }}</h4>
+                  <div class="p_text" v-html="item.aries"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.cancer">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Cancer` }}</h4>
+                  <div class="p_text" v-html="item.cancer"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.capricorn">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Capricorn` }}</h4>
+                  <div class="p_text" v-html="item.capricorn"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.gemini">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Gemini` }}</h4>
+                  <div class="p_text" v-html="item.gemini"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.leo">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Leo` }}</h4>
+                  <div class="p_text" v-html="item.leo"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.libra">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Libra` }}</h4>
+                  <div class="p_text" v-html="item.libra"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.pisces">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Pisces` }}</h4>
+                  <div class="p_text" v-html="item.pisces"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.sagittarius">
+                  <h4>
+                    {{ `${zodiacIData.name.toUpperCase()} & Sagittarius` }}
+                  </h4>
+                  <div class="p_text" v-html="item.sagittarius"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.scorpio">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Scorpio` }}</h4>
+                  <div class="p_text" v-html="item.scorpio"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.taurus">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Taurus` }}</h4>
+                  <div class="p_text" v-html="item.taurus"></div>
+                </div>
+                <div class="tab_main_list starsign" v-if="item.virgo">
+                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Virgo` }}</h4>
+                  <div class="p_text" v-html="item.virgo"></div>
                 </div>
               </div>
             </template>
@@ -235,16 +299,22 @@ export default {
           id: 12,
         },
       ],
-      tabTitle: [{ tabs: '' }, { tabs: 'Man' }, { tabs: 'Woman' }],
+      tabTitle: [
+        { tabs: '' },
+        { tabs: 'Man' },
+        { tabs: 'Woman' },
+        { tabs: 'Comratible' },
+      ],
       openExpand: false,
     }
   },
   async asyncData({ error, $apiList, params }) {
     try {
       let ids = params.id.replace(
-        /^.*?(\d*)$/,
-        (str, match, index) => match || '0'
-      )
+          /^.*?(\d*)$/,
+          (str, match, index) => match || '0'
+        ),
+        tabsDataList = null
       let [zodiacIData] = await Promise.all([
         $apiList.home
           .getZodiacDetails({
@@ -256,12 +326,15 @@ export default {
           })
           .then((res) => {
             ids = res.id
+            tabsDataList = res?.traits
+            tabsDataList.push(res?.comp)
             return res
           }),
       ])
       return {
         zodiacIData,
         ids,
+        tabsDataList,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
@@ -282,6 +355,8 @@ export default {
         .then((res) => {
           this.zodiacIData = res
           this.ids = res.id
+          this.tabsDataList = res?.traits
+          this.tabsDataList.push(res?.comp)
         })
     },
     setOpenExpand() {
@@ -402,7 +477,7 @@ export default {
           .right_various {
             font-family: 'Rubik';
             font-size: 16px;
-            line-height: 22px;
+            line-height: 28px;
             color: rgba(255, 255, 255, 0.7);
             margin-top: 16px;
             overflow: hidden;
@@ -448,16 +523,17 @@ export default {
                 font-style: normal;
                 font-weight: 400;
                 margin-bottom: 16px;
-                > span {
+                .p_title {
                   display: inline-block;
                   width: 170px;
                   font-size: 16px;
                   line-height: 22px;
                   color: rgba(255, 255, 255, 0.7);
                 }
-                > p {
-                  font-size: 22px;
-                  line-height: 30px;
+                .p_texts {
+                  flex: 1;
+                  font-size: 20px;
+                  line-height: 28px;
                   color: #ffffff;
                 }
               }
@@ -496,16 +572,19 @@ export default {
           .p_text {
             font-family: 'Rubik';
             font-size: 16px;
-            line-height: 22px;
+            line-height: 28px;
             margin-top: 8px;
             color: rgba(255, 255, 255, 0.7);
             :deep(h1),
             :deep(h2),
             :deep(h3),
             :deep(h4),
-            :deep(h5),
-            :deep(h6) {
+            :deep(h5) {
               color: #fff;
+            }
+            :deep(span),
+            :deep(p) {
+              color: rgba(255, 255, 255, 0.7) !important;
             }
           }
         }
@@ -621,7 +700,7 @@ export default {
             }
             .right_various {
               font-size: 16 * $pr;
-              line-height: 22 * $pr;
+              line-height: 24 * $pr;
               margin-top: 16 * $pr;
             }
             .img_cont {
@@ -635,12 +714,12 @@ export default {
                 padding-left: 8 * $pr;
                 .contents {
                   margin-bottom: 16 * $pr;
-                  > span {
+                  .p_title {
                     width: 140 * $pr;
                     font-size: 14 * $pr;
                     line-height: 18 * $pr;
                   }
-                  > p {
+                  .p_texts {
                     font-size: 16 * $pr;
                     line-height: 22 * $pr;
                   }
@@ -672,7 +751,7 @@ export default {
             }
             .p_text {
               font-size: 16 * $pr;
-              line-height: 22 * $pr;
+              line-height: 24 * $pr;
               margin-top: 8 * $pr;
             }
           }

@@ -30,39 +30,45 @@ export default {
       divination: [
         {
           title: 'Horoscope',
-          textCont: 'Read your freedaily horoscopes and learn more about your',
+          textCont:
+            'Pick your sign to read your Daily, Weekly or Monthly Horoscope.',
           imgUrl: require('~/assets/img/home/horoscope.png'),
           path: '/horroscope/aries-1/',
         },
         {
           title: 'Zodiac Signs',
-          textCont: 'Read your freedaily horoscopes and learn more about your',
+          textCont:
+            'Discover your cosmic identity by exploring your zodiac sign. Unveil your complete zodiac profile, your element and ruling planets.',
           imgUrl: require('~/assets/img/home/zodiac.png'),
-          path: '/zodiac',
+          path: '/zodiac/',
         },
         {
           title: 'Tarot',
-          textCont: 'Read your freedaily horoscopes and learn more about your',
+          textCont:
+            'Tarot reading is a powerful form of divination that use an ancient deck of cards to help you find answers to your questions about your love, relationships, career, wellness and more.',
           imgUrl: require('~/assets/img/home/tarot.png'),
-          path: '/tarot',
+          path: '/tarot/',
         },
         {
           title: 'Compatibility',
-          textCont: 'Read your freedaily horoscopes and learn more about your',
+          textCont:
+            'How well do you get along with your partner according to their Sun Sign? Find out answers to these questions and more with our Zodiac Compatibility Calculator',
           imgUrl: require('~/assets/img/home/compatibility.png'),
-          path: '/astrology',
+          path: '/astrology/',
         },
         {
           title: 'Quizzes',
-          textCont: 'Read your freedaily horoscopes and learn more about your',
+          textCont:
+            'astrology quiz will help you to unlock the unique powers hidden within your soul. Results are free, instant, and eye-opening.',
           imgUrl: require('~/assets/img/home/quizzes.png'),
           path: '/test/',
         },
         {
           title: 'Articles',
-          textCont: 'Read your freedaily horoscopes and learn more about your',
+          textCont:
+            'Explore the latest astrology news. Here is what is happening in the Universe this week.',
           imgUrl: require('~/assets/img/home/articles.png'),
-          path: '/resources',
+          path: '/resources/',
         },
       ],
     }
@@ -148,6 +154,12 @@ export default {
         font-size: 14px;
         line-height: 18px;
         color: #ffffffb3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        position: relative;
       }
       .button {
         margin-top: 18px;

@@ -24,7 +24,7 @@
             </div>
             <div class="details_main_left_top_content_img">
               <nuxt-img
-                :src="dataInfo.icon"
+                :src="dataInfo.icon || '/'"
                 fit="cover"
                 :alt="dataInfo.name"
                 class="details_main_left_top_content_img_pic"
@@ -34,8 +34,7 @@
             <div
               class="details_main_left_top_content_text"
               v-html="dataInfo.desc"
-            >
-            </div>
+            ></div>
           </div>
           <div class="details_main_left_top_content" v-else>
             <div class="details_main_left_top_content_title">
@@ -121,7 +120,7 @@
           <template v-if="item.kind == 0">
             <div class="details_footer_list_item_img">
               <nuxt-img
-                :src="item.icon"
+                :src="item.icon || '/'"
                 fit="cover"
                 :alt="item.name"
                 class="details_footer_list_item_img_pic"
@@ -143,7 +142,7 @@
           <template v-else>
             <div class="details_footer_list_item_img">
               <nuxt-img
-                :src="item.icon"
+                :src="item.icon || '/'"
                 fit="cover"
                 :alt="item.name"
                 class="details_footer_list_item_img_video"
@@ -344,8 +343,6 @@ $spacing: 16px;
         }
         &_content {
           margin-top: 48px;
-          padding: 0 118px;
-          padding-bottom: 96px;
           &_title {
             font-family: 'Rubik';
             font-style: normal;
@@ -390,8 +387,9 @@ $spacing: 16px;
           &_img {
             margin-top: 48px;
             width: 100%;
-            height: 324px;
-            object-fit: cover;
+            // height: 324px;
+            height: auto;
+            object-fit: contain;
             position: relative;
             #video-element {
               width: 100%;
@@ -425,6 +423,13 @@ $spacing: 16px;
               color: rgba(255, 255, 255, 0.7);
               margin-bottom: 20px;
               // word-break: break-all;
+              background: transparent !important;
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+            :deep(img) {
+              margin-bottom: 0;
             }
           }
         }
@@ -507,11 +512,11 @@ $spacing: 16px;
           width: 456px;
           height: 280px;
           position: relative;
-          object-fit: cover;
+          object-fit: contain;
           &_pic {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
           }
           &_video {
             width: 456px;
@@ -629,7 +634,7 @@ $spacing: 16px;
         &_top {
           &_content {
             padding: 0 60px 50px;
-            object-fit: cover;
+            object-fit: contain;
             &_img {
               width: 100%;
             }
@@ -726,9 +731,10 @@ $spacing: 16px;
             }
             &_text {
               margin-top: 32 * $pr;
-              p {
+              :deep(*) {
                 font-size: 14 * $pr;
                 line-height: 18 * $pr;
+                margin-bottom: 20 * $pr;
               }
             }
           }
@@ -778,7 +784,7 @@ $spacing: 16px;
         margin-bottom: 48 * $pr;
         &_item {
           width: 343 * $pr;
-          object-fit: cover;
+          object-fit: contain;
           &_img {
             width: 100%;
             &_pic,

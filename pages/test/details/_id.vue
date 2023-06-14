@@ -4,7 +4,7 @@
       <div class="details_main_left">
         <div class="details_main_left_top">
           <div class="details_main_left_top_menu">
-            <a href="javascript:history.back(-1)">Quizzes</a> >
+            <a href="javascript:history.back(-1)">Quizzes</a> <span>></span>
             <a href="" style="color: #ffffff">Quizzes Details</a>
           </div>
           <div class="details_main_left_top_content" v-if="!showResult">
@@ -126,7 +126,7 @@
             >
               <div class="details_main_left_btm_list_item_img">
                 <nuxt-img
-                  :src="item.icon"
+                  :src="item.icon || '/'"
                   fit="cover"
                   :alt="item.name"
                 ></nuxt-img>
@@ -448,7 +448,8 @@ $spacing: 55px;
         width: 100%;
         &_menu {
           padding-top: 24px;
-          a {
+          a,
+          span {
             font-family: 'Rubik';
             font-style: normal;
             font-weight: 400;
@@ -456,6 +457,9 @@ $spacing: 55px;
             line-height: 16px;
             /* identical to box height, or 133% */
             color: rgba(255, 255, 255, 0.7);
+          }
+          span {
+            margin: 0 5px;
           }
         }
         &_content {
@@ -835,16 +839,24 @@ $spacing: 55px;
           &_menu {
             margin-top: 24 * $pr;
             padding: 0;
-            a {
+            a,
+            span {
               font-size: 12 * $pr;
               line-height: 16 * $pr;
+            }
+            span {
+              margin: 0 5 * $pr;
             }
           }
           &_content {
             margin-top: 32 * $pr;
-            &_name,
+            &_name {
+              font-size: 16 * $pr;
+              line-height: 22 * $pr;
+            }
             &_desc {
-              display: none;
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
             }
             &_questions {
               font-size: 22 * $pr;
