@@ -74,7 +74,8 @@ export default {
       }
     },
     pathToTarotPage() {
-      this.$router.push(`/tarot/?from=home`)
+      window.location =
+        window.location.pathname === '/' ? '/tarot/?from=home' : '/tarot/'
     },
   },
 }
