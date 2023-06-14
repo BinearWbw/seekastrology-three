@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
- * @LastEditors: tianjun
- * @LastEditTime: 2023-06-13 13:52:23
+ * @LastEditors: tian 249682049@qq.com
+ * @LastEditTime: 2023-06-14 17:50:26
  * @FilePath: /seekastrology/components/tarot/AllTarot.vue
  * @Description: 
 -->
@@ -104,6 +104,13 @@ export default {
     grid-gap: 75px;
     grid-template-columns: repeat(5, 220px);
     text-align: center;
+    .card-items {
+      -webkit-transition: transform 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out;
+      &:hover {
+        transform: translateY(-20px);
+      }
+    }
     .card-item-img {
       height: 440px;
       width: 100%;

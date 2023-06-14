@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-14 17:41:59
+ * @LastEditTime: 2023-06-14 17:52:12
  * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
@@ -40,7 +40,7 @@
     </div>
     <div class="ad-box_row mt-48"></div>
     <more-tarot class="mt-48"></more-tarot>
-    <div class="ad-box_row mt-32"></div>
+    <div class="ad-box_row mt-32 mb-32"></div>
   </div>
 </template>
 
@@ -173,6 +173,9 @@ export default {
 }
 .mt-32 {
   margin-top: 32px;
+}
+.mb-32 {
+  margin-bottom: 32px;
 }
 .mt-200 {
   margin-top: 200px;

@@ -77,7 +77,7 @@
         </nuxt-link>
       </li>
     </ul>
-    <div class="ad-box_row mt-48"></div>
+    <div class="ad-box_row mt-48 mb-32"></div>
   </div>
 </template>
 
@@ -322,6 +322,9 @@ export default {
 }
 .mt-32 {
   margin-top: 32px;
+}
+.mb-32 {
+  margin-bottom: 32px;
 }
 .mt-75 {
   margin-top: 75px;

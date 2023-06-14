@@ -57,7 +57,7 @@
       </div> -->
     </div>
     <more-tarot class="mt-48"></more-tarot>
-    <div class="ad-box_row mt-32"></div>
+    <div class="ad-box_row mt-32 mb-32"></div>
   </div>
 </template>
 
@@ -194,6 +194,9 @@ export default {
 }
 .mt-32 {
   margin-top: 32px;
+}
+.mb-32 {
+  margin-bottom: 32px;
 }
 .mt-200 {
   margin-top: 200px;
