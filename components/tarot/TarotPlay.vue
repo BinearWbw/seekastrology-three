@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-14 17:32:34
+ * @LastEditTime: 2023-06-15 10:03:11
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -136,12 +136,7 @@
             class="question-input"
           >
           </textarea>
-          <button
-            class="mobile-btn"
-            @click="handleMobileInpit"
-          >
-            Submit
-          </button>
+          <button class="mobile-btn" @click="handleMobileInpit">Submit</button>
         </div>
       </div>
       <div class="in-play" v-show="inPlay">
@@ -160,6 +155,23 @@
             />
           </li>
         </ul>
+        <div class="mobile-tip">
+          <div class="tip-img-list" v-if="showList.length">
+            <nuxt-img
+              v-for="(item, index) in showList"
+              :key="index"
+              class="tip-img-item"
+              :class="{ 'img-rotate': item.desc_type == 2 }"
+              :src="item.icon"
+              :alt="item.name"
+            ></nuxt-img>
+          </div>
+          <div class="tip-text">
+            You can also draw
+            <span>{{ numbers }}</span>
+            tarot card！
+          </div>
+        </div>
         <div class="in-play-ad"></div>
       </div>
     </div>
@@ -266,7 +278,7 @@ export default {
       })
       if (res && res.length) {
         this.cardsInfo = res
-        sessionStorage.removeItem('cardsInfo');
+        sessionStorage.removeItem('cardsInfo')
         sessionStorage.setItem('cardsInfo', JSON.stringify(res))
       }
     },
@@ -579,7 +591,7 @@ export default {
       position: fixed;
       bottom: 0;
       width: 100%;
-      height: 122px;
+      height: 123px;
       background-color: #555761;
     }
     .card-list-wrapper {
@@ -616,6 +628,23 @@ export default {
     .play-list {
       .play-list-item {
         position: absolute;
+      }
+    }
+    .mobile-tip {
+      position: absolute;
+      bottom: 12px;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .tip-img-list {
+        width: 40px;
+        height: 66px;
+        .tip-img-item {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
     .mobile-btn {

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-14 17:52:12
+ * @LastEditTime: 2023-06-15 09:33:14
  * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
@@ -80,7 +80,7 @@ export default {
       },
     }
   },
-  created() {
+  mounted() {
     this.type = this.$route.query.type
     const cardsInfo = sessionStorage.getItem('cardsInfo')
     if (cardsInfo) {
