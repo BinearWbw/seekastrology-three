@@ -39,27 +39,27 @@ export default {
       variousListData: [],
     }
   },
+  async fetch() {
+    let [variousListData] = await Promise.all([
+      this.$apiList.home
+        .getZodiacHomeAstro({
+          origin: process.env.origin,
+        })
+        .then((res) => {
+          return res || []
+        }),
+    ])
+    this.variousListData = variousListData
+  },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
     getCurrentRoute() {
       return this.$route.path === '/' ? '?from=home' : ''
     },
   },
-  mounted() {
-    this.getVariousList()
-  },
   methods: {
     upPercase(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
-    },
-    async getVariousList() {
-      await this.$apiList.home
-        .getZodiacHomeAstro({
-          origin: process.env.origin,
-        })
-        .then((res) => {
-          this.variousListData = res
-        })
     },
   },
 }
