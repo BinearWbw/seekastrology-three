@@ -9,6 +9,7 @@
         <a
           class="various__main__li"
           :href="`${getIntersperseUrl + item.path + getCurrentRoute}`"
+          prefetch
         >
           <img :src="item.imgUrl" alt="stars" />
           <p class="title">{{ item.title }}</p>
