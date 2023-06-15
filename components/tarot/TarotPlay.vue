@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-15 16:52:19
+ * @LastEditTime: 2023-06-15 18:11:54
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -207,7 +207,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'TarotPlay',
   props: {
@@ -236,6 +235,9 @@ export default {
     inPlay(newVal, oldVal) {
       if (newVal) {
         this.randomCards()
+        this.bodyHidden('hidden')
+      }else {
+        this.bodyHidden('auto')
       }
     },
   },
@@ -265,7 +267,7 @@ export default {
   },
   methods: {
     handleInput() {
-      if (!this.question) {
+      if (!this.question.trim()) {
         this.$toast('Please enter your question')
         return
       }
@@ -408,6 +410,10 @@ export default {
     },
     handleMobileShow() {
       this.inPlay = true
+    },
+    bodyHidden(style) {
+      let body = document.getElementsByTagName('body')
+      body[0].style.overflow = style
     },
   },
 }

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-15 14:14:39
+ * @LastEditTime: 2023-06-15 17:19:28
  * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
@@ -10,7 +10,7 @@
     <div class="title">What the Tarot Cards Mean in This Reading</div>
     <div class="ad-box_row mt-48"></div>
     <div class="tarot-section">
-      <div class="ad-box"></div>
+      <!-- <div class="ad-box"></div> -->
       <div class="main-content">
         <ul class="content-list">
           <li
@@ -36,7 +36,7 @@
           </li>
         </ul>
       </div>
-      <div class="ad-box"></div>
+      <!-- <div class="ad-box"></div> -->
     </div>
     <div class="ad-box_row mt-48"></div>
     <more-tarot class="mt-48"></more-tarot>

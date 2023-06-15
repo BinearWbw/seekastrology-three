@@ -1,5 +1,5 @@
 <template>
-  <div class="tarot-container" ref="container">
+  <div class="tarot-container">
     <div class="title">{{ titleText[type] }}</div>
     <div class="tarot-section">
       <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
@@ -75,8 +75,8 @@ export default {
   watch: {
     $route(to, from) {
       if (to.query.type != from.query.type) {
-        window.scrollTo(0, 0)
-        this.$refs.play.resetData()
+        window && window.scrollTo(0, 0)
+        this.$refs.play && this.$refs.play.resetData()
         this.type = to.query.type
       }
     },
