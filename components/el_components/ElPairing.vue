@@ -144,7 +144,7 @@ export default {
     },
     getStartPairingEl() {
       sessionStorage.setItem('genderList', JSON.stringify(this.genderList))
-      this.$router.push('/astrology')
+      this.$router.push('/astrology/')
     },
   },
 }

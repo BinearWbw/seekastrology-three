@@ -43,6 +43,11 @@ module.exports = {
     },
   },
 
+  transition: {
+    name: 'fade',
+    mode: 'out-in',
+  },
+
   productionSourceMap: process.env.NODE_ENV === 'development' ? true : false,
 
   telemetry: false,
@@ -160,7 +165,7 @@ module.exports = {
       { rel: 'apple-touch-icon', href: '/favicon.png' },
     ],
     htmlAttrs: {
-      translate: 'no'
+      translate: 'no',
     },
   },
 
