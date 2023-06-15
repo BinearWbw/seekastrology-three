@@ -157,16 +157,6 @@ export default {
   },
   methods: {
     handleScroll() {
-      // const footRect = this.$refs.foot_components.getBoundingClientRect()
-      // const rightAd = this.$refs.right_google_ad
-      // const screenWidth =
-      //   window.innerWidth || document.documentElement.clientWidth
-      // if (screenWidth <= 750) {
-      //   rightAd.style.display = 'none'
-      // } else {
-      //   rightAd.style.display = footRect.top  < window.innerHeight ? 'none' : 'block'
-
-      // }
       const rightAd = document.querySelector('.rightAd')
       const rightAdBox = document.querySelector('.test_main_center_right')
       // const horoscope = this.$refs.horoscope
