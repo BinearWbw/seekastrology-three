@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-15 10:38:38
+ * @LastEditTime: 2023-06-15 13:55:44
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -60,7 +60,11 @@
         v-if="!isSelected && questionTop"
         :key="'tarotWrapper' + type"
       >
-        <div class="card-row" @mouseover="shuffleCards('topCard', $event)">
+        <div
+          class="card-row"
+          @mouseover="shuffleCards('topCard', $event)"
+          v-if="type != 4"
+        >
           <div
             class="card-wrapper"
             v-for="index of 39"
@@ -80,14 +84,18 @@
             />
           </div>
         </div>
-        <div class="card-row" @mouseover="shuffleCards('bottomCard', $event)">
+        <div
+          class="card-row"
+          :style="{ width: type != 4 ? '890px' : '550px' }"
+          @mouseover="shuffleCards('bottomCard', $event)"
+        >
           <div
             class="card-wrapper"
             v-for="index of count"
             :key="'bottom-' + index"
             :ref="'bottomCard' + index"
             :style="{
-              top: 404 + 'px',
+              top: type != 4 ? '404px' : '240px',
               left: (index - 1) * 20 + 'px',
             }"
             @click="handleClike(index)"
@@ -139,7 +147,8 @@
           <button class="mobile-btn" @click="handleMobileInpit">Submit</button>
         </div>
       </div>
-      <div class="in-play" v-show="inPlay">
+      <div class="in-play" v-show="inPlay" ref="playArea">
+        <button class="back-btn" @click="handleBack"></button>
         <ul class="play-list" v-show="!isSelected">
           <li
             class="play-list-item"
@@ -209,11 +218,14 @@ export default {
       handler(newVal) {
         if (newVal === '1' || newVal === '3') {
           this.numbers = 3
+          this.count = 39
         } else if (newVal === '2') {
           this.numbers = 5
+          this.count = 39
         } else {
           this.questionTop = true
           this.numbers = 1
+          this.count = 22
         }
       },
       immediate: true,
@@ -262,11 +274,28 @@ export default {
       }
       this.inPlay = true
     },
+    handleBack() {
+      this.question = ''
+      this.inPlay = false
+      this.isSelected = false
+      this.cardsInfo = []
+      this.showList = []
+      if (this.type === '1' || this.type === '3') {
+        this.numbers = 3
+      } else if (this.type === '2') {
+        this.numbers = 5
+      } else {
+        this.numbers = 1
+      }
+    },
     async handleClike() {
       if (this.cardsInfo.length === 0) {
         await this.drawCard()
       }
       this.judgeShow()
+      if (window.innerWidth <= 750) {
+        this.randomCards()
+      }
     },
     async drawCard() {
       const res = await await this.$apiList.tarot.drawTarot({
@@ -339,7 +368,28 @@ export default {
         Math.random() * 90
       )}deg)`
     },
-    randomCards() {},
+    randomCards() {
+      // 90 150
+      this.$nextTick(() => {
+        for (let i = 1; i <= this.count; i++) {
+          let flag = Math.random() * 10 > 5 ? '+' : '-' // 正负数标识
+          let ele = this.$refs[`mobile${i}`]
+
+          ele[0].style.transform = `translate(${flag}${Math.floor(
+            Math.random() * 130
+          )}px,${flag}${Math.floor(
+            Math.random() * 230
+          )}px) rotate(${flag}${Math.floor(Math.random() * 90)}deg)`
+          // ele[0].style.left =
+          //   Number(flag + Math.floor(Math.random() * 130)) + 'px'
+          // ele[0].style.top =
+          //   Number(flag + Math.floor(Math.random() * 230)) + 'px'
+          // ele[0].style.transform = `rotate(${flag}${Math.floor(
+          //   Math.random() * 90
+          // )}deg)`
+        }
+      })
+    },
     resetData() {
       this.cardsInfo = []
       this.showList = []
@@ -591,6 +641,18 @@ export default {
       background-size: 100% 100%;
       background-repeat: no-repeat;
     }
+    .back-btn {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      left: 14px;
+      top: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      z-index: 9;
+      transform: matrix(-1, 0, 0, 1, 0, 0);
+      background: url('~assets/img/home/point_right.png') no-repeat center;
+    }
 
     .in-play-ad {
       position: fixed;
@@ -642,8 +704,18 @@ export default {
       position: absolute;
     }
     .play-list {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       .play-list-item {
         position: absolute;
+        transition: all 0.8s ease-out;
+        .card-img-mobile {
+          width: 90px;
+          height: 150px;
+        }
       }
     }
     .mobile-tip {
