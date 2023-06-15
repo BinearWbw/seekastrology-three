@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-15 10:03:11
+ * @LastEditTime: 2023-06-15 10:38:38
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -140,7 +140,7 @@
         </div>
       </div>
       <div class="in-play" v-show="inPlay">
-        <ul class="play-list">
+        <ul class="play-list" v-show="!isSelected">
           <li
             class="play-list-item"
             v-for="index of count"
@@ -155,7 +155,7 @@
             />
           </li>
         </ul>
-        <div class="mobile-tip">
+        <div class="mobile-tip" v-show="!isSelected">
           <div class="tip-img-list" v-if="showList.length">
             <nuxt-img
               v-for="(item, index) in showList"
@@ -183,8 +183,6 @@
           :class="{ 'img-rotate': item.desc_type == 2 }"
           :key="index"
           :src="item.icon || '/'"
-          height="440"
-          width="260"
           :alt="item.name"
         ></nuxt-img>
       </div>
@@ -456,7 +454,14 @@ export default {
   .show-wrapper {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    .item-img {
+      width: 260px;
+      height: 440px;
+      &:not(:first-child) {
+        margin-left: 20px;
+      }
+    }
   }
   .mt-160 {
     margin-top: 160px;
@@ -594,6 +599,17 @@ export default {
       height: 123px;
       background-color: #555761;
     }
+    .show-wrapper {
+      flex-wrap: wrap;
+      .item-img {
+        width: 100px;
+        height: 176px;
+        margin-top: 4px;
+        &:not(:first-child) {
+          margin-left: 8px;
+        }
+      }
+    }
     .card-list-wrapper {
       height: 100%;
       position: relative;
@@ -632,19 +648,28 @@ export default {
     }
     .mobile-tip {
       position: absolute;
-      bottom: 12px;
+      bottom: 14px;
       width: 100vw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       .tip-img-list {
-        width: 40px;
-        height: 66px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         .tip-img-item {
-          width: 100%;
-          height: 100%;
+          width: 40px;
+          height: 66px;
+          &:not(:first-child) {
+            margin-left: 8px;
+          }
         }
+      }
+      .tip-text {
+        margin-top: 12px;
+        text-align: center;
+        font-family: 'Rufina';
+        font-style: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: #dc9928;
       }
     }
     .mobile-btn {

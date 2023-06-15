@@ -3,7 +3,7 @@
     <Loading v-if="loading" />
     <div class="title mt-75 mt-44-mobile">the major</div>
     <div class="tarot-section">
-      <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div>
+      <!-- <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div> -->
       <div class="tarot-box">
         <ul class="major-list">
           <li class="major-list-item" v-for="(item, index) in majorList" :key="index">
@@ -25,7 +25,7 @@
           </li>
         </ul>
       </div>
-      <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div>
+      <!-- <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div> -->
     </div>
     <div class="ad-box_row mt-32"></div>
     <div class="title mt-48">minor arcana definitions</div>

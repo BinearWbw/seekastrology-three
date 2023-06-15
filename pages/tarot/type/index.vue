@@ -2,11 +2,11 @@
   <div class="tarot-container" ref="container">
     <div class="title">{{ titleText[type] }}</div>
     <div class="tarot-section">
-      <div class="add-box-wrapper"><div class="ad-box"></div></div>
+      <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
       <div class="tarot-box">
         <tarot-play :type="type" ref="play"></tarot-play>
       </div>
-      <div class="add-box-wrapper"><div class="ad-box"></div></div>
+      <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
     </div>
     <div class="introduce-box">
       <div class="intro">

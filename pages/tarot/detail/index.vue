@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
- * @LastEditors: tianjun
- * @LastEditTime: 2023-06-13 15:42:39
+ * @LastEditors: tian 249682049@qq.com
+ * @LastEditTime: 2023-06-15 10:59:54
  * @FilePath: /seekastrology/pages/tarot/detail/index.vue
  * @Description: 
 -->
@@ -11,7 +11,7 @@
       {{ cardsInfo.name }} Card Meaning
     </div>
     <div class="tarot-section">
-      <div class="add-box-wrapper"><div class="ad-box"></div></div>
+      <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
       <div class="main-content">
         <div class="ad-box_row" style="width: 100%"></div>
         <ul class="content-list">
@@ -32,7 +32,7 @@
           </li>
         </ul>
       </div>
-      <div class="add-box-wrapper"><div class="ad-box"></div></div>
+      <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
     </div>
     <div class="ad-box_row mt-48 mb-48"></div>
   </div>

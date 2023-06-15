@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-15 09:33:14
+ * @LastEditTime: 2023-06-15 10:36:06
  * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
@@ -81,7 +81,7 @@ export default {
     }
   },
   mounted() {
-    this.type = this.$route.query.type
+    this.type = this.$route.query.type || '4';
     const cardsInfo = sessionStorage.getItem('cardsInfo')
     if (cardsInfo) {
       this.cardsInfo = JSON.parse(cardsInfo)
