@@ -637,8 +637,8 @@ $spacing: 16px;
           width: 100%;
         }
         &_top {
+          padding: 24px 60px 96px;
           &_content {
-            padding: 0 60px 50px;
             object-fit: contain;
             &_img {
               width: 100%;
@@ -673,9 +673,8 @@ $spacing: 16px;
     &_main {
       &_left {
         &_top {
-          &_content {
-            padding: 0 30px 25px;
-          }
+          padding: 0 30px 25px;
+          
         }
       }
       &_right {
@@ -703,6 +702,7 @@ $spacing: 16px;
         width: 343 * $pr;
         margin-left: 0;
         &_top {
+          padding: 24 * $pr 16 * $pr;
           &_menu {
             display: none;
             margin-left: 0;
@@ -720,7 +720,8 @@ $spacing: 16px;
           }
           &_content {
             padding: 0;
-            margin-top: 32 * $pr;
+            margin: 0;
+            // margin-top: 32 * $pr;
             &_title {
               font-size: 22 * $pr;
               line-height: 30 * $pr;

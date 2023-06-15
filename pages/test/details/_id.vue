@@ -607,7 +607,7 @@ $spacing: 55px;
                   width: 100%;
                   display: flex;
                   align-items: center;
-                  // word-break: break-all;
+                  word-break: break-all;
                   cursor: pointer;
                   height: 100%;
                   span {
