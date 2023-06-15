@@ -48,11 +48,6 @@
                 {{ $utils.formatYYYYMMDDHHMM(dataInfo.created_at) }}
               </div>
             </div>
-            <!-- <img
-              class="details_main_left_top_content_img"
-              src="../../../assets/img/resources/d_03.png"
-              alt=""
-            /> -->
             <div class="details_main_left_top_content_img">
               <!-- <nuxt-img
                 :src="dataInfo.icon"
@@ -339,7 +334,6 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 12px;
             line-height: 16px;
-            /* identical to box height, or 133% */
             color: rgba(255, 255, 255, 0.7);
           }
           span {
@@ -354,8 +348,6 @@ $spacing: 16px;
             font-weight: 500;
             font-size: 36px;
             line-height: 48px;
-            /* or 133% */
-
             color: #ffffff;
           }
           &_subtitle {
@@ -384,7 +376,6 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 14px;
               line-height: 18px;
-              /* identical to box height, or 129% */
               color: rgba(255, 255, 255, 0.7);
               margin-left: 18px;
             }
@@ -392,7 +383,6 @@ $spacing: 16px;
           &_img {
             margin-top: 48px;
             width: 100%;
-            // height: 324px;
             height: auto;
             object-fit: contain;
             position: relative;
@@ -417,8 +407,6 @@ $spacing: 16px;
           }
           &_text {
             margin-top: 48px;
-            // height: 374px;
-            // overflow-y: auto;
             :deep(*) {
               font-family: 'Rubik';
               font-style: normal;
@@ -477,7 +465,6 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            /* identical to box height, or 138% */
             color: rgba(255, 255, 255, 0.7);
             overflow: hidden;
             text-overflow: ellipsis;
@@ -502,7 +489,6 @@ $spacing: 16px;
       font-weight: 700;
       font-size: 26px;
       line-height: 36px;
-      /* identical to box height, or 138% */
       color: #ffffff;
       margin-bottom: 16px;
     }
@@ -552,7 +538,6 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            /* identical to box height, or 138% */
             color: #ffffff;
           }
           &_tarot {
@@ -565,7 +550,6 @@ $spacing: 16px;
           font-weight: 400;
           font-size: 22px;
           line-height: 30px;
-          /* or 136% */
           text-align: center;
           color: #ffffff;
           margin-top: 16px;
@@ -583,7 +567,6 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 22px;
             line-height: 30px;
-            /* or 136% */
             text-align: center;
             color: #ffffff;
             margin-top: 16px;
@@ -598,7 +581,6 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            /* identical to box height, or 138% */
             color: rgba(255, 255, 255, 0.7);
             margin-top: 8px;
             text-align: center;
@@ -609,7 +591,6 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            /* or 138% */
             color: rgba(255, 255, 255, 0.7);
             margin-top: 8px;
             text-align: center;
@@ -768,7 +749,6 @@ $spacing: 16px;
         }
         &_list {
           width: 343 * $pr;
-          // height: 492 * $pr;
           border-radius: 30 * $pr;
           margin-top: 48 * $pr;
           margin-left: 0;

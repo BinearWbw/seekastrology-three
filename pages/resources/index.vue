@@ -63,7 +63,6 @@
               </div>
               <div class="resources_main_top_left_img_tarot">TAROT</div>
             </div>
-            <!-- <img :src="item.imgUrl" alt="" /> -->
             <div class="resources_main_top_left_content">
               <div class="resources_main_top_left_content_title">
                 <span class="resources_main_top_left_content_title_text">{{
@@ -133,7 +132,6 @@
                   {{ item.main_label }}
                 </div> -->
               </div>
-              <!-- <img :src="item.imgUrl" alt="" /> -->
               <div class="resources_main_top_right_item_content">
                 <div class="resources_main_top_right_item_content_title">
                   <span
@@ -231,7 +229,6 @@
     </div>
     <div class="foot_components">
       <transition name="fade">
-        <!-- <InternalSite></InternalSite> -->
         <el-daily-horoscope></el-daily-horoscope>
       </transition>
       <transition name="fade">
@@ -451,7 +448,6 @@ $spacing: 16px;
       font-weight: 700;
       font-size: 46px;
       line-height: 64px;
-      /* identical to box height, or 139% */
       color: #ffffff;
     }
     &_top {
@@ -500,7 +496,6 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            /* identical to box height, or 138% */
             color: #ffffff;
           }
           &_tarot {
@@ -519,7 +514,6 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 22px;
               line-height: 30px;
-              /* identical to box height, or 136% */
               color: #ffffff;
               overflow: hidden;
               white-space: normal;
@@ -533,7 +527,6 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              /* identical to box height, or 138% */
               color: rgba(255, 255, 255, 0.7);
             }
           }
@@ -568,18 +561,12 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 14px;
             line-height: 18px;
-            /* identical to box height, or 129% */
             color: rgba(255, 255, 255, 0.7);
           }
           &_h5date {
             display: none;
           }
         }
-
-        // img {
-        //   width: 574px;
-        //   height: 471px;
-        // }
       }
       &_right {
         flex: 1;
@@ -650,7 +637,6 @@ $spacing: 16px;
                 font-weight: 400;
                 font-size: 22px;
                 line-height: 30px;
-                /* identical to box height, or 136% */
                 color: #ffffff;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -665,7 +651,6 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              /* identical to box height, or 138% */
               color: rgba(255, 255, 255, 0.7);
               margin-top: 8px;
             }
@@ -675,7 +660,6 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              /* or 138% */
               color: rgba(255, 255, 255, 0.7);
               margin-top: 8px;
               overflow: hidden;
@@ -731,7 +715,6 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 14px;
             line-height: 18px;
-            /* identical to box height, or 129% */
             text-align: center;
             color: rgba(255, 255, 255, 0.7);
           }
@@ -792,7 +775,6 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              /* identical to box height, or 138% */
               color: #ffffff;
             }
             &_tarot {
@@ -805,7 +787,6 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 22px;
             line-height: 30px;
-            /* or 136% */
             text-align: center;
             color: #ffffff;
             margin-top: 16px;
@@ -823,7 +804,6 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 22px;
               line-height: 30px;
-              /* or 136% */
               color: #ffffff;
               margin-top: 16px;
               width: 456px;
@@ -843,7 +823,6 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              /* identical to box height, or 138% */
               color: rgba(255, 255, 255, 0.7);
               margin-top: 8px;
               text-align: center;
@@ -854,7 +833,6 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              /* or 138% */
               color: rgba(255, 255, 255, 0.7);
               margin-top: 8px;
               overflow: hidden;

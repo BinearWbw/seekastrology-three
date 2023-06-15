@@ -75,7 +75,6 @@
     </div>
     <div class="foot_components" ref="foot_components">
       <transition name="fade">
-        <!-- <InternalSite></InternalSite> -->
         <el-daily-horoscope ref="horoscope"></el-daily-horoscope>
       </transition>
       <transition name="fade">

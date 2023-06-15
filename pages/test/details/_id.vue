@@ -45,6 +45,7 @@
                   <div
                     class="details_main_left_top_content_main_h5_btn"
                     @click="startTest"
+                    id="STARTTEST"
                   >
                     Start Test
                   </div>
@@ -193,7 +194,6 @@
     </div>
     <div class="foot_components">
       <transition name="fade">
-        <!-- <InternalSite></InternalSite> -->
         <el-daily-horoscope></el-daily-horoscope>
       </transition>
       <transition name="fade">
@@ -214,84 +214,6 @@ export default {
   data() {
     return {
       currentQuestionIndex: 0, //当前问题下标，默认0
-      // dataInfo: {
-      //   name: 'What’s In Your Immediate Future',
-      //   desc: '<p>Will you find love, job success, more friends, or increased fortune? Select the answer that sounds most like you.</p>',
-      //   quest_type: 2, //题目类型 (1 -> score; 2 -> bucket) 1是对错 2是最终分数
-      //   questions: [
-      //     //问题数组
-      //     {
-      //       //回答选项列表
-      //       answers: [
-      //         { answer: 'Someone you like', bucket: 0, correct: true },
-      //         { answer: 'Someone you like', bucket: 0, correct: false },
-      //         { answer: 'Someone you like', bucket: 0, correct: false },
-      //         { answer: 'Someone you like', bucket: 0, correct: false },
-      //       ],
-      //       explanation: ['string'],
-      //       hint: ['string'],
-      //       icon: 'string',
-      //       question: "When you daydream, you're usually thinking about:", //问题标题
-      //     },
-      //     {
-      //       //回答选项列表
-      //       answers: [
-      //         { answer: 'string', bucket: 0, correct: true },
-      //         { answer: 'string', bucket: 0, correct: false },
-      //         { answer: 'string', bucket: 0, correct: false },
-      //         { answer: 'string', bucket: 0, correct: false },
-      //       ],
-      //       explanation: ['string'],
-      //       hint: ['string'],
-      //       icon: 'string',
-      //       question: 'string', //问题标题
-      //     },
-      //   ],
-      //   quest_type: 2,
-      //   //题目类型 (1 -> score; 2 -> bucket) 1为对错题，及时反馈 2为最终分数
-      // },
-      // btmList: [
-      //   {
-      //     id: 1,
-      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-      //     icon: require('../../../assets/img/resources/d_03.png'),
-      //   },
-      //   {
-      //     id: 2,
-      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-      //     icon: require('../../../assets/img/resources/d_03.png'),
-      //   },
-      //   {
-      //     id: 3,
-      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-      //     icon: require('../../../assets/img/resources/d_03.png'),
-      //   },
-      //   {
-      //     id: 4,
-      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-      //     icon: require('../../../assets/img/resources/d_03.png'),
-      //   },
-      //   {
-      //     id: 5,
-      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-      //     icon: require('../../../assets/img/resources/d_03.png'),
-      //   },
-      //   {
-      //     id: 6,
-      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-      //     icon: require('../../../assets/img/resources/d_03.png'),
-      //   },
-      //   {
-      //     id: 7,
-      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-      //     icon: require('../../../assets/img/resources/d_03.png'),
-      //   },
-      //   {
-      //     id: 8,
-      //     name: 'Text AaBbCcDd 123456789 Rubik 16/22 Regular',
-      //     icon: require('../../../assets/img/resources/d_03.png'),
-      //   },
-      // ],
       answers: [], //用户选择的每道问题答案
       nextFlag: false, //下一题状态
       checkedAnswer: -1, //用户点击答案的下标
@@ -469,10 +391,7 @@ export default {
     },
     /**下一题 */
     nextQuestion() {
-      if (!this.nextFlag) {
-        return
-      }
-      if (this.currentQuestionIndex + 1 == this.dataInfo.questions.length) {
+      if (!this.nextFlag || this.currentQuestionIndex + 1 == this.dataInfo.questions.length) {
         return
       }
       //更改radio禁用状态
@@ -541,7 +460,6 @@ $spacing: 55px;
             font-weight: 400;
             font-size: 12px;
             line-height: 16px;
-            /* identical to box height, or 133% */
             color: rgba(255, 255, 255, 0.7);
           }
           span {
@@ -696,9 +614,7 @@ $spacing: 55px;
             }
           }
         }
-        &_H5content {
-          display: none;
-        }
+        
         &_result {
           margin-top: 46px;
           &_score {
@@ -944,7 +860,8 @@ $spacing: 55px;
       &_left {
         width: 100%;
         &_top {
-          padding: 24 * $pr 16 * $pr 48 * $pr;
+          padding: 32 * $pr 16 * $pr 48 * $pr;
+          border-radius: 30 * $pr;
           &_menu {
             margin-top: 24 * $pr;
             padding: 0;
@@ -1022,6 +939,7 @@ $spacing: 55px;
               &_questions {
                 font-size: 22 * $pr;
                 line-height: 30 * $pr;
+                margin-top: 0;
               }
               &_answer {
                 grid-gap: 8 * $pr;
@@ -1078,51 +996,7 @@ $spacing: 55px;
               }
             }
           }
-          &_H5content {
-            display: block;
-            &_img {
-              object-fit: contain;
-              img {
-                width: 100%;
-                object-fit: contain;
-                border-radius: 8 * $pr;
-              }
-            }
-            &_name {
-              font-family: 'Rubik';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 16 * $pr;
-              line-height: 22 * $pr;
-              color: #ffffff;
-              margin-top: 32 * $pr;
-            }
-            &_desc {
-              margin-top: 16 * $pr;
-              font-family: 'Rubik';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 14 * $pr;
-              line-height: 18 * $pr;
-              color: rgba(255, 255, 255, 0.7);
-            }
-            &_btn {
-              width: 136 * $pr;
-              height: 44 * $pr;
-              background: #ffffff;
-              border-radius: 42 * $pr;
-              margin: 0 auto;
-              font-family: 'Rubik';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 16 * $pr;
-              color: #000000;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin-top: 32 * $pr;
-            }
-          }
+          
           &_result {
             &_score {
               font-size: 22 * $pr;
