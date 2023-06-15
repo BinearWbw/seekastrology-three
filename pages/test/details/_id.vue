@@ -8,148 +8,50 @@
             <a href="" style="color: #ffffff">Quizzes Details</a>
           </div>
           <div class="details_main_left_top_content">
-            <div class="details_main_left_top_content_main" v-if="!showResult">
-              <div class="details_main_left_top_content_name">
-                {{ dataInfo.name }}
-              </div>
+            <div class="details_main_left_top_content_main">
+              <!-- pc端 -->
               <div
-                class="details_main_left_top_content_desc"
-                v-html="dataInfo.desc"
-              ></div>
-              <div class="details_main_left_top_content_main_questions">
-                {{ currentQuestionIndex + 1 }}.{{
-                  dataInfo.questions[currentQuestionIndex].question
-                }}
-              </div>
-              <div class="details_main_left_top_content_main_answer">
-                <div
-                  class="details_main_left_top_content_main_answer_item"
-                  v-for="(item, index) in dataInfo.questions[
-                    currentQuestionIndex
-                  ].answers"
-                  :key="index"
-                  :class="[
-                    {
-                      'green-border':
-                        index == trueIndex && dataInfo.quest_type == 1,
-                    },
-                    {
-                      'red-border':
-                        index != trueIndex &&
-                        checkedAnswer == index &&
-                        dataInfo.quest_type == 1,
-                    },
-                  ]"
-                >
-                  <label
-                    ><input
-                      class="radio"
-                      type="radio"
-                      name="radio"
-                      :value="index"
-                      v-model="checkedAnswer"
-                      @change="chooseAnswer(item, index)"
-                      :disabled="disabledFlag"
-                    />
-                    <span>{{ item.answer }}</span>
-                  </label>
-                </div>
-              </div>
-              <div class="details_main_left_top_content_main_btm">
-                <div class="details_main_left_top_content_main_btm_count">
-                  <span id="currentQuestion">{{
-                    currentQuestionIndex + 1
-                  }}</span
-                  >/{{ dataInfo.questions.length }}
-                </div>
-                <div
-                  class="details_main_left_top_content_main_btm_resultbtn"
-                  id="RESULTBTN"
-                  @click="getQuizResult()"
-                  v-if="
-                    currentQuestionIndex + 1 == dataInfo.questions.length &&
-                    nextFlag
-                  "
-                >
-                  Get Your Result
-                </div>
-                <div
-                  v-else
-                  class="details_main_left_top_content_main_btm_btn"
-                  @click="nextQuestion"
-                  id="NEXTBTN"
-                  :class="
-                    nextFlag &&
-                    currentQuestionIndex + 1 < dataInfo.questions.length
-                      ? ''
-                      : 'stop-next'
-                  "
-                >
-                  Next >>
-                </div>
-              </div>
-            </div>
-          </div>
-          <template v-if="showResult">
-            <div class="details_main_left_top_content_name">
-              {{ dataInfo.name }}
-            </div>
-            <div
-              class="details_main_left_top_content_desc"
-              v-html="dataInfo.desc"
-            ></div>
-            <div
-              class="details_main_left_top_result"
-              v-if="dataInfo.quest_type == 1"
-            >
-              <div class="details_main_left_top_result_score">
-                Result:<span> {{ result.score }}</span>
-              </div>
-            </div>
-            <div class="details_main_left_top_result" v-else>
-              <div class="details_main_left_top_result_title">
-                {{ result.title }}
-              </div>
-              <div class="details_main_left_top_result_desc">
-                {{ result.desc }}
-              </div>
-            </div>
-            <div
-              id="RETAKE"
-              class="details_main_left_top_result_retake"
-              @click="retake()"
-            >
-              Retake This Result
-            </div>
-          </template>
-          <div class="details_main_left_top_H5content">
-            <template v-if="!showQuestions">
-              <div class="details_main_left_top_H5content_img">
-                <nuxt-img
-                  :src="dataInfo.icon || '/'"
-                  fit="cover"
-                  :alt="dataInfo.name"
-                ></nuxt-img>
-              </div>
-              <div class="details_main_left_top_H5content_name">
-                {{ dataInfo.name }}
-              </div>
-              <div
-                class="details_main_left_top_H5content_desc"
-                v-html="dataInfo.desc"
-              ></div>
-              <div
-                class="details_main_left_top_H5content_btn"
-                @click="startTest"
+                class="details_main_left_top_content_main_pc"
+                ref="nameAndDesc"
               >
-                Start Test
+                <!-- 标题 -->
+                <div class="details_main_left_top_content_main_pc_name">
+                  {{ dataInfo.name }}
+                </div>
+                <!-- 描述 -->
+                <div
+                  class="details_main_left_top_content_main_pc_desc"
+                  v-html="dataInfo.desc"
+                ></div>
               </div>
-            </template>
-            <template v-else>
-              <div
-                class="details_main_left_top_content_main"
-                v-if="!showResult"
-              >
+              <!-- h5端 -->
+              <div class="details_main_left_top_content_main_h5">
+                <!-- 开始答题前 -->
+                <template v-if="!showQuestions">
+                  <div class="details_main_left_top_content_main_h5_img">
+                    <nuxt-img
+                      :src="dataInfo.icon || '/'"
+                      fit="cover"
+                      :alt="dataInfo.name"
+                    ></nuxt-img>
+                  </div>
+                  <div class="details_main_left_top_content_main_h5_name">
+                    {{ dataInfo.name }}
+                  </div>
+                  <div
+                    class="details_main_left_top_content_main_h5_desc"
+                    v-html="dataInfo.desc"
+                  ></div>
+                  <div
+                    class="details_main_left_top_content_main_h5_btn"
+                    @click="startTest"
+                  >
+                    Start Test
+                  </div>
+                </template>
+              </div>
+              <!-- 问题和答案选项 -->
+              <template v-if="!showResult && showQuestions">
                 <div class="details_main_left_top_content_main_questions">
                   {{ currentQuestionIndex + 1 }}.{{
                     dataInfo.questions[currentQuestionIndex].question
@@ -196,34 +98,62 @@
                     }}</span
                     >/{{ dataInfo.questions.length }}
                   </div>
-                  <div
-                    class="details_main_left_top_content_main_btm_resultbtn"
-                    id="RESULTBTN"
-                    @click="getQuizResult()"
-                    v-if="
-                      currentQuestionIndex + 1 == dataInfo.questions.length &&
-                      nextFlag
-                    "
-                  >
-                    Get Your Result
-                  </div>
-                  <div
-                    v-else
-                    class="details_main_left_top_content_main_btm_btn"
-                    @click="nextQuestion"
-                    id="NEXTBTN"
-                    :class="
-                      nextFlag &&
-                      currentQuestionIndex + 1 < dataInfo.questions.length
-                        ? ''
-                        : 'stop-next'
-                    "
-                  >
-                    Next >>
+                  <transition name="fade">
+                    <div
+                      class="details_main_left_top_content_main_btm_resultbtn"
+                      id="RESULTBTN"
+                      @click="getQuizResult()"
+                      v-if="
+                        currentQuestionIndex + 1 == dataInfo.questions.length &&
+                        nextFlag
+                      "
+                    >
+                      Get Your Result
+                    </div>
+                    <div
+                      v-else
+                      class="details_main_left_top_content_main_btm_btn"
+                      @click="nextQuestion"
+                      id="NEXTBTN"
+                      :class="
+                        nextFlag &&
+                        currentQuestionIndex + 1 < dataInfo.questions.length
+                          ? ''
+                          : 'stop-next'
+                      "
+                    >
+                      Next >>
+                    </div>
+                  </transition>
+                </div>
+              </template>
+              <!-- 回答结果 -->
+              <template v-if="showResult">
+                <div
+                  class="details_main_left_top_result"
+                  v-if="dataInfo.quest_type == 1"
+                >
+                  <div class="details_main_left_top_result_score">
+                    Result:<span> {{ result.score }}</span>
                   </div>
                 </div>
-              </div>
-            </template>
+                <div class="details_main_left_top_result" v-else>
+                  <div class="details_main_left_top_result_title">
+                    {{ result.title }}
+                  </div>
+                  <div class="details_main_left_top_result_desc">
+                    {{ result.desc }}
+                  </div>
+                </div>
+                <div
+                  id="RETAKE"
+                  class="details_main_left_top_result_retake"
+                  @click="retake()"
+                >
+                  Retake This Result
+                </div>
+              </template>
+            </div>
           </div>
         </div>
         <google-ad class="google_ad"></google-ad>
@@ -369,7 +299,8 @@ export default {
       showResult: false, //展示结果
       result: {}, //返回的数据
       disabledFlag: false, //禁用单选框状态
-      showQuestions: false, //展示问答
+      showQuestions: true, //展示问答（pc端直接展示问题和回答列表、h5先展示详情，点击开始答题后展示问答）
+      screenWidth: 0, //屏幕宽度
     }
   },
   async asyncData({ error, route, $apiList, params, $utils }) {
@@ -415,7 +346,41 @@ export default {
       error({ statusCode: e.code, message: e.msg })
     }
   },
+  mounted() {
+    this.handleResize()
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize)
+  },
   methods: {
+    /** 屏幕尺寸变化*/
+    handleResize() {
+      this.screenWidth = window.innerWidth
+      //如果是h5
+      if (this.screenWidth <= 750) {
+        //隐藏标题和描述
+        this.$refs.nameAndDesc.style.display = 'none'
+        //隐藏回答问题列表
+        this.showQuestions = false
+        if (this.showResult || this.currentQuestionIndex > 0) {
+          //显示回答问题列表
+          this.showQuestions = true
+        }
+        if(this.showResult){
+          //显示标题和描述
+          this.$refs.nameAndDesc.style.display = 'block'
+        }
+        
+      //pc端
+      } else {
+        //显示回答问题列表
+        this.showQuestions = true
+        this.$refs.nameAndDesc.style.display = 'block'
+        
+      }
+      console.log(this.screenWidth)
+    },
     /**开始答题 */
     startTest() {
       this.showQuestions = true
@@ -440,6 +405,12 @@ export default {
       this.trueIndex = -1
       //重置回答数组
       this.answers = []
+      //展示问题
+      this.showQuestions = true
+      if (this.screenWidth <= 750) {
+        //隐藏标题和描述
+        this.$refs.nameAndDesc.style.display = 'none'
+      }
     },
     /**获取最终分数或者正确答案和描述 */
     getQuizResult() {
@@ -450,9 +421,17 @@ export default {
           answers: this.answers,
         })
         .then((res) => {
-          this.showResult = true
-          console.log(res)
           this.result = res
+          //隐藏详情，展示问题和回答列表
+          this.showQuestions = true
+          //显示标题和描述
+          this.$refs.nameAndDesc.style.display = 'block'
+          //展示结果
+          this.showResult = true
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
         })
     },
     /**选择答案 */
@@ -506,35 +485,18 @@ export default {
       this.trueIndex = -1
       //翻页
       this.currentQuestionIndex++
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
     },
-    /**获取问题详情 */
-    // getDataInfo(item) {
-    //   //重置状态
-    //   this.retake()
-    //   this.$apiList.test
-    //     .getQuizDetail({
-    //       origin: process.env.origin,
-    //       id: item.id,
-    //     })
-    //     .then((res) => {
-    //       this.dataInfo = res
-    //     })
-    //   // 实现滚动效果
-    //   let top = document.documentElement.scrollTop || document.body.scrollTop
-    //   const timeTop = setInterval(() => {
-    //     document.body.scrollTop = document.documentElement.scrollTop = top -= 50
-    //     if (top <= 0) {
-    //       clearInterval(timeTop)
-    //     }
-    //   }, 10)
-    // },
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
 }
 </script>
-<style lang="scss" scope>
+<style lang="scss" scoped>
 @use 'sass:math';
 $block: 220px;
 $spacing: 55px;
@@ -588,24 +550,29 @@ $spacing: 55px;
         }
         &_content {
           margin-top: 48px;
-          &_name {
-            font-family: 'Rubik';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 22px;
-            line-height: 30px;
-            color: rgba(255, 255, 255, 0.7);
-          }
-          &_desc {
-            font-family: 'Rubik';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 18px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 16px;
-          }
           &_main {
+            &_pc {
+              &_name {
+                font-family: 'Rubik';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 22px;
+                line-height: 30px;
+                color: rgba(255, 255, 255, 0.7);
+              }
+              &_desc {
+                font-family: 'Rubik';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 18px;
+                color: rgba(255, 255, 255, 0.7);
+                margin-top: 16px;
+              }
+            }
+            &_h5 {
+              display: none;
+            }
             &_questions {
               margin-top: 48px;
               font-family: 'Rubik';
@@ -627,7 +594,7 @@ $spacing: 55px;
                 border-radius: 18px;
                 display: flex;
                 align-items: center;
-                padding: 10px 10px;
+                // padding: 0 10px;
                 border: 1px solid transparent;
                 cursor: pointer;
                 label {
@@ -640,12 +607,14 @@ $spacing: 55px;
                   width: 100%;
                   display: flex;
                   align-items: center;
-                  word-break: break-all;
+                  // word-break: break-all;
                   cursor: pointer;
                   height: 100%;
                   span {
                     width: 100%;
                     cursor: pointer;
+                    margin-right: 10px;
+                    display: block;
                     // word-break: break-all;
                   }
                   input {
@@ -863,8 +832,10 @@ $spacing: 55px;
         &_top {
           padding: 24px 60px 50px;
           &_content {
-            &_answer {
-              grid-gap: 6px;
+            &_main {
+              &_answer {
+                grid-gap: 6px;
+              }
             }
           }
         }
@@ -903,8 +874,13 @@ $spacing: 55px;
       &_left {
         &_top {
           &_content {
-            &_answer {
-              grid-template-columns: repeat(1, 338px);
+            &_main {
+              &_answer {
+                grid-template-columns: repeat(2, 50%);
+                &_item {
+                  width: 100%;
+                }
+              }
             }
           }
         }
@@ -928,8 +904,10 @@ $spacing: 55px;
       &_left {
         &_top {
           &_content {
-            &_answer {
-              grid-gap: 20px;
+            &_main {
+              &_answer {
+                grid-gap: 20px;
+              }
             }
           }
         }
@@ -981,18 +959,66 @@ $spacing: 55px;
             }
           }
           &_content {
-            display: none;
-            margin-top: 32 * $pr;
-            &_name {
-              font-size: 16 * $pr;
-              line-height: 22 * $pr;
-              color: #ffffff;
-            }
-            &_desc {
-              font-size: 14 * $pr;
-              line-height: 18 * $pr;
-            }
+            margin-top: 0;
             &_main {
+              &_pc {
+                display: none;
+                &_name {
+                  font-size: 16 * $pr;
+                  line-height: 22 * $pr;
+                  color: #ffffff;
+                }
+                &_desc {
+                  font-size: 14 * $pr;
+                  line-height: 18 * $pr;
+                  margin-top: 16 * $pr;
+                }
+              }
+              &_h5 {
+                display: block;
+                &_img {
+                  object-fit: contain;
+                  img {
+                    width: 100%;
+                    object-fit: contain;
+                    border-radius: 8 * $pr;
+                  }
+                }
+                &_name {
+                  font-family: 'Rubik';
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 16 * $pr;
+                  line-height: 22 * $pr;
+                  color: #ffffff;
+                  margin-top: 32 * $pr;
+                }
+                &_desc {
+                  margin-top: 16 * $pr;
+                  font-family: 'Rubik';
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 14 * $pr;
+                  line-height: 18 * $pr;
+                  color: rgba(255, 255, 255, 0.7);
+                }
+                &_btn {
+                  width: 136 * $pr;
+                  height: 44 * $pr;
+                  background: #ffffff;
+                  border-radius: 42 * $pr;
+                  margin: 0 auto;
+                  font-family: 'Rubik';
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 16 * $pr;
+                  color: #000000;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin-top: 32 * $pr;
+                }
+              }
               &_questions {
                 font-size: 22 * $pr;
                 line-height: 30 * $pr;
@@ -1005,12 +1031,13 @@ $spacing: 55px;
                   width: 311 * $pr;
                   height: 60 * $pr;
                   border-radius: 18 * $pr;
+                  // padding: 0 10 * $pr;
                   label {
                     font-size: 16 * $pr;
                     line-height: 22 * $pr;
                     input {
                       margin-left: 31 * $pr;
-                      margin-right: 22 * $pr;
+                      margin-right: 16 * $pr;
                       height: 18 * $pr;
                       width: 18 * $pr;
                       &:checked {
@@ -1019,6 +1046,9 @@ $spacing: 55px;
                           height: 18 * $pr;
                         }
                       }
+                    }
+                    span {
+                      margin-right: 10 * $pr;
                     }
                   }
                 }
@@ -1098,7 +1128,6 @@ $spacing: 55px;
               font-size: 22 * $pr;
               line-height: 30 * $pr;
             }
-
             &_retake {
               margin: 0 auto;
               width: 200 * $pr;

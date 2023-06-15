@@ -329,7 +329,7 @@ $spacing: 16px;
         background: rgba(1, 1, 2, 0.9);
         border-radius: 30px;
         &_menu {
-          margin-left: 118px;
+          // margin-left: 118px;
           padding-top: 24px;
           a,
           span {
@@ -703,6 +703,7 @@ $spacing: 16px;
         margin-left: 0;
         &_top {
           &_menu {
+            display: none;
             margin-left: 0;
             margin-top: 0;
             font-size: 12 * $pr;
