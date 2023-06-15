@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-15 14:21:03
+ * @LastEditTime: 2023-06-15 16:52:19
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -18,7 +18,7 @@
           />
           <img src="~/assets/img/tarot/Vector1.png" alt="" class="tip-img" />
         </div>
-        <div class="tip-img-list" v-if="showList.length">
+        <div class="tip-img-list" v-show="showList.length">
           <nuxt-img
             v-for="(item, index) in showList"
             :key="index"
@@ -38,7 +38,7 @@
       <div
         class="question-box"
         :class="{ 'question-top': questionTop }"
-        v-if="type != 4"
+        v-show="type != 4"
       >
         <img class="icon-img" src="~/assets/img/tarot/edit_icon.png" alt="" />
         <input
@@ -51,20 +51,20 @@
           placeholder="Enter your question here"
           class="question-input"
         />
-        <button v-if="!questionTop" class="button" @click="handleInput">
+        <button v-show="!questionTop" class="button" @click="handleInput">
           Submit
         </button>
       </div>
       <div
         class="tarot-wrapper"
         ref="tarotWrapper"
-        v-if="!isSelected && questionTop"
+        v-show="!isSelected && questionTop"
         :key="'tarotWrapper' + type"
       >
         <div
           class="card-row"
           @mouseover="shuffleCards('topCard', $event)"
-          v-if="type != 4"
+          v-show="type != 4"
         >
           <div
             class="card-wrapper"
@@ -114,7 +114,7 @@
 
     <div class="mobile-wrapper">
       <div class="mobile-tarot-box" v-show="!inPlay">
-        <div class="card-list-wrapper" v-if="type == 4">
+        <div class="card-list-wrapper" v-show="type == 4">
           <ul class="card-list">
             <li
               class="card-list-item"
@@ -137,7 +137,7 @@
             Extract 1 Sheet
           </div>
         </div>
-        <div class="mobile-question" v-else>
+        <div class="mobile-question" v-show="type != 4">
           <textarea
             v-model="question"
             maxlength="100"
@@ -167,7 +167,7 @@
           </li>
         </ul>
         <div class="mobile-tip" v-show="!isSelected">
-          <div class="tip-img-list" v-if="showList.length">
+          <div class="tip-img-list" v-show="showList.length">
             <nuxt-img
               v-for="(item, index) in showList"
               :key="index"
