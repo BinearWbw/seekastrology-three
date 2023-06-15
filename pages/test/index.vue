@@ -51,23 +51,32 @@
               </div>
             </a>
           </div>
-          <google-ad classNames="google_ad top" v-if="list.length >= 8"></google-ad>
-          <google-ad classNames="google_ad center" v-if="list.length >= 16"></google-ad>
-          <google-ad classNames="google_ad btm" v-if="list.length >= 32" ></google-ad>
+          <google-ad
+            classNames="google_ad top"
+            v-if="list.length >= 8"
+          ></google-ad>
+          <google-ad
+            classNames="google_ad center"
+            v-if="list.length >= 16"
+          ></google-ad>
+          <google-ad
+            classNames="google_ad btm"
+            v-if="list.length >= 32"
+          ></google-ad>
           <div class="common__loading" v-scroll v-if="search.page < totalPage">
             <div class="common__loading__loader" v-if="loading"></div>
           </div>
         </div>
         <google-ad classNames="google_ad_h5btm"></google-ad>
-        <div class="test_main_center_right">
-          <google-ad classNames="google_ad"></google-ad>
+        <div class="test_main_center_right" ref="right_google_ad">
+          <google-ad classNames="google_ad rightAd"></google-ad>
         </div>
       </div>
     </div>
-    <div class="foot_components">
+    <div class="foot_components" ref="foot_components">
       <transition name="fade">
         <!-- <InternalSite></InternalSite> -->
-        <el-daily-horoscope></el-daily-horoscope>
+        <el-daily-horoscope ref="horoscope"></el-daily-horoscope>
       </transition>
       <transition name="fade">
         <home-your-choice></home-your-choice>
@@ -140,7 +149,47 @@ export default {
       error({ statusCode: e.code, message: e.msg })
     }
   },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
+    handleScroll() {
+      // const footRect = this.$refs.foot_components.getBoundingClientRect()
+      // const rightAd = this.$refs.right_google_ad
+      // const screenWidth =
+      //   window.innerWidth || document.documentElement.clientWidth
+      // if (screenWidth <= 750) {
+      //   rightAd.style.display = 'none'
+      // } else {
+      //   rightAd.style.display = footRect.top  < window.innerHeight ? 'none' : 'block'
+
+      // }
+      const rightAd = document.querySelector('.rightAd')
+      const rightAdBox = document.querySelector('.test_main_center_right')
+      // const horoscope = this.$refs.horoscope
+      // const horoscope_main = horoscope.$el.querySelector(
+      //   '.daily_horoscope_main'
+      // )
+      // const marginTop = window.getComputedStyle(horoscope_main).marginTop
+      // console.log(marginTop)
+      rightAd.style.display = 'block'
+      const parentRect = rightAdBox.getBoundingClientRect()
+      const childRect = rightAd.getBoundingClientRect()
+      const screenWidth =
+        window.innerWidth || document.documentElement.clientWidth
+      if (screenWidth <= 750) {
+        rightAd.style.display = 'none'
+      } else {
+        rightAd.style.display =
+          childRect.top + childRect.height - 96 >= parentRect.top + parentRect.height
+            ? 'none'
+            : 'block'
+      }
+    },
+    /** */
     getMoreList() {
       this.loading = true
       this.search.page += 1
@@ -368,13 +417,14 @@ $spacing: 16px;
       }
       &_right {
         width: 300px;
+        position: relative;
         .google_ad {
           width: 300px;
           height: 600px;
           background: #555761;
-          margin-bottom: 202px;
+          // margin-bottom: 202px;
           position: fixed;
-          top: 200px;
+          // top: 0;
           overflow: hidden;
         }
       }

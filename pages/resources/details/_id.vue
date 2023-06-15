@@ -637,8 +637,8 @@ $spacing: 16px;
           width: 100%;
         }
         &_top {
+          padding: 24px 60px 96px;
           &_content {
-            padding: 0 60px 50px;
             object-fit: contain;
             &_img {
               width: 100%;
@@ -673,9 +673,8 @@ $spacing: 16px;
     &_main {
       &_left {
         &_top {
-          &_content {
-            padding: 0 30px 25px;
-          }
+          padding: 0 30px 25px;
+          
         }
       }
       &_right {
