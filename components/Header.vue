@@ -155,8 +155,8 @@ export default {
             },
             {
               title: 'Tarot Cards',
-              path: '/tarot',
-              href: '/tarot',
+              path: '/tarot/cards',
+              href: '/tarot/cards',
             },
           ],
         },
