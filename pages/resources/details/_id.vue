@@ -626,6 +626,9 @@ $spacing: 16px;
             }
           }
         }
+        .leftAd{
+          width: 100%;
+        }
       }
       &_right {
         width: 25%;
@@ -657,6 +660,7 @@ $spacing: 16px;
           padding: 0 30px 25px;
           
         }
+        
       }
       &_right {
         &_ad {

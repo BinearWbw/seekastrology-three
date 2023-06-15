@@ -157,7 +157,7 @@ export default {
   methods: {
     handleScroll() {
       const rightAd = document.querySelector('.rightAd')
-      const rightAdBox = document.querySelector('.test_main_center_right')
+      const rightAdBox = this.$refs.right_google_ad
       // const horoscope = this.$refs.horoscope
       // const horoscope_main = horoscope.$el.querySelector(
       //   '.daily_horoscope_main'
