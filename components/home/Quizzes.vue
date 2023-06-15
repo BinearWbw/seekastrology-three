@@ -74,24 +74,18 @@ export default {
       },
     }
   },
-  //   async asyncData({ error, $apiList }) {
-  //     try {
-  //       let [homeQuizzes] = await Promise.all([
-  //         $apiList.home
-  //           .getZodiacHomeQuiz({
-  //             origin: process.env.origin,
-  //           })
-  //           .then((res) => {
-  //             return res.list || null
-  //           }),
-  //       ])
-  //       return {
-  //         homeQuizzes,
-  //       }
-  //     } catch (e) {
-  //       error({ statusCode: e.code, message: e.message })
-  //     }
-  //   },
+  async fetch() {
+    let [homeQuizzesData] = await Promise.all([
+      this.$apiList.home
+        .getZodiacHomeQuiz({
+          origin: process.env.origin,
+        })
+        .then((res) => {
+          return res.list || []
+        }),
+    ])
+    this.homeQuizzesData = homeQuizzesData
+  },
   components: {
     Swiper,
     SwiperSlide,
@@ -102,19 +96,7 @@ export default {
       return this.$route.path === '/' ? '?from=home' : ''
     },
   },
-  mounted() {
-    this.getHomeQuizzes()
-  },
   methods: {
-    async getHomeQuizzes() {
-      await this.$apiList.home
-        .getZodiacHomeQuiz({
-          origin: process.env.origin,
-        })
-        .then((res) => {
-          this.homeQuizzesData = res.list
-        })
-    },
     pathToTestPage() {
       window.location =
         window.location.pathname === '/' ? '/test/?from=home' : '/test/'

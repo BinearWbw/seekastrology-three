@@ -75,6 +75,18 @@ export default {
       getHomeNewsData: [],
     }
   },
+  async fetch() {
+    let [getHomeNewsData] = await Promise.all([
+      this.$apiList.articles
+        .getNewsRec({
+          origin: process.env.origin,
+        })
+        .then((res) => {
+          return res.slice(0, 5) || []
+        }),
+    ])
+    this.getHomeNewsData = getHomeNewsData
+  },
   computed: {
     normalList() {
       return this.getHomeNewsData?.filter((_, index) => index !== 0)
@@ -84,25 +96,12 @@ export default {
       return this.$route.path === '/' ? '?from=home' : ''
     },
   },
-  mounted() {
-    this.getHomeNews()
-  },
   methods: {
     pathToPage() {
       window.location =
         window.location.pathname === '/'
           ? '/resources/?from=home'
           : '/resources/'
-    },
-    async getHomeNews() {
-      await this.$apiList.articles
-        .getNewsRec({
-          origin: process.env.origin,
-        })
-        .then((res) => {
-          res = res.slice(0, 5)
-          this.getHomeNewsData = res
-        })
     },
   },
 }
