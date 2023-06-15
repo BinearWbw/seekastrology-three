@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-15 10:36:06
+ * @LastEditTime: 2023-06-15 14:14:39
  * @FilePath: /seekastrology/pages/tarot/answer/index.vue
  * @Description: 
 -->
@@ -184,9 +184,6 @@ export default {
   $pr: math.div(1vw, 3.75);
   .tarot-container {
     padding: 16 * $pr;
-  }
-  .add-box-wrapper {
-    display: none;
   }
   .ad-box_row {
     width: 100%;
