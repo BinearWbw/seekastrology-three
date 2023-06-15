@@ -56,22 +56,22 @@ export default {
       horoscopeData: [],
     }
   },
-  mounted() {
-    this.getHoroscopeData()
+  async fetch() {
+    let [horoscopeData] = await Promise.all([
+      this.$apiList.home
+        .getZodiacHomeAstro({
+          origin: process.env.origin,
+        })
+        .then((res) => {
+          return res.sort(() => Math.random() - 0.5) || []
+        }),
+    ])
+    this.horoscopeData = horoscopeData
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
   methods: {
-    async getHoroscopeData() {
-      await this.$apiList.home
-        .getZodiacAll({
-          origin: process.env.origin,
-        })
-        .then((res) => {
-          this.horoscopeData = res.sort(() => Math.random() - 0.5)
-        })
-    },
     pathToPage() {
       this.$router.push('/zodiac')
     },
