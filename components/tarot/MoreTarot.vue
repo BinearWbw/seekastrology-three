@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
- * @LastEditors: tianjun
- * @LastEditTime: 2023-06-13 14:19:04
+ * @LastEditors: tian 249682049@qq.com
+ * @LastEditTime: 2023-06-15 14:44:46
  * @FilePath: /seekastrology/components/tarot/MoreTarot.vue
  * @Description: 
 -->
@@ -26,7 +26,7 @@
       </nuxt-link>
       <nuxt-link
         class="link"
-        :to="{ path: '/tarot/type', query: { type: '1' } }"
+        :to="{ path: '/tarot/type/', query: { type: '1' } }"
         v-if="showTarotType != 1"
       >
         <div class="more-tarot-items">
@@ -40,7 +40,7 @@
       </nuxt-link>
       <nuxt-link
         class="link"
-        :to="{ path: '/tarot/type', query: { type: '2' } }"
+        :to="{ path: '/tarot/type/', query: { type: '2' } }"
         v-if="showTarotType != 2"
       >
         <div class="more-tarot-items">
@@ -54,7 +54,7 @@
       </nuxt-link>
       <nuxt-link
         class="link"
-        :to="{ path: '/tarot/type', query: { type: '3' } }"
+        :to="{ path: '/tarot/type/', query: { type: '3' } }"
         v-if="showTarotType != 3"
       >
         <div class="more-tarot-items">
