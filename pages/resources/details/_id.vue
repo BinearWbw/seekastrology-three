@@ -702,6 +702,7 @@ $spacing: 16px;
         width: 343 * $pr;
         margin-left: 0;
         &_top {
+          padding: 24 * $pr 16 * $pr;
           &_menu {
             display: none;
             margin-left: 0;
@@ -719,7 +720,8 @@ $spacing: 16px;
           }
           &_content {
             padding: 0;
-            margin-top: 32 * $pr;
+            margin: 0;
+            // margin-top: 32 * $pr;
             &_title {
               font-size: 22 * $pr;
               line-height: 30 * $pr;
