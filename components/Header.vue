@@ -182,6 +182,7 @@ export default {
     ...mapGetters(['getIntersperseUrl']),
   },
   mounted() {
+    if (window.scrollY) this.isScrolled = window.scrollY > 10
     window.addEventListener('scroll', this.handleScroll)
   },
   destroyed() {
