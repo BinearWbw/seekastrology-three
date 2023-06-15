@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     pathToPage() {
-      this.$router.push('/zodiac')
+      this.$router.push('/zodiac/')
     },
   },
 }

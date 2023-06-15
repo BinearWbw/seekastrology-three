@@ -60,7 +60,7 @@
           </div>
           <img
             class="img_bg"
-            src="../../assets/img/astrology/astr_bg2.png"
+            src="~/assets/img/astrology/astr_bg2.png"
             alt="#"
           />
           <google-ad classNames="google_ad"></google-ad>

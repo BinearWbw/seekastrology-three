@@ -7,9 +7,8 @@
     <ul class="various__main">
       <li v-for="(item, index) in divination" :key="index">
         <a
-          class="various__main__li"
+          class="fade various__main__li"
           :href="`${getIntersperseUrl + item.path + getCurrentRoute}`"
-          prefetch
         >
           <img :src="item.imgUrl" alt="stars" />
           <p class="title">{{ item.title }}</p>

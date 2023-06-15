@@ -7,7 +7,7 @@
     <ul class="choice__main">
       <li v-for="item_i in variousListData" :key="item_i.id">
         <a
-          class="choice__main__a"
+          class="fade choice__main__a"
           :href="`${getIntersperseUrl}/horroscope/${item_i.name
             .replace(/[^a-zA-Z0-9\\s]/g, '-')
             .toLowerCase()}-${item_i.id}/${getCurrentRoute}`"
