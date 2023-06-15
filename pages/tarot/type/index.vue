@@ -163,8 +163,8 @@ export default {
   margin: 68px auto 0;
   .intro {
     display: grid;
-    grid-template-columns: 50% 50%;
-    align-items: center;
+    grid-template-columns: 40% 50%;
+    justify-content: space-between;
   }
   .intro-title {
     font-family: 'Cinzel Decorative';
