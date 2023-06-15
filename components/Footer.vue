@@ -110,14 +110,14 @@ export default {
               link: 'Quizzes',
               path: '/test/',
             },
-            {
-              link: 'Personality',
-              path: '/',
-            },
-            {
-              link: 'TarotAnimal',
-              path: '/',
-            },
+            // {
+            //   link: 'Personality',
+            //   path: '/',
+            // },
+            // {
+            //   link: 'TarotAnimal',
+            //   path: '/',
+            // },
           ],
         },
         {

@@ -116,7 +116,7 @@ export default {
         p {
           font-family: 'Rubik';
           font-size: 16px;
-          line-height: 22px;
+          line-height: 28px;
           color: rgba(255, 255, 255, 0.7);
         }
         .google_ad {
