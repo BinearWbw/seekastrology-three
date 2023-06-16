@@ -12,9 +12,7 @@
         The 78 Tarot cards are divided into two main <br />sections, the Major
         Arcana and Minor Arcana, <br />and further into four suits:
       </div>
-      <nuxt-link to="/tarot/cards">
-        <button class="button">View All</button>
-      </nuxt-link>
+      <a href="/tarot/cards"><button class="button">View All</button></a>
     </div>
 
     <ul class="card-list">
