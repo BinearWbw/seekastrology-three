@@ -212,7 +212,9 @@ export default {
         }
         &:hover {
           .img__list {
-            transform: scale(0);
+            img {
+              transform: scale(1.1);
+            }
           }
         }
       }
