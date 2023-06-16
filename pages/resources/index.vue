@@ -232,18 +232,21 @@
       </div>
       <google-ad classNames="google_ad_btm"></google-ad>
     </div>
-    <div class="foot_components">
-      <transition name="fade">
-        <el-daily-horoscope></el-daily-horoscope>
-      </transition>
+    <div class="foot_components" ref="foot_components">
+      <!-- <transition name="fade">
+        <el-daily-horoscope ref="horoscope"></el-daily-horoscope>
+      </transition> -->
       <transition name="fade">
         <home-your-choice></home-your-choice>
       </transition>
-      <transition name="fade">
+      <!-- <transition name="fade">
         <tarot-all-tarot></tarot-all-tarot>
       </transition>
       <transition name="fade">
         <el-pairing></el-pairing>
+      </transition> -->
+      <transition name="fade">
+        <tarot-more-tarot></tarot-more-tarot>
       </transition>
     </div>
   </div>
@@ -1167,6 +1170,8 @@ $spacing: 16px;
             font-size: 16 * $pr;
             line-height: 22 * $pr;
             border-radius: 42 * $pr;
+            background-color: #fff;
+            color: #000;
           }
         }
         &_main {
