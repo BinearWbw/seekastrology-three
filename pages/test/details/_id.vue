@@ -39,16 +39,17 @@
                     {{ dataInfo.name }}
                   </div>
                   <div
-                    class="details_main_left_top_content_main_h5_desc"
-                    v-html="dataInfo.desc"
-                  ></div>
-                  <div
                     class="details_main_left_top_content_main_h5_btn"
                     @click="startTest"
                     id="STARTTEST"
                   >
                     Start Test
                   </div>
+                  <div
+                    class="details_main_left_top_content_main_h5_desc"
+                    v-html="dataInfo.desc"
+                  ></div>
+                  
                 </template>
               </div>
               <!-- 问题和答案选项 -->
@@ -58,6 +59,14 @@
                     dataInfo.questions[currentQuestionIndex].question
                   }}
                 </div>
+                <nuxt-img
+                  v-if="dataInfo.questions[currentQuestionIndex].image"
+                  :src="dataInfo.questions[currentQuestionIndex].image || '/'"
+                  fit="cover"
+                  :alt="dataInfo.questions[currentQuestionIndex].question"
+                  class="details_main_left_top_content_main_questionImage"
+                ></nuxt-img>
+                
                 <div class="details_main_left_top_content_main_answer">
                   <div
                     class="details_main_left_top_content_main_answer_item"
@@ -103,7 +112,7 @@
                     <div
                       class="details_main_left_top_content_main_btm_resultbtn"
                       id="RESULTBTN"
-                      @click="getQuizResult()"
+                      @click="getQuizResult"
                       v-if="
                         currentQuestionIndex + 1 == dataInfo.questions.length &&
                         nextFlag
@@ -491,6 +500,7 @@ $spacing: 55px;
             &_h5 {
               display: none;
             }
+            
             &_questions {
               margin-top: 48px;
               font-family: 'Rubik';
@@ -499,6 +509,11 @@ $spacing: 55px;
               font-size: 22px;
               line-height: 30px;
               color: #ffffff;
+              margin-bottom: 16px;
+            }
+            &_questionImage{
+              width: 100%;
+              height: 100%;
             }
             &_answer {
               display: grid;
@@ -862,6 +877,7 @@ $spacing: 55px;
         &_top {
           padding: 32 * $pr 16 * $pr 48 * $pr;
           border-radius: 30 * $pr;
+          margin-top: 24 * $pr;
           &_menu {
             margin-top: 24 * $pr;
             padding: 0;
@@ -924,7 +940,7 @@ $spacing: 55px;
                   height: 44 * $pr;
                   background: #ffffff;
                   border-radius: 42 * $pr;
-                  margin: 0 auto;
+                  margin: 16 * $pr auto 0;
                   font-family: 'Rubik';
                   font-style: normal;
                   font-weight: 400;
@@ -933,14 +949,15 @@ $spacing: 55px;
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  margin-top: 32 * $pr;
                 }
               }
               &_questions {
                 font-size: 22 * $pr;
                 line-height: 30 * $pr;
                 margin-top: 0;
+                margin-bottom: 16 * $pr;
               }
+              
               &_answer {
                 grid-gap: 8 * $pr;
                 grid-template-columns: repeat(1, 311 * $pr);
