@@ -369,8 +369,8 @@ export default {
           font-family: 'Rubik';
           font-style: normal;
           font-weight: 400;
-          font-size: 14 * $pr;
-          line-height: 18 * $pr;
+          font-size: 14px;
+          line-height: 18px;
         }
       }
     }

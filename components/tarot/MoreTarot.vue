@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-16 16:11:04
+ * @LastEditTime: 2023-06-16 18:00:10
  * @FilePath: /seekastrology/components/tarot/MoreTarot.vue
  * @Description: 
 -->
@@ -109,7 +109,7 @@ export default {
   max-width: 1400px;
   margin: 34px auto 0;
   .more-tarot-items {
-    width: 456px;
+    // width: 456px;
     // height: 376px;
     padding: 16px;
     box-sizing: border-box;
@@ -129,9 +129,6 @@ export default {
         color: #000;
         background-color: #fff;
       }
-    }
-    &:not(:first-child) {
-      margin-left: 16px;
     }
     .link {
       display: block;
@@ -185,7 +182,7 @@ export default {
     text-align: center;
   }
   .more-tarot {
-    flex-direction: column;
+    grid-template-columns: repeat(auto-fill, 100%);
     .more-tarot-items {
       width: 100%;
       margin-left: 0;

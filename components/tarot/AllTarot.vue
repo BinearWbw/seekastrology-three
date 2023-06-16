@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-16 16:07:17
+ * @LastEditTime: 2023-06-16 17:33:38
  * @FilePath: /seekastrology/components/tarot/AllTarot.vue
  * @Description: 
 -->
@@ -12,7 +12,7 @@
         The 78 Tarot cards are divided into two main <br />sections, the Major
         Arcana and Minor Arcana, <br />and further into four suits:
       </div>
-      <button class="button"><a href="/tarot/cards">View All</a></button>
+      <a href="/tarot/cards"><button class="button">View All</button></a>
     </div>
 
     <ul class="card-list">
