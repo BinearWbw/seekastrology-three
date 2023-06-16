@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-16 16:05:03
+ * @LastEditTime: 2023-06-16 16:11:04
  * @FilePath: /seekastrology/components/tarot/MoreTarot.vue
  * @Description: 
 -->
@@ -101,13 +101,13 @@ export default {
   text-align: center;
 }
 .more-tarot {
-  margin-top: 34px;
-  margin-top: 34px;
   text-align: center;
   display: grid;
   grid-template-columns: repeat(auto-fill, 456px);
   justify-content: center;
   grid-gap: 16px;
+  max-width: 1400px;
+  margin: 34px auto 0;
   .more-tarot-items {
     width: 456px;
     // height: 376px;
