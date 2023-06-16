@@ -143,7 +143,11 @@
                   <div class="p_text" v-html="item.health"></div>
                 </div>
                 <div class="tab_main_list" v-if="item.love_reasons">
-                  <h4>LOVE Reasons</h4>
+                  <h4>
+                    {{
+                      `The 5 Top Reasons to Love Being an ${zodiacIData.name.toUpperCase()}`
+                    }}
+                  </h4>
                   <div class="p_text" v-html="item.love_reasons"></div>
                 </div>
                 <div class="tab_main_list" v-if="item.positives">
