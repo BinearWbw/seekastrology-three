@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-15 10:59:54
+ * @LastEditTime: 2023-06-16 17:09:56
  * @FilePath: /seekastrology/pages/tarot/detail/index.vue
  * @Description: 
 -->
@@ -74,6 +74,10 @@ export default {
     font-size: 26px;
     line-height: 36px;
     color: #ffffff !important;
+    margin-top: 40px;
+  }
+  ::v-deep p {
+    margin-top: 30px;
   }
 }
 .title {
