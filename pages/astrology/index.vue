@@ -243,7 +243,6 @@ export default {
     }
   }
   &_main {
-    position: relative;
     margin: 0 auto;
     width: 1400px;
     z-index: 5;
@@ -467,10 +466,12 @@ export default {
         position: relative;
         .img_bg {
           position: absolute;
-          left: -350px;
-          top: -300px;
-          mix-blend-mode: luminosity;
+          left: -270px;
+          top: -50px;
           z-index: 0;
+          backface-visibility: hidden;
+          object-fit: cover;
+          mix-blend-mode: luminosity;
         }
         .text_list {
           width: 100%;
@@ -713,10 +714,12 @@ export default {
           width: 100%;
           margin: 48 * $pr auto 0;
           .img_bg {
-            left: -200 * $pr;
-            top: -300 * $pr;
+            left: -50 * $pr;
+            top: -30 * $pr;
             mix-blend-mode: luminosity;
             z-index: 0;
+            width: 300 * $pr;
+            height: 300 * $pr;
           }
           .text_list {
             width: 100%;

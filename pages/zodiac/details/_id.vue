@@ -730,7 +730,7 @@ export default {
             display: -webkit-box;
             -webkit-line-clamp: 5;
             -webkit-box-orient: vertical;
-
+            word-wrap: break-word;
             &.p_text_active {
               -webkit-line-clamp: unset;
             }
@@ -905,6 +905,26 @@ export default {
             .p_text {
               font-size: 16 * $pr;
               line-height: 24 * $pr;
+              margin-top: 8 * $pr;
+            }
+          }
+          .starsign {
+            .p_text {
+              height: 120 * $pr;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 5;
+              -webkit-box-orient: vertical;
+              word-wrap: break-word;
+              &.p_text_active {
+                height: auto;
+                -webkit-line-clamp: unset;
+              }
+            }
+            .openBtn {
+              color: #9747ff;
+              text-decoration: underline;
               margin-top: 8 * $pr;
             }
           }
