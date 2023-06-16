@@ -231,6 +231,8 @@ export default {
           border-radius: 42 * $pr;
           font-size: 16 * $pr;
           line-height: 22 * $pr;
+          background: #fff;
+          color: #000;
         }
       }
     }

@@ -45,7 +45,7 @@
       </div>
     </div>
     <transition name="fade">
-      <more-tarot></more-tarot>
+      <tarot-more-tarot></tarot-more-tarot>
     </transition>
     <transition name="fade">
       <home-pop-articles></home-pop-articles>
