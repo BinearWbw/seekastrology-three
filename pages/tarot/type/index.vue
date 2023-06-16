@@ -159,7 +159,7 @@ export default {
   margin-top: 80px;
 }
 .introduce-box {
-  width: 1400px;
+  max-width: 1400px;
   margin: 68px auto 0;
   .intro {
     display: grid;
@@ -171,6 +171,13 @@ export default {
     font-weight: 700;
     font-size: 46px;
     line-height: 64px;
+    align-self: center;
+  }
+  .intro-content {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-size: 16px;
+    line-height: 28px;
   }
   .divination-title {
     font-family: 'Cinzel Decorative';
