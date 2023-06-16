@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-14 17:50:26
+ * @LastEditTime: 2023-06-16 16:07:17
  * @FilePath: /seekastrology/components/tarot/AllTarot.vue
  * @Description: 
 -->
@@ -12,7 +12,7 @@
         The 78 Tarot cards are divided into two main <br />sections, the Major
         Arcana and Minor Arcana, <br />and further into four suits:
       </div>
-      <a href="/tarot/cards"><button class="button">View All</button></a>
+      <button class="button"><a href="/tarot/cards">View All</a></button>
     </div>
 
     <ul class="card-list">
@@ -77,16 +77,19 @@ export default {
 .cards-box {
   padding-top: 96px;
   background-image: url('~assets/img/tarot/card_bg.png');
-  background-size: 100%;
+  background-size: 100% 424px;
   background-repeat: no-repeat;
   margin-top: 48px;
   .card-wrapper {
     display: flex;
-    width: 1400px;
+    max-width: 1420px;
     margin: 0 auto;
-    .button {
-      margin-left: 315px;
-    }
+    padding: 0 10px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    // .button {
+    //   margin-left: 315px;
+    // }
   }
   .card-title {
     font-family: 'Cinzel Decorative';
@@ -96,11 +99,12 @@ export default {
     line-height: 36px;
   }
   .card-list {
-    width: 1400px;
+    max-width: 1400px;
     margin: 60px auto 0;
     display: grid;
     grid-gap: 75px;
-    grid-template-columns: repeat(5, 220px);
+    grid-template-columns: repeat(auto-fill, 220px);
+    justify-content: center;
     text-align: center;
     .card-items {
       -webkit-transition: transform 0.3s ease-in-out;

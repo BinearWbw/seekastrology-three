@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-16 10:51:08
+ * @LastEditTime: 2023-06-16 17:06:00
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -149,17 +149,18 @@
           <button class="mobile-btn" @click="handleMobileInpit">Submit</button>
         </div>
       </div>
-      <div class="in-play" v-show="inPlay" ref="playArea">
+      <div class="in-play" v-if="inPlay" ref="playArea">
         <button class="back-btn" @click="handleBack"></button>
-        <ul class="play-list" v-show="!isSelected">
+        <ul class="play-list" v-show="!isSelected" @click="hanldeMobileClick">
           <li
             class="play-list-item"
-            v-for="index of count"
+            v-for="index of mobileCount"
             :key="'mobile-' + index"
             :ref="'mobile' + index"
             @click="handleClike"
           >
             <img
+              :data-index="index"
               class="card-img-mobile"
               src="~/assets/img/tarot/card.png"
               alt="Card"
@@ -260,6 +261,7 @@ export default {
       showList: [],
       numbers: 3,
       count: 39,
+      mobileCount: 22,
     }
   },
   mounted() {
@@ -284,6 +286,13 @@ export default {
       }
       this.inPlay = true
     },
+    hanldeMobileClick(event) {
+      let ele = event.target.nodeName
+      if (ele != 'IMG') {
+        return
+      }
+      event.target.parentNode.style.display = 'none'
+    },
     handleBack() {
       this.question = ''
       this.inPlay = false
@@ -303,9 +312,6 @@ export default {
         await this.drawCard()
       }
       this.judgeShow()
-      if (window.innerWidth <= 750) {
-        this.randomCards()
-      }
     },
     async drawCard() {
       const res = await await this.$apiList.tarot.drawTarot({
@@ -352,7 +358,7 @@ export default {
       }
       if (this.isSelected) {
         sessionStorage.removeItem('cardsInfo')
-        sessionStorage.setItem('cardsInfo', JSON.stringify(this.cardsInfo))
+        sessionStorage.setItem('cardsInfo', JSON.stringify(this.showList))
       }
     },
     shuffleCards(param, event) {
@@ -383,25 +389,13 @@ export default {
     },
     randomCards() {
       // 90 150
-      this.$nextTick(() => {
-        for (let i = 1; i <= this.count; i++) {
-          let flag = Math.random() * 10 > 5 ? '+' : '-' // 正负数标识
+      setTimeout(() => {
+        for (let i = 1; i <= this.mobileCount; i++) {
           let ele = this.$refs[`mobile${i}`]
-
-          ele[0].style.transform = `translate(${flag}${Math.floor(
-            Math.random() * 130
-          )}px,${flag}${Math.floor(
-            Math.random() * 230
-          )}px) rotate(${flag}${Math.floor(Math.random() * 90)}deg)`
-          // ele[0].style.left =
-          //   Number(flag + Math.floor(Math.random() * 130)) + 'px'
-          // ele[0].style.top =
-          //   Number(flag + Math.floor(Math.random() * 230)) + 'px'
-          // ele[0].style.transform = `rotate(${flag}${Math.floor(
-          //   Math.random() * 90
-          // )}deg)`
+          ele[0].style.display = 'block'
+          ele[0].style.transform = `rotate(${-34 + i * 3}deg)`
         }
-      })
+      }, 100)
     },
     resetData() {
       this.cardsInfo = []
@@ -727,8 +721,11 @@ export default {
       align-items: center;
       justify-content: center;
       .play-list-item {
+        height: 74%;
         position: absolute;
+        transform-origin: 50% 50%;
         transition: all 0.8s ease-out;
+        top: 40%;
         .card-img-mobile {
           width: 90px;
           height: 150px;
