@@ -107,7 +107,7 @@ export default {
   justify-content: center;
   grid-gap: 16px;
   max-width: 1400px;
-  margin: 34px auto 0;
+  margin: 34px auto 48px;
   .more-tarot-items {
     // width: 456px;
     // height: 376px;
@@ -183,6 +183,7 @@ export default {
   }
   .more-tarot {
     grid-template-columns: repeat(auto-fill, 100%);
+    margin: 34 * $pr auto 48 * $pr;
     .more-tarot-items {
       width: 100%;
       margin-left: 0;

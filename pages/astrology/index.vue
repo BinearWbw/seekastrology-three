@@ -236,7 +236,7 @@ export default {
     top: 0;
     width: 100%;
     object-fit: cover;
-    z-index: 1;
+    z-index: -1;
     mix-blend-mode: luminosity;
     &.imgh5 {
       display: none;
