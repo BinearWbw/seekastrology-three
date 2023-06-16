@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-15 18:11:54
+ * @LastEditTime: 2023-06-16 10:51:08
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -75,7 +75,7 @@
               top: 160 + 'px',
               left: (index - 1) * 20 + 'px',
             }"
-            @click="handleClike(index)"
+            @click="handleClike"
           >
             <img
               class="card-img"
@@ -99,7 +99,7 @@
               top: type != 4 ? '404px' : '240px',
               left: (index - 1) * 20 + 'px',
             }"
-            @click="handleClike(index)"
+            @click="handleClike"
           >
             <img
               class="card-img"
@@ -157,7 +157,7 @@
             v-for="index of count"
             :key="'mobile-' + index"
             :ref="'mobile' + index"
-            @click="handleClike(index)"
+            @click="handleClike"
           >
             <img
               class="card-img-mobile"
@@ -198,9 +198,9 @@
         ></nuxt-img>
       </div>
       <div class="handle-btn">
-        <nuxt-link :to="{ path: '/tarot/answer', query: { type } }">
-          <img class="btn-img" src="~/assets/img/tarot/btn.png" alt="btn"
-        /></nuxt-link>
+        <a :href="'/tarot/answer?type=' + type"
+          ><img class="btn-img" src="~/assets/img/tarot/btn.png" alt="btn"
+        /></a>
       </div>
     </div>
   </div>
@@ -236,7 +236,7 @@ export default {
       if (newVal) {
         this.randomCards()
         this.bodyHidden('hidden')
-      }else {
+      } else {
         this.bodyHidden('auto')
       }
     },
@@ -313,10 +313,9 @@ export default {
         type: Number(this.type),
         question: this.question,
       })
+
       if (res && res.length) {
         this.cardsInfo = res
-        sessionStorage.removeItem('cardsInfo')
-        sessionStorage.setItem('cardsInfo', JSON.stringify(res))
       }
     },
     judgeShow() {
@@ -350,6 +349,10 @@ export default {
           this.showList.push(this.cardsInfo[this.showList.length])
           this.isSelected = true
           break
+      }
+      if (this.isSelected) {
+        sessionStorage.removeItem('cardsInfo')
+        sessionStorage.setItem('cardsInfo', JSON.stringify(this.cardsInfo))
       }
     },
     shuffleCards(param, event) {

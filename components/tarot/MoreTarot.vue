@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-15 14:44:46
+ * @LastEditTime: 2023-06-16 10:52:56
  * @FilePath: /seekastrology/components/tarot/MoreTarot.vue
  * @Description: 
 -->
@@ -9,11 +9,7 @@
   <div class="container">
     <div class="title">More Tarot Readings</div>
     <div class="more-tarot">
-      <nuxt-link
-        class="link"
-        :to="{ path: '/tarot' }"
-        v-if="showTarotType != 4"
-      >
+      <a href="/tarot" class="link" v-show="showTarotType != 4">
         <div class="more-tarot-items">
           <img src="~/assets/img/tarot/daily.png" alt="" />
           <p class="item-title">Daily Tarot</p>
@@ -22,13 +18,9 @@
             the day’s possibilities!
           </p>
           <button class="button">Read More</button>
-        </div>
-      </nuxt-link>
-      <nuxt-link
-        class="link"
-        :to="{ path: '/tarot/type/', query: { type: '1' } }"
-        v-if="showTarotType != 1"
+        </div></a
       >
+      <a :href="'/tarot/type?type=' + 1" class="link" v-show="showTarotType != 1">
         <div class="more-tarot-items">
           <img src="~/assets/img/tarot/love.png" alt="" />
           <p class="item-title">LOVE Tarot Reading</p>
@@ -36,13 +28,9 @@
             Receive personalized advice for your romantic dilemmas
           </p>
           <button class="button">Read More</button>
-        </div>
-      </nuxt-link>
-      <nuxt-link
-        class="link"
-        :to="{ path: '/tarot/type/', query: { type: '2' } }"
-        v-if="showTarotType != 2"
+        </div></a
       >
+      <a :href="'/tarot/type?type=' + 2" class="link" v-show="showTarotType != 2">
         <div class="more-tarot-items">
           <img src="~/assets/img/tarot/cause.png" alt="" />
           <p class="item-title">Tarot Career Reading</p>
@@ -50,13 +38,9 @@
             This free career Tarot reading is here to help you find success
           </p>
           <button class="button">Read More</button>
-        </div>
-      </nuxt-link>
-      <nuxt-link
-        class="link"
-        :to="{ path: '/tarot/type/', query: { type: '3' } }"
-        v-if="showTarotType != 3"
+        </div></a
       >
+      <a :href="'/tarot/type?type=' + 3" class="link" v-show="showTarotType != 3">
         <div class="more-tarot-items">
           <img src="~/assets/img/tarot/general.png" alt="" />
           <p class="item-title">Universal Tarot Reading</p>
@@ -65,7 +49,7 @@
           </p>
           <button class="button">Read More</button>
         </div>
-      </nuxt-link>
+      </a>
     </div>
   </div>
 </template>
@@ -179,7 +163,7 @@ export default {
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   // .container {
-    // padding: 16 * $pr;
+  // padding: 16 * $pr;
   // }
   .title {
     font-family: 'Cinzel Decorative';
