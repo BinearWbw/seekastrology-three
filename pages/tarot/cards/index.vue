@@ -6,7 +6,11 @@
       <!-- <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div> -->
       <div class="tarot-box">
         <ul class="major-list">
-          <li class="major-list-item" v-for="(item, index) in majorList" :key="index">
+          <li
+            class="major-list-item"
+            v-for="(item, index) in majorList"
+            :key="index"
+          >
             <nuxt-link
               class="major-list-link"
               :to="{ path: '/tarot/detail', query: { id: item.id } }"
@@ -65,7 +69,7 @@
         v-for="(item, index) in minorList"
         :key="index"
       >
-        <nuxt-link :to="{ path: '/tarot/detail', query: { id: item.id } }">
+        <a :href="'/tarot/detail?id=' + item.id">
           <nuxt-img
             class="minor-item-img"
             :src="item.icon || '/'"
@@ -74,7 +78,7 @@
             loading="lazy"
           ></nuxt-img>
           <div class="item-text">{{ item.name }}</div>
-        </nuxt-link>
+        </a>
       </li>
     </ul>
     <div class="ad-box_row mt-48 mb-32"></div>
@@ -391,7 +395,7 @@ export default {
     display: flex;
     overflow-x: auto;
   }
-  
+
   .mt-44-mobile {
     margin-top: 44px;
   }

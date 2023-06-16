@@ -255,11 +255,11 @@ body {
 }
 body::-webkit-scrollbar {
   margin-right: 10px;
-  width: 0;
+  width: 10px;
 }
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: #211640;
+  background-color: transparent;
   border-radius: var(--border-radius);
 }
 ::-webkit-scrollbar-thumb {
@@ -287,7 +287,7 @@ body::-webkit-scrollbar {
   -ms-overflow-style: none;
 }
 *::-webkit-scrollbar {
-  display: none;
+  display: block;
 }
 .common__btn {
   -moz-user-select: none;
@@ -389,7 +389,7 @@ body::-webkit-scrollbar {
 :root {
   --text-color: #ffffff;
   --background-color: #060506;
-  --shadow-color: #7a2ce5;
+  --shadow-color: #3d1e64;
   --border-radius: 5px;
   --cubic-bezier: cubic-bezier(0.36, 0.66, 0.04, 1);
 }
@@ -400,6 +400,9 @@ body::-webkit-scrollbar {
   }
   ::-webkit-scrollbar {
     width: 5 * $pr;
+  }
+  *::-webkit-scrollbar {
+    display: none;
   }
 }
 .fade-enter-active {
