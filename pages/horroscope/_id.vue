@@ -56,6 +56,9 @@
       </div>
     </div>
     <transition name="fade">
+      <tarot-more-tarot></tarot-more-tarot>
+    </transition>
+    <transition name="fade">
       <el-daily-horoscope></el-daily-horoscope>
     </transition>
     <transition name="fade">
@@ -188,31 +191,31 @@ export default {
         {
           name: 'Daily',
           title: 'Daily Horoscope',
-          imgUrl: require('../../assets/img/horroscope/daily_horoscope.png'),
+          imgUrl: require('~/assets/img/horroscope/daily_horoscope.png'),
           texts: this.youlistData?.general,
         },
         {
           name: 'Love',
           title: 'Love Horoscope',
-          imgUrl: require('../../assets/img/horroscope/love_horoscope.png'),
+          imgUrl: require('~/assets/img/horroscope/love_horoscope.png'),
           texts: this.youlistData?.love,
         },
         {
           name: 'Health',
           title: 'Health Horoscope',
-          imgUrl: require('../../assets/img/horroscope/health_horoscope.png'),
+          imgUrl: require('~/assets/img/horroscope/health_horoscope.png'),
           texts: this.youlistData?.health,
         },
         {
           name: 'Career',
           title: 'Career Horoscope',
-          imgUrl: require('../../assets/img/horroscope/career_horoscope.png'),
+          imgUrl: require('~/assets/img/horroscope/career_horoscope.png'),
           texts: this.youlistData?.career,
         },
         {
           name: 'Money',
           title: 'Money Horoscope',
-          imgUrl: require('../../assets/img/horroscope/money_horoscope.png'),
+          imgUrl: require('~/assets/img/horroscope/money_horoscope.png'),
           texts: this.youlistData?.finances,
         },
       ]
@@ -256,7 +259,7 @@ export default {
 @use 'sass:math';
 .horroscope {
   &_main {
-    margin: 0 auto;
+    margin: 0 auto 48px;
     width: 1400px;
     .horoscope_details {
       display: flex;
@@ -495,6 +498,7 @@ export default {
     &_main {
       width: 100%;
       padding: 0 16 * $pr;
+      margin: 0 auto 48 * $pr;
       .horoscope_details {
         display: flex;
         padding: 48 * $pr 0 24 * $pr;
@@ -562,7 +566,7 @@ export default {
           gap: 24 * $pr;
           padding: 24 * $pr 0 49 * $pr;
           .more_list {
-            padding: 24 * $pr;
+            padding: 16 * $pr 24 * $pr 24 * $pr;
             border: 1 * $pr solid rgba(255, 255, 255, 0.7);
             border-radius: 6 * $pr;
             .more_title {
@@ -570,13 +574,16 @@ export default {
               &::after {
                 height: 1 * $pr;
               }
-              .img_top {
-                display: none;
-              }
               p {
                 font-size: 22 * $pr;
                 line-height: 30 * $pr;
-                padding: 0 70 * $pr;
+              }
+              .img_top {
+                img {
+                  width: 170 * $pr;
+                  height: 154 * $pr;
+                  object-fit: cover;
+                }
               }
             }
             .more_text {
@@ -584,6 +591,7 @@ export default {
                 font-size: 16 * $pr;
                 line-height: 22 * $pr;
                 margin: 16 * $pr 0;
+                -webkit-line-clamp: 2;
               }
               .button {
                 width: 220 * $pr;

@@ -459,6 +459,8 @@ export default {
       const selectValue =
         typeof option === 'object' && option !== null ? option.id : option
       this.getZodiacIData(selectValue)
+      this.openExpand = false
+      this.openStarsign.map((i) => (i.openIf = false))
     },
     getZodiacIData(id = null) {
       this.$apiList.home
@@ -481,7 +483,6 @@ export default {
       })
     },
     setOpenStarsign(index) {
-      // 点击展开&收起
       this.openStarsign[index].openIf = !this.openStarsign[index].openIf
       const elements = this.$refs['starsign' + index][0]
       elements.scrollIntoView({ behavior: 'smooth', block: 'start' })

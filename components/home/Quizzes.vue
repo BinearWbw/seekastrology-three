@@ -215,16 +215,17 @@ export default {
     .button {
       width: 220px;
       height: 44px;
-      background-color: #fff;
+      border: 1px solid #45454d;
       border-radius: 42px;
       font-family: 'Rubik';
-      color: #000;
+      color: rgba(255, 255, 255, 0.7);
       font-size: 16px;
       line-height: 22px;
-      transform-style: preserve-3d;
-      transition: transform 0.3s ease;
+      -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
+      transition: background-color 0.3s, color 0.3s;
       &:hover {
-        transform: translate3d(0, -3px, 0);
+        color: #000;
+        background-color: #fff;
       }
     }
   }
@@ -392,12 +393,12 @@ export default {
       .button {
         width: 295 * $pr;
         height: 44 * $pr;
-        background-color: transparent;
         border-radius: 42 * $pr;
-        color: rgba(255, 255, 255, 0.7);
         font-size: 16 * $pr;
         line-height: 22 * $pr;
-        border: 1px solid #45454d;
+        border: 1 * $pr solid #45454d;
+        background: #fff;
+        color: #000;
       }
     }
   }

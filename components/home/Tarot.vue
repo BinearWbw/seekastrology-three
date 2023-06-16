@@ -321,6 +321,8 @@ export default {
         height: 44 * $pr;
         font-size: 16 * $pr;
         line-height: 22 * $pr;
+        background: #fff;
+        color: #000;
       }
     }
     &_img {
