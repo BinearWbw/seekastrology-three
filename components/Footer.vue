@@ -104,23 +104,6 @@ export default {
           ],
         },
         {
-          id: '3',
-          content: [
-            {
-              link: 'Quizzes',
-              path: '/test/',
-            },
-            // {
-            //   link: 'Personality',
-            //   path: '/',
-            // },
-            // {
-            //   link: 'TarotAnimal',
-            //   path: '/',
-            // },
-          ],
-        },
-        {
           id: '4',
           content: [
             {
@@ -265,6 +248,7 @@ export default {
           flex: 1;
           padding-right: 20px;
           position: relative;
+          max-width: 300px;
           & > :first-child {
             margin-top: 0;
             font-size: 16px;
@@ -421,6 +405,7 @@ export default {
             padding-right: 0;
             padding: 16 * $pr 0;
             position: relative;
+            max-width: 100%;
             & > :first-child {
               margin-top: 0;
               font-size: 16 * $pr;
