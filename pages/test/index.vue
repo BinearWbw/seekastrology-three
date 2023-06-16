@@ -28,43 +28,54 @@
       </div> -->
       <div class="test_main_line"></div>
       <div class="test_main_center">
-        <div class="test_main_center_list">
-          <div v-for="(item, index) in list" :key="item.id">
+        <div class="test_main_center_left">
+          <div class="test_main_center_left_list">
             <a
-              class="test_main_center_list_item"
+              v-for="(item, index) in list"
+              :key="item.id"
+              class="test_main_center_left_list_item"
               :href="`${getIntersperseUrl}/test/details/${item.name
                 .trim()
                 .replace(/[^\w\d]/g, '-')
                 .toLowerCase()}-${item.id}/`"
             >
-              <div class="test_main_center_list_item_img">
+              <div class="test_main_center_left_list_item_img">
                 <nuxt-img
                   :src="item.icon || '/'"
                   fit="cover"
                   :alt="item.name"
                 ></nuxt-img>
               </div>
-              <div class="test_main_center_list_item_text">
-                <div class="test_main_center_list_item_text_name">
+              <div class="test_main_center_left_list_item_text">
+                <div class="test_main_center_left_list_item_text_name">
                   {{ item.name }}
                 </div>
               </div>
             </a>
+            <google-ad
+              classNames="google_ad top"
+              v-if="list.length >= 8"
+            ></google-ad>
+            <google-ad
+              classNames="google_ad center"
+              v-if="list.length >= 16"
+            ></google-ad>
+            <google-ad
+              classNames="google_ad btm"
+              v-if="list.length >= 32"
+            ></google-ad>
           </div>
-          <google-ad
-            classNames="google_ad top"
-            v-if="list.length >= 8"
-          ></google-ad>
-          <google-ad
-            classNames="google_ad center"
-            v-if="list.length >= 16"
-          ></google-ad>
-          <google-ad
-            classNames="google_ad btm"
-            v-if="list.length >= 32"
-          ></google-ad>
-          <div class="common__loading" v-scroll v-if="search.page < totalPage">
+
+          <!-- <div class="common__loading" v-scroll v-if="search.page < totalPage">
             <div class="common__loading__loader" v-if="loading"></div>
+          </div> -->
+          <div class="test_main_center_left_btn" v-if="search.page < totalPage">
+            <button
+              class="test_main_center_left_btn_moreBtn"
+              @click="getMoreList"
+            >
+              Load More
+            </button>
           </div>
         </div>
         <google-ad classNames="google_ad_h5btm"></google-ad>
@@ -173,7 +184,8 @@ export default {
         rightAd.style.display = 'none'
       } else {
         rightAd.style.display =
-          childRect.top + childRect.height - 96 >= parentRect.top + parentRect.height
+          childRect.top + childRect.height - 96 >=
+          parentRect.top + parentRect.height
             ? 'none'
             : 'block'
       }
@@ -205,25 +217,25 @@ export default {
           this.loading = false
         })
     },
-    scrollLoad() {
-      //滚动条位置
-      let scrollTop =
-        document.documentElement.scrollTop ||
-        window.pageYOffset ||
-        document.body.scrollTop
-      //页面总高度
-      let bodyHeight =
-        document.body.scrollHeight || document.documentElement.scrollHeight
-      //加载动画的盒子底部的元素
-      let footComponentsEl = document.querySelector('.foot_components')
-      let footerEl = document.querySelector('.footer')
-      //加载动画的盒子距离底部的距离
-      let height = footComponentsEl.offsetHeight + footerEl.offsetHeight
-      if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
-        if (this.loading) return
-        this.getMoreList()
-      }
-    },
+    // scrollLoad() {
+    //   //滚动条位置
+    //   let scrollTop =
+    //     document.documentElement.scrollTop ||
+    //     window.pageYOffset ||
+    //     document.body.scrollTop
+    //   //页面总高度
+    //   let bodyHeight =
+    //     document.body.scrollHeight || document.documentElement.scrollHeight
+    //   //加载动画的盒子底部的元素
+    //   let footComponentsEl = document.querySelector('.foot_components')
+    //   let footerEl = document.querySelector('.footer')
+    //   //加载动画的盒子距离底部的距离
+    //   let height = footComponentsEl.offsetHeight + footerEl.offsetHeight
+    //   if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
+    //     if (this.loading) return
+    //     this.getMoreList()
+    //   }
+    // },
     /**跳转详情页 */
     jumpDetails(item) {
       this.$router.push({
@@ -242,16 +254,16 @@ export default {
     //     this.getNews(item)
     // },
   },
-  directives: {
-    scroll: {
-      bind: function (el, binding, vnode) {
-        window.addEventListener('scroll', vnode.context.scrollLoad)
-      },
-      unbind: function (el, binding, vnode) {
-        window.removeEventListener('scroll', vnode.context.scrollLoad)
-      },
-    },
-  },
+  // directives: {
+  //   scroll: {
+  //     bind: function (el, binding, vnode) {
+  //       window.addEventListener('scroll', vnode.context.scrollLoad)
+  //     },
+  //     unbind: function (el, binding, vnode) {
+  //       window.removeEventListener('scroll', vnode.context.scrollLoad)
+  //     },
+  //   },
+  // },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
@@ -348,62 +360,87 @@ $spacing: 16px;
       margin-top: 32px;
       display: flex;
       justify-content: space-between;
-      &_list {
+      &_left {
         width: 924px;
-        display: grid;
-        grid-template-columns: repeat(4, 220px);
-        grid-gap: 16px;
-        align-self: flex-start;
-        &_item {
-          width: 220px;
-          display: block;
-          &_img {
+        &_list {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(4, 220px);
+          grid-gap: 16px;
+          align-self: flex-start;
+          &_item {
             width: 220px;
-            height: 220px;
-            object-fit: cover;
-            img {
-              width: 100%;
-              height: 100%;
+            display: block;
+            &_img {
+              width: 220px;
+              height: 220px;
               object-fit: cover;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+            &_text {
+              &_name {
+                font-family: 'Rubik';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: center;
+                color: rgba(255, 255, 255, 0.7);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+              }
             }
           }
-          &_text {
-            &_name {
-              font-family: 'Rubik';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 16px;
-              line-height: 22px;
-              text-align: center;
-              color: rgba(255, 255, 255, 0.7);
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;
-            }
+          .google_ad {
+            width: 924px;
+            height: 114px;
+            background: #555761;
+            margin: 48px 0;
+            grid-column-end: 5;
+            grid-column-start: span 4;
+            grid-row-start: span 2;
+            overflow: hidden;
+          }
+          .top {
+            grid-row-end: 5;
+          }
+          .center {
+            grid-row-end: 9;
+          }
+          .btm {
+            grid-row-end: 13;
           }
         }
-        .google_ad {
-          width: 924px;
-          height: 114px;
-          background: #555761;
-          margin: 48px 0;
-          grid-column-end: 5;
-          grid-column-start: span 4;
-          grid-row-start: span 2;
-          overflow: hidden;
-        }
-        .top {
-          grid-row-end: 5;
-        }
-        .center {
-          grid-row-end: 9;
-        }
-        .btm {
-          grid-row-end: 13;
+        &_btn {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 24px;
+          &_moreBtn {
+            border: 1px solid #45454d;
+            border-radius: 42px;
+            color: hsla(0, 0%, 100%, 0.7);
+            font-family: Rubik;
+            font-size: 16px;
+            height: 44px;
+            line-height: 22px;
+            transition: background-color 0.3s, color 0.3s;
+            width: 220px;
+            &:hover {
+              background-color: #fff;
+              color: #000;
+            }
+          }
         }
       }
+
       &_right {
         width: 300px;
         position: relative;
@@ -442,16 +479,19 @@ $spacing: 16px;
   .test {
     &_main {
       &_center {
-        &_list {
-          width: 100%;
-          grid-template-columns: repeat(3, 220px);
-          justify-content: center;
-          .google_ad {
-            grid-column-start: span 3;
-            grid-column-end: 4;
+        &_left {
+          &_list {
             width: 100%;
+            grid-template-columns: repeat(3, 220px);
+            justify-content: center;
+            .google_ad {
+              grid-column-start: span 3;
+              grid-column-end: 4;
+              width: 100%;
+            }
           }
         }
+
         &_right {
           .google_ad {
             right: 20px;
@@ -466,11 +506,13 @@ $spacing: 16px;
   .test {
     &_main {
       &_center {
-        &_list {
-          grid-template-columns: repeat(2, 220px);
-          .google_ad {
-            grid-column-start: span 2;
-            grid-column-end: 3;
+        &_left {
+          &_list {
+            grid-template-columns: repeat(2, 220px);
+            .google_ad {
+              grid-column-start: span 2;
+              grid-column-end: 3;
+            }
           }
         }
       }
@@ -481,9 +523,10 @@ $spacing: 16px;
   .test {
     &_main {
       &_center {
-        &_list {
+        &_left {
           width: 80%;
         }
+
         &_right {
           .google_ad {
             right: 10px;
@@ -551,41 +594,53 @@ $spacing: 16px;
       &_center {
         margin-top: 16 * $pr;
         flex-direction: column;
-        &_list {
+        &_left {
           width: 100%;
-          grid-template-columns: repeat(2, 169 * $pr);
-          grid-gap: 5 * $pr;
-          &_item {
-            width: 169 * $pr;
-            &_img {
+          &_list {
+            grid-template-columns: repeat(2, 169 * $pr);
+            grid-gap: 5 * $pr;
+            &_item {
               width: 169 * $pr;
-              height: 169 * $pr;
-            }
-            &_text {
-              &_name {
-                font-size: 14 * $pr;
-                line-height: 18 * $pr;
+              &_img {
+                width: 169 * $pr;
+                height: 169 * $pr;
+              }
+              &_text {
+                &_name {
+                  font-size: 14 * $pr;
+                  line-height: 18 * $pr;
+                }
               }
             }
+            .google_ad {
+              grid-column-end: 3;
+              grid-column-start: span 2;
+              grid-row-start: span 2;
+              width: 100%;
+              height: 299 * $pr;
+              margin: 48 * $pr 0;
+            }
+            .top {
+              grid-row-end: 6;
+            }
+            .center {
+              grid-row-end: 11;
+            }
+            .btm {
+              display: none;
+            }
           }
-          .google_ad {
-            grid-column-end: 3;
-            grid-column-start: span 2;
-            grid-row-start: span 2;
-            width: 100%;
-            height: 299 * $pr;
-            margin: 48 * $pr 0;
-          }
-          .top {
-            grid-row-end: 6;
-          }
-          .center {
-            grid-row-end: 11;
-          }
-          .btm {
-            display: none;
+          &_btn {
+            &_moreBtn {
+              width: 295 * $pr;
+              height: 44 * $pr;
+              font-size: 16 * $pr;
+              line-height: 22 * $pr;
+              border-radius: 42 * $pr;
+            }
           }
         }
+
         &_right {
           display: none;
         }

@@ -393,13 +393,13 @@ $spacing: 16px;
           &_img {
             margin-top: 48px;
             width: 100%;
-            height: auto;
-            object-fit: contain;
             position: relative;
+            display: flex;
+            justify-content: center;
+            height: 324px;
             &_video,
             &_pic {
               width: 100%;
-              height: 100%;
               object-fit: cover;
             }
             &_play {
@@ -423,12 +423,18 @@ $spacing: 16px;
               margin-bottom: 20px;
               // word-break: break-all;
               background: transparent !important;
-              width: 100%;
+              // width: 100%;
               height: 100%;
               object-fit: contain;
             }
             :deep(img) {
+              max-width: 100%;
+              height: auto;
               margin-bottom: 0;
+            }
+            :deep(figure){
+              display: flex;
+              justify-content: center;
             }
           }
         }
@@ -736,6 +742,7 @@ $spacing: 16px;
             }
             &_img {
               margin-top: 32 * $pr;
+              height: 155 * $pr;
             }
             &_text {
               margin-top: 32 * $pr;

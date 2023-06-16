@@ -221,8 +221,13 @@
             </a>
           </div>
         </transition>
-        <div class="common__loading" v-scroll v-if="search.page < totalPage">
+        <!-- <div class="common__loading" v-scroll v-if="search.page < totalPage">
           <div class="common__loading__loader" v-if="loading"></div>
+        </div> -->
+        <div class="resources_main_btm_btn" v-if="search.page < totalPage">
+          <button class="resources_main_btm_btn_moreBtn" @click="getNews(item)">
+            Load More
+          </button>
         </div>
       </div>
       <google-ad classNames="google_ad_btm"></google-ad>
@@ -280,7 +285,7 @@ export default {
           })
           .then((res) => {
             //首位增加一个all
-            res.unshift({ name: 'all' })
+            res.unshift({ name: 'All' })
             //如果为null说明不是从其他页面跳转进来的，就取请求tabs结果中的第一条
             if (item == null) item = res?.length > 0 ? res[0] : null
             //如果有item中有id值，说明是从其他页面跳转进来的，这时找到对应的下标值设置选中的tab样式，反之默认给第一个设置样式
@@ -361,29 +366,29 @@ export default {
       //通过id请求对应的列表数据
       this.getNews(item)
     },
-    scrollLoad() {
-      //滚动条位置
-      let scrollTop =
-        document.documentElement.scrollTop ||
-        window.pageYOffset ||
-        document.body.scrollTop
-      //页面总高度
-      let bodyHeight =
-        document.body.scrollHeight || document.documentElement.scrollHeight
-      //加载动画的盒子底部的三个元素
-      let googleAdEl = document.querySelector('.google_ad_btm')
-      let footComponentsEl = document.querySelector('.foot_components')
-      let footerEl = document.querySelector('.footer')
-      //加载动画的盒子距离底部的距离
-      let height =
-        googleAdEl.offsetHeight +
-        footComponentsEl.offsetHeight +
-        footerEl.offsetHeight
-      if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
-        if (this.loading) return
-        this.getNews(this.item)
-      }
-    },
+    // scrollLoad() {
+    //   //滚动条位置
+    //   let scrollTop =
+    //     document.documentElement.scrollTop ||
+    //     window.pageYOffset ||
+    //     document.body.scrollTop
+    //   //页面总高度
+    //   let bodyHeight =
+    //     document.body.scrollHeight || document.documentElement.scrollHeight
+    //   //加载动画的盒子底部的三个元素
+    //   let googleAdEl = document.querySelector('.google_ad_btm')
+    //   let footComponentsEl = document.querySelector('.foot_components')
+    //   let footerEl = document.querySelector('.footer')
+    //   //加载动画的盒子距离底部的距离
+    //   let height =
+    //     googleAdEl.offsetHeight +
+    //     footComponentsEl.offsetHeight +
+    //     footerEl.offsetHeight
+    //   if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
+    //     if (this.loading) return
+    //     this.getNews(this.item)
+    //   }
+    // },
   },
   computed: {
     normalList() {
@@ -391,16 +396,16 @@ export default {
     },
     ...mapGetters(['getIntersperseUrl']),
   },
-  directives: {
-    scroll: {
-      bind: function (el, binding, vnode) {
-        window.addEventListener('scroll', vnode.context.scrollLoad)
-      },
-      unbind: function (el, binding, vnode) {
-        window.removeEventListener('scroll', vnode.context.scrollLoad)
-      },
-    },
-  },
+  // directives: {
+  //   scroll: {
+  //     bind: function (el, binding, vnode) {
+  //       window.addEventListener('scroll', vnode.context.scrollLoad)
+  //     },
+  //     unbind: function (el, binding, vnode) {
+  //       window.removeEventListener('scroll', vnode.context.scrollLoad)
+  //     },
+  //   },
+  // },
 }
 </script>
 <style lang="scss" scoped>
@@ -730,6 +735,28 @@ $spacing: 16px;
           rgba(255, 255, 255, 0) 100%
         );
       }
+      &_btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 24px;
+        &_moreBtn {
+          margin: 0 auto;
+          border: 1px solid #45454d;
+          border-radius: 42px;
+          color: hsla(0, 0%, 100%, 0.7);
+          font-family: Rubik;
+          font-size: 16px;
+          height: 44px;
+          line-height: 22px;
+          transition: background-color 0.3s, color 0.3s;
+          width: 220px;
+          &:hover {
+            background-color: #fff;
+            color: #000;
+          }
+        }
+      }
       &_main {
         display: grid;
         grid-template-columns: repeat(3, 456px);
@@ -891,7 +918,8 @@ $spacing: 16px;
           justify-content: center;
         }
       }
-      .google_ad {
+      .google_ad,.google_ad_btm {
+        width: 100%;
         width: 900px;
       }
     }
@@ -911,8 +939,8 @@ $spacing: 16px;
           grid-template-columns: repeat(1, 456px);
         }
       }
-      .google_ad {
-        width: 800px;
+      .google_ad,.google_ad_btm {
+        width: 700px;
       }
     }
   }
@@ -939,7 +967,7 @@ $spacing: 16px;
           grid-template-columns: repeat(1, 456px);
         }
       }
-      .google_ad {
+      .google_ad,.google_ad {
         width: 700px;
       }
     }
@@ -1129,6 +1157,16 @@ $spacing: 16px;
             span {
               font-size: 14 * $pr;
             }
+          }
+        }
+        &_btn {
+          margin-top: 24 * $pr;
+          &_moreBtn {
+            width: 295 * $pr;
+            height: 44 * $pr;
+            font-size: 16 * $pr;
+            line-height: 22 * $pr;
+            border-radius: 42 * $pr;
           }
         }
         &_main {

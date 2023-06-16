@@ -49,16 +49,17 @@
                     class="details_main_left_top_content_main_h5_desc"
                     v-html="dataInfo.desc"
                   ></div>
-                  
                 </template>
               </div>
               <!-- 问题和答案选项 -->
               <template v-if="!showResult && showQuestions">
+                <!-- 问题 -->
                 <div class="details_main_left_top_content_main_questions">
                   {{ currentQuestionIndex + 1 }}.{{
                     dataInfo.questions[currentQuestionIndex].question
                   }}
                 </div>
+                <!-- 图片 -->
                 <nuxt-img
                   v-if="dataInfo.questions[currentQuestionIndex].image"
                   :src="dataInfo.questions[currentQuestionIndex].image || '/'"
@@ -66,7 +67,7 @@
                   :alt="dataInfo.questions[currentQuestionIndex].question"
                   class="details_main_left_top_content_main_questionImage"
                 ></nuxt-img>
-                
+                <!-- 答案选项 -->
                 <div class="details_main_left_top_content_main_answer">
                   <div
                     class="details_main_left_top_content_main_answer_item"
@@ -294,22 +295,21 @@ export default {
         this.$refs.nameAndDesc.style.display = 'none'
         //隐藏回答问题列表
         this.showQuestions = false
-        
+
         if (this.showResult || this.currentQuestionIndex > 0 || this.nextFlag) {
           //显示回答问题列表
           this.showQuestions = true
         }
-        if(this.showResult){
+        if (this.showResult) {
           //显示标题和描述
           this.$refs.nameAndDesc.style.display = 'block'
         }
-        
-      //pc端
+
+        //pc端
       } else {
         //显示回答问题列表
         this.showQuestions = true
         this.$refs.nameAndDesc.style.display = 'block'
-        
       }
     },
     /**开始答题 */
@@ -322,7 +322,7 @@ export default {
     },
     /**重新做题 */
     retake() {
-      //改变showResult
+      //取消展示回答结果
       this.showResult = false
       //将currentQuestionIndex改为0，回到第一题
       this.currentQuestionIndex = 0
@@ -400,7 +400,10 @@ export default {
     },
     /**下一题 */
     nextQuestion() {
-      if (!this.nextFlag || this.currentQuestionIndex + 1 == this.dataInfo.questions.length) {
+      if (
+        !this.nextFlag ||
+        this.currentQuestionIndex + 1 == this.dataInfo.questions.length
+      ) {
         return
       }
       //更改radio禁用状态
@@ -500,7 +503,7 @@ $spacing: 55px;
             &_h5 {
               display: none;
             }
-            
+
             &_questions {
               margin-top: 48px;
               font-family: 'Rubik';
@@ -511,7 +514,7 @@ $spacing: 55px;
               color: #ffffff;
               margin-bottom: 16px;
             }
-            &_questionImage{
+            &_questionImage {
               width: 100%;
               height: 100%;
             }
@@ -629,7 +632,7 @@ $spacing: 55px;
             }
           }
         }
-        
+
         &_result {
           margin-top: 46px;
           &_score {
@@ -925,6 +928,7 @@ $spacing: 55px;
                   line-height: 22 * $pr;
                   color: #ffffff;
                   margin-top: 32 * $pr;
+                  text-align: center;
                 }
                 &_desc {
                   margin-top: 16 * $pr;
@@ -957,7 +961,7 @@ $spacing: 55px;
                 margin-top: 0;
                 margin-bottom: 16 * $pr;
               }
-              
+
               &_answer {
                 grid-gap: 8 * $pr;
                 grid-template-columns: repeat(1, 311 * $pr);
@@ -1013,7 +1017,7 @@ $spacing: 55px;
               }
             }
           }
-          
+
           &_result {
             &_score {
               font-size: 22 * $pr;
