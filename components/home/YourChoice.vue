@@ -1,6 +1,9 @@
 <template>
   <div class="choice">
-    <div class="choice__title">
+    <div
+      class="choice__title"
+      :class="{ to_page_padding: $route.path !== '/' }"
+    >
       <h3>
         {{
           $route.path === '/' ? 'Choose Your Zodiac Sign' : 'DAILY HOROSCOPES'
@@ -93,6 +96,9 @@ export default {
       color: rgba(255, 255, 255, 0.7);
       text-align: center;
     }
+    &.to_page_padding {
+      padding-bottom: 8px !important;
+    }
   }
   &__main {
     display: grid;
@@ -179,6 +185,9 @@ export default {
       p {
         font-size: 22 * $pr;
         line-height: 30 * $pr;
+      }
+      &.to_page_padding {
+        padding-bottom: 8 * $pr !important;
       }
     }
     &__main {
