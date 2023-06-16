@@ -45,13 +45,13 @@
       </div>
     </div>
     <transition name="fade">
+      <more-tarot></more-tarot>
+    </transition>
+    <transition name="fade">
       <home-pop-articles></home-pop-articles>
     </transition>
     <transition name="fade">
       <home-quizzes></home-quizzes>
-    </transition>
-    <transition name="fade">
-      <el-pairing></el-pairing>
     </transition>
   </div>
 </template>
@@ -59,8 +59,9 @@
 <script>
 import GoogleAd from '../../components/GoogleAd.vue'
 import { mapGetters } from 'vuex'
+import MoreTarot from '../../components/tarot/MoreTarot.vue'
 export default {
-  components: { GoogleAd },
+  components: { GoogleAd, MoreTarot },
   name: 'Zodiac',
   data() {
     return {}

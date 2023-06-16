@@ -109,7 +109,7 @@ export default {
 @use 'sass:math';
 .quizzes_own {
   width: 1400px;
-  margin: 0 auto;
+  margin: 30px auto 0;
   .quizzes {
     width: 100%;
     height: 493px;
@@ -311,6 +311,7 @@ export default {
   $pr: math.div(1vw, 3.75);
   .quizzes_own {
     width: 100%;
+    margin: 30 * $pr auto 0;
     .quizzes {
       width: 100%;
       height: 100%;
