@@ -1,8 +1,12 @@
 <template>
   <div class="choice">
     <div class="choice__title">
-      <h3>Choose Your Zodiac Sign</h3>
-      <p>Read Your Daily Horoscope Right Now</p>
+      <h3>
+        {{
+          $route.path === '/' ? 'Choose Your Zodiac Sign' : 'DAILY HOROSCOPES'
+        }}
+      </h3>
+      <p v-if="$route.path === '/'">Read Your Daily Horoscope Right Now</p>
     </div>
     <ul class="choice__main">
       <li v-for="item_i in variousListData" :key="item_i.id">
