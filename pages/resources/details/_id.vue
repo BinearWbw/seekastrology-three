@@ -48,7 +48,7 @@
                 {{ $utils.formatYYYYMMDDHHMM(dataInfo.created_at) }}
               </div>
             </div>
-            <div class="details_main_left_top_content_img">
+            <div class="details_main_left_top_content_video">
               <!-- <nuxt-img
                 :src="dataInfo.icon"
                 fit="cover"
@@ -380,16 +380,22 @@ $spacing: 16px;
               margin-left: 18px;
             }
           }
+          &_video {
+            width: 100%;
+            height: 456px;
+            margin-top: 48px;
+            position: relative;
+            #video-element {
+              width: 100%;
+              height: 100%;
+            }
+          }
           &_img {
             margin-top: 48px;
             width: 100%;
             height: auto;
             object-fit: contain;
             position: relative;
-            #video-element {
-              width: 100%;
-              height: 100%;
-            }
             &_video,
             &_pic {
               width: 100%;
@@ -626,7 +632,7 @@ $spacing: 16px;
             }
           }
         }
-        .leftAd{
+        .leftAd {
           width: 100%;
         }
       }
@@ -658,9 +664,7 @@ $spacing: 16px;
       &_left {
         &_top {
           padding: 0 30px 25px;
-          
         }
-        
       }
       &_right {
         &_ad {
@@ -726,8 +730,11 @@ $spacing: 16px;
                 line-height: 18 * $pr;
               }
             }
+            &_video{
+              margin-top: 32 * $pr;
+              height: 200 * $pr;
+            }
             &_img {
-              width: 100%;
               margin-top: 32 * $pr;
             }
             &_text {
@@ -747,6 +754,7 @@ $spacing: 16px;
         }
       }
       &_right {
+        width: 100%;
         margin-left: 0;
         &_ad {
           display: none;
