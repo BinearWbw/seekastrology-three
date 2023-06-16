@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-16 15:11:54
+ * @LastEditTime: 2023-06-16 17:06:00
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -358,7 +358,7 @@ export default {
       }
       if (this.isSelected) {
         sessionStorage.removeItem('cardsInfo')
-        sessionStorage.setItem('cardsInfo', JSON.stringify(this.cardsInfo))
+        sessionStorage.setItem('cardsInfo', JSON.stringify(this.showList))
       }
     },
     shuffleCards(param, event) {
