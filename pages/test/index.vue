@@ -163,6 +163,7 @@ export default {
     }
   },
   mounted() {
+    this.handleScroll()
     window.addEventListener('scroll', this.handleScroll)
   },
   beforeDestroy() {
@@ -455,6 +456,7 @@ $spacing: 16px;
           position: fixed;
           // top: 0;
           overflow: hidden;
+          display: none;
         }
       }
       .google_ad_h5btm {
