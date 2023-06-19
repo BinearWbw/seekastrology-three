@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-16 17:06:00
+ * @LastEditTime: 2023-06-19 11:15:37
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -75,7 +75,7 @@
               top: 160 + 'px',
               left: (index - 1) * 20 + 'px',
             }"
-            @click="handleClike"
+            @click.once="handleClike"
           >
             <img
               class="card-img"
@@ -99,7 +99,7 @@
               top: type != 4 ? '404px' : '240px',
               left: (index - 1) * 20 + 'px',
             }"
-            @click="handleClike"
+            @click.once="handleClike"
           >
             <img
               class="card-img"
@@ -157,7 +157,7 @@
             v-for="index of mobileCount"
             :key="'mobile-' + index"
             :ref="'mobile' + index"
-            @click="handleClike"
+            @click.once="handleClike"
           >
             <img
               :data-index="index"
@@ -198,10 +198,8 @@
           :alt="item.name"
         ></nuxt-img>
       </div>
-      <div class="handle-btn">
-        <a :href="'/tarot/answer?type=' + type"
-          ><img class="btn-img" src="~/assets/img/tarot/btn.png" alt="btn"
-        /></a>
+      <div class="handle-btn" @click="handleAnswer">
+        <img class="btn-img" src="~/assets/img/tarot/btn.png" alt="btn" />
       </div>
     </div>
   </div>
@@ -314,7 +312,7 @@ export default {
       this.judgeShow()
     },
     async drawCard() {
-      const res = await await this.$apiList.tarot.drawTarot({
+      const res = await this.$apiList.tarot.drawTarot({
         origin: process.env.origin,
         type: Number(this.type),
         question: this.question,
@@ -352,13 +350,11 @@ export default {
           }
           break
         case '4':
-          this.showList.push(this.cardsInfo[this.showList.length])
-          this.isSelected = true
+          if (this.showList.length == 0) {
+            this.showList.push(this.cardsInfo[this.showList.length])
+            this.isSelected = true
+          }
           break
-      }
-      if (this.isSelected) {
-        sessionStorage.removeItem('cardsInfo')
-        sessionStorage.setItem('cardsInfo', JSON.stringify(this.showList))
       }
     },
     shuffleCards(param, event) {
@@ -411,6 +407,12 @@ export default {
     bodyHidden(style) {
       let body = document.getElementsByTagName('body')
       body[0].style.overflow = style
+    },
+    handleAnswer() {
+      if (this.isSelected) {
+        sessionStorage.setItem('cardsInfo', JSON.stringify(this.showList))
+      }
+      this.$router.push(`/tarot/answer?type=${this.type}`)
     },
   },
 }

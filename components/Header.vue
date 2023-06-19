@@ -150,13 +150,13 @@ export default {
           children: [
             {
               title: 'Tarot Predictions',
-              path: '/tarot',
-              href: '/tarot',
+              path: '/tarot/',
+              href: '/tarot/',
             },
             {
               title: 'Tarot Cards',
-              path: '/tarot/cards',
-              href: '/tarot/cards',
+              path: '/tarot/cards/',
+              href: '/tarot/cards/',
             },
           ],
         },
