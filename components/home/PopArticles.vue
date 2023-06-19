@@ -145,6 +145,7 @@ export default {
         height: 100%;
         margin-right: 32px;
         cursor: pointer;
+        transition: background-color 0.3s;
         .left_img {
           width: 100%;
           min-height: 320px;
@@ -186,12 +187,15 @@ export default {
             }
           }
           .text_time {
-            width: 60px;
+            width: 65px;
             font-family: 'Rubik';
             font-size: 22px;
             line-height: 30px;
             color: #ffffff;
           }
+        }
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.08);
         }
       }
       .news_right {
@@ -339,6 +343,7 @@ export default {
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .pop_maximum {
+    margin: 48 * $pr auto 0;
     .pop_main {
       .bg_main {
         position: absolute;

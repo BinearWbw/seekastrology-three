@@ -13,7 +13,7 @@
         <div class="intro-title">{{ textObj[type].title }}</div>
         <div class="intro-content" v-html="textObj[type].desc"></div>
       </div>
-      <div class="ad-box_row mt-48"></div>
+      <google-ad class="ad-box_row mt_80"></google-ad>
       <!-- <div class="divination">
         <div class="divination-title">Prepare for Divination</div>
         <div class="divination-wrapper">
@@ -56,10 +56,12 @@
         </div>
       </div> -->
     </div>
-    <more-tarot class="mt-48"></more-tarot>
-    <div class="ad-box_row mt-32"></div>
-    <home-your-choice class="mt-32"></home-your-choice>
-    <home-pop-articles class="mb-32"></home-pop-articles>
+    <more-tarot class="el_more"></more-tarot>
+    <google-ad class="ad-box_row mt_80"></google-ad>
+    <home-your-choice class="el_choice"></home-your-choice>
+    <transition name="fade">
+      <home-pop-articles class="el_pop"></home-pop-articles>
+    </transition>
   </div>
 </template>
 
@@ -119,67 +121,8 @@ export default {
 @use 'sass:math';
 .tarot-container {
   color: #fff;
-}
-.title {
-  font-family: 'Cinzel Decorative';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 46px;
-  line-height: 64px;
-  text-align: center;
-}
-.tarot-section {
-  margin-top: 32px;
-  display: flex;
-  justify-content: center;
-  .add-box-wrapper {
-    width: 160px;
-    height: 600px;
-  }
-  .ad-box {
-    width: 160px;
-    height: 600px;
-    position: fixed;
-    background-color: #555761;
-  }
-  .tarot-box {
-    margin-left: 32px;
-    margin-right: 32px;
-    flex: 1;
-    max-width: 1400px;
-  }
-}
-.ad-box_row {
-  width: 924px;
-  height: 114px;
-  margin: 0 auto;
-  background-color: #555761;
-}
-.divination {
-  margin-top: 80px;
-}
-.introduce-box {
-  max-width: 1400px;
-  margin: 68px auto 0;
-  .intro {
-    display: grid;
-    grid-template-columns: 40% 50%;
-    justify-content: space-between;
-  }
-  .intro-title {
-    font-family: 'Cinzel Decorative';
-    font-weight: 700;
-    font-size: 46px;
-    line-height: 64px;
-    align-self: center;
-  }
-  .intro-content {
-    font-family: 'Rubik';
-    font-style: normal;
-    font-size: 16px;
-    line-height: 28px;
-  }
-  .divination-title {
+  padding: 40px 0 0;
+  .title {
     font-family: 'Cinzel Decorative';
     font-style: normal;
     font-weight: 700;
@@ -187,63 +130,174 @@ export default {
     line-height: 64px;
     text-align: center;
   }
-  .divination-wrapper {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-column-gap: 115px;
-    grid-row-gap: 60px;
-    margin-top: 60px;
+  .tarot-section {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    .add-box-wrapper {
+      width: 160px;
+      height: 600px;
+    }
+    .ad-box {
+      width: 160px;
+      height: 600px;
+      position: fixed;
+      background-color: #555761;
+    }
+    .tarot-box {
+      margin-left: 32px;
+      margin-right: 32px;
+      flex: 1;
+      max-width: 1400px;
+    }
   }
-  .divination-content {
-    width: 80%;
+  .ad-box_row {
+    width: 924px;
+    height: 114px;
+    margin: 0 auto;
+    background-color: #555761;
+    overflow: hidden;
+    &.mt_80 {
+      margin-top: 80px;
+    }
+  }
+  .divination {
+    margin-top: 80px;
+  }
+  .introduce-box {
+    max-width: 1400px;
+    margin: 62px auto 0;
+    .intro {
+      display: grid;
+      grid-template-columns: 40% 50%;
+      justify-content: space-between;
+    }
+    .intro-title {
+      font-family: 'Cinzel Decorative';
+      font-weight: 700;
+      font-size: 46px;
+      line-height: 64px;
+      align-self: center;
+    }
+    .intro-content {
+      font-family: 'Rubik';
+      font-style: normal;
+      font-size: 16px;
+      line-height: 28px;
+    }
+    .divination-title {
+      font-family: 'Cinzel Decorative';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 46px;
+      line-height: 64px;
+      text-align: center;
+    }
+    .divination-wrapper {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      grid-column-gap: 115px;
+      grid-row-gap: 60px;
+      margin-top: 60px;
+    }
+    .divination-content {
+      width: 80%;
+    }
+  }
+  .el_more {
+    margin-top: 80px;
+  }
+  .el_choice {
+    margin-top: 96px;
+  }
+  .el_pop {
+    margin-bottom: 48px;
   }
 }
-.mt-48 {
-  margin-top: 48px;
+@media (max-width: 1450px) {
+  .tarot-container {
+    .introduce-box {
+      max-width: 1100px;
+      .intro-title {
+        font-size: 32px;
+        line-height: 48px;
+      }
+    }
+  }
 }
-.mt-32 {
-  margin-top: 32px;
+@media (max-width: 1200px) {
+  .tarot-container {
+    .ad-box_row {
+      width: 90%;
+    }
+    .introduce-box {
+      max-width: 100%;
+      padding: 0 30px;
+    }
+  }
 }
-.mb-32 {
-  margin-bottom: 32px;
-}
-.mt-200 {
-  margin-top: 200px;
-}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .tarot-container {
-    padding: 16 * $pr;
-  }
-  .add-box-wrapper {
-    display: none;
-  }
-  .ad-box_row {
-    width: 100%;
-    height: 300 * $pr;
-  }
-  .introduce-box {
-    width: 100%;
-    margin: 68px auto 0;
-    .intro {
+    padding: 48 * $pr 16 * $pr 0;
+    .title {
+      font-size: 26 * $pr;
+      line-height: 36 * $pr;
+    }
+    .tarot-section {
+      margin-top: 16 * $pr;
       display: flex;
-      flex-direction: column;
-      .intro-title {
-        font-family: 'Cinzel Decorative';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 26 * $pr;
-        line-height: 36 * $pr;
-        text-align: center;
+      justify-content: center;
+      .add-box-wrapper {
+        display: none;
       }
-      .intro-content {
-        font-family: 'Rubik';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18 * $pr;
-        line-height: 28 * $pr;
-        color: #d2d3d7;
+      .tarot-box {
+        margin-left: 0;
+        margin-right: 0;
+        flex: 1;
       }
+    }
+    .ad-box_row {
+      width: 100%;
+      height: 300 * $pr;
+      &.mt_80 {
+        margin-top: 48 * $pr;
+      }
+    }
+    .introduce-box {
+      width: 100%;
+      margin: 48 * $pr auto 0;
+      padding: 0;
+      .intro {
+        display: flex;
+        flex-direction: column;
+        .intro-title {
+          font-family: 'Cinzel Decorative';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 26 * $pr;
+          line-height: 36 * $pr;
+          text-align: center;
+        }
+        .intro-content {
+          font-family: 'Rubik';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18 * $pr;
+          line-height: 28 * $pr;
+          color: #d2d3d7;
+        }
+      }
+    }
+    .el_more {
+      margin-top: 48 * $pr;
+    }
+    .el_choice {
+      margin-top: 48 * $pr;
+    }
+    .el_pop {
+      margin-bottom: 48 * $pr;
     }
   }
 }
