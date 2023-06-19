@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-16 18:00:10
+ * @LastEditTime: 2023-06-19 11:17:49
  * @FilePath: /seekastrology/components/tarot/MoreTarot.vue
  * @Description: 
 -->
@@ -188,7 +188,7 @@ export default {
       width: 100%;
       margin-left: 0;
       img {
-        height: 180px;
+        height: 180 * $pr;
       }
       .item-title {
         font-family: 'Rubik';

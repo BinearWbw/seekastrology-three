@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-19 10:20:44
+ * @LastEditTime: 2023-06-19 11:15:37
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -75,7 +75,7 @@
               top: 160 + 'px',
               left: (index - 1) * 20 + 'px',
             }"
-            @click="handleClike"
+            @click.once="handleClike"
           >
             <img
               class="card-img"
@@ -99,7 +99,7 @@
               top: type != 4 ? '404px' : '240px',
               left: (index - 1) * 20 + 'px',
             }"
-            @click="handleClike"
+            @click.once="handleClike"
           >
             <img
               class="card-img"
@@ -157,7 +157,7 @@
             v-for="index of mobileCount"
             :key="'mobile-' + index"
             :ref="'mobile' + index"
-            @click="handleClike"
+            @click.once="handleClike"
           >
             <img
               :data-index="index"
@@ -312,7 +312,7 @@ export default {
       this.judgeShow()
     },
     async drawCard() {
-      const res = await await this.$apiList.tarot.drawTarot({
+      const res = await this.$apiList.tarot.drawTarot({
         origin: process.env.origin,
         type: Number(this.type),
         question: this.question,
@@ -350,8 +350,10 @@ export default {
           }
           break
         case '4':
-          this.showList.push(this.cardsInfo[this.showList.length])
-          this.isSelected = true
+          if (this.showList.length == 0) {
+            this.showList.push(this.cardsInfo[this.showList.length])
+            this.isSelected = true
+          }
           break
       }
     },
