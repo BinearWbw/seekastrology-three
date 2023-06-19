@@ -111,7 +111,7 @@ export default {
   .more-tarot-items {
     // width: 456px;
     // height: 376px;
-    padding: 16px;
+    padding: 16px 16px 40px;
     box-sizing: border-box;
     background: linear-gradient(
       0.13deg,
@@ -136,8 +136,11 @@ export default {
       height: 100%;
     }
     img {
-      width: 100%;
-      height: 190px;
+      // width: 100%;
+      // height: 190px;
+      width: 424px;
+      height: 174px;
+      object-fit: cover;
     }
   }
   .item-title {
@@ -156,7 +159,7 @@ export default {
   }
 }
 .button {
-  margin-top: 18px;
+  margin-top: 24px;
   width: 124px;
   height: 32px;
   border: 1px solid #45454d;
@@ -187,8 +190,12 @@ export default {
     .more-tarot-items {
       width: 100%;
       margin-left: 0;
+      padding: 16 * $pr 16 * $pr 24 * $pr;
+       border-radius: 6 * $pr;
       img {
-        height: 180px;
+        // height: 180px;
+        width: 311 * $pr;
+        height: 127 * $pr;
       }
       .item-title {
         font-family: 'Rubik';
@@ -196,10 +203,20 @@ export default {
         font-weight: 400 * $pr;
         font-size: 22 * $pr;
         line-height: 30 * $pr;
+        margin-top: 16 * $pr;
       }
       .item-sub-title {
         font-size: 14 * $pr;
         line-height: 18 * $pr;
+        margin-top: 8 * $pr;
+      }
+      .button{
+        width: 220 * $pr;
+        height: 32 * $pr;
+        border-radius: 42 * $pr;
+        font-size: 14 * $pr;
+        line-height: 18 * $pr;
+        margin-top: 24 * $pr;
       }
     }
     .link:not(:first-child) {

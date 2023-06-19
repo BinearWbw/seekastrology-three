@@ -83,7 +83,8 @@
       </div>
       <div class="details_main_right">
         <google-ad classNames="rightAd"></google-ad>
-        <div class="details_main_right_list">
+        <!-- 右侧列表 -->
+        <!-- <div class="details_main_right_list">
           <a
             :href="`${getIntersperseUrl}/resources/details/${item.name
               .trim()
@@ -96,7 +97,7 @@
             <span>{{ item.name }}</span>
             <img src="../../../assets/img/resources/d_02.png" alt="" />
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="details_footer">
@@ -218,17 +219,17 @@ export default {
             return res || null
           }),
       ])
-      let immedList = await $apiList.articles
-        .getNews({
-          origin: process.env.origin,
-          cate: dataInfo.main_type_id,
-        })
-        .then((res) => {
-          return res?.list || null
-        })
+      // let immedList = await $apiList.articles
+      //   .getNews({
+      //     origin: process.env.origin,
+      //     cate: dataInfo.main_type_id,
+      //   })
+      //   .then((res) => {
+      //     return res?.list || null
+      //   })
       return {
         footList,
-        immedList,
+        // immedList,
         dataInfo,
         totalNum,
         totalPage,
@@ -275,7 +276,7 @@ export default {
         .then((res) => {
           this.dataInfo = res
           //获取对应右侧列表
-          this.getNews()
+          // this.getNews()
         })
     },
   },

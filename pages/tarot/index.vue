@@ -15,11 +15,11 @@
       </div>
       <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
     </div>
-    <div class="ad-box_row mt-48"></div>
+    <google-ad classNames="ad-box_row mt-48"></google-ad>
     <more-tarot class="mt-48"></more-tarot>
-    <div class="ad-box_row mt-32"></div>
+    <google-ad classNames="ad-box_row mt-32"></google-ad>
     <all-tarot class="mt-48"></all-tarot>
-    <div class="ad-box_row mt-32 mt-120 mb-32"></div>
+    <google-ad classNames="ad-box_row mt-32 mt-120 mb-32"></google-ad>
   </div>
 </template>
 
@@ -27,6 +27,7 @@
 import MoreTarot from '../../components/tarot/MoreTarot.vue'
 import TarotPlay from '../../components/tarot/TarotPlay.vue'
 import AllTarot from '../../components/tarot/AllTarot.vue'
+// import GoogleAd from '../../components/GoogleAd.vue'
 export default {
   name: 'tarot',
   components: {
@@ -34,8 +35,10 @@ export default {
     TarotPlay,
     AllTarot,
   },
-  data() {
-    return {}
+  data(){
+    return {
+    }
+    
   },
 }
 </script>
@@ -44,6 +47,9 @@ export default {
 @use 'sass:math';
 .tarot-container {
   color: #fff;
+}
+.tarot-container {
+  margin-top: 40px;
 }
 .title {
   font-family: 'Cinzel Decorative';
@@ -79,6 +85,7 @@ export default {
   height: 114px;
   margin: 0 auto;
   background-color: #555761;
+  overflow: hidden;
 }
 .button {
   margin-top: 18px;

@@ -9,8 +9,9 @@
   <div class="cards-box">
     <div class="card-wrapper">
       <div class="card-title">
-        The 78 Tarot cards are divided into two main <br />sections, the Major
-        Arcana and Minor Arcana, <br />and further into four suits:
+        The <span class="number">78</span> Tarot cards are divided into two main
+        <br />sections, the Major Arcana and Minor Arcana, <br />and further
+        into four suits:
       </div>
       <a href="/tarot/cards"><button class="button">View All</button></a>
     </div>
@@ -77,16 +78,16 @@ export default {
 .cards-box {
   padding-top: 96px;
   background-image: url('~assets/img/tarot/card_bg.png');
-  background-size: 100% 424px;
+  background-size: 100%;
   background-repeat: no-repeat;
   margin-top: 48px;
   .card-wrapper {
     display: flex;
-    max-width: 1420px;
+    width: 1400px;
     margin: 0 auto;
-    padding: 0 10px;
+    // padding: 0 10px;
     box-sizing: border-box;
-    justify-content: space-between;
+    // justify-content: space-between;
     // .button {
     //   margin-left: 315px;
     // }
@@ -97,6 +98,10 @@ export default {
     font-weight: 700;
     font-size: 26px;
     line-height: 36px;
+    width: 810px;
+    .number {
+      font-size: 40px;
+    }
   }
   .card-list {
     max-width: 1400px;
@@ -118,6 +123,12 @@ export default {
       width: 100%;
     }
     .card-text {
+      font-family: 'Rubik';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 30px;
+      color: rgba(255, 255, 255, 0.7);
       margin-top: 16px;
     }
   }
@@ -126,9 +137,11 @@ export default {
   }
 }
 .button {
+  width: 220px;
+  height: 44px;
+  flex: 1;
+  margin-left: 134px;
   margin-top: 18px;
-  width: 124px;
-  height: 32px;
   border: 1px solid #45454d;
   border-radius: 42px;
   font-family: 'Rubik';
