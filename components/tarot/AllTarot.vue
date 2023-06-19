@@ -10,12 +10,13 @@
     <div class="card-wrapper">
       <div class="card-title">
         The <span class="number">78</span> Tarot cards are divided into two main
-        <br />sections, the Major Arcana and Minor Arcana, <br />and further
-        into four suits:
+        sections, the Major Arcana and Minor Arcana, and further into four
+        suits:
       </div>
-      <a href="/tarot/cards"><button class="button">View All</button></a>
+      <div class="card-righter">
+        <a href="/tarot/cards"><button class="button">View All</button> </a>
+      </div>
     </div>
-
     <ul class="card-list">
       <li class="card-items">
         <img src="~/assets/img/tarot/card0.png" alt="" class="card-item-img" />
@@ -75,6 +76,8 @@ export default {
 
 <style lang="scss" scoped>
 @use 'sass:math';
+$block: 220px;
+$spacing: 75px;
 .cards-box {
   padding-top: 96px;
   background-image: url('~assets/img/tarot/card_bg.png');
@@ -91,26 +94,54 @@ export default {
     // .button {
     //   margin-left: 315px;
     // }
-  }
-  .card-title {
-    font-family: 'Cinzel Decorative';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 36px;
-    width: 810px;
-    .number {
-      font-size: 40px;
+    .card-title {
+      font-family: 'Cinzel Decorative';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 36px;
+      width: 760px;
+      .number {
+        font-size: 40px;
+      }
+    }
+    .card-righter {
+      flex: 1;
+      a {
+        display: block;
+        width: 220px;
+        height: 44px;
+        margin-left: 134px;
+        margin-top: 18px;
+        .button {
+          width: 220px;
+          height: 44px;
+          border: 1px solid #45454d;
+          border-radius: 42px;
+          font-family: 'Rubik';
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 14px;
+          line-height: 18px;
+          -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
+          transition: background-color 0.3s, color 0.3s;
+          &:hover {
+            color: #000;
+            background-color: #fff;
+          }
+        }
+      }
     }
   }
+
   .card-list {
-    max-width: 1400px;
-    margin: 60px auto 0;
+    // max-width: 1400px;
+    // margin: 60px auto 0;
     display: grid;
     grid-gap: 75px;
-    grid-template-columns: repeat(auto-fill, 220px);
+    grid-template-columns: repeat(5, 220px);
     justify-content: center;
     text-align: center;
+    margin-top: 60px;
     .card-items {
       -webkit-transition: transform 0.3s ease-in-out;
       transition: transform 0.3s ease-in-out;
@@ -136,38 +167,98 @@ export default {
     display: none;
   }
 }
-.button {
-  width: 220px;
-  height: 44px;
-  flex: 1;
-  margin-left: 134px;
-  margin-top: 18px;
-  border: 1px solid #45454d;
-  border-radius: 42px;
-  font-family: 'Rubik';
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
-  line-height: 18px;
-  -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
-  transition: background-color 0.3s, color 0.3s;
-  &:hover {
-    color: #000;
-    background-color: #fff;
+
+@media (max-width: (5 * $block + 4 * $spacing + 20px)) {
+  .cards-box {
+    padding-top: 30px;
+    .card-wrapper {
+      width: 4 * $block + 3 * 45px;
+    }
+    .card-list {
+      grid-template-columns: repeat(4, 220px);
+      grid-gap: 45px;
+    }
+  }
+}
+@media (max-width: (4 * $block + 3 * $spacing + 20px)) {
+  .cards-box {
+    padding-top: 10px;
+    .card-wrapper {
+      width: 3 * $block + 2 * 45px;
+      .card-title {
+        font-size: 16px;
+        width: 100%;
+      }
+    }
+    .card-list {
+      margin-top: 10px;
+      grid-template-columns: repeat(3, 220px);
+    }
+  }
+}
+@media (max-width: (3 * $block + 2 * $spacing + 20px)) {
+  .cards-box {
+    .card-wrapper {
+      width: 2 * $block + 1 * $spacing;
+      .card-title {
+        font-size: 14px;
+        .number {
+          font-size: 30px;
+        }
+      }
+      .card-righter {
+        align-self: center;
+        a {
+          margin-left: 0;
+        }
+      }
+    }
+    .card-list {
+      grid-template-columns: repeat(2, 220px);
+    }
   }
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .cards-box {
-    background: url('~assets/img/tarot/card_bg_mobile.png');
+    background: url('~assets/img/tarot/card_bg_mobile.png') no-repeat;
+    // background-position: center -32 * $pr;
     background-size: 100%;
     margin-left: -16 * $pr;
     margin-right: -16 * $pr;
-    padding-top: 32 * $pr;
-    height: 480px;
+    height: 480 * $pr;
+    padding: 0;
     .card-wrapper {
       width: 100%;
       flex-direction: column;
       align-items: center;
+
+      .card-title {
+        margin-top: 28 * $pr;
+        font-family: 'Rubik';
+        width: 295 * $pr;
+        font-weight: 400;
+        font-size: 22 * $pr;
+        line-height: 30 * $pr;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+
+        .number {
+          font-size: 22 * $pr;
+        }
+      }
+      .card-righter {
+        a {
+          width: 220 * $pr;
+          height: 44 * $pr;
+          .button {
+            width: 220 * $pr;
+            height: 44 * $pr;
+            font-size: 16 * $pr;
+            line-height: 22 * $pr;
+          }
+        }
+      }
       .button {
         margin-left: 0;
       }
@@ -191,7 +282,7 @@ export default {
       background-size: 100%;
       background-repeat: no-repeat;
       .list-mobile {
-        width: 114px;
+        width: 114 * $pr;
       }
       .list-mobile:nth-child(1) {
         transform: translateX(50%) rotate(-5deg);

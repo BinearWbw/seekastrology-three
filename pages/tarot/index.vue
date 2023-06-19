@@ -37,6 +37,7 @@ export default {
   },
   data(){
     return {
+
     }
     
   },
@@ -112,6 +113,12 @@ export default {
 }
 .mb-32 {
   margin-bottom: 32px;
+}
+@media (max-width: 940px) {
+  .ad-box_row{
+    width: 90%;
+    margin: 0 auto;
+  }
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);

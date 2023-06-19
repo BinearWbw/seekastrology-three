@@ -11,7 +11,7 @@
     <div class="more-tarot">
       <div class="more-tarot-items" v-show="showTarotType != 4">
         <a href="/tarot" class="link">
-          <img src="~/assets/img/tarot/daily.png" alt="" />
+          <img src="~/assets/img/tarot/day.png" alt="" />
           <p class="item-title">Daily Tarot</p>
           <p class="item-sub-title">
             What does the future have in store for you? Now is time to discover
@@ -34,7 +34,7 @@
 
       <div class="more-tarot-items" v-show="showTarotType != 2">
         <a :href="'/tarot/type?type=' + 2" class="link">
-          <img src="~/assets/img/tarot/cause.png" alt="" />
+          <img src="~/assets/img/tarot/rich.png" alt="" />
           <p class="item-title">Tarot Career Reading</p>
           <p class="item-sub-title">
             This free career Tarot reading is here to help you find success
