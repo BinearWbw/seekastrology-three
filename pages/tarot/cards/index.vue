@@ -362,6 +362,7 @@ export default {
       flex-wrap: wrap;
       justify-content: space-between;
       .major-list-item {
+        width: 106px;
         .major-item-img {
           height: 213px;
         }

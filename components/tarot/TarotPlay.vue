@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-20 13:52:43
+ * @LastEditTime: 2023-06-20 14:37:54
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -269,15 +269,16 @@ export default {
   data() {
     return {
       inPlay: false,
-      isSelected: false,
-      questionTop: false,
+      isSelected: false, // 是否视图上完成抽取
+      questionTop: false, 
       question: '',
-      cardsInfo: [],
-      showList: [],
-      numbers: 3,
-      mobileNumbers: 3,
-      count: 39,
-      mobileCount: 22,
+      cardsInfo: [], // 接口获取的数据
+      showList: [], // 展示抽中的牌
+      numbers: 3, // 需要抽取的牌张数
+      mobileNumbers: 3, // 移动端需要展示的牌数
+      mobileShowNumber: 0,
+      count: 39, // 塔罗牌计数
+      mobileCount: 22, // 移动端塔罗牌计数
       textObj: {
         1: 'Reveal Your Love Tarot<br /> Reading by<br /> Clicking 3 Cards Below',
         2: 'Reveal Your Career Tarot<br /> Reading by<br /> Clicking 5 Cards Below',
@@ -308,9 +309,10 @@ export default {
     },
     hanldeMobileClick(event) {
       let ele = event.target.nodeName
-      if (ele != 'IMG' || this.isSelected) {
+      if (ele != 'IMG' || this.mobileShowNumber == this.mobileNumbers ) {
         return
       }
+      this.mobileShowNumber++;
       event.target.parentNode.style.display = 'none'
     },
     handleBack() {
@@ -319,6 +321,7 @@ export default {
       this.isSelected = false
       this.cardsInfo = []
       this.showList = []
+      this.mobileShowNumber = 0
       if (this.type === '1' || this.type === '3') {
         this.numbers = 3
       } else if (this.type === '2') {
