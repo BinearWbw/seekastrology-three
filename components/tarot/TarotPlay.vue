@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-20 11:40:34
+ * @LastEditTime: 2023-06-20 11:55:15
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -47,7 +47,7 @@
           type="text"
           v-model="question"
           :disabled="questionTop"
-          maxlength="100"
+          maxlength="200"
           placeholder="Enter your question here"
           class="question-input"
         />
@@ -155,7 +155,7 @@
         <div class="mobile-question" v-show="type != 4">
           <textarea
             v-model="question"
-            maxlength="100"
+            maxlength="200"
             placeholder="Enter your question here"
             class="question-input"
             @input="handleValid"
@@ -784,6 +784,11 @@ export default {
         line-height: 18px;
         text-align: center;
         padding: 0 35px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-Box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
       }
       .tip-img-list {
         display: flex;
