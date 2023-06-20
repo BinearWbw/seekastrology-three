@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-20 18:13:40
+ * @LastEditTime: 2023-06-20 18:56:13
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -167,7 +167,7 @@
       <div class="in-play" v-if="inPlay" ref="playArea">
         <button class="back-btn" @click="handleBack"></button>
         <div class="tip-text" v-html="textObj[type]"></div>
-        <ul class="play-list" @click="hanldeMobileClick">
+        <ul class="play-list">
           <li
             class="play-list-item"
             v-for="index of mobileCount"
@@ -308,14 +308,6 @@ export default {
       }
       this.inPlay = true
     },
-    hanldeMobileClick(event) {
-      let ele = event.target.nodeName
-      if (ele != 'IMG' || this.mobileShowNumber == this.mobileNumbers) {
-        return
-      }
-      this.mobileShowNumber++
-      event.target.parentNode.style.display = 'none'
-    },
     handleBack() {
       this.question = ''
       this.inPlay = false
@@ -331,7 +323,14 @@ export default {
         this.numbers = 1
       }
     },
-    async handleClike() {
+    async handleClike(event) {
+      if(this.isSelected) {
+        return
+      }
+      let ele = event.target.nodeName
+      if(ele === 'IMG') {
+        event.target.parentNode.style.display = 'none'
+      }
       if (this.cardsInfo.length === 0) {
         await this.drawCard()
       }
@@ -358,24 +357,20 @@ export default {
           if (this.showList.length == 2) {
             this.showList.push(this.cardsInfo[this.showList.length])
             this.numbers--
-            this.count--
             this.isSelected = true
           } else {
             this.showList.push(this.cardsInfo[this.showList.length])
             this.numbers--
-            this.count--
           }
           break
         case '2':
           if (this.showList.length == 4) {
             this.showList.push(this.cardsInfo[this.showList.length])
             this.numbers--
-            this.count--
             this.isSelected = true
           } else {
             this.showList.push(this.cardsInfo[this.showList.length])
             this.numbers--
-            this.count--
           }
           break
         case '4':

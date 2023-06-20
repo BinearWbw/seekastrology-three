@@ -227,11 +227,12 @@ export default {
           margin-top: 48 * $pr;
           background-image: url('~assets/img/tarot/explain-bg.png');
           background-repeat: no-repeat;
+          background-size: 100%;
           .card-wrapper {
             margin: 0 auto 26 * $pr;
             .card-img {
-              width: 220 * $pr;
-              height: 390 * $pr;
+              width: 210 * $pr;
+              height: 420 * $pr;
             }
           }
           .card-text {
