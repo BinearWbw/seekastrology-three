@@ -167,7 +167,7 @@
             </div>
           </div>
         </div>
-        <google-ad class="google_ad"></google-ad>
+        <google-ad classNames="google_ad" :id="'5595713395'"></google-ad>
         <div class="details_main_left_btm">
           <div class="details_main_left_btm_title">MOST POPULAR QUIZZES</div>
           <div class="details_main_left_btm_list">
@@ -195,11 +195,11 @@
             </a>
           </div>
         </div>
-        <google-ad class="google_ad"></google-ad>
+        <google-ad classNames="google_ad" :id="'5404141708'"></google-ad>
       </div>
       <div class="details_main_right">
-        <google-ad class="google_ad"></google-ad>
-        <google-ad class="google_ad"></google-ad>
+        <google-ad classNames="google_ad" :id="'2626483862'"></google-ad>
+        <google-ad classNames="google_ad" :id="'3899488348'"></google-ad>
       </div>
     </div>
     <div class="foot_components" ref="foot_components">

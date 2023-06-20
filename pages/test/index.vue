@@ -55,14 +55,17 @@
             <google-ad
               classNames="google_ad top"
               v-if="list.length >= 8"
+              :id="'6715555076'"
             ></google-ad>
             <google-ad
               classNames="google_ad center"
               v-if="list.length >= 16"
+              :id="'5870227324'"
             ></google-ad>
             <google-ad
               classNames="google_ad btm"
               v-if="list.length >= 32"
+              :id="'2535818672'"
             ></google-ad>
           </div>
 
@@ -78,9 +81,12 @@
             </button>
           </div>
         </div>
-        <google-ad classNames="google_ad_h5btm"></google-ad>
+        <google-ad classNames="google_ad_h5btm" :id="'3465756968'"></google-ad>
         <div class="test_main_center_right" ref="right_google_ad">
-          <google-ad classNames="google_ad rightAd"></google-ad>
+          <google-ad
+            classNames="google_ad rightAd"
+            :id="'4665775103'"
+          ></google-ad>
         </div>
       </div>
     </div>

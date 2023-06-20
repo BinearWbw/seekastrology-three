@@ -3,7 +3,7 @@
     <!-- <google-ad class="google_ad_left"></google-ad>
     <google-ad class="google_ad_right"></google-ad> -->
     <div class="resources_main">
-      <google-ad classNames="google_ad"></google-ad>
+      <google-ad classNames="google_ad" :id="'9680645670'"></google-ad>
       <div class="resources_main_title">HOT Content</div>
       <div class="resources_main_top" v-if="list.length > 0">
         <a
@@ -144,7 +144,7 @@
           </a>
         </div>
       </div>
-      <google-ad classNames="google_ad"></google-ad>
+      <google-ad classNames="google_ad" :id="'5741400662'"></google-ad>
       <div class="resources_main_btm">
         <div class="resources_main_btm_tabs">
           <div
@@ -230,7 +230,7 @@
           </button>
         </div>
       </div>
-      <google-ad classNames="google_ad_btm"></google-ad>
+      <google-ad classNames="google_ad_btm" :id="'1344643045'"></google-ad>
     </div>
     <div class="foot_components" ref="foot_components">
       <!-- <transition name="fade">
@@ -1224,6 +1224,7 @@ $spacing: 16px;
                 height: 18 * $pr;
                 font-size: 12 * $pr;
                 top: 6 * $pr;
+                right: 5 * $pr;
                 color: rgba(255, 255, 255, 0.7);
               }
             }
