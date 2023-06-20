@@ -234,7 +234,7 @@ export default {
       showResult: false, //展示结果
       result: {}, //返回的数据
       disabledFlag: false, //禁用单选框状态
-      showQuestions: true, //展示问答（pc端直接展示问题和回答列表、h5先展示详情，点击开始答题后展示问答）
+      showQuestions: false, //展示问答（pc端直接展示问题和回答列表、h5先展示详情，点击开始答题后展示问题和回答列表）
       screenWidth: 0, //屏幕宽度
     }
   },
@@ -357,7 +357,7 @@ export default {
         .then((res) => {
           this.result = res
           //隐藏详情，展示问题和回答列表
-          this.showQuestions = true
+          // this.showQuestions = true
           //显示标题和描述
           this.$refs.nameAndDesc.style.display = 'block'
           //展示结果

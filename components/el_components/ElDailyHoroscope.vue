@@ -175,7 +175,7 @@ export default {
   $pr: math.div(1vw, 3.75);
   .daily_horoscope {
     &_main {
-      margin: 96 * $pr auto 0;
+      margin: 48 * $pr auto 0;
       padding: 0 16 * $pr;
       > h3 {
         margin-bottom: 32 * $pr;

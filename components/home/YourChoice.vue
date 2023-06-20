@@ -4,7 +4,7 @@
       class="choice__title"
       :class="{ to_page_padding: $route.path !== '/' }"
     >
-      <h3>
+      <h3 :class="{ h5_size: $route.path !== '/' }">
         {{
           $route.path === '/' ? 'Choose Your Zodiac Sign' : 'DAILY HOROSCOPES'
         }}
@@ -182,6 +182,10 @@ export default {
         font-size: 36 * $pr;
         line-height: 48 * $pr;
         margin-bottom: 8 * $pr;
+      }
+      .h5_size {
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
       }
       p {
         font-size: 22 * $pr;
