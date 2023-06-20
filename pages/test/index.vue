@@ -376,7 +376,7 @@ $spacing: 16px;
           width: 100%;
           display: grid;
           grid-template-columns: repeat(4, 220px);
-          grid-gap: 16px;
+          grid-gap: 48px 15px;
           align-self: flex-start;
           &_item {
             width: 220px;
@@ -392,6 +392,8 @@ $spacing: 16px;
               }
             }
             &_text {
+              margin-top: 16px;
+              padding: 0 5px;
               &_name {
                 font-family: 'Rubik';
                 font-style: normal;
@@ -412,7 +414,7 @@ $spacing: 16px;
             width: 924px;
             height: 114px;
             background: #555761;
-            margin: 48px 0;
+            margin: -16px 0 0;
             grid-column-end: 5;
             grid-column-start: span 4;
             grid-row-start: span 2;
