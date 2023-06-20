@@ -16,7 +16,7 @@
               class="left_tab_list"
               v-for="(item, index) in tabList"
               :key="index"
-              @click="handleDropdownChange(item.id)"
+              @click="handleDropdownChange(item)"
             >
               <div class="imgs">
                 <img :src="item.imgUrl" alt="#" />
@@ -333,6 +333,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'zodiac_details',
   data() {
@@ -454,31 +455,39 @@ export default {
       error({ statusCode: e.code, message: e.message })
     }
   },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
+  },
   methods: {
     handleDropdownChange(option) {
-      const selectValue =
-        typeof option === 'object' && option !== null ? option.id : option
-      this.getZodiacIData(selectValue)
+      //   const selectValue =
+      //     typeof option === 'object' && option !== null ? option.id : option
+      //   this.getZodiacIData(selectValue)
       this.openExpand = false
       this.openStarsign.map((i) => (i.openIf = false))
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
       })
+      window.location.href = `${
+        this.getIntersperseUrl
+      }/zodiac/details/${option.name
+        .replace(/[^a-zA-Z0-9\\s]/g, '-')
+        .toLowerCase()}-${option.id}/`
     },
-    getZodiacIData(id = null) {
-      this.$apiList.home
-        .getZodiacDetails({
-          origin: process.env.origin,
-          id: id,
-        })
-        .then((res) => {
-          this.zodiacIData = res
-          this.ids = res.id
-          this.tabsDataList = res?.traits
-          this.tabsDataList.push(res?.comp)
-        })
-    },
+    // getZodiacIData(id = null) {
+    //   this.$apiList.home
+    //     .getZodiacDetails({
+    //       origin: process.env.origin,
+    //       id: id,
+    //     })
+    //     .then((res) => {
+    //       this.zodiacIData = res
+    //       this.ids = res.id
+    //       this.tabsDataList = res?.traits
+    //       this.tabsDataList.push(res?.comp)
+    //     })
+    // },
     setOpenExpand() {
       this.openExpand = !this.openExpand
       window.scrollTo({
