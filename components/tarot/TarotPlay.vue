@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-20 14:37:54
+ * @LastEditTime: 2023-06-20 15:44:45
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -291,7 +291,7 @@ export default {
   methods: {
     handleInput() {
       if (!this.question.trim()) {
-        this.$toast('Please enter your question')
+        alert('Please enter your question')
         return
       }
       this.questionTop = true
@@ -302,7 +302,8 @@ export default {
       this.question = this.question.replace(regex, ' ')
     },
     handleMobileInpit() {
-      if (!this.question) {
+      if (!this.question.trim()) {
+        alert('Please enter your question')
         return
       }
       this.inPlay = true
