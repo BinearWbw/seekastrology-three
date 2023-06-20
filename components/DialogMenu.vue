@@ -168,8 +168,8 @@ export default {
       &__top {
         height: 60 * $pr;
         .close {
-          width: 18 * $pr;
-          height: 18 * $pr;
+          width: 20 * $pr;
+          height: 20 * $pr;
         }
       }
       .menu {

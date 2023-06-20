@@ -25,11 +25,13 @@
           </div>
         </div>
         <div class="top_last">
-          <img
-            class="logo_img"
-            src="~/assets/img/header/logoImg.png"
-            alt="logo"
-          />
+          <a :href="getIntersperseUrl">
+            <img
+              class="logo_img"
+              src="~/assets/img/header/logoImg.png"
+              alt="logo"
+            />
+          </a>
           <div class="media" v-if="false">
             <a
               :href="item.link"
@@ -63,7 +65,7 @@ export default {
           content: [
             {
               link: 'Astrology',
-              path: '/astrology/',
+              path: '/zodiac/',
             },
             {
               link: 'Zodiac Signs',
@@ -349,8 +351,6 @@ export default {
 }
 @media (max-width: (1250px)) {
   .footer {
-    &__main {
-    }
     .bottom {
       flex-direction: column-reverse;
       .left {
@@ -395,7 +395,7 @@ export default {
       padding: 48 * $pr 16 * $pr 0;
       .logo_mobile_img {
         display: block;
-        width: 107 * $pr;
+        width: 154 * $pr;
         margin: 0 auto 32 * $pr;
       }
       .top {
