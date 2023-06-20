@@ -80,6 +80,7 @@ export default {
           title: 'Zodiac Signs',
           path: '/zodiac/',
           href: '/zodiac/',
+          childrenShow: false,
           children: [
             {
               title: 'Aries ( Mar 21 - Apr 19 )',
@@ -147,6 +148,7 @@ export default {
           title: 'Tarot',
           path: '/tarot/',
           href: '/tarot/',
+          childrenShow: true,
           children: [
             {
               title: 'Tarot Predictions',

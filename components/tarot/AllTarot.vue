@@ -14,29 +14,61 @@
         suits:
       </div>
       <div class="card-righter">
-        <a href="/tarot/cards"><button class="button">View All</button> </a>
+        <a :href="`${getIntersperseUrl}/tarot/cards`"
+          ><button class="button">View All</button>
+        </a>
       </div>
     </div>
     <ul class="card-list">
       <li class="card-items">
-        <img src="~/assets/img/tarot/card0.png" alt="" class="card-item-img" />
-        <div class="card-text">The Fool</div>
+        <a :href="`${getIntersperseUrl}/tarot/cards`">
+          <img
+            src="~/assets/img/tarot/card0.png"
+            alt=""
+            class="card-item-img"
+          />
+          <div class="card-text">The Fool</div>
+        </a>
       </li>
       <li class="card-items">
-        <img src="~/assets/img/tarot/card1.png" alt="" class="card-item-img" />
-        <div class="card-text">The Magician</div>
+        <a :href="`${getIntersperseUrl}/tarot/cards`">
+          <img
+            src="~/assets/img/tarot/card1.png"
+            alt=""
+            class="card-item-img"
+          />
+          <div class="card-text">The Magician</div>
+        </a>
       </li>
       <li class="card-items">
-        <img src="~/assets/img/tarot/card2.png" alt="" class="card-item-img" />
-        <div class="card-text">The High Priestess</div>
+        <a :href="`${getIntersperseUrl}/tarot/cards`">
+          <img
+            src="~/assets/img/tarot/card2.png"
+            alt=""
+            class="card-item-img"
+          />
+          <div class="card-text">The High Priestess</div>
+        </a>
       </li>
       <li class="card-items">
-        <img src="~/assets/img/tarot/card3.png" alt="" class="card-item-img" />
-        <div class="card-text">The Empress</div>
+        <a :href="`${getIntersperseUrl}/tarot/cards`">
+          <img
+            src="~/assets/img/tarot/card3.png"
+            alt=""
+            class="card-item-img"
+          />
+          <div class="card-text">The Empress</div>
+        </a>
       </li>
       <li class="card-items">
-        <img src="~/assets/img/tarot/card4.png" alt="" class="card-item-img" />
-        <div class="card-text">The Emperor</div>
+        <a :href="`${getIntersperseUrl}/tarot/cards`">
+          <img
+            src="~/assets/img/tarot/card4.png"
+            alt=""
+            class="card-item-img"
+          />
+          <div class="card-text">The Emperor</div>
+        </a>
       </li>
     </ul>
     <ul class="card-list-mobile">
@@ -66,10 +98,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'AllTarot',
   data() {
     return {}
+  },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
   },
 }
 </script>
