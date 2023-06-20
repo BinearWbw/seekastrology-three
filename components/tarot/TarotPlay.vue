@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-20 11:35:52
+ * @LastEditTime: 2023-06-20 11:40:34
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -281,7 +281,7 @@ export default {
       textObj: {
         1: 'Reveal Your Love Tarot<br /> Reading by<br /> Clicking 3 Cards Below',
         2: 'Reveal Your Career Tarot<br /> Reading by<br /> Clicking 5 Cards Below',
-        3: 'Reveal Your the problems<br /> you’re facing by<br /> Clicking 3 Cards Below',
+        3: "Reveal Your the problems<br /> you're facing by<br /> Clicking 3 Cards Below",
         4: 'The Tarot Card of the Day is...',
       },
     }
