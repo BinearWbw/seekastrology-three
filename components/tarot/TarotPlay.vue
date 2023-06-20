@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-20 11:55:15
+ * @LastEditTime: 2023-06-20 13:52:43
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -545,7 +545,7 @@ export default {
     display: flex;
     justify-content: center;
     .item-img {
-      width: 260px;
+      width: 220px;
       height: 440px;
       &:not(:first-child) {
         margin-left: 20px;
