@@ -297,8 +297,7 @@ export default {
         //隐藏标题和描述
         this.$refs.nameAndDesc.style.display = 'none'
         //隐藏回答问题列表
-        this.showQuestions = false
-
+        // this.showQuestions = false
         if (this.showResult || this.currentQuestionIndex > 0 || this.nextFlag) {
           //显示回答问题列表
           this.showQuestions = true
