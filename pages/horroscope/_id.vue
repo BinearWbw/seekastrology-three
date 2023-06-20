@@ -6,8 +6,9 @@
         <div class="datails_list">
           <div class="list_top">
             <h3>
-              {{ moreData[comentId].name }}
+              {{ toUpperBig(currentName) }}
               <br />
+              {{ moreData[comentId].name }}
               Horoscope
             </h3>
             <div class="pull_down">
@@ -68,10 +69,8 @@
 </template>
 
 <script>
-import ElDailyHoroscope from '../../components/el_components/ElDailyHoroscope.vue'
-import ElPairing from '../../components/el_components/ElPairing.vue'
+import { mapGetters } from 'vuex'
 export default {
-  components: { ElPairing, ElDailyHoroscope },
   name: 'Horroscope',
   data() {
     return {
@@ -161,7 +160,8 @@ export default {
   },
   async asyncData({ error, $apiList, params }) {
     try {
-      let ids = 1
+      let ids = 1,
+        currentName = ''
       let [youlistData] = await Promise.all([
         $apiList.home
           .getZodiacHoroscope({
@@ -174,12 +174,14 @@ export default {
           })
           .then((res) => {
             ids = res.id
+            currentName = res.name
             return res.horoscope
           }),
       ])
       return {
         ids,
         youlistData,
+        currentName,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
@@ -220,6 +222,7 @@ export default {
         },
       ]
     },
+    ...mapGetters(['getIntersperseUrl']),
   },
   methods: {
     async getHoroscopeData(id = 1, kind = 'd') {
@@ -236,11 +239,13 @@ export default {
     handleDropdownChange(option) {
       // 点击下拉框
       this.ids = option.id
-      this.getHoroscopeData(option.id, this.currentTime)
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
       })
+      window.location.href = `${this.getIntersperseUrl}/horroscope/${option.name
+        .replace(/[^a-zA-Z0-9\\s]/g, '-')
+        .toLowerCase()}-${option.id}/`
     },
     setCorresponding(i) {
       // 点击其他运势
@@ -254,6 +259,9 @@ export default {
       // 点击tabs
       this.currentTime = i.type
       this.getHoroscopeData(this.ids, i.type)
+    },
+    toUpperBig(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1)
     },
   },
 }
