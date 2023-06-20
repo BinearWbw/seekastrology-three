@@ -1,63 +1,65 @@
 <template>
-  <div class="tarot-container">
-    <div class="title">{{ titleText[type] }}</div>
-    <div class="tarot-section">
-      <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
-      <div class="tarot-box">
-        <tarot-play :type="type" ref="play"></tarot-play>
-      </div>
-      <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
-    </div>
-    <div class="introduce-box">
-      <div class="intro">
-        <div class="intro-title">{{ textObj[type].title }}</div>
-        <div class="intro-content" v-html="textObj[type].desc"></div>
-      </div>
-      <google-ad class="ad-box_row mt_80"></google-ad>
-      <!-- <div class="divination">
-        <div class="divination-title">Prepare for Divination</div>
-        <div class="divination-wrapper">
-          <div class="divination-item">
-            <div class="divination-text">Relaxation:</div>
-            <div class="divination-content">
-              Tiake adeeptbreath,relaxyour body and mind, help cear your mind
-              ofditracions and emptyousel, and quit our mind completeky fyou are
-              in anoisy emvironment,tryto thangetoa quieter environment or
-              change to a comfortable position.
-            </div>
-          </div>
-          <div class="divination-item">
-            <div class="divination-text">Relaxation:</div>
-            <div class="divination-content">
-              Tiake adeeptbreath,relaxyour body and mind, help cear your mind
-              ofditracions and emptyousel, and quit our mind completeky fyou are
-              in anoisy emvironment,tryto thangetoa quieter environment or
-              change to a comfortable position.
-            </div>
-          </div>
-          <div class="divination-item">
-            <div class="divination-text">Relaxation:</div>
-            <div class="divination-content">
-              Tiake adeeptbreath,relaxyour body and mind, help cear your mind
-              ofditracions and emptyousel, and quit our mind completeky fyou are
-              in anoisy emvironment,tryto thangetoa quieter environment or
-              change to a comfortable position.
-            </div>
-          </div>
-          <div class="divination-item">
-            <div class="divination-text">Relaxation:</div>
-            <div class="divination-content">
-              Tiake adeeptbreath,relaxyour body and mind, help cear your mind
-              ofditracions and emptyousel, and quit our mind completeky fyou are
-              in anoisy emvironment,tryto thangetoa quieter environment or
-              change to a comfortable position.
-            </div>
-          </div>
+  <div>
+    <div class="tarot-container">
+      <div class="title">{{ titleText[type] }}</div>
+      <div class="tarot-section">
+        <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
+        <div class="tarot-box">
+          <tarot-play :type="type" ref="play"></tarot-play>
         </div>
-      </div> -->
+        <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
+      </div>
+      <div class="introduce-box">
+        <div class="intro">
+          <div class="intro-title">{{ textObj[type].title }}</div>
+          <div class="intro-content" v-html="textObj[type].desc"></div>
+        </div>
+        <google-ad class="ad-box_row mt_80"></google-ad>
+        <!-- <div class="divination">
+              <div class="divination-title">Prepare for Divination</div>
+              <div class="divination-wrapper">
+                <div class="divination-item">
+                  <div class="divination-text">Relaxation:</div>
+                  <div class="divination-content">
+                    Tiake adeeptbreath,relaxyour body and mind, help cear your mind
+                    ofditracions and emptyousel, and quit our mind completeky fyou are
+                    in anoisy emvironment,tryto thangetoa quieter environment or
+                    change to a comfortable position.
+                  </div>
+                </div>
+                <div class="divination-item">
+                  <div class="divination-text">Relaxation:</div>
+                  <div class="divination-content">
+                    Tiake adeeptbreath,relaxyour body and mind, help cear your mind
+                    ofditracions and emptyousel, and quit our mind completeky fyou are
+                    in anoisy emvironment,tryto thangetoa quieter environment or
+                    change to a comfortable position.
+                  </div>
+                </div>
+                <div class="divination-item">
+                  <div class="divination-text">Relaxation:</div>
+                  <div class="divination-content">
+                    Tiake adeeptbreath,relaxyour body and mind, help cear your mind
+                    ofditracions and emptyousel, and quit our mind completeky fyou are
+                    in anoisy emvironment,tryto thangetoa quieter environment or
+                    change to a comfortable position.
+                  </div>
+                </div>
+                <div class="divination-item">
+                  <div class="divination-text">Relaxation:</div>
+                  <div class="divination-content">
+                    Tiake adeeptbreath,relaxyour body and mind, help cear your mind
+                    ofditracions and emptyousel, and quit our mind completeky fyou are
+                    in anoisy emvironment,tryto thangetoa quieter environment or
+                    change to a comfortable position.
+                  </div>
+                </div>
+              </div>
+            </div> -->
+      </div>
+      <more-tarot class="el_more"></more-tarot>
+      <google-ad class="ad-box_row mt_80"></google-ad>
     </div>
-    <more-tarot class="el_more"></more-tarot>
-    <google-ad class="ad-box_row mt_80"></google-ad>
     <home-your-choice class="el_choice"></home-your-choice>
     <transition name="fade">
       <home-pop-articles class="el_pop"></home-pop-articles>
@@ -292,6 +294,7 @@ export default {
     }
     .el_more {
       margin-top: 48 * $pr;
+      padding: 0;
     }
     .el_choice {
       margin-top: 48 * $pr;

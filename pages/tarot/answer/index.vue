@@ -203,6 +203,9 @@ export default {
   $pr: math.div(1vw, 3.75);
   .tarot-container {
     padding: 44 * $pr 16 * $pr 0;
+    > .container {
+      padding: 0;
+    }
     .title {
       font-family: 'Cinzel Decorative';
       font-style: normal;
