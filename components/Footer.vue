@@ -91,11 +91,11 @@ export default {
             },
             {
               link: 'Career Tarot',
-              path: '/tarot/type?type=1',
+              path: '/tarot/type?type=2',
             },
             {
               link: 'Love Tarot',
-              path: '/tarot/type?type=2',
+              path: '/tarot/type?type=1',
             },
             {
               link: 'Universal Tarot',
