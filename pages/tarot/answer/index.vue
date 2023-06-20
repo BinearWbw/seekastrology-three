@@ -1,7 +1,7 @@
 <template>
   <div class="tarot-container">
     <div class="title">What the Tarot Cards Mean in This Reading</div>
-    <google-ad class="ad-box_row mt-48 title_ad"></google-ad>
+    <google-ad classNames="title_ad"></google-ad>
     <div class="tarot-section">
       <!-- <div class="ad-box"></div> -->
       <div class="main-content">
@@ -31,9 +31,9 @@
       </div>
       <!-- <div class="ad-box"></div> -->
     </div>
-    <google-ad class="google_ad"></google-ad>
+    <google-ad classNames="google_ad"></google-ad>
     <more-tarot class="mt-48"></more-tarot>
-    <google-ad class="google_ad"></google-ad>
+    <google-ad classNames="google_ad"></google-ad>
   </div>
 </template>
 
@@ -112,12 +112,6 @@ export default {
       background-color: #555761;
     }
   }
-  .ad-box_row {
-    width: 924px;
-    height: 114px;
-    margin: 0 auto;
-    background-color: #555761;
-  }
   .main-content {
     margin: 124px 32px 0;
     flex: 1;
@@ -171,6 +165,14 @@ export default {
     margin-top: 200px;
   }
 
+  .title_ad {
+    width: 924px;
+    height: 114px;
+    overflow: hidden;
+    margin: 48px auto 0;
+    background-color: #555761;
+  }
+
   .google_ad {
     width: 924px;
     height: 114px;
@@ -201,13 +203,6 @@ export default {
   $pr: math.div(1vw, 3.75);
   .tarot-container {
     padding: 44 * $pr 16 * $pr 0;
-    .ad-box_row {
-      width: 100%;
-      height: 300 * $pr;
-      &.title_ad {
-        height: 114 * $pr;
-      }
-    }
     .title {
       font-family: 'Cinzel Decorative';
       font-style: normal;
@@ -262,6 +257,11 @@ export default {
     }
     .mt-48 {
       margin-top: 48 * $pr;
+    }
+    .title_ad {
+      width: 100%;
+      height: 114 * $pr;
+      margin: 48 * $pr auto 0;
     }
     .google_ad {
       width: 100%;

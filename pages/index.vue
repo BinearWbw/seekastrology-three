@@ -306,6 +306,9 @@ export default {
       }
       .module {
         &.choice {
+          > .choice {
+            padding: 0;
+          }
           .google_ad {
             margin: 40 * $pr auto 0;
             width: 100%;
@@ -326,6 +329,9 @@ export default {
           }
         }
         &.new_pop {
+          > .pop_maximum {
+            padding: 0;
+          }
           margin-top: 87 * $pr;
         }
       }
