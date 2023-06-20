@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-20 11:04:21
+ * @LastEditTime: 2023-06-20 11:35:52
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -110,6 +110,21 @@
           </div>
         </div>
       </div>
+      <div class="mask-wrapper" v-show="isSelected && questionTop">
+        <div class="show-wrapper" :class="styleObj">
+          <nuxt-img
+            class="item-img"
+            v-for="(item, index) in showList"
+            :class="{ 'img-rotate': item.desc_type == 2 }"
+            :key="index"
+            :src="item.icon || '/'"
+            :alt="item.name"
+          ></nuxt-img>
+        </div>
+        <div class="handle-btn" @click="handleAnswer">
+          <img class="btn-img" src="~/assets/img/tarot/btn.png" alt="btn" />
+        </div>
+      </div>
     </div>
 
     <div class="mobile-wrapper">
@@ -202,21 +217,6 @@
         <div class="in-play-ad"></div>
       </div>
     </div>
-    <div class="mask-wrapper" v-show="isSelected && questionTop">
-      <div class="show-wrapper" :class="styleObj">
-        <nuxt-img
-          class="item-img"
-          v-for="(item, index) in showList"
-          :class="{ 'img-rotate': item.desc_type == 2 }"
-          :key="index"
-          :src="item.icon || '/'"
-          :alt="item.name"
-        ></nuxt-img>
-      </div>
-      <div class="handle-btn" @click="handleAnswer">
-        <img class="btn-img" src="~/assets/img/tarot/btn.png" alt="btn" />
-      </div>
-    </div>
   </div>
 </template>
 
@@ -268,7 +268,6 @@ export default {
   },
   data() {
     return {
-      isMobile: false,
       inPlay: false,
       isSelected: false,
       questionTop: false,
@@ -287,9 +286,7 @@ export default {
       },
     }
   },
-  mounted() {
-    this.isMobile = window.innerWidth <= 750
-  },
+  mounted() {},
   methods: {
     handleInput() {
       if (!this.question.trim()) {
@@ -657,6 +654,8 @@ export default {
   .play-container {
     width: calc(100vw - 1 * $pr);
     height: 375 * $pr;
+    background-size: contain;
+    background-position: 0px 200px;
     .pc-wrapper {
       display: none;
     }

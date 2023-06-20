@@ -222,6 +222,8 @@ export default {
         .content-list-item {
           flex-direction: column;
           margin-top: 48 * $pr;
+          background-image: url('~assets/img/tarot/explain-bg.png');
+          background-repeat: no-repeat;
           .card-wrapper {
             margin: 0 auto 26 * $pr;
             .card-img {

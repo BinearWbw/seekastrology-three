@@ -198,7 +198,7 @@ export default {
       border-radius: 6 * $pr;
       img {
         // height: 180px;
-        width: 311 * $pr;
+        width: 100%;
         height: 127 * $pr;
       }
       .item-title {
