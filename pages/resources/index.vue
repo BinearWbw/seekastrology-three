@@ -921,7 +921,8 @@ $spacing: 16px;
           justify-content: center;
         }
       }
-      .google_ad,.google_ad_btm {
+      .google_ad,
+      .google_ad_btm {
         width: 100%;
         width: 900px;
       }
@@ -942,7 +943,8 @@ $spacing: 16px;
           grid-template-columns: repeat(1, 456px);
         }
       }
-      .google_ad,.google_ad_btm {
+      .google_ad,
+      .google_ad_btm {
         width: 700px;
       }
     }
@@ -970,7 +972,8 @@ $spacing: 16px;
           grid-template-columns: repeat(1, 456px);
         }
       }
-      .google_ad,.google_ad {
+      .google_ad,
+      .google_ad {
         width: 700px;
       }
     }
@@ -1141,6 +1144,7 @@ $spacing: 16px;
       .google_ad_btm {
         width: 343 * $pr;
         height: 299 * $pr;
+        margin: 48 * $pr auto;
       }
 
       &_btm {

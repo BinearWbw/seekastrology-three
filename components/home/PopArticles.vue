@@ -1,7 +1,7 @@
 <template>
   <div class="pop_maximum">
     <div class="pop_main">
-      <h3>Popular Articles</h3>
+      <h3 :class="{ h5_size: $route.path !== '/' }">Popular Articles</h3>
       <div class="pop_news">
         <div class="news_left">
           <a
@@ -358,6 +358,10 @@ export default {
         font-size: 36 * $pr;
         line-height: 48 * $pr;
       }
+      .h5_size {
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
+      }
       .pop_news {
         flex: 1;
         width: 100%;
@@ -402,6 +406,7 @@ export default {
               }
             }
             .text_time {
+              display: none;
               position: absolute;
               top: 10 * $pr;
               right: 0;
@@ -447,7 +452,7 @@ export default {
                 & > :nth-child(1) {
                   font-size: 14 * $pr;
                   line-height: 18 * $pr;
-                  padding-right: 30 * $pr;
+                  //   padding-right: 30 * $pr;
                 }
                 & > :nth-child(2) {
                   font-size: 12 * $pr;
@@ -457,6 +462,7 @@ export default {
               }
 
               .news_right_time {
+                display: none;
                 position: absolute;
                 margin-left: 0;
                 right: 0;
