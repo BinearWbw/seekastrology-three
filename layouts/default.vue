@@ -118,7 +118,7 @@ export default {
     }
     .scroll_to_top {
       display: block;
-      top: 200 * $pr;
+      bottom: 100 * $pr;
       right: 5 * $pr;
       width: 48 * $pr;
       height: 48 * $pr;

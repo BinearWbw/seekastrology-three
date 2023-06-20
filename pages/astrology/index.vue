@@ -205,10 +205,10 @@ export default {
           female: this.females,
         })
         .then((res) => {
-          sessionStorage.removeItem('genderList')
           this.compatibilityData = res
         })
       this.$refs.target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      sessionStorage.removeItem('genderList')
     },
     infoGetStartPairing() {
       const storedObject = JSON.parse(sessionStorage.getItem('genderList'))

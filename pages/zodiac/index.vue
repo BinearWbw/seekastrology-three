@@ -28,7 +28,7 @@
                 .replace(/[^a-zA-Z0-9\\s]/g, '-')
                 .toLowerCase()}-${item.id}/`"
             >
-              <h4>{{ item.name }}</h4>
+              <h4>{{ toUpperBig(item.name) }}</h4>
               <p class="time">{{ item.dates }}</p>
               <div class="text">{{ item.main_label }}</div>
               <nuxt-img
@@ -84,6 +84,11 @@ export default {
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
     }
+  },
+  methods: {
+    toUpperBig(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1)
+    },
   },
 }
 </script>
@@ -299,7 +304,7 @@ export default {
                 font-weight: 400;
                 font-size: 22 * $pr;
                 line-height: 30 * $pr;
-                color: rgba(255, 255, 255, 0.7);
+                color: #fff;
               }
               .time {
                 font-size: 16 * $pr;

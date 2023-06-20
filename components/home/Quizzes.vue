@@ -1,7 +1,7 @@
 <template>
   <div class="quizzes_own">
     <div class="quizzes">
-      <h3>pOPULAR qUIZZES</h3>
+      <h3 :class="{ h5_size: $route.path !== '/' }">pOPULAR qUIZZES</h3>
       <div class="quizzes_sliding">
         <div class="banner banner_left">
           <button class="banner_prev"></button>
@@ -312,7 +312,7 @@ export default {
   $pr: math.div(1vw, 3.75);
   .quizzes_own {
     width: 100%;
-    margin: 30 * $pr auto 0;
+    margin: 48 * $pr auto 0;
     .quizzes {
       width: 100%;
       height: 100%;
@@ -322,6 +322,10 @@ export default {
         font-size: 36 * $pr;
         line-height: 48 * $pr;
         text-align: center;
+      }
+      .h5_size {
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
       }
       &_sliding {
         width: 100%;
