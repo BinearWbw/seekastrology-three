@@ -79,10 +79,10 @@
             </div>
           </div>
         </div>
-        <google-ad classNames="leftAd"></google-ad>
+        <google-ad classNames="leftAd" :id="'9575035598'"></google-ad>
       </div>
       <div class="details_main_right">
-        <google-ad classNames="rightAd"></google-ad>
+        <google-ad classNames="rightAd" :id="'8812069528'"></google-ad>
         <!-- 右侧列表 -->
         <!-- <div class="details_main_right_list">
           <a
@@ -160,7 +160,7 @@
         </a>
       </div>
     </div>
-    <google-ad classNames="google_ad_footer"></google-ad>
+    <google-ad classNames="google_ad_footer" :id="'4872824519'"></google-ad>
     <div class="foot_components" ref="foot_components">
       <!-- <transition name="fade">
         <el-daily-horoscope ref="horoscope"></el-daily-horoscope>
@@ -433,7 +433,7 @@ $spacing: 16px;
               height: auto;
               margin-bottom: 0;
             }
-            :deep(figure){
+            :deep(figure) {
               display: flex;
               justify-content: center;
             }
@@ -737,7 +737,7 @@ $spacing: 16px;
                 line-height: 18 * $pr;
               }
             }
-            &_video{
+            &_video {
               margin-top: 32 * $pr;
               height: 200 * $pr;
             }
