@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-16 17:33:38
+ * @LastEditTime: 2023-06-20 16:44:54
  * @FilePath: /seekastrology/components/tarot/AllTarot.vue
  * @Description: 
 -->
@@ -42,21 +42,21 @@
     <ul class="card-list-mobile">
       <li class="list-mobile">
         <img
-          src="~/assets/img/home/tarot_card.png"
+          src="~/assets/img/tarot/card0.png"
           alt=""
           class="list-mobile-img"
         />
       </li>
       <li class="list-mobile">
         <img
-          src="~/assets/img/home/tarot_card.png"
+          src="~/assets/img/tarot/card1.png"
           alt=""
           class="list-mobile-img"
         />
       </li>
       <li class="list-mobile">
         <img
-          src="~/assets/img/home/tarot_card.png"
+          src="~/assets/img/tarot/card2.png"
           alt=""
           class="list-mobile-img"
         />
