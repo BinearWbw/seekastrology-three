@@ -18,6 +18,7 @@
               }`"
               v-for="(cont, index) in item.content"
               :key="index"
+              @click="saveTabId($event, cont)"
             >
               {{ cont.link }}
             </a>
@@ -120,12 +121,12 @@ export default {
               id: 4,
             },
             {
-              link: 'tarot',
+              link: 'Tarot',
               path: '/resources/',
               id: 3,
             },
             {
-              link: 'love',
+              link: 'Love',
               path: '/resources/',
               id: 5,
             },
@@ -172,6 +173,12 @@ export default {
     ...mapGetters(['getIntersperseUrl']),
   },
   methods: {
+    saveTabId(event, cont) {
+      // 阻止默认的页面跳转行为
+      event.preventDefault()
+      if (cont.id) sessionStorage.setItem('RESOURCES_TAB_ID', cont.id)
+      window.location.href = event.target.href
+    },
     goTop() {
       window.scrollTo({
         top: 0,

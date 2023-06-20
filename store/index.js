@@ -24,6 +24,7 @@ export const mutations = {
   UPDATE_INTERSPERSE_URL(state, payload) {
     state.intersperseUrl = payload
   },
+
 }
 export const actions = {
   toast({ state }, res) {
@@ -31,4 +32,5 @@ export const actions = {
       this.$toast[res.type ? res.type : 'info'](res.msg, state.toastCfg)
     }
   },
+
 }

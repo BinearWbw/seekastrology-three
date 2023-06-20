@@ -261,6 +261,8 @@ export default {
   },
   async asyncData({ error, $apiList, query }) {
     try {
+      // let RESOURCES_TAB_ID = sessionStorage.getItem('RESOURCES_TAB_ID')
+      // console.log(RESOURCES_TAB_ID)
       //获取是否从其他页面跳转进来，如果是就给item赋值，item为当前中间导航tabs选中的值
       let item = query?.id ? { id: Number(query.id) } : null,
         currentTabIndex = 0,
@@ -992,9 +994,11 @@ $spacing: 16px;
       &_top {
         justify-content: center;
         flex-wrap: wrap;
+        margin-top: 12 * $pr;
         &_left {
           width: 343 * $pr;
-          min-height: 256 * $pr;
+          min-height: 234 * $pr;
+
           &_img {
             width: 343 * $pr;
             height: 193 * $pr;
@@ -1039,6 +1043,7 @@ $spacing: 16px;
             }
           }
           &_content {
+            margin: 10 * $pr 5 * $pr 12 * $pr;
             &_title {
               justify-content: center;
               align-items: center;
@@ -1073,12 +1078,12 @@ $spacing: 16px;
         }
         &_right {
           grid-template-columns: repeat(2, 169 * $pr);
-          grid-gap: 5 * $pr;
+          grid-gap: 0 5 * $pr;
           margin-left: 0;
           justify-content: center;
           &_item {
             width: 169 * $pr;
-            min-height: 160 * $pr;
+            min-height: 150 * $pr;
             &_img {
               width: 169 * $pr;
               height: 95 * $pr;
@@ -1122,6 +1127,7 @@ $spacing: 16px;
               }
             }
             &_content {
+              margin: 12 * $pr 5 * $pr;
               &_title {
                 &_text {
                   font-size: 14 * $pr;
@@ -1130,7 +1136,7 @@ $spacing: 16px;
                   color: rgba(255, 255, 255, 0.7);
                   text-align: left;
                   word-break: break-all;
-                  margin-top: 12 * $pr;
+                  // margin-top: 12 * $pr;
                 }
               }
               &_subscribe {
@@ -1180,7 +1186,7 @@ $spacing: 16px;
         }
         &_main {
           grid-template-columns: repeat(2, 169 * $pr);
-          grid-gap: 5 * $pr;
+          grid-gap: 0 5 * $pr;
           width: 100%;
           margin: 0 16 * $pr auto;
           margin-left: 0;
@@ -1236,19 +1242,23 @@ $spacing: 16px;
               margin-top: 12 * $pr;
             }
             &_text {
+              padding: 12 * $pr 5 * $pr;
+              word-break: break-all;
               &_title,
               &_date {
                 font-size: 14 * $pr;
                 line-height: 18 * $pr;
                 color: rgba(255, 255, 255, 0.7);
-                width: 169 * $pr;
+                width: 100%;
+                margin-top: 0;
+                word-break: break-all;
               }
               &_title {
                 white-space: normal;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
                 display: -webkit-box;
-                margin-top: 12 * $pr;
+                // margin-top: 12 * $pr;
               }
               &_subscribe {
                 display: none;
