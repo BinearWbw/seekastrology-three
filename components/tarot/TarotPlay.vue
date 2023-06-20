@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-20 15:44:45
+ * @LastEditTime: 2023-06-20 18:13:40
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -270,7 +270,7 @@ export default {
     return {
       inPlay: false,
       isSelected: false, // 是否视图上完成抽取
-      questionTop: false, 
+      questionTop: false,
       question: '',
       cardsInfo: [], // 接口获取的数据
       showList: [], // 展示抽中的牌
@@ -310,10 +310,10 @@ export default {
     },
     hanldeMobileClick(event) {
       let ele = event.target.nodeName
-      if (ele != 'IMG' || this.mobileShowNumber == this.mobileNumbers ) {
+      if (ele != 'IMG' || this.mobileShowNumber == this.mobileNumbers) {
         return
       }
-      this.mobileShowNumber++;
+      this.mobileShowNumber++
       event.target.parentNode.style.display = 'none'
     },
     handleBack() {
@@ -678,7 +678,7 @@ export default {
     .in-play {
       position: fixed;
       width: 100vw;
-      height: calc(100vh - 122px);
+      height: calc(100% - 122px);
       top: 0;
       left: 0;
       z-index: 7;
@@ -759,10 +759,10 @@ export default {
         position: absolute;
         transform-origin: 50% 50%;
         transition: all 0.8s ease-out;
-        top: 36%;
+        top: 32%;
         .card-img-mobile {
-          width: 90px;
-          height: 150px;
+          width: 90 * $pr;
+          height: 150 * $pr;
         }
       }
     }
@@ -770,22 +770,21 @@ export default {
       font-family: 'Rubik';
       font-style: normal;
       font-weight: 400;
-      font-size: 22px;
-      line-height: 30px;
-      margin-top: 30%;
+      font-size: 22 * $pr;
+      line-height: 30 * $pr;
+      margin-top: 60 * $pr;
       padding: 0 50px;
       text-align: center;
     }
     .mobile-tip {
       position: absolute;
-      bottom: 40px;
+      bottom: 30 * $pr;
       width: 100vw;
       .question-text {
         font-family: 'Rufina';
         font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 18px;
+        font-size: 14 * $pr;
+        line-height: 18 * $pr;
         text-align: center;
         padding: 0 35px;
         overflow: hidden;
@@ -800,11 +799,11 @@ export default {
         align-items: center;
         margin-top: 16px;
         .wrapper {
-          width: 52px;
-          height: 88px;
+          width: 52 * $pr;
+          height: 88 * $pr;
           background: rgba(255, 255, 255, 0.15);
           border: 1px dashed #dc9928;
-          border-radius: 8px;
+          border-radius: 8 * $pr;
           position: relative;
           overflow: hidden;
           &:not(:first-child) {
