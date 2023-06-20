@@ -395,6 +395,7 @@ export default {
   .minor-tab {
     display: flex;
     overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .mt-44-mobile {

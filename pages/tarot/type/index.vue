@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="tarot-container">
-      <div class="title">{{ titleText[type] }}</div>
+      <div class="title">{{ titleText[type] || '' }}</div>
       <div class="tarot-section">
         <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
         <div class="tarot-box">
@@ -11,8 +11,8 @@
       </div>
       <div class="introduce-box">
         <div class="intro">
-          <div class="intro-title">{{ textObj[type].title }}</div>
-          <div class="intro-content" v-html="textObj[type].desc"></div>
+          <div class="intro-title">{{ textObj[type] && textObj[type].title }}</div>
+          <div class="intro-content" v-html="textObj[type] && textObj[type].desc"></div>
         </div>
         <google-ad class="ad-box_row mt_80"></google-ad>
         <!-- <div class="divination">
@@ -87,7 +87,7 @@ export default {
   },
   data() {
     return {
-      type: '1',
+      type: null,
       titleText: {
         1: 'Love Tarot Reading',
         2: 'Tarot Career Reading',
@@ -113,7 +113,7 @@ export default {
   // asyncData({ query }) {
   //   console.log('query', query)
   // },
-  mounted() {
+  created() {
     this.type = this.$route.query.type
   },
 }
@@ -131,6 +131,7 @@ export default {
     font-size: 46px;
     line-height: 64px;
     text-align: center;
+    height: 64px;
   }
   .tarot-section {
     margin-top: 32px;

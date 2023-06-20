@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 16:51:37
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-16 17:09:56
+ * @LastEditTime: 2023-06-20 17:15:14
  * @FilePath: /seekastrology/pages/tarot/detail/index.vue
  * @Description: 
 -->
@@ -46,18 +46,32 @@ export default {
       cardsInfo: {},
     }
   },
-  async asyncData({ query, error, $apiList }) {
-    try {
-      const cardsInfo = await $apiList.tarot.getDetail({
+  // async asyncData({ query, error, $apiList }) {
+  //   try {
+  //     const cardsInfo = await $apiList.tarot.getDetail({
+  //       origin: process.env.origin,
+  //       id: query.id,
+  //     })
+  //     return {
+  //       cardsInfo,
+  //     }
+  //   } catch (e) {
+  //     error({ statusCode: e.code, message: e.message })
+  //   }
+  // },
+  mounted() {
+    this.getDatas()
+  },
+  methods: {
+    async getDatas() {
+      const data = await this.$apiList.tarot.getDetail({
         origin: process.env.origin,
-        id: query.id,
+        id: this.$route.query.id
       })
-      return {
-        cardsInfo,
-      }
-    } catch (e) {
-      error({ statusCode: e.code, message: e.message })
-    }
+      this.cardsInfo = data
+        console.log("%c Line:68 🍐 data", "color:#42b983", data);
+
+    },
   },
 }
 </script>
