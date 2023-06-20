@@ -406,6 +406,7 @@ export default {
         !this.nextFlag ||
         this.currentQuestionIndex + 1 == this.dataInfo.questions.length
       ) {
+        alert('Please make a selection for 1.!')
         return
       }
       //更改radio禁用状态
@@ -445,7 +446,7 @@ $spacing: 55px;
   color: rgba(255, 255, 255, 0.7) !important;
   background: transparent !important;
   border: 1px solid rgba(255, 255, 255, 0.7) !important;
-  pointer-events: none !important;
+  // pointer-events: none !important;
 }
 .details {
   width: 100%;
