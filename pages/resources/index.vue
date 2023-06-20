@@ -1219,6 +1219,13 @@ $spacing: 16px;
                 transform: translate(-50%, 0);
                 bottom: -11 * $pr;
               }
+              &_time {
+                width: 47 * $pr;
+                height: 18 * $pr;
+                font-size: 12 * $pr;
+                top: 6 * $pr;
+                color: rgba(255, 255, 255, 0.7);
+              }
             }
             &_vtitle {
               font-size: 14 * $pr;
