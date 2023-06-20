@@ -7,7 +7,11 @@
 -->
 <template>
   <div class="container">
-    <div class="title">More Tarot Readings</div>
+    <div class="title">
+      {{
+        $route.path.includes('/tarot') ? 'More Tarot Readings' : 'Tarot Reading'
+      }}
+    </div>
     <div class="more-tarot">
       <div class="more-tarot-items" v-show="showTarotType != 4">
         <a href="/tarot" class="link">
@@ -173,9 +177,9 @@ export default {
 }
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
-  // .container {
-  // padding: 16 * $pr;
-  // }
+  .container {
+    padding: 16 * $pr;
+  }
   .title {
     font-family: 'Cinzel Decorative';
     font-style: normal;
@@ -186,12 +190,12 @@ export default {
   }
   .more-tarot {
     grid-template-columns: repeat(auto-fill, 100%);
-    margin: 34 * $pr auto 48 * $pr;
+    margin: 16 * $pr auto 48 * $pr;
     .more-tarot-items {
       width: 100%;
       margin-left: 0;
       padding: 16 * $pr 16 * $pr 24 * $pr;
-       border-radius: 6 * $pr;
+      border-radius: 6 * $pr;
       img {
         // height: 180px;
         width: 311 * $pr;
@@ -210,7 +214,7 @@ export default {
         line-height: 18 * $pr;
         margin-top: 8 * $pr;
       }
-      .button{
+      .button {
         width: 220 * $pr;
         height: 32 * $pr;
         border-radius: 42 * $pr;

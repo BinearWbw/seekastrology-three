@@ -35,11 +35,8 @@ export default {
     TarotPlay,
     AllTarot,
   },
-  data(){
-    return {
-
-    }
-    
+  data() {
+    return {}
   },
 }
 </script>
@@ -115,7 +112,7 @@ export default {
   margin-bottom: 32px;
 }
 @media (max-width: 940px) {
-  .ad-box_row{
+  .ad-box_row {
     width: 90%;
     margin: 0 auto;
   }
@@ -124,6 +121,9 @@ export default {
   $pr: math.div(1vw, 3.75);
   .tarot-container {
     padding: 16 * $pr;
+    > .container {
+      padding: 0;
+    }
   }
   .title {
     font-family: 'Cinzel Decorative';
@@ -141,7 +141,10 @@ export default {
     height: 300 * $pr;
   }
   .mt-120 {
-    margin-top: 120px;
+    margin-top: 120 * $pr;
+  }
+  .mt-48 {
+    margin-top: 48 * $pr;
   }
 }
 </style>

@@ -86,7 +86,7 @@ export default {
               path: '/tarot/',
             },
             {
-              link: 'TarotDaily',
+              link: 'Daily Tarot',
               path: '/tarot/',
             },
             {
@@ -100,6 +100,10 @@ export default {
             {
               link: 'Universal Tarot',
               path: '/tarot/type?type=3',
+            },
+            {
+              link: 'Tarot Cards',
+              path: '/tarot/cards/',
             },
           ],
         },
