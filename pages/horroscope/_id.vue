@@ -237,6 +237,10 @@ export default {
       // 点击下拉框
       this.ids = option.id
       this.getHoroscopeData(option.id, this.currentTime)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
     },
     setCorresponding(i) {
       // 点击其他运势

@@ -344,6 +344,7 @@ export default {
   $pr: math.div(1vw, 3.75);
   .pop_maximum {
     margin: 48 * $pr auto 0;
+    padding: 0 16 * $pr;
     .pop_main {
       .bg_main {
         position: absolute;

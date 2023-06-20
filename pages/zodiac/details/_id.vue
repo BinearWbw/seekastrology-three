@@ -461,6 +461,10 @@ export default {
       this.getZodiacIData(selectValue)
       this.openExpand = false
       this.openStarsign.map((i) => (i.openIf = false))
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
     },
     getZodiacIData(id = null) {
       this.$apiList.home

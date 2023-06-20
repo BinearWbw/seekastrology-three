@@ -175,6 +175,7 @@ export default {
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .choice {
+    padding: 0 16 * $pr;
     &__title {
       padding-bottom: 46 * $pr;
       h3 {
@@ -192,7 +193,8 @@ export default {
     }
     &__main {
       grid-template-columns: repeat(3, 1fr);
-      gap: 11 * $pr;
+      row-gap: 0;
+      column-gap: 11 * $pr;
       li {
         width: 100%;
         height: 147 * $pr;
