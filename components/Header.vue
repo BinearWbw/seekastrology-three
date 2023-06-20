@@ -190,6 +190,16 @@ export default {
   destroyed() {
     window.removeEventListener('scroll', this.handleScroll)
   },
+  watch: {
+    visibleMenu(val) {
+      const goTopBtn = document.querySelector('.scroll_to_top')
+      if (val && goTopBtn !== null) {
+        goTopBtn.style.display = 'none'
+      } else if (goTopBtn) {
+        goTopBtn.style.display = 'block'
+      }
+    },
+  },
   methods: {
     search() {
       let regSearch = /^.{2,}$/
@@ -445,7 +455,7 @@ export default {
         }
         .menu {
           margin-left: 14 * $pr;
-          width: 14 * $pr;
+          width: 28 * $pr;
         }
       }
     }

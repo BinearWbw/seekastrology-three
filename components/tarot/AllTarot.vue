@@ -73,25 +73,31 @@
     </ul>
     <ul class="card-list-mobile">
       <li class="list-mobile">
-        <img
-          src="~/assets/img/tarot/card0.png"
-          alt=""
-          class="list-mobile-img"
-        />
+        <a :href="`${getIntersperseUrl}/tarot/cards`">
+          <img
+            src="~/assets/img/tarot/card0.png"
+            alt=""
+            class="list-mobile-img"
+          />
+        </a>
       </li>
       <li class="list-mobile">
-        <img
-          src="~/assets/img/tarot/card1.png"
-          alt=""
-          class="list-mobile-img"
-        />
+        <a :href="`${getIntersperseUrl}/tarot/cards`">
+          <img
+            src="~/assets/img/tarot/card1.png"
+            alt=""
+            class="list-mobile-img"
+          />
+        </a>
       </li>
       <li class="list-mobile">
-        <img
-          src="~/assets/img/tarot/card2.png"
-          alt=""
-          class="list-mobile-img"
-        />
+        <a :href="`${getIntersperseUrl}/tarot/cards`">
+          <img
+            src="~/assets/img/tarot/card2.png"
+            alt=""
+            class="list-mobile-img"
+          />
+        </a>
       </li>
     </ul>
   </div>
