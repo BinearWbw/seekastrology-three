@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-06 14:21:49
  * @LastEditors: tian 249682049@qq.com
- * @LastEditTime: 2023-06-19 11:15:37
+ * @LastEditTime: 2023-06-20 11:04:21
  * @FilePath: /seekastrology/components/tarot/TarotPlay.vue
  * @Description: 
 -->
@@ -151,7 +151,8 @@
       </div>
       <div class="in-play" v-if="inPlay" ref="playArea">
         <button class="back-btn" @click="handleBack"></button>
-        <ul class="play-list" v-show="!isSelected" @click="hanldeMobileClick">
+        <div class="tip-text" v-html="textObj[type]"></div>
+        <ul class="play-list" @click="hanldeMobileClick">
           <li
             class="play-list-item"
             v-for="index of mobileCount"
@@ -167,27 +168,41 @@
             />
           </li>
         </ul>
-        <div class="mobile-tip" v-show="!isSelected">
-          <div class="tip-img-list" v-show="showList.length">
-            <nuxt-img
-              v-for="(item, index) in showList"
+        <div class="mobile-tip">
+          <div class="question-text" v-show="question">"{{ question }}"</div>
+          <div class="tip-img-list">
+            <div
+              class="wrapper"
+              v-for="(item, index) of mobileNumbers"
               :key="index"
-              class="tip-img-item"
-              :class="{ 'img-rotate': item.desc_type == 2 }"
-              :src="item.icon"
-              :alt="item.name"
-            ></nuxt-img>
+            >
+              <nuxt-img
+                v-if="showList[index]"
+                class="tip-img-item"
+                :class="{ 'img-rotate': showList[index].desc_type == 2 }"
+                :src="showList[index].icon"
+              ></nuxt-img>
+            </div>
           </div>
-          <div class="tip-text">
-            You can also draw
-            <span>{{ numbers }}</span>
-            tarot card！
+          <div class="handle-btn" @click="handleAnswer">
+            <img
+              v-show="!isSelected"
+              class="btn-img"
+              src="~/assets/img/tarot/mobile-btn-disable.png"
+              alt="btn"
+            />
+            <img
+              v-show="isSelected"
+              class="btn-img"
+              src="~/assets/img/tarot/mobile-btn.png"
+              alt="btn"
+            />
           </div>
         </div>
         <div class="in-play-ad"></div>
       </div>
     </div>
-    <div class="mask-wrapper" v-show="isSelected">
+    <div class="mask-wrapper" v-show="isSelected && questionTop">
       <div class="show-wrapper" :class="styleObj">
         <nuxt-img
           class="item-img"
@@ -219,13 +234,16 @@ export default {
       handler(newVal) {
         if (newVal === '1' || newVal === '3') {
           this.numbers = 3
+          this.mobileNumbers = 3
           this.count = 39
         } else if (newVal === '2') {
           this.numbers = 5
+          this.mobileNumbers = 5
           this.count = 39
         } else {
           this.questionTop = true
           this.numbers = 1
+          this.mobileNumbers = 1
           this.count = 22
         }
       },
@@ -258,8 +276,15 @@ export default {
       cardsInfo: [],
       showList: [],
       numbers: 3,
+      mobileNumbers: 3,
       count: 39,
       mobileCount: 22,
+      textObj: {
+        1: 'Reveal Your Love Tarot<br /> Reading by<br /> Clicking 3 Cards Below',
+        2: 'Reveal Your Career Tarot<br /> Reading by<br /> Clicking 5 Cards Below',
+        3: 'Reveal Your the problems<br /> you’re facing by<br /> Clicking 3 Cards Below',
+        4: 'The Tarot Card of the Day is...',
+      },
     }
   },
   mounted() {
@@ -286,7 +311,7 @@ export default {
     },
     hanldeMobileClick(event) {
       let ele = event.target.nodeName
-      if (ele != 'IMG') {
+      if (ele != 'IMG' || this.isSelected) {
         return
       }
       event.target.parentNode.style.display = 'none'
@@ -323,6 +348,9 @@ export default {
       }
     },
     judgeShow() {
+      if (this.isSelected) {
+        return
+      }
       switch (this.type) {
         case '1':
         case '3':
@@ -410,9 +438,10 @@ export default {
     },
     handleAnswer() {
       if (this.isSelected) {
+        this.bodyHidden('auto')
         sessionStorage.setItem('cardsInfo', JSON.stringify(this.showList))
+        this.$router.push(`/tarot/answer?type=${this.type}`)
       }
-      this.$router.push(`/tarot/answer?type=${this.type}`)
     },
   },
 }
@@ -727,37 +756,73 @@ export default {
         position: absolute;
         transform-origin: 50% 50%;
         transition: all 0.8s ease-out;
-        top: 40%;
+        top: 36%;
         .card-img-mobile {
           width: 90px;
           height: 150px;
         }
       }
     }
+    .tip-text {
+      font-family: 'Rubik';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 30px;
+      margin-top: 30%;
+      padding: 0 50px;
+      text-align: center;
+    }
     .mobile-tip {
       position: absolute;
-      bottom: 14px;
+      bottom: 40px;
       width: 100vw;
+      .question-text {
+        font-family: 'Rufina';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        padding: 0 35px;
+      }
       .tip-img-list {
         display: flex;
         justify-content: center;
         align-items: center;
-        .tip-img-item {
-          width: 40px;
-          height: 66px;
+        margin-top: 16px;
+        .wrapper {
+          width: 52px;
+          height: 88px;
+          background: rgba(255, 255, 255, 0.15);
+          border: 1px dashed #dc9928;
+          border-radius: 8px;
+          position: relative;
+          overflow: hidden;
           &:not(:first-child) {
-            margin-left: 8px;
+            margin-left: 12px;
+          }
+          &::after {
+            content: '+';
+            color: #fff;
+            position: absolute;
+            font-size: 32px;
+            font-family: monospace;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
+        .tip-img-item {
+          width: 100%;
+          height: 100%;
+        }
       }
-      .tip-text {
-        margin-top: 12px;
+      .handle-btn {
         text-align: center;
-        font-family: 'Rufina';
-        font-style: normal;
-        font-size: 14px;
-        line-height: 18px;
-        color: #dc9928;
+        margin-top: 16px;
       }
     }
     .mobile-btn {
