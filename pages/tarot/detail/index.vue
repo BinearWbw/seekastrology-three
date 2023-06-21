@@ -69,8 +69,6 @@ export default {
         id: this.$route.query.id
       })
       this.cardsInfo = data
-        console.log("%c Line:68 🍐 data", "color:#42b983", data);
-
     },
   },
 }

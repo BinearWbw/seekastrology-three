@@ -324,13 +324,12 @@ export default {
       }
     },
     async handleClike(event) {
-      if(this.isSelected) {
+      let ele = event.target.nodeName
+      if(this.isSelected || ele !== 'IMG') {
         return
       }
-      let ele = event.target.nodeName
-      if(ele === 'IMG') {
-        event.target.parentNode.style.display = 'none'
-      }
+      console.log("%c Line:331 🍖 ele", "color:#2eafb0", ele);
+      event.target.parentNode.style.display = 'none'
       if (this.cardsInfo.length === 0) {
         await this.drawCard()
       }
