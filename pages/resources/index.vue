@@ -327,7 +327,6 @@ export default {
         ...search,
       })
       loveList = loveListRes.list
-
       return {
         item,
         list,

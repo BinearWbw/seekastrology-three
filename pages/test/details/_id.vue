@@ -656,7 +656,7 @@ $spacing: 55px;
             font-weight: 400;
             font-size: 22px;
             line-height: 30px;
-            color: rgba(255, 255, 255, 0.7);
+            color: #fff;
           }
           &_desc {
             font-family: 'Rubik';
@@ -664,7 +664,7 @@ $spacing: 55px;
             font-weight: 400;
             font-size: 14px;
             line-height: 18px;
-            color: rgba(255, 255, 255, 0.7);
+            color: #fff;
             margin-top: 16px;
           }
           &_retake {
