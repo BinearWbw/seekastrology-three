@@ -56,7 +56,9 @@
         <div class="pairing_text">
           <div class="text_list">
             <!-- <p class="title">{{ itme.title }}</p> -->
-            <div class="introduce" v-html="compatibilityData"></div>
+            <transition name="fade">
+              <div class="introduce" v-html="compatibilityData"></div>
+            </transition>
           </div>
           <img
             class="img_bg"
@@ -192,10 +194,18 @@ export default {
     handleDropdownChangeLeft(option) {
       this.selectImgLeft = option.id - 1
       this.males = option.name.toLowerCase()
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
     },
     handleDropdownChangeRight(option) {
       this.selectImgRight = option.id - 1
       this.females = option.name.toLowerCase()
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
     },
     getStartPairing() {
       this.$apiList.home
@@ -206,14 +216,14 @@ export default {
         })
         .then((res) => {
           this.compatibilityData = res
+          sessionStorage.removeItem('genderList')
         })
       this.$refs.target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      sessionStorage.removeItem('genderList')
     },
     infoGetStartPairing() {
-      const storedObject = JSON.parse(sessionStorage.getItem('genderList'))
+      const storedObject = sessionStorage.getItem('genderList')
       if (storedObject) {
-        const { malesId, femalesId, males, females } = storedObject
+        const { malesId, femalesId, males, females } = JSON.parse(storedObject)
         this.malesId = malesId
         this.femalesId = femalesId
         this.selectImgLeft = malesId - 1

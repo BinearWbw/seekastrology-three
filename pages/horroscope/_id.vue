@@ -528,16 +528,16 @@ export default {
             display: flex;
             justify-content: initial;
             flex-direction: column-reverse;
-            margin-bottom: 32 * $pr;
+            margin-bottom: 24 * $pr;
             h3 {
-              font-size: 36 * $pr;
-              line-height: 48 * $pr;
+              font-size: 26 * $pr;
+              line-height: 36 * $pr;
               text-align: center;
             }
             .pull_down {
               width: 100%;
               height: auto;
-              margin-bottom: 16 * $pr;
+              margin-bottom: 24 * $pr;
             }
           }
           .list_main {
@@ -546,7 +546,7 @@ export default {
               .texts {
                 font-size: 16 * $pr;
                 line-height: 28 * $pr;
-                padding-top: 24 * $pr;
+                padding-top: 12 * $pr;
               }
               ::v-deep(.tab-header) {
                 justify-content: space-around;
