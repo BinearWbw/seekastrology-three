@@ -101,10 +101,9 @@ export default {
     width: 1400px;
     &_top {
       width: 100%;
-      background: url('../../assets/img/zodiac/zodiac_top.png') no-repeat right;
+      background: url('~/assets/img/zodiac/zodiac_top.png') no-repeat right;
       background-position-y: 48px;
       padding-bottom: 120px;
-      mix-blend-mode: luminosity;
       position: relative;
       .top_text {
         width: 810px;
