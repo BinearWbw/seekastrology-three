@@ -49,7 +49,7 @@
                   Get Your Compatibility
                 </button>
               </div>
-              <google-ad classNames="google_ad"></google-ad>
+              <google-ad classNames="google_ad" :id="'7460896194'"></google-ad>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
             src="~/assets/img/astrology/astr_bg2.png"
             alt="#"
           />
-          <google-ad classNames="google_ad"></google-ad>
+          <google-ad classNames="google_ad" :id="'3521651188'"></google-ad>
         </div>
       </div>
     </div>

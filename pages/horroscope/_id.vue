@@ -2,7 +2,7 @@
   <div class="horroscope">
     <div class="horroscope_main">
       <div class="horoscope_details">
-        <google-ad class="google_ad"></google-ad>
+        <google-ad class="google_ad" :id="'4376417914'"></google-ad>
         <div class="datails_list">
           <div class="list_top">
             <h3>
@@ -28,7 +28,7 @@
               </el-tabs>
             </div>
           </div>
-          <google-ad classNames="google_ad"></google-ad>
+          <google-ad classNames="google_ad" :id="'8124091233'"></google-ad>
         </div>
       </div>
       <div class="horoscope_more">
@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-        <google-ad classNames="google_ad"></google-ad>
+        <google-ad classNames="google_ad" :id="'4184846228'"></google-ad>
       </div>
     </div>
     <transition name="fade">
