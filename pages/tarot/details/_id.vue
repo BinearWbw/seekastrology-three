@@ -11,9 +11,9 @@
       {{ cardsInfo.name }} Card Meaning
     </div>
     <div class="tarot-section">
-      <div class="add-box-wrapper">
+      <!-- <div class="add-box-wrapper">
         <google-ad classNames="ad-box" id="2979575766"></google-ad>
-      </div>
+      </div> -->
       <div class="main-content">
         <google-ad
           classNames="ad-box_row"
@@ -38,9 +38,9 @@
           </li>
         </ul>
       </div>
-      <div class="add-box-wrapper">
+      <!-- <div class="add-box-wrapper">
         <google-ad classNames="ad-box" id="6727249080"></google-ad>
-      </div>
+      </div> -->
     </div>
     <google-ad classNames="ad-box_row mt-48 mb-48" id="1099517884"></google-ad>
   </div>

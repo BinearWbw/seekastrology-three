@@ -3,15 +3,15 @@
     <div class="tarot-container">
       <div class="title">{{ titleText[type] || '' }}</div>
       <div class="tarot-section">
-        <div class="add-box-wrapper">
+        <!-- <div class="add-box-wrapper">
           <google-ad classNames="ad-box" id="3876874401"></google-ad>
-        </div>
+        </div> -->
         <div class="tarot-box">
           <tarot-play :type="type" ref="play"></tarot-play>
         </div>
-        <div class="add-box-wrapper">
+        <!-- <div class="add-box-wrapper">
           <google-ad classNames="ad-box" id="1694414255"></google-ad>
-        </div>
+        </div> -->
       </div>
       <div class="introduce-box">
         <div class="intro">

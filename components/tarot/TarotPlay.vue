@@ -328,7 +328,6 @@ export default {
       if(this.isSelected || ele !== 'IMG') {
         return
       }
-      console.log("%c Line:331 🍖 ele", "color:#2eafb0", ele);
       event.target.parentNode.style.display = 'none'
       if (this.cardsInfo.length === 0) {
         await this.drawCard()
@@ -342,7 +341,7 @@ export default {
         question: this.question,
       })
 
-      if (res && res.length) {
+      if (res && res.length && this.cardsInfo.length == 0) {
         this.cardsInfo = res
       }
     },
@@ -543,8 +542,7 @@ export default {
     display: flex;
     justify-content: center;
     .item-img {
-      width: 220px;
-      height: 440px;
+      max-width: 16%;
       &:not(:first-child) {
         margin-left: 20px;
       }

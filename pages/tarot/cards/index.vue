@@ -3,9 +3,9 @@
     <Loading v-if="loading" />
     <div class="title mt-75 mt-44-mobile">the major</div>
     <div class="tarot-section">
-      <div class="add-box-wrapper mt-48_minus">
+      <!-- <div class="add-box-wrapper mt-48_minus">
         <google-ad classNames="ad-box" id="3171147457"></google-ad>
-      </div>
+      </div> -->
       <div class="tarot-box">
         <ul class="major-list">
           <li
@@ -33,9 +33,9 @@
           </li>
         </ul>
       </div>
-      <div class="add-box-wrapper mt-48_minus">
+      <!-- <div class="add-box-wrapper mt-48_minus">
         <google-ad classNames="ad-box" id="6918820771"></google-ad>
-      </div>
+      </div> -->
     </div>
     <google-ad classNames="ad-box_row mt-32" id="9736555803"></google-ad>
     <div class="title mt-48">minor arcana definitions</div>
