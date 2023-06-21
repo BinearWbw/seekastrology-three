@@ -3,7 +3,7 @@
     <div class="zodiac_main">
       <div class="zodiac_main_top">
         <div class="top_text">
-          <google-ad class="google_ad" :id="'6619437870'"></google-ad>
+          <google-ad classNames="google_ad" :id="'6619437870'"></google-ad>
           <h3>Zodiac Signs Meanings and Characteristics</h3>
           <p>
             By knowing the date of your zodiac sign, you can discover the
@@ -41,7 +41,7 @@
             </a>
           </div>
         </div>
-        <google-ad class="google_ad" :id="'1578014121'"></google-ad>
+        <google-ad classNames="google_ad" :id="'1578014121'"></google-ad>
       </div>
     </div>
     <transition name="fade">

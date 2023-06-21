@@ -2,7 +2,7 @@
   <div class="horroscope">
     <div class="horroscope_main">
       <div class="horoscope_details">
-        <google-ad class="google_ad" :id="'4376417914'"></google-ad>
+        <google-ad classNames="google_ad" :id="'4376417914'"></google-ad>
         <div class="datails_list">
           <div class="list_top">
             <h3>
