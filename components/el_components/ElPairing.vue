@@ -150,7 +150,7 @@ export default {
     getStartPairingEl() {
       sessionStorage.setItem('genderList', JSON.stringify(this.genderList))
       if (sessionStorage.getItem('genderList'))
-        window.location.href = `${this.getIntersperseUrl}/astrology/`
+        window.location.href = `/astrology/`
     },
   },
 }

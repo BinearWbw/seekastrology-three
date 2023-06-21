@@ -15,7 +15,7 @@
           >
             <a
               class="major-list-link"
-              :href="`${getIntersperseUrl}/tarot/detail/${item.name
+              :href="`${getIntersperseUrl}/tarot/details/${item.name
                 .replace(/[^a-zA-Z0-9\\s]/g, '-')
                 .toLowerCase()}-${item.id}`"
             >
@@ -76,7 +76,7 @@
         :key="index"
       >
         <a
-          :href="`${getIntersperseUrl}/tarot/detail/${item.name
+          :href="`${getIntersperseUrl}/tarot/details/${item.name
             .replace(/[^a-zA-Z0-9\\s]/g, '-')
             .toLowerCase()}-${item.id}`"
         >
