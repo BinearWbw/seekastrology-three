@@ -1,10 +1,10 @@
 <template>
   <div class="tarot-container">
     <div class="title">What the Tarot Cards Mean in This Reading</div>
-    <google-ad classNames="title_ad" :id="3725681222"></google-ad>
+    <google-ad classNames="title_ad" id="3725681222"></google-ad>
     <div class="tarot-section">
       <div class="add-box-wrapper">
-        <google-ad classNames="ad-box" :id="1311270876"></google-ad>
+        <google-ad classNames="ad-box" id="1311270876"></google-ad>
       </div>
       <div class="main-content">
         <ul class="content-list">
@@ -32,12 +32,12 @@
         </ul>
       </div>
       <div class="add-box-wrapper">
-        <google-ad classNames="ad-box" :id="6372025868"></google-ad>
+        <google-ad classNames="ad-box" id="6372025868"></google-ad>
       </div>
     </div>
-    <google-ad classNames="google_ad" :id="8937629395"></google-ad>
+    <google-ad classNames="google_ad" id="8937629395"></google-ad>
     <more-tarot class="mt-48"></more-tarot>
-    <google-ad classNames="google_ad" :id="6563597553"></google-ad>
+    <google-ad classNames="google_ad" id="6563597553"></google-ad>
   </div>
 </template>
 
