@@ -250,9 +250,10 @@ export default {
     setCorresponding(i) {
       // 点击其他运势
       this.comentId = i
-      window.scrollTo({
-        top: 0,
+      const headerMain = document.querySelector('.header__main')
+      headerMain.scrollIntoView({
         behavior: 'smooth',
+        block: 'start',
       })
     },
     correspondingTime(i) {
