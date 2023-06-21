@@ -85,6 +85,7 @@
         <div class="test_main_center_right" ref="right_google_ad">
           <google-ad
             classNames="google_ad rightAd"
+            ref="rightAd"
             :id="'4665775103'"
           ></google-ad>
         </div>
@@ -177,7 +178,7 @@ export default {
   },
   methods: {
     handleScroll() {
-      const rightAd = document.querySelector('.rightAd')
+      const rightAd = this.$refs.rightAd.$el
       const rightAdBox = this.$refs.right_google_ad
       // const horoscope = this.$refs.horoscope
       // const horoscope_main = horoscope.$el.querySelector(

@@ -296,15 +296,16 @@ export default {
             //如果item为null说明不是从其他页面跳转进来的，就取请求tabs结果中的第一条
             if (item == null) item = res?.length > 0 ? res[0] : null
             //如果有item中有id值，说明是从其他页面跳转进来的，这时找到对应的下标值设置选中的tab样式，反之默认给第一个设置样式
-            currentTabIndex =
-              'id' in item ? res.findIndex((tab) => tab.id == item.id) : 0
+            currentTabIndex = item.hasOwnProperty('id')
+              ? res.findIndex((tab) => tab.id == item.id)
+              : 0
             return res || null
           }),
       ])
       /**根据id获取对应数据，如果不是从其他它页面跳转过来的就默认请求tabs第一条对应的列表 */
       let getNewsParams = {
         origin: process.env.origin,
-        cate: 'id' in item ? item.id : undefined,
+        cate: item.hasOwnProperty('id') ? item.id : undefined,
         ...search,
       }
       if (currentTabIndex == 0) delete getNewsParams.cate
@@ -333,9 +334,8 @@ export default {
     }
   },
   mounted() {
-    console.log(this.item)
     //滚动到广告位
-    if ('id' in this.item)
+    if (this.item.hasOwnProperty('id'))
       this.$refs.gooleAd.$el.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
@@ -347,7 +347,7 @@ export default {
       this.search.page += 1
       let getNewsParams = {
         origin: process.env.origin,
-        cate: 'id' in item ? item.id : undefined,
+        cate: item.hasOwnProperty('id') ? item.id : undefined,
         ...this.search,
       }
       if (this.currentTabIndex == 0) delete getNewsParams.cate

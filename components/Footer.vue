@@ -120,17 +120,17 @@ export default {
             },
             {
               link: 'Astrology',
-              path: '/resources',
+              path: '/resources/',
               id: 4,
             },
             {
               link: 'Tarot',
-              path: '/resources',
+              path: '/resources/',
               id: 3,
             },
             {
               link: 'Love',
-              path: '/resources',
+              path: '/resources/',
               id: 5,
             },
           ],
