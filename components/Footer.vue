@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="bottom">
-      <p>©2022 NetStorm, All Rights Reserved.</p>
+      <p>Copyright © 2023 Seekastrology All rights reserved.</p>
     </div>
   </footer>
 </template>

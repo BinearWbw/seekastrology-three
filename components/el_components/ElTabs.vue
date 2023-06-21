@@ -10,7 +10,7 @@
         {{ upTitle + ' ' + tab.tabs }}
       </div>
     </div>
-    <div class="tab-content">
+    <div class="tab-content" :class="{ active_tab: openActiveTab }">
       <slot :activeTab="activeTab"></slot>
     </div>
   </div>
@@ -23,6 +23,7 @@ export default {
     return {
       activeTab: 0,
       upTitle: '',
+      openActiveTab: false,
     }
   },
   watch: {
@@ -37,6 +38,7 @@ export default {
     selectTab(tab, index) {
       this.activeTab = index
       this.$emit('click', tab)
+      this.openActiveTab = !this.openActiveTab
     },
     toUpperBig(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
@@ -92,6 +94,22 @@ export default {
     .tab-item.active {
       background-color: #fff;
       color: #000;
+    }
+  }
+  .tab-content {
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    &.active_tab {
+      animation: fade-in 0.3s ease-in-out;
     }
   }
 }
