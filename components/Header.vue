@@ -34,7 +34,7 @@
                   class="nav_children"
                   :title="item_i.title"
                   v-for="(item_i, index_i) in item.children"
-                  :href="`${getIntersperseUrl + item_i.href}/`"
+                  :href="`${getIntersperseUrl + item_i.href}`"
                   :key="index_i"
                 >
                   {{ item_i.title }}
@@ -104,8 +104,8 @@ export default {
             },
             {
               title: 'Leo ( Jul 23 - Aug 22 )',
-              path: '/zodiac/details/Leo-5/',
-              href: '/zodiac/details/Leo-5/',
+              path: '/zodiac/details/leo-5/',
+              href: '/zodiac/details/leo-5/',
             },
             {
               title: 'Virgo ( Aug 23 - Sep 22 )',
