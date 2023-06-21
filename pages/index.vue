@@ -18,7 +18,7 @@
       </section>
       <section class="module choice">
         <home-your-choice></home-your-choice>
-        <google-ad classNames="google_ad"></google-ad>
+        <google-ad classNames="google_ad" :id="'2699524105'"></google-ad>
       </section>
       <section class="module tarot">
         <home-tarot></home-tarot>
