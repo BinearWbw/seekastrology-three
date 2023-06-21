@@ -43,16 +43,16 @@ const addRoutes = async () => {
         .toLowerCase()}-${item.id}/`
     )
   })
-  // let res4 = await axios.get(
-  //   'https://astro.doitme.link/api/tarot/all?origin=seekastrology&page=1&size=10000'
-  // )
-  // res4.data.data.list.map((item) => {
-  //   routes.push(
-  //     `/tarot/details/${item.name
-  //       .replace(/[^a-zA-Z0-9\\s]/g, '-')
-  //       .toLowerCase()}-${item.id}/`
-  //   )
-  // })
+  let res5 = await axios.get(
+    'https://astro.doitme.link/api/tarot/all?origin=seekastrology'
+  )
+  res5.data.data.list.map((item) => {
+    routes.push(
+      `/tarot/details/${item.name
+        .replace(/[^a-zA-Z0-9\\s]/g, '-')
+        .toLowerCase()}-${item.id}/`
+    )
+  })
   return routes
 }
 let routes = addRoutes()
