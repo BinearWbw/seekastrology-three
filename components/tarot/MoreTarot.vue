@@ -13,7 +13,7 @@
       }}
     </div>
     <div class="more-tarot">
-      <div class="more-tarot-items" v-show="showTarotType != 4">
+      <div class="more-tarot-items" v-show="type != 4">
         <a :href="`${getIntersperseUrl}/tarot/`" class="link">
           <img src="~/assets/img/tarot/day.png" alt="" />
           <p class="item-title">Daily Tarot</p>
@@ -25,8 +25,8 @@
         </a>
       </div>
 
-      <div class="more-tarot-items" v-show="showTarotType != 1">
-        <a :href="`${getIntersperseUrl}/tarot/type/?type=1`" class="link">
+      <div class="more-tarot-items" v-show="type != 1">
+        <a :href="`${getIntersperseUrl}/tarot/type/${1}/`" class="link">
           <img src="~/assets/img/tarot/love.png" alt="" />
           <p class="item-title">LOVE Tarot Reading</p>
           <p class="item-sub-title">
@@ -36,8 +36,8 @@
         </a>
       </div>
 
-      <div class="more-tarot-items" v-show="showTarotType != 2">
-        <a :href="`${getIntersperseUrl}/tarot/type/?type=2`" class="link">
+      <div class="more-tarot-items" v-show="type != 2">
+        <a :href="`${getIntersperseUrl}/tarot/type/${2}/`" class="link">
           <img src="~/assets/img/tarot/rich.png" alt="" />
           <p class="item-title">Tarot Career Reading</p>
           <p class="item-sub-title">
@@ -47,8 +47,8 @@
         </a>
       </div>
 
-      <div class="more-tarot-items" v-show="showTarotType != 3">
-        <a :href="`${getIntersperseUrl}/tarot/type/?type=3`" class="link">
+      <div class="more-tarot-items" v-show="type != 3">
+        <a :href="`${getIntersperseUrl}/tarot/type/${3}/`" class="link">
           <img src="~/assets/img/tarot/general.png" alt="" />
           <p class="item-title">Universal Tarot Reading</p>
           <p class="item-sub-title">
@@ -65,11 +65,13 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'MoreTarot',
+  props:{
+    type: {
+      type: [ Number, String],
+      default: '4'
+    }
+  },
   computed: {
-    showTarotType() {
-      let type = this.$route.query.type || '4'
-      return type
-    },
     ...mapGetters(['getIntersperseUrl']),
   },
   data() {
