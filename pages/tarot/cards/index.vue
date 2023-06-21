@@ -13,7 +13,7 @@
             v-for="(item, index) in majorList"
             :key="index"
           >
-            <a class="major-list-link" :href="'/tarot/detail?id=' + item.id">
+            <a class="major-list-link" :href="`${getIntersperseUrl}/tarot/detail?id=${item.id}`">
               <nuxt-img
                 class="major-item-img"
                 :src="item.icon || '/'"
@@ -70,7 +70,7 @@
         v-for="(item, index) in minorList"
         :key="index"
       >
-        <a :href="'/tarot/detail?id=' + item.id">
+        <a :href="`${getIntersperseUrl}/tarot/detail?id=${item.id}`">
           <nuxt-img
             class="minor-item-img"
             :src="item.icon || '/'"
@@ -87,11 +87,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Loading from '../../../components/Loading.vue'
 export default {
   name: 'cards',
   components: {
     Loading,
+  },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
   },
   data() {
     return {

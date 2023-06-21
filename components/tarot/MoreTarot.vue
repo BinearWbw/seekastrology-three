@@ -14,7 +14,7 @@
     </div>
     <div class="more-tarot">
       <div class="more-tarot-items" v-show="showTarotType != 4">
-        <a href="/tarot" class="link">
+        <a :href="`${getIntersperseUrl}/tarot`" class="link">
           <img src="~/assets/img/tarot/day.png" alt="" />
           <p class="item-title">Daily Tarot</p>
           <p class="item-sub-title">
@@ -26,7 +26,7 @@
       </div>
 
       <div class="more-tarot-items" v-show="showTarotType != 1">
-        <a :href="'/tarot/type?type=' + 1" class="link">
+        <a :href="`${getIntersperseUrl}/tarot/type?type=1`" class="link">
           <img src="~/assets/img/tarot/love.png" alt="" />
           <p class="item-title">LOVE Tarot Reading</p>
           <p class="item-sub-title">
@@ -37,7 +37,7 @@
       </div>
 
       <div class="more-tarot-items" v-show="showTarotType != 2">
-        <a :href="'/tarot/type?type=' + 2" class="link">
+        <a :href="`${getIntersperseUrl}/tarot/type?type=2`" class="link">
           <img src="~/assets/img/tarot/rich.png" alt="" />
           <p class="item-title">Tarot Career Reading</p>
           <p class="item-sub-title">
@@ -48,7 +48,7 @@
       </div>
 
       <div class="more-tarot-items" v-show="showTarotType != 3">
-        <a :href="'/tarot/type?type=' + 3" class="link">
+        <a :href="`${getIntersperseUrl}/tarot/type?type=3`" class="link">
           <img src="~/assets/img/tarot/general.png" alt="" />
           <p class="item-title">Universal Tarot Reading</p>
           <p class="item-sub-title">
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'MoreTarot',
   computed: {
@@ -69,26 +70,11 @@ export default {
       let type = this.$route.query.type || '4'
       return type
     },
+    ...mapGetters(['getIntersperseUrl']),
   },
   data() {
     return {
-      more: [
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          title: 'LOVE Tarot Reading',
-          text: 'We have so many opportunities for love in our lifetimes! You can consul',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          title: 'LOVE Tarot Reading',
-          text: 'We have so many opportunities for love in our lifetimes! You can consul',
-        },
-        {
-          img: 'https://img1.baidu.com/it/u=1960110688,1786190632&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281',
-          title: 'LOVE Tarot Reading',
-          text: 'We have so many opportunities for love in our lifetimes! You can consul',
-        },
-      ],
+
     }
   },
 }
