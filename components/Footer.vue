@@ -15,9 +15,7 @@
         <div class="top_link">
           <div class="top_list" v-for="item in footer_link" :key="item.id">
             <a
-              :href="`${getIntersperseUrl + cont.path}${
-                cont.id ? '/' + cont.id : ''
-              }`"
+              :href="gotoPageList(cont)"
               v-for="(cont, index) in item.content"
               :key="index"
             >
@@ -135,26 +133,26 @@ export default {
             },
           ],
         },
-        // {
-        //   id: '5',
-        //   content: [
-        //     {
-        //       link: 'About Us',
-        //     },
-        //     {
-        //       link: 'Zodiac Signs',
-        //     },
-        //     {
-        //       link: 'Advertise Ment',
-        //     },
-        //     {
-        //       link: 'Privacy',
-        //     },
-        //     {
-        //       link: 'Partner With Us',
-        //     },
-        //   ],
-        // },
+        {
+          id: '5',
+          content: [
+            {
+              link: 'Support',
+            },
+            {
+              link: 'About Us',
+            },
+            {
+              link: 'Privacy Policy',
+            },
+            {
+              link: 'Disclaimer',
+            },
+            {
+              link: 'Contact Us',
+            },
+          ],
+        },
       ],
       footer_media: [
         {
@@ -214,6 +212,13 @@ export default {
           type: 'warning',
           msg: 'Please enter the correct email address',
         })
+      }
+    },
+    gotoPageList(item) {
+      if (item.path) {
+        return `${this.getIntersperseUrl + item.path}${item.id ? item.id : ''}`
+      } else {
+        return this.getIntersperseUrl
       }
     },
   },
