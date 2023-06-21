@@ -115,7 +115,7 @@
             </div>
           </div>
         </div>
-        <google-ad class="google_ad" :id="'3801702844'"></google-ad>
+        <google-ad classNames="google_ad" :id="'3801702844'"></google-ad>
       </div>
       <div class="tab_control">
         <div class="tab_main">
