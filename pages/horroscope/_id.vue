@@ -243,7 +243,7 @@ export default {
         top: 0,
         behavior: 'smooth',
       })
-      window.location.href = `${this.getIntersperseUrl}/horroscope/${option.name
+      window.location.href = `/horroscope/${option.name
         .replace(/[^a-zA-Z0-9\\s]/g, '-')
         .toLowerCase()}-${option.id}/`
     },
