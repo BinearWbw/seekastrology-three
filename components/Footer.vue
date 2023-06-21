@@ -1,11 +1,13 @@
 <template>
   <footer class="footer">
     <div class="footer__main">
-      <img
-        class="logo_mobile_img"
-        src="~/assets/img/header/logoImg.png"
-        alt="logo"
-      />
+      <a :href="getIntersperseUrl">
+        <img
+          class="logo_mobile_img"
+          src="~/assets/img/header/logoImg.png"
+          alt="logo"
+        />
+      </a>
       <div class="top">
         <button class="arrow common__btn" @click="goTop">
           <img src="~/assets/img/footer/arrow.svg" alt="arrow" />
