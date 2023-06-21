@@ -6,7 +6,7 @@ const sitemap = [
     cacheTime: 1000 * 60 * 60 * 24,
     gzip: true,
     generate: false,
-    exclude: ['/test/details', '/resources/details', '/zodiac/details', '/horroscope', '/tarot/details'],
+    exclude: ['/test/details', '/resources/details', '/zodiac/details', '/horroscope', '/tarot/details','/tarot/type'],
     defaults: {
       changefred: 'always',
       lastmod: new Date(),
@@ -109,6 +109,14 @@ const sitemap = [
             .toLowerCase()}-${item.id}/`
         );
       });
+      let res6 = [
+        1,2,3,4
+      ]
+      res6.map((item) => {
+        addArr.push(
+          `/tarot/type/${item}/`
+        )
+      })
       routes = routes.concat(addArr);
       return routes;
     },
