@@ -93,15 +93,15 @@ export default {
             },
             {
               link: 'Career Tarot',
-              path: '/tarot/type?type=2',
+              path: '/tarot/type/2/',
             },
             {
               link: 'Love Tarot',
-              path: '/tarot/type?type=1',
+              path: '/tarot/type/1/',
             },
             {
               link: 'Universal Tarot',
-              path: '/tarot/type?type=3',
+              path: '/tarot/type/3/',
             },
             {
               link: 'Tarot Cards',
