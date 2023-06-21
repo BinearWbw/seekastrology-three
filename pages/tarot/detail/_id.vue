@@ -15,7 +15,11 @@
         <google-ad classNames="ad-box" id="2979575766"></google-ad>
       </div>
       <div class="main-content">
-        <google-ad classNames="ad-box_row" style="width: 100%" id="3247169078"></google-ad>
+        <google-ad
+          classNames="ad-box_row"
+          style="width: 100%"
+          id="3247169078"
+        ></google-ad>
         <ul class="content-list">
           <li class="content-list-item">
             <div class="card-wrapper">
@@ -50,7 +54,7 @@ export default {
       cardsInfo: {},
     }
   },
-  async asyncData({ query, error, $apiList }) {
+  async asyncData({ error, $apiList, query }) {
     try {
       const cardsInfo = await $apiList.tarot.getDetail({
         origin: process.env.origin,

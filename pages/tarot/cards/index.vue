@@ -3,7 +3,9 @@
     <Loading v-if="loading" />
     <div class="title mt-75 mt-44-mobile">the major</div>
     <div class="tarot-section">
-      <div class="add-box-wrapper mt-48_minus"><google-ad classNames="ad-box" id="3171147457"></google-ad></div>
+      <div class="add-box-wrapper mt-48_minus">
+        <google-ad classNames="ad-box" id="3171147457"></google-ad>
+      </div>
       <div class="tarot-box">
         <ul class="major-list">
           <li
@@ -11,10 +13,7 @@
             v-for="(item, index) in majorList"
             :key="index"
           >
-            <nuxt-link
-              class="major-list-link"
-              :to="{ path: '/tarot/detail', query: { id: item.id } }"
-            >
+            <a class="major-list-link" :href="'/tarot/detail?id=' + item.id">
               <nuxt-img
                 class="major-item-img"
                 :src="item.icon || '/'"
@@ -24,12 +23,14 @@
               ></nuxt-img>
               <div class="item-text" :data-id="item.id">
                 {{ item.name }}
-              </div></nuxt-link
+              </div></a
             >
           </li>
         </ul>
       </div>
-      <div class="add-box-wrapper mt-48_minus"><google-ad classNames="ad-box" id="6918820771"></google-ad></div>
+      <div class="add-box-wrapper mt-48_minus">
+        <google-ad classNames="ad-box" id="6918820771"></google-ad>
+      </div>
     </div>
     <google-ad classNames="ad-box_row mt-32" id="9736555803"></google-ad>
     <div class="title mt-48">minor arcana definitions</div>
