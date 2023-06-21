@@ -133,8 +133,8 @@ export default {
         margin-right: 137px;
       }
       .card-img {
-        height: 390px;
-        width: 220px;
+        height: 420px;
+        width: 210px;
       }
       .card-img-rotate {
         transform: rotate(180deg);
