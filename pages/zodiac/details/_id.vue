@@ -115,7 +115,7 @@
             </div>
           </div>
         </div>
-        <google-ad class="google_ad"></google-ad>
+        <google-ad class="google_ad" :id="'3801702844'"></google-ad>
       </div>
       <div class="tab_control">
         <div class="tab_main">
@@ -317,7 +317,7 @@
           </el-tabs>
         </div>
         <div class="tabs_max"></div>
-        <google-ad classNames="google_ad"></google-ad>
+        <google-ad classNames="google_ad" :id="'7549376164'"></google-ad>
       </div>
     </div>
     <transition name="fade">

@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Pairing',
   data() {
@@ -131,6 +132,10 @@ export default {
     }
   },
 
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
+  },
+
   methods: {
     handleDropdownChangeLeft(option) {
       this.selectImgLeft = option.imgUrl
@@ -144,7 +149,8 @@ export default {
     },
     getStartPairingEl() {
       sessionStorage.setItem('genderList', JSON.stringify(this.genderList))
-      this.$router.push('/astrology/')
+      if (sessionStorage.getItem('genderList'))
+        window.location.href = `${this.getIntersperseUrl}/astrology/`
     },
   },
 }
