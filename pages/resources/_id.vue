@@ -259,12 +259,10 @@ export default {
       loading: false,
     }
   },
-  async asyncData({ error, $apiList, query }) {
+  async asyncData({ error, $apiList, params }) {
     try {
-      // let RESOURCES_TAB_ID = sessionStorage.getItem('RESOURCES_TAB_ID')
-      // console.log(RESOURCES_TAB_ID)
       //获取是否从其他页面跳转进来，如果是就给item赋值，item为当前中间导航tabs选中的值
-      let item = query?.id ? { id: Number(query.id) } : null,
+      let item = params?.id ? { id: Number(params.id) } : null,
         currentTabIndex = 0,
         totalNum = 0,
         totalPage = 1,
@@ -291,7 +289,7 @@ export default {
           .then((res) => {
             //首位增加一个all
             res.unshift({ name: 'All' })
-            //如果为null说明不是从其他页面跳转进来的，就取请求tabs结果中的第一条
+            //如果item为null说明不是从其他页面跳转进来的，就取请求tabs结果中的第一条
             if (item == null) item = res?.length > 0 ? res[0] : null
             //如果有item中有id值，说明是从其他页面跳转进来的，这时找到对应的下标值设置选中的tab样式，反之默认给第一个设置样式
             currentTabIndex =
