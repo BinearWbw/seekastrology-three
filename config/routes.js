@@ -33,6 +33,16 @@ const addRoutes = async () => {
         .toLowerCase()}-${item.id}/`
     )
   })
+  let res4 = await axios.get(
+    'https://astro.doitme.link/api/astro/basic?origin=seekastrology'
+  )
+  res4.data.data.map((item) => {
+    routes.push(
+      `/horroscope/${item.name
+        .replace(/[^a-zA-Z0-9\\s]/g, '-')
+        .toLowerCase()}-${item.id}/`
+    )
+  })
   // let res4 = await axios.get(
   //   'https://astro.doitme.link/api/tarot/all?origin=seekastrology&page=1&size=10000'
   // )
