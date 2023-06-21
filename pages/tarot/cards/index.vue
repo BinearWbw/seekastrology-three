@@ -15,9 +15,9 @@
           >
             <a
               class="major-list-link"
-              :href="`${getIntersperseUrl}/tarot/details/${item.name
+              :href="`/tarot/details/${item.name
                 .replace(/[^a-zA-Z0-9\\s]/g, '-')
-                .toLowerCase()}-${item.id}`"
+                .toLowerCase()}-${item.id}/`"
             >
               <nuxt-img
                 class="major-item-img"
@@ -76,9 +76,9 @@
         :key="index"
       >
         <a
-          :href="`${getIntersperseUrl}/tarot/details/${item.name
+          :href="`/tarot/details/${item.name
             .replace(/[^a-zA-Z0-9\\s]/g, '-')
-            .toLowerCase()}-${item.id}`"
+            .toLowerCase()}-${item.id}/`"
         >
           <nuxt-img
             class="minor-item-img"
@@ -96,15 +96,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import Loading from '../../../components/Loading.vue'
 export default {
   name: 'cards',
   components: {
     Loading,
-  },
-  computed: {
-    ...mapGetters(['getIntersperseUrl']),
   },
   data() {
     return {
