@@ -66,7 +66,7 @@
               </div>
             </div> -->
       </div>
-      <more-tarot class="el_more"></more-tarot>
+      <more-tarot class="el_more" :type="type"></more-tarot>
       <google-ad class="ad-box_row mt_80" id="7545189503"></google-ad>
     </div>
     <home-your-choice class="el_choice"></home-your-choice>
@@ -119,9 +119,9 @@ export default {
       },
     }
   },
-  asyncData({ query, error, $apiList }) {
+  asyncData({ error, $apiList, params }) {
     return {
-      type: query.type
+      type: params.type
     }
   },
 }
