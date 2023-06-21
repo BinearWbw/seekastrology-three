@@ -144,8 +144,12 @@
           </a>
         </div>
       </div>
-      <google-ad classNames="google_ad" :id="'5741400662'"></google-ad>
-      <div class="resources_main_btm">
+      <google-ad
+        classNames="google_ad"
+        :id="'5741400662'"
+        ref="gooleAd"
+      ></google-ad>
+      <div class="resources_main_btm" ref="mainBtm">
         <div class="resources_main_btm_tabs">
           <div
             v-for="(item, index) in tabs"
@@ -328,7 +332,15 @@ export default {
       error({ statusCode: e.code, message: e.msg })
     }
   },
-  mounted() {},
+  mounted() {
+    console.log(this.item)
+    //滚动到广告位
+    if ('id' in this.item)
+      this.$refs.gooleAd.$el.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+  },
   methods: {
     getNews(item) {
       this.loading = true
