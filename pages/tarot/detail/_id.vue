@@ -54,11 +54,14 @@ export default {
       cardsInfo: {},
     }
   },
-  async asyncData({ error, $apiList, query }) {
+  async asyncData({ error, $apiList, query, params }) {
     try {
       const cardsInfo = await $apiList.tarot.getDetail({
         origin: process.env.origin,
-        id: query.id,
+        id: params.id.replace(
+          /^.*?(\d*)$/,
+          (str, match, index) => match || '0'
+        ),
       })
       return {
         cardsInfo,

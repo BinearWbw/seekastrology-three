@@ -13,7 +13,12 @@
             v-for="(item, index) in majorList"
             :key="index"
           >
-            <a class="major-list-link" :href="`${getIntersperseUrl}/tarot/detail?id=${item.id}`">
+            <a
+              class="major-list-link"
+              :href="`${getIntersperseUrl}/tarot/detail/${item.name
+                .replace(/[^a-zA-Z0-9\\s]/g, '-')
+                .toLowerCase()}-${item.id}`"
+            >
               <nuxt-img
                 class="major-item-img"
                 :src="item.icon || '/'"
@@ -70,7 +75,11 @@
         v-for="(item, index) in minorList"
         :key="index"
       >
-        <a :href="`${getIntersperseUrl}/tarot/detail?id=${item.id}`">
+        <a
+          :href="`${getIntersperseUrl}/tarot/detail/${item.name
+            .replace(/[^a-zA-Z0-9\\s]/g, '-')
+            .toLowerCase()}-${item.id}`"
+        >
           <nuxt-img
             class="minor-item-img"
             :src="item.icon || '/'"
