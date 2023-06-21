@@ -3,7 +3,7 @@
     <Loading v-if="loading" />
     <div class="title mt-75 mt-44-mobile">the major</div>
     <div class="tarot-section">
-      <!-- <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div> -->
+      <div class="add-box-wrapper mt-48_minus"><google-ad classNames="ad-box" id="3171147457"></google-ad></div>
       <div class="tarot-box">
         <ul class="major-list">
           <li
@@ -29,9 +29,9 @@
           </li>
         </ul>
       </div>
-      <!-- <div class="add-box-wrapper mt-48_minus"><div class="ad-box"></div></div> -->
+      <div class="add-box-wrapper mt-48_minus"><google-ad classNames="ad-box" id="6918820771"></google-ad></div>
     </div>
-    <div class="ad-box_row mt-32"></div>
+    <google-ad classNames="ad-box_row mt-32" id="9736555803"></google-ad>
     <div class="title mt-48">minor arcana definitions</div>
     <div class="minor-tab" @click="toggleMinor">
       <button
@@ -81,7 +81,7 @@
         </a>
       </li>
     </ul>
-    <div class="ad-box_row mt-48 mb-32"></div>
+    <google-ad classNames="ad-box_row mt-48 mb-32" id="6311466051"></google-ad>
   </div>
 </template>
 
@@ -104,42 +104,43 @@ export default {
       pentaclesList: [],
     }
   },
-  // async asyncData({ error, $apiList }) {
-  //   try {
-  //     const data = await $apiList.tarot.getTarotList({
-  //       origin: process.env.origin,
-  //     })
-  //     let res = {
-  //       majorList: [],
-  //       minorList: [],
-  //       wandsList: [],
-  //       cupsList: [],
-  //       swordsList: [],
-  //       pentaclesList: [],
-  //     }
-  //     if (data && data.length) {
-  //       data.forEach((ele) => {
-  //         if (ele.type == 1) {
-  //           res.majorList.push(ele)
-  //         } else {
-  //           let map = {
-  //             1: res.wandsList,
-  //             2: res.cupsList,
-  //             3: res.swordsList,
-  //             4: res.pentaclesList,
-  //           }
-  //           map[ele.main_type].push(ele)
-  //         }
-  //       })
-  //     }
-  //     res.minorList = res.wandsList
-  //     return res
-  //   } catch (e) {
-  //     error({ statusCode: e.code, message: e.message })
-  //   }
-  // },
+  async asyncData({ error, $apiList }) {
+    try {
+      const data = await $apiList.tarot.getTarotList({
+        origin: process.env.origin,
+      })
+      let res = {
+        majorList: [],
+        minorList: [],
+        wandsList: [],
+        cupsList: [],
+        swordsList: [],
+        pentaclesList: [],
+      }
+      if (data && data.length) {
+        data.forEach((ele) => {
+          if (ele.type == 1) {
+            res.majorList.push(ele)
+          } else {
+            let map = {
+              1: res.wandsList,
+              2: res.cupsList,
+              3: res.swordsList,
+              4: res.pentaclesList,
+            }
+            map[ele.main_type].push(ele)
+          }
+        })
+      }
+      res.minorList = res.wandsList
+      res.loading = false
+      return res
+    } catch (e) {
+      error({ statusCode: e.code, message: e.message })
+    }
+  },
   mounted() {
-    this.getDatas()
+    // this.getDatas()
   },
   methods: {
     async getDatas() {
@@ -378,7 +379,7 @@ export default {
   }
   .minor-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 107px);
+    grid-template-columns: repeat(auto-fill, 106px);
     .minor-list-item {
       .minor-item-img {
         height: 213px;

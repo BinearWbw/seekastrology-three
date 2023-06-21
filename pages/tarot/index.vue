@@ -9,17 +9,21 @@
   <div class="tarot-container">
     <div class="title">Choose 1 Cards From The Deck Below:</div>
     <div class="tarot-section">
-      <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
+      <div class="add-box-wrapper">
+        <google-ad classNames="ad-box" id="4068446091"></google-ad>
+      </div>
       <div class="tarot-box">
         <tarot-play type="4"></tarot-play>
       </div>
-      <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
+      <div class="add-box-wrapper">
+        <google-ad classNames="ad-box" id="9572904273"></google-ad>
+      </div>
     </div>
-    <google-ad classNames="ad-box_row mt-48"></google-ad>
+    <google-ad classNames="ad-box_row mt-48" id="4356182716"></google-ad>
     <more-tarot class="mt-48"></more-tarot>
-    <google-ad classNames="ad-box_row mt-32"></google-ad>
+    <google-ad classNames="ad-box_row mt-32" id="7816119415"></google-ad>
     <all-tarot class="mt-48"></all-tarot>
-    <google-ad classNames="ad-box_row mt-32 mt-120 mb-32"></google-ad>
+    <google-ad classNames="ad-box_row mt-32 mt-120 mb-32" id="6503037744"></google-ad>
   </div>
 </template>
 

@@ -3,18 +3,27 @@
     <div class="tarot-container">
       <div class="title">{{ titleText[type] || '' }}</div>
       <div class="tarot-section">
-        <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
+        <div class="add-box-wrapper">
+          <google-ad classNames="ad-box" id="3876874401"></google-ad>
+        </div>
         <div class="tarot-box">
           <tarot-play :type="type" ref="play"></tarot-play>
         </div>
-        <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
+        <div class="add-box-wrapper">
+          <google-ad classNames="ad-box" id="1694414255"></google-ad>
+        </div>
       </div>
       <div class="introduce-box">
         <div class="intro">
-          <div class="intro-title">{{ textObj[type] && textObj[type].title }}</div>
-          <div class="intro-content" v-html="textObj[type] && textObj[type].desc"></div>
+          <div class="intro-title">
+            {{ textObj[type] && textObj[type].title }}
+          </div>
+          <div
+            class="intro-content"
+            v-html="textObj[type] && textObj[type].desc"
+          ></div>
         </div>
-        <google-ad class="ad-box_row mt_80"></google-ad>
+        <google-ad class="ad-box_row mt_80" id="6755169246"></google-ad>
         <!-- <div class="divination">
               <div class="divination-title">Prepare for Divination</div>
               <div class="divination-wrapper">
@@ -58,7 +67,7 @@
             </div> -->
       </div>
       <more-tarot class="el_more"></more-tarot>
-      <google-ad class="ad-box_row mt_80"></google-ad>
+      <google-ad class="ad-box_row mt_80" id="7545189503"></google-ad>
     </div>
     <home-your-choice class="el_choice"></home-your-choice>
     <transition name="fade">
@@ -110,11 +119,10 @@ export default {
       },
     }
   },
-  // asyncData({ query }) {
-  //   console.log('query', query)
-  // },
-  created() {
-    this.type = this.$route.query.type
+  asyncData({ query, error, $apiList }) {
+    return {
+      type: query.type
+    }
   },
 }
 </script>

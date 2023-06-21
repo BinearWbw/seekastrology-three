@@ -11,9 +11,11 @@
       {{ cardsInfo.name }} Card Meaning
     </div>
     <div class="tarot-section">
-      <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
+      <div class="add-box-wrapper">
+        <google-ad classNames="ad-box" id="2979575766"></google-ad>
+      </div>
       <div class="main-content">
-        <div class="ad-box_row" style="width: 100%"></div>
+        <google-ad classNames="ad-box_row" style="width: 100%" id="3247169078"></google-ad>
         <ul class="content-list">
           <li class="content-list-item">
             <div class="card-wrapper">
@@ -32,9 +34,11 @@
           </li>
         </ul>
       </div>
-      <!-- <div class="add-box-wrapper"><div class="ad-box"></div></div> -->
+      <div class="add-box-wrapper">
+        <google-ad classNames="ad-box" id="6727249080"></google-ad>
+      </div>
     </div>
-    <div class="ad-box_row mt-48 mb-48"></div>
+    <google-ad classNames="ad-box_row mt-48 mb-48" id="1099517884"></google-ad>
   </div>
 </template>
 
@@ -46,27 +50,27 @@ export default {
       cardsInfo: {},
     }
   },
-  // async asyncData({ query, error, $apiList }) {
-  //   try {
-  //     const cardsInfo = await $apiList.tarot.getDetail({
-  //       origin: process.env.origin,
-  //       id: query.id,
-  //     })
-  //     return {
-  //       cardsInfo,
-  //     }
-  //   } catch (e) {
-  //     error({ statusCode: e.code, message: e.message })
-  //   }
-  // },
+  async asyncData({ query, error, $apiList }) {
+    try {
+      const cardsInfo = await $apiList.tarot.getDetail({
+        origin: process.env.origin,
+        id: query.id,
+      })
+      return {
+        cardsInfo,
+      }
+    } catch (e) {
+      error({ statusCode: e.code, message: e.message })
+    }
+  },
   mounted() {
-    this.getDatas()
+    // this.getDatas()
   },
   methods: {
     async getDatas() {
       const data = await this.$apiList.tarot.getDetail({
         origin: process.env.origin,
-        id: this.$route.query.id
+        id: this.$route.query.id,
       })
       this.cardsInfo = data
     },
@@ -87,9 +91,6 @@ export default {
     line-height: 36px;
     color: #ffffff !important;
     margin-top: 40px;
-  }
-  ::v-deep p {
-    margin-top: 30px;
   }
 }
 .title {
@@ -160,6 +161,9 @@ export default {
       font-weight: 400;
       font-size: 16px;
       line-height: 28px;
+      ::v-deep p {
+        margin-top: 30px;
+      }
     }
   }
 }
