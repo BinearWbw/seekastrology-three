@@ -117,14 +117,14 @@ export default {
               path: '/resources/',
             },
             {
-              link: 'Astrology',
-              path: '/resources/',
-              id: 4,
-            },
-            {
               link: 'Tarot',
               path: '/resources/',
               id: 3,
+            },
+            {
+              link: 'Astrology',
+              path: '/resources/',
+              id: 4,
             },
             {
               link: 'Love',
