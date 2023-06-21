@@ -263,10 +263,15 @@ export default {
       loading: false,
     }
   },
-  async asyncData({ error, $apiList, params }) {
+  async asyncData({ error, $apiList }) {
     try {
       //获取是否从其他页面跳转进来，如果是就给item赋值，item为当前中间导航tabs选中的值
-      let item = params?.id ? { id: Number(params.id) } : null,
+      let item = null,
+        allList = [],
+        tarotList = [],
+        astrologyList = [],
+        loveList = [],
+        btmList = [],
         currentTabIndex = 0,
         totalNum = 0,
         totalPage = 1,
@@ -293,32 +298,36 @@ export default {
           .then((res) => {
             //首位增加一个all
             res.unshift({ name: 'All' })
-            //如果item为null说明不是从其他页面跳转进来的，就取请求tabs结果中的第一条
-            if (item == null) item = res?.length > 0 ? res[0] : null
-            //如果有item中有id值，说明是从其他页面跳转进来的，这时找到对应的下标值设置选中的tab样式，反之默认给第一个设置样式
-            currentTabIndex = item.hasOwnProperty('id')
-              ? res.findIndex((tab) => tab.id == item.id)
-              : 0
             return res || null
           }),
       ])
-      /**根据id获取对应数据，如果不是从其他它页面跳转过来的就默认请求tabs第一条对应的列表 */
-      let getNewsParams = {
+      let allListRes = await $apiList.articles.getNews({
         origin: process.env.origin,
-        cate: item.hasOwnProperty('id') ? item.id : undefined,
         ...search,
-      }
-      if (currentTabIndex == 0) delete getNewsParams.cate
-      let btmList = await $apiList.articles
-        .getNews(getNewsParams)
-        .then((res) => {
-          totalNum = res.count
-          totalPage =
-            Math.ceil(totalNum / search.size) === 0
-              ? 1
-              : Math.ceil(totalNum / search.size)
-          return res?.list || null
-        })
+      })
+      allList = allListRes.list
+
+      let tarotListRes = await $apiList.articles.getNews({
+        origin: process.env.origin,
+        cate: 3,
+        ...search,
+      })
+      tarotList = tarotListRes.list
+
+      let astrologyListRes = await $apiList.articles.getNews({
+        origin: process.env.origin,
+        cate: 4,
+        ...search,
+      })
+      astrologyList = astrologyListRes.list
+
+      let loveListRes = await $apiList.articles.getNews({
+        origin: process.env.origin,
+        cate: 5,
+        ...search,
+      })
+      loveList = loveListRes.list
+
       return {
         item,
         list,
@@ -328,20 +337,41 @@ export default {
         totalPage,
         search,
         currentTabIndex,
+        allList,
+        tarotList,
+        astrologyList,
+        loveList,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
     }
   },
   mounted() {
-    //滚动到广告位
-    if (this.item.hasOwnProperty('id'))
-      this.$refs.gooleAd.$el.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      })
+    //获取query
+    this.changeList({ id: this.$route.query.id })
   },
   methods: {
+    changeList(item) {
+      if (item.id == undefined) {
+        this.btmList = this.allList
+        this.currentTabIndex = 0
+      } else {
+        this.btmList =
+          item.id == '3'
+            ? this.tarotList
+            : item.id == '4'
+            ? this.astrologyList
+            : item.id == '5'
+            ? this.loveList
+            : this.allList
+        this.currentTabIndex = this.tabs.findIndex((tab) => tab.id == item.id)
+        //滚动到广告位
+        this.$refs.gooleAd.$el.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }
+    },
     getNews(item) {
       this.loading = true
       this.search.page += 1
@@ -374,12 +404,14 @@ export default {
 
     /** 点击切换tabs*/
     changeTab(item, index) {
+      console.log(item)
       this.item = item
       this.btmList = []
       this.search.page = 0
       this.currentTabIndex = index
       //通过id请求对应的列表数据
-      this.getNews(item)
+      // this.getNews(item)
+      this.changeList(item)
     },
     // scrollLoad() {
     //   //滚动条位置

@@ -1,5 +1,5 @@
 export const state = () => ({
-  intersperseUrl: 'http://47.108.105.189:3001',
+  intersperseUrl: 'https://www.seekastrology.com',
   toastCfg: {
     position: 'bottom-left',
     timeout: 3000,

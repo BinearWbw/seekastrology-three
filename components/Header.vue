@@ -34,7 +34,7 @@
                   class="nav_children"
                   :title="item_i.title"
                   v-for="(item_i, index_i) in item.children"
-                  :href="`${getIntersperseUrl + item_i.href}`"
+                  :href="`${getIntersperseUrl + item_i.href}/`"
                   :key="index_i"
                 >
                   {{ item_i.title }}

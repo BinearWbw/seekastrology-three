@@ -5,11 +5,9 @@
       v-if="visible"
       class="adsbygoogle"
       style="
-        display: block;
-        margin: 0 auto;
-        max-width: 1200px;
-        min-width: 300px;
-        min-height: 100px;
+        display: 'block',
+        width: '100%',
+        height: '100%',
       "
       data-ad-client="ca-pub-6430486603399192"
       :data-ad-slot="id"
