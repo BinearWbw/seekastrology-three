@@ -1,11 +1,13 @@
 <template>
   <footer class="footer">
     <div class="footer__main">
-      <img
-        class="logo_mobile_img"
-        src="~/assets/img/header/logoImg.png"
-        alt="logo"
-      />
+      <a :href="getIntersperseUrl">
+        <img
+          class="logo_mobile_img"
+          src="~/assets/img/header/logoImg.png"
+          alt="logo"
+        />
+      </a>
       <div class="top">
         <button class="arrow common__btn" @click="goTop">
           <img src="~/assets/img/footer/arrow.svg" alt="arrow" />
@@ -14,11 +16,10 @@
           <div class="top_list" v-for="item in footer_link" :key="item.id">
             <a
               :href="`${getIntersperseUrl + cont.path}${
-                cont.id ? '?id=' + cont.id : ''
+                cont.id ? '/' + cont.id : ''
               }`"
               v-for="(cont, index) in item.content"
               :key="index"
-              @click="saveTabId($event, cont)"
             >
               {{ cont.link }}
             </a>
@@ -119,17 +120,17 @@ export default {
             },
             {
               link: 'Astrology',
-              path: '/resources/',
+              path: '/resources',
               id: 4,
             },
             {
               link: 'Tarot',
-              path: '/resources/',
+              path: '/resources',
               id: 3,
             },
             {
               link: 'Love',
-              path: '/resources/',
+              path: '/resources',
               id: 5,
             },
           ],
@@ -175,12 +176,6 @@ export default {
     ...mapGetters(['getIntersperseUrl']),
   },
   methods: {
-    saveTabId(event, cont) {
-      // 阻止默认的页面跳转行为
-      event.preventDefault()
-      if (cont.id) sessionStorage.setItem('RESOURCES_TAB_ID', cont.id)
-      window.location.href = event.target.href
-    },
     goTop() {
       window.scrollTo({
         top: 0,

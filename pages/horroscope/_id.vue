@@ -2,7 +2,7 @@
   <div class="horroscope">
     <div class="horroscope_main">
       <div class="horoscope_details">
-        <google-ad class="google_ad"></google-ad>
+        <google-ad class="google_ad" :id="'4376417914'"></google-ad>
         <div class="datails_list">
           <div class="list_top">
             <h3>
@@ -28,7 +28,7 @@
               </el-tabs>
             </div>
           </div>
-          <google-ad classNames="google_ad"></google-ad>
+          <google-ad classNames="google_ad" :id="'8124091233'"></google-ad>
         </div>
       </div>
       <div class="horoscope_more">
@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-        <google-ad classNames="google_ad"></google-ad>
+        <google-ad classNames="google_ad" :id="'4184846228'"></google-ad>
       </div>
     </div>
     <transition name="fade">
@@ -528,16 +528,16 @@ export default {
             display: flex;
             justify-content: initial;
             flex-direction: column-reverse;
-            margin-bottom: 32 * $pr;
+            margin-bottom: 24 * $pr;
             h3 {
-              font-size: 36 * $pr;
-              line-height: 48 * $pr;
+              font-size: 26 * $pr;
+              line-height: 36 * $pr;
               text-align: center;
             }
             .pull_down {
               width: 100%;
               height: auto;
-              margin-bottom: 16 * $pr;
+              margin-bottom: 24 * $pr;
             }
           }
           .list_main {
@@ -546,7 +546,7 @@ export default {
               .texts {
                 font-size: 16 * $pr;
                 line-height: 28 * $pr;
-                padding-top: 24 * $pr;
+                padding-top: 12 * $pr;
               }
               ::v-deep(.tab-header) {
                 justify-content: space-around;
