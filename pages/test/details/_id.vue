@@ -656,7 +656,7 @@ $spacing: 55px;
             font-weight: 400;
             font-size: 22px;
             line-height: 30px;
-            color: #fff;
+            color: #9747ff;
           }
           &_desc {
             font-family: 'Rubik';
