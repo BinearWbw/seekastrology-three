@@ -44,7 +44,7 @@ const addRoutes = async () => {
     )
   })
   let res5 = await axios.get(
-    'https://astro.doitme.link/api/tarot/all?origin=seekastrology'
+    'https://astro.doitme.link/api/tarot/all?origin=seekastrology&page=1&size=10000'
   )
   res5.data.data.list.map((item) => {
     routes.push(
