@@ -216,7 +216,9 @@ export default {
     },
     gotoPageList(item) {
       if (item.path) {
-        return `${this.getIntersperseUrl + item.path}${item.id ? item.id : ''}`
+        return `${this.getIntersperseUrl + item.path}${
+          item.id ? '?id=' + item.id : ''
+        }`
       } else {
         return this.getIntersperseUrl
       }
