@@ -162,18 +162,9 @@
     </div>
     <google-ad classNames="google_ad_footer" :id="'4872824519'"></google-ad>
     <div class="foot_components" ref="foot_components">
-      <!-- <transition name="fade">
-        <el-daily-horoscope ref="horoscope"></el-daily-horoscope>
-      </transition> -->
       <transition name="fade">
         <home-your-choice></home-your-choice>
       </transition>
-      <!-- <transition name="fade">
-        <tarot-all-tarot></tarot-all-tarot>
-      </transition>
-      <transition name="fade">
-        <el-pairing></el-pairing>
-      </transition> -->
       <transition name="fade">
         <tarot-more-tarot></tarot-more-tarot>
       </transition>

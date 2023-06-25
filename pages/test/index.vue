@@ -99,18 +99,9 @@
       </div>
     </div>
     <div class="foot_components" ref="foot_components">
-      <!-- <transition name="fade">
-        <el-daily-horoscope ref="horoscope"></el-daily-horoscope>
-      </transition> -->
       <transition name="fade">
         <home-your-choice></home-your-choice>
       </transition>
-      <!-- <transition name="fade">
-        <tarot-all-tarot></tarot-all-tarot>
-      </transition>
-      <transition name="fade">
-        <el-pairing></el-pairing>
-      </transition> -->
       <transition name="fade">
         <tarot-more-tarot></tarot-more-tarot>
       </transition>
@@ -668,6 +659,12 @@ $spacing: 16px;
             }
             .btm {
               display: none;
+            }
+          }
+          &_loading {
+            .loading {
+              width: 32 * $pr;
+              height: 32 * $pr;
             }
           }
           &_btn {
