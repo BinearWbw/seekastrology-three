@@ -228,6 +228,14 @@
             </a>
           </div>
         </transition>
+        <div class="resources_main_btm_loading" v-if="loading">
+          <img
+            src="../../assets/img/resources/loading.png"
+            alt=""
+            class="loading"
+          />
+        </div>
+
         <!-- <div class="common__loading" v-scroll v-if="search.page < totalPage">
           <div class="common__loading__loader" v-if="loading"></div>
         </div> -->
@@ -235,11 +243,6 @@
           <button class="resources_main_btm_btn_moreBtn" @click="getNews">
             Load More
           </button>
-          <!-- <img
-            src="../../assets/img/resources/loading.png"
-            alt=""
-            class="loading"
-          /> -->
         </div>
       </div>
       <google-ad classNames="google_ad_btm" :id="'1344643045'"></google-ad>
@@ -815,21 +818,8 @@ $spacing: 16px;
             color: #000;
           }
         }
-        .loading {
-          width: 32px;
-          height: 32px;
-          margin: 0 auto;
-          animation: spin 1s infinite linear reverse;
-        }
       }
-      @keyframes spin {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
+
       &_main {
         display: grid;
         grid-template-columns: repeat(3, 456px);
@@ -942,6 +932,25 @@ $spacing: 16px;
               display: -webkit-box;
             }
           }
+        }
+      }
+      &_loading {
+        display: flex;
+        justify-content: center;
+        .loading {
+          width: 32px;
+          height: 32px;
+          margin: 0 auto;
+          animation: spin 1s infinite linear reverse;
+        }
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
         }
       }
     }

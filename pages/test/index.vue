@@ -72,6 +72,13 @@
           <!-- <div class="common__loading" v-scroll v-if="search.page < totalPage">
             <div class="common__loading__loader" v-if="loading"></div>
           </div> -->
+          <div class="test_main_center_left_loading" v-if="loading">
+            <img
+              src="../../assets/img/resources/loading.png"
+              alt=""
+              class="loading"
+            />
+          </div>
           <div class="test_main_center_left_btn" v-if="search.page < totalPage">
             <button
               class="test_main_center_left_btn_moreBtn"
@@ -178,7 +185,7 @@ export default {
   },
   methods: {
     handleScroll() {
-      const rightAd = this.$refs.rightAd.$el
+      const rightAd = document.querySelector('.rightAd')
       const rightAdBox = this.$refs.right_google_ad
       // const horoscope = this.$refs.horoscope
       // const horoscope_main = horoscope.$el.querySelector(
@@ -428,6 +435,25 @@ $spacing: 16px;
           }
           .btm {
             grid-row-end: 13;
+          }
+        }
+        &_loading {
+          display: flex;
+          justify-content: center;
+          .loading {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto;
+            animation: spin 1s infinite linear reverse;
+          }
+        }
+
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
           }
         }
         &_btn {
