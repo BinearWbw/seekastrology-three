@@ -5,7 +5,7 @@
     <div class="resources_main">
       <google-ad classNames="google_ad" :id="'9680645670'"></google-ad>
       <div class="resources_main_title">HOT Content</div>
-      <div class="resources_main_top" v-if="list.length > 0">
+      <div class="resources_main_top" v-if="list?.length > 0">
         <a
           class="resources_main_top_left"
           :href="`${getIntersperseUrl}/resources/details/${list[0].name
@@ -153,7 +153,7 @@
         <div class="resources_main_btm_tabs">
           <div
             v-for="(item, index) in tabs"
-            :key="item.id"
+            :key="'tab' + index"
             class="resources_main_btm_tabs_item"
             :class="index == currentTabIndex ? 'current_tabs' : ''"
             @click="changeTab(item, index)"
@@ -162,10 +162,13 @@
           </div>
         </div>
         <div class="resources_main_btm_line"></div>
-        <transition name="slide">
-          <div class="resources_main_btm_main" v-if="btmList?.length > 0">
+        <transition name="fade">
+          <div
+            class="resources_main_btm_main"
+            v-if="newsData?.list?.length > 0"
+          >
             <a
-              v-for="item in btmList"
+              v-for="item in newsData?.list"
               :key="item.id"
               class="resources_main_btm_main_item"
               :href="`${getIntersperseUrl}/resources/details/${item.name
@@ -232,6 +235,11 @@
           <button class="resources_main_btm_btn_moreBtn" @click="getNews(item)">
             Load More
           </button>
+          <!-- <img
+            src="../../assets/img/resources/loading.png"
+            alt=""
+            class="loading"
+          /> -->
         </div>
       </div>
       <google-ad classNames="google_ad_btm" :id="'1344643045'"></google-ad>
@@ -261,23 +269,21 @@ export default {
   data() {
     return {
       loading: false,
+      refreshFlag: false,
+      newsData: {},
+      isFrist: true,
     }
   },
   async asyncData({ error, $apiList }) {
     try {
       //获取是否从其他页面跳转进来，如果是就给item赋值，item为当前中间导航tabs选中的值
       let item = null,
-        allList = [],
-        tarotList = [],
-        astrologyList = [],
-        loveList = [],
-        btmList = [],
         currentTabIndex = 0,
         totalNum = 0,
         totalPage = 1,
         search = {
           page: 1,
-          size: 9,
+          size: 18,
         }
       let [list, tabs] = await Promise.all([
         /**顶部推荐 */
@@ -301,45 +307,39 @@ export default {
             return res || null
           }),
       ])
-      let allListRes = await $apiList.articles.getNews({
+      let allData = await $apiList.articles.getNews({
         origin: process.env.origin,
         ...search,
       })
-      allList = allListRes.list
-
-      let tarotListRes = await $apiList.articles.getNews({
+      let tarotData = await $apiList.articles.getNews({
         origin: process.env.origin,
         cate: 3,
         ...search,
       })
-      tarotList = tarotListRes.list
 
-      let astrologyListRes = await $apiList.articles.getNews({
+      let astrologyData = await $apiList.articles.getNews({
         origin: process.env.origin,
         cate: 4,
         ...search,
       })
-      astrologyList = astrologyListRes.list
 
-      let loveListRes = await $apiList.articles.getNews({
+      let loveData = await $apiList.articles.getNews({
         origin: process.env.origin,
         cate: 5,
         ...search,
       })
-      loveList = loveListRes.list
       return {
         item,
         list,
         tabs,
-        btmList,
         totalNum,
         totalPage,
         search,
         currentTabIndex,
-        allList,
-        tarotList,
-        astrologyList,
-        loveList,
+        allData,
+        tarotData,
+        astrologyData,
+        loveData,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.msg })
@@ -352,26 +352,40 @@ export default {
   methods: {
     changeList(item) {
       if (item.id == undefined) {
-        this.btmList = this.allList
+        this.newsData = this.allData
+        this.totalNum = this.newsData.count
         this.currentTabIndex = 0
       } else {
-        this.btmList =
+        this.newsData =
           item.id == '3'
-            ? this.tarotList
+            ? this.tarotData
             : item.id == '4'
-            ? this.astrologyList
+            ? this.astrologyData
             : item.id == '5'
-            ? this.loveList
-            : this.allList
+            ? this.loveData
+            : this.allData
+        this.totalNum = this.newsData.count
+        if (this.isFrist && this.$route.query.id) {
+          //滚动到广告位
+          this.$nextTick(() => {
+            this.$refs.gooleAd.$el.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            })
+          })
+        }
+        this.isFrist = false
+        //当前tab高亮
         this.currentTabIndex = this.tabs.findIndex((tab) => tab.id == item.id)
-        //滚动到广告位
-        this.$refs.gooleAd.$el.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        })
       }
+      this.item = item
+      this.totalPage =
+        Math.ceil(this.totalNum / this.search.size) === 0
+          ? 1
+          : Math.ceil(this.totalNum / this.search.size)
     },
     getNews(item) {
+      this.refreshFlag = true
       this.loading = true
       this.search.page += 1
       let getNewsParams = {
@@ -385,7 +399,7 @@ export default {
         .then((res) => {
           res.list &&
             res.list.map((item) => {
-              this.btmList.push(item)
+              this.newsData.list.push(item)
             })
           this.totalNum = res.count
           this.totalPage =
@@ -393,7 +407,6 @@ export default {
               ? 1
               : Math.ceil(this.totalNum / this.search.size)
           this.loading = false
-          this.status = false
         })
         .catch((error) => {
           this.search.page -= 1
@@ -403,14 +416,17 @@ export default {
 
     /** 点击切换tabs*/
     changeTab(item, index) {
-      console.log(item)
       this.item = item
-      this.btmList = []
-      this.search.page = 0
       this.currentTabIndex = index
+      if (this.refreshFlag) {
+        this.search.page = 0
+        this.newsData.list = []
+        this.getNews(item)
+      } else {
+        this.changeList(item)
+      }
       //通过id请求对应的列表数据
-      // this.getNews(item)
-      this.changeList(item)
+      //
     },
     // scrollLoad() {
     //   //滚动条位置
@@ -786,6 +802,7 @@ $spacing: 16px;
         display: flex;
         justify-content: center;
         margin-top: 24px;
+        flex-direction: column;
         &_moreBtn {
           margin: 0 auto;
           border: 1px solid #45454d;
@@ -801,6 +818,20 @@ $spacing: 16px;
             background-color: #fff;
             color: #000;
           }
+        }
+        .loading {
+          width: 32px;
+          height: 32px;
+          margin: 0 auto;
+          animation: spin 1s infinite linear reverse;
+        }
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
         }
       }
       &_main {
