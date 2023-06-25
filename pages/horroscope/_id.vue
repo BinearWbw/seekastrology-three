@@ -296,7 +296,7 @@ export default {
       .google_ad {
         width: 300px;
         height: 600px;
-        background-color: #555761;
+        // background-color: #555761;
       }
       .datails_list {
         flex: 1;
@@ -336,7 +336,7 @@ export default {
         .google_ad {
           width: 924px;
           height: 114px;
-          background-color: #555761;
+          //   background-color: #555761;
           margin: 48px auto 0;
           overflow: hidden;
         }
@@ -442,7 +442,7 @@ export default {
       .google_ad {
         width: 924px;
         height: 114px;
-        background-color: #555761;
+        // background-color: #555761;
         margin: 0 auto;
       }
     }
@@ -475,7 +475,7 @@ export default {
         .google_ad {
           width: 924px;
           height: 114px;
-          background-color: #555761;
+          //   background-color: #555761;
           margin: 0 auto;
         }
       }
@@ -498,7 +498,7 @@ export default {
         .google_ad {
           width: 100%;
           height: 114px;
-          background-color: #555761;
+          //   background-color: #555761;
           margin: 0 auto;
         }
       }
@@ -563,7 +563,7 @@ export default {
           .google_ad {
             width: 100%;
             height: 299 * $pr;
-            background-color: #555761;
+            // background-color: #555761;
             margin: 23 * $pr auto 0;
           }
         }

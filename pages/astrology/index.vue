@@ -464,7 +464,7 @@ export default {
             .google_ad {
               width: 924px;
               height: 114px;
-              background-color: #555761;
+              //   background-color: #555761;
               overflow: hidden;
             }
           }
@@ -525,7 +525,7 @@ export default {
         .google_ad {
           width: 924px;
           height: 114px;
-          background-color: #555761;
+          //   background-color: #555761;
           overflow: hidden;
           margin: 0 auto;
         }
