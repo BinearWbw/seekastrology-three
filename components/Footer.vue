@@ -180,40 +180,6 @@ export default {
         behavior: 'smooth',
       })
     },
-    subscribeEmaill() {
-      if (
-        this.email.search(
-          /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/
-        ) != -1
-      ) {
-        this.status = true
-        let data = {
-          email: this.email,
-          origin: process.env.origin,
-        }
-        this.$apiList.home
-          .postSubscribe(data)
-          .then(() => {
-            this.$store.dispatch('toast', {
-              type: 'success',
-              msg: 'Subscribed email successfully',
-            })
-            this.status = false
-          })
-          .catch((error) => {
-            this.$store.dispatch('toast', {
-              type: 'error',
-              msg: error.msg,
-            })
-            this.status = false
-          })
-      } else {
-        this.$store.dispatch('toast', {
-          type: 'warning',
-          msg: 'Please enter the correct email address',
-        })
-      }
-    },
     gotoPageList(item) {
       if (item.path) {
         return `${this.getIntersperseUrl + item.path}${
