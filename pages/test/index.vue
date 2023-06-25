@@ -68,7 +68,6 @@
               :id="'2535818672'"
             ></google-ad>
           </div>
-
           <!-- <div class="common__loading" v-scroll v-if="search.page < totalPage">
             <div class="common__loading__loader" v-if="loading"></div>
           </div> -->
