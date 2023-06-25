@@ -695,7 +695,7 @@ export default {
         height: 114px;
         // background-color: #555761;
         margin: 48px auto;
-        overflow: hidden;
+        // overflow: hidden;
       }
     }
     .tab_control {
@@ -899,7 +899,7 @@ export default {
           width: 100%;
           height: 299 * $pr;
           margin: 32 * $pr auto 48 * $pr;
-          overflow: hidden;
+          // overflow: hidden;
         }
       }
       .tab_control {

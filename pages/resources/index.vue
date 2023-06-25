@@ -741,12 +741,12 @@ $spacing: 16px;
       width: 970px;
       height: 90px;
       margin: 40px auto;
-      overflow: hidden;
+      // overflow: hidden;
     }
     .google_ad_btm {
       width: 924px;
       height: 114px;
-      overflow: hidden;
+      // overflow: hidden;
       margin: 48px auto 93px;
     }
     &_btm {

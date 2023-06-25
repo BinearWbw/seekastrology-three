@@ -418,7 +418,7 @@ $spacing: 16px;
             grid-column-end: 5;
             grid-column-start: span 4;
             grid-row-start: span 2;
-            overflow: hidden;
+            // overflow: hidden;
           }
           .top {
             grid-row-end: 5;
@@ -462,13 +462,13 @@ $spacing: 16px;
           // margin-bottom: 202px;
           position: fixed;
           // top: 0;
-          overflow: hidden;
+          // overflow: hidden;
           display: none;
         }
       }
       .google_ad_h5btm {
         display: none;
-        overflow: hidden;
+        // overflow: hidden;
       }
     }
   }

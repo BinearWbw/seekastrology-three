@@ -741,7 +741,7 @@ $spacing: 55px;
         width: 924px;
         height: 114px;
         margin-top: 48px;
-        overflow: hidden;
+        // overflow: hidden;
       }
     }
     &_right {
@@ -753,7 +753,7 @@ $spacing: 55px;
         width: 300px;
         height: 600px;
         margin-bottom: 96px;
-        overflow: hidden;
+        // overflow: hidden;
       }
     }
   }

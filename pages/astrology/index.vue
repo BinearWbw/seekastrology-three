@@ -465,7 +465,7 @@ export default {
               width: 924px;
               height: 114px;
               //   background-color: #555761;
-              overflow: hidden;
+              // overflow: hidden;
             }
           }
         }
@@ -526,7 +526,7 @@ export default {
           width: 924px;
           height: 114px;
           //   background-color: #555761;
-          overflow: hidden;
+          // overflow: hidden;
           margin: 0 auto;
         }
       }

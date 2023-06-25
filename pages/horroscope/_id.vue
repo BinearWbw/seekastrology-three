@@ -338,7 +338,7 @@ export default {
           height: 114px;
           //   background-color: #555761;
           margin: 48px auto 0;
-          overflow: hidden;
+          // overflow: hidden;
         }
       }
     }
