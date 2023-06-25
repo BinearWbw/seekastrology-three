@@ -414,7 +414,6 @@ $spacing: 16px;
           .google_ad {
             width: 924px;
             height: 114px;
-            background: #555761;
             margin: -16px 0 0;
             grid-column-end: 5;
             grid-column-start: span 4;
@@ -460,7 +459,6 @@ $spacing: 16px;
         .google_ad {
           width: 300px;
           height: 600px;
-          background: #555761;
           // margin-bottom: 202px;
           position: fixed;
           // top: 0;
@@ -667,7 +665,6 @@ $spacing: 16px;
           width: 100%;
           height: 299 * $pr;
           margin-top: 48 * $pr;
-          background: #555761;
         }
       }
     }

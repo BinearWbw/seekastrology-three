@@ -232,7 +232,7 @@
           <div class="common__loading__loader" v-if="loading"></div>
         </div> -->
         <div class="resources_main_btm_btn" v-if="search.page < totalPage">
-          <button class="resources_main_btm_btn_moreBtn" @click="getNews(item)">
+          <button class="resources_main_btm_btn_moreBtn" @click="getNews">
             Load More
           </button>
           <!-- <img
@@ -384,13 +384,13 @@ export default {
           ? 1
           : Math.ceil(this.totalNum / this.search.size)
     },
-    getNews(item) {
+    getNews() {
       this.refreshFlag = true
       this.loading = true
       this.search.page += 1
       let getNewsParams = {
         origin: process.env.origin,
-        cate: item.hasOwnProperty('id') ? item.id : undefined,
+        cate: this.item.hasOwnProperty('id') ? this.item.id : undefined,
         ...this.search,
       }
       if (this.currentTabIndex == 0) delete getNewsParams.cate
@@ -421,7 +421,7 @@ export default {
       if (this.refreshFlag) {
         this.search.page = 0
         this.newsData.list = []
-        this.getNews(item)
+        this.getNews()
       } else {
         this.changeList(item)
       }
@@ -494,7 +494,6 @@ $spacing: 16px;
     left: 68px;
     width: 160px;
     height: 600px;
-    background-color: #555761;
     z-index: 9;
   }
   .google_ad_right {
@@ -503,7 +502,6 @@ $spacing: 16px;
     right: 68px;
     width: 160px;
     height: 600px;
-    background-color: #555761;
     z-index: 9;
   }
   &_main {
@@ -742,14 +740,12 @@ $spacing: 16px;
     .google_ad {
       width: 970px;
       height: 90px;
-      background-color: #555761;
       margin: 40px auto;
       overflow: hidden;
     }
     .google_ad_btm {
       width: 924px;
       height: 114px;
-      background-color: #555761;
       overflow: hidden;
       margin: 48px auto 93px;
     }

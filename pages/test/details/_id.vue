@@ -740,7 +740,6 @@ $spacing: 55px;
       .google_ad {
         width: 924px;
         height: 114px;
-        background: #555761;
         margin-top: 48px;
         overflow: hidden;
       }
@@ -753,7 +752,6 @@ $spacing: 55px;
       .google_ad {
         width: 300px;
         height: 600px;
-        background: #555761;
         margin-bottom: 96px;
         overflow: hidden;
       }

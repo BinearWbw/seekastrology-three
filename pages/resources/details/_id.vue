@@ -297,7 +297,6 @@ $spacing: 16px;
     left: 68px;
     width: 160px;
     height: 600px;
-    background-color: #555761;
     z-index: 9;
   }
   .google_ad_right {
@@ -306,7 +305,6 @@ $spacing: 16px;
     right: 68px;
     width: 160px;
     height: 600px;
-    background-color: #555761;
     z-index: 9;
   }
   .google_ad_footer {
@@ -852,7 +850,6 @@ $spacing: 16px;
       display: block;
       width: 343 * $pr;
       height: 299 * $pr;
-      background: #555761;
       overflow: hidden;
     }
     .google_ad_left {
