@@ -167,7 +167,6 @@ export default {
     height: 114px;
     margin: 0 auto;
     background-color: #555761;
-    overflow: hidden;
     &.mt_80 {
       margin-top: 80px;
     }

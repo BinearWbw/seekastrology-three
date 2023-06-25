@@ -87,7 +87,6 @@ export default {
   height: 114px;
   margin: 0 auto;
   background-color: #555761;
-  overflow: hidden;
 }
 .button {
   margin-top: 18px;

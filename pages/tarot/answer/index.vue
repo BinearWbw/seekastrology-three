@@ -176,7 +176,6 @@ export default {
   .title_ad {
     width: 924px;
     height: 114px;
-    overflow: hidden;
     margin: 48px auto 0;
     background-color: #555761;
   }
@@ -186,7 +185,6 @@ export default {
     height: 114px;
     background-color: #555761;
     margin: 48px auto;
-    overflow: hidden;
   }
 }
 @media (max-width: 1050px) {
@@ -285,7 +283,6 @@ export default {
       height: 299 * $pr;
       background-color: #555761;
       margin: 48 * $pr auto;
-      overflow: hidden;
     }
   }
 }
