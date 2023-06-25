@@ -9,20 +9,22 @@
         <i class="select_icon" :class="{ rotate: isOpen }"></i>
       </div>
     </div>
-    <ul class="options" v-show="isOpen">
-      <li
-        class="left_tab_list"
-        v-for="(item, index) in options"
-        :key="index"
-        :class="{ activated: selectedOption.name == item.name }"
-        @click="selectOption(item)"
-      >
-        <div class="imgs">
-          <img :src="item.imgUrl" alt="#" />
-        </div>
-        <p class="active">{{ item.name }}</p>
-      </li>
-    </ul>
+    <transition name="fade">
+      <ul class="options" v-show="isOpen">
+        <li
+          class="left_tab_list"
+          v-for="(item, index) in options"
+          :key="index"
+          :class="{ activated: selectedOption.name == item.name }"
+          @click="selectOption(item)"
+        >
+          <div class="imgs">
+            <img :src="item.imgUrl" alt="#" />
+          </div>
+          <p class="active">{{ item.name }}</p>
+        </li>
+      </ul>
+    </transition>
   </div>
 </template>
 

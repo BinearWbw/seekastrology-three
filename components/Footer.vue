@@ -15,9 +15,10 @@
         <div class="top_link">
           <div class="top_list" v-for="item in footer_link" :key="item.id">
             <a
-              :href="gotoPageList(cont)"
+              :href="`${getIntersperseUrl + cont.path}`"
               v-for="(cont, index) in item.content"
               :key="index"
+              @click="gotoPageList($event, cont)"
             >
               {{ cont.link }}
             </a>
@@ -64,7 +65,6 @@ export default {
           content: [
             {
               link: 'Astrology',
-              path: '/zodiac/',
             },
             {
               link: 'Zodiac Signs',
@@ -85,7 +85,6 @@ export default {
           content: [
             {
               link: 'Tarot',
-              path: '/tarot/',
             },
             {
               link: 'Daily Tarot',
@@ -114,22 +113,18 @@ export default {
           content: [
             {
               link: 'Articles',
-              path: '/resources/',
             },
             {
               link: 'Tarot',
-              path: '/resources/',
-              id: 3,
+              path: '/resources/?id=3',
             },
             {
               link: 'Astrology',
-              path: '/resources/',
-              id: 4,
+              path: '/resources/?id=4',
             },
             {
               link: 'Love',
-              path: '/resources/',
-              id: 5,
+              path: '/resources/?id=5',
             },
           ],
         },
@@ -141,15 +136,19 @@ export default {
             },
             {
               link: 'About Us',
+              path: '/support/?name=about',
             },
             {
               link: 'Privacy Policy',
+              path: '/support/?name=privacy',
             },
             {
               link: 'Disclaimer',
+              path: '/support/?name=disclaimer',
             },
             {
               link: 'Contact Us',
+              path: '/support/?name=contact',
             },
           ],
         },
@@ -180,14 +179,8 @@ export default {
         behavior: 'smooth',
       })
     },
-    gotoPageList(item) {
-      if (item.path) {
-        return `${this.getIntersperseUrl + item.path}${
-          item.id ? '?id=' + item.id : ''
-        }`
-      } else {
-        return this.getIntersperseUrl
-      }
+    gotoPageList(event, item) {
+      if (!item.path) event.preventDefault()
     },
   },
 }
