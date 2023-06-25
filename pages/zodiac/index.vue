@@ -127,7 +127,7 @@ export default {
         .google_ad {
           width: 100%;
           height: 114px;
-          background-color: #555761;
+          //   background-color: #555761;
           margin: 0 auto 24px;
         }
       }
@@ -204,7 +204,7 @@ export default {
       .google_ad {
         width: 924px;
         height: 114px;
-        background-color: #555761;
+        // background-color: #555761;
         margin: 96px auto;
       }
     }
@@ -272,7 +272,7 @@ export default {
           .google_ad {
             width: 100%;
             height: 299 * $pr;
-            background-color: #555761;
+            // background-color: #555761;
             margin: 24 * $pr auto;
           }
         }
@@ -334,7 +334,7 @@ export default {
         .google_ad {
           width: 100%;
           height: 299 * $pr;
-          background-color: #555761;
+          //   background-color: #555761;
           margin: 24 * $pr auto 32 * $pr;
         }
       }

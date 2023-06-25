@@ -175,7 +175,6 @@ export default {
 
       .google_ad {
         width: 924px;
-        background-color: #555761;
         color: #808080;
       }
       &.choice {
@@ -314,7 +313,6 @@ export default {
             width: 100%;
             height: 300 * $pr;
             padding: 0;
-            background-color: #555761;
           }
         }
         &.tarot {
