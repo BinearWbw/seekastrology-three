@@ -3,9 +3,13 @@
     <div class="deployable">
       <div
         class="deployable_text1"
-        :style="{ maxHeight: isOpen ? maxHeight : '68px' }"
+        :style="{ maxHeight: isOpen ? maxHeight : maxHeightTitle }"
       >
-        <div class="deployable_text1_title" @click="toggleContent">
+        <div
+          class="deployable_text1_title"
+          :class="`unfold_title${id}`"
+          @click="toggleContent"
+        >
           {{ title }}
           <i class="icon" :class="{ icon_active: isOpen }"></i>
         </div>
@@ -31,7 +35,14 @@ export default {
     return {
       isOpen: false,
       maxHeight: 0,
+      maxHeightTitle: 0,
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      const topTitle = document.querySelector(`.unfold_title${this.id}`)
+      this.maxHeightTitle = `${topTitle.scrollHeight}px`
+    })
   },
   methods: {
     toggleContent() {
@@ -39,7 +50,7 @@ export default {
       if (this.isOpen) {
         this.$nextTick(() => {
           const content = document.querySelector(`.unfold_content${this.id}`)
-          const topTitle = document.querySelector('.deployable_text1_title')
+          const topTitle = document.querySelector(`.unfold_title${this.id}`)
           if (content) {
             this.maxHeight = `${content.scrollHeight + topTitle.scrollHeight}px`
           }
@@ -70,7 +81,7 @@ export default {
         line-height: 30px;
         color: #ffffff;
         cursor: pointer;
-        padding: 19px 0;
+        padding: 19px 15px 19px 0;
         position: relative;
         display: flex;
         align-items: center;
@@ -90,12 +101,6 @@ export default {
       }
       &_content {
         padding: 0 0 18px;
-        font-family: 'Rubik';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 22px;
-        color: #d2d3d7;
       }
     }
   }
@@ -104,6 +109,23 @@ export default {
 @media (max-width: (750px)) {
   $pr: math.div(1vw, 3.75);
   .collapse_main {
+    .deployable {
+      padding: 0 24 * $pr;
+      border: 1 * $pr solid #ffffff;
+      border-radius: 6 * $pr;
+      &_text1 {
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        &_title {
+          font-size: 16 * $pr;
+          line-height: 22 * $pr;
+          padding: 19 * $pr 15 * $pr 19 * $pr 0;
+        }
+        &_content {
+          padding: 0 0 18 * $pr;
+        }
+      }
+    }
   }
 }
 </style>
