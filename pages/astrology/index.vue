@@ -459,6 +459,7 @@ export default {
                 border: 1px solid #ffd58c;
                 border-radius: 6px;
                 text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.44);
+                color: #fbdcc0;
               }
             }
             .google_ad {
