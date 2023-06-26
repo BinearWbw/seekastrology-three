@@ -35,34 +35,12 @@ export default {
       url = `http://${window.location.host}`
     }
     this.$store.commit('UPDATE_INTERSPERSE_URL', url)
-    this.getLocation()
     window.addEventListener('scroll', this.handleScroll)
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
-    getLocation() {
-      let cookiesPrivacyLoc = localStorage.getItem('cookiesPrivacy')
-      let cookiesPrivacySes = sessionStorage.getItem('cookiesPrivacy')
-      if (!cookiesPrivacyLoc && !cookiesPrivacySes) {
-        this.$apiList.home
-          .getGameLocation()
-          .then((res) => {
-            if (!res.loc) {
-              localStorage.setItem(
-                'cookiesPrivacy',
-                JSON.stringify({ accept: 0 })
-              )
-            } else {
-              this.visiblePrivacy = true
-            }
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-      }
-    },
     handleScroll() {
       const scrollThreshold = 500
       this.showScrollToTop =
