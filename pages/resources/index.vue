@@ -673,13 +673,15 @@ $spacing: 16px;
       }
     }
     .google_ad {
-      width: 970px;
+      // width: 970px;
+      width: 100%;
       height: 90px;
       margin: 40px auto;
       // overflow: hidden;
     }
     .google_ad_btm {
-      width: 924px;
+      // width: 924px;
+      width: 100%;
       height: 114px;
       // overflow: hidden;
       margin: 48px auto 93px;
