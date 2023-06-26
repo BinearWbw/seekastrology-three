@@ -1,10 +1,10 @@
 <template>
   <div class="support_main">
     <div class="support_content">
-      <el-aboutus v-if="$route.query.name === 'about'"></el-aboutus>
-      <el-privacy v-if="$route.query.name === 'privacy'"></el-privacy>
-      <el-disclaimer v-if="$route.query.name === 'disclaimer'"></el-disclaimer>
-      <el-contact v-if="$route.query.name === 'contact'"></el-contact>
+      <el-aboutus v-if="name === 'about'"></el-aboutus>
+      <el-privacy v-if="name === 'privacy'"></el-privacy>
+      <el-disclaimer v-if="name === 'disclaimer'"></el-disclaimer>
+      <el-contact v-if="name === 'contact'"></el-contact>
     </div>
   </div>
 </template>
@@ -12,6 +12,14 @@
 <script>
 export default {
   name: 'support',
+  data() {
+    return {
+      name: '',
+    }
+  },
+  mounted() {
+    this.name = this.$route.query.name
+  },
 }
 </script>
 

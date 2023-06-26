@@ -8,8 +8,8 @@
 <template>
   <div class="play-container">
     <div class="pc-wrapper">
-      <div class="tip-box" v-show="!isSelected && questionTop">
-        <div class="tip-img-wrapper" v-show="!showList.length">
+      <div class="tip-box" v-if="!isSelected && questionTop">
+        <div class="tip-img-wrapper" v-if="!showList.length">
           <img
             src="~/assets/img/tarot/Vector2.png"
             style="margin-right: -8px"
@@ -18,7 +18,7 @@
           />
           <img src="~/assets/img/tarot/Vector1.png" alt="" class="tip-img" />
         </div>
-        <div class="tip-img-list" v-show="showList.length">
+        <div class="tip-img-list" v-if="showList.length">
           <nuxt-img
             v-for="(item, index) in showList"
             :key="index"
@@ -38,7 +38,7 @@
       <div
         class="question-box"
         :class="{ 'question-top': questionTop }"
-        v-show="type != 4"
+        v-if="type != 4"
       >
         <img class="icon-img" src="~/assets/img/tarot/edit_icon.png" alt="" />
         <input
@@ -51,20 +51,20 @@
           placeholder="Enter your question here"
           class="question-input"
         />
-        <button v-show="!questionTop" class="button" @click="handleInput">
+        <button v-if="!questionTop" class="button" @click="handleInput">
           Submit
         </button>
       </div>
       <div
         class="tarot-wrapper"
         ref="tarotWrapper"
-        v-show="!isSelected && questionTop"
+        v-if="!isSelected && questionTop"
         :key="'tarotWrapper' + type"
       >
         <div
           class="card-row"
           @mouseover="shuffleCards('topCard', $event)"
-          v-show="type != 4"
+          v-if="type != 4"
         >
           <div
             class="card-wrapper"
@@ -110,7 +110,7 @@
           </div>
         </div>
       </div>
-      <div class="mask-wrapper" v-show="isSelected && questionTop">
+      <div class="mask-wrapper" v-if="isSelected && questionTop">
         <div class="show-wrapper" :class="styleObj">
           <nuxt-img
             class="item-img"
@@ -128,8 +128,8 @@
     </div>
 
     <div class="mobile-wrapper">
-      <div class="mobile-tarot-box" v-show="!inPlay">
-        <div class="card-list-wrapper" v-show="type == 4">
+      <div class="mobile-tarot-box" v-if="!inPlay">
+        <div class="card-list-wrapper" v-if="type == 4">
           <ul class="card-list">
             <li
               class="card-list-item"
@@ -152,7 +152,7 @@
             Extract 1 Sheet
           </div>
         </div>
-        <div class="mobile-question" v-show="type != 4">
+        <div class="mobile-question" v-if="type != 4">
           <textarea
             v-model="question"
             maxlength="200"
@@ -184,7 +184,7 @@
           </li>
         </ul>
         <div class="mobile-tip">
-          <div class="question-text" v-show="question">"{{ question }}"</div>
+          <div class="question-text" v-if="question">"{{ question }}"</div>
           <div class="tip-img-list">
             <div
               class="wrapper"
@@ -201,13 +201,13 @@
           </div>
           <div class="handle-btn" @click="handleAnswer">
             <img
-              v-show="!isSelected"
+              v-if="!isSelected"
               class="btn-img"
               src="~/assets/img/tarot/mobile-btn-disable.png"
               alt="btn"
             />
             <img
-              v-show="isSelected"
+              v-if="isSelected"
               class="btn-img"
               src="~/assets/img/tarot/mobile-btn.png"
               alt="btn"
