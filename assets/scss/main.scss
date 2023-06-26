@@ -527,6 +527,20 @@ body::-webkit-scrollbar {
   -ms-scroll-snap-align: start;
   scroll-snap-align: start;
 }
+
+.unfold-enter-active {
+  transition: all 0.3s;
+}
+
+.unfold-leave-active {
+  transition: all 0.3s;
+}
+
+.unfold-enter,
+.unfold-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
 // .flex {
 //   display: flex;
 //   display: -webkit-box;
