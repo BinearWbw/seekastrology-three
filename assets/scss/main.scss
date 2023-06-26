@@ -164,6 +164,13 @@ img:not([src]) {
   font-style: normal;
   font-display: block;
 }
+@font-face {
+  font-family: 'Rubik';
+  src: url('../font/Rubik.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 html {
   overscroll-behavior: contain;
   scrollbar-width: thin;
