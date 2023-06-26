@@ -174,19 +174,19 @@ export default {
       margin-top: 100px;
 
       .google_ad {
-        width: 924px;
+        width: 100%;
         color: #808080;
       }
       &.choice {
         .google_ad {
           margin: 40px auto 0;
-          height: 114px;
+          height: 130px;
         }
       }
       &.kundli {
         .google_ad {
           margin: 80px auto 0;
-          height: 114px;
+          height: 130px;
         }
       }
       &.new_pop {
@@ -224,7 +224,7 @@ export default {
         &.choice {
           .google_ad {
             margin: 40px auto 0;
-            height: 114px;
+            height: 130px;
             padding: 0 50px;
             background-color: initial;
           }
@@ -232,7 +232,7 @@ export default {
         &.kundli {
           .google_ad {
             margin: 80px auto 0;
-            height: 114px;
+            height: 130px;
           }
         }
         &.new_pop {

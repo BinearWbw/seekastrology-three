@@ -174,17 +174,32 @@ export default {
   }
 
   .title_ad {
-    width: 924px;
-    height: 114px;
+    width: 100%;
+    max-width: 1400px;
+    height: 130px;
     margin: 48px auto 0;
-    background-color: #555761;
+    // background-color: #555761;
   }
 
   .google_ad {
-    width: 924px;
-    height: 114px;
-    background-color: #555761;
+    width: 100%;
+    max-width: 1400px;
+    height: 130px;
+    // background-color: #555761;
     margin: 48px auto;
+  }
+}
+@media (max-width: 1450px) {
+  .tarot-container {
+    .title_ad {
+      width: 95vw;
+      max-width: 95vw;
+    }
+
+    .google_ad {
+      width: 95vw;
+      max-width: 95vw;
+    }
   }
 }
 @media (max-width: 1050px) {
@@ -200,8 +215,13 @@ export default {
     .mt-48 {
       margin-top: 48px;
     }
+    .title_ad {
+      width: 100%;
+      max-width: 100%;
+    }
     .google_ad {
       width: 100%;
+      max-width: 100%;
     }
   }
 }
@@ -281,7 +301,7 @@ export default {
     .google_ad {
       width: 100%;
       height: 299 * $pr;
-      background-color: #555761;
+      //   background-color: #555761;
       margin: 48 * $pr auto;
     }
   }
