@@ -412,7 +412,8 @@ $spacing: 16px;
         }
       }
       .leftAd {
-        width: 924px;
+        // width: 924px;
+        width: 100%;
         height: 114px;
         background: #555761;
         margin: 0 auto;

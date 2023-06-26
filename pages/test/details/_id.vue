@@ -729,7 +729,8 @@ $spacing: 55px;
         }
       }
       .google_ad {
-        width: 924px;
+        // width: 924px;
+        width: 100%;
         height: 114px;
         margin-top: 48px;
         // overflow: hidden;
