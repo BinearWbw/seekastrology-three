@@ -1,7 +1,5 @@
 <template>
   <div class="details">
-    <!-- <google-ad class="google_ad_left"></google-ad>
-    <google-ad class="google_ad_right"></google-ad> -->
     <div class="details_main">
       <div class="details_main_left">
         <div class="details_main_left_top">
@@ -282,22 +280,6 @@ $block: 456px;
 $spacing: 16px;
 .details {
   width: 100%;
-  .google_ad_left {
-    position: fixed;
-    top: 180px;
-    left: 68px;
-    width: 160px;
-    height: 600px;
-    z-index: 9;
-  }
-  .google_ad_right {
-    position: fixed;
-    top: 180px;
-    right: 68px;
-    width: 160px;
-    height: 600px;
-    z-index: 9;
-  }
   .google_ad_footer {
     display: none;
     // overflow: hidden;
@@ -842,12 +824,6 @@ $spacing: 16px;
       width: 343 * $pr;
       height: 299 * $pr;
       // overflow: hidden;
-    }
-    .google_ad_left {
-      display: none;
-    }
-    .google_ad_right {
-      display: none;
     }
   }
 }

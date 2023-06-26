@@ -1,31 +1,6 @@
 <template>
   <div class="test">
     <div class="test_main">
-      <!-- <div class="test_main_top">
-        <div class="test_main_top_tabs" v-if="tabsStatus">
-          <div
-            v-for="(item, index) in tabs"
-            :key="item.id"
-            class="test_main_top_tabs_item"
-            :class="index == currentTabIndex ? 'current_tabs' : ''"
-            @click="changeTab(item, index)"
-          >
-            <span>{{ item.name }}</span>
-          </div>
-        </div>
-        <input type="text" name="username" placeholder="Enter Your Name" />
-        <img
-          class="searchH5"
-          src="../../assets/img/search/searchH5.png"
-          alt=""
-          @click="tabsStatus = false"
-          v-if="tabsStatus"
-        />
-        <div class="test_main_top_inputH5" v-if="!tabsStatus">
-          <input type="text" name="username" placeholder="Enter Your Name" />
-          <span @click="tabsStatus = true">Cancel</span>
-        </div>
-      </div> -->
       <div class="test_main_line"></div>
       <div class="test_main_center">
         <div class="test_main_center_left">
@@ -68,9 +43,6 @@
               :id="'2535818672'"
             ></google-ad>
           </div>
-          <!-- <div class="common__loading" v-scroll v-if="search.page < totalPage">
-            <div class="common__loading__loader" v-if="loading"></div>
-          </div> -->
           <div class="test_main_center_left_loading" v-if="loading">
             <img
               src="../../assets/img/resources/loading2.png"
@@ -126,19 +98,6 @@ export default {
           page: 1,
           size: 40,
         }
-      // let [tabs] = await Promise.all([
-      //   /**顶部tabs */
-      //   $apiList.articles
-      //     .getCate({
-      //       origin: process.env.origin,
-      //       type: 3,
-      //     })
-      //     .then((res) => {
-      //       item = res[0]
-      //       return res || null
-      //     }),
-      // ])
-      /**默认请求tabs第一条对应的列表 */
 
       //获取测试列表
       let list = await $apiList.test
@@ -225,25 +184,6 @@ export default {
           this.loading = false
         })
     },
-    // scrollLoad() {
-    //   //滚动条位置
-    //   let scrollTop =
-    //     document.documentElement.scrollTop ||
-    //     window.pageYOffset ||
-    //     document.body.scrollTop
-    //   //页面总高度
-    //   let bodyHeight =
-    //     document.body.scrollHeight || document.documentElement.scrollHeight
-    //   //加载动画的盒子底部的元素
-    //   let footComponentsEl = document.querySelector('.foot_components')
-    //   let footerEl = document.querySelector('.footer')
-    //   //加载动画的盒子距离底部的距离
-    //   let height = footComponentsEl.offsetHeight + footerEl.offsetHeight
-    //   if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
-    //     if (this.loading) return
-    //     this.getMoreList()
-    //   }
-    // },
     /**跳转详情页 */
     jumpDetails(item) {
       this.$router.push({
@@ -252,26 +192,7 @@ export default {
         data: item,
       })
     },
-    /** 点击切换tabs*/
-    // changeTab(item, index) {
-    //     this.item = item
-    //     this.btmList = []
-    //     this.search.page = 0
-    //   this.currentTabIndex = index
-    //   //通过id请求对应的列表数据
-    //     this.getNews(item)
-    // },
   },
-  // directives: {
-  //   scroll: {
-  //     bind: function (el, binding, vnode) {
-  //       window.addEventListener('scroll', vnode.context.scrollLoad)
-  //     },
-  //     unbind: function (el, binding, vnode) {
-  //       window.removeEventListener('scroll', vnode.context.scrollLoad)
-  //     },
-  //   },
-  // },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
