@@ -23,7 +23,6 @@
             v-html="textObj[type] && textObj[type].desc"
           ></div>
         </div>
-        <google-ad class="ad-box_row mt_80" id="6755169246"></google-ad>
         <!-- <div class="divination">
               <div class="divination-title">Prepare for Divination</div>
               <div class="divination-wrapper">
@@ -66,6 +65,7 @@
               </div>
             </div> -->
       </div>
+      <google-ad class="ad-box_row mt_80" id="6755169246"></google-ad>
       <more-tarot class="el_more" :type="type"></more-tarot>
       <google-ad class="ad-box_row mt_80" id="7545189503"></google-ad>
     </div>
@@ -121,7 +121,7 @@ export default {
   },
   asyncData({ error, $apiList, params }) {
     return {
-      type: params.type
+      type: params.type,
     }
   },
 }
@@ -163,8 +163,9 @@ export default {
     }
   }
   .ad-box_row {
-    width: 924px;
-    height: 114px;
+    width: 100%;
+    max-width: 1400px;
+    height: 130px;
     margin: 0 auto;
     background-color: #555761;
     &.mt_80 {
@@ -233,12 +234,17 @@ export default {
         line-height: 48px;
       }
     }
+    .ad-box_row {
+      width: 95vw;
+      max-width: 95vw;
+      height: 130px;
+    }
   }
 }
 @media (max-width: 1200px) {
   .tarot-container {
     .ad-box_row {
-      width: 90%;
+      width: 93vw;
     }
     .introduce-box {
       max-width: 100%;

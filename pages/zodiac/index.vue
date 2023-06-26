@@ -202,8 +202,8 @@ export default {
         }
       }
       .google_ad {
-        width: 924px;
-        height: 114px;
+        width: 100%;
+        height: 130px;
         // background-color: #555761;
         margin: 96px auto;
       }

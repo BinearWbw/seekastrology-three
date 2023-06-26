@@ -124,10 +124,11 @@ export default {
   }
 }
 .ad-box_row {
-  width: 924px;
-  height: 114px;
+  width: 100%;
+  max-width: 1400px;
+  height: 130px;
   margin: 0 auto;
-  background-color: #555761;
+  //   background-color: #555761;
 }
 .main-content {
   margin: 40px 32px 0;
@@ -192,6 +193,13 @@ export default {
 .mt-200 {
   margin-top: 200px;
 }
+@media (max-width: 1450px) {
+  .ad-box_row {
+    width: 95vw;
+    max-width: 95vw;
+  }
+}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .tarot-container {

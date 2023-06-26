@@ -440,8 +440,8 @@ export default {
         }
       }
       .google_ad {
-        width: 924px;
-        height: 114px;
+        width: 100%;
+        height: 130px;
         // background-color: #555761;
         margin: 0 auto;
       }
@@ -471,12 +471,6 @@ export default {
       .horoscope_more {
         .more_main {
           grid-template-columns: repeat(2, 1fr);
-        }
-        .google_ad {
-          width: 924px;
-          height: 114px;
-          //   background-color: #555761;
-          margin: 0 auto;
         }
       }
     }

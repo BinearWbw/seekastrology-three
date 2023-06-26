@@ -86,8 +86,8 @@ export default {
   }
 }
 .ad-box_row {
-  width: 924px;
-  height: 114px;
+  width: 1400px;
+  height: 130px;
   margin: 0 auto;
   background-color: #555761;
 }
@@ -117,10 +117,31 @@ export default {
 .mb-32 {
   margin-bottom: 32px;
 }
+@media (max-width: 1450px) {
+  .ad-box_row {
+    width: 95vw;
+    height: 130px;
+    margin: 0 auto;
+    background-color: #555761;
+  }
+  .mt-48 {
+    margin-top: 48px;
+  }
+  .mt-32 {
+    margin-top: 32px;
+  }
+}
+
 @media (max-width: 940px) {
   .ad-box_row {
-    width: 90%;
+    width: 93vw;
     margin: 0 auto;
+  }
+  .mt-48 {
+    margin-top: 48px;
+  }
+  .mt-32 {
+    margin-top: 32px;
   }
 }
 @media (max-width: 750px) {
