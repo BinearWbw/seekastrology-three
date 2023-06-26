@@ -328,7 +328,7 @@ export default {
               font-weight: 400;
               font-size: 16px;
               line-height: 28px;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
               padding-top: 24px;
             }
           }
@@ -406,7 +406,7 @@ export default {
               font-size: 16px;
               line-height: 22px;
               text-align: center;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
               margin: 16px 0;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -422,14 +422,14 @@ export default {
               font-family: 'Rubik';
               font-size: 14px;
               line-height: 18px;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
               -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
               transition: background-color 0.3s, color 0.3s;
             }
           }
           &:hover {
             transform: translateY(-10px);
-            border-color: rgba(255, 255, 255, 0.7);
+            border-color: rgba(255, 255, 255, 0.85);
             .more_text {
               .button {
                 color: #000;

@@ -168,7 +168,7 @@ export default {
         border: 1px solid #45454d;
         border-radius: 42px;
         font-family: 'Rubik';
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.85);
         font-size: 14px;
         line-height: 18px;
         -webkit-transition: background-color 0.3s, -webkit-color 0.3s;

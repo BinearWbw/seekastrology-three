@@ -171,7 +171,7 @@ export default {
             .cont_more {
               font-size: 14px;
               line-height: 18px;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
               margin: 8px 0;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -243,7 +243,7 @@ export default {
                 font-size: 16px;
                 line-height: 22px;
                 margin-top: 8px;
-                color: rgba(255, 255, 255, 0.7);
+                color: rgba(255, 255, 255, 0.85);
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
@@ -273,7 +273,7 @@ export default {
       border: 1px solid #45454d;
       border-radius: 42px;
       font-family: 'Rubik';
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.85);
       font-size: 16px;
       line-height: 22px;
       -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
@@ -413,7 +413,7 @@ export default {
               width: 40 * $pr;
               font-size: 14 * $pr;
               line-height: 18 * $pr;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
             }
           }
         }
@@ -469,7 +469,7 @@ export default {
                 font-family: 'Rubik';
                 font-size: 12 * $pr;
                 line-height: 16 * $pr;
-                color: rgba(255, 255, 255, 0.7);
+                color: rgba(255, 255, 255, 0.85);
                 padding: 0;
               }
             }

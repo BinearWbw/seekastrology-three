@@ -105,7 +105,7 @@ export default {
       font-family: 'Rubik';
       font-size: 22px;
       line-height: 30px;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.85);
     }
     .button {
       margin-top: 18px;
@@ -114,7 +114,7 @@ export default {
       border: 1px solid #45454d;
       border-radius: 42px;
       font-family: 'Rubik';
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.85);
       font-size: 16px;
       line-height: 22px;
       -webkit-transition: background-color 0.3s, -webkit-color 0.3s;

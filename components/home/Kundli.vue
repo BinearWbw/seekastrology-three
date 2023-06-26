@@ -240,7 +240,7 @@ export default {
               font-family: 'Rubik';
               font-size: 14 * $pr;
               line-height: 18 * $pr;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
             }
             &:focus {
               border-color: #fff;

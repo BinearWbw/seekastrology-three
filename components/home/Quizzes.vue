@@ -179,7 +179,7 @@ export default {
           &__item {
             width: 220px;
             height: 280px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             overflow: hidden;
             appearance: none;
             backface-visibility: hidden;
@@ -203,7 +203,7 @@ export default {
               font-size: 16px;
               line-height: 22px;
               text-align: center;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
             }
           }
         }
@@ -218,7 +218,7 @@ export default {
       border: 1px solid #45454d;
       border-radius: 42px;
       font-family: 'Rubik';
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.85);
       font-size: 16px;
       line-height: 22px;
       -webkit-transition: background-color 0.3s, -webkit-color 0.3s;

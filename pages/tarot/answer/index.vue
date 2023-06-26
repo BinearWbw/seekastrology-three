@@ -146,7 +146,7 @@ export default {
         font-weight: 400;
         font-size: 22px;
         line-height: 30px;
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.85);
         margin-top: 12px;
       }
       .desc-title {
@@ -264,7 +264,7 @@ export default {
             font-weight: 400;
             font-size: 14 * $pr;
             line-height: 18 * $pr;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             margin-top: 8 * $pr;
           }
         }
