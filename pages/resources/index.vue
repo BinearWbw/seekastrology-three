@@ -931,7 +931,7 @@ $spacing: 16px;
         .loading {
           width: 32px;
           height: 32px;
-          margin: 0 auto;
+          margin: 32px auto 0;
           animation: spin 1s infinite linear reverse;
         }
       }
@@ -1256,6 +1256,7 @@ $spacing: 16px;
           .loading {
             width: 32 * $pr;
             height: 32 * $pr;
+            margin-top: 24 * $pr;
           }
         }
         &_main {
