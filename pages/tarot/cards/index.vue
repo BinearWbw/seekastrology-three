@@ -282,7 +282,7 @@ export default {
   font-weight: 400;
   font-size: 22px;
   line-height: 30px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
 }
 .ad-box_row {
   width: 924px;
@@ -314,7 +314,7 @@ export default {
   box-sizing: border-box;
   padding: 8px 22px;
   font-family: 'Rubik';
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
   line-height: 18px;
   white-space: nowrap;

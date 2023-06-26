@@ -325,7 +325,7 @@ export default {
     },
     async handleClike(event) {
       let ele = event.target.nodeName
-      if(this.isSelected || ele !== 'IMG') {
+      if (this.isSelected || ele !== 'IMG') {
         return
       }
       event.target.parentNode.style.display = 'none'
@@ -617,7 +617,7 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 22px;
   font-family: 'Rubik';
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
   line-height: 18px;
   -webkit-transition: background-color 0.3s, -webkit-color 0.3s;

@@ -161,7 +161,7 @@ $spacing: 75px;
           border: 1px solid #45454d;
           border-radius: 42px;
           font-family: 'Rubik';
-          color: rgba(255, 255, 255, 0.7);
+          color: rgba(255, 255, 255, 0.85);
           font-size: 14px;
           line-height: 18px;
           -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
@@ -201,7 +201,7 @@ $spacing: 75px;
       font-weight: 400;
       font-size: 22px;
       line-height: 30px;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.85);
       margin-top: 16px;
     }
   }
@@ -283,7 +283,7 @@ $spacing: 75px;
         font-size: 22 * $pr;
         line-height: 30 * $pr;
         text-align: center;
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.85);
 
         .number {
           font-size: 22 * $pr;

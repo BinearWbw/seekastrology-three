@@ -306,7 +306,7 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 12px;
             line-height: 16px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
           }
           span {
             margin: 0 5px;
@@ -348,7 +348,7 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 14px;
               line-height: 18px;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
               margin-left: 18px;
             }
           }
@@ -391,7 +391,7 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 28px;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
               margin-bottom: 20px;
               // word-break: break-all;
               background: transparent !important;
@@ -450,7 +450,7 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -566,7 +566,7 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             margin-top: 8px;
             text-align: center;
           }
@@ -576,7 +576,7 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             margin-top: 8px;
             text-align: center;
             overflow: hidden;

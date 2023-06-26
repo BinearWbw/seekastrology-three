@@ -626,7 +626,7 @@ export default {
             font-family: 'Rubik';
             font-size: 16px;
             line-height: 28px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             margin-top: 16px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -677,7 +677,7 @@ export default {
                   width: 170px;
                   font-size: 16px;
                   line-height: 22px;
-                  color: rgba(255, 255, 255, 0.7);
+                  color: rgba(255, 255, 255, 0.85);
                 }
                 .p_texts {
                   flex: 1;
@@ -724,7 +724,7 @@ export default {
             font-size: 16px;
             line-height: 28px;
             margin-top: 8px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             :deep(h1),
             :deep(h2),
             :deep(h3),

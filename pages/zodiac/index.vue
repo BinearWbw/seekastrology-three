@@ -122,7 +122,7 @@ export default {
           font-family: 'Rubik';
           font-size: 16px;
           line-height: 28px;
-          color: rgba(255, 255, 255, 0.7);
+          color: rgba(255, 255, 255, 0.85);
         }
         .google_ad {
           width: 100%;
@@ -166,7 +166,7 @@ export default {
               font-weight: 400;
               font-size: 22px;
               line-height: 30px;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
               margin-bottom: 16px;
             }
             .text {
@@ -175,7 +175,7 @@ export default {
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.85);
               overflow: hidden;
               text-overflow: ellipsis;
               display: -webkit-box;
@@ -191,7 +191,7 @@ export default {
           }
 
           &:hover {
-            border-color: rgba(255, 255, 255, 0.7);
+            border-color: rgba(255, 255, 255, 0.85);
             a {
               transform: translateY(-5px);
               img {

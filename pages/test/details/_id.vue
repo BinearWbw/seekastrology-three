@@ -466,7 +466,7 @@ $spacing: 55px;
             font-weight: 400;
             font-size: 12px;
             line-height: 16px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
           }
           span {
             margin: 0 5px;
@@ -482,7 +482,7 @@ $spacing: 55px;
                 font-weight: 400;
                 font-size: 22px;
                 line-height: 30px;
-                color: rgba(255, 255, 255, 0.7);
+                color: rgba(255, 255, 255, 0.85);
               }
               &_desc {
                 font-family: 'Rubik';
@@ -490,7 +490,7 @@ $spacing: 55px;
                 font-weight: 400;
                 font-size: 14px;
                 line-height: 18px;
-                color: rgba(255, 255, 255, 0.7);
+                color: rgba(255, 255, 255, 0.85);
                 margin-top: 16px;
               }
             }
@@ -585,7 +585,7 @@ $spacing: 55px;
                 font-weight: 400;
                 font-size: 22px;
                 line-height: 30px;
-                color: rgba(255, 255, 255, 0.7);
+                color: rgba(255, 255, 255, 0.85);
               }
               &_btn {
                 margin-left: 6px;
@@ -671,7 +671,7 @@ $spacing: 55px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.7);
             margin-top: 50px;
             cursor: pointer;
@@ -717,7 +717,7 @@ $spacing: 55px;
                 font-size: 16px;
                 line-height: 22px;
                 text-align: center;
-                color: rgba(255, 255, 255, 0.7);
+                color: rgba(255, 255, 255, 0.85);
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
@@ -930,7 +930,7 @@ $spacing: 55px;
                   font-weight: 400;
                   font-size: 14 * $pr;
                   line-height: 18 * $pr;
-                  color: rgba(255, 255, 255, 0.7);
+                  color: rgba(255, 255, 255, 0.85);
                 }
                 &_btn {
                   width: 136 * $pr;

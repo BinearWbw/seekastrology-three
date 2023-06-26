@@ -23,7 +23,10 @@
     <more-tarot class="mt-48"></more-tarot>
     <google-ad classNames="ad-box_row mt-32" id="7816119415"></google-ad>
     <all-tarot class="mt-48"></all-tarot>
-    <google-ad classNames="ad-box_row mt-32 mt-120 mb-32" id="6503037744"></google-ad>
+    <google-ad
+      classNames="ad-box_row mt-32 mt-120 mb-32"
+      id="6503037744"
+    ></google-ad>
   </div>
 </template>
 
@@ -95,7 +98,7 @@ export default {
   border: 1px solid #45454d;
   border-radius: 42px;
   font-family: 'Rubik';
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
   line-height: 18px;
   -webkit-transition: background-color 0.3s, -webkit-color 0.3s;

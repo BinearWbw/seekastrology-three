@@ -155,7 +155,7 @@ export default {}
           &_tips {
             font-size: 14 * $pr;
             line-height: 24 * $pr;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
           }
 
           .email_us {
