@@ -396,22 +396,24 @@ export default {
       font-weight: 400;
       font-size: 16px;
       line-height: 22px;
-      color: rgba(255, 255, 255, 0.7);
       &_one {
         margin-top: 32px;
         .detaile_text {
+          color: rgba(255, 255, 255, 0.6);
           &_title:first-child {
             padding-top: 0;
           }
           &_title {
             color: #fff;
             padding-top: 20px;
+            font-weight: 500;
           }
         }
       }
       &_two {
         margin-top: 32px;
         .detaile_text {
+          color: rgba(255, 255, 255, 0.6);
           &_matrix {
             padding-left: 25px;
             position: relative;
@@ -429,16 +431,26 @@ export default {
       }
       &_three {
         margin-top: 32px;
+        .detaile_text {
+          color: rgba(255, 255, 255, 0.6);
+        }
       }
       &_four {
         margin-top: 32px;
+        .detaile_text {
+          color: rgba(255, 255, 255, 0.6);
+        }
       }
       &_five {
         margin-top: 32px;
+        .detaile_text {
+          color: rgba(255, 255, 255, 0.6);
+        }
       }
       &_six {
         margin-top: 32px;
         .detaile_text {
+          color: rgba(255, 255, 255, 0.6);
           &_matrix {
             padding-left: 25px;
             position: relative;
@@ -473,7 +485,72 @@ export default {
     }
     .content {
       padding: 24 * $pr 0 0;
+      .normal {
+        font-size: 14 * $pr;
+        line-height: 24 * $pr;
+        &_bottom {
+          margin-top: 32 * $pr;
+        }
+      }
       &_deployable {
+        font-size: 16 * $pr;
+        line-height: 22 * $pr;
+        &_one {
+          margin-top: 24 * $pr;
+          .detaile_text {
+            &_title:first-child {
+              padding-top: 0;
+            }
+            &_title {
+              padding-top: 20 * $pr;
+            }
+          }
+        }
+        &_two {
+          margin-top: 24 * $pr;
+          .detaile_text {
+            &_matrix {
+              padding-left: 25 * $pr;
+              position: relative;
+              &::after {
+                content: '•';
+                display: inline-block;
+                position: absolute;
+                width: 3 * $pr;
+                height: 3 * $pr;
+                top: 1 * $pr;
+                left: 10 * $pr;
+              }
+            }
+          }
+        }
+        &_three {
+          margin-top: 24 * $pr;
+        }
+        &_four {
+          margin-top: 24 * $pr;
+        }
+        &_five {
+          margin-top: 24 * $pr;
+        }
+        &_six {
+          margin-top: 24 * $pr;
+          .detaile_text {
+            &_matrix {
+              padding-left: 25 * $pr;
+              position: relative;
+              &::after {
+                content: '•';
+                display: inline-block;
+                position: absolute;
+                width: 3 * $pr;
+                height: 3 * $pr;
+                top: 1 * $pr;
+                left: 10 * $pr;
+              }
+            }
+          }
+        }
       }
     }
   }

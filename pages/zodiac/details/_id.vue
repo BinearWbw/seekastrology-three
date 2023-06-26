@@ -634,7 +634,7 @@ export default {
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             position: relative;
-
+            text-align: left;
             &.unfold_active {
               -webkit-line-clamp: unset;
               animation: fade-in 0.3s ease-in-out;
@@ -710,6 +710,7 @@ export default {
 
         &_list {
           margin-top: 24px;
+          text-align: initial;
           h4 {
             font-family: 'Cinzel Decorative';
             font-style: normal;
