@@ -1,7 +1,5 @@
 <template>
   <div class="resources">
-    <!-- <google-ad class="google_ad_left"></google-ad>
-    <google-ad class="google_ad_right"></google-ad> -->
     <div class="resources_main">
       <google-ad classNames="google_ad" :id="'9680645670'"></google-ad>
       <div class="resources_main_title">HOT Content</div>
@@ -235,10 +233,6 @@
             class="loading"
           />
         </div>
-
-        <!-- <div class="common__loading" v-scroll v-if="search.page < totalPage">
-          <div class="common__loading__loader" v-if="loading"></div>
-        </div> -->
         <div class="resources_main_btm_btn" v-if="search.page < totalPage">
           <button class="resources_main_btm_btn_moreBtn" @click="getNews">
             Load More
@@ -310,13 +304,11 @@ export default {
         cate: 3,
         ...search,
       })
-
       let astrologyData = await $apiList.articles.getNews({
         origin: process.env.origin,
         cate: 4,
         ...search,
       })
-
       let loveData = await $apiList.articles.getNews({
         origin: process.env.origin,
         cate: 5,
@@ -419,32 +411,7 @@ export default {
       } else {
         this.changeList(item)
       }
-      //通过id请求对应的列表数据
-      //
     },
-    // scrollLoad() {
-    //   //滚动条位置
-    //   let scrollTop =
-    //     document.documentElement.scrollTop ||
-    //     window.pageYOffset ||
-    //     document.body.scrollTop
-    //   //页面总高度
-    //   let bodyHeight =
-    //     document.body.scrollHeight || document.documentElement.scrollHeight
-    //   //加载动画的盒子底部的三个元素
-    //   let googleAdEl = document.querySelector('.google_ad_btm')
-    //   let footComponentsEl = document.querySelector('.foot_components')
-    //   let footerEl = document.querySelector('.footer')
-    //   //加载动画的盒子距离底部的距离
-    //   let height =
-    //     googleAdEl.offsetHeight +
-    //     footComponentsEl.offsetHeight +
-    //     footerEl.offsetHeight
-    //   if (scrollTop + window.innerHeight >= bodyHeight - height - 150) {
-    //     if (this.loading) return
-    //     this.getNews(this.item)
-    //   }
-    // },
   },
   computed: {
     normalList() {
@@ -452,16 +419,6 @@ export default {
     },
     ...mapGetters(['getIntersperseUrl']),
   },
-  // directives: {
-  //   scroll: {
-  //     bind: function (el, binding, vnode) {
-  //       window.addEventListener('scroll', vnode.context.scrollLoad)
-  //     },
-  //     unbind: function (el, binding, vnode) {
-  //       window.removeEventListener('scroll', vnode.context.scrollLoad)
-  //     },
-  //   },
-  // },
 }
 </script>
 <style lang="scss" scoped>
@@ -482,22 +439,6 @@ $spacing: 16px;
 }
 .resources {
   width: 100%;
-  .google_ad_left {
-    position: fixed;
-    top: 180px;
-    left: 68px;
-    width: 160px;
-    height: 600px;
-    z-index: 9;
-  }
-  .google_ad_right {
-    position: fixed;
-    top: 180px;
-    right: 68px;
-    width: 160px;
-    height: 600px;
-    z-index: 9;
-  }
   &_main {
     width: 1400px;
     margin: 0 auto;
@@ -966,12 +907,6 @@ $spacing: 16px;
         }
       }
     }
-    .google_ad_left {
-      left: 100px;
-    }
-    .google_ad_right {
-      right: 100px;
-    }
   }
 }
 @media (max-width: (3 * $block + 2 * $spacing)) {
@@ -996,12 +931,6 @@ $spacing: 16px;
         width: 100%;
         width: 900px;
       }
-    }
-    .google_ad_left {
-      left: 50px;
-    }
-    .google_ad_right {
-      right: 50px;
     }
   }
 }
@@ -1342,12 +1271,6 @@ $spacing: 16px;
           }
         }
       }
-    }
-    .google_ad_left {
-      display: none;
-    }
-    .google_ad_right {
-      display: none;
     }
   }
 }
