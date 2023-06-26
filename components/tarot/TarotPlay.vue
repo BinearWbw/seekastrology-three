@@ -196,6 +196,7 @@
                 class="tip-img-item"
                 :class="{ 'img-rotate': showList[index].desc_type == 2 }"
                 :src="showList[index].icon"
+                loading="lazy"
               ></nuxt-img>
             </div>
           </div>
