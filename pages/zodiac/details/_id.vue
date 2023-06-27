@@ -166,146 +166,182 @@
                   <h4>{{ `${zodiacIData.name.toUpperCase()} Attracty` }}</h4>
                   <div class="p_text" v-html="item.attract"></div>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.aquarius">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.aquarius"
+                  :ref="'starsign' + 0"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Aquarius` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[0].openIf }"
-                    :ref="'starsign' + 0"
                     v-html="item.aquarius"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(0)">
                     {{ openStarsign[0].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.aries">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.aries"
+                  :ref="'starsign' + 1"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Aries` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[1].openIf }"
-                    :ref="'starsign' + 1"
                     v-html="item.aries"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(1)">
                     {{ openStarsign[1].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.cancer">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.cancer"
+                  :ref="'starsign' + 2"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Cancer` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[2].openIf }"
-                    :ref="'starsign' + 2"
                     v-html="item.cancer"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(2)">
                     {{ openStarsign[2].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.capricorn">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.capricorn"
+                  :ref="'starsign' + 3"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Capricorn` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[3].openIf }"
-                    :ref="'starsign' + 3"
                     v-html="item.capricorn"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(3)">
                     {{ openStarsign[3].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.gemini">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.gemini"
+                  :ref="'starsign' + 4"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Gemini` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[4].openIf }"
-                    :ref="'starsign' + 4"
                     v-html="item.gemini"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(4)">
                     {{ openStarsign[4].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.leo">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.leo"
+                  :ref="'starsign' + 5"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Leo` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[5].openIf }"
-                    :ref="'starsign' + 5"
                     v-html="item.leo"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(5)">
                     {{ openStarsign[5].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.libra">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.libra"
+                  :ref="'starsign' + 6"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Libra` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[6].openIf }"
-                    :ref="'starsign' + 6"
                     v-html="item.libra"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(6)">
                     {{ openStarsign[6].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.pisces">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.pisces"
+                  :ref="'starsign' + 7"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Pisces` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[7].openIf }"
-                    :ref="'starsign' + 7"
                     v-html="item.pisces"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(7)">
                     {{ openStarsign[7].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.sagittarius">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.sagittarius"
+                  :ref="'starsign' + 8"
+                >
                   <h4>
                     {{ `${zodiacIData.name.toUpperCase()} & Sagittarius` }}
                   </h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[8].openIf }"
-                    :ref="'starsign' + 8"
                     v-html="item.sagittarius"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(8)">
                     {{ openStarsign[8].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.scorpio">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.scorpio"
+                  :ref="'starsign' + 9"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Scorpio` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[9].openIf }"
-                    :ref="'starsign' + 9"
                     v-html="item.scorpio"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(9)">
                     {{ openStarsign[9].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.taurus">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.taurus"
+                  :ref="'starsign' + 10"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Taurus` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[10].openIf }"
-                    :ref="'starsign' + 10"
                     v-html="item.taurus"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(10)">
                     {{ openStarsign[10].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
                   </button>
                 </div>
-                <div class="tab_main_list starsign" v-if="item.virgo">
+                <div
+                  class="tab_main_list starsign"
+                  v-if="item.virgo"
+                  :ref="'starsign' + 11"
+                >
                   <h4>{{ `${zodiacIData.name.toUpperCase()} & Virgo` }}</h4>
                   <div
                     class="p_text"
                     :class="{ p_text_active: openStarsign[11].openIf }"
-                    :ref="'starsign' + 11"
                     v-html="item.virgo"
                   ></div>
                   <button class="openBtn" @click="setOpenStarsign(11)">
@@ -734,11 +770,12 @@ export default {
             }
             :deep(span),
             :deep(p) {
-              color: rgba(255, 255, 255, 0.7) !important;
+              color: rgba(255, 255, 255, 0.85) !important;
             }
           }
         }
         .starsign {
+          scroll-margin-top: 100px;
           .p_text {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -746,6 +783,7 @@ export default {
             -webkit-line-clamp: 5;
             -webkit-box-orient: vertical;
             word-wrap: break-word;
+            transition: -webkit-line-clamp 0.3s ease-in-out;
             &.p_text_active {
               -webkit-line-clamp: unset;
             }
@@ -924,6 +962,7 @@ export default {
             }
           }
           .starsign {
+            scroll-margin-top: 60 * $pr;
             .p_text {
               height: 120 * $pr;
               overflow: hidden;
