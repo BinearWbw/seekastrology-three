@@ -73,7 +73,7 @@ export default {
         },
         {
           title: 'Horroscope',
-          path: '/horroscope/aries-1/',
+          path: '/horroscope/',
           href: '/horroscope/aries-1/',
         },
         {
