@@ -15,7 +15,7 @@
           >
             <a
               class="major-list-link"
-              :href="`/tarot/details/${item.name
+              :href="`${getIntersperseUrl}/tarot/details/${item.name
                 .replace(/[^a-zA-Z0-9\\s]/g, '-')
                 .toLowerCase()}-${item.id}/`"
             >
@@ -97,6 +97,7 @@
 
 <script>
 import Loading from '../../../components/Loading.vue'
+import { mapGetters } from 'vuex'
 export default {
   name: 'cards',
   components: {
@@ -148,6 +149,9 @@ export default {
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
     }
+  },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
   },
   mounted() {
     // this.getDatas()

@@ -435,7 +435,7 @@ export default {
       if (this.isSelected) {
         this.bodyHidden('auto')
         sessionStorage.setItem('cardsInfo', JSON.stringify(this.showList))
-        this.$router.push(`/tarot/answer?type=${this.type}`)
+        window.location = `/tarot/answer/?type=${this.type}`
       }
     },
   },
