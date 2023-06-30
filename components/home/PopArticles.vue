@@ -1,7 +1,7 @@
 <template>
   <div class="pop_maximum">
-    <div class="pop_main">
-      <h3 :class="{ h5_size: $route.path !== '/' }">Popular Articles</h3>
+    <div class="pop_main" :class="{ pop_main_activity: getCurrentCtivity }">
+      <h3 :class="{ h5_size: getCurrentCtivity }">Popular Articles</h3>
       <div class="pop_news">
         <div class="news_left">
           <a
@@ -18,6 +18,9 @@
                 height="320"
                 :alt="getHomeNewsData[0]?.name"
               ></nuxt-img>
+              <span class="main_type">{{
+                getMainType(getHomeNewsData[0]?.main_type)
+              }}</span>
             </div>
             <div class="news_left_text">
               <div class="text_cont">
@@ -47,6 +50,7 @@
                   height="96"
                   :alt="item.name"
                 ></nuxt-img>
+                <span class="main_type">{{ getMainType(item.main_type) }}</span>
               </div>
               <div class="news_right_text">
                 <p>{{ item.name }}</p>
@@ -59,7 +63,9 @@
           </li>
         </ul>
       </div>
-      <button class="button" @click="pathToPage">Read More</button>
+      <button class="button" @click="pathToPage" v-if="!getCurrentCtivity">
+        Read More
+      </button>
       <img class="bg_main" src="~/assets/img/home/pop_bg.png" alt="#" />
     </div>
   </div>
@@ -95,6 +101,9 @@ export default {
     getCurrentRoute() {
       return this.$route.path === '/' ? '?from=home' : ''
     },
+    getCurrentCtivity() {
+      return this.$route.path === '/' ? false : true
+    },
   },
   methods: {
     pathToPage() {
@@ -102,6 +111,18 @@ export default {
         window.location.pathname === '/'
           ? '/resources/?from=home'
           : '/resources/'
+    },
+    getMainType(type) {
+      switch (type) {
+        case 3:
+          return 'TAROT'
+        case 4:
+          return 'ASTROLOGY'
+        case 5:
+          return 'LOVE'
+        default:
+          return ''
+      }
     },
   },
 }
@@ -150,6 +171,9 @@ export default {
           width: 100%;
           min-height: 320px;
           margin-bottom: 16px;
+          .main_type {
+            display: none;
+          }
           img {
             width: 100%;
             height: 100%;
@@ -218,6 +242,9 @@ export default {
               height: 100%;
               margin-right: 16px;
               box-sizing: border-box;
+              .main_type {
+                display: none;
+              }
               img {
                 width: 100%;
                 height: 100%;
@@ -375,6 +402,9 @@ export default {
             width: 100%;
             min-height: 159 * $pr;
             margin-bottom: 16 * $pr;
+            .main_type {
+              display: none;
+            }
             img {
               width: 100%;
               height: 100%;
@@ -438,9 +468,13 @@ export default {
                 height: 62 * $pr;
                 margin-right: 11 * $pr;
                 box-sizing: border-box;
+                .main_type {
+                  display: none;
+                }
                 img {
                   width: 100%;
                   height: 100%;
+                  object-fit: cover;
                 }
               }
 
@@ -492,6 +526,154 @@ export default {
         line-height: 22 * $pr;
         background: #fff;
         color: #000;
+      }
+    }
+  }
+
+  .pop_maximum {
+    margin: 48 * $pr auto 0;
+    padding: 0 16 * $pr;
+    .pop_main_activity {
+      display: initial;
+      .pop_news {
+        .news_left {
+          width: 100%;
+          height: 100%;
+          margin-right: 0;
+          .left_img {
+            width: 100%;
+            margin-bottom: 10 * $pr;
+            position: relative;
+            .main_type {
+              display: inline-block;
+              position: absolute;
+              left: 50%;
+              bottom: -10 * $pr;
+              transform: translateX(-50%);
+              padding: 3 * $pr 9 * $pr;
+              background-color: #000;
+              border-radius: 6 * $pr;
+              color: #fff;
+              text-align: center;
+              font-size: 12 * $pr;
+              font-family: 'Rufina';
+              font-style: normal;
+              font-weight: 700;
+              line-height: 16 * $pr;
+            }
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          &_text {
+            position: relative;
+            .text_cont {
+              flex: 1;
+              padding-right: 0;
+              .cont_title {
+                font-size: 14 * $pr;
+                line-height: 18 * $pr;
+                color: rgba(255, 255, 255, 0.85);
+                text-align: center;
+                padding: 0 10 * $pr;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+              }
+              .cont_more {
+                display: none;
+              }
+              a {
+                font-size: 14 * $pr;
+                line-height: 18 * $pr;
+              }
+            }
+            .text_time {
+              display: none;
+            }
+          }
+        }
+        .news_right {
+          flex: 1;
+          width: 100%;
+          margin: 12 * $pr 0 0;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 0 5 * $pr;
+          & > :last-child {
+            margin-bottom: 0;
+          }
+          li {
+            width: auto;
+            margin-bottom: 12 * $pr;
+            transition: background-color 0.3s;
+            a {
+              width: 100%;
+              height: auto;
+              display: block;
+              justify-content: space-between;
+              .news_right_img {
+                width: 100%;
+                height: 95 * $pr;
+                margin-right: 11 * $pr;
+                box-sizing: border-box;
+                position: relative;
+                .main_type {
+                  display: inline-block;
+                  position: absolute;
+                  left: 50%;
+                  bottom: -11 * $pr;
+                  transform: translateX(-50%);
+                  padding: 3 * $pr 9 * $pr;
+                  background-color: #000;
+                  border-radius: 6 * $pr;
+                  color: #fff;
+                  text-align: center;
+                  font-size: 12 * $pr;
+                  font-family: 'Rufina';
+                  font-style: normal;
+                  font-weight: 700;
+                  line-height: 16 * $pr;
+                  align-items: flex-start;
+                }
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+              }
+
+              .news_right_text {
+                width: auto;
+                flex: 1;
+                margin: 0;
+                padding: 0;
+                & > :nth-child(1) {
+                  font-size: 14 * $pr;
+                  line-height: 18 * $pr;
+                  color: rgba(255, 255, 255, 0.85);
+                  margin-top: 12 * $pr;
+                  padding: 0 5 * $pr;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+                }
+                & > :nth-child(2) {
+                  display: none;
+                }
+              }
+
+              .news_right_time {
+                display: none;
+              }
+            }
+          }
+        }
       }
     }
   }

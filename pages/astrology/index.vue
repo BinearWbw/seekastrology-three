@@ -538,7 +538,7 @@ export default {
   .astrology {
     &_main {
       width: 100%;
-      padding: 0 30px;
+      padding: 0 50px;
     }
   }
 }
@@ -567,9 +567,12 @@ export default {
     &_main {
       .pairing {
         .pairing_main {
+          .pairing_select {
+            padding: 0 50px;
+          }
           .dynamic {
             &_love {
-              padding: 10px 80px 0;
+              padding: 10px 50px 0;
             }
             &_determine {
               .google_ad {

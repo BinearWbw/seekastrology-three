@@ -52,8 +52,6 @@ export default {
 @use 'sass:math';
 .tarot-container {
   color: #fff;
-}
-.tarot-container {
   margin-top: 40px;
 }
 .title {
@@ -118,6 +116,14 @@ export default {
   margin-bottom: 32px;
 }
 @media (max-width: 1450px) {
+  .tarot-container {
+    .title {
+      padding: 0 30px;
+    }
+    .tarot-section {
+      padding: 0 30px;
+    }
+  }
   .ad-box_row {
     width: 95vw;
     height: 130px;
@@ -148,6 +154,12 @@ export default {
   $pr: math.div(1vw, 3.75);
   .tarot-container {
     padding: 16 * $pr;
+    .title {
+      padding: 0;
+    }
+    .tarot-section {
+      padding: 0;
+    }
     > .container {
       padding: 0;
     }

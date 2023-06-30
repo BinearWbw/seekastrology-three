@@ -805,11 +805,11 @@ export default {
   }
 }
 
-@media (max-width: 1450px) {
+@media (max-width: 1470px) {
   .zodiac_details {
     &_main {
       width: 100%;
-      padding: 0 30px;
+      padding: 0 60px;
       .part_details {
         .introduce {
           .left_tab {

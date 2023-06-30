@@ -128,7 +128,7 @@ export default {
           width: 100%;
           height: 114px;
           //   background-color: #555761;
-          margin: 0 auto 24px;
+          margin: 0 auto 48px;
         }
       }
     }
@@ -166,7 +166,7 @@ export default {
               font-weight: 400;
               font-size: 22px;
               line-height: 30px;
-              color: rgba(255, 255, 255, 0.85);
+              color: #9747ff;
               margin-bottom: 16px;
             }
             .text {
@@ -215,7 +215,7 @@ export default {
   .zodiac {
     &_main {
       width: 100%;
-      padding: 0 30px;
+      padding: 0 60px;
     }
   }
 }
@@ -273,7 +273,7 @@ export default {
             width: 100%;
             height: 299 * $pr;
             // background-color: #555761;
-            margin: 24 * $pr auto;
+            margin: 24 * $pr auto 32 * $pr;
           }
         }
       }

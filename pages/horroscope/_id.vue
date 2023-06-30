@@ -448,11 +448,11 @@ export default {
     }
   }
 }
-@media (max-width: 1450px) {
+@media (max-width: 1470px) {
   .horroscope {
     &_main {
       width: 100%;
-      padding: 0 30px;
+      padding: 0 60px;
       .horoscope_details {
         .datails_list {
           padding-left: 30px;
