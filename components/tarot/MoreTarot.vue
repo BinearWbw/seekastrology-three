@@ -161,6 +161,13 @@ export default {
   -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
   transition: background-color 0.3s, color 0.3s;
 }
+
+@media (max-width: 1470px) {
+  .more-tarot {
+    padding: 0 50px;
+  }
+}
+
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .container {

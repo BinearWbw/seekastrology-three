@@ -352,10 +352,47 @@ export default {
 .mt-200 {
   margin-top: 200px;
 }
+@media (max-width: 1500px) {
+  .minor-list {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+  }
+}
 @media (max-width: 1450px) {
   .ad-box_row {
     width: 95vw;
     max-width: 95vw;
+  }
+  .tarot-section {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .minor-list {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+  }
+}
+
+@media (max-width: 1120px) {
+  .minor-list {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+  }
+}
+
+@media (max-width: 950px) {
+  .minor-list {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+  }
+  .title {
+    padding: 0 20px;
+  }
+  .minor-tab {
+    display: flex;
+    justify-content: center;
   }
 }
 

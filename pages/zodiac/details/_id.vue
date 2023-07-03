@@ -353,7 +353,11 @@
           </el-tabs>
         </div>
         <div class="tabs_max"></div>
-        <google-ad classNames="google_ad" :id="'7549376164'"></google-ad>
+        <!-- <google-ad classNames="google_ad" :id="'7549376164'"></google-ad> -->
+        <google-auto-ad
+          classNames="google_ad"
+          :id="'7549376164'"
+        ></google-auto-ad>
       </div>
     </div>
     <transition name="fade">

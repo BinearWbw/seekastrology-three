@@ -28,7 +28,11 @@
               </el-tabs>
             </div>
           </div>
-          <google-ad classNames="google_ad" :id="'8124091233'"></google-ad>
+          <!-- <google-ad classNames="google_ad" :id="'8124091233'"></google-ad> -->
+          <google-auto-ad
+            classNames="google_ad"
+            :id="'8124091233'"
+          ></google-auto-ad>
         </div>
       </div>
       <div class="horoscope_more">

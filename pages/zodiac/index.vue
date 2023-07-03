@@ -41,7 +41,11 @@
             </a>
           </div>
         </div>
-        <google-ad classNames="google_ad" :id="'1578014121'"></google-ad>
+        <!-- <google-ad classNames="google_ad" :id="'1578014121'"></google-ad> -->
+        <google-auto-ad
+          classNames="google_ad"
+          :id="'1578014121'"
+        ></google-auto-ad>
       </div>
     </div>
     <transition name="fade">

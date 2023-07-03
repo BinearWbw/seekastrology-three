@@ -193,10 +193,33 @@ export default {
 .mt-200 {
   margin-top: 200px;
 }
+
 @media (max-width: 1450px) {
   .ad-box_row {
     width: 95vw;
     max-width: 95vw;
+  }
+  .tarot-section {
+    .main-content {
+      max-width: 100%;
+      margin: 40px 0 0;
+      padding: 0 70px;
+      .card-wrapper {
+        margin-right: 100px;
+      }
+    }
+  }
+}
+@media (max-width: 900px) {
+  .tarot-section {
+    .main-content {
+      .card-wrapper {
+        margin-right: 50px;
+        .card-img {
+          height: 500px;
+        }
+      }
+    }
   }
 }
 
