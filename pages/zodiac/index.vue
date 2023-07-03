@@ -5,6 +5,7 @@
         <div class="top_text">
           <google-ad classNames="google_ad" :id="'6619437870'"></google-ad>
           <h3>Zodiac Signs Meanings and Characteristics</h3>
+          <h3 class="h5_text">Zodiac Signs</h3>
           <p>
             By knowing the date of your zodiac sign, you can discover the
             personality and main characteristics of your zodiac sign. The day
@@ -17,6 +18,11 @@
             from the 12 signs and dates. Choose your sun sign from the 12 signs
             and explore your complete astrological profile, the elements you
             belong to, the planets that rule your sign and much more!
+          </p>
+          <p class="h5_text">
+            Choose your sun sign from the zodiac and explore your complete
+            zodiac profile, the element you belong to, the planets that rule
+            your sign, and much more!
           </p>
         </div>
       </div>
@@ -41,16 +47,15 @@
             </a>
           </div>
         </div>
-        <!-- <google-ad classNames="google_ad" :id="'1578014121'"></google-ad> -->
-        <google-auto-ad
-          classNames="google_ad"
-          :id="'1578014121'"
-        ></google-auto-ad>
+        <google-auto-ad classNames="google_ad" :id="'1578014121'" />
       </div>
     </div>
     <transition name="fade">
       <tarot-more-tarot></tarot-more-tarot>
     </transition>
+    <div class="zodiac_google">
+      <google-auto-ad classNames="google_ad" :id="'3950489038'" />
+    </div>
     <transition name="fade">
       <home-pop-articles></home-pop-articles>
     </transition>
@@ -128,9 +133,11 @@ export default {
           line-height: 28px;
           color: rgba(255, 255, 255, 0.85);
         }
+        .h5_text {
+          display: none;
+        }
         .google_ad {
-          width: 100%;
-          height: 114px;
+          //   width: 100%;
           //   background-color: #555761;
           margin: 0 auto 48px;
         }
@@ -206,18 +213,26 @@ export default {
         }
       }
       .google_ad {
-        width: 100%;
-        height: 130px;
+        // width: 100%;
+        min-height: 130px;
         // background-color: #555761;
         margin: 96px auto;
       }
     }
+  }
+  &_google {
+    margin: 0 auto;
+    width: 1400px;
   }
 }
 
 @media (max-width: 1450px) {
   .zodiac {
     &_main {
+      width: 100%;
+      padding: 0 60px;
+    }
+    &_google {
       width: 100%;
       padding: 0 60px;
     }
@@ -253,15 +268,20 @@ export default {
     &_main {
       width: 100%;
       padding: 0;
+      background: url('~/assets/img/zodiac/zodiac_top_h5.png') no-repeat top
+        left;
+      background-position-x: 10px;
+      background-size: 340 * $pr;
       &_top {
-        padding: 0 16 * $pr 24 * $pr;
+        padding: 0 16 * $pr 16 * $pr;
         width: 100%;
         background-position-y: 0;
         background-size: contain;
+        background-image: none;
         position: relative;
         .top_text {
           width: 100%;
-          padding: 188 * $pr 0 24 * $pr;
+          padding: 48 * $pr 0 0;
           margin-right: auto;
           text-align: center;
           h3 {
@@ -273,11 +293,17 @@ export default {
             font-size: 16 * $pr;
             line-height: 24 * $pr;
           }
+          p:not(:last-child) {
+            display: none;
+          }
+          h3:first-of-type {
+            display: none;
+          }
+          .h5_text {
+            display: block;
+          }
           .google_ad {
-            width: 100%;
-            height: 299 * $pr;
-            // background-color: #555761;
-            margin: 24 * $pr auto 32 * $pr;
+            display: none;
           }
         }
       }
@@ -342,6 +368,9 @@ export default {
           margin: 24 * $pr auto 32 * $pr;
         }
       }
+    }
+    &_google {
+      padding: 0 16 * $pr;
     }
   }
 }

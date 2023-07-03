@@ -222,7 +222,7 @@
 </template>
 
 <script>
-import { debounce } from 'lodash'
+import { throttle } from 'lodash'
 export default {
   name: 'TarotPlay',
   props: {
@@ -326,7 +326,7 @@ export default {
       }
     },
 
-    handleClike: debounce(async function (event) {
+    handleClike: throttle(async function (event) {
       let ele = event.target.nodeName
       if (this.isSelected || ele !== 'IMG') return
       event.target.parentNode.style.display = 'none'
@@ -334,7 +334,7 @@ export default {
         await this.drawCard()
       }
       this.judgeShow()
-    }, 300),
+    }, 500),
 
     async drawCard() {
       const res = await this.$apiList.tarot.drawTarot({

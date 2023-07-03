@@ -449,8 +449,7 @@ export default {
         .logo {
           padding-bottom: 0;
           .img {
-            width: 118 * $pr;
-            height: 24 * $pr;
+            height: 39 * $pr;
           }
         }
         .menu {

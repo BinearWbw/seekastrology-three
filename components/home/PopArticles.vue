@@ -102,7 +102,8 @@ export default {
       return this.$route.path === '/' ? '?from=home' : ''
     },
     getCurrentCtivity() {
-      return this.$route.path === '/' ? false : true
+      //   return this.$route.path === '/' ? false : true
+      return true
     },
   },
   methods: {
