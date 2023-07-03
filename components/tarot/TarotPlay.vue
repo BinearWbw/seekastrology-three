@@ -222,6 +222,7 @@
 </template>
 
 <script>
+import { debounce } from 'lodash'
 export default {
   name: 'TarotPlay',
   props: {
@@ -324,17 +325,17 @@ export default {
         this.numbers = 1
       }
     },
-    async handleClike(event) {
+
+    handleClike: debounce(async function (event) {
       let ele = event.target.nodeName
-      if (this.isSelected || ele !== 'IMG') {
-        return
-      }
+      if (this.isSelected || ele !== 'IMG') return
       event.target.parentNode.style.display = 'none'
       if (this.cardsInfo.length === 0) {
         await this.drawCard()
       }
       this.judgeShow()
-    },
+    }, 300),
+
     async drawCard() {
       const res = await this.$apiList.tarot.drawTarot({
         origin: process.env.origin,
@@ -347,9 +348,7 @@ export default {
       }
     },
     judgeShow() {
-      if (this.isSelected) {
-        return
-      }
+      if (this.isSelected) return
       switch (this.type) {
         case '1':
         case '3':
