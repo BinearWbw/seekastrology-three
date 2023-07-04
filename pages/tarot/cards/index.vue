@@ -37,7 +37,7 @@
         <google-ad classNames="ad-box" id="6918820771"></google-ad>
       </div> -->
     </div>
-    <google-ad classNames="ad-box_row mt-32" id="9736555803"></google-ad>
+    <google-auto-ad classNames="ad-box_row mt-32" id="9736555803" />
     <div class="title mt-48">minor arcana definitions</div>
     <div class="minor-tab" @click="toggleMinor">
       <button
@@ -91,7 +91,7 @@
         </a>
       </li>
     </ul>
-    <google-ad classNames="ad-box_row mt-48 mb-32" id="6311466051"></google-ad>
+    <google-auto-ad classNames="ad-box_row mt-48 mb-32" id="6311466051" />
   </div>
 </template>
 
@@ -289,11 +289,8 @@ export default {
   color: rgba(255, 255, 255, 0.85);
 }
 .ad-box_row {
-  width: 100%;
-  max-width: 1400px;
-  height: 130px;
+  width: 1200px;
   margin: 0 auto;
-  //   background-color: #555761;
 }
 .minor-tab {
   text-align: center;
@@ -360,8 +357,7 @@ export default {
 }
 @media (max-width: 1450px) {
   .ad-box_row {
-    width: 95vw;
-    max-width: 95vw;
+    max-width: 100%;
   }
   .tarot-section {
     padding: 0 30px;
@@ -372,6 +368,12 @@ export default {
   .minor-list {
     display: grid;
     grid-template-columns: repeat(5, auto);
+  }
+}
+@media (max-width: 1300px) {
+  .ad-box_row {
+    max-width: 100%;
+    padding: 0 50px;
   }
 }
 
@@ -406,7 +408,7 @@ export default {
   }
   .ad-box_row {
     width: 100%;
-    height: 300 * $pr;
+    padding: 0;
   }
   .title {
     font-family: 'Cinzel Decorative';
@@ -417,49 +419,88 @@ export default {
     text-align: center;
   }
   .tarot-section {
+    padding: 0;
     .major-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       .major-list-item {
-        width: 106px;
+        width: 106 * $pr;
         .major-item-img {
-          height: 213px;
+          height: 213 * $pr;
         }
         .item-text {
           font-family: 'Rubik';
           font-style: normal;
           font-weight: 400;
-          font-size: 14px;
-          line-height: 18px;
+          font-size: 14 * $pr;
+          line-height: 18 * $pr;
         }
       }
     }
   }
   .minor-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 106px);
+    grid-template-columns: repeat(auto-fill, 106 * $pr);
     .minor-list-item {
       .minor-item-img {
-        height: 213px;
+        height: 213 * $pr;
       }
       .item-text {
         font-family: 'Rubik';
         font-style: normal;
         font-weight: 400;
-        font-size: 14px;
-        line-height: 18px;
+        font-size: 14 * $pr;
+        line-height: 18 * $pr;
       }
     }
   }
+
   .minor-tab {
-    display: flex;
+    width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
+    text-align: center;
+    margin-top: 48 * $pr;
+    position: relative;
+    justify-content: initial;
+    &::after {
+      content: '';
+      position: absolute;
+      height: 1px;
+      left: 0px;
+      right: 0px;
+      bottom: -22px;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 50.52%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+  }
+  .button {
+    margin: 0 10 * $pr;
+    box-sizing: border-box;
+    padding: 8 * $pr 16 * $pr;
+    font-family: 'Rubik';
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14 * $pr;
+    line-height: 18 * $pr;
+    white-space: nowrap;
+    &:hover {
+      color: rgba(255, 255, 255, 0.85);
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+  .selected {
+    color: #000;
+    background-color: #fff;
+    border-radius: 42 * $pr;
   }
 
   .mt-44-mobile {
-    margin-top: 44px;
+    margin-top: 44 * $pr;
   }
 }
 </style>

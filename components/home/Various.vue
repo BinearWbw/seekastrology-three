@@ -217,8 +217,8 @@ export default {
         padding: 0;
       }
       p {
-        font-size: 22 * $pr;
-        line-height: 30 * $pr;
+        font-size: 14 * $pr;
+        line-height: 18 * $pr;
       }
     }
     &__main {

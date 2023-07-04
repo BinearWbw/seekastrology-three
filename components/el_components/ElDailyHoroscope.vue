@@ -2,6 +2,7 @@
   <div class="daily_horoscope" v-if="horoscopeData[0]">
     <div class="daily_horoscope_main">
       <h3>Know Your Sun Signs</h3>
+      <h3 class="h5_title">Know Sun Signs</h3>
       <div class="main_primary">
         <div class="main_primary_content">
           <a
@@ -95,6 +96,9 @@ export default {
       text-align: center;
       color: #ffffff;
     }
+    .h5_title {
+      display: none;
+    }
     .main_primary {
       width: 100%;
       padding-bottom: 24px;
@@ -182,6 +186,10 @@ export default {
         font-size: 26 * $pr;
         line-height: 36 * $pr;
         padding: 0 20 * $pr;
+        display: none;
+      }
+      .h5_title {
+        display: block;
       }
       .main_primary {
         padding-bottom: 24 * $pr;

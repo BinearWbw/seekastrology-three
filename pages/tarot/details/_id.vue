@@ -230,6 +230,7 @@ export default {
   }
   .main-content {
     margin: 0;
+    padding: 0 !important;
   }
   .add-box-wrapper {
     display: none;
@@ -250,17 +251,27 @@ export default {
   .content-list {
     .content-list-item {
       flex-direction: column;
-      margin-top: 26px;
+      margin-top: 26 * $pr;
       .card-wrapper {
-        margin: 0 auto 26px;
+        margin: 0 auto 26 * $pr;
         .card-img {
-          height: 400px;
+          height: 400 * $pr;
+        }
+      }
+      .desc-text {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14 * $pr;
+        line-height: 24 * $pr;
+        ::v-deep p {
+          margin-top: 30 * $pr;
         }
       }
     }
   }
   .mt-44-mobile {
-    margin-top: 44px;
+    margin-top: 44 * $pr;
   }
 }
 </style>

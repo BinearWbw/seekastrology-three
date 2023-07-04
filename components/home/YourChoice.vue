@@ -188,8 +188,8 @@ export default {
         line-height: 36 * $pr;
       }
       p {
-        font-size: 22 * $pr;
-        line-height: 30 * $pr;
+        font-size: 14 * $pr;
+        line-height: 18 * $pr;
       }
       &.to_page_padding {
         padding-bottom: 8 * $pr !important;

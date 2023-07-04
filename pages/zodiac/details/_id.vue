@@ -353,11 +353,7 @@
           </el-tabs>
         </div>
         <div class="tabs_max"></div>
-        <!-- <google-ad classNames="google_ad" :id="'7549376164'"></google-ad> -->
-        <google-auto-ad
-          classNames="google_ad"
-          :id="'7549376164'"
-        ></google-auto-ad>
+        <google-auto-ad classNames="google_ad" :id="'7549376164'" />
       </div>
     </div>
     <transition name="fade">
@@ -733,9 +729,7 @@ export default {
       .google_ad {
         width: 100%;
         height: 130px;
-        // background-color: #555761;
         margin: 48px auto;
-        // overflow: hidden;
       }
     }
     .tab_control {
@@ -800,9 +794,7 @@ export default {
         }
       }
       .google_ad {
-        width: 100%;
-        height: 130px;
-        // background-color: #555761;
+        width: 1200px;
         margin: 95px auto 48px;
       }
     }
@@ -819,6 +811,11 @@ export default {
           .left_tab {
             width: 300px;
           }
+        }
+      }
+      .tab_control {
+        .google_ad {
+          max-width: 100%;
         }
       }
     }
@@ -868,9 +865,6 @@ export default {
         .tab_main {
           width: 100%;
           padding: 0 50px;
-        }
-        .google_ad {
-          width: 100%;
         }
       }
     }
@@ -989,7 +983,6 @@ export default {
         }
         .google_ad {
           width: 100%;
-          height: 299 * $pr;
           margin: 48 * $pr 0;
         }
       }

@@ -1,7 +1,7 @@
 <template>
   <div class="resources">
     <div class="resources_main">
-      <google-ad classNames="google_ad" :id="'9680645670'"></google-ad>
+      <google-auto-ad classNames="google_ad_top" :id="'9680645670'" />
       <div class="resources_main_title">HOT Content</div>
       <div class="resources_main_top" v-if="list?.length > 0">
         <a
@@ -239,7 +239,7 @@
           </button>
         </div>
       </div>
-      <google-ad classNames="google_ad_btm" :id="'1344643045'"></google-ad>
+      <google-auto-ad classNames="google_ad_btm" :id="'1344643045'" />
     </div>
     <div class="foot_components" ref="foot_components">
       <transition name="fade">
@@ -672,18 +672,17 @@ $spacing: 16px;
         }
       }
     }
-    .google_ad {
-      // width: 970px;
-      width: 100%;
-      height: 90px;
+    .google_ad_top {
+      width: 1200px;
       margin: 40px auto;
-      // overflow: hidden;
+    }
+    .google_ad {
+      width: 100%;
+      height: 130px;
+      margin: 40px auto;
     }
     .google_ad_btm {
-      // width: 924px;
-      width: 100%;
-      height: 114px;
-      // overflow: hidden;
+      width: 1200px;
       margin: 48px auto 93px;
     }
     &_btm {
@@ -928,9 +927,9 @@ $spacing: 16px;
           justify-content: center;
         }
       }
+      .google_ad_top,
       .google_ad,
       .google_ad_btm {
-        width: 100%;
         width: 900px;
       }
     }
@@ -944,6 +943,7 @@ $spacing: 16px;
           grid-template-columns: repeat(1, 456px);
         }
       }
+      .google_ad_top,
       .google_ad,
       .google_ad_btm {
         width: 700px;
@@ -973,6 +973,7 @@ $spacing: 16px;
           grid-template-columns: repeat(1, 456px);
         }
       }
+      .google_ad_top,
       .google_ad,
       .google_ad {
         width: 700px;
@@ -1145,10 +1146,14 @@ $spacing: 16px;
           }
         }
       }
-      .google_ad,
-      .google_ad_btm {
+      .google_ad {
         width: 343 * $pr;
         height: 299 * $pr;
+        margin: 48 * $pr auto;
+      }
+      .google_ad_top,
+      .google_ad_btm {
+        width: 343 * $pr;
         margin: 48 * $pr auto;
       }
 

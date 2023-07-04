@@ -27,21 +27,21 @@
                 </div>
               </div>
             </a>
-            <google-ad
+            <google-auto-ad
               classNames="google_ad top"
               v-if="list.length >= 8"
               :id="'6715555076'"
-            ></google-ad>
-            <google-ad
+            />
+            <google-auto-ad
               classNames="google_ad center"
               v-if="list.length >= 16"
               :id="'5870227324'"
-            ></google-ad>
-            <google-ad
+            />
+            <google-auto-ad
               classNames="google_ad btm"
               v-if="list.length >= 32"
               :id="'2535818672'"
-            ></google-ad>
+            />
           </div>
           <div class="test_main_center_left_loading" v-if="loading">
             <img
@@ -59,13 +59,13 @@
             </button>
           </div>
         </div>
-        <google-ad classNames="google_ad_h5btm" :id="'3465756968'"></google-ad>
+        <google-auto-ad classNames="google_ad_h5btm" :id="'3465756968'" />
         <div class="test_main_center_right" ref="right_google_ad">
-          <google-ad
+          <google-auto-ad
             classNames="google_ad rightAd"
             ref="rightAd"
             :id="'4665775103'"
-          ></google-ad>
+          />
         </div>
       </div>
     </div>
@@ -331,12 +331,10 @@ $spacing: 16px;
           }
           .google_ad {
             width: 924px;
-            height: 114px;
             margin: -16px 0 0;
             grid-column-end: 5;
             grid-column-start: span 4;
             grid-row-start: span 2;
-            // overflow: hidden;
           }
           .top {
             grid-row-end: 5;
@@ -395,17 +393,12 @@ $spacing: 16px;
         position: relative;
         .google_ad {
           width: 300px;
-          height: 600px;
-          // margin-bottom: 202px;
           position: fixed;
-          // top: 0;
-          // overflow: hidden;
           display: none;
         }
       }
       .google_ad_h5btm {
         display: none;
-        // overflow: hidden;
       }
     }
   }
@@ -568,7 +561,6 @@ $spacing: 16px;
               grid-column-start: span 2;
               grid-row-start: span 2;
               width: 100%;
-              height: 299 * $pr;
               margin: 24 * $pr 0;
             }
             .top {
@@ -607,7 +599,6 @@ $spacing: 16px;
         .google_ad_h5btm {
           display: block;
           width: 100%;
-          height: 299 * $pr;
           margin-top: 48 * $pr;
         }
       }

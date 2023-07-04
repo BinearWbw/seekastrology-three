@@ -65,9 +65,9 @@
               </div>
             </div> -->
       </div>
-      <google-ad class="ad-box_row mt_80" id="6755169246"></google-ad>
+      <google-auto-ad class="ad-box_row mt_80" id="6755169246" />
       <more-tarot class="el_more" :type="type"></more-tarot>
-      <google-ad class="ad-box_row mt_80" id="7545189503"></google-ad>
+      <google-auto-ad class="ad-box_row mt_80" id="7545189503" />
     </div>
     <home-your-choice class="el_choice"></home-your-choice>
     <transition name="fade">
@@ -163,11 +163,8 @@ export default {
     }
   }
   .ad-box_row {
-    width: 100%;
-    max-width: 1400px;
-    height: 130px;
+    width: 1200px;
     margin: 0 auto;
-    background-color: #555761;
     &.mt_80 {
       margin-top: 80px;
     }
@@ -235,16 +232,14 @@ export default {
       }
     }
     .ad-box_row {
-      width: 95vw;
-      max-width: 95vw;
-      height: 130px;
+      max-width: 100%;
     }
   }
 }
 @media (max-width: 1200px) {
   .tarot-container {
     .ad-box_row {
-      width: 93vw;
+      padding: 0 30px;
     }
     .introduce-box {
       max-width: 100%;
@@ -276,7 +271,7 @@ export default {
     }
     .ad-box_row {
       width: 100%;
-      height: 300 * $pr;
+      padding: 0;
       &.mt_80 {
         margin-top: 48 * $pr;
       }

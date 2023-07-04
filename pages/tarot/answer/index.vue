@@ -1,7 +1,7 @@
 <template>
   <div class="tarot-container">
     <div class="title">What the Tarot Cards Mean in This Reading</div>
-    <google-ad classNames="title_ad" id="3725681222"></google-ad>
+    <google-auto-ad classNames="title_ad" id="3725681222" />
     <div class="tarot-section">
       <!-- <div class="add-box-wrapper">
         <google-ad classNames="ad-box" id="1311270876"></google-ad>
@@ -35,9 +35,9 @@
         <google-ad classNames="ad-box" id="6372025868"></google-ad>
       </div> -->
     </div>
-    <google-ad classNames="google_ad" id="8937629395"></google-ad>
+    <google-auto-ad classNames="google_ad" id="8937629395" />
     <more-tarot class="mt-48"></more-tarot>
-    <google-ad classNames="google_ad" id="6563597553"></google-ad>
+    <google-auto-ad classNames="google_ad" id="6563597553" />
   </div>
 </template>
 
@@ -174,31 +174,31 @@ export default {
   }
 
   .title_ad {
-    width: 100%;
-    max-width: 1400px;
-    height: 130px;
+    width: 1200px;
     margin: 48px auto 0;
-    // background-color: #555761;
   }
 
   .google_ad {
-    width: 100%;
-    max-width: 1400px;
-    height: 130px;
-    // background-color: #555761;
+    width: 1200px;
     margin: 48px auto;
   }
 }
+@media (max-width: 1550px) {
+  .content-list-item {
+    padding: 0 50px;
+  }
+}
+
 @media (max-width: 1450px) {
   .tarot-container {
     .title_ad {
-      width: 95vw;
-      max-width: 95vw;
+      max-width: 100%;
+      padding: 0 30px;
     }
 
     .google_ad {
-      width: 95vw;
-      max-width: 95vw;
+      max-width: 100%;
+      padding: 0 30px;
     }
   }
 }
@@ -222,6 +222,14 @@ export default {
     .google_ad {
       width: 100%;
       max-width: 100%;
+    }
+    .main-content {
+      .content-list-item {
+        padding: 0;
+        .card-wrapper {
+          margin-right: 50px;
+        }
+      }
     }
   }
 }
@@ -283,7 +291,7 @@ export default {
             font-style: normal;
             font-weight: 400;
             font-size: 14 * $pr;
-            line-height: 18 * $pr;
+            line-height: 24 * $pr;
             color: rgba(255, 255, 255, 0.85);
             margin-top: 8 * $pr;
           }
@@ -295,14 +303,13 @@ export default {
     }
     .title_ad {
       width: 100%;
-      height: 114 * $pr;
       margin: 48 * $pr auto 0;
+      padding: 0;
     }
     .google_ad {
       width: 100%;
-      height: 299 * $pr;
-      //   background-color: #555761;
       margin: 48 * $pr auto;
+      padding: 0;
     }
   }
 }

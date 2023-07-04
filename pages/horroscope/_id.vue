@@ -28,11 +28,7 @@
               </el-tabs>
             </div>
           </div>
-          <!-- <google-ad classNames="google_ad" :id="'8124091233'"></google-ad> -->
-          <google-auto-ad
-            classNames="google_ad"
-            :id="'8124091233'"
-          ></google-auto-ad>
+          <google-ad classNames="google_ad" :id="'8124091233'"></google-ad>
         </div>
       </div>
       <div class="horoscope_more">
@@ -57,7 +53,7 @@
             </div>
           </div>
         </div>
-        <google-ad classNames="google_ad" :id="'4184846228'"></google-ad>
+        <google-auto-ad classNames="google_ad" :id="'4184846228'" />
       </div>
     </div>
     <transition name="fade">
@@ -299,8 +295,6 @@ export default {
       }
       .google_ad {
         width: 300px;
-        height: 600px;
-        // background-color: #555761;
       }
       .datails_list {
         flex: 1;
@@ -339,10 +333,8 @@ export default {
         }
         .google_ad {
           width: 924px;
-          height: 114px;
-          //   background-color: #555761;
+          height: 130px;
           margin: 48px auto 0;
-          // overflow: hidden;
         }
       }
     }
@@ -444,9 +436,7 @@ export default {
         }
       }
       .google_ad {
-        width: 100%;
-        height: 130px;
-        // background-color: #555761;
+        width: 1200px;
         margin: 0 auto;
       }
     }
@@ -477,6 +467,12 @@ export default {
           grid-template-columns: repeat(2, 1fr);
         }
       }
+      .horoscope_more {
+        .google_ad {
+          max-width: 100%;
+          margin: 0 auto;
+        }
+      }
     }
   }
 }
@@ -495,8 +491,6 @@ export default {
       .horoscope_more {
         .google_ad {
           width: 100%;
-          height: 114px;
-          //   background-color: #555761;
           margin: 0 auto;
         }
       }
@@ -561,7 +555,6 @@ export default {
           .google_ad {
             width: 100%;
             height: 299 * $pr;
-            // background-color: #555761;
             margin: 23 * $pr auto 0;
           }
         }
@@ -621,7 +614,6 @@ export default {
         }
         .google_ad {
           width: 100%;
-          height: 299 * $pr;
         }
       }
     }

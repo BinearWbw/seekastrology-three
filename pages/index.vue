@@ -184,7 +184,7 @@ export default {
       &.choice {
         .google_ad {
           margin: 40px auto 0;
-          height: 130px;
+          width: 1200px;
         }
       }
       &.kundli {
@@ -211,6 +211,14 @@ export default {
   .home {
     &__main {
       width: 1000px;
+      .module {
+        margin-top: 100px;
+        &.choice {
+          .google_ad {
+            width: 100%;
+          }
+        }
+      }
     }
   }
 }
@@ -227,8 +235,8 @@ export default {
         }
         &.choice {
           .google_ad {
+            width: 100%;
             margin: 40px auto 0;
-            height: 130px;
             padding: 0 50px;
             background-color: initial;
           }
@@ -315,7 +323,6 @@ export default {
           .google_ad {
             margin: 40 * $pr auto 0;
             width: 100%;
-            height: 300 * $pr;
             padding: 0;
           }
         }
@@ -327,7 +334,6 @@ export default {
           .google_ad {
             width: 100%;
             margin: 117 * $pr auto 0;
-            height: 300 * $pr;
           }
         }
         &.new_pop {

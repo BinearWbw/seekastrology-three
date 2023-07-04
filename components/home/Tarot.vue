@@ -270,6 +270,16 @@ export default {
             z-index: 3;
           }
         }
+        &:hover {
+          .img_list {
+            &.list_2 {
+              transform: matrix(0.99, 0.1, -0.1, 0.99, 150, -40);
+            }
+            &.list_3 {
+              transform: matrix(0.97, 0.3, -0.3, 0.97, 250, -20);
+            }
+          }
+        }
       }
       .animated_active {
         .button {
@@ -312,8 +322,8 @@ export default {
       }
       p {
         margin: 16 * $pr 0 32 * $pr 0;
-        font-size: 22 * $pr;
-        line-height: 30 * $pr;
+        font-size: 14 * $pr;
+        line-height: 18 * $pr;
       }
       .button {
         margin-top: 0;
@@ -356,6 +366,17 @@ export default {
           &.list_3 {
             transform: rotate(1deg) translateX(100 * $pr) translateY(0 * $pr);
             z-index: 3;
+          }
+        }
+        &:hover {
+          .img_list {
+            &.list_2 {
+              transform: rotate(7deg) translateX(90 * $pr) translateY(-20 * $pr);
+            }
+            &.list_3 {
+              transform: rotate(15deg) translateX(140 * $pr)
+                translateY(-20 * $pr);
+            }
           }
         }
       }

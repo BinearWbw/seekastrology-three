@@ -77,7 +77,7 @@
             </div>
           </div>
         </div>
-        <google-ad classNames="leftAd" :id="'9575035598'"></google-ad>
+        <google-auto-ad classNames="leftAd" :id="'9575035598'" />
       </div>
       <div class="details_main_right">
         <google-ad classNames="rightAd" :id="'8812069528'"></google-ad>
@@ -158,7 +158,7 @@
         </a>
       </div>
     </div>
-    <google-ad classNames="google_ad_footer" :id="'4872824519'"></google-ad>
+    <google-auto-ad classNames="google_ad_footer" :id="'4872824519'" />
     <div class="foot_components" ref="foot_components">
       <transition name="fade">
         <home-your-choice></home-your-choice>
@@ -412,10 +412,7 @@ $spacing: 16px;
         }
       }
       .leftAd {
-        // width: 924px;
         width: 100%;
-        height: 114px;
-        background: #555761;
         margin: 0 auto;
         margin-top: 47px;
       }
@@ -428,7 +425,6 @@ $spacing: 16px;
       .rightAd {
         width: 300px;
         height: 600px;
-        background: #555761;
       }
       &_list {
         margin-top: 48px;
@@ -730,7 +726,7 @@ $spacing: 16px;
 
         .leftAd {
           width: 343 * $pr;
-          height: 299 * $pr;
+          margin-top: 47 * $pr;
         }
       }
       &_right {

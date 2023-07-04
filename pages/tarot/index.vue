@@ -19,14 +19,14 @@
         <google-ad classNames="ad-box" id="9572904273"></google-ad>
       </div> -->
     </div>
-    <google-ad classNames="ad-box_row mt-48" id="4356182716"></google-ad>
+    <google-auto-ad classNames="ad-box_row mt-48" id="4356182716" />
     <more-tarot class="mt-48"></more-tarot>
-    <google-ad classNames="ad-box_row mt-32" id="7816119415"></google-ad>
+    <google-auto-ad classNames="ad-box_row mt-32" id="7816119415" />
     <all-tarot class="mt-48"></all-tarot>
-    <google-ad
+    <google-auto-ad
       classNames="ad-box_row mt-32 mt-120 mb-32"
       id="6503037744"
-    ></google-ad>
+    />
   </div>
 </template>
 
@@ -84,10 +84,8 @@ export default {
   }
 }
 .ad-box_row {
-  width: 1400px;
-  height: 130px;
+  width: 1200px;
   margin: 0 auto;
-  background-color: #555761;
 }
 .button {
   margin-top: 18px;
@@ -125,10 +123,8 @@ export default {
     }
   }
   .ad-box_row {
-    width: 95vw;
-    height: 130px;
+    max-width: 95vw;
     margin: 0 auto;
-    background-color: #555761;
   }
   .mt-48 {
     margin-top: 48px;
@@ -139,10 +135,6 @@ export default {
 }
 
 @media (max-width: 940px) {
-  .ad-box_row {
-    width: 93vw;
-    margin: 0 auto;
-  }
   .mt-48 {
     margin-top: 48px;
   }
@@ -177,7 +169,6 @@ export default {
   }
   .ad-box_row {
     width: 100%;
-    height: 300 * $pr;
   }
   .mt-120 {
     margin-top: 120 * $pr;

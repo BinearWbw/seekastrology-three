@@ -3,7 +3,7 @@
     <div class="zodiac_main">
       <div class="zodiac_main_top">
         <div class="top_text">
-          <google-ad classNames="google_ad" :id="'6619437870'"></google-ad>
+          <google-ad :id="'4424329425'" classNames="google_ad" />
           <h3>Zodiac Signs Meanings and Characteristics</h3>
           <h3 class="h5_text">Zodiac Signs</h3>
           <p>
@@ -47,14 +47,14 @@
             </a>
           </div>
         </div>
-        <google-auto-ad classNames="google_ad" :id="'1578014121'" />
+        <google-auto-ad :id="'1578014121'" classNames="google_ad" />
       </div>
     </div>
     <transition name="fade">
       <tarot-more-tarot></tarot-more-tarot>
     </transition>
     <div class="zodiac_google">
-      <google-auto-ad classNames="google_ad" :id="'3950489038'" />
+      <google-auto-ad :id="'3950489038'" classNames="google_ad" />
     </div>
     <transition name="fade">
       <home-pop-articles></home-pop-articles>
@@ -137,8 +137,8 @@ export default {
           display: none;
         }
         .google_ad {
-          //   width: 100%;
-          //   background-color: #555761;
+          width: 100%;
+          height: 130px;
           margin: 0 auto 48px;
         }
       }
@@ -213,16 +213,15 @@ export default {
         }
       }
       .google_ad {
-        // width: 100%;
-        min-height: 130px;
-        // background-color: #555761;
+        width: 1200px;
         margin: 96px auto;
+        overflow: hidden;
       }
     }
   }
   &_google {
     margin: 0 auto;
-    width: 1400px;
+    width: 1200px;
   }
 }
 
@@ -273,7 +272,7 @@ export default {
       background-position-x: 10px;
       background-size: 340 * $pr;
       &_top {
-        padding: 0 16 * $pr 16 * $pr;
+        padding: 0 16 * $pr 48 * $pr;
         width: 100%;
         background-position-y: 0;
         background-size: contain;
@@ -321,7 +320,7 @@ export default {
             box-sizing: border-box;
             border: none;
             border-radius: 6 * $pr;
-            background: rgba(255, 255, 255, 0.05);
+            background: #131213;
             a {
               display: block;
               box-sizing: border-box;
@@ -359,17 +358,24 @@ export default {
                 height: auto;
               }
             }
+            &:hover {
+              a {
+                transform: translateY(-5 * $pr);
+                img {
+                  transform: none;
+                }
+              }
+            }
           }
         }
         .google_ad {
           width: 100%;
-          height: 299 * $pr;
-          //   background-color: #555761;
           margin: 24 * $pr auto 32 * $pr;
         }
       }
     }
     &_google {
+      width: 100%;
       padding: 0 16 * $pr;
     }
   }
