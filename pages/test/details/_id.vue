@@ -199,7 +199,7 @@
       </div>
       <div class="details_main_right">
         <google-ad classNames="google_ad" :id="'2626483862'"></google-ad>
-        <google-ad classNames="google_ad" :id="'3899488348'"></google-ad>
+        <!-- <google-ad classNames="google_ad" :id="'3899488348'"></google-ad> -->
       </div>
     </div>
     <div class="foot_components" ref="foot_components">
@@ -454,7 +454,7 @@ $spacing: 55px;
       align-items: center;
       &_top {
         padding: 24px 118px 103px 118px;
-        background: rgba(1, 1, 2, 0.9);
+        background: #1b1b1b;
         border-radius: 30px;
         width: 100%;
         &_menu {

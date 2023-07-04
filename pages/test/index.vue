@@ -61,7 +61,7 @@
         </div>
         <google-auto-ad classNames="google_ad_h5btm" :id="'3465756968'" />
         <div class="test_main_center_right" ref="right_google_ad">
-          <google-auto-ad
+          <google-ad
             classNames="google_ad rightAd"
             ref="rightAd"
             :id="'4665775103'"
@@ -395,6 +395,7 @@ $spacing: 16px;
           width: 300px;
           position: fixed;
           display: none;
+          height: 600px;
         }
       }
       .google_ad_h5btm {

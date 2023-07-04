@@ -10,7 +10,6 @@
               .replace(/[^a-zA-Z0-9\\s]/g, '-')
               .toLowerCase()}-${horoscopeData[0]?.id}/`"
           >
-            <p class="title">{{ horoscopeData[0]?.name }}</p>
             <div class="main_img">
               <nuxt-img
                 :src="horoscopeData[0]?.banner || '/'"
@@ -19,6 +18,7 @@
                 :alt="horoscopeData[0]?.name"
               ></nuxt-img>
             </div>
+            <p class="title">{{ horoscopeData[0]?.name }}</p>
             <p class="main_text">{{ horoscopeData[0]?.desc }}</p>
           </a>
         </div>
@@ -28,7 +28,6 @@
               .replace(/[^a-zA-Z0-9\\s]/g, '-')
               .toLowerCase()}-${horoscopeData[1]?.id}/`"
           >
-            <p class="title">{{ horoscopeData[1]?.name }}</p>
             <div class="main_img">
               <nuxt-img
                 :src="horoscopeData[1]?.banner || '/'"
@@ -37,6 +36,7 @@
                 :alt="horoscopeData[1]?.name"
               ></nuxt-img>
             </div>
+            <p class="title">{{ horoscopeData[1]?.name }}</p>
             <p class="main_text">{{ horoscopeData[1]?.desc }}</p>
           </a>
         </div>
@@ -117,11 +117,11 @@ export default {
           font-size: 26px;
           line-height: 36px;
           color: #fff;
+          margin: 10px 0 16px;
         }
         .main_img {
           width: 100%;
           height: 210px;
-          margin: 24px 0;
           img {
             width: 100%;
             height: 100%;
@@ -182,7 +182,7 @@ export default {
       margin: 48 * $pr auto 0;
       padding: 0 16 * $pr;
       > h3 {
-        margin-bottom: 32 * $pr;
+        margin-bottom: 24 * $pr;
         font-size: 26 * $pr;
         line-height: 36 * $pr;
         padding: 0 20 * $pr;
@@ -194,7 +194,7 @@ export default {
       .main_primary {
         padding-bottom: 24 * $pr;
         grid-template-columns: repeat(1, 1fr);
-        gap: 20 * $pr;
+        gap: 24 * $pr;
         &_content {
           > a {
             width: 100%;
@@ -206,11 +206,11 @@ export default {
             font-size: 22 * $pr;
             line-height: 30 * $pr;
             color: #fff;
+            margin: 10 * $pr 0;
           }
           .main_img {
             width: 100%;
             height: 106 * $pr;
-            margin: 10 * $pr 0;
             img {
               width: 100%;
               height: 100%;

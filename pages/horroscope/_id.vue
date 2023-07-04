@@ -516,6 +516,7 @@ export default {
           display: none;
         }
         .datails_list {
+          width: 100%;
           flex: 1;
           padding-left: 0;
           .list_top {
