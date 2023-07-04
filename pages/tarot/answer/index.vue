@@ -1,7 +1,8 @@
 <template>
   <div class="tarot-container">
     <div class="title">What the Tarot Cards Mean in This Reading</div>
-    <google-auto-ad classNames="title_ad" id="3725681222" />
+    <div class="title h5_title">Tarot Cards Reading</div>
+    <google-ad classNames="title_ad" id="3725681222" />
     <div class="tarot-section">
       <!-- <div class="add-box-wrapper">
         <google-ad classNames="ad-box" id="1311270876"></google-ad>
@@ -105,6 +106,9 @@ export default {
     line-height: 64px;
     text-align: center;
     padding: 0 30px;
+    &.h5_title {
+      display: none;
+    }
   }
 
   .tarot-section {
@@ -175,11 +179,13 @@ export default {
 
   .title_ad {
     width: 1200px;
+    height: 130px;
     margin: 48px auto 0;
   }
 
   .google_ad {
     width: 1200px;
+    height: 130px;
     margin: 48px auto;
   }
 }
@@ -236,7 +242,7 @@ export default {
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .tarot-container {
-    padding: 44 * $pr 16 * $pr 0;
+    padding: 30 * $pr 16 * $pr 0;
     > .container {
       padding: 0;
     }
@@ -246,6 +252,10 @@ export default {
       font-weight: 700;
       font-size: 36 * $pr;
       line-height: 48 * $pr;
+      display: none;
+      &.h5_title {
+        display: block;
+      }
     }
     .tarot-section {
       .ad-box {
@@ -268,8 +278,8 @@ export default {
           .card-wrapper {
             margin: 0 auto 26 * $pr;
             .card-img {
-              width: 210 * $pr;
-              height: 420 * $pr;
+              width: 200 * $pr;
+              height: 400 * $pr;
             }
           }
           .card-text {
@@ -303,8 +313,10 @@ export default {
     }
     .title_ad {
       width: 100%;
+      height: 114 * $pr;
       margin: 48 * $pr auto 0;
       padding: 0;
+      display: none;
     }
     .google_ad {
       width: 100%;

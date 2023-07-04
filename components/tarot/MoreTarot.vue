@@ -183,7 +183,7 @@ export default {
   }
   .more-tarot {
     grid-template-columns: repeat(auto-fill, 100%);
-    margin: 16 * $pr auto 48 * $pr;
+    margin: 16 * $pr auto 0;
     padding: 0;
     .more-tarot-items {
       width: 100%;

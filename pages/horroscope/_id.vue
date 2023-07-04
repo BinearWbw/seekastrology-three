@@ -598,6 +598,7 @@ export default {
                 line-height: 22 * $pr;
                 margin: 16 * $pr 0;
                 -webkit-line-clamp: 2;
+                height: 44 * $pr;
               }
               .button {
                 width: 220 * $pr;
