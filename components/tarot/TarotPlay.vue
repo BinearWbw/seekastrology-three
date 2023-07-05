@@ -24,7 +24,8 @@
             :key="index"
             class="tip-img-item"
             :class="{ 'img-rotate': item.desc_type == 2 }"
-            height="80px"
+            width="60"
+            height="100"
             :src="item.icon"
             :alt="item.name"
           ></nuxt-img>
@@ -196,6 +197,8 @@
                 class="tip-img-item"
                 :class="{ 'img-rotate': showList[index].desc_type == 2 }"
                 :src="showList[index].icon"
+                width="60"
+                height="100"
                 loading="lazy"
               ></nuxt-img>
             </div>
@@ -817,6 +820,7 @@ export default {
         .tip-img-item {
           width: 100%;
           height: 100%;
+          object-fit: cover;
         }
       }
       .handle-btn {

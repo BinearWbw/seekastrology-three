@@ -688,7 +688,7 @@ $spacing: 16px;
     }
     &_btm {
       margin-top: 55px;
-      scroll-margin-top: -150px;
+      scroll-margin-top: -50px;
       &_tabs {
         display: flex;
         justify-content: center;

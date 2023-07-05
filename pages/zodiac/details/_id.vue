@@ -738,7 +738,7 @@ export default {
         width: 100%;
         padding: 0 118px;
 
-        ::v-deep(.tab-header) {
+        ::v-deep(.tab-header_main) {
           justify-content: center;
         }
 
@@ -943,7 +943,7 @@ export default {
         .tab_main {
           padding: 0;
 
-          ::v-deep(.tab-header) {
+          ::v-deep(.tab-header_main) {
             justify-content: initial;
           }
 

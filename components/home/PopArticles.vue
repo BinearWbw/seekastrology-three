@@ -46,8 +46,6 @@
                 <nuxt-img
                   :src="item.icon || '/'"
                   fit="cover"
-                  width="118"
-                  height="96"
                   :alt="item.name"
                 ></nuxt-img>
                 <span class="main_type">{{ getMainType(item.main_type) }}</span>
@@ -249,7 +247,7 @@ export default {
               img {
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
+                object-fit: cover;
               }
             }
 
@@ -339,9 +337,6 @@ export default {
           li {
             a {
               height: auto;
-              .news_right_img {
-                width: 95px;
-              }
 
               .news_right_text {
                 width: auto;
