@@ -316,6 +316,7 @@ export default {
         padding-top: 48 * $pr;
       }
       .module {
+        margin-top: 86 * $pr;
         &.choice {
           > .choice {
             padding: 0;
@@ -327,7 +328,7 @@ export default {
           }
         }
         &.tarot {
-          margin-top: 80 * $pr;
+          margin-top: 86 * $pr;
         }
 
         &.kundli {
@@ -337,10 +338,11 @@ export default {
           }
         }
         &.new_pop {
+          margin-bottom: 86 * $pr;
           > .pop_maximum {
             padding: 0;
           }
-          margin-top: 87 * $pr;
+          margin-top: 86 * $pr;
         }
       }
     }

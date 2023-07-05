@@ -14,7 +14,11 @@
           <p class="title">{{ item.title }}</p>
           <p class="text">{{ item.textCont }}</p>
           <button class="button">Read More</button>
-          <i class="button_icon"></i>
+          <div class="button_btm">
+            <i class="button_icon" id="icon1"></i>
+            <i class="button_icon" id="icon2"></i>
+            <i class="button_icon" id="icon3"></i>
+          </div>
         </a>
       </li>
     </ul>
@@ -174,7 +178,7 @@ export default {
         -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
         transition: background-color 0.3s, color 0.3s;
       }
-      .button_icon {
+      .button_btm {
         display: none;
       }
       &:hover {
@@ -229,7 +233,8 @@ export default {
         height: auto;
       }
       &__li {
-        padding: 13 * $pr 0 7 * $pr;
+        padding: 13 * $pr 0 16 * $pr;
+        border: 1 * $pr solid rgba(255, 255, 255, 0.6);
         height: auto;
         img {
           width: 93 * $pr;
@@ -238,8 +243,8 @@ export default {
           margin-bottom: 9 * $pr;
         }
         .title {
-          font-size: 16 * $pr;
-          line-height: 22 * $pr;
+          font-size: 22 * $pr;
+          line-height: 30 * $pr;
           padding: 0 10 * $pr;
         }
         .text {
@@ -248,12 +253,41 @@ export default {
         .button {
           display: none;
         }
-        .button_icon {
-          display: block;
+        .button_btm {
+          display: flex;
           width: 100%;
-          height: 22 * $pr;
-          background: url('../../assets/img/home/var_button.png') no-repeat
-            center;
+          justify-content: center;
+          .button_icon {
+            display: inline-block;
+            width: 7 * $pr;
+            height: 22 * $pr;
+            background: url('~/assets/img/home/xiaojiantou.png') no-repeat
+              center;
+            animation: icon-arrow 1.5s infinite ease-in-out;
+          }
+          #icon1 {
+            animation-delay: 0s;
+          }
+          #icon2 {
+            animation-delay: 0.3s;
+          }
+          #icon3 {
+            animation-delay: 0.7s;
+          }
+          @keyframes icon-arrow {
+            0% {
+              opacity: 0.3;
+            }
+            50% {
+              opacity: 0.6;
+            }
+            70% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0.3;
+            }
+          }
         }
         &:hover {
           transform: translateY(0);

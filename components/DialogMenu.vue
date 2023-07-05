@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <aside class="dialog" v-if="visible">
+    <aside class="dialog" v-if="visible" @click="close">
       <div class="dialog__main">
         <div class="dialog__main__top">
           <button class="close common__btn" @click="close"></button>
