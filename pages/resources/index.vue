@@ -354,7 +354,8 @@ export default {
         if (this.isFrist && this.$route.query.id) {
           //滚动到广告位
           this.$nextTick(() => {
-            this.$refs.gooleAd.$el.scrollIntoView({
+            const mainBtm = this.$refs.mainBtm
+            mainBtm.scrollIntoView({
               behavior: 'smooth',
               block: 'start',
             })
@@ -687,6 +688,7 @@ $spacing: 16px;
     }
     &_btm {
       margin-top: 55px;
+      scroll-margin-top: -150px;
       &_tabs {
         display: flex;
         justify-content: center;
@@ -1161,6 +1163,8 @@ $spacing: 16px;
 
       &_btm {
         width: 100%;
+        scroll-margin-top: 60 * $pr;
+        margin-top: 48 * $pr;
         &_tabs {
           width: 91%;
           margin: 0 auto;

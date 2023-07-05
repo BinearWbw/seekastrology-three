@@ -204,6 +204,12 @@ export default {
               line-height: 22px;
               text-align: center;
               color: rgba(255, 255, 255, 0.85);
+              padding: 0 20px !important;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
             }
           }
         }
@@ -355,7 +361,7 @@ export default {
               p {
                 font-size: 16 * $pr;
                 line-height: 22 * $pr;
-                padding: 0;
+                padding: 0 !important;
               }
             }
           }
