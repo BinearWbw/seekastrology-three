@@ -374,6 +374,7 @@ export default {
     margin: 48 * $pr auto 0;
     padding: 0 16 * $pr;
     .pop_main {
+      position: relative;
       .bg_main {
         position: absolute;
         top: 0;

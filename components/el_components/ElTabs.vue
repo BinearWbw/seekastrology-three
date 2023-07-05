@@ -10,7 +10,7 @@
         {{ upTitle + ' ' + tab.tabs }}
       </div>
     </div>
-    <div class="tab-content" :class="{ active_tab: openActiveTab }">
+    <div class="tab-content">
       <slot :activeTab="activeTab"></slot>
     </div>
   </div>
@@ -23,7 +23,6 @@ export default {
     return {
       activeTab: 0,
       upTitle: '',
-      openActiveTab: false,
     }
   },
   watch: {
@@ -38,7 +37,6 @@ export default {
     selectTab(tab, index) {
       this.activeTab = index
       this.$emit('click', tab)
-      this.openActiveTab = !this.openActiveTab
     },
     toUpperBig(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)

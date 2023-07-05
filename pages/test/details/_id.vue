@@ -1032,6 +1032,7 @@ $spacing: 55px;
           &_title {
             font-size: 22 * $pr;
             line-height: 30 * $pr;
+            text-align: center;
           }
           &_list {
             grid-gap: 5 * $pr;

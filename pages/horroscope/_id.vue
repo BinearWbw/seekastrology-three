@@ -23,7 +23,13 @@
             <div class="list_tabs">
               <el-tabs :tabs="horroData" @click="correspondingTime">
                 <template>
-                  <div class="texts" v-html="moreData[comentId].texts"></div>
+                  <div class="text_form">
+                    <div class="format_date">
+                      {{ $utils.horoscopeFormatDate(currentTime) }}
+                    </div>
+                    -
+                    <div class="texts" v-html="moreData[comentId].texts"></div>
+                  </div>
                 </template>
               </el-tabs>
             </div>
@@ -156,6 +162,7 @@ export default {
       ],
       comentId: 0,
       currentTime: 'd',
+      currentDate: '',
     }
   },
   async asyncData({ error, $apiList, params }) {
@@ -224,6 +231,11 @@ export default {
     },
     ...mapGetters(['getIntersperseUrl']),
   },
+  mounted() {
+    this.$nextTick(() => {
+      this.getCurrentTime()
+    })
+  },
   methods: {
     async getHoroscopeData(id = 1, kind = 'd') {
       await this.$apiList.home
@@ -260,10 +272,16 @@ export default {
     correspondingTime(i) {
       // 点击tabs
       this.currentTime = i.type
+      console.log('点击tabs', i)
       this.getHoroscopeData(this.ids, i.type)
     },
     toUpperBig(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
+    },
+    getCurrentTime() {
+      const dateTime = new Date()
+      this.currentDate = dateTime.getTime()
+      console.log('当前的时间戳', this.currentDate)
     },
   },
 }
@@ -320,14 +338,28 @@ export default {
           width: 100%;
           .list_tabs {
             width: 100%;
-            .texts {
-              font-family: 'Rubik';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 16px;
-              line-height: 28px;
-              color: rgba(255, 255, 255, 0.85);
+            .text_form {
               padding-top: 24px;
+              .format_date {
+                display: inline;
+                font-family: 'Rubik Medium';
+                font-style: normal;
+                font-size: 16px;
+                line-height: 28px;
+                color: #fff;
+              }
+              .texts {
+                display: inline;
+                font-family: 'Rubik';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 28px;
+                color: rgba(255, 255, 255, 0.85);
+                ::v-deep(:first-child) {
+                  display: inline;
+                }
+              }
             }
           }
         }
@@ -538,11 +570,18 @@ export default {
           .list_main {
             width: 100%;
             .list_tabs {
-              .texts {
-                font-size: 16 * $pr;
-                line-height: 28 * $pr;
+              .text_form {
                 padding-top: 12 * $pr;
+                .format_date {
+                  font-size: 16 * $pr;
+                  line-height: 28 * $pr;
+                }
+                .texts {
+                  font-size: 16 * $pr;
+                  line-height: 28 * $pr;
+                }
               }
+
               ::v-deep(.tab-header) {
                 justify-content: space-around;
                 .tab-item {

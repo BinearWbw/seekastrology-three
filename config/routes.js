@@ -53,13 +53,9 @@ const addRoutes = async () => {
         .toLowerCase()}-${item.id}/`
     )
   })
-  let res6 = [
-    1,2,3,4
-  ]
+  let res6 = [1, 2, 3, 4]
   res6.map((item) => {
-    routes.push(
-      `/tarot/type/${item}/`
-    )
+    routes.push(`/tarot/type/${item}/`)
   })
   return routes
 }

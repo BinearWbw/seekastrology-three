@@ -172,6 +172,13 @@ img:not([src]) {
   font-display: block;
 }
 @font-face {
+  font-family: 'Rubik Medium';
+  src: url('../font/Rubik-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
   font-family: 'Rufina';
   src: url('../font/Rufina-Regular.ttf') format('truetype');
   font-weight: normal;
