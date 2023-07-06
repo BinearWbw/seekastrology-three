@@ -162,7 +162,6 @@ export default {
       ],
       comentId: 0,
       currentTime: 'd',
-      currentDate: '',
     }
   },
   async asyncData({ error, $apiList, params }) {
@@ -231,11 +230,6 @@ export default {
     },
     ...mapGetters(['getIntersperseUrl']),
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.getCurrentTime()
-    })
-  },
   methods: {
     async getHoroscopeData(id = 1, kind = 'd') {
       await this.$apiList.home
@@ -272,16 +266,10 @@ export default {
     correspondingTime(i) {
       // 点击tabs
       this.currentTime = i.type
-      console.log('点击tabs', i)
       this.getHoroscopeData(this.ids, i.type)
     },
     toUpperBig(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
-    },
-    getCurrentTime() {
-      const dateTime = new Date()
-      this.currentDate = dateTime.getTime()
-      console.log('当前的时间戳', this.currentDate)
     },
   },
 }

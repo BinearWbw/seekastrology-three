@@ -134,7 +134,7 @@
           <ul class="card-list">
             <li
               class="card-list-item"
-              v-for="index of 6"
+              v-for="index of 1"
               :key="index"
               :style="'transform: translateY(-' + index * 4 + 'px)'"
             >
@@ -218,7 +218,7 @@
             />
           </div>
         </div>
-        <div class="in-play-ad"></div>
+        <google-ad :id="'9971744541'" classNames="in-play-ad"></google-ad>
       </div>
     </div>
   </div>
@@ -654,7 +654,7 @@ export default {
     width: calc(100vw - 1 * $pr);
     height: 375 * $pr;
     background-size: contain;
-    background-position: 0px 200px;
+    background-position: 0 200 * $pr;
     .pc-wrapper {
       display: none;
     }
@@ -665,15 +665,23 @@ export default {
       display: block;
       width: 100%;
       height: 100%;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1 * $pr solid rgba(255, 255, 255, 0.2);
+    }
+    .card-wrapper {
+      position: absolute;
+      z-index: 1;
+      display: inline-block;
+      transition: all 0.8s ease-out;
+      width: 130 * $pr;
+      height: 220 * $pr;
     }
     .mobile-tarot-box {
       height: 100%;
     }
     .in-play {
       position: fixed;
-      width: 100vw;
-      height: calc(100% - 122px);
+      //   width: 100vw;
+      height: calc(100% - 122 * $pr);
       top: 0;
       left: 0;
       z-index: 7;
@@ -683,11 +691,11 @@ export default {
     }
     .back-btn {
       position: absolute;
-      width: 44px;
-      height: 44px;
-      left: 14px;
-      top: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      width: 44 * $pr;
+      height: 44 * $pr;
+      left: 14 * $pr;
+      top: 14 * $pr;
+      border: 1 * $pr solid rgba(255, 255, 255, 0.6);
       border-radius: 50%;
       z-index: 9;
       transform: matrix(-1, 0, 0, 1, 0, 0);
@@ -698,17 +706,17 @@ export default {
       position: fixed;
       bottom: 0;
       width: 100%;
-      height: 123px;
+      height: 123 * $pr;
       background-color: #555761;
     }
     .show-wrapper {
       flex-wrap: wrap;
       .item-img {
-        width: 100px;
-        height: 176px;
-        margin-top: 4px;
+        width: 100 * $pr;
+        height: 176 * $pr;
+        margin-top: 4 * $pr;
         &:not(:first-child) {
-          margin-left: 8px;
+          margin-left: 8 * $pr;
         }
       }
     }
@@ -726,35 +734,43 @@ export default {
       justify-content: center;
       .question-input {
         background: rgba(7, 6, 6, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 24px;
-        height: 138px;
-        margin: 0 35px;
-        padding: 10px 20px;
+        border: 1 * $pr solid rgba(255, 255, 255, 0.6);
+        border-radius: 24 * $pr;
+        height: 138 * $pr;
+        margin: 0 35 * $pr;
+        padding: 10 * $pr 20 * $pr;
+        font-size: 14 * $pr;
+        line-height: 18 * $pr;
       }
       .mobile-btn {
-        margin: 16px 35px 0;
+        margin: 16 * $pr 35 * $pr 0;
       }
     }
     .card-list {
-      width: 130px;
-      height: 220px;
+      width: 130 * $pr;
+      height: 220 * $pr;
     }
     .card-list-item {
       position: absolute;
+      width: 130 * $pr;
+      height: 220 * $pr;
+      .card-img-mobile {
+        width: 130 * $pr;
+        height: 220 * $pr;
+      }
     }
     .play-list {
-      width: 100%;
+      width: 375 * $pr;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       .play-list-item {
-        height: 74%;
+        height: 400 * $pr;
         position: absolute;
+        top: 170 * $pr;
         transform-origin: 50% 50%;
-        transition: all 0.8s ease-out;
-        top: 32%;
+        transition: transform 0.7s ease-out;
         .card-img-mobile {
           width: 90 * $pr;
           height: 150 * $pr;
@@ -768,20 +784,20 @@ export default {
       font-size: 22 * $pr;
       line-height: 30 * $pr;
       margin-top: 60 * $pr;
-      padding: 0 50px;
+      padding: 0 50 * $pr;
       text-align: center;
     }
     .mobile-tip {
       position: absolute;
       bottom: 30 * $pr;
-      width: 100vw;
+      width: 375 * $pr;
       .question-text {
         font-family: 'Rufina';
         font-style: normal;
         font-size: 14 * $pr;
         line-height: 18 * $pr;
         text-align: center;
-        padding: 0 35px;
+        padding: 0 35 * $pr;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-Box;
@@ -792,23 +808,23 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 16px;
+        margin-top: 16 * $pr;
         .wrapper {
           width: 52 * $pr;
           height: 88 * $pr;
           background: rgba(255, 255, 255, 0.15);
-          border: 1px dashed #dc9928;
+          border: 1 * $pr dashed #dc9928;
           border-radius: 8 * $pr;
           position: relative;
           overflow: hidden;
           &:not(:first-child) {
-            margin-left: 12px;
+            margin-left: 12 * $pr;
           }
           &::after {
             content: '+';
             color: #fff;
             position: absolute;
-            font-size: 32px;
+            font-size: 32 * $pr;
             font-family: monospace;
             width: 100%;
             height: 100%;
@@ -825,17 +841,21 @@ export default {
       }
       .handle-btn {
         text-align: center;
-        margin-top: 16px;
+        margin-top: 16 * $pr;
+        .btn-img {
+          margin-top: 0;
+          width: 196 * $pr;
+        }
       }
     }
     .mobile-btn {
       box-sizing: border-box;
-      padding: 8px 32px;
+      padding: 8 * $pr 32 * $pr;
       background: #ffffff;
-      border-radius: 42px;
+      border-radius: 42 * $pr;
       font-family: 'Rubik';
-      font-size: 16px;
-      line-height: 22px;
+      font-size: 16 * $pr;
+      line-height: 22 * $pr;
       color: #000000;
     }
   }

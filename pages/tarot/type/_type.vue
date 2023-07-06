@@ -255,6 +255,7 @@ export default {
     .title {
       font-size: 26 * $pr;
       line-height: 36 * $pr;
+      height: auto;
     }
     .tarot-section {
       margin-top: 16 * $pr;
