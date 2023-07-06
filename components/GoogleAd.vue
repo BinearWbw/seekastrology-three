@@ -11,7 +11,7 @@
       }"
       data-ad-client="ca-pub-6430486603399192"
       :data-ad-slot="id"
-      data-full-width-responsive="false"
+      data-full-width-responsive="true"
     ></ins>
   </div>
 </template>
