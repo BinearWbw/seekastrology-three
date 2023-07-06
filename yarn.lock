@@ -3144,17 +3144,6 @@ compressible@~2.0.16:
   dependencies:
     mime-db ">= 1.43.0 < 2"
 
-compression-webpack-plugin@^4.0.1:
-  version "4.0.1"
-  resolved "https://mirrors.huaweicloud.com/repository/npm/compression-webpack-plugin/-/compression-webpack-plugin-4.0.1.tgz"
-  integrity sha512-0mg6PgwTsUe5LEcUrOu3ob32vraDx2VdbMGAT1PARcOV+UJWDYZFdkSo6RbHoGQ061mmmkC7XpRKOlvwm/gzJQ==
-  dependencies:
-    cacache "^15.0.5"
-    find-cache-dir "^3.3.1"
-    schema-utils "^2.7.0"
-    serialize-javascript "^4.0.0"
-    webpack-sources "^1.4.3"
-
 compression-webpack-plugin@^6.1.1:
   version "6.1.1"
   resolved "https://mirrors.huaweicloud.com/repository/npm/compression-webpack-plugin/-/compression-webpack-plugin-6.1.1.tgz"
@@ -3204,7 +3193,7 @@ connect@^3.7.0:
     parseurl "~1.3.3"
     utils-merge "1.0.1"
 
-consola@^2.13.0, consola@^2.15.0, consola@^2.15.3, consola@^2.3.2, consola@^2.6.0:
+consola@^2.13.0, consola@^2.15.0, consola@^2.15.3, consola@^2.6.0:
   version "2.15.3"
   resolved "https://mirrors.huaweicloud.com/repository/npm/consola/-/consola-2.15.3.tgz"
   integrity sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==
@@ -6163,14 +6152,6 @@ nth-check@^2.0.1:
   integrity sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==
   dependencies:
     boolbase "^1.0.0"
-
-nuxt-precompress@^0.5.9:
-  version "0.5.9"
-  resolved "https://mirrors.huaweicloud.com/repository/npm/nuxt-precompress/-/nuxt-precompress-0.5.9.tgz"
-  integrity sha512-KuVlo09qPd+Pg3PkQQoFnWqlRI93ckAjibveiAdkqRmGo0Wd+NvKMwSMgECXsAW6cFtbYgQz3TE5psPHSEqm8Q==
-  dependencies:
-    compression-webpack-plugin "^4.0.1"
-    consola "^2.3.2"
 
 nuxt@^2.15.8:
   version "2.16.3"

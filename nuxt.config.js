@@ -1,9 +1,8 @@
 import sitemap from './config/sitemap'
 import routes from './config/routes'
-const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
-  // target: 'static',
+  target: 'static',
 
   generate: {
     // crawler: false,
@@ -199,33 +198,7 @@ module.exports = {
     '@nuxtjs/axios',
     'vue-toastification/nuxt',
     '@nuxtjs/sitemap',
-    'nuxt-precompress',
   ],
-
-  nuxtPrecompress: {
-    gzip: {
-      enabled: true,
-      filename: '[path].gz[query]',
-      threshold: 10240,
-      minRatio: 0.8,
-      compressionOptions: { level: 9 },
-    },
-    brotli: {
-      enabled: true,
-      filename: '[path].br[query]',
-      compressionOptions: { level: 11 },
-      threshold: 10240,
-      minRatio: 0.8,
-    },
-    enabled: true,
-    report: false,
-    test: /\.(js|css|html|txt|xml|svg|ttf)$/,
-    middleware: {
-      enabled: false,
-      enabledStatic: true,
-      encodingsPriority: ['br', 'gzip'],
-    },
-  },
 
   sitemap: sitemap,
 
@@ -261,13 +234,6 @@ module.exports = {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    plugins: [
-      new CompressionPlugin({
-        test: /\.js$|\.html$|\.css/, // 匹配文件名
-        threshold: 10240, // 对超过10kb的数据进行压缩
-        deleteOriginalAssets: false, // 是否删除原文件
-      }),
-    ],
     /* https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/web/ */
     // publicPath: process.env.PUBLIC_PATH,
     // maxChunkSize: 300000,
