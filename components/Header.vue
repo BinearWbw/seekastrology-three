@@ -427,7 +427,7 @@ export default {
           margin-left: 30px;
           display: block;
           width: 30px;
-          background: url('~assets/img/header/menu.png') no-repeat center center;
+          background: url('~assets/img/header/menu.svg') no-repeat center center;
           background-size: contain;
         }
       }

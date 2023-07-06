@@ -346,7 +346,7 @@ export default {
                 font-style: normal;
                 font-size: 16px;
                 line-height: 28px;
-                color: #fff;
+                color: #9747ff;
               }
               .texts {
                 display: inline;

@@ -1,7 +1,8 @@
 <template>
   <div class="tabs">
     <div class="tab-header">
-      <div class="tab-header_main">
+      <div class="tab-header_icon" v-if="isOpenScroll"></div>
+      <div class="tab-header_main" ref="tabs_scroll" @scroll="tabScrollTo">
         <div
           v-for="(tab, index) in tabs"
           :key="index"
@@ -25,6 +26,7 @@ export default {
     return {
       activeTab: 0,
       upTitle: '',
+      isOpenScroll: false,
     }
   },
   watch: {
@@ -34,6 +36,7 @@ export default {
   },
   mounted() {
     this.title ? (this.upTitle = this.toUpperBig(this.title)) : false
+    this.checkScroll()
   },
   methods: {
     selectTab(tab, index) {
@@ -42,6 +45,14 @@ export default {
     },
     toUpperBig(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
+    },
+    tabScrollTo() {
+      this.isOpenScroll = false
+    },
+    checkScroll() {
+      const tabsElement = this.$refs.tabs_scroll
+      this.isOpenScroll =
+        tabsElement.scrollWidth > tabsElement.clientWidth ? true : false
     },
   },
 }
@@ -54,6 +65,9 @@ export default {
   .tab-header {
     width: 100%;
     position: relative;
+    &_icon {
+      display: none;
+    }
     &_main {
       width: 100%;
       display: flex;
@@ -135,6 +149,31 @@ export default {
     width: 100%;
     .tab-header {
       position: relative;
+      &_icon {
+        display: inline-block;
+        position: absolute;
+        top: -15 * $pr;
+        right: 20 * $pr;
+        width: 35 * $pr;
+        height: 23 * $pr;
+        background: url('../../assets/img/home/tabsjiantou.svg') no-repeat left
+          center;
+        background-size: cover;
+        z-index: 2;
+        animation: arrow-animation 1.5s infinite;
+        animation-delay: 1s;
+      }
+      @keyframes arrow-animation {
+        0% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(20 * $pr);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
       &_main {
         padding-bottom: 15 * $pr;
         .tab-item {
