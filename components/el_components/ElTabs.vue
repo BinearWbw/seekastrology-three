@@ -36,7 +36,7 @@ export default {
   },
   mounted() {
     this.title ? (this.upTitle = this.toUpperBig(this.title)) : false
-    this.checkScroll()
+    // this.checkScroll()
   },
   methods: {
     selectTab(tab, index) {

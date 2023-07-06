@@ -33,7 +33,7 @@
         <div class="tip-text">
           You can also draw
           <span>{{ numbers }}</span>
-          tarot card！
+          tarot card!
         </div>
       </div>
       <div
@@ -169,6 +169,7 @@
         <button class="back-btn" @click="handleBack"></button>
         <div class="tip-text" v-html="textObj[type]"></div>
         <ul class="play-list">
+          <span class="list_mask" ref="list_mask"></span>
           <li
             class="play-list-item"
             v-for="index of mobileCount"
@@ -262,6 +263,9 @@ export default {
         this.bodyHidden('auto')
       }
     },
+    isSelected(val) {
+      this.$refs.list_mask.style.display = 'block'
+    },
   },
   computed: {
     styleObj() {
@@ -331,6 +335,9 @@ export default {
 
     handleClike: throttle(async function (event) {
       let ele = event.target.nodeName
+      if (this.type === '4') {
+        this.$refs.list_mask.style.display = 'block'
+      }
       if (this.isSelected || ele !== 'IMG') return
       event.target.parentNode.style.display = 'none'
       if (this.cardsInfo.length === 0) {
@@ -356,9 +363,9 @@ export default {
         case '1':
         case '3':
           if (this.showList.length == 2) {
+            this.isSelected = true
             this.showList.push(this.cardsInfo[this.showList.length])
             this.numbers--
-            this.isSelected = true
           } else {
             this.showList.push(this.cardsInfo[this.showList.length])
             this.numbers--
@@ -376,8 +383,8 @@ export default {
           break
         case '4':
           if (this.showList.length == 0) {
-            this.showList.push(this.cardsInfo[this.showList.length])
             this.isSelected = true
+            this.showList.push(this.cardsInfo[this.showList.length])
           }
           break
       }
@@ -765,10 +772,20 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      .list_mask {
+        position: absolute;
+        width: 100%;
+        top: 10 * $pr;
+        height: 200 * $pr;
+        // background-color: rgba(255, 255, 255, 0.1);
+        z-index: 12;
+        display: none;
+      }
       .play-list-item {
         height: 400 * $pr;
         position: absolute;
-        top: 170 * $pr;
+        top: 20 * $pr;
         transform-origin: 50% 50%;
         transition: transform 0.7s ease-out;
         .card-img-mobile {
