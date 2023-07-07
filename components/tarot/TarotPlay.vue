@@ -264,7 +264,7 @@ export default {
       }
     },
     isSelected(val) {
-      this.$refs.list_mask.style.display = 'block'
+      if (this.inPlay) this.$refs.list_mask.style.display = 'block'
     },
   },
   computed: {
@@ -335,7 +335,7 @@ export default {
 
     handleClike: throttle(async function (event) {
       let ele = event.target.nodeName
-      if (this.type === '4') {
+      if (this.inPlay && this.type === '4') {
         this.$refs.list_mask.style.display = 'block'
       }
       if (this.isSelected || ele !== 'IMG') return

@@ -25,6 +25,7 @@
                 :alt="item.name"
                 loading="lazy"
                 :data-id="item.id"
+                :options="{ modifiers: { lazy: true } }"
               ></nuxt-img>
               <div class="item-text" :data-id="item.id">
                 {{ item.name }}
@@ -86,6 +87,7 @@
             fit="cover"
             :alt="item.name"
             loading="lazy"
+            :options="{ modifiers: { lazy: true } }"
           ></nuxt-img>
           <div class="item-text">{{ item.name }}</div>
         </a>
