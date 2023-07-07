@@ -161,7 +161,7 @@ export default {
         },
       ],
       comentId: 0,
-      currentTime: '',
+      currentTime: 'd',
     }
   },
   async asyncData({ error, $apiList, params }) {
@@ -230,13 +230,6 @@ export default {
     },
     ...mapGetters(['getIntersperseUrl']),
   },
-  mounted() {
-    this.$nextTick(() => {
-      const type = sessionStorage.getItem('lastClickType') || 'd'
-      this.currentTime = type
-      this.getHoroscopeData(this.ids, type)
-    })
-  },
   methods: {
     async getHoroscopeData(id = 1, kind = 'd') {
       await this.$apiList.home
@@ -273,7 +266,6 @@ export default {
     correspondingTime(i) {
       // 点击tabs
       this.currentTime = i.type
-      sessionStorage.setItem('lastClickType', i.type)
       this.getHoroscopeData(this.ids, i.type)
     },
     toUpperBig(str) {

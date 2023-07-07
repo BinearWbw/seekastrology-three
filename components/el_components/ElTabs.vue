@@ -36,15 +36,7 @@ export default {
   },
   mounted() {
     this.title ? (this.upTitle = this.toUpperBig(this.title)) : false
-
     // this.checkScroll()
-  },
-  beforeMount() {
-    this.$nextTick(() => {
-      const tabType = sessionStorage?.getItem('lastClickType') || ''
-      const tabIndex = this.tabs.findIndex((i) => i.type == tabType)
-      if (tabIndex !== -1) this.activeTab = tabIndex
-    })
   },
   methods: {
     selectTab(tab, index) {
