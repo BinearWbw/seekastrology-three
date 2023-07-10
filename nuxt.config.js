@@ -237,6 +237,9 @@ module.exports = {
     /* https://gamecenter-superman.oss-cn-chengdu.aliyuncs.com/web/ */
     // publicPath: process.env.PUBLIC_PATH,
     // maxChunkSize: 300000,
+    html: {
+      minify: false,
+    },
     extractCSS: {
       ignoreOrder: true,
     },
