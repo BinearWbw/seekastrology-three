@@ -178,6 +178,7 @@ module.exports = {
     '@/assets/scss/main.scss',
     'ant-design-vue/lib/button/style/css',
     'ant-design-vue/lib/tabs/style/css',
+    'aos/dist/aos.css',
   ],
 
   loading: false,
@@ -187,6 +188,7 @@ module.exports = {
     '~plugins/axios',
     '~plugins/utils',
     { src: '@/plugins/antd-ui', mode: 'client' },
+    { src: '@/plugins/aos', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

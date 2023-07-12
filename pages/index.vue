@@ -13,9 +13,9 @@
       <span></span>
     </div>
     <div class="home__main">
-      <section class="various_ment">
+      <!-- <section class="various_ment">
         <home-various></home-various>
-      </section>
+      </section> -->
       <section class="module choice">
         <home-your-choice></home-your-choice>
         <!-- <google-ad classNames="google_ad" :id="'2699524105'"></google-ad> -->

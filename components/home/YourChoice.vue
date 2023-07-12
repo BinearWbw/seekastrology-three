@@ -18,6 +18,7 @@
           :href="`${getIntersperseUrl}/horroscope/${item_i.name
             .replace(/[^a-zA-Z0-9\\s]/g, '-')
             .toLowerCase()}-${item_i.id}/${getCurrentRoute}`"
+          data-aos="zoom-out-up"
         >
           <div class="img__list">
             <nuxt-img
@@ -106,7 +107,7 @@ export default {
     gap: 16px;
     li {
       box-sizing: border-box;
-      border: 1px solid #090909;
+      border: 1px solid transparent;
       border-radius: 6px;
       transition: border-color 0.3s;
       .choice__main__a {
