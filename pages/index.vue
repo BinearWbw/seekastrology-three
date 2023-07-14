@@ -24,8 +24,13 @@
           :id="'2699524105'"
         ></google-auto-ad>
       </section>
+
+      <section>
+        <el-explore-more />
+      </section>
       <section class="module tarot">
-        <home-tarot></home-tarot>
+        <!-- <home-tarot></home-tarot> -->
+        <el-tarot-world />
       </section>
       <section class="module quizzes">
         <home-quizzes></home-quizzes>
@@ -175,7 +180,7 @@ export default {
       padding-top: 100px;
     }
     .module {
-      margin-top: 100px;
+      margin-top: 96px;
 
       .google_ad {
         width: 100%;
@@ -194,7 +199,7 @@ export default {
         }
       }
       &.new_pop {
-        margin-bottom: 100px;
+        margin-bottom: 96px;
       }
     }
   }

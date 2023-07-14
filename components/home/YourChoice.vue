@@ -9,7 +9,7 @@
           $route.path === '/' ? 'Choose Your Zodiac Sign' : 'DAILY HOROSCOPES'
         }}
       </h3>
-      <p v-if="$route.path === '/'">Read Your Daily Horoscope Right Now</p>
+      <!-- <p v-if="$route.path === '/'">Read Your Daily Horoscope Right Now</p> -->
     </div>
     <ul class="choice__main">
       <li v-for="item_i in variousListData" :key="item_i.id">
@@ -79,15 +79,15 @@ export default {
   width: 1400px;
   margin: 48px auto 0;
   &__title {
-    padding-bottom: 78px;
+    padding-bottom: 16px;
     h3 {
-      font-family: 'Cinzel Decorative';
-      font-weight: 700;
-      font-size: 46px;
-      line-height: 64px;
       color: #fff;
       text-align: center;
-      margin-bottom: 16px;
+      font-family: 'Cinzel Decorative';
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 48px;
     }
     p {
       font-family: 'Rubik';
@@ -178,11 +178,10 @@ export default {
   .choice {
     padding: 0 16 * $pr;
     &__title {
-      padding-bottom: 46 * $pr;
+      padding-bottom: 16 * $pr;
       h3 {
-        font-size: 36 * $pr;
-        line-height: 48 * $pr;
-        margin-bottom: 8 * $pr;
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
       }
       .h5_size {
         font-size: 26 * $pr;

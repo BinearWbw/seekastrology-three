@@ -4,7 +4,7 @@
       <a :href="getIntersperseUrl">
         <img
           class="logo_mobile_img"
-          src="~/assets/img/header/logoImg.png"
+          src="~/assets/img/header/logoImg.svg"
           alt="logo"
         />
       </a>
@@ -28,7 +28,7 @@
           <a :href="getIntersperseUrl">
             <img
               class="logo_img"
-              src="~/assets/img/header/logoImg.png"
+              src="~/assets/img/header/logoImg.svg"
               alt="logo"
             />
           </a>

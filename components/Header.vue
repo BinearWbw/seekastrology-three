@@ -5,7 +5,7 @@
         <a :href="getIntersperseUrl" class="logo">
           <img
             class="img"
-            src="~/assets/img/header/logoImg.png"
+            src="~/assets/img/header/logoImg.svg"
             alt="logoImg"
           />
         </a>
@@ -254,12 +254,12 @@ export default {
         display: flex;
         align-items: center;
         img {
+          width: 100%;
           display: block;
-          object-fit: cover;
         }
         .img {
           width: 248px;
-          height: 65px;
+          object-fit: cover;
         }
       }
       .nav {
@@ -393,8 +393,7 @@ export default {
           height: 100%;
           padding-bottom: 0;
           .img {
-            width: auto;
-            height: 50px;
+            width: 180px;
           }
         }
         .nav {
@@ -449,7 +448,8 @@ export default {
         .logo {
           padding-bottom: 0;
           .img {
-            height: 39 * $pr;
+            width: 172 * $pr;
+            height: 30 * $pr;
           }
         }
         .menu {
