@@ -25,7 +25,10 @@
                 :style="{ animationDelay: index * 3000 + 'ms' }"
                 :class="{ paused: item.paused }"
               >
-                <a class="slideshow_item">
+                <a
+                  :href="`${getIntersperseUrl + item.path}`"
+                  class="slideshow_item"
+                >
                   <img
                     src="../../assets/img/tarot/slideshow_item.png"
                     alt=""
@@ -44,7 +47,7 @@
                 </a>
               </div>
               <div class="slideshow_title">
-                <p>love{{ index }}</p>
+                <p>{{ item.name }}</p>
               </div>
             </div>
           </div>
@@ -55,20 +58,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
       slideshow: [
-        { id: 1, paused: false },
-        { id: 2, paused: false },
-        { id: 3, paused: false },
-        { id: 4, paused: false },
+        { id: 1, paused: false, name: 'Daily', path: '/tarot/' },
+        { id: 2, paused: false, name: 'Career', path: '/tarot/type/2/' },
+        { id: 3, paused: false, name: 'Universal', path: '/tarot/type/3/' },
+        { id: 4, paused: false, name: 'Love', path: '/tarot/type/1/' },
       ],
       stopAnimation: false,
       timer: null,
     }
   },
-
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
+  },
   mounted() {
     this.startTimer()
   },
@@ -81,10 +87,10 @@ export default {
       this.stopAnimation = false
       this.$nextTick(() => {
         this.slideshow = [
-          { id: 1, paused: false },
-          { id: 2, paused: false },
-          { id: 3, paused: false },
-          { id: 4, paused: false },
+          { id: 1, paused: false, name: 'Daily', path: '/tarot/' },
+          { id: 2, paused: false, name: 'Career', path: '/tarot/type/2/' },
+          { id: 3, paused: false, name: 'Universal', path: '/tarot/type/3/' },
+          { id: 4, paused: false, name: 'Love', path: '/tarot/type/1/' },
         ]
       })
     },

@@ -3,15 +3,18 @@
     <div class="explore_main">
       <p class="title">Explore More</p>
       <div class="explore_main_tag">
-        <div class="tag_list" v-for="index in 11" :key="index">
-          <div
+        <div class="tag_list" v-for="(item, index) in moreData" :key="index">
+          <a
+            :href="`${getIntersperseUrl + item.path}`"
             class="tag_list_aos"
             data-aos="fade-left"
             :data-aos-duration="`${index}00`"
           >
-            <div class="tag_list_aos_round"></div>
-            <p>Today's Horoscope</p>
-          </div>
+            <div class="tag_list_aos_round">
+              <img :src="item.imgUrl" alt="#" />
+            </div>
+            <p>{{ item.name }}</p>
+          </a>
         </div>
       </div>
     </div>
@@ -19,10 +22,72 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'explore_more',
   data() {
-    return {}
+    return {
+      moreData: [
+        {
+          name: "Today's Horoscope",
+          path: '/horroscope/aries-1/',
+          imgUrl: require('~/assets/img/horroscope/today.svg'),
+        },
+        {
+          name: 'Money Horoscope',
+          path: '/horroscope/aries-1/',
+          imgUrl: require('~/assets/img/horroscope/wealth_sign.svg'),
+        },
+        {
+          name: 'Love Horoscope',
+          path: '/horroscope/aries-1/',
+          imgUrl: require('~/assets/img/horroscope/love_sign.svg'),
+        },
+        {
+          name: 'Health Horoscope',
+          path: '/horroscope/aries-1/',
+          imgUrl: require('~/assets/img/horroscope/healthy_sign.svg'),
+        },
+        {
+          name: 'Career Horoscope',
+          path: '/horroscope/aries-1/',
+          imgUrl: require('~/assets/img/horroscope/cupational_sign.svg'),
+        },
+        {
+          name: '2023 Horoscope',
+          path: '/horroscope/aries-1/',
+          imgUrl: require('~/assets/img/horroscope/2023.svg'),
+        },
+        {
+          name: 'Zodiac Signs',
+          path: '/zodiac/',
+          imgUrl: require('~/assets/img/horroscope/sign_all.svg'),
+        },
+        {
+          name: 'The daily tarot',
+          path: '/tarot/',
+          imgUrl: require('~/assets/img/horroscope/today_tarot.svg'),
+        },
+        {
+          name: 'Love Matcher',
+          path: '/astrology/',
+          imgUrl: require('~/assets/img/horroscope/love_pairing.svg'),
+        },
+        {
+          name: 'Free Quizzes',
+          path: '/test/',
+          imgUrl: require('~/assets/img/horroscope/free_test.svg'),
+        },
+        {
+          name: 'Articles',
+          path: '/resources/',
+          imgUrl: require('~/assets/img/horroscope/article.svg'),
+        },
+      ],
+    }
+  },
+  computed: {
+    ...mapGetters(['getIntersperseUrl']),
   },
 }
 </script>
@@ -75,8 +140,12 @@ export default {
             height: 34px;
             border-radius: 50%;
             fill: #d9d9d9;
-            background-color: #d9d9d9;
             opacity: 0.5;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
           p {
             color: rgba(255, 255, 255, 0.6);
