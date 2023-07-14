@@ -3,9 +3,6 @@
     <div class="quizzes">
       <h3 :class="{ h5_size: $route.path !== '/' }">pOPULAR qUIZZES</h3>
       <div class="quizzes_sliding">
-        <div class="banner banner_left">
-          <button class="banner_prev"></button>
-        </div>
         <div class="swiper_list">
           <swiper class="swiper" :options="swiperOptions">
             <swiper-slide
@@ -34,12 +31,28 @@
           </swiper>
           <div class="swiper_pagination"></div>
         </div>
-        <div class="banner banner_right">
-          <button class="banner_next"></button>
+        <div class="quizzes_two">
+          <div class="quizzes_two_list">
+            <a href="#" v-for="(item, index) in homeQuizzesData" :key="index">
+              <div class="matrix">
+                <div class="imgs">
+                  <nuxt-img
+                    :src="item.icon || '/'"
+                    fit="cover"
+                    width="220"
+                    height="220"
+                    :alt="item.name"
+                  ></nuxt-img>
+                </div>
+                <p>{{ item.name }}</p>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
       <button class="button" @click="pathToTestPage">Read More</button>
     </div>
+    <google-ad classNames="google_ad"></google-ad>
   </div>
 </template>
 
@@ -110,61 +123,43 @@ export default {
 .quizzes_own {
   width: 1400px;
   margin: 30px auto 0;
+  display: flex;
+  align-items: center;
+  padding-top: 36px;
+  justify-content: space-between;
+  .google_ad {
+    width: 338px;
+    height: 574px;
+    background-color: #a2a2a4;
+  }
   .quizzes {
-    width: 100%;
-    height: 493px;
-    padding: 25px 19px 0;
+    width: 928px;
+    height: auto;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background: url('../../assets/img/home/home_quizzes.png') no-repeat center;
-    background-size: contain;
     h3 {
       font-family: 'Cinzel Decorative';
       font-weight: 700;
-      font-size: 46px;
-      line-height: 64px;
+      font-size: 36px;
+      line-height: 48px;
       color: #fff;
     }
     &_sliding {
       width: 100%;
       flex: 1;
-      padding-top: 48px;
+      padding: 16px 0;
       display: flex;
       .banner {
         width: 64px;
         height: 220px;
         text-align: center;
         position: relative;
-        button {
-          position: absolute;
-          top: calc(50% - 32px);
-          left: 0;
-          border: 1px solid rgba(255, 255, 255, 0.6);
-          border-radius: 50%;
-          width: 100%;
-          height: 64px;
-          transform-style: preserve-3d;
-          transition: transform 0.3s ease;
-          &:hover {
-            transform: scale(1.2);
-          }
-        }
-        &.banner_left {
-          button {
-            background: url('../../assets/img/home/point.png') no-repeat center;
-            background-position-x: 20px;
-          }
-        }
-        &.banner_right {
-          button {
-            background: url('../../assets/img/home/point_right.png') no-repeat
-              center;
-          }
-        }
       }
       .swiper_list {
+        display: none;
         flex: 1;
         margin: 0 35px;
         height: 100%;
@@ -217,6 +212,52 @@ export default {
           display: none;
         }
       }
+      .quizzes_two {
+        width: 100%;
+        &_list {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 8px 16px;
+          .matrix {
+            width: 220px;
+            border-radius: 12px;
+            padding-bottom: 8px;
+            transition: background-color 0.3s, transform 0.3s ease-in-out;
+            .imgs {
+              width: 100%;
+              height: 220px;
+              margin-bottom: 16px;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 12px;
+              }
+            }
+            p {
+              color: rgba(255, 255, 255, 0.6);
+              text-align: center;
+              font-family: Rubik;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 22px;
+              padding: 0 5px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+            }
+
+            &:hover {
+              transform: scale(1.04);
+              background-color: rgba(238, 238, 244, 0.1);
+            }
+          }
+        }
+      }
     }
     .button {
       width: 220px;
@@ -229,10 +270,8 @@ export default {
       line-height: 22px;
       -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
       transition: background-color 0.3s, color 0.3s;
-      &:hover {
-        color: #000;
-        background-color: #fff;
-      }
+      color: #000;
+      background-color: #fff;
     }
   }
 }
@@ -240,73 +279,39 @@ export default {
   .quizzes_own {
     width: 1200px;
     .quizzes {
+      width: auto;
+      height: auto;
+
       &_sliding {
-        .banner {
-          button {
-            width: 54px;
-            height: 54px;
-          }
-          &.banner_left {
-            button {
-              background-position-x: 15px;
-            }
-          }
-          &.banner_right {
-            button {
-              right: 0;
-              left: initial;
-            }
-          }
-        }
-        .swiper_list {
-          .swiper {
-            &__item {
-              width: 230px;
-              .banner_img {
-                width: 100%;
-              }
-            }
+        .quizzes_two {
+          &_list {
+            grid-template-columns: repeat(3, 220px);
           }
         }
       }
     }
   }
 }
-
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .quizzes_own {
     width: 1000px;
-    .quizzes {
-      &_sliding {
-        .swiper_list {
-          .swiper {
-            &__item {
-              width: 245px;
-            }
-            p {
-              padding: 0 12px;
-            }
-          }
-        }
-      }
+    .google_ad {
+      width: 238px;
+      height: 574px;
     }
   }
 }
 
-@media (max-width: (1024px)) {
+@media (max-width: (1100px)) {
   .quizzes_own {
     width: 100%;
+    justify-content: space-evenly;
     .quizzes {
       padding: 0;
       &_sliding {
-        width: 730px;
-        padding: 48px 50px 0;
-        .swiper_list {
-          margin: 0 15px;
-          .swiper {
-            &__item {
-              width: 227px;
-            }
+        .quizzes_two {
+          &_list {
+            grid-template-columns: repeat(2, 220px);
           }
         }
       }
@@ -319,14 +324,21 @@ export default {
   .quizzes_own {
     width: 100%;
     margin: 48 * $pr auto 0;
+    display: block;
+    padding-top: 0;
+    .google_ad {
+      width: 100%;
+      height: 250 * $pr;
+      margin-top: 48 * $pr;
+    }
     .quizzes {
       width: 100%;
       height: 100%;
       padding: 0 24 * $pr 0;
       background-size: cover;
       h3 {
-        font-size: 36 * $pr;
-        line-height: 48 * $pr;
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
         text-align: center;
       }
       .h5_size {
@@ -341,6 +353,7 @@ export default {
           display: none;
         }
         .swiper_list {
+          display: block;
           margin: 0;
           .swiper {
             width: 100%;
@@ -356,6 +369,7 @@ export default {
                   width: 100%;
                   height: 100%;
                   object-fit: cover;
+                  border-radius: 12 * $pr;
                 }
               }
               p {
@@ -398,6 +412,9 @@ export default {
               background-color: #ffffff;
             }
           }
+        }
+        .quizzes_two {
+          display: none;
         }
       }
       .button {

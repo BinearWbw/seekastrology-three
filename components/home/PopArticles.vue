@@ -61,10 +61,7 @@
           </li>
         </ul>
       </div>
-      <button class="button" @click="pathToPage" v-if="!getCurrentCtivity">
-        Read More
-      </button>
-      <img class="bg_main" src="~/assets/img/home/pop_bg.png" alt="#" />
+      <button class="button" @click="pathToPage">Read More</button>
     </div>
   </div>
 </template>
@@ -138,19 +135,11 @@ export default {
     flex-direction: column;
     align-items: center;
     position: relative;
-    .bg_main {
-      position: absolute;
-      top: -80px;
-      left: -157px;
-      width: 438px;
-      height: 438px;
-      z-index: -1;
-    }
     h3 {
       font-family: 'Cinzel Decorative';
       font-weight: 700;
-      font-size: 46px;
-      line-height: 64px;
+      font-size: 36px;
+      line-height: 48px;
       text-align: center;
       text-transform: uppercase;
       color: #ffffff;
@@ -158,7 +147,7 @@ export default {
     .pop_news {
       flex: 1;
       width: 100%;
-      padding: 48px 0 36px;
+      padding: 16px 0 24px;
       display: flex;
       .news_left {
         width: 691px;
@@ -166,6 +155,7 @@ export default {
         margin-right: 32px;
         cursor: pointer;
         transition: background-color 0.3s;
+        border-radius: 12px;
         .left_img {
           width: 100%;
           min-height: 320px;
@@ -177,6 +167,7 @@ export default {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            border-radius: 12px;
           }
         }
         &_text {
@@ -231,6 +222,7 @@ export default {
           width: 100%;
           margin-bottom: 16px;
           transition: background-color 0.3s;
+          border-radius: 8px;
           a {
             width: 100%;
             height: 96px;
@@ -248,6 +240,7 @@ export default {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                border-radius: 8px;
               }
             }
 
@@ -302,12 +295,10 @@ export default {
       color: rgba(255, 255, 255, 0.85);
       font-size: 16px;
       line-height: 22px;
+      color: #000;
+      background-color: #fff;
       -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
       transition: background-color 0.3s, color 0.3s;
-      &:hover {
-        color: #000;
-        background-color: #fff;
-      }
     }
   }
 }
@@ -324,7 +315,7 @@ export default {
     padding: 0 30px;
     .pop_main {
       .pop_news {
-        padding: 48px 30px 36px;
+        padding: 16px 30px 26px;
         .news_left {
           flex: 1;
           width: auto;
@@ -370,17 +361,9 @@ export default {
     padding: 0 16 * $pr;
     .pop_main {
       position: relative;
-      .bg_main {
-        position: absolute;
-        top: 0;
-        left: -50 * $pr;
-        width: 290 * $pr;
-        height: 290 * $pr;
-        z-index: -1;
-      }
       h3 {
-        font-size: 36 * $pr;
-        line-height: 48 * $pr;
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
       }
       .h5_size {
         font-size: 26 * $pr;
@@ -516,6 +499,7 @@ export default {
         }
       }
       .button {
+        display: none;
         width: 295 * $pr;
         height: 44 * $pr;
         border-radius: 42 * $pr;

@@ -13,23 +13,14 @@
       <span></span>
     </div>
     <div class="home__main">
-      <!-- <section class="various_ment">
-        <home-various></home-various>
-      </section> -->
       <section class="module choice">
+        <google-ad classNames="google_ad"></google-ad>
         <home-your-choice></home-your-choice>
-        <!-- <google-ad classNames="google_ad" :id="'2699524105'"></google-ad> -->
-        <google-auto-ad
-          classNames="google_ad"
-          :id="'2699524105'"
-        ></google-auto-ad>
       </section>
-
-      <section>
+      <section class="module explore">
         <el-explore-more />
       </section>
       <section class="module tarot">
-        <!-- <home-tarot></home-tarot> -->
         <el-tarot-world />
       </section>
       <section class="module quizzes">
@@ -41,15 +32,21 @@
       </section>
       <section class="module new_pop">
         <home-pop-articles></home-pop-articles>
+        <google-auto-ad
+          classNames="google_ad"
+          :id="'2699524105'"
+        ></google-auto-ad>
       </section>
     </div>
+    <section class="all_tarot">
+      <tarot-all-tarot></tarot-all-tarot>
+    </section>
   </article>
 </template>
 
 <script>
 export default {
   name: 'Home',
-  computed: {},
 }
 </script>
 <style lang="scss" scoped>
@@ -187,10 +184,10 @@ export default {
         color: #808080;
       }
       &.choice {
-        .google_ad {
-          margin: 40px auto 0;
-          width: 1200px;
-        }
+        margin-top: 24px;
+      }
+      &.explore {
+        margin-top: 56px;
       }
       &.kundli {
         .google_ad {
@@ -199,9 +196,16 @@ export default {
         }
       }
       &.new_pop {
-        margin-bottom: 96px;
+        .google_ad {
+          margin: 96px auto;
+          width: 1150px;
+          height: 90px;
+        }
       }
     }
+  }
+  .all_tarot {
+    margin-bottom: 96px;
   }
 }
 @media (max-width: 1435px) {
@@ -253,7 +257,6 @@ export default {
           }
         }
         &.new_pop {
-          margin-top: 80px;
         }
       }
     }
@@ -321,14 +324,9 @@ export default {
         padding-top: 48 * $pr;
       }
       .module {
-        margin-top: 86 * $pr;
+        margin-top: 48 * $pr;
         &.choice {
           > .choice {
-            padding: 0;
-          }
-          .google_ad {
-            margin: 40 * $pr auto 0;
-            width: 100%;
             padding: 0;
           }
         }
@@ -343,13 +341,20 @@ export default {
           }
         }
         &.new_pop {
-          margin-bottom: 86 * $pr;
           > .pop_maximum {
             padding: 0;
           }
-          margin-top: 86 * $pr;
+          .google_ad {
+            margin: 40 * $pr auto 0;
+            width: 100%;
+            padding: 0;
+            display: none;
+          }
         }
       }
+    }
+    .all_tarot {
+      margin-bottom: 48 * $pr;
     }
   }
 }

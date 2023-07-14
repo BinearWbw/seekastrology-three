@@ -28,9 +28,11 @@
           </div>
           <div class="right_cont">
             <h4>{{ `The ${zodiacIData.name} Zodiac Sign` }}</h4>
-            <p class="right_various" :class="{ unfold_active: openExpand }">
-              {{ zodiacIData.desc }}
-            </p>
+            <p
+              class="right_various"
+              :class="{ unfold_active: openExpand }"
+              v-html="zodiacIData.desc"
+            ></p>
             <button class="blank_space" @click="setOpenExpand">
               {{ openExpand ? 'SHOW LESS' : 'SHOW MORE' }}
             </button>

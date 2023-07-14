@@ -194,6 +194,7 @@ $spacing: 75px;
     .card-item-img {
       height: 440px;
       width: 100%;
+      border-radius: 12px;
     }
     .card-text {
       font-family: 'Rubik';
@@ -270,6 +271,7 @@ $spacing: 75px;
     margin-right: -16 * $pr;
     height: 480 * $pr;
     padding: 0;
+    margin-top: 48 * $pr;
     .card-wrapper {
       width: 100%;
       flex-direction: column;
@@ -325,6 +327,8 @@ $spacing: 75px;
       background-repeat: no-repeat;
       .list-mobile {
         width: 114 * $pr;
+        border-radius: 10 * $pr;
+        overflow: hidden;
       }
       .list-mobile:nth-child(1) {
         transform: translateX(50%) rotate(-5deg);

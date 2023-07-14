@@ -30,7 +30,6 @@ export default {
 <style lang="scss" scoped>
 .explore {
   width: 100%;
-  background-color: rgb(34, 33, 33);
   &_main {
     .title {
       color: #fff;

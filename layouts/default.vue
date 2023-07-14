@@ -4,7 +4,12 @@
     <Nuxt class="main__page" />
     <Footer></Footer>
     <transition name="fade">
-      <i class="home_bg" v-if="$route.path == '/'"></i>
+      <div>
+        <div class="home_sun" v-if="$route.path == '/'">
+          <i class="home_sun_icon"></i>
+        </div>
+        <i class="home_bg"></i>
+      </div>
     </transition>
     <transition name="fade">
       <button v-if="showScrollToTop" @click="scrollToTop" class="scroll_to_top">
@@ -70,11 +75,30 @@ export default {
   .home_bg {
     display: inline-block;
     position: absolute;
-    top: 0;
-    width: 100%;
-    height: 613px;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1500px;
+    height: 1500px;
     z-index: -1;
-    background: url('/img/bg_home.png') no-repeat center;
+    border-radius: 50%;
+    background: rgba(151, 71, 255, 0.3);
+    filter: blur(241px);
+  }
+  .home_sun {
+    display: inline-block;
+    position: absolute;
+    top: -320px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    &_icon {
+      display: inline-block;
+      width: 1156px;
+      height: 1156px;
+      background: url('/img/Rotating_Sun.png') no-repeat top center;
+      animation: rotate 20s linear infinite;
+    }
   }
 
   .scroll_to_top {
@@ -85,14 +109,39 @@ export default {
     display: none;
   }
 }
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .main {
     background: url('/img/bg.png');
     .home_bg {
-      height: 613 * $pr;
-      background: url('/img/h5bg_home.png') no-repeat top;
-      background-size: contain;
+      width: 100%;
+      height: 900 * $pr;
+      background: rgba(151, 71, 255, 0.3);
+      filter: blur(85 * $pr);
+    }
+    .home_sun {
+      display: inline-block;
+      position: absolute;
+      top: -120 * $pr;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+      &_icon {
+        display: inline-block;
+        width: 600 * $pr;
+        height: 600 * $pr;
+        background: url('/img/Rotating_Sun.png') no-repeat top center;
+        animation: rotate 20s linear infinite;
+        background-size: cover;
+      }
     }
     .scroll_to_top {
       display: block;

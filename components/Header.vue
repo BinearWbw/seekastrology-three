@@ -237,7 +237,11 @@ export default {
     left: 0;
     top: 0;
     z-index: 99;
-    background: rgba(0, 0, 0, 0.5);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
     transition: background-color 0.3s ease-in-out;
     > div {
       margin: 0 auto;
@@ -366,7 +370,7 @@ export default {
     }
   }
   .header_black {
-    background-color: #000;
+    background-color: #0e0b1b;
   }
 }
 @media (max-width: (1600px)) {
