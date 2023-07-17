@@ -1,53 +1,42 @@
 <template>
   <div class="zodiac">
     <div class="zodiac_main">
-      <div class="zodiac_main_top">
-        <div class="top_text">
-          <google-ad :id="'4424329425'" classNames="google_ad" />
-          <h3>Zodiac Signs Meanings and Characteristics</h3>
-          <h3 class="h5_text">Zodiac Signs</h3>
-          <p>
-            By knowing the date of your zodiac sign, you can discover the
-            personality and main characteristics of your zodiac sign. The day
-            you were born places you in a horoscope that can tell you a lot
-            about your ideology, attitude and general approach to everything in
-            life.
-          </p>
-          <p>
-            How do you find your zodiac sign? Here you can find your zodiac sign
-            from the 12 signs and dates. Choose your sun sign from the 12 signs
-            and explore your complete astrological profile, the elements you
-            belong to, the planets that rule your sign and much more!
-          </p>
-          <p class="h5_text">
-            Choose your sun sign from the zodiac and explore your complete
-            zodiac profile, the element you belong to, the planets that rule
-            your sign, and much more!
-          </p>
-        </div>
-      </div>
-      <div class="zodiac_main_list">
-        <div class="zodiac_signs">
-          <div class="each" v-for="(item, index) in zodiacList" :key="index">
-            <a
-              :href="`${getIntersperseUrl}/zodiac/details/${item.name
-                .replace(/[^a-zA-Z0-9\\s]/g, '-')
-                .toLowerCase()}-${item.id}/`"
-            >
-              <h4>{{ toUpperBig(item.name) }}</h4>
-              <p class="time">{{ item.dates }}</p>
-              <div class="text">{{ item.main_label }}</div>
-              <nuxt-img
-                :src="item.icon"
-                fit="cover"
-                width="220"
-                height="154"
-                :alt="item.name"
-              ></nuxt-img>
-            </a>
+      <div class="zodiac_main_news">
+        <div class="zodiac_main_news_top">
+          <div class="top_text">
+            <h3>Zodiac Signs Meanings and Characteristics</h3>
+            <h3 class="h5_text">Zodiac Signs</h3>
+            <google-ad :id="'4424329425'" classNames="google_ad" />
           </div>
         </div>
-        <google-auto-ad :id="'1578014121'" classNames="google_ad" />
+        <div class="zodiac_main_news_list">
+          <div class="zodiac_signs">
+            <div class="each" v-for="(item, index) in zodiacList" :key="index">
+              <a
+                :href="`${getIntersperseUrl}/zodiac/details/${item.name
+                  .replace(/[^a-zA-Z0-9\\s]/g, '-')
+                  .toLowerCase()}-${item.id}/`"
+              >
+                <h4>{{ toUpperBig(item.name) }}</h4>
+                <p class="time">{{ item.dates }}</p>
+                <div class="text">{{ item.main_label }}</div>
+                <nuxt-img
+                  :src="item.icon"
+                  fit="cover"
+                  width="180"
+                  :alt="item.name"
+                ></nuxt-img>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="zodiac_main_other">
+        <div class="other_main">
+          <google-ad :id="'1578014121'" classNames="google_ad" />
+          <el-pairing-two class="pairing"></el-pairing-two>
+          <el-pop-articles></el-pop-articles>
+        </div>
       </div>
     </div>
     <transition name="fade">
@@ -108,114 +97,134 @@ export default {
   &_main {
     margin: 0 auto;
     width: 1400px;
-    &_top {
-      width: 100%;
-      background: url('~/assets/img/zodiac/zodiac_top.png') no-repeat right;
-      background-position-y: 48px;
-      padding-bottom: 120px;
-      position: relative;
-      .top_text {
-        width: 810px;
-        padding: 48px 0 96px;
-        margin-right: auto;
-        h3 {
-          font-family: 'Cinzel Decorative';
-          font-style: normal;
-          font-weight: 700;
-          font-size: 36px;
-          line-height: 48px;
-          color: #ffffff;
-          margin-bottom: 24px;
-        }
-        p {
-          font-family: 'Rubik';
-          font-size: 16px;
-          line-height: 28px;
-          color: rgba(255, 255, 255, 0.85);
-        }
-        .h5_text {
-          display: none;
-        }
-        .google_ad {
+    padding: 32px 0 96px;
+    display: flex;
+    justify-content: space-between;
+    &_news {
+      width: 928px;
+      &_top {
+        width: 100%;
+        padding-bottom: 24px;
+        position: relative;
+        .top_text {
           width: 100%;
-          height: 130px;
-          margin: 0 auto 48px;
+          padding: 16px 0 0;
+          margin-right: auto;
+          h3 {
+            font-family: 'Cinzel Decorative';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 48px;
+            color: #ffffff;
+            margin-bottom: 24px;
+          }
+          p {
+            font-family: 'Rubik';
+            font-size: 16px;
+            line-height: 28px;
+            color: rgba(255, 255, 255, 0.85);
+          }
+          .h5_text {
+            display: none;
+          }
+          .google_ad {
+            width: 100%;
+            height: 164px;
+            margin: 0 auto;
+          }
         }
       }
-    }
 
-    &_list {
-      width: 100%;
-      .zodiac_signs {
+      &_list {
         width: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        .each {
-          padding: 24px;
-          box-sizing: border-box;
-          border: 1px solid rgba(255, 255, 255, 0);
-          border-radius: 6px;
-          cursor: pointer;
-          transition: border-color 0.3s ease-in-out;
-          a {
-            display: block;
+        .zodiac_signs {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          .each {
+            padding: 32px 16px;
             box-sizing: border-box;
-            position: relative;
-            transition: transform 0.3s ease-in-out;
-            h4 {
-              font-family: 'Cinzel Decorative';
-              font-style: normal;
-              font-weight: 700;
-              font-size: 26px;
-              line-height: 36px;
-              color: #fff;
-            }
-            .time {
-              font-family: 'Rubik';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 22px;
-              line-height: 30px;
-              color: #9747ff;
-              margin-bottom: 16px;
-            }
-            .text {
-              font-family: 'Rubik';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 16px;
-              line-height: 22px;
-              color: rgba(255, 255, 255, 0.85);
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: -webkit-box;
-              -webkit-line-clamp: 3;
-              -webkit-box-orient: vertical;
-            }
-            img {
-              position: absolute;
-              right: -24px;
-              top: -24px;
-              transition: transform 0.3s ease-in-out;
-            }
-          }
-
-          &:hover {
-            border-color: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0);
+            border-radius: 6px;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: border-color 0.3s ease-in-out;
             a {
-              transform: translateY(-5px);
+              display: block;
+              box-sizing: border-box;
+              position: relative;
+              transition: transform 0.3s ease-in-out;
+              h4 {
+                font-family: 'Cinzel Decorative';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 26px;
+                line-height: 36px;
+                color: #fff;
+              }
+              .time {
+                font-family: 'Rubik';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 22px;
+                color: #9747ff;
+              }
+              .text {
+                font-family: 'Rubik';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 18px;
+                color: rgba(255, 255, 255, 0.85);
+                overflow: hidden;
+                padding-right: 80px;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+              }
               img {
-                transform: scale(1.1) translateY(-3px);
+                position: absolute;
+                right: -40px;
+                top: 50%;
+                transform: translateY(-50%);
+                transition: transform 0.3s ease-in-out;
+              }
+            }
+
+            &:hover {
+              border-color: rgba(255, 255, 255, 0.85);
+              a {
+                transform: translateY(-5px);
+                img {
+                  transform: scale(1.1) translateY(-60px);
+                }
               }
             }
           }
         }
+        .google_ad {
+          width: 1200px;
+          margin: 96px auto;
+          overflow: hidden;
+        }
       }
-      .google_ad {
-        width: 1200px;
-        margin: 96px auto;
-        overflow: hidden;
+    }
+    &_other {
+      width: 425px;
+      .other_main {
+        width: 100%;
+        .google_ad {
+          width: 100%;
+          height: 250px;
+          overflow: hidden;
+        }
+        .pairing {
+          margin-top: 32px;
+          margin-bottom: 48px;
+        }
       }
     }
   }
@@ -241,20 +250,22 @@ export default {
 @media (max-width: 1025px) {
   .zodiac {
     &_main {
-      &_top {
-        .top_text {
-          width: 100%;
-        }
-      }
-
-      &_list {
-        .zodiac_signs {
-          .each {
-            padding: 16px;
+      &_news {
+        &_top {
+          .top_text {
+            width: 100%;
           }
         }
-        .google_ad {
-          width: 100%;
+
+        &_list {
+          .zodiac_signs {
+            .each {
+              padding: 16px;
+            }
+          }
+          .google_ad {
+            width: 100%;
+          }
         }
       }
     }
@@ -267,110 +278,108 @@ export default {
     &_main {
       width: 100%;
       padding: 0;
-      background: url('~/assets/img/zodiac/zodiac_top_h5.png') no-repeat top
-        left;
-      background-position-x: 10px;
-      background-size: 340 * $pr;
-      &_top {
-        padding: 0 16 * $pr 48 * $pr;
-        width: 100%;
-        background-position-y: 0;
-        background-size: contain;
-        background-image: none;
-        position: relative;
-        .top_text {
+      &_news {
+        &_top {
+          padding: 0 16 * $pr 48 * $pr;
           width: 100%;
-          padding: 48 * $pr 0 0;
-          margin-right: auto;
-          text-align: center;
-          h3 {
-            font-size: 26 * $pr;
-            line-height: 36 * $pr;
-            margin-bottom: 16 * $pr;
-          }
-          p {
-            font-size: 16 * $pr;
-            line-height: 24 * $pr;
-          }
-          p:not(:last-child) {
-            display: none;
-          }
-          h3:first-of-type {
-            display: none;
-          }
-          .h5_text {
-            display: block;
-          }
-          .google_ad {
-            display: none;
+          background-position-y: 0;
+          background-size: contain;
+          background-image: none;
+          position: relative;
+          .top_text {
+            width: 100%;
+            padding: 48 * $pr 0 0;
+            margin-right: auto;
+            text-align: center;
+            h3 {
+              font-size: 26 * $pr;
+              line-height: 36 * $pr;
+              margin-bottom: 16 * $pr;
+            }
+            p {
+              font-size: 16 * $pr;
+              line-height: 24 * $pr;
+            }
+            p:not(:last-child) {
+              display: none;
+            }
+            h3:first-of-type {
+              display: none;
+            }
+            .h5_text {
+              display: block;
+            }
+            .google_ad {
+              display: none;
+            }
           }
         }
-      }
 
-      &_list {
-        width: 100%;
-        padding: 0 16 * $pr;
-        .zodiac_signs {
+        &_list {
           width: 100%;
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 5 * $pr;
-          .each {
-            padding: 24 * $pr 16 * $pr;
-            box-sizing: border-box;
-            border: none;
-            border-radius: 6 * $pr;
-            background: #131213;
-            a {
-              display: block;
+          padding: 0 16 * $pr;
+          .zodiac_signs {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5 * $pr;
+            .each {
+              padding: 24 * $pr 16 * $pr;
               box-sizing: border-box;
-              position: relative;
-              transition: transform 0.3s ease-in-out;
-              h4 {
-                font-family: 'Rubik';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 22 * $pr;
-                line-height: 30 * $pr;
-                color: #fff;
-              }
-              .time {
-                font-size: 16 * $pr;
-                line-height: 22 * $pr;
-              }
-              .text {
-                font-family: 'Rubik';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 12 * $pr;
-                line-height: 16 * $pr;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 6;
-                -webkit-box-orient: vertical;
-              }
-              img {
-                position: absolute;
-                right: -24 * $pr;
-                top: -24 * $pr;
-                width: 111 * $pr;
-                height: auto;
-              }
-            }
-            &:hover {
+              border: none;
+              border-radius: 6 * $pr;
+              background: #131213;
               a {
-                transform: translateY(-5 * $pr);
+                display: block;
+                box-sizing: border-box;
+                position: relative;
+                transition: transform 0.3s ease-in-out;
+                h4 {
+                  font-family: 'Rubik';
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 22 * $pr;
+                  line-height: 30 * $pr;
+                  color: #fff;
+                }
+                .time {
+                  font-size: 16 * $pr;
+                  line-height: 22 * $pr;
+                }
+                .text {
+                  font-family: 'Rubik';
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 12 * $pr;
+                  line-height: 16 * $pr;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 6;
+                  -webkit-box-orient: vertical;
+                }
                 img {
-                  transform: none;
+                  position: absolute;
+                  right: -24 * $pr;
+                  top: -24 * $pr;
+                  width: 111 * $pr;
+                  height: auto;
+                }
+              }
+              &:hover {
+                a {
+                  transform: translateY(-5 * $pr);
+                  img {
+                    transform: none;
+                  }
                 }
               }
             }
           }
-        }
-        .google_ad {
-          width: 100%;
-          margin: 24 * $pr auto 32 * $pr;
+          .google_ad {
+            width: 100%;
+            margin: 24 * $pr auto 32 * $pr;
+          }
         }
       }
     }

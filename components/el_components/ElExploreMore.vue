@@ -8,7 +8,7 @@
             :href="`${getIntersperseUrl + item.path}`"
             class="tag_list_aos"
             data-aos="fade-left"
-            :data-aos-duration="`${index}00`"
+            :data-aos-duration="`${index + 1}00`"
           >
             <div class="tag_list_aos_round">
               <img :src="item.imgUrl" alt="#" />
@@ -93,6 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .explore {
   width: 100%;
   &_main {
@@ -155,6 +156,52 @@ export default {
             font-weight: 400;
             line-height: 22px;
             padding-left: 6px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .explore {
+    width: 100%;
+    &_main {
+      .title {
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
+        padding-bottom: 16 * $pr;
+      }
+      &_tag {
+        display: grid;
+        justify-content: start;
+        overflow-x: scroll;
+        grid-template-columns: repeat(6, 1fr);
+        height: 81 * $pr;
+        gap: 5 * $pr;
+        .tag_list {
+          border-radius: 44 * $pr;
+          margin-right: 0;
+          margin-top: 0;
+          &:nth-child(6),
+          &:last-child {
+            margin-right: 0;
+          }
+          &_aos {
+            width: 115 * $pr;
+            padding: 4 * $pr 12 * $pr;
+            border-radius: 44 * $pr;
+            &_round {
+              min-width: 24 * $pr;
+              max-width: 24 * $pr;
+              height: 24 * $pr;
+            }
+            p {
+              font-size: 12 * $pr;
+              line-height: 14 * $pr;
+              padding-left: 6 * $pr;
+            }
           }
         }
       }

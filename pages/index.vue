@@ -330,8 +330,11 @@ export default {
             padding: 0;
           }
         }
+        &.explore {
+          margin-top: 48 * $pr;
+        }
         &.tarot {
-          margin-top: 86 * $pr;
+          margin-top: 48 * $pr;
         }
 
         &.kundli {

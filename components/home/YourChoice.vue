@@ -202,7 +202,7 @@ export default {
       li {
         width: 100%;
         height: 147 * $pr;
-        margin-bottom: 36 * $pr;
+        margin-bottom: 24 * $pr;
         border: 0;
         .choice__main__a {
           height: 100%;

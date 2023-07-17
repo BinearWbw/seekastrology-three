@@ -77,6 +77,9 @@ export default {
   },
   mounted() {
     this.startTimer()
+    if (window.innerWidth < 751) {
+      this.stopTimer() //屏幕尺寸小于750时，不执行动画
+    }
   },
   beforeDestroy() {
     this.stopTimer()
@@ -115,6 +118,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .tarot_world {
   width: 100%;
   &_main {
@@ -327,6 +331,132 @@ export default {
       transform: translate(-50%, -50%) scale(1);
     }
     100% {
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .tarot_world {
+    width: 100%;
+    &_main {
+      .tarot {
+        display: block;
+        &_title {
+          align-items: center;
+          height: auto;
+          .title {
+            font-size: 26 * $pr;
+            line-height: 36 * $pr;
+            text-align: center;
+            padding: 0 20 * $pr;
+          }
+          .help {
+            margin-top: 0;
+            font-size: 16 * $pr;
+            line-height: 22 * $pr;
+            text-align: center;
+          }
+        }
+
+        &_carousel {
+          width: 100%;
+          height: auto;
+          margin-top: 24 * $pr;
+          &_list {
+            display: grid;
+            justify-content: flex-end;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5 * $pr;
+            padding-right: 0;
+            .slideshow_main {
+              position: relative;
+              transition: none;
+              animation: none;
+              .slideshow_title {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 5 * $pr;
+                font-size: 14 * $pr;
+                line-height: 18 * $pr;
+              }
+              &:first-child .slideshow,
+              &:last-child .slideshow {
+                border-top-right-radius: 50 * $pr;
+                border-bottom-left-radius: 50 * $pr;
+              }
+              &:nth-child(2) .slideshow,
+              &:nth-child(3) .slideshow {
+                border-top-left-radius: 50 * $pr;
+                border-bottom-right-radius: 50 * $pr;
+              }
+              &:hover {
+                transform: none;
+                .slideshow {
+                  border-color: none;
+                  transform: none;
+                  .slideshow_item {
+                    &::after {
+                      display: none;
+                    }
+                    img {
+                      filter: none;
+                    }
+                    .arrow {
+                      opacity: 1;
+                      transform: translate(-50%, 0) scale(1);
+                    }
+                  }
+                }
+              }
+              .slideshow {
+                width: 169 * $pr;
+                height: 169 * $pr;
+                border: none;
+                transform: none;
+                border-radius: 12 * $pr;
+                margin-left: 0;
+                cursor: pointer;
+                animation: none;
+                .slideshow_item {
+                  width: 130%;
+                  height: 100%;
+                  display: block;
+                  transform: none;
+                  transform-style: preserve-3d;
+                  position: relative;
+                  left: -15%;
+                  &::after {
+                    display: none;
+                  }
+                  img {
+                    object-position: top;
+                    filter: none;
+                    transition: none;
+                    animation: none;
+                  }
+                  .arrow {
+                    top: 70%;
+                    transform: translate(-50%, 0) scale(1);
+                    opacity: 1;
+                    transition: none;
+                    animation: none;
+                    &_icon {
+                      width: 24 * $pr;
+                      height: 24 * $pr;
+                      .icon {
+                        width: 15 * $pr;
+                        height: 12 * $pr;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

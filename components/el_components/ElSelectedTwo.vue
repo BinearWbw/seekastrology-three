@@ -1,0 +1,202 @@
+<template>
+  <div class="dropdown" ref="dropdown" tabindex="0" @blur="closeDropdown">
+    <div class="selected" @click="toggleDropdown">
+      <!-- <div class="selected_main">
+        <div class="select_img">
+          <img :src="selectedOption.imgUrl" alt="#" />
+        </div>
+        <p class="select_text">{{ selectedOption.name }}</p>
+        <i class="select_icon" :class="{ rotate: isOpen }"></i>
+      </div> -->
+      <div class="selected_current">
+        <div class="current_item">
+          <span v-if="!selectedOption">{{ title || 'Sign' }}</span>
+          <i class="icons" v-if="!selectedOption"></i>
+          <transition name="fade">
+            <img :src="selectedOption.imgUrl" alt="#" v-if="selectedOption" />
+          </transition>
+        </div>
+      </div>
+    </div>
+    <transition name="fade">
+      <ul class="options" v-show="isOpen">
+        <li
+          class="left_tab_list"
+          v-for="(item, index) in options"
+          :key="index"
+          :class="{ activated: selectedOption.name == item.name }"
+          @click="selectOption(item)"
+        >
+          <div class="imgs">
+            <img :src="item.imgUrl" alt="#" />
+          </div>
+          <p class="active">{{ item.name }}</p>
+        </li>
+      </ul>
+    </transition>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['options', 'pint', 'title'],
+  data() {
+    return {
+      isOpen: false,
+      selectedOption: '',
+    }
+  },
+  watch: {
+    // 监听点击的id值
+    pint(value) {
+      this.selectedOption = this.options[value - 1]
+    },
+  },
+  mounted() {
+    this.pint ? (this.selectedOption = this.options[this.pint - 1]) : false
+  },
+  methods: {
+    toggleDropdown() {
+      this.isOpen = !this.isOpen
+    },
+    selectOption(option) {
+      this.$emit('change', option)
+      this.selectedOption = option
+      this.isOpen = false
+    },
+    closeDropdown() {
+      // 失焦时隐藏
+      this.isOpen = false
+    },
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+@use 'sass:math';
+.dropdown {
+  position: relative;
+  //   display: inline-block;
+  .selected {
+    cursor: pointer;
+    &_current {
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.4);
+      padding: 10px;
+      .current_item {
+        width: 100%;
+        height: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.26);
+        position: relative;
+        > img {
+          width: 152%;
+          height: 152%;
+          object-fit: cover;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+        span {
+          color: rgba(255, 255, 255, 0.3);
+          text-align: center;
+          font-family: 'Rubik';
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 22px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+        .icons {
+          display: inline-block;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 15px;
+          height: 15px;
+          background: url('../../assets/img/home/group.svg') no-repeat center;
+        }
+      }
+    }
+  }
+  .options {
+    position: absolute;
+    width: 250px;
+    top: 120px;
+    left: -60px;
+    border-radius: 34px;
+    background-color: #060506;
+    border: 1px solid #fff;
+    overflow: hidden;
+    z-index: 10;
+    .left_tab_list {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      .imgs {
+        width: 86px;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: grayscale(100%);
+        }
+      }
+      .active {
+        flex: 1;
+        font-family: 'Rubik';
+        font-size: 22px;
+        line-height: 30px;
+        color: #acaaaa;
+      }
+      &:hover {
+        background-color: rgba(123, 136, 205, 0.1);
+        img {
+          filter: grayscale(0);
+        }
+      }
+    }
+    .activated {
+      background-color: rgba(123, 136, 205, 0.1);
+      .active {
+        color: #fff;
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .dropdown {
+    .selected {
+    }
+    .options {
+      top: 74 * $pr;
+      border-radius: 34 * $pr;
+      border: 1 * $pr solid #fff;
+      .left_tab_list {
+        height: 60 * $pr;
+        .imgs {
+          width: 86 * $pr;
+        }
+        .active {
+          font-size: 22 * $pr;
+          line-height: 30 * $pr;
+        }
+      }
+    }
+  }
+}
+</style>
