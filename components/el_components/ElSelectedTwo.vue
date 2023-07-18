@@ -1,13 +1,6 @@
 <template>
   <div class="dropdown" ref="dropdown" tabindex="0" @blur="closeDropdown">
     <div class="selected" @click="toggleDropdown">
-      <!-- <div class="selected_main">
-        <div class="select_img">
-          <img :src="selectedOption.imgUrl" alt="#" />
-        </div>
-        <p class="select_text">{{ selectedOption.name }}</p>
-        <i class="select_icon" :class="{ rotate: isOpen }"></i>
-      </div> -->
       <div class="selected_current">
         <div class="current_item">
           <span v-if="!selectedOption">{{ title || 'Sign' }}</span>

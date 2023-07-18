@@ -278,7 +278,9 @@ export default {
     &_main {
       width: 100%;
       padding: 0;
+      display: block;
       &_news {
+        width: 100%;
         &_top {
           padding: 0 16 * $pr 48 * $pr;
           width: 100%;
@@ -328,7 +330,7 @@ export default {
               box-sizing: border-box;
               border: none;
               border-radius: 6 * $pr;
-              background: #131213;
+              background: rgba(255, 255, 255, 0.05);
               a {
                 display: block;
                 box-sizing: border-box;
@@ -361,8 +363,8 @@ export default {
                 img {
                   position: absolute;
                   right: -24 * $pr;
-                  top: -24 * $pr;
-                  width: 111 * $pr;
+                  top: 24 * $pr;
+                  width: 121 * $pr;
                   height: auto;
                 }
               }

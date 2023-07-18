@@ -2,7 +2,6 @@
   <div class="zodiac_details">
     <div class="zodiac_details_main">
       <div class="part_details">
-        <h3>Zodiac Signs Features</h3>
         <div class="pull_down">
           <el-selected
             :options="tabList"
@@ -11,31 +10,8 @@
           ></el-selected>
         </div>
         <div class="introduce">
-          <div class="left_tab">
-            <div
-              class="left_tab_list"
-              v-for="(item, index) in tabList"
-              :key="index"
-              @click="handleDropdownChange(item)"
-            >
-              <div class="imgs">
-                <img :src="item.imgUrl" alt="#" />
-              </div>
-              <p :class="{ active: item.id === ids }">
-                {{ item.name }}
-              </p>
-            </div>
-          </div>
           <div class="right_cont">
-            <h4>{{ `The ${zodiacIData.name} Zodiac Sign` }}</h4>
-            <p
-              class="right_various"
-              :class="{ unfold_active: openExpand }"
-              v-html="zodiacIData.desc"
-            ></p>
-            <button class="blank_space" @click="setOpenExpand">
-              {{ openExpand ? 'SHOW LESS' : 'SHOW MORE' }}
-            </button>
+            <h4>{{ `${zodiacIData.name} TRAITS` }}</h4>
             <div class="img_cont">
               <nuxt-img
                 :src="zodiacIData.banner || '/'"
@@ -114,247 +90,20 @@
                   </div>
                 </div>
               </div>
+              <div class="right_various" v-html="zodiacIData.desc"></div>
             </div>
           </div>
+          <div class="left_tab">
+            <el-select-menu
+              :names="zodiacIData.name"
+              :ids="ids"
+            ></el-select-menu>
+            <google-ad classNames="google_ad"></google-ad>
+          </div>
         </div>
-        <google-ad classNames="google_ad" :id="'3801702844'"></google-ad>
+        <!-- <google-ad classNames="google_ad" :id="'3801702844'"></google-ad> -->
       </div>
       <div class="tab_control">
-        <div class="tab_main">
-          <el-tabs :tabs="tabTitle" :title="zodiacIData.name">
-            <template v-slot="{ activeTab }">
-              <div
-                v-for="(item, index) in tabsDataList"
-                :key="index"
-                v-show="activeTab === index"
-              >
-                <div class="tab_main_list" v-if="item.traits">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Traits` }}</h4>
-                  <div class="p_text" v-html="item.traits"></div>
-                </div>
-                <div class="tab_main_list" v-if="item.career">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Career` }}</h4>
-                  <div class="p_text" v-html="item.career"></div>
-                </div>
-                <div class="tab_main_list" v-if="item.lover">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Lover` }}</h4>
-                  <div class="p_text" v-html="item.lover"></div>
-                </div>
-                <div class="tab_main_list" v-if="item.health">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Healthy` }}</h4>
-                  <div class="p_text" v-html="item.health"></div>
-                </div>
-                <div class="tab_main_list" v-if="item.love_reasons">
-                  <h4>
-                    {{
-                      `The 5 Top Reasons to Love Being an ${zodiacIData.name.toUpperCase()}`
-                    }}
-                  </h4>
-                  <div class="p_text" v-html="item.love_reasons"></div>
-                </div>
-                <div class="tab_main_list" v-if="item.positives">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Positivesy` }}</h4>
-                  <div class="p_text" v-html="item.positives"></div>
-                </div>
-                <div class="tab_main_list" v-if="item.negatives">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Negativesy` }}</h4>
-                  <div class="p_text" v-html="item.negatives"></div>
-                </div>
-                <div class="tab_main_list" v-if="item.in_love">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} In Love` }}</h4>
-                  <div class="p_text" v-html="item.in_love"></div>
-                </div>
-                <div class="tab_main_list" v-if="item.attract">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Attracty` }}</h4>
-                  <div class="p_text" v-html="item.attract"></div>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.aquarius"
-                  :ref="'starsign' + 0"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Aquarius` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[0].openIf }"
-                    v-html="item.aquarius"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(0)">
-                    {{ openStarsign[0].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.aries"
-                  :ref="'starsign' + 1"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Aries` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[1].openIf }"
-                    v-html="item.aries"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(1)">
-                    {{ openStarsign[1].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.cancer"
-                  :ref="'starsign' + 2"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Cancer` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[2].openIf }"
-                    v-html="item.cancer"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(2)">
-                    {{ openStarsign[2].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.capricorn"
-                  :ref="'starsign' + 3"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Capricorn` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[3].openIf }"
-                    v-html="item.capricorn"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(3)">
-                    {{ openStarsign[3].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.gemini"
-                  :ref="'starsign' + 4"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Gemini` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[4].openIf }"
-                    v-html="item.gemini"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(4)">
-                    {{ openStarsign[4].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.leo"
-                  :ref="'starsign' + 5"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Leo` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[5].openIf }"
-                    v-html="item.leo"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(5)">
-                    {{ openStarsign[5].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.libra"
-                  :ref="'starsign' + 6"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Libra` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[6].openIf }"
-                    v-html="item.libra"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(6)">
-                    {{ openStarsign[6].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.pisces"
-                  :ref="'starsign' + 7"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Pisces` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[7].openIf }"
-                    v-html="item.pisces"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(7)">
-                    {{ openStarsign[7].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.sagittarius"
-                  :ref="'starsign' + 8"
-                >
-                  <h4>
-                    {{ `${zodiacIData.name.toUpperCase()} & Sagittarius` }}
-                  </h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[8].openIf }"
-                    v-html="item.sagittarius"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(8)">
-                    {{ openStarsign[8].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.scorpio"
-                  :ref="'starsign' + 9"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Scorpio` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[9].openIf }"
-                    v-html="item.scorpio"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(9)">
-                    {{ openStarsign[9].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.taurus"
-                  :ref="'starsign' + 10"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Taurus` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[10].openIf }"
-                    v-html="item.taurus"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(10)">
-                    {{ openStarsign[10].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-                <div
-                  class="tab_main_list starsign"
-                  v-if="item.virgo"
-                  :ref="'starsign' + 11"
-                >
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} & Virgo` }}</h4>
-                  <div
-                    class="p_text"
-                    :class="{ p_text_active: openStarsign[11].openIf }"
-                    v-html="item.virgo"
-                  ></div>
-                  <button class="openBtn" @click="setOpenStarsign(11)">
-                    {{ openStarsign[11].openIf ? 'SHOW LESS' : 'SHOW MORE' }}
-                  </button>
-                </div>
-              </div>
-            </template>
-          </el-tabs>
-        </div>
-        <div class="tabs_max"></div>
         <google-auto-ad classNames="google_ad" :id="'7549376164'" />
       </div>
     </div>
@@ -366,6 +115,9 @@
     </transition>
     <transition name="fade">
       <el-pairing></el-pairing>
+    </transition>
+    <transition name="fade">
+      <el-loading v-if="isLoading"></el-loading>
     </transition>
   </div>
 </template>
@@ -438,27 +190,7 @@ export default {
           id: 12,
         },
       ],
-      tabTitle: [
-        { tabs: '' },
-        { tabs: 'Man' },
-        { tabs: 'Woman' },
-        { tabs: 'Comratible' },
-      ],
-      openExpand: false,
-      openStarsign: [
-        { openIf: false },
-        { openIf: false },
-        { openIf: false },
-        { openIf: false },
-        { openIf: false },
-        { openIf: false },
-        { openIf: false },
-        { openIf: false },
-        { openIf: false },
-        { openIf: false },
-        { openIf: false },
-        { openIf: false },
-      ],
+      isLoading: false,
     }
   },
   async asyncData({ error, $apiList, params }) {
@@ -498,11 +230,6 @@ export default {
   },
   methods: {
     handleDropdownChange(option) {
-      //   const selectValue =
-      //     typeof option === 'object' && option !== null ? option.id : option
-      //   this.getZodiacIData(selectValue)
-      this.openExpand = false
-      this.openStarsign.map((i) => (i.openIf = false))
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
@@ -512,31 +239,7 @@ export default {
       }/zodiac/details/${option.name
         .replace(/[^a-zA-Z0-9\\s]/g, '-')
         .toLowerCase()}-${option.id}/`
-    },
-    // getZodiacIData(id = null) {
-    //   this.$apiList.home
-    //     .getZodiacDetails({
-    //       origin: process.env.origin,
-    //       id: id,
-    //     })
-    //     .then((res) => {
-    //       this.zodiacIData = res
-    //       this.ids = res.id
-    //       this.tabsDataList = res?.traits
-    //       this.tabsDataList.push(res?.comp)
-    //     })
-    // },
-    setOpenExpand() {
-      this.openExpand = !this.openExpand
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      })
-    },
-    setOpenStarsign(index) {
-      this.openStarsign[index].openIf = !this.openStarsign[index].openIf
-      const elements = this.$refs['starsign' + index][0]
-      elements.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      this.isLoading = true
     },
   },
 }
@@ -563,84 +266,26 @@ export default {
         margin-bottom: 64px;
       }
       .pull_down {
-        width: 338px;
-        display: none;
+        width: 220px;
+        position: absolute;
+        top: 34px;
+        left: 708px;
       }
       .introduce {
         width: 100%;
         display: flex;
         .left_tab {
-          width: 338px;
-          margin-right: 16px;
-          &_list {
+          flex: 1;
+          padding-left: 48px;
+          .google_ad {
             width: 100%;
-            height: 68px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            &::after {
-              content: '';
-              position: absolute;
-              bottom: 0;
-              left: 0;
-              width: 100%;
-              height: 1px;
-              background: linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.2) 50.52%,
-                rgba(255, 255, 255, 0) 100%
-              );
-            }
-            .imgs {
-              width: 96px;
-              height: 100%;
-              img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                filter: grayscale(100%);
-              }
-            }
-            p {
-              flex: 1;
-              font-family: 'Rubik';
-              font-size: 22px;
-              line-height: 30px;
-              color: #ffffff;
-              position: relative;
-              &::after {
-                content: '';
-                display: inline-block;
-                position: absolute;
-                right: 16px;
-                bottom: -4px;
-                width: 2px;
-                height: 38px;
-                background-color: #9747ff;
-                transform: scaleX(0);
-                -webkit-transition: transform 0.3s ease-in-out;
-                transition: transform 0.3s ease-in-out;
-              }
-              &.active {
-                &::after {
-                  -webkit-transform: scaleX(1);
-                  transform: scaleX(1);
-                }
-              }
-            }
-            &:hover {
-              background-color: rgba(123, 136, 205, 0.1);
-              img {
-                filter: grayscale(0);
-              }
-            }
+            height: 250px;
+            margin-top: 24px;
+            background-color: rgba(255, 255, 255, 0.2);
           }
         }
         .right_cont {
-          flex: 1;
+          width: 928px;
           h4 {
             font-family: 'Cinzel Decorative';
             font-style: normal;
@@ -658,24 +303,6 @@ export default {
             }
             100% {
               opacity: 1;
-            }
-          }
-          .right_various {
-            font-family: 'Rubik';
-            font-size: 16px;
-            line-height: 28px;
-            color: rgba(255, 255, 255, 0.85);
-            margin-top: 16px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            position: relative;
-            text-align: left;
-            &.unfold_active {
-              -webkit-line-clamp: unset;
-              animation: fade-in 0.3s ease-in-out;
             }
           }
           .blank_space {
@@ -725,6 +352,15 @@ export default {
                 }
               }
             }
+            .right_various {
+              font-family: 'Rubik';
+              font-size: 16px;
+              line-height: 28px;
+              color: rgba(255, 255, 255, 0.85);
+              margin-top: 28px;
+              position: relative;
+              text-align: left;
+            }
           }
         }
       }
@@ -736,65 +372,6 @@ export default {
     }
     .tab_control {
       width: 100%;
-      .tab_main {
-        width: 100%;
-        padding: 0 118px;
-
-        ::v-deep(.tab-header_main) {
-          justify-content: center;
-        }
-
-        &_list {
-          margin-top: 24px;
-          text-align: initial;
-          h4 {
-            font-family: 'Cinzel Decorative';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 26px;
-            line-height: 36px;
-            color: #ffffff;
-          }
-          .p_text {
-            font-family: 'Rubik';
-            font-size: 16px;
-            line-height: 28px;
-            margin-top: 8px;
-            color: rgba(255, 255, 255, 0.85);
-            :deep(h1),
-            :deep(h2),
-            :deep(h3),
-            :deep(h4),
-            :deep(h5) {
-              color: #fff;
-            }
-            :deep(span),
-            :deep(p) {
-              color: rgba(255, 255, 255, 0.85) !important;
-            }
-          }
-        }
-        .starsign {
-          scroll-margin-top: 100px;
-          .p_text {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 5;
-            -webkit-box-orient: vertical;
-            word-wrap: break-word;
-            transition: -webkit-line-clamp 0.3s ease-in-out;
-            &.p_text_active {
-              -webkit-line-clamp: unset;
-            }
-          }
-          .openBtn {
-            color: #9747ff;
-            text-decoration: underline;
-            margin-top: 8px;
-          }
-        }
-      }
       .google_ad {
         width: 1200px;
         margin: 95px auto 48px;
@@ -864,10 +441,6 @@ export default {
       }
       .tab_control {
         width: 100%;
-        .tab_main {
-          width: 100%;
-          padding: 0 50px;
-        }
       }
     }
   }
@@ -904,11 +477,7 @@ export default {
               font-size: 26 * $pr;
               line-height: 36 * $pr;
             }
-            .right_various {
-              font-size: 16 * $pr;
-              line-height: 24 * $pr;
-              margin-top: 16 * $pr;
-            }
+
             .img_cont {
               height: auto;
               margin: 24 * $pr 0;
@@ -930,6 +499,11 @@ export default {
                     line-height: 22 * $pr;
                   }
                 }
+                .right_various {
+                  font-size: 16 * $pr;
+                  line-height: 24 * $pr;
+                  margin-top: 16 * $pr;
+                }
               }
             }
           }
@@ -942,47 +516,6 @@ export default {
         }
       }
       .tab_control {
-        .tab_main {
-          padding: 0;
-
-          ::v-deep(.tab-header_main) {
-            justify-content: initial;
-          }
-
-          &_list {
-            margin-top: 24 * $pr;
-            h4 {
-              font-size: 26 * $pr;
-              line-height: 36 * $pr;
-            }
-            .p_text {
-              font-size: 16 * $pr;
-              line-height: 24 * $pr;
-              margin-top: 8 * $pr;
-            }
-          }
-          .starsign {
-            scroll-margin-top: 60 * $pr;
-            .p_text {
-              height: 120 * $pr;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: -webkit-box;
-              -webkit-line-clamp: 5;
-              -webkit-box-orient: vertical;
-              word-wrap: break-word;
-              &.p_text_active {
-                height: auto;
-                -webkit-line-clamp: unset;
-              }
-            }
-            .openBtn {
-              color: #9747ff;
-              text-decoration: underline;
-              margin-top: 8 * $pr;
-            }
-          }
-        }
         .google_ad {
           width: 100%;
           margin: 48 * $pr 0;
