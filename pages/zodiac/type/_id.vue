@@ -25,12 +25,16 @@
             </a>
             <div class="details_left_text">
               <div class="_item" v-if="$route.path.includes('career')">
-                <h4>{{ `${zodiacIData.name.toUpperCase()} Career` }}</h4>
+                <div class="imgs">
+                  <img src="~/assets/img/astrology/career_sign.png" alt="#" />
+                </div>
                 <div class="p_text" v-html="tabsDataList[0].career"></div>
               </div>
               <div class="lover" v-if="$route.path.includes('lover')">
                 <div class="_item" v-show="tabsDataList[0].lover">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Lover` }}</h4>
+                  <div class="imgs">
+                    <img src="~/assets/img/astrology/love_sign.png" alt="#" />
+                  </div>
                   <div class="p_text" v-html="tabsDataList[0].lover"></div>
                 </div>
                 <div class="_item" v-show="tabsDataList[0].love_reasons">
@@ -47,12 +51,17 @@
               </div>
               <div class="healthy" v-if="$route.path.includes('health')">
                 <div class="_item" v-show="tabsDataList[0].health">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Healthy` }}</h4>
+                  <div class="imgs">
+                    <img src="~/assets/img/astrology/health_sign.png" alt="#" />
+                  </div>
                   <div class="p_text" v-html="tabsDataList[0].health"></div>
                 </div>
               </div>
               <div class="man" v-if="$route.path.includes('male')">
                 <div class="_item" v-if="tabsDataList[1].traits">
+                  <div class="imgs">
+                    <img src="~/assets/img/astrology/man_sign.png" alt="#" />
+                  </div>
                   <h4>{{ `${zodiacIData.name.toUpperCase()} Traits` }}</h4>
                   <div class="p_text" v-html="tabsDataList[1].traits"></div>
                 </div>
@@ -98,6 +107,9 @@
               </div>
               <div class="woman" v-if="$route.path.includes('woman')">
                 <div class="_item" v-if="tabsDataList[2].traits">
+                  <div class="imgs">
+                    <img src="~/assets/img/astrology/woman_sign.png" alt="#" />
+                  </div>
                   <h4>{{ `${zodiacIData.name.toUpperCase()} Traits` }}</h4>
                   <div class="p_text" v-html="tabsDataList[2].traits"></div>
                 </div>
@@ -430,6 +442,16 @@ export default {
                 :deep(span),
                 :deep(p) {
                   color: rgba(255, 255, 255, 0.85) !important;
+                }
+              }
+              .imgs {
+                width: 100%;
+                height: 308px;
+                padding-bottom: 14px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
                 }
               }
             }
