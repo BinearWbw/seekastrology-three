@@ -110,13 +110,13 @@ export default {
       this.genderList.femalesId = option.id
     },
     getStartPairingEl() {
-      if (this.genderList.males && this.genderList.females) {
-        sessionStorage.setItem('genderList', JSON.stringify(this.genderList))
-        if (sessionStorage.getItem('genderList'))
-          window.location.href = `/astrology/`
-      } else {
-        alert('Please select two constellations')
-      }
+      //   if (this.genderList.males && this.genderList.females) {
+      sessionStorage.setItem('genderList', JSON.stringify(this.genderList))
+      if (sessionStorage.getItem('genderList'))
+        window.location.href = `/astrology/`
+      //   } else {
+      //     alert('Please select two constellations')
+      //   }
     },
   },
 }

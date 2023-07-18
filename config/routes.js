@@ -57,6 +57,28 @@ const addRoutes = async () => {
   res6.map((item) => {
     routes.push(`/tarot/type/${item}/`)
   })
+
+  let res7 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res7.map((item) => {
+    routes.push(`/zodiac/type/career-${item}/`)
+  })
+  let res8 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res8.map((item) => {
+    routes.push(`/zodiac/type/lover-${item}/`)
+  })
+  let res9 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res9.map((item) => {
+    routes.push(`/zodiac/type/healthy-${item}/`)
+  })
+  let res10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res10.map((item) => {
+    routes.push(`/zodiac/type/man-${item}/`)
+  })
+  let res11 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res11.map((item) => {
+    routes.push(`/zodiac/type/woman-${item}/`)
+  })
+
   return routes
 }
 let routes = addRoutes()
