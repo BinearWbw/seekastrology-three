@@ -53,9 +53,7 @@ export default {
     ])
     this.getHomeNewsData = getHomeNewsData
   },
-  mounted() {
-    console.log('this.getHomeNewsData', this.getHomeNewsData)
-  },
+  mounted() {},
   computed: {
     ...mapGetters(['getIntersperseUrl']),
   },

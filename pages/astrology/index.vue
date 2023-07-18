@@ -2,83 +2,46 @@
   <div class="astrology">
     <div class="astrology_main">
       <div class="pairing">
-        <h3>ZODIAC COMPATIBILITY</h3>
+        <google-ad classNames="google_ad" :id="'7460896194'"></google-ad>
+        <h3>The Pisces Zodiac Sign</h3>
         <div class="pairing_main">
-          <div class="pairing_select">
-            <div class="selects">
-              <el-selected
-                :options="selectOptions"
-                :pint="malesId"
-                @change="handleDropdownChangeLeft"
-              ></el-selected>
-            </div>
-            <div class="selects">
-              <el-selected
-                :options="selectOptions"
-                :pint="femalesId"
-                @change="handleDropdownChangeRight"
-              ></el-selected>
-            </div>
-          </div>
+          <p class="choose">Choose Two Zodiac Signs</p>
           <div class="dynamic">
             <div class="dynamic_love">
-              <div class="dynamic_love_left">
-                <div class="love_left_img">
-                  <img :src="selectOptions[selectImgLeft].imgUrl" alt="#" />
-                </div>
-                <span class="gender">Male</span>
-              </div>
-              <div class="dynamic_love_middle">
-                <img src="~/assets/img/astrology/astr_love.png" alt="#" />
-                <i class="left_line"></i>
-                <i class="left_line2"></i>
-                <i class="right_line"></i>
-                <i class="right_line2"></i>
-              </div>
-              <div class="dynamic_love_right">
-                <div class="love_left_img">
-                  <img :src="selectOptions[selectImgRight].imgUrl" alt="#" />
-                </div>
-                <span class="gender">Female</span>
-              </div>
+              <el-selected-two
+                :options="selectOptions"
+                :title="'First Sign'"
+                :pint="malesId"
+                @change="handleDropdownChangeLeft"
+              ></el-selected-two>
+              <i class="icons"></i>
+              <el-selected-two
+                :options="selectOptions"
+                :title="'Second Sign'"
+                :pint="femalesId"
+                @change="handleDropdownChangeRight"
+              >
+              </el-selected-two>
             </div>
             <div class="dynamic_determine" ref="target">
-              <p>Please choose your partners horoscope</p>
               <div class="determine_button">
                 <button class="button" @click="getStartPairing">
                   Get Your Compatibility
                 </button>
               </div>
-              <google-ad classNames="google_ad" :id="'7460896194'"></google-ad>
             </div>
           </div>
         </div>
         <div class="pairing_text">
           <div class="text_list">
-            <!-- <p class="title">{{ itme.title }}</p> -->
             <transition name="fade">
               <div class="introduce" v-html="compatibilityData"></div>
             </transition>
           </div>
-          <img
-            class="img_bg"
-            src="~/assets/img/astrology/astr_bg2.png"
-            alt="#"
-          />
           <google-ad classNames="google_ad" :id="'3521651188'"></google-ad>
         </div>
       </div>
     </div>
-    <img
-      class="imgs_main imgpc"
-      src="~/assets/img/astrology/astr_bg.png"
-      alt="#"
-    />
-    <img
-      class="imgs_main imgh5"
-      src="~/assets/img/astrology/astr_h5bg.png"
-      alt="#"
-    />
     <transition name="fade">
       <el-daily-horoscope></el-daily-horoscope>
     </transition>
@@ -159,32 +122,9 @@ export default {
       ],
       selectImgLeft: 0,
       selectImgRight: 0,
-      malesId: 1,
-      femalesId: 1,
-    }
-  },
-  async asyncData({ error, $apiList, params }) {
-    try {
-      let males = 'aries',
-        females = 'aries'
-      let [compatibilityData] = await Promise.all([
-        $apiList.home
-          .getZodiacComp({
-            origin: process.env.origin,
-            male: males,
-            female: females,
-          })
-          .then((res) => {
-            return res
-          }),
-      ])
-      return {
-        compatibilityData,
-        males,
-        females,
-      }
-    } catch (e) {
-      error({ statusCode: e.code, message: e.message })
+      malesId: 0,
+      femalesId: 0,
+      compatibilityData: '',
     }
   },
   mounted() {
@@ -241,24 +181,19 @@ export default {
 @use 'sass:math';
 .astrology {
   position: relative;
-  .imgs_main {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    object-fit: cover;
-    z-index: -1;
-    mix-blend-mode: luminosity;
-    &.imgh5 {
-      display: none;
-    }
-  }
   &_main {
     margin: 0 auto;
     width: 1400px;
     z-index: 5;
     .pairing {
-      padding: 88px 0 0;
-
+      padding: 24px 0 0;
+      .google_ad {
+        margin: 0 auto;
+        &:first-child {
+          width: 1152px;
+          height: 90px;
+        }
+      }
       > h3 {
         font-family: 'Cinzel Decorative';
         font-style: normal;
@@ -267,9 +202,20 @@ export default {
         line-height: 64px;
         text-align: center;
         color: #ffffff;
+        padding-top: 60px;
       }
       .pairing_main {
-        margin-top: 48px;
+        margin-top: 24px;
+        .choose {
+          color: rgba(255, 255, 255, 0.6);
+          text-align: center;
+          font-family: 'Rubik';
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 22px;
+          text-align: center;
+        }
         .pairing_select {
           padding: 0 80px;
           display: flex;
@@ -280,115 +226,17 @@ export default {
         }
         .dynamic {
           &_love {
-            height: 257px;
-            padding: 10px 312px 0;
+            padding: 48px 483px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            &_left {
-              width: 154px;
-              height: 154px;
-              border-radius: 50%;
-              border: 1px solid #ffffff;
-              position: relative;
-              .love_left_img {
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                img {
-                  object-fit: cover;
-                }
-              }
-              .gender {
-                position: absolute;
-                top: -35px;
-                left: 50%;
-                transform: translateX(-50%);
-                font-family: 'Rubik';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 22px;
-                text-align: center;
-                color: #ffffff;
-              }
-            }
-            &_middle {
-              position: relative;
-              .left_line {
-                position: absolute;
-                left: -150px;
-                top: 60%;
-                width: 157px;
-                height: 33px;
-                background: url('~/assets/img/astrology/astr_line.png')
-                  no-repeat center;
-                background-size: cover;
-                transform: scaleX(-1);
-              }
-              .left_line2 {
-                position: absolute;
-                left: -70px;
-                top: 50%;
-                width: 51px;
-                height: 11px;
-                background: url('~/assets/img/astrology/astr_line2.png');
-                background-size: cover;
-                transform: scaleX(-1);
-              }
-              .right_line {
-                position: absolute;
-                right: -150px;
-                top: 60%;
-                width: 157px;
-                height: 33px;
-                background: url('~/assets/img/astrology/astr_line.png')
-                  no-repeat center;
-                background-size: cover;
-              }
-              .right_line2 {
-                position: absolute;
-                right: -70px;
-                top: 50%;
-                width: 51px;
-                height: 11px;
-                background: url('~/assets/img/astrology/astr_line2.png');
-                background-size: cover;
-              }
-            }
-            &_right {
-              width: 154px;
-              height: 154px;
-              border-radius: 50%;
-              border: 1px solid #ffffff;
-              position: relative;
-              .love_left_img {
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                img {
-                  object-fit: cover;
-                }
-              }
-              .gender {
-                position: absolute;
-                top: -35px;
-                left: 50%;
-                transform: translateX(-50%);
-                font-family: 'Rubik';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 22px;
-                text-align: center;
-                color: #ffffff;
-              }
+            .icons {
+              display: inline-block;
+              width: 96px;
+              height: 80px;
+              background: url('~/assets/img/home/pairing_two.svg') no-repeat
+                center center;
+              background-size: cover;
             }
           }
 
@@ -407,9 +255,8 @@ export default {
               color: rgba(255, 255, 255, 0.85);
             }
             .determine_button {
-              width: 277px;
-              height: 60px;
-              margin: 48px 0;
+              width: 278px;
+              height: 44px;
               position: relative;
               &::before {
                 position: absolute;
@@ -418,10 +265,9 @@ export default {
                 left: 0;
                 top: 0;
                 height: 100%;
-                background: url('../../assets/img/astrology/astr_btn.png')
+                background: url('../../assets/img/astrology/astr_btn.svg')
                   no-repeat;
                 background-size: cover;
-                transform: scaleX(-1);
               }
               &::after {
                 position: absolute;
@@ -430,9 +276,10 @@ export default {
                 right: 0;
                 top: 0;
                 height: 100%;
-                background: url('../../assets/img/astrology/astr_btn.png')
+                background: url('../../assets/img/astrology/astr_btn.svg')
                   no-repeat;
                 background-size: cover;
+                transform: scaleX(-1);
               }
               .button {
                 width: 100%;
@@ -462,28 +309,13 @@ export default {
                 color: #fbdcc0;
               }
             }
-            .google_ad {
-              width: 100%;
-              height: 130px;
-              //   background-color: #555761;
-              // overflow: hidden;
-            }
           }
         }
       }
       .pairing_text {
         width: 1164px;
-        margin: 48px auto 0;
+        margin: 72px auto 0;
         position: relative;
-        .img_bg {
-          position: absolute;
-          left: -270px;
-          top: -50px;
-          z-index: 0;
-          backface-visibility: hidden;
-          object-fit: cover;
-          mix-blend-mode: luminosity;
-        }
         .text_list {
           width: 100%;
           padding-bottom: 48px;
@@ -526,8 +358,6 @@ export default {
         .google_ad {
           width: 100%;
           height: 130px;
-          //   background-color: #555761;
-          // overflow: hidden;
           margin: 0 auto;
         }
       }
@@ -595,14 +425,6 @@ export default {
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .astrology {
-    .imgs_main {
-      &.imgpc {
-        display: none;
-      }
-      &.imgh5 {
-        display: block;
-      }
-    }
     &_main {
       margin: 0 auto;
       width: 100%;
@@ -628,69 +450,6 @@ export default {
               height: auto;
               padding: 0;
               margin-top: 32 * $pr;
-              &_left {
-                width: 112 * $pr;
-                height: 112 * $pr;
-                border: 1 * $pr solid #ffffff;
-                .love_left_img {
-                  img {
-                    width: 130%;
-                    height: auto;
-                    object-fit: cover;
-                  }
-                }
-                .gender {
-                  top: -35 * $pr;
-                  left: 50%;
-                  font-size: 16 * $pr;
-                  line-height: 22 * $pr;
-                }
-              }
-              &_middle {
-                position: relative;
-                img {
-                  width: 100 * $pr;
-                  object-fit: cover;
-                }
-                .left_line {
-                  position: absolute;
-                  left: -50 * $pr;
-                  top: 60%;
-                  width: 66 * $pr;
-                  height: 14 * $pr;
-                }
-                .left_line2 {
-                  display: none;
-                }
-                .right_line {
-                  position: absolute;
-                  right: -50 * $pr;
-                  top: 60%;
-                  width: 66 * $pr;
-                  height: 14 * $pr;
-                }
-                .right_line2 {
-                  display: none;
-                }
-              }
-              &_right {
-                width: 112 * $pr;
-                height: 112 * $pr;
-                border: 1 * $pr solid #ffffff;
-                .love_left_img {
-                  img {
-                    width: 130%;
-                    height: auto;
-                    object-fit: cover;
-                  }
-                }
-                .gender {
-                  top: -35 * $pr;
-                  left: 50%;
-                  font-size: 16 * $pr;
-                  line-height: 22 * $pr;
-                }
-              }
             }
 
             &_determine {
@@ -727,14 +486,6 @@ export default {
         .pairing_text {
           width: 100%;
           margin: 48 * $pr auto 0;
-          .img_bg {
-            left: -50 * $pr;
-            top: -30 * $pr;
-            mix-blend-mode: luminosity;
-            z-index: 0;
-            width: 300 * $pr;
-            height: 300 * $pr;
-          }
           .text_list {
             width: 100%;
             padding-bottom: 24 * $pr;
