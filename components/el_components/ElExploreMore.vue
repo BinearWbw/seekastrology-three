@@ -9,6 +9,7 @@
             class="tag_list_aos"
             data-aos="fade-left"
             :data-aos-duration="`${index + 1}00`"
+            @click="setIndexContent(index)"
           >
             <div class="tag_list_aos_round">
               <img :src="item.imgUrl" alt="#" />
@@ -34,11 +35,6 @@ export default {
           imgUrl: require('~/assets/img/horroscope/today.svg'),
         },
         {
-          name: 'Money Horoscope',
-          path: '/horroscope/aries-1/',
-          imgUrl: require('~/assets/img/horroscope/wealth_sign.svg'),
-        },
-        {
           name: 'Love Horoscope',
           path: '/horroscope/aries-1/',
           imgUrl: require('~/assets/img/horroscope/love_sign.svg'),
@@ -52,6 +48,11 @@ export default {
           name: 'Career Horoscope',
           path: '/horroscope/aries-1/',
           imgUrl: require('~/assets/img/horroscope/cupational_sign.svg'),
+        },
+        {
+          name: 'Money Horoscope',
+          path: '/horroscope/aries-1/',
+          imgUrl: require('~/assets/img/horroscope/wealth_sign.svg'),
         },
         {
           name: '2023 Horoscope',
@@ -88,6 +89,11 @@ export default {
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
+  },
+  methods: {
+    setIndexContent(i) {
+      sessionStorage.setItem('comentId', i)
+    },
   },
 }
 </script>

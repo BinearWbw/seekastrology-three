@@ -45,7 +45,7 @@
             v-for="(item, index) in moreData"
             :key="index"
             @click="setCorresponding(index)"
-            v-show="index !== comentId"
+            v-show="index != comentId"
           >
             <div class="more_title">
               <div class="img_top">
@@ -70,6 +70,9 @@
     </transition>
     <transition name="fade">
       <el-pairing></el-pairing>
+    </transition>
+    <transition name="fade">
+      <el-loading v-if="isLoading"></el-loading>
     </transition>
   </div>
 </template>
@@ -162,6 +165,9 @@ export default {
       ],
       comentId: 0,
       currentTime: 'd',
+      comentIdSession: 0,
+      isLoading: false,
+      isSetTimes: null,
     }
   },
   async asyncData({ error, $apiList, params }) {
@@ -230,6 +236,13 @@ export default {
     },
     ...mapGetters(['getIntersperseUrl']),
   },
+  created() {},
+  mounted() {
+    const comentId = sessionStorage.getItem('comentId')
+    if (comentId && comentId < 5) {
+      this.comentId = comentId
+    }
+  },
   methods: {
     async getHoroscopeData(id = 1, kind = 'd') {
       await this.$apiList.home
@@ -252,15 +265,22 @@ export default {
       window.location.href = `${this.getIntersperseUrl}/horroscope/${option.name
         .replace(/[^a-zA-Z0-9\\s]/g, '-')
         .toLowerCase()}-${option.id}/`
+
+      this.isLoading = true
     },
     setCorresponding(i) {
       // 点击其他运势
-      this.comentId = i
+      sessionStorage.setItem('comentId', i)
       this.$nextTick(() => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        })
+        this.isLoading = true
+        this.isSetTimes = setTimeout(() => {
+          this.comentId = i
+          this.isLoading = false
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+        }, 500)
       })
     },
     correspondingTime(i) {
@@ -271,6 +291,9 @@ export default {
     toUpperBig(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
     },
+  },
+  destroyed() {
+    if (this.isSetTimes) clearTimeout(this.isSetTimes)
   },
 }
 </script>

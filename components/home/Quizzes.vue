@@ -33,7 +33,14 @@
         </div>
         <div class="quizzes_two">
           <div class="quizzes_two_list">
-            <a href="#" v-for="(item, index) in homeQuizzesData" :key="index">
+            <a
+              :href="`${getIntersperseUrl}/test/details/${item.name
+                .trim()
+                .replace(/[^\w\d]/g, '-')
+                .toLowerCase()}-${item.id}/${getCurrentRoute}`"
+              v-for="(item, index) in homeQuizzesData"
+              :key="index"
+            >
               <div class="matrix">
                 <div class="imgs">
                   <nuxt-img
