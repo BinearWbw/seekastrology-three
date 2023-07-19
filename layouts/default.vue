@@ -96,7 +96,7 @@ export default {
       display: inline-block;
       width: 1156px;
       height: 1156px;
-      background: url('/img/Rotating_Sun.png') no-repeat top center;
+      background: url('/img/rotating_sun.png') no-repeat top center;
       animation: rotate 20s linear infinite;
     }
   }
@@ -138,7 +138,7 @@ export default {
         display: inline-block;
         width: 600 * $pr;
         height: 600 * $pr;
-        background: url('/img/Rotating_Sun.png') no-repeat top center;
+        background: url('/img/rotating_sun.png') no-repeat top center;
         animation: rotate 20s linear infinite;
         background-size: cover;
       }

@@ -135,11 +135,15 @@ const sitemap = [
       })
       let res10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
       res10.map((item) => {
-        addArr.push(`/zodiac/type/man-${item}/`)
+        addArr.push(`/zodiac/type/male-${item}/`)
       })
       let res11 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
       res11.map((item) => {
         addArr.push(`/zodiac/type/woman-${item}/`)
+      })
+      let res12 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      res12.map((item) => {
+        addArr.push(`/zodiac/type/comratible-${item}/`)
       })
 
       routes = routes.concat(addArr)
