@@ -8,7 +8,7 @@
             <h3>
               {{ toUpperBig(currentName) }}
               <br />
-              {{ moreData[comentId].name }}
+              {{ moreData[comentIds].name }}
               Horoscope
             </h3>
             <div class="pull_down">
@@ -21,14 +21,18 @@
           </div>
           <div class="list_main">
             <div class="list_tabs">
-              <el-tabs :tabs="horroData" @click="correspondingTime">
+              <el-tabs
+                :tabs="horroData"
+                :tabsId="tabsId"
+                @click="correspondingTime"
+              >
                 <template>
                   <div class="text_form">
                     <div class="format_date">
                       {{ $utils.horoscopeFormatDate(currentTime) }}
                     </div>
                     -
-                    <div class="texts" v-html="moreData[comentId].texts"></div>
+                    <div class="texts" v-html="moreData[comentIds].texts"></div>
                   </div>
                 </template>
               </el-tabs>
@@ -45,7 +49,7 @@
             v-for="(item, index) in moreData"
             :key="index"
             @click="setCorresponding(index)"
-            v-show="index != comentId"
+            v-show="index != comentIds"
           >
             <div class="more_title">
               <div class="img_top">
@@ -173,7 +177,11 @@ export default {
   async asyncData({ error, $apiList, params }) {
     try {
       let ids = 1,
-        currentName = ''
+        currentName = '',
+        comentIds = 0,
+        regey = /-([0-9]+)-/,
+        madeId = null,
+        tabsId = 0
       let [youlistData] = await Promise.all([
         $apiList.home
           .getZodiacHoroscope({
@@ -186,6 +194,13 @@ export default {
           })
           .then((res) => {
             ids = res.id
+            madeId = regey.exec(params.id)
+            if (madeId && madeId[1] !== '5') {
+              comentIds = madeId[1]
+            }
+            if (madeId && madeId[1] == '5') {
+              tabsId = madeId[1]
+            }
             currentName = res.name
             return res.horoscope
           }),
@@ -194,6 +209,8 @@ export default {
         ids,
         youlistData,
         currentName,
+        comentIds,
+        tabsId,
       }
     } catch (e) {
       error({ statusCode: e.code, message: e.message })
@@ -237,12 +254,7 @@ export default {
     ...mapGetters(['getIntersperseUrl']),
   },
   created() {},
-  mounted() {
-    const comentId = sessionStorage.getItem('comentId')
-    if (comentId && comentId < 5) {
-      this.comentId = comentId
-    }
-  },
+  mounted() {},
   methods: {
     async getHoroscopeData(id = 1, kind = 'd') {
       await this.$apiList.home
@@ -270,11 +282,10 @@ export default {
     },
     setCorresponding(i) {
       // 点击其他运势
-      sessionStorage.setItem('comentId', i)
       this.$nextTick(() => {
         this.isLoading = true
         this.isSetTimes = setTimeout(() => {
-          this.comentId = i
+          this.comentIds = i
           this.isLoading = false
           window.scrollTo({
             top: 0,
@@ -289,7 +300,7 @@ export default {
       this.getHoroscopeData(this.ids, i.type)
     },
     toUpperBig(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1)
+      return str?.charAt(0).toUpperCase() + str?.slice(1)
     },
   },
   destroyed() {

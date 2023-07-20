@@ -36,27 +36,27 @@ export default {
         },
         {
           name: 'Love Horoscope',
-          path: '/horroscope/aries-1/',
+          path: '/horroscope/aries-1-1/',
           imgUrl: require('~/assets/img/horroscope/love_sign.svg'),
         },
         {
           name: 'Health Horoscope',
-          path: '/horroscope/aries-1/',
+          path: '/horroscope/aries-2-1/',
           imgUrl: require('~/assets/img/horroscope/healthy_sign.svg'),
         },
         {
           name: 'Career Horoscope',
-          path: '/horroscope/aries-1/',
+          path: '/horroscope/aries-3-1/',
           imgUrl: require('~/assets/img/horroscope/cupational_sign.svg'),
         },
         {
           name: 'Money Horoscope',
-          path: '/horroscope/aries-1/',
+          path: '/horroscope/aries-4-1/',
           imgUrl: require('~/assets/img/horroscope/wealth_sign.svg'),
         },
         {
           name: '2023 Horoscope',
-          path: '/horroscope/aries-1/',
+          path: '/horroscope/aries-5-1/',
           imgUrl: require('~/assets/img/horroscope/2023.svg'),
         },
         {
@@ -92,7 +92,8 @@ export default {
   },
   methods: {
     setIndexContent(i) {
-      sessionStorage.setItem('comentId', i)
+      //   sessionStorage.setItem('comentId', i)
+      console.log('子组件的i', i)
     },
   },
 }
@@ -126,14 +127,6 @@ export default {
         &:last-child {
           margin-right: 0;
         }
-        transition: background-color 0.3s;
-        &:hover {
-          background-color: #a5a5a5;
-          p {
-            color: #fff;
-          }
-        }
-
         &_aos {
           display: flex;
           justify-content: center;
@@ -141,13 +134,19 @@ export default {
           padding: 5px 16px;
           border-radius: 44px;
           background: rgba(255, 255, 255, 0.08);
+          &:hover {
+            background-color: #f29c06;
+            p {
+              color: #fff;
+            }
+          }
 
           &_round {
             width: 34px;
             height: 34px;
             border-radius: 50%;
             fill: #d9d9d9;
-            opacity: 0.5;
+            // opacity: 1;
             img {
               width: 100%;
               height: 100%;

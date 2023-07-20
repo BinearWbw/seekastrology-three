@@ -21,13 +21,12 @@
 
 <script>
 export default {
-  props: ['tabs', 'title'],
+  props: ['tabs', 'title', 'tabsId'],
   data() {
     return {
       activeTab: 0,
       upTitle: '',
       isOpenScroll: false,
-      comentId: 0,
     }
   },
   watch: {
@@ -38,9 +37,7 @@ export default {
   mounted() {
     this.title ? (this.upTitle = this.toUpperBig(this.title)) : false
     // this.checkScroll()
-    const comentId = sessionStorage.getItem('comentId')
-    this.comentId = comentId
-    if (comentId && comentId == 5) {
+    if (this.tabsId && this.tabsId == '5') {
       this.activeTab = 3
       this.selectTab(this.tabs[3], 3)
     }
@@ -49,9 +46,6 @@ export default {
     selectTab(tab, index) {
       this.activeTab = index
       this.$emit('click', tab)
-      if (this.comentId == 5) {
-        sessionStorage.removeItem('comentId')
-      }
     },
     toUpperBig(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)

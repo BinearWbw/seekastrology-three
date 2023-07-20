@@ -35,7 +35,11 @@
         <div class="pairing_text">
           <div class="text_list">
             <transition name="fade">
-              <div class="introduce" v-html="compatibilityData"></div>
+              <div
+                class="introduce"
+                v-if="compatibilityData"
+                v-html="compatibilityData"
+              ></div>
             </transition>
           </div>
           <google-ad classNames="google_ad" :id="'3521651188'"></google-ad>
@@ -155,6 +159,7 @@ export default {
           female: this.females,
         })
         .then((res) => {
+          console.log('res', res)
           this.compatibilityData = res
           sessionStorage.removeItem('genderList')
         })

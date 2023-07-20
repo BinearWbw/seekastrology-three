@@ -82,6 +82,10 @@ const addRoutes = async () => {
   res12.map((item) => {
     routes.push(`/zodiac/type/comratible-${item}/`)
   })
+  let res13 = [1, 2, 3, 4, 5]
+  res13.map((item) => {
+    routes.push(`/horroscope/aries-${item}-1/`)
+  })
 
   return routes
 }
