@@ -186,6 +186,7 @@ export default {
       &.choice {
         margin-top: 24px;
         .google_ad {
+          height: 130px;
           margin-bottom: 24px;
         }
       }
@@ -248,6 +249,7 @@ export default {
         &.choice {
           .google_ad {
             width: 100%;
+
             margin: 40px auto 0;
             padding: 0 50px;
             background-color: initial;
@@ -337,6 +339,7 @@ export default {
             width: 100%;
             margin: 0 0 24 * $pr;
             padding: 0;
+            height: 130 * $pr;
             background-color: initial;
           }
         }

@@ -166,6 +166,9 @@
         </div>
       </div>
       <div class="in-play" v-if="inPlay" ref="playArea">
+        <div class="play_bg">
+          <i class="home_bg"></i>
+        </div>
         <button class="back-btn" @click="handleBack"></button>
         <div class="tip-text" v-html="textObj[type]"></div>
         <ul class="play-list">
@@ -692,9 +695,24 @@ export default {
       top: 0;
       left: 0;
       z-index: 7;
-      background-image: url('~assets/img/tarot/paly_bg.png');
+      //   background-image: url('~assets/img/tarot/paly_bg.png');
+
       background-size: 100% 100%;
       background-repeat: no-repeat;
+      .play_bg {
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background: #221434;
+        .home_bg {
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+          background: rgba(151, 71, 255, 0.3);
+          filter: blur(85 * $pr);
+        }
+      }
     }
     .back-btn {
       position: absolute;
