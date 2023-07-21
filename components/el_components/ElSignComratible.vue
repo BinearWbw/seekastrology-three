@@ -1,26 +1,36 @@
 <template>
   <div class="deserve">
     <div class="deserve_main">
-      <div class="item">
+      <div class="item" @click="openContent">
         <div class="title">
           <p class="title_one">{{ currentSign()[0].name }}</p>
           &ensp;-&ensp;
           <p class="title_two">{{ ' ' + matchingSign()[0].name }}</p>
+          <i class="icon" v-if="!isOpen && !defaultHeight"></i>
         </div>
-        <div class="item_imgs">
-          <div class="imgs">
-            <img :src="currentSign()[0].imgUrl || '/'" alt="#" />
-          </div>
-          <i class="icons"></i>
-          <div class="imgs">
-            <img :src="matchingSign()[0].imgUrl" alt="#" />
-          </div>
-        </div>
-        <div class="item_text" v-html="sub[1]"></div>
-        <div class="button_i">
-          <button class="button" @click="currentSignDetails(sub)">
-            Read More
-          </button>
+        <div
+          class="unfold_main"
+          :style="{ maxHeight: isOpen ? maxHeight : defaultHeight }"
+        >
+          <transition name="unfold">
+            <div class="unfold" v-if="isOpen && !defaultHeight">
+              <div class="unfold_imgs">
+                <div class="imgs">
+                  <img :src="currentSign()[0].imgUrl || '/'" alt="#" />
+                </div>
+                <i class="icons"></i>
+                <div class="imgs">
+                  <img :src="matchingSign()[0].imgUrl" alt="#" />
+                </div>
+              </div>
+              <div class="unfold_text" v-html="sub[1]"></div>
+              <div class="button_i">
+                <button class="button" @click="currentSignDetails(sub)">
+                  Read More
+                </button>
+              </div>
+            </div>
+          </transition>
         </div>
       </div>
     </div>
@@ -94,10 +104,25 @@ export default {
           id: 12,
         },
       ],
+      isOpen: false,
+      maxHeight: 0,
+      defaultHeight: 0,
+      unfold: 0,
     }
   },
   computed: {},
-  mounted() {},
+  mounted() {
+    const innerwidth = window.innerWidth
+    if (innerwidth > 750) {
+      this.isOpen = true
+      if (this.isOpen) {
+        this.$nextTick(() => {
+          const unfoldEl = document.querySelector('.unfold')
+          this.maxHeight = `${unfoldEl.scrollHeight}px`
+        })
+      }
+    }
+  },
   methods: {
     currentSign() {
       return this.tabList.filter((i) => i.id == this.ids)
@@ -107,6 +132,16 @@ export default {
     },
     currentSignDetails(text) {
       this.$emit('click', text)
+    },
+    openContent() {
+      if (window.innerWidth < 751) {
+        this.isOpen = !this.isOpen
+        if (this.isOpen)
+          this.$nextTick(() => {
+            const unfold = document.querySelector('.unfold')
+            this.maxHeight = `${unfold.scrollHeight}px`
+          })
+      }
     },
   },
 }
@@ -125,6 +160,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
         &_one {
           color: #fff;
           font-family: 'Rubik';
@@ -141,66 +177,81 @@ export default {
           font-weight: 500;
           line-height: 30px;
         }
-      }
-      &_imgs {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin-top: 8px;
-        .imgs {
-          width: 115px;
-          height: 115px;
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-        }
-        .icons {
-          display: inline-block;
-          width: 72px;
-          height: 60px;
-          background: url('~/assets/img/home/pairing_two.svg') no-repeat center
-            center;
-          background-size: cover;
+        .icon {
+          position: absolute;
+          right: 0;
+          width: 12px;
+          height: 10px;
+          background: url('~/assets/img/astrology/boult_icon.png') no-repeat;
+          transform: rotate(90deg);
+          transition: transform 0.3s, display 0.3s ease;
         }
       }
-      &_text {
-        color: rgba(255, 255, 255, 0.6);
-        text-align: center;
-        font-family: 'Rubik';
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 18px;
-        text-align: center;
-        margin-bottom: 16px;
+      .unfold_main {
         overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-      }
-      .button_i {
-        display: flex;
-        justify-content: center;
-        .button {
-          width: 156px;
-          height: 32px;
-          padding: 8px 22px;
-          border-radius: 42px;
-          border: 1px solid rgba(255, 255, 255, 0.24);
-          background: rgba(217, 217, 217, 0);
-          color: rgba(255, 255, 255, 0.6);
-          font-family: 'Rubik';
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 18px;
-          transition: background-color 0.3s, color 0.3s ease-in-out;
-          &:hover {
-            background-color: #fff;
-            color: #000;
+        transition: max-height 0.3s ease-in-out;
+        .unfold {
+          &_imgs {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-top: 8px;
+            .imgs {
+              width: 115px;
+              height: 115px;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+            .icons {
+              display: inline-block;
+              width: 72px;
+              height: 60px;
+              background: url('~/assets/img/home/pairing_two.svg') no-repeat
+                center center;
+              background-size: cover;
+            }
+          }
+          &_text {
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            font-family: 'Rubik';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 18px;
+            text-align: center;
+            margin-bottom: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+          }
+          .button_i {
+            display: flex;
+            justify-content: center;
+            .button {
+              width: 156px;
+              height: 32px;
+              padding: 8px 22px;
+              border-radius: 42px;
+              border: 1px solid rgba(255, 255, 255, 0.24);
+              background: rgba(217, 217, 217, 0);
+              color: rgba(255, 255, 255, 0.6);
+              font-family: 'Rubik';
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 18px;
+              transition: background-color 0.3s, color 0.3s ease-in-out;
+              &:hover {
+                background-color: #fff;
+                color: #000;
+              }
+            }
           }
         }
       }
@@ -236,65 +287,69 @@ export default {
             line-height: 30px;
           }
         }
-        &_imgs {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          margin-top: 8px;
-          .imgs {
-            width: 115px;
-            height: 115px;
-            img {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
+
+        .unfold_main {
+          .unfold {
+            &_imgs {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              .imgs {
+                width: 115px;
+                height: 115px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+              }
+              .icons {
+                display: inline-block;
+                width: 72px;
+                height: 60px;
+                background: url('~/assets/img/home/pairing_two.svg') no-repeat
+                  center center;
+                background-size: cover;
+              }
             }
-          }
-          .icons {
-            display: inline-block;
-            width: 72px;
-            height: 60px;
-            background: url('~/assets/img/home/pairing_two.svg') no-repeat
-              center center;
-            background-size: cover;
-          }
-        }
-        &_text {
-          color: rgba(255, 255, 255, 0.6);
-          text-align: center;
-          font-family: 'Rubik';
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 18px;
-          text-align: center;
-          margin-bottom: 16px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-        }
-        .button_i {
-          display: flex;
-          justify-content: center;
-          .button {
-            width: 156px;
-            height: 32px;
-            padding: 8px 22px;
-            border-radius: 42px;
-            border: 1px solid rgba(255, 255, 255, 0.24);
-            background: rgba(217, 217, 217, 0);
-            color: rgba(255, 255, 255, 0.6);
-            font-family: 'Rubik';
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 18px;
-            transition: background-color 0.3s, color 0.3s ease-in-out;
-            &:hover {
-              background-color: #fff;
-              color: #000;
+            &_text {
+              color: rgba(255, 255, 255, 0.6);
+              text-align: center;
+              font-family: 'Rubik';
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 18px;
+              text-align: center;
+              margin-bottom: 16px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+            }
+            .button_i {
+              display: flex;
+              justify-content: center;
+              .button {
+                width: 156px;
+                height: 32px;
+                padding: 8px 22px;
+                border-radius: 42px;
+                border: 1px solid rgba(255, 255, 255, 0.24);
+                background: rgba(217, 217, 217, 0);
+                color: rgba(255, 255, 255, 0.6);
+                font-family: 'Rubik';
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 18px;
+                transition: background-color 0.3s, color 0.3s ease-in-out;
+                &:hover {
+                  background-color: #fff;
+                  color: #000;
+                }
+              }
             }
           }
         }
@@ -332,65 +387,68 @@ export default {
             line-height: 30px;
           }
         }
-        &_imgs {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          margin-top: 8px;
-          .imgs {
-            width: 115px;
-            height: 115px;
-            img {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
+        .unfold_main {
+          .unfold {
+            &_imgs {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              .imgs {
+                width: 115px;
+                height: 115px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+              }
+              .icons {
+                display: inline-block;
+                width: 72px;
+                height: 60px;
+                background: url('~/assets/img/home/pairing_two.svg') no-repeat
+                  center center;
+                background-size: cover;
+              }
             }
-          }
-          .icons {
-            display: inline-block;
-            width: 72px;
-            height: 60px;
-            background: url('~/assets/img/home/pairing_two.svg') no-repeat
-              center center;
-            background-size: cover;
-          }
-        }
-        &_text {
-          color: rgba(255, 255, 255, 0.6);
-          text-align: center;
-          font-family: 'Rubik';
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 18px;
-          text-align: center;
-          margin-bottom: 16px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-        }
-        .button_i {
-          display: flex;
-          justify-content: center;
-          .button {
-            width: 156px;
-            height: 32px;
-            padding: 8px 22px;
-            border-radius: 42px;
-            border: 1px solid rgba(255, 255, 255, 0.24);
-            background: rgba(217, 217, 217, 0);
-            color: rgba(255, 255, 255, 0.6);
-            font-family: 'Rubik';
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 18px;
-            transition: background-color 0.3s, color 0.3s ease-in-out;
-            &:hover {
-              background-color: #fff;
-              color: #000;
+            &_text {
+              color: rgba(255, 255, 255, 0.6);
+              text-align: center;
+              font-family: 'Rubik';
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 18px;
+              text-align: center;
+              margin-bottom: 16px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+            }
+            .button_i {
+              display: flex;
+              justify-content: center;
+              .button {
+                width: 156px;
+                height: 32px;
+                padding: 8px 22px;
+                border-radius: 42px;
+                border: 1px solid rgba(255, 255, 255, 0.24);
+                background: rgba(217, 217, 217, 0);
+                color: rgba(255, 255, 255, 0.6);
+                font-family: 'Rubik';
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 18px;
+                transition: background-color 0.3s, color 0.3s ease-in-out;
+                &:hover {
+                  background-color: #fff;
+                  color: #000;
+                }
+              }
             }
           }
         }
@@ -407,7 +465,7 @@ export default {
         width: 100%;
         border-radius: 12 * $pr;
         background: rgba(255, 255, 255, 0.08);
-        padding: 16 * $pr 16 * $pr 24 * $pr;
+        padding: 16 * $pr 16 * $pr;
         .title {
           display: flex;
           justify-content: center;
@@ -420,52 +478,63 @@ export default {
             font-size: 16 * $pr;
             line-height: 22 * $pr;
           }
+          .icon {
+            display: block;
+            width: 12 * $pr;
+            transition: transform 0.3s ease;
+          }
         }
-        &_imgs {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          margin-top: 0;
-          .imgs {
-            width: 115 * $pr;
-            height: 115 * $pr;
-            img {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
+        .unfold_main {
+          overflow: hidden;
+          transition: max-height 0.3s ease-in-out;
+          .unfold {
+            &_imgs {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              padding-top: 0;
+              .imgs {
+                width: 115 * $pr;
+                height: 115 * $pr;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+              }
+              .icons {
+                width: 71 * $pr;
+                height: 60 * $pr;
+              }
             }
-          }
-          .icons {
-            width: 71 * $pr;
-            height: 60 * $pr;
-          }
-        }
-        &_text {
-          font-size: 14 * $pr;
-          line-height: 18 * $pr;
-          text-align: center;
-          margin-bottom: 8 * $pr;
-        }
-        .button_i {
-          display: flex;
-          justify-content: center;
-          .button {
-            width: auto;
-            height: auto;
-            padding: 8 * $pr 22 * $pr;
-            border-radius: 42 * $pr;
-            border: 1 * $pr solid rgba(255, 255, 255, 0.24);
-            background: #fff;
-            color: #000;
-            font-family: 'Rubik';
-            font-size: 14 * $pr;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 18 * $pr;
-            transition: background-color 0.3s, color 0.3s ease-in-out;
-            &:hover {
-              background-color: #fff;
-              color: #000;
+            &_text {
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
+              text-align: center;
+              margin-bottom: 8 * $pr;
+            }
+            .button_i {
+              display: flex;
+              justify-content: center;
+              .button {
+                width: auto;
+                height: auto;
+                padding: 8 * $pr 22 * $pr;
+                border-radius: 42 * $pr;
+                border: 1 * $pr solid rgba(255, 255, 255, 0.24);
+                background: #fff;
+                color: #000;
+                font-family: 'Rubik';
+                font-size: 14 * $pr;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 18 * $pr;
+                transition: background-color 0.3s, color 0.3s ease-in-out;
+                &:hover {
+                  background-color: #fff;
+                  color: #000;
+                }
+              }
             }
           }
         }

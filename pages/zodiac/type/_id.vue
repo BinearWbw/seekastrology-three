@@ -671,7 +671,7 @@ export default {
                 &_select {
                   display: grid;
                   grid-template-columns: repeat(1, 1fr);
-                  gap: 24 * $pr 0;
+                  gap: 8 * $pr 0;
                 }
               }
               .comratible_details {
