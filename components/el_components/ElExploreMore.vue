@@ -260,7 +260,8 @@ export default {
           }
           &_aos {
             width: auto;
-            padding: 4 * $pr 12 * $pr;
+            // padding: 4 * $pr 12 * $pr;
+            padding: 4 * $pr 10 * $pr;
             border-radius: 44 * $pr;
             &_round {
               min-width: 24 * $pr;

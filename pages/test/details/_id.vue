@@ -454,7 +454,7 @@ $spacing: 55px;
       align-items: center;
       &_top {
         padding: 24px 118px 103px 118px;
-        background: #1b1b1b;
+        background: #1b102f;
         border-radius: 30px;
         width: 100%;
         &_menu {

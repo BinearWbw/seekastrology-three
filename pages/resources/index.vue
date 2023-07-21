@@ -3,145 +3,10 @@
     <div class="resources_main">
       <google-auto-ad classNames="google_ad_top" :id="'9680645670'" />
       <div class="resources_main_title">HOT Content</div>
-      <div class="resources_main_top" v-if="list?.length > 0">
-        <a
-          class="resources_main_top_left"
-          :href="`${getIntersperseUrl}/resources/details/${list[0].name
-            .trim()
-            .replace(/[^\w\d]/g, '-')
-            .toLowerCase()}-${list[0].id}/`"
-        >
-          <!-- (0-文章、1-视频） -->
-          <!-- 0图文 -->
-          <template v-if="list[0].kind == 0">
-            <div class="resources_main_top_left_img">
-              <nuxt-img
-                :src="list[0].icon || '/'"
-                fit="cover"
-                :alt="list[0].name"
-                class="resources_main_top_left_img_pic"
-              ></nuxt-img>
-              <!-- <div class="resources_main_top_left_img_tarot">
-                {{ list[0].main_label }}
-              </div> -->
-            </div>
-            <div class="resources_main_top_left_content">
-              <div class="resources_main_top_left_content_title">
-                <span class="resources_main_top_left_content_title_text">{{
-                  list[0].name
-                }}</span>
-                <div class="resources_main_top_left_content_title_date">
-                  <!-- <span>{{ $utils.formatMMDD(list[0].created_at) }}</span> -->
-                </div>
-              </div>
-              <div class="resources_main_top_left_content_subscribe">
-                {{ list[0].text }}
-              </div>
-              <!-- <div class="resources_main_top_left_content_btn">Read More</div> -->
-              <!-- <div class="resources_main_top_left_content_h5date">
-                {{ $utils.formatMMDD(list[0].created_at) }}
-              </div> -->
-            </div>
-          </template>
-          <template v-else>
-            <div class="resources_main_top_left_img">
-              <nuxt-img
-                :src="list[0].icon || '/'"
-                fit="cover"
-                :alt="list[0].name"
-                class="resources_main_top_left_item_img_video"
-              ></nuxt-img>
-              <img
-                src="../../assets/img/resources/play_icon.png"
-                alt=""
-                class="resources_main_top_left_img_play"
-              />
-              <div class="resources_main_top_left_img_time">
-                {{ $utils.formatMMSS(list[0].sec) }}
-              </div>
-              <div class="resources_main_top_left_img_tarot">TAROT</div>
-            </div>
-            <div class="resources_main_top_left_content">
-              <div class="resources_main_top_left_content_title">
-                <span class="resources_main_top_left_content_title_text">{{
-                  list[0].name
-                }}</span>
-              </div>
-              <!-- <div class="resources_main_top_left_content_btn">Read More</div> -->
-            </div>
-          </template>
-        </a>
-        <div class="resources_main_top_right">
-          <a
-            v-for="item in normalList"
-            :key="item.id"
-            class="resources_main_top_right_item"
-            :href="`${getIntersperseUrl}/resources/details/${item.name
-              .trim()
-              .replace(/[^\w\d]/g, '-')
-              .toLowerCase()}-${item.id}/`"
-          >
-            <!-- 0图文 -->
-            <template v-if="item.kind == 0">
-              <div class="resources_main_top_right_item_img">
-                <nuxt-img
-                  :src="item.icon || '/'"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_top_right_item_img_pic"
-                ></nuxt-img>
-                <!-- <div class="resources_main_top_right_item_img_tarot">
-                  {{ item.main_label }}
-                </div> -->
-              </div>
-              <div class="resources_main_top_right_item_content">
-                <div class="resources_main_top_right_item_content_title">
-                  <span
-                    class="resources_main_top_right_item_content_title_text"
-                    >{{ item.name }}</span
-                  >
-                </div>
-                <div class="resources_main_top_right_item_content_subscribe">
-                  {{ item.text }}
-                </div>
-                <!-- <div class="resources_main_top_right_item_content_date">
-                  <span> {{ $utils.formatMMDD(item.created_at) }}</span>
-                </div> -->
-              </div>
-            </template>
-            <!-- 1视频 -->
-            <template v-else>
-              <div class="resources_main_top_right_item_img">
-                <nuxt-img
-                  :src="item.icon || '/'"
-                  fit="cover"
-                  :alt="item.name"
-                  class="resources_main_top_right_item_img_video"
-                ></nuxt-img>
-                <img
-                  src="../../assets/img/resources/play_icon.png"
-                  alt=""
-                  class="resources_main_top_right_item_img_play"
-                />
-                <div class="resources_main_top_right_item_img_time">
-                  {{ $utils.formatMMSS(item.sec) }}
-                </div>
-                <!-- <div class="resources_main_top_right_item_img_tarot">
-                  {{ item.main_label }}
-                </div> -->
-              </div>
-              <div class="resources_main_top_right_item_content">
-                <div class="resources_main_top_right_item_content_title">
-                  <span
-                    class="resources_main_top_right_item_content_title_text"
-                    >{{ item.name }}</span
-                  >
-                </div>
-              </div>
-            </template>
-          </a>
-        </div>
-      </div>
+      <section class="pop_article">
+        <home-pop-articles></home-pop-articles>
+      </section>
+
       <google-ad
         classNames="google_ad"
         :id="'5741400662'"
@@ -424,7 +289,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use 'sass:math';
-$block: 456px;
+$block: 338px;
 $spacing: 16px;
 .current_tabs {
   background: #ffffff;
@@ -443,6 +308,15 @@ $spacing: 16px;
   &_main {
     width: 1400px;
     margin: 0 auto;
+    .pop_article {
+      :deep(.h5_size),
+      :deep(.button) {
+        display: none;
+      }
+      :deep(.pop_maximum) {
+        margin-top: 0;
+      }
+    }
     &_title {
       font-family: 'Cinzel Decorative';
       font-style: normal;
@@ -450,6 +324,8 @@ $spacing: 16px;
       font-size: 46px;
       line-height: 64px;
       color: #ffffff;
+      text-align: center;
+      padding-bottom: 8px;
     }
     &_top {
       display: flex;
@@ -757,12 +633,12 @@ $spacing: 16px;
 
       &_main {
         display: grid;
-        grid-template-columns: repeat(3, 456px);
-        grid-gap: 16px;
+        grid-template-columns: repeat(4, 338px);
+        gap: 32px 16px;
         &_item {
           &_img {
-            width: 456px;
-            height: 280px;
+            width: 100%;
+            height: 225px;
             position: relative;
             object-fit: cover;
             &_pic {
@@ -815,7 +691,7 @@ $spacing: 16px;
             text-align: center;
             color: #ffffff;
             margin-top: 16px;
-            width: 456px;
+            width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -831,7 +707,7 @@ $spacing: 16px;
               line-height: 30px;
               color: #ffffff;
               margin-top: 16px;
-              width: 456px;
+              width: 100%;
               // overflow: hidden;
               // white-space: nowrap;
               // text-overflow: ellipsis;
@@ -896,9 +772,10 @@ $spacing: 16px;
     }
   }
 }
-@media (max-width: (3 * $block + 2 * $spacing + 350px)) {
+@media (max-width: (4 * $block + 3 * $spacing + 350px)) {
   .resources {
     &_main {
+      width: 100%;
       &_title {
         text-align: center;
       }
@@ -909,10 +786,16 @@ $spacing: 16px;
           margin-left: 0;
         }
       }
+      &_btm {
+        &_main {
+          grid-template-columns: repeat(3, 338px);
+          justify-content: center;
+        }
+      }
     }
   }
 }
-@media (max-width: (3 * $block + 2 * $spacing)) {
+@media (max-width: (3 * $block + 2 * $spacing+ 150px)) {
   .resources {
     &_main {
       width: 100%;
@@ -925,7 +808,7 @@ $spacing: 16px;
       }
       &_btm {
         &_main {
-          grid-template-columns: repeat(2, 456px);
+          grid-template-columns: repeat(2, 338px);
           justify-content: center;
         }
       }
@@ -942,7 +825,7 @@ $spacing: 16px;
     &_main {
       &_btm {
         &_main {
-          grid-template-columns: repeat(1, 456px);
+          grid-template-columns: repeat(2, 338px);
         }
       }
       .google_ad_top,
@@ -958,7 +841,7 @@ $spacing: 16px;
     &_main {
       &_top {
         &_right {
-          grid-template-columns: repeat(1, 397px);
+          grid-template-columns: repeat(2, 300px);
         }
       }
       &_btm {
@@ -972,7 +855,7 @@ $spacing: 16px;
           }
         }
         &_main {
-          grid-template-columns: repeat(1, 456px);
+          grid-template-columns: repeat(2, 300px);
         }
       }
       .google_ad_top,
@@ -989,9 +872,10 @@ $spacing: 16px;
     &_main {
       width: 100%;
       &_title {
-        margin-top: 48 * $pr;
+        margin-top: 24 * $pr;
         font-size: 36 * $pr;
         text-align: center;
+        padding-bottom: 8 * $pr;
       }
       &_top {
         justify-content: center;

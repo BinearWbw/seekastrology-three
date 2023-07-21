@@ -293,8 +293,8 @@ $spacing: 16px;
       width: 1046px;
 
       &_top {
-        background: #1b1b1b;
         border-radius: 30px;
+        background: #1b102f;
         padding: 24px 118px 96px;
         &_menu {
           // margin-left: 118px;
