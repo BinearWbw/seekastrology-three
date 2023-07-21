@@ -119,6 +119,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .pairing_two {
   &_main {
     width: 425px;
@@ -132,7 +133,7 @@ export default {
       text-align: center;
     }
     .select_main {
-      height: 229px;
+      height: auto;
       border-radius: 12px;
       margin-top: 16px;
       background: rgba(255, 255, 255, 0.08);
@@ -155,6 +156,7 @@ export default {
         display: flex;
         justify-content: space-around;
         align-items: center;
+        padding: 34px 0 16px;
         .icons {
           display: inline-block;
           width: 72px;
@@ -175,6 +177,62 @@ export default {
         padding: 8px 0;
         background-color: #fff;
         border-radius: 42px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .pairing_two {
+    &_main {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .pairing_two {
+    &_main {
+      width: 100%;
+      .title {
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
+        padding: 0 20 * $pr;
+      }
+      .select_main {
+        height: auto;
+        border-radius: 12 * $pr;
+        margin-top: 16 * $pr;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 16 * $pr 14 * $pr;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        > p {
+          font-size: 14 * $pr;
+          line-height: 18 * $pr;
+        }
+        &_item {
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          padding: 34 * $pr 0 16 * $pr;
+          .icons {
+            width: 71 * $pr;
+            height: 60 * $pr;
+          }
+        }
+        .button {
+          width: 220 * $pr;
+          font-size: 14 * $pr;
+          font-weight: 400;
+          line-height: 18 * $pr;
+          padding: 8 * $pr 0;
+          border-radius: 42 * $pr;
+        }
       }
     }
   }

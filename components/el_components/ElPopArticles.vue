@@ -61,6 +61,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .articles {
   &_main {
     .title {
@@ -137,6 +138,68 @@ export default {
             font-style: normal;
             font-weight: 400;
             line-height: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .articles {
+    &_main {
+      .title {
+        font-size: 26 * $pr;
+        line-height: 36 * $pr;
+      }
+      .content {
+        padding-top: 34 * $pr;
+        a {
+          display: block;
+          &:last-child .content_item {
+            margin-bottom: 0;
+          }
+          .content_item {
+            display: flex;
+            border-radius: 6 * $pr;
+            transition: background-color 0.3s ease-in-out;
+            margin-bottom: 16 * $pr;
+            position: relative;
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.08);
+            }
+            &_imgs {
+              width: 107 * $pr;
+              height: 62 * $pr;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 6 * $pr;
+              }
+            }
+            &_text {
+              flex: 1;
+              padding: 0 0 0 11 * $pr;
+              .text_title {
+                font-size: 14 * $pr;
+                line-height: 18 * $pr;
+                margin-bottom: 8 * $pr;
+                padding-right: 40 * $pr;
+              }
+              .introduce {
+                font-size: 12 * $pr;
+                line-height: 16 * $pr;
+              }
+            }
+            &_time {
+              position: absolute;
+              right: 0;
+              width: 40 * $pr;
+              font-size: 12 * $pr;
+              line-height: 16 * $pr;
+            }
           }
         }
       }

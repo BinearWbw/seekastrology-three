@@ -159,7 +159,6 @@ export default {
           female: this.females,
         })
         .then((res) => {
-          console.log('res', res)
           this.compatibilityData = res
           sessionStorage.removeItem('genderList')
         })

@@ -104,7 +104,6 @@ export default {
       width: 928px;
       &_top {
         width: 100%;
-        padding-bottom: 24px;
         position: relative;
         .top_text {
           width: 100%;
@@ -131,7 +130,7 @@ export default {
           .google_ad {
             width: 100%;
             height: 164px;
-            margin: 0 auto;
+            margin: 0 auto 24px;
           }
         }
       }
@@ -205,11 +204,6 @@ export default {
             }
           }
         }
-        .google_ad {
-          width: 1200px;
-          margin: 96px auto;
-          overflow: hidden;
-        }
       }
     }
     &_other {
@@ -223,7 +217,7 @@ export default {
         }
         .pairing {
           margin-top: 32px;
-          margin-bottom: 48px;
+          margin-bottom: 30px;
         }
       }
     }
@@ -238,36 +232,66 @@ export default {
   .zodiac {
     &_main {
       width: 100%;
-      padding: 0 60px;
-    }
-    &_google {
-      width: 100%;
-      padding: 0 60px;
+      justify-content: space-evenly;
+      &_news {
+        width: 700px;
+        &_list {
+          width: 100%;
+          .zodiac_signs {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+      }
     }
   }
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1250px) {
   .zodiac {
     &_main {
+      display: block;
+      padding: 32px 50px 96px;
+      justify-content: space-between;
       &_news {
+        width: 100%;
         &_top {
+          width: 100%;
+          position: relative;
           .top_text {
-            width: 100%;
+            h3 {
+              text-align: center;
+            }
           }
         }
 
         &_list {
+          width: 100%;
           .zodiac_signs {
-            .each {
-              padding: 16px;
-            }
-          }
-          .google_ad {
-            width: 100%;
+            grid-template-columns: repeat(3, 1fr);
           }
         }
       }
+      &_other {
+        width: 100%;
+        padding: 40px 10vw 0;
+        .other_main {
+          width: 100%;
+          .google_ad {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+          }
+          .pairing {
+            margin-top: 32px;
+            margin-bottom: 48px;
+          }
+        }
+      }
+    }
+    &_google {
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 50px;
     }
   }
 }
@@ -369,10 +393,11 @@ export default {
                 }
               }
               &:hover {
+                border-color: rgba(255, 255, 255, 0.85);
                 a {
                   transform: translateY(-5 * $pr);
                   img {
-                    transform: none;
+                    transform: scale(1.1) translateY(-30 * $pr);
                   }
                 }
               }
@@ -381,6 +406,21 @@ export default {
           .google_ad {
             width: 100%;
             margin: 24 * $pr auto 32 * $pr;
+          }
+        }
+      }
+      &_other {
+        width: 100%;
+        padding: 48 * $pr 16 * $pr;
+        .other_main {
+          width: 100%;
+          .google_ad {
+            width: 100%;
+            height: 250 * $pr;
+          }
+          .pairing {
+            margin-top: 48 * $pr;
+            margin-bottom: 30 * $pr;
           }
         }
       }

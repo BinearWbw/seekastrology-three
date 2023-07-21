@@ -10,6 +10,7 @@
           </transition>
         </div>
       </div>
+      <div class="selected_title">{{ titleName }}</div>
     </div>
     <transition name="fade">
       <ul class="options" v-show="isOpen">
@@ -37,6 +38,7 @@ export default {
     return {
       isOpen: false,
       selectedOption: '',
+      titleName: '',
     }
   },
   watch: {
@@ -47,6 +49,14 @@ export default {
   },
   mounted() {
     this.pint ? (this.selectedOption = this.options[this.pint - 1]) : false
+    if (this.title) {
+      this.titleName =
+        this.title == 'First Sign'
+          ? 'Male'
+          : this.title == 'Second Sign'
+          ? 'Female'
+          : ''
+    }
   },
   methods: {
     toggleDropdown() {
@@ -72,6 +82,7 @@ export default {
   //   display: inline-block;
   .selected {
     cursor: pointer;
+    position: relative;
     &_current {
       width: 115px;
       height: 115px;
@@ -118,6 +129,19 @@ export default {
           background: url('../../assets/img/home/group.svg') no-repeat center;
         }
       }
+    }
+    &_title {
+      position: absolute;
+      left: 50%;
+      top: -20px;
+      transform: translateX(-50%);
+      color: #fff;
+      text-align: center;
+      font-family: 'Rubik';
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px;
     }
   }
   .options {
@@ -174,6 +198,31 @@ export default {
   $pr: math.div(1vw, 3.75);
   .dropdown {
     .selected {
+      cursor: pointer;
+      position: relative;
+      &_current {
+        width: 115 * $pr;
+        height: 115 * $pr;
+        border-radius: 50%;
+        border: 1 * $pr dashed rgba(255, 255, 255, 0.4);
+        padding: 10 * $pr;
+        .current_item {
+          border: 1 * $pr solid rgba(255, 255, 255, 0.4);
+          span {
+            font-size: 16 * $pr;
+            line-height: 22 * $pr;
+          }
+          .icons {
+            width: 15 * $pr;
+            height: 15 * $pr;
+          }
+        }
+      }
+      &_title {
+        top: -20 * $pr;
+        font-size: 16 * $pr;
+        line-height: 22 * $pr;
+      }
     }
     .options {
       top: 74 * $pr;

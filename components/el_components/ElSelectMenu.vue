@@ -150,6 +150,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .select {
   width: 100%;
   &_menu {
@@ -222,6 +223,61 @@ export default {
             font-style: normal;
             font-weight: 400;
             line-height: 22px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .select {
+    width: 100%;
+    &_menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16 * $pr;
+      .active {
+        background: rgba(151, 71, 255, 0.2) !important;
+      }
+      .menu_list {
+        a {
+          .menu_list_item {
+            padding: 8 * $pr;
+            border-radius: 6 * $pr;
+            background: var(--9747-ff, #9747ff);
+            &::after {
+              display: none;
+            }
+            &:hover {
+              background-color: #af78f6;
+            }
+            p {
+              color: #fff;
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
+            }
+          }
+        }
+      }
+      .menu_sole {
+        a {
+          .menu_sole_item {
+            padding: 8 * $pr;
+            border-radius: 6 * $pr;
+            background: var(--9747-ff, #9747ff);
+            &::after {
+              display: none;
+            }
+            &:hover {
+              background-color: #af78f6;
+            }
+            p {
+              color: #fff;
+              font-size: 14 * $pr;
+              line-height: 18 * $pr;
+            }
           }
         }
       }

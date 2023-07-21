@@ -16,13 +16,13 @@
               v-for="(item, index) in slideshow"
               :class="{ paused: item.paused }"
               :key="index"
-              :style="{ animationDelay: index * 3000 + 'ms' }"
+              :style="{ animationDelay: index * 1200 + 'ms' }"
               @mouseenter="stopAllAnimation(item)"
               @mouseleave="resumeAllAnimation(item)"
             >
               <div
                 class="slideshow"
-                :style="{ animationDelay: index * 3000 + 'ms' }"
+                :style="{ animationDelay: index * 1200 + 'ms' }"
                 :class="{ paused: item.paused }"
               >
                 <a
@@ -32,12 +32,12 @@
                   <img
                     src="../../assets/img/tarot/slideshow_item.png"
                     alt=""
-                    :style="{ animationDelay: index * 3000 + 'ms' }"
+                    :style="{ animationDelay: index * 1200 + 'ms' }"
                     :class="{ paused: item.paused }"
                   />
                   <div
                     class="arrow"
-                    :style="{ animationDelay: index * 3000 + 'ms' }"
+                    :style="{ animationDelay: index * 1200 + 'ms' }"
                     :class="{ paused: item.paused }"
                   >
                     <div class="arrow_icon">
@@ -100,7 +100,7 @@ export default {
     startTimer() {
       this.timer = setInterval(() => {
         this.startAnimation()
-      }, 12000)
+      }, 5500)
     },
     stopTimer() {
       clearInterval(this.timer)
@@ -209,7 +209,7 @@ export default {
               cursor: pointer;
               transition: border-color 0.3s, transform 0.3s ease-in-out;
               overflow: hidden;
-              animation: slideshow 1.5s linear;
+              animation: slideshow 2s linear;
               .slideshow_item {
                 width: 150%;
                 height: 100%;
@@ -228,7 +228,7 @@ export default {
                   background-color: rgba(46, 47, 49, 0.2);
                   z-index: 1;
                   transition: background-color 0.3s ease-in-out;
-                  animation: slideshow_after 1.5s linear;
+                  animation: slideshow_after 2s linear;
                 }
                 img {
                   width: 100%;
@@ -236,7 +236,7 @@ export default {
                   object-fit: cover;
                   filter: brightness(40%);
                   transition: filter 0.3s ease-in-out;
-                  animation: slideshow_img 1.5s linear;
+                  animation: slideshow_img 2s linear;
                 }
                 .arrow {
                   position: absolute;
@@ -247,7 +247,7 @@ export default {
                   border-radius: 50%;
                   opacity: 0;
                   transition: opacity 0.4s, transform 0.5s ease-in-out;
-                  animation: slideshow_arrow 1.5s linear;
+                  animation: slideshow_arrow 2s linear;
                   &_icon {
                     width: 32px;
                     height: 32px;
@@ -334,12 +334,43 @@ export default {
     }
   }
 }
+@media (max-width: 1300px) {
+  .tarot_world {
+    &_main {
+      padding: 0 30px;
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .tarot_world {
+    &_main {
+      .tarot {
+        display: block;
+        &_title {
+          align-items: center;
+          height: 200px;
+          .help {
+            margin-top: 24px;
+          }
+        }
+        &_carousel {
+          &_list {
+            justify-content: center;
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
 
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .tarot_world {
     width: 100%;
     &_main {
+      padding: 0;
       .tarot {
         display: block;
         &_title {

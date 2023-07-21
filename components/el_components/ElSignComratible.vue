@@ -113,6 +113,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .deserve {
   &_main {
     .item {
@@ -200,6 +201,272 @@ export default {
           &:hover {
             background-color: #fff;
             color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1470px) {
+  .deserve {
+    &_main {
+      .item {
+        width: 100%;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 16px 24px;
+        .title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &_one {
+            color: #fff;
+            font-family: 'Rubik';
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 30px;
+          }
+          &_two {
+            color: var(--9747-ff, #9747ff);
+            font-family: 'Rubik';
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 30px;
+          }
+        }
+        &_imgs {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin-top: 8px;
+          .imgs {
+            width: 115px;
+            height: 115px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .icons {
+            display: inline-block;
+            width: 72px;
+            height: 60px;
+            background: url('~/assets/img/home/pairing_two.svg') no-repeat
+              center center;
+            background-size: cover;
+          }
+        }
+        &_text {
+          color: rgba(255, 255, 255, 0.6);
+          text-align: center;
+          font-family: 'Rubik';
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 18px;
+          text-align: center;
+          margin-bottom: 16px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+        }
+        .button_i {
+          display: flex;
+          justify-content: center;
+          .button {
+            width: 156px;
+            height: 32px;
+            padding: 8px 22px;
+            border-radius: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            background: rgba(217, 217, 217, 0);
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Rubik';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 18px;
+            transition: background-color 0.3s, color 0.3s ease-in-out;
+            &:hover {
+              background-color: #fff;
+              color: #000;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .deserve {
+    &_main {
+      .item {
+        width: 100%;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 16px 24px;
+        .title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &_one {
+            color: #fff;
+            font-family: 'Rubik';
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 30px;
+          }
+          &_two {
+            color: var(--9747-ff, #9747ff);
+            font-family: 'Rubik';
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 30px;
+          }
+        }
+        &_imgs {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin-top: 8px;
+          .imgs {
+            width: 115px;
+            height: 115px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .icons {
+            display: inline-block;
+            width: 72px;
+            height: 60px;
+            background: url('~/assets/img/home/pairing_two.svg') no-repeat
+              center center;
+            background-size: cover;
+          }
+        }
+        &_text {
+          color: rgba(255, 255, 255, 0.6);
+          text-align: center;
+          font-family: 'Rubik';
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 18px;
+          text-align: center;
+          margin-bottom: 16px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+        }
+        .button_i {
+          display: flex;
+          justify-content: center;
+          .button {
+            width: 156px;
+            height: 32px;
+            padding: 8px 22px;
+            border-radius: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            background: rgba(217, 217, 217, 0);
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Rubik';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 18px;
+            transition: background-color 0.3s, color 0.3s ease-in-out;
+            &:hover {
+              background-color: #fff;
+              color: #000;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .deserve {
+    &_main {
+      .item {
+        width: 100%;
+        border-radius: 12 * $pr;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 16 * $pr 16 * $pr 24 * $pr;
+        .title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &_one {
+            font-size: 16 * $pr;
+            line-height: 22 * $pr;
+          }
+          &_two {
+            font-size: 16 * $pr;
+            line-height: 22 * $pr;
+          }
+        }
+        &_imgs {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin-top: 0;
+          .imgs {
+            width: 115 * $pr;
+            height: 115 * $pr;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .icons {
+            width: 71 * $pr;
+            height: 60 * $pr;
+          }
+        }
+        &_text {
+          font-size: 14 * $pr;
+          line-height: 18 * $pr;
+          text-align: center;
+          margin-bottom: 8 * $pr;
+        }
+        .button_i {
+          display: flex;
+          justify-content: center;
+          .button {
+            width: auto;
+            height: auto;
+            padding: 8 * $pr 22 * $pr;
+            border-radius: 42 * $pr;
+            border: 1 * $pr solid rgba(255, 255, 255, 0.24);
+            background: #fff;
+            color: #000;
+            font-family: 'Rubik';
+            font-size: 14 * $pr;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 18 * $pr;
+            transition: background-color 0.3s, color 0.3s ease-in-out;
+            &:hover {
+              background-color: #fff;
+              color: #000;
+            }
           }
         }
       }

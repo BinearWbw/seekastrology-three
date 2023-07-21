@@ -9,7 +9,6 @@
             class="tag_list_aos"
             data-aos="fade-left"
             :data-aos-duration="`${index + 1}00`"
-            @click="setIndexContent(index)"
           >
             <div class="tag_list_aos_round">
               <img :src="item.imgUrl" alt="#" />
@@ -90,12 +89,7 @@ export default {
   computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
-  methods: {
-    setIndexContent(i) {
-      //   sessionStorage.setItem('comentId', i)
-      console.log('子组件的i', i)
-    },
-  },
+  methods: {},
 }
 </script>
 
@@ -146,7 +140,6 @@ export default {
             height: 34px;
             border-radius: 50%;
             fill: #d9d9d9;
-            // opacity: 1;
             img {
               width: 100%;
               height: 100%;
@@ -161,6 +154,66 @@ export default {
             font-weight: 400;
             line-height: 22px;
             padding-left: 6px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1435px) {
+  .explore {
+    width: 100%;
+    &_main {
+      &_tag {
+        .tag_list {
+          &:nth-child(5),
+          &:last-child {
+            margin-right: 0;
+          }
+          &:nth-child(6) {
+            margin-right: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .explore {
+    width: 100%;
+    &_main {
+      &_tag {
+        .tag_list {
+          &:nth-child(4),
+          &:nth-child(9),
+          &:last-child {
+            margin-right: 0;
+          }
+          &:nth-child(5) {
+            margin-right: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .explore {
+    width: 100%;
+    &_main {
+      &_tag {
+        padding: 0 30px;
+        .tag_list {
+          &:last-child {
+            margin-right: 0;
+          }
+          &:nth-child(4),
+          &:nth-child(9),
+          &:nth-child(5) {
+            margin-right: 16px;
           }
         }
       }
@@ -185,6 +238,7 @@ export default {
         grid-template-columns: repeat(6, 1fr);
         height: 81 * $pr;
         gap: 5 * $pr;
+        padding: 0;
         .tag_list {
           border-radius: 44 * $pr;
           margin-right: 0;

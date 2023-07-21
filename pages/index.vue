@@ -256,8 +256,8 @@ export default {
             height: 130px;
           }
         }
-        &.new_pop {
-        }
+        // &.new_pop {
+        // }
       }
     }
   }

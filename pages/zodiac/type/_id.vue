@@ -378,6 +378,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 .details_content {
   width: 100%;
   padding-bottom: 96px;
@@ -456,7 +457,7 @@ export default {
               }
             }
             .comratible {
-              padding-top: 24px;
+              padding: 24px 15px 0;
               &_select {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
@@ -483,7 +484,6 @@ export default {
           }
           .google_ad {
             width: 100%;
-            height: 250px;
             margin-top: 96px;
           }
         }
@@ -493,7 +493,201 @@ export default {
           .google_ad {
             width: 100%;
             margin-top: 24px;
-            background-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1470px) {
+  .details_content {
+    .details_type {
+      width: 100%;
+      padding: 48px 60px 0;
+      &_main {
+        .pull_down {
+          left: 50%;
+        }
+        .details {
+          justify-content: space-around;
+          &_left {
+            width: 70%;
+          }
+          &_right {
+            flex: inherit;
+            width: 25%;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1300px) {
+  .details_content {
+    .details_type {
+      &_main {
+        .details {
+          justify-content: space-between;
+          &_left {
+            &_text {
+              .comratible {
+                padding: 24px 0 0;
+                &_select {
+                  gap: 24px 24px;
+                }
+              }
+            }
+          }
+          &_right {
+            flex: inherit;
+            width: 25%;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1130px) {
+  .details_content {
+    .details_type {
+      &_main {
+        .pull_down {
+          width: 200px;
+          top: 0;
+          left: 40%;
+        }
+        .details {
+          &_left {
+            width: 70%;
+            .title {
+              color: #fff;
+              font-family: 'Cinzel Decorative';
+              font-size: 30px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 40px;
+              padding-right: 300px;
+            }
+            &_text {
+              .comratible {
+                padding: 24px 0 0;
+                &_select {
+                  grid-template-columns: repeat(1, 1fr);
+                  gap: 24px 24px;
+                }
+              }
+            }
+          }
+          &_right {
+            width: 190px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  $pr: math.div(1vw, 3.75);
+  .details_content {
+    width: 100%;
+    padding-bottom: 48 * $pr;
+    .details_type {
+      margin: 0 auto;
+      width: 100%;
+      padding: 24 * $pr 16 * $pr;
+      &_main {
+        position: relative;
+        .pull_down {
+          width: 100%;
+          top: 0;
+          left: 0;
+          position: relative;
+        }
+        .details {
+          display: flex;
+          flex-direction: column;
+          &_left {
+            order: 2;
+            width: 100%;
+            .title {
+              font-size: 36 * $pr;
+              line-height: 48 * $pr;
+              text-align: center;
+              padding-right: 0;
+            }
+            .crumbs {
+              width: 100%;
+              display: block;
+              font-size: 22 * $pr;
+              line-height: 30 * $pr;
+              text-align: center;
+            }
+            &_text {
+              ._item {
+                padding-top: 24 * $pr;
+                h4 {
+                  font-size: 22 * $pr;
+                  line-height: 30 * $pr;
+                }
+                .p_text {
+                  font-family: 'Rubik';
+                  font-size: 16 * $pr;
+                  line-height: 28 * $pr;
+                  margin-top: 8 * $pr;
+                  color: rgba(255, 255, 255, 0.85);
+                  :deep(h1),
+                  :deep(h2),
+                  :deep(h3),
+                  :deep(h4),
+                  :deep(h5) {
+                    color: #fff;
+                  }
+                  :deep(span),
+                  :deep(p) {
+                    color: rgba(255, 255, 255, 0.85) !important;
+                  }
+                }
+                .imgs {
+                  width: 100%;
+                  height: auto;
+                  padding-bottom: 14 * $pr;
+                }
+              }
+              .comratible {
+                padding: 24 * $pr 0 0;
+                &_select {
+                  display: grid;
+                  grid-template-columns: repeat(1, 1fr);
+                  gap: 24 * $pr 0;
+                }
+              }
+              .comratible_details {
+                .back {
+                  .button {
+                    padding: 8 * $pr 22 * $pr;
+                    border-radius: 42 * $pr;
+                    font-size: 14 * $pr;
+                    line-height: 18 * $pr;
+                  }
+                }
+              }
+            }
+            .google_ad {
+              margin-top: 48 * $pr;
+            }
+          }
+          &_right {
+            order: 1;
+            flex: inherit;
+            width: 100%;
+            padding: 24 * $pr 0;
+            .google_ad {
+              display: none;
+            }
           }
         }
       }

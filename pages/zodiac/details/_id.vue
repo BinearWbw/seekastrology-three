@@ -386,9 +386,22 @@ export default {
       width: 100%;
       padding: 0 60px;
       .part_details {
+        width: 100%;
+        padding-top: 48px;
+        .pull_down {
+          left: 50%;
+        }
         .introduce {
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
           .left_tab {
-            width: 300px;
+            flex: inherit;
+            width: 25%;
+            padding-left: 0;
+          }
+          .right_cont {
+            width: 70%;
           }
         }
       }
@@ -405,16 +418,8 @@ export default {
   .zodiac_details {
     &_main {
       .part_details {
-        .introduce {
-          .left_tab {
-            width: 230px;
-          }
-          .right_cont {
-            flex: 1;
-            .img_cont {
-              height: 260px;
-            }
-          }
+        .pull_down {
+          left: 45%;
         }
       }
     }
@@ -424,19 +429,27 @@ export default {
 @media (max-width: 1025px) {
   .zodiac_details {
     &_main {
+      padding: 0 5vw;
       .part_details {
-        .introduce {
-          .left_tab {
-            width: 170px;
-            &_list {
-              .imgs {
-                display: none;
-              }
-            }
-          }
+        width: 100%;
+        padding-top: 48px;
+        .pull_down {
+          left: 41%;
         }
-        .google_ad {
+        .introduce {
           width: 100%;
+          display: flex;
+          justify-content: space-around;
+          .left_tab {
+            flex: inherit;
+            width: 150px;
+            padding-left: 0;
+          }
+          .right_cont {
+            width: auto;
+            flex: 1;
+            padding-right: 20px;
+          }
         }
       }
       .tab_control {
@@ -454,7 +467,7 @@ export default {
       padding: 0 16 * $pr;
       .part_details {
         width: 100%;
-        padding-top: 48 * $pr;
+        padding-top: 0;
         h3 {
           font-size: 36 * $pr;
           line-height: 48 * $pr;
@@ -462,22 +475,31 @@ export default {
         }
         .pull_down {
           width: 100%;
-          display: block;
-          margin-bottom: 48 * $pr;
+          position: relative;
+          left: 0;
+          top: 0;
+          margin: 24 * $pr 0;
         }
         .introduce {
           width: 100%;
           display: flex;
+          flex-direction: column;
           .left_tab {
-            display: none;
+            order: 1;
+            width: 100%;
+            .google_ad {
+              display: none;
+            }
           }
           .right_cont {
             width: 100%;
+            order: 3;
+            padding: 24 * $pr 0 0;
             h4 {
               font-size: 26 * $pr;
               line-height: 36 * $pr;
+              text-align: center;
             }
-
             .img_cont {
               height: auto;
               margin: 24 * $pr 0;
@@ -486,7 +508,6 @@ export default {
               &_min {
                 flex-direction: column;
                 padding-top: 18 * $pr;
-                padding-left: 8 * $pr;
                 .contents {
                   margin-bottom: 16 * $pr;
                   .p_title {
@@ -499,11 +520,11 @@ export default {
                     line-height: 22 * $pr;
                   }
                 }
-                .right_various {
-                  font-size: 16 * $pr;
-                  line-height: 24 * $pr;
-                  margin-top: 16 * $pr;
-                }
+              }
+              .right_various {
+                font-size: 16 * $pr;
+                line-height: 24 * $pr;
+                margin-top: 16 * $pr;
               }
             }
           }
