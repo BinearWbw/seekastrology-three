@@ -3,6 +3,7 @@
     <div class="details_type">
       <div class="details_type_main">
         <div class="pull_down">
+          <google-ad :id="'8657229656'" classNames="google_ad"></google-ad>
           <el-selected
             :options="tabList"
             :pint="ids"
@@ -189,7 +190,7 @@
                 </div>
               </div>
             </div>
-            <google-ad classNames="google_ad"></google-ad>
+            <google-ad :id="'2531956384'" classNames="google_ad"></google-ad>
           </div>
           <div class="details_right">
             <el-select-menu
@@ -197,7 +198,7 @@
               :paths="zodiacIData.name"
               :ids="ids"
             ></el-select-menu>
-            <google-auto-ad classNames="google_ad" />
+            <google-auto-ad :id="'1035041884'" classNames="google_ad" />
           </div>
         </div>
       </div>
@@ -393,6 +394,10 @@ export default {
         position: absolute;
         top: 0;
         left: 708px;
+        .google_ad {
+          display: none;
+          height: 150px;
+        }
       }
       .details {
         display: flex;
@@ -606,6 +611,10 @@ export default {
           top: 0;
           left: 0;
           position: relative;
+          .google_ad {
+            display: block;
+            height: 100 * $pr;
+          }
         }
         .details {
           display: flex;

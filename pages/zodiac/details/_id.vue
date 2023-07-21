@@ -3,6 +3,7 @@
     <div class="zodiac_details_main">
       <div class="part_details">
         <div class="pull_down">
+          <google-ad :id="'7918863055'" classNames="google_ad" />
           <el-selected
             :options="tabList"
             :pint="ids"
@@ -98,7 +99,7 @@
               :names="zodiacIData.name"
               :ids="ids"
             ></el-select-menu>
-            <google-ad classNames="google_ad"></google-ad>
+            <google-ad :id="'2910078952'" classNames="google_ad"></google-ad>
           </div>
         </div>
         <!-- <google-ad classNames="google_ad" :id="'3801702844'"></google-ad> -->
@@ -270,6 +271,10 @@ export default {
         position: absolute;
         top: 34px;
         left: 708px;
+        .google_ad {
+          display: none;
+          height: 150px;
+        }
       }
       .introduce {
         width: 100%;
@@ -281,7 +286,6 @@ export default {
             width: 100%;
             height: 250px;
             margin-top: 24px;
-            background-color: rgba(255, 255, 255, 0.2);
           }
         }
         .right_cont {
@@ -479,6 +483,10 @@ export default {
           left: 0;
           top: 0;
           margin: 24 * $pr 0;
+          .google_ad {
+            display: block;
+            height: 90 * $pr;
+          }
         }
         .introduce {
           width: 100%;

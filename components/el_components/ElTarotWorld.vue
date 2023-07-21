@@ -30,7 +30,7 @@
                   class="slideshow_item"
                 >
                   <img
-                    src="../../assets/img/tarot/slideshow_item.png"
+                    :src="item.imgUrl"
                     alt=""
                     :style="{ animationDelay: index * 1200 + 'ms' }"
                     :class="{ paused: item.paused }"
@@ -63,10 +63,34 @@ export default {
   data() {
     return {
       slideshow: [
-        { id: 1, paused: false, name: 'Daily', path: '/tarot/' },
-        { id: 2, paused: false, name: 'Career', path: '/tarot/type/2/' },
-        { id: 3, paused: false, name: 'Universal', path: '/tarot/type/3/' },
-        { id: 4, paused: false, name: 'Love', path: '/tarot/type/1/' },
+        {
+          id: 1,
+          paused: false,
+          name: 'Daily',
+          path: '/tarot/',
+          imgUrl: require('~/assets/img/tarot/tarot_daily.png'),
+        },
+        {
+          id: 2,
+          paused: false,
+          name: 'Career',
+          path: '/tarot/type/2/',
+          imgUrl: require('~/assets/img/tarot/tarot_career.png'),
+        },
+        {
+          id: 3,
+          paused: false,
+          name: 'Universal',
+          path: '/tarot/type/3/',
+          imgUrl: require('~/assets/img/tarot/tarot_universal.png'),
+        },
+        {
+          id: 4,
+          paused: false,
+          name: 'Love',
+          path: '/tarot/type/1/',
+          imgUrl: require('~/assets/img/tarot/tarot_love.png'),
+        },
       ],
       stopAnimation: false,
       timer: null,
@@ -90,10 +114,34 @@ export default {
       this.stopAnimation = false
       this.$nextTick(() => {
         this.slideshow = [
-          { id: 1, paused: false, name: 'Daily', path: '/tarot/' },
-          { id: 2, paused: false, name: 'Career', path: '/tarot/type/2/' },
-          { id: 3, paused: false, name: 'Universal', path: '/tarot/type/3/' },
-          { id: 4, paused: false, name: 'Love', path: '/tarot/type/1/' },
+          {
+            id: 1,
+            paused: false,
+            name: 'Daily',
+            path: '/tarot/',
+            imgUrl: require('~/assets/img/tarot/tarot_daily.png'),
+          },
+          {
+            id: 2,
+            paused: false,
+            name: 'Career',
+            path: '/tarot/type/2/',
+            imgUrl: require('~/assets/img/tarot/tarot_career.png'),
+          },
+          {
+            id: 3,
+            paused: false,
+            name: 'Universal',
+            path: '/tarot/type/3/',
+            imgUrl: require('~/assets/img/tarot/tarot_universal.png'),
+          },
+          {
+            id: 4,
+            paused: false,
+            name: 'Love',
+            path: '/tarot/type/1/',
+            imgUrl: require('~/assets/img/tarot/tarot_love.png'),
+          },
         ]
       })
     },

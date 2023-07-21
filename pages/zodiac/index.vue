@@ -306,7 +306,7 @@ export default {
       &_news {
         width: 100%;
         &_top {
-          padding: 0 16 * $pr 48 * $pr;
+          padding: 0 16 * $pr 24 * $pr;
           width: 100%;
           background-position-y: 0;
           background-size: contain;
@@ -314,13 +314,15 @@ export default {
           position: relative;
           .top_text {
             width: 100%;
-            padding: 48 * $pr 0 0;
+            padding: 0;
             margin-right: auto;
             text-align: center;
+            display: flex;
+            flex-direction: column;
             h3 {
               font-size: 26 * $pr;
               line-height: 36 * $pr;
-              margin-bottom: 16 * $pr;
+              margin-bottom: 0;
             }
             p {
               font-size: 16 * $pr;
@@ -334,9 +336,12 @@ export default {
             }
             .h5_text {
               display: block;
+              order: 2;
+              padding-top: 24 * $pr;
             }
             .google_ad {
-              display: none;
+              order: 1;
+              margin: 0 0 24 * $pr;
             }
           }
         }
@@ -373,11 +378,9 @@ export default {
                   line-height: 22 * $pr;
                 }
                 .text {
-                  font-family: 'Rubik';
-                  font-style: normal;
-                  font-weight: 400;
                   font-size: 12 * $pr;
                   line-height: 16 * $pr;
+                  padding-right: 0;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   display: -webkit-box;

@@ -13,7 +13,8 @@
             <div class="tag_list_aos_round">
               <img :src="item.imgUrl" alt="#" />
             </div>
-            <p>{{ item.name }}</p>
+            <p class="p_pc">{{ item.name }}</p>
+            <p class="p_h5">{{ addTag(item.name) }}</p>
           </a>
         </div>
       </div>
@@ -89,7 +90,12 @@ export default {
   computed: {
     ...mapGetters(['getIntersperseUrl']),
   },
-  methods: {},
+  methods: {
+    addTag(str) {
+      const strof = str.replace(/\s/, '\n')
+      return strof
+    },
+  },
 }
 </script>
 
@@ -129,7 +135,7 @@ export default {
           border-radius: 44px;
           background: rgba(255, 255, 255, 0.08);
           &:hover {
-            background-color: #f29c06;
+            background: var(--9747-ff, #9747ff);
             p {
               color: #fff;
             }
@@ -154,6 +160,9 @@ export default {
             font-weight: 400;
             line-height: 22px;
             padding-left: 6px;
+            &.p_h5 {
+              display: none;
+            }
           }
         }
       }
@@ -232,23 +241,25 @@ export default {
         padding-bottom: 16 * $pr;
       }
       &_tag {
-        display: grid;
+        // display: grid;
         justify-content: start;
-        overflow-x: scroll;
-        grid-template-columns: repeat(6, 1fr);
-        height: 81 * $pr;
-        gap: 5 * $pr;
+        // overflow-x: scroll;
+        // grid-template-columns: repeat(6, 1fr);
+        // height: 81 * $pr;
+        gap: 10 * $pr 5 * $pr;
         padding: 0;
         .tag_list {
           border-radius: 44 * $pr;
           margin-right: 0;
           margin-top: 0;
+          &:nth-child(4),
           &:nth-child(6),
-          &:last-child {
+          &:nth-child(9),
+          &:nth-child(5) {
             margin-right: 0;
           }
           &_aos {
-            width: 115 * $pr;
+            width: auto;
             padding: 4 * $pr 12 * $pr;
             border-radius: 44 * $pr;
             &_round {
@@ -260,6 +271,13 @@ export default {
               font-size: 12 * $pr;
               line-height: 14 * $pr;
               padding-left: 6 * $pr;
+              &.p_pc {
+                display: none;
+              }
+              &.p_h5 {
+                display: block;
+                white-space: pre;
+              }
             }
           }
         }

@@ -14,7 +14,7 @@
     </div>
     <div class="home__main">
       <section class="module choice">
-        <google-ad classNames="google_ad"></google-ad>
+        <google-ad :id="'8015383208'" classNames="google_ad"></google-ad>
         <home-your-choice></home-your-choice>
       </section>
       <section class="module explore">
@@ -185,6 +185,9 @@ export default {
       }
       &.choice {
         margin-top: 24px;
+        .google_ad {
+          margin-bottom: 24px;
+        }
       }
       &.explore {
         margin-top: 56px;
@@ -326,8 +329,15 @@ export default {
       .module {
         margin-top: 48 * $pr;
         &.choice {
+          margin-top: 0;
           > .choice {
             padding: 0;
+          }
+          .google_ad {
+            width: 100%;
+            margin: 0 0 24 * $pr;
+            padding: 0;
+            background-color: initial;
           }
         }
         &.explore {
