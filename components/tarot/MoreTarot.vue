@@ -108,7 +108,7 @@ export default {
       #08070f 0.11%,
       rgba(6, 5, 6, 0) 99.89%
     );
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(4px);
     border-radius: 6px;
     -webkit-transition: transform 0.3s ease-in-out;

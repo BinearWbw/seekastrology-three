@@ -49,7 +49,7 @@
       <home-pop-articles></home-pop-articles>
     </transition>
     <transition name="fade">
-      <home-quizzes></home-quizzes>
+      <home-quizzes class="quizzes"></home-quizzes>
     </transition>
   </div>
 </template>
@@ -225,6 +225,9 @@ export default {
   &_google {
     margin: 0 auto;
     width: 1200px;
+  }
+  .quizzes {
+    margin: 96px auto;
   }
 }
 
@@ -431,6 +434,9 @@ export default {
     &_google {
       width: 100%;
       padding: 0 16 * $pr;
+    }
+    .quizzes {
+      margin: 48 * $pr auto;
     }
   }
 }

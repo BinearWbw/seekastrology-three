@@ -59,7 +59,7 @@
       </div>
       <button class="button" @click="pathToTestPage">Read More</button>
     </div>
-    <google-ad classNames="google_ad"></google-ad>
+    <google-auto-ad :id="'1580825037'" classNames="google_ad" />
   </div>
 </template>
 
@@ -137,7 +137,6 @@ export default {
   .google_ad {
     width: 338px;
     height: 574px;
-    background-color: #a2a2a4;
   }
   .quizzes {
     width: 928px;

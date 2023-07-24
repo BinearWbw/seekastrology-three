@@ -15,6 +15,7 @@
     <div class="home__main">
       <section class="module choice">
         <google-ad :id="'8015383208'" classNames="google_ad"></google-ad>
+        <google-auto-ad :id="'1087831010'" classNames="google_ad_pc" />
         <home-your-choice></home-your-choice>
       </section>
       <section class="module explore">
@@ -186,7 +187,11 @@ export default {
       &.choice {
         margin-top: 24px;
         .google_ad {
-          height: 130px;
+          display: none;
+        }
+        .google_ad_pc {
+          max-width: 1200px;
+          margin: 0 auto;
           margin-bottom: 24px;
         }
       }
@@ -339,8 +344,12 @@ export default {
             width: 100%;
             margin: 0 0 24 * $pr;
             padding: 0;
-            height: 130 * $pr;
+            height: 87 * $pr;
             background-color: initial;
+            display: block;
+          }
+          .google_ad_pc {
+            display: none;
           }
         }
         &.explore {
