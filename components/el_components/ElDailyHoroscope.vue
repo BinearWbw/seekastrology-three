@@ -19,7 +19,7 @@
               ></nuxt-img>
             </div>
             <p class="title">{{ horoscopeData[0]?.name }}</p>
-            <p class="main_text">{{ horoscopeData[0]?.desc }}</p>
+            <div class="main_text" v-html="horoscopeData[0]?.desc"></div>
           </a>
         </div>
         <div class="main_primary_content">
@@ -37,7 +37,7 @@
               ></nuxt-img>
             </div>
             <p class="title">{{ horoscopeData[1]?.name }}</p>
-            <p class="main_text">{{ horoscopeData[1]?.desc }}</p>
+            <div class="main_text" v-html="horoscopeData[1]?.desc"></div>
           </a>
         </div>
       </div>
