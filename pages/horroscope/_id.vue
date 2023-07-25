@@ -25,6 +25,7 @@
                 :tabs="horroData"
                 :tabsId="tabsId"
                 @click="correspondingTime"
+                id="HORROSCOPETABS"
               >
                 <template>
                   <div class="text_form">
@@ -49,6 +50,7 @@
             v-for="(item, index) in moreData"
             :key="index"
             @click="setCorresponding(index)"
+            id="HOROSCOPETYPE"
             v-show="index != comentIds"
           >
             <div class="more_title">

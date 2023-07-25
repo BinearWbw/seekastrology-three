@@ -18,7 +18,7 @@
           >
           </el-selected-two>
         </div>
-        <button class="button" @click="getStartPairingEl">
+        <button class="button" id="SIGNPAIR" @click="getStartPairingEl">
           Check Compatibility
         </button>
       </div>

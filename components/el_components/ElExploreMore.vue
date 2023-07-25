@@ -9,6 +9,7 @@
             class="tag_list_aos"
             data-aos="fade-left"
             :data-aos-duration="`${index + 1}00`"
+            id="EXPLORE"
           >
             <div class="tag_list_aos_round">
               <img :src="item.imgUrl" alt="#" />

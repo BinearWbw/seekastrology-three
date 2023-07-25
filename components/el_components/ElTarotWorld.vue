@@ -26,7 +26,7 @@
                 :class="{ paused: item.paused }"
               >
                 <a
-                  :href="`${getIntersperseUrl + item.path}`"
+                  :href="`${getIntersperseUrl + item.path}${getCurrentRoute}`"
                   class="slideshow_item"
                 >
                   <img
@@ -98,6 +98,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getIntersperseUrl']),
+    getCurrentRoute() {
+      return this.$route.path === '/' ? '?from=home' : ''
+    },
   },
   mounted() {
     this.startTimer()

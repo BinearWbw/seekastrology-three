@@ -13,6 +13,7 @@
       <ul class="options" v-show="isOpen">
         <li
           class="left_tab_list"
+          id="SELECTEDONE"
           v-for="(item, index) in options"
           :key="index"
           :class="{ activated: selectedOption.name == item.name }"

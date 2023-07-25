@@ -9,6 +9,7 @@
             :href="`${getIntersperseUrl}/zodiac/details/${horoscopeData[0]?.name
               .replace(/[^a-zA-Z0-9\\s]/g, '-')
               .toLowerCase()}-${horoscopeData[0]?.id}/`"
+            id="KNOWSUNSIGNS"
           >
             <div class="main_img">
               <nuxt-img
@@ -27,6 +28,7 @@
             :href="`${getIntersperseUrl}/zodiac/details/${horoscopeData[1]?.name
               .replace(/[^a-zA-Z0-9\\s]/g, '-')
               .toLowerCase()}-${horoscopeData[1]?.id}/`"
+            id="KNOWSUNSIGNS"
           >
             <div class="main_img">
               <nuxt-img
@@ -42,7 +44,9 @@
         </div>
       </div>
       <div class="main_btn">
-        <button class="button" @click="pathToPage">Read More</button>
+        <button class="button" id="KNOWSUNSIGNSBTN" @click="pathToPage">
+          Read More
+        </button>
       </div>
     </div>
   </div>

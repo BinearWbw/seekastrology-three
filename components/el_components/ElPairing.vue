@@ -20,7 +20,7 @@
           </div>
           <div class="dynamic_determine">
             <div class="determine_button">
-              <button class="button" @click="getStartPairingEl">
+              <button class="button" id="SIGNPAIR" @click="getStartPairingEl">
                 Get Your Compatibility
               </button>
             </div>
