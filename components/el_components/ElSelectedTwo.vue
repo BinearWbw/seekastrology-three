@@ -3,7 +3,19 @@
     <div class="selected" @click="toggleDropdown">
       <div class="selected_current">
         <div class="current_item">
-          <span v-if="!selectedOption">{{ title || 'Sign' }}</span>
+          <!-- <span v-if="!selectedOption">{{ title || 'Sign' }}</span> -->
+          <div class="title_img" v-if="!selectedOption">
+            <img
+              src="~/assets/img/resources/boy.svg"
+              alt="#"
+              v-if="title == 'First Sign'"
+            />
+            <img
+              src="~/assets/img/resources/girl.svg"
+              alt="#"
+              v-if="title == 'Second Sign'"
+            />
+          </div>
           <i class="icons" v-if="!selectedOption"></i>
           <transition name="fade">
             <img :src="selectedOption.imgUrl" alt="#" v-if="selectedOption" />
@@ -104,6 +116,22 @@ export default {
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
+        }
+        .title_img {
+          background-color: #fff;
+          border-radius: 50%;
+          height: 100%;
+          overflow: hidden;
+          background-color: rgba(110, 92, 143, 0.4);
+          z-index: -1;
+          img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            position: relative;
+            left: 10%;
+            top: 10%;
+          }
         }
         span {
           color: rgba(255, 255, 255, 0.3);

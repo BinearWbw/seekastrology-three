@@ -5,7 +5,7 @@
         <div class="tarot_title">
           <p class="title">Welcome to the Tarot World</p>
           <div class="help">
-            <p>A FREE Tarot Readingcan help.</p>
+            <p>A FREE Tarot Reading can help.</p>
             <p>Choose your cards now:</p>
           </div>
         </div>

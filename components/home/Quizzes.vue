@@ -20,8 +20,8 @@
                   <nuxt-img
                     :src="item.icon || '/'"
                     fit="cover"
-                    width="220"
-                    height="220"
+                    width="500"
+                    height="500"
                     :alt="item.name"
                   ></nuxt-img>
                 </div>

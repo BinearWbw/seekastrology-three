@@ -12,14 +12,15 @@
       <span></span>
       <span></span>
     </div>
+    <google-ad :id="'8015383208'" classNames="google_ad_h5"></google-ad>
     <div class="home__main">
       <section class="module choice">
-        <google-ad :id="'8015383208'" classNames="google_ad"></google-ad>
         <google-auto-ad :id="'1087831010'" classNames="google_ad_pc" />
         <home-your-choice></home-your-choice>
       </section>
       <section class="module explore">
         <el-explore-more />
+        <google-auto-ad :id="'1626224357'" classNames="google_ad" />
       </section>
       <section class="module tarot">
         <el-tarot-world />
@@ -29,7 +30,7 @@
       </section>
       <section class="module kundli" v-if="false">
         <home-kundli></home-kundli>
-        <google-ad classNames="google_ad"></google-ad>
+        <!-- <google-ad classNames="google_ad"></google-ad> -->
       </section>
       <section class="module new_pop">
         <home-pop-articles></home-pop-articles>
@@ -170,6 +171,9 @@ export default {
       }
     }
   }
+  .google_ad_h5 {
+    display: none;
+  }
   &__main {
     margin: 0 auto;
     width: 1400px;
@@ -186,9 +190,6 @@ export default {
       }
       &.choice {
         margin-top: 24px;
-        .google_ad {
-          display: none;
-        }
         .google_ad_pc {
           max-width: 1200px;
           margin: 0 auto;
@@ -197,6 +198,9 @@ export default {
       }
       &.explore {
         margin-top: 56px;
+        .google_ad {
+          display: none;
+        }
       }
       &.kundli {
         .google_ad {
@@ -327,6 +331,13 @@ export default {
         }
       }
     }
+    .google_ad_h5 {
+      width: 100%;
+      margin: 0 0 24 * $pr;
+      padding: 0;
+      height: 87 * $pr;
+      display: block;
+    }
     &__main {
       padding: 0 16 * $pr;
       width: 100%;
@@ -340,20 +351,17 @@ export default {
           > .choice {
             padding: 0;
           }
-          .google_ad {
-            width: 100%;
-            margin: 0 0 24 * $pr;
-            padding: 0;
-            height: 87 * $pr;
-            background-color: initial;
-            display: block;
-          }
           .google_ad_pc {
             display: none;
           }
         }
         &.explore {
           margin-top: 48 * $pr;
+          .google_ad {
+            display: block;
+            width: 100%;
+            margin-top: 48 * $pr;
+          }
         }
         &.tarot {
           margin-top: 48 * $pr;

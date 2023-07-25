@@ -293,13 +293,13 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--9747-ff, #9747ff);
     p {
       text-align: center;
       font-family: 'Rufina';
       font-size: 12px;
       line-height: 16px;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.6);
     }
   }
 }
@@ -353,7 +353,7 @@ export default {
     &__main {
       width: 100%;
       margin: 0 auto;
-      padding: 48 * $pr 16 * $pr 0;
+      padding: 48 * $pr 16 * $pr 0 35 * $pr;
       .logo_mobile_img {
         display: block;
         width: 154 * $pr;
@@ -436,6 +436,10 @@ export default {
                   rgba(255, 255, 255, 0) 100%
                 );
               }
+            }
+            &:nth-child(2),
+            &:nth-child(even) {
+              padding-left: 35 * $pr;
             }
           }
         }
