@@ -30,7 +30,6 @@
       </section>
       <section class="module kundli" v-if="false">
         <home-kundli></home-kundli>
-        <!-- <google-ad classNames="google_ad"></google-ad> -->
       </section>
       <section class="module new_pop">
         <home-pop-articles></home-pop-articles>
@@ -387,7 +386,8 @@ export default {
       }
     }
     .all_tarot {
-      margin-bottom: 48 * $pr;
+      margin-bottom: 0;
+      padding-bottom: 48 * $pr;
     }
   }
 }

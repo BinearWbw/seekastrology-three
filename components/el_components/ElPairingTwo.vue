@@ -110,9 +110,15 @@ export default {
       this.genderList.femalesId = option.id
     },
     getStartPairingEl() {
-      sessionStorage.setItem('genderList', JSON.stringify(this.genderList))
-      if (sessionStorage.getItem('genderList'))
+      if (this.genderList.males && this.genderList.females) {
+        sessionStorage.setItem('genderList', JSON.stringify(this.genderList))
+        if (sessionStorage.getItem('genderList'))
+          window.location.href = `/astrology/`
+      } else if (!this.genderList.males && !this.genderList.females) {
         window.location.href = `/astrology/`
+      } else {
+        alert('please choose two Star sign')
+      }
     },
   },
 }

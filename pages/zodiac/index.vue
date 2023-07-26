@@ -362,7 +362,7 @@ export default {
             grid-template-columns: repeat(2, 1fr);
             gap: 5 * $pr;
             .each {
-              padding: 24 * $pr 16 * $pr;
+              padding: 32 * $pr 16 * $pr;
               box-sizing: border-box;
               border: none;
               border-radius: 6 * $pr;
@@ -397,8 +397,8 @@ export default {
                 img {
                   position: absolute;
                   right: -24 * $pr;
-                  top: 24 * $pr;
-                  width: 121 * $pr;
+                  top: 8 * $pr;
+                  width: 111 * $pr;
                   height: auto;
                 }
               }

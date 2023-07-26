@@ -9,6 +9,7 @@
   <div class="cards-box">
     <div class="card-wrapper">
       <div class="card-title">
+        <p class="title_h5">Tarot Cared</p>
         The <span class="number">78</span> Tarot cards are divided into two main
         sections, the Major Arcana and Minor Arcana, and further into four
         suits:
@@ -149,6 +150,9 @@ $spacing: 75px;
       .number {
         font-size: 40px;
       }
+      .title_h5 {
+        display: none;
+      }
     }
     .card-righter {
       flex: 1;
@@ -272,7 +276,7 @@ $spacing: 75px;
     background-size: 100%;
     margin-left: -16 * $pr;
     margin-right: -16 * $pr;
-    height: 480 * $pr;
+    height: auto;
     padding: 0;
     margin: 48 * $pr 0;
     .card-wrapper {
@@ -288,10 +292,26 @@ $spacing: 75px;
         font-size: 22 * $pr;
         line-height: 30 * $pr;
         text-align: center;
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.6);
 
         .number {
-          font-size: 22 * $pr;
+          font-size: 26 * $pr;
+          font-family: 'Cinzel Decorative';
+          font-style: normal;
+          font-weight: 700;
+          line-height: 30px;
+          color: #fff;
+        }
+        .title_h5 {
+          display: block;
+          padding-bottom: 16 * $pr;
+          color: #fff;
+          text-align: center;
+          font-family: 'Cinzel Decorative';
+          font-size: 26 * $pr;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 36 * $pr;
         }
       }
       .card-righter {

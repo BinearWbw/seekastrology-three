@@ -152,17 +152,21 @@ export default {
       })
     },
     getStartPairing() {
-      this.$apiList.home
-        .getZodiacComp({
-          origin: process.env.origin,
-          male: this.males,
-          female: this.females,
-        })
-        .then((res) => {
-          this.compatibilityData = res
-          sessionStorage.removeItem('genderList')
-        })
-      this.$refs.target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      if (this.males && this.females) {
+        this.$apiList.home
+          .getZodiacComp({
+            origin: process.env.origin,
+            male: this.males,
+            female: this.females,
+          })
+          .then((res) => {
+            this.compatibilityData = res
+            sessionStorage.removeItem('genderList')
+          })
+        this.$refs.target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      } else {
+        alert('please choose two Star sign')
+      }
     },
     infoGetStartPairing() {
       const storedObject = sessionStorage.getItem('genderList')
