@@ -3,7 +3,7 @@
     <div class="astrology_main">
       <div class="pairing">
         <google-ad classNames="google_ad" :id="'7460896194'"></google-ad>
-        <h3>The Pisces Zodiac Sign</h3>
+        <h3>ZODIAC COMPATIBILITY</h3>
         <div class="pairing_main">
           <p class="choose">Choose Two Zodiac Signs</p>
           <div class="dynamic">
@@ -373,6 +373,15 @@ export default {
     &_main {
       width: 100%;
       padding: 0 50px;
+      .pairing {
+        .pairing_main {
+          .dynamic {
+            &_love {
+              padding: 48px 362px;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -381,10 +390,15 @@ export default {
   .astrology {
     &_main {
       .pairing {
+        .google_ad {
+          &:first-child {
+            width: 100%;
+          }
+        }
         .pairing_main {
           .dynamic {
             &_love {
-              padding: 10px 212px 0;
+              padding: 48px 212px;
             }
           }
         }
@@ -406,7 +420,7 @@ export default {
           }
           .dynamic {
             &_love {
-              padding: 10px 50px 0;
+              padding: 48px 130px;
             }
             &_determine {
               .google_ad {
@@ -434,13 +448,17 @@ export default {
       width: 100%;
       padding: 0 16 * $pr;
       .pairing {
-        padding: 80 * $pr 0 0;
+        padding: 0;
         > h3 {
           font-size: 36 * $pr;
           line-height: 48 * $pr;
+          padding-top: 24 * $pr;
         }
         .pairing_main {
           margin-top: 16 * $pr;
+          padding: 16 * $pr 14 * $pr;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.08);
           .pairing_select {
             padding: 0;
             flex-direction: column;
@@ -449,11 +467,19 @@ export default {
               margin-bottom: 16 * $pr;
             }
           }
+          .choose {
+            font-size: 14 * $pr;
+            line-height: 18 * $pr;
+          }
           .dynamic {
             &_love {
               height: auto;
               padding: 0;
               margin-top: 32 * $pr;
+              .icons {
+                width: 71 * $pr;
+                height: 60 * $pr;
+              }
             }
 
             &_determine {
@@ -465,7 +491,6 @@ export default {
               .determine_button {
                 width: 277 * $pr;
                 height: 60 * $pr;
-                margin: 48 * $pr 0;
                 &::before {
                   width: 17 * $pr;
                 }

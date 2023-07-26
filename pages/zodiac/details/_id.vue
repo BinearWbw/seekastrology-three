@@ -109,14 +109,15 @@
       </div>
     </div>
     <transition name="fade">
-      <home-pop-articles></home-pop-articles>
+      <home-pop-articles class="sign_pop"></home-pop-articles>
     </transition>
-    <transition name="fade">
+    <div class="sign_tarot">
+      <google-auto-ad classNames="google_ad" :id="'6197461548'" />
       <tarot-all-tarot></tarot-all-tarot>
-    </transition>
-    <transition name="fade">
+    </div>
+    <!-- <transition name="fade">
       <el-pairing></el-pairing>
-    </transition>
+    </transition> -->
     <transition name="fade">
       <el-loading v-if="isLoading"></el-loading>
     </transition>
@@ -382,6 +383,15 @@ export default {
       }
     }
   }
+  .sign_pop {
+    margin-bottom: 96px;
+  }
+  .sign_tarot {
+    margin-bottom: 96px;
+    .google_ad {
+      display: none;
+    }
+  }
 }
 
 @media (max-width: 1470px) {
@@ -549,6 +559,18 @@ export default {
           width: 100%;
           margin: 48 * $pr 0;
         }
+      }
+    }
+    .sign_pop {
+      margin-bottom: 48 * $pr;
+    }
+    .sign_tarot {
+      margin-bottom: 0;
+      padding-bottom: 48 * $pr;
+      .google_ad {
+        display: block;
+        width: 100%;
+        padding: 0 16 * $pr;
       }
     }
   }

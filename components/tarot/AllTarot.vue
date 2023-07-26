@@ -274,7 +274,7 @@ $spacing: 75px;
     margin-right: -16 * $pr;
     height: 480 * $pr;
     padding: 0;
-    margin-top: 48 * $pr;
+    margin: 48 * $pr 0;
     .card-wrapper {
       width: 100%;
       flex-direction: column;

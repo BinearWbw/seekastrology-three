@@ -68,7 +68,7 @@ export default {
           origin: process.env.origin,
         })
         .then((res) => {
-          return res.sort(() => Math.random() - 0.5) || []
+          return res?.sort(() => Math.random() - 0.5) || []
         }),
     ])
     this.horoscopeData = horoscopeData

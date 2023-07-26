@@ -25,7 +25,7 @@
       <div class="selected_title">{{ titleName }}</div>
     </div>
     <transition name="fade">
-      <ul class="options" v-show="isOpen">
+      <ul class="options" v-show="isOpen" ref="absoluteElement">
         <li
           class="left_tab_list"
           v-for="(item, index) in options"
@@ -69,6 +69,7 @@ export default {
           ? 'Female'
           : ''
     }
+    this.checkElementPosition()
   },
   methods: {
     toggleDropdown() {
@@ -82,6 +83,15 @@ export default {
     closeDropdown() {
       // 失焦时隐藏
       this.isOpen = false
+    },
+    checkElementPosition() {
+      const element = this.$refs.absoluteElement
+      if (window.innerWidth < 751 && this.title == 'First Sign') {
+        element.style.left = 0
+      }
+      if (window.innerWidth < 751 && this.title == 'Second Sign') {
+        element.style.left = '-100%'
+      }
     },
   },
 }
@@ -253,6 +263,7 @@ export default {
       }
     }
     .options {
+      width: 250 * $pr;
       top: 74 * $pr;
       border-radius: 34 * $pr;
       border: 1 * $pr solid #fff;

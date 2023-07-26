@@ -39,18 +39,17 @@
         </div>
       </div>
     </div>
-    <transition name="fade">
-      <tarot-more-tarot></tarot-more-tarot>
-    </transition>
-    <div class="zodiac_google">
-      <google-auto-ad :id="'3950489038'" classNames="google_ad" />
-    </div>
-    <transition name="fade">
-      <home-pop-articles></home-pop-articles>
-    </transition>
-    <transition name="fade">
+    <div class="zodiac_el">
       <home-quizzes class="quizzes"></home-quizzes>
-    </transition>
+      <div class="zodiac_google">
+        <google-auto-ad :id="'3950489038'" classNames="google_ad" />
+      </div>
+      <tarot-more-tarot></tarot-more-tarot>
+    </div>
+
+    <!-- <transition name="fade">
+      <home-pop-articles></home-pop-articles>
+    </transition> -->
   </div>
 </template>
 
@@ -97,7 +96,7 @@ export default {
   &_main {
     margin: 0 auto;
     width: 1400px;
-    padding: 32px 0 96px;
+    padding: 32px 0 46px;
     display: flex;
     justify-content: space-between;
     &_news {
@@ -222,12 +221,17 @@ export default {
       }
     }
   }
-  &_google {
-    margin: 0 auto;
-    width: 1200px;
-  }
-  .quizzes {
-    margin: 96px auto;
+
+  &_el {
+    padding: 0 0 50px;
+    display: flex;
+    flex-direction: column;
+    .zodiac_google {
+      display: none;
+    }
+    .quizzes {
+      margin-bottom: 96px;
+    }
   }
 }
 
@@ -431,12 +435,23 @@ export default {
         }
       }
     }
-    &_google {
-      width: 100%;
-      padding: 0 16 * $pr;
-    }
-    .quizzes {
-      margin: 48 * $pr auto;
+
+    &_el {
+      padding: 0;
+      .zodiac_google {
+        display: block;
+        width: 100%;
+        padding: 0 16 * $pr;
+        order: 1;
+        margin-top: 48 * $pr;
+      }
+      .quizzes {
+        margin-bottom: 48 * $pr;
+        order: 2;
+        :deep(.google_ad_main) {
+          display: none;
+        }
+      }
     }
   }
 }

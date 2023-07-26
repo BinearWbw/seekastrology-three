@@ -190,7 +190,7 @@
                 </div>
               </div>
             </div>
-            <google-ad :id="'2531956384'" classNames="google_ad"></google-ad>
+            <google-auto-ad :id="'2531956384'" classNames="google_ad" />
           </div>
           <div class="details_right">
             <el-select-menu
@@ -204,9 +204,12 @@
       </div>
     </div>
     <transition name="fade">
-      <el-loading v-if="isLoading"></el-loading>
+      <home-pop-articles class="sign_type_pop"></home-pop-articles>
     </transition>
     <tarot-all-tarot></tarot-all-tarot>
+    <transition name="fade">
+      <el-loading v-if="isLoading"></el-loading>
+    </transition>
   </div>
 </template>
 
@@ -503,6 +506,9 @@ export default {
       }
     }
   }
+  .sign_type_pop {
+    margin-bottom: 96px;
+  }
 }
 @media (max-width: 1470px) {
   .details_content {
@@ -613,7 +619,8 @@ export default {
           position: relative;
           .google_ad {
             display: block;
-            height: 100 * $pr;
+            height: 90 * $pr;
+            margin-bottom: 36 * $pr;
           }
         }
         .details {
@@ -700,6 +707,9 @@ export default {
           }
         }
       }
+    }
+    .sign_type_pop {
+      margin-bottom: 0;
     }
   }
 }

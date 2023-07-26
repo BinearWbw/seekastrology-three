@@ -2,13 +2,11 @@
   <div class="explore">
     <div class="explore_main">
       <p class="title">Explore More</p>
-      <div class="explore_main_tag">
+      <div class="explore_main_tag" data-aos="zoom-out">
         <div class="tag_list" v-for="(item, index) in moreData" :key="index">
           <a
             :href="`${getIntersperseUrl + item.path}`"
             class="tag_list_aos"
-            data-aos="fade-left"
-            :data-aos-duration="`${index + 1}00`"
             id="EXPLORE"
           >
             <div class="tag_list_aos_round">

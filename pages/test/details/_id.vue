@@ -161,7 +161,7 @@
                   class="details_main_left_top_result_retake"
                   @click="retake()"
                 >
-                  Retake This Result
+                  Restart This Quiz
                 </div>
               </template>
             </div>
@@ -519,12 +519,11 @@ $spacing: 55px;
               margin-top: 16px;
               &_item {
                 width: 338px;
-                min-height: 60px;
+                min-height: 40px;
                 background: rgba(255, 255, 255, 0.1);
                 border-radius: 18px;
                 display: flex;
                 align-items: center;
-                // padding: 0 10px;
                 border: 1px solid transparent;
                 cursor: pointer;
                 label {
@@ -537,7 +536,6 @@ $spacing: 55px;
                   width: 100%;
                   display: flex;
                   align-items: center;
-                  word-break: break-all;
                   cursor: pointer;
                   height: 100%;
                   span {
@@ -545,7 +543,8 @@ $spacing: 55px;
                     cursor: pointer;
                     margin-right: 10px;
                     display: block;
-                    // word-break: break-all;
+                    word-wrap: break-word;
+                    padding: 10px 0;
                   }
                   input {
                     margin-left: 31px;
@@ -978,6 +977,7 @@ $spacing: 55px;
                     }
                     span {
                       margin-right: 10 * $pr;
+                      padding: 10 * $pr 0;
                     }
                   }
                 }

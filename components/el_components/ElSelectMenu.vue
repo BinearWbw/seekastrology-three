@@ -238,6 +238,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       gap: 16 * $pr;
+      justify-content: center;
       .active {
         background: rgba(151, 71, 255, 0.2) !important;
       }

@@ -1,7 +1,7 @@
 <template>
   <div class="pairing_max_main">
     <div class="pairing_module">
-      <h3>The Pisces Zodiac Sign</h3>
+      <h3>ZODIAC COMPATIBILITY</h3>
       <div class="pairing_main">
         <div class="dynamic">
           <div class="dynamic_love">
@@ -255,7 +255,14 @@ export default {
   .pairing_max_main {
     .pairing_module {
       width: 100%;
-      margin: 96px auto 0;
+      margin: 96px auto;
+      .pairing_main {
+        .dynamic {
+          &_love {
+            padding: 48px 400px;
+          }
+        }
+      }
     }
   }
 }
@@ -266,7 +273,7 @@ export default {
       .pairing_main {
         .dynamic {
           &_love {
-            padding: 10px 212px 0;
+            padding: 48px 300px;
           }
         }
       }
@@ -280,7 +287,7 @@ export default {
       .pairing_main {
         .dynamic {
           &_love {
-            padding: 10px 80px 0;
+            padding: 48px 180px;
           }
         }
       }
@@ -297,8 +304,8 @@ export default {
     background-size: 100%;
     .pairing_module {
       width: 100%;
-      padding: 0 16 * $pr;
-      margin: 48 * $pr auto;
+      padding: 0 16 * $pr 90 * $pr;
+      margin: 48 * $pr auto 0;
       h3 {
         font-size: 26 * $pr;
         line-height: 36 * $pr;
@@ -306,6 +313,9 @@ export default {
       }
       .pairing_main {
         margin-top: 16 * $pr;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 16 * $pr 14 * $pr;
         .pairing_select {
           padding: 0;
           flex-direction: column;
@@ -318,7 +328,11 @@ export default {
           &_love {
             height: auto;
             padding: 0;
-            margin-top: 32 * $pr;
+            margin-top: 24 * $pr;
+            .icons {
+              width: 71 * $pr;
+              height: 60 * $pr;
+            }
           }
 
           &_determine {
@@ -330,7 +344,7 @@ export default {
             .determine_button {
               width: 277 * $pr;
               height: 60 * $pr;
-              margin: 24 * $pr 0 93 * $pr;
+              //   margin: 24 * $pr 0 93 * $pr;
               &::before {
                 width: 17 * $pr;
               }
