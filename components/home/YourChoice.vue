@@ -177,6 +177,7 @@ export default {
   $pr: math.div(1vw, 3.75);
   .choice {
     padding: 0 16 * $pr;
+    margin: 48 * $pr auto 0;
     &__title {
       padding-bottom: 16 * $pr;
       h3 {

@@ -80,6 +80,7 @@
           >
             <img
               class="card-img"
+              id="CARDWRAPPER"
               :data-index="index"
               src="~/assets/img/tarot/card.png"
               alt="Card"
@@ -104,6 +105,7 @@
           >
             <img
               class="card-img"
+              id="CARDWRAPPER"
               :data-index="index"
               src="~/assets/img/tarot/card.png"
               alt="Card"
@@ -122,7 +124,7 @@
             :alt="item.name"
           ></nuxt-img>
         </div>
-        <div class="handle-btn" @click="handleAnswer">
+        <div class="handle-btn" id="HANDLEANSWER" @click="handleAnswer">
           <img class="btn-img" src="~/assets/img/tarot/btn.png" alt="btn" />
         </div>
       </div>
@@ -207,7 +209,7 @@
               ></nuxt-img>
             </div>
           </div>
-          <div class="handle-btn" @click="handleAnswer">
+          <div class="handle-btn" id="HANDLEANSWER" @click="handleAnswer">
             <img
               v-if="!isSelected"
               class="btn-img"

@@ -25,7 +25,11 @@
             </div>
             <div class="dynamic_determine" ref="target">
               <div class="determine_button">
-                <button class="button" @click="getStartPairing">
+                <button
+                  class="button"
+                  id="GETSTARTPAIRING"
+                  @click="getStartPairing"
+                >
                   Get Your Compatibility
                 </button>
               </div>

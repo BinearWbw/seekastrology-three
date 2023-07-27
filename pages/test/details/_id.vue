@@ -204,7 +204,7 @@
     </div>
     <div class="foot_components" ref="foot_components">
       <transition name="fade">
-        <home-your-choice></home-your-choice>
+        <home-your-choice class="choice"></home-your-choice>
       </transition>
       <transition name="fade">
         <tarot-more-tarot></tarot-more-tarot>
@@ -745,6 +745,12 @@ $spacing: 55px;
       }
     }
   }
+  .foot_components {
+    padding: 48px 0;
+    .choice {
+      margin-bottom: 48px;
+    }
+  }
 }
 @media (max-width: (4 * $block + 3 * $spacing + 354px)) {
   .details {
@@ -1058,6 +1064,12 @@ $spacing: 55px;
       }
       &_right {
         display: none;
+      }
+    }
+    .foot_components {
+      padding: 0 0 48 * $pr;
+      .choice {
+        margin-bottom: 48 * $pr;
       }
     }
   }

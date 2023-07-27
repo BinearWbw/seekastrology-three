@@ -18,6 +18,7 @@
             v-for="(item, index) in tabs"
             :key="'tab' + index"
             class="resources_main_btm_tabs_item"
+            id="RESOURCESTABS"
             :class="index == currentTabIndex ? 'current_tabs' : ''"
             @click="changeTab(item, index)"
           >
@@ -65,7 +66,10 @@
                 </div>
               </template>
               <template v-else>
-                <div class="resources_main_btm_main_item_img">
+                <div
+                  class="resources_main_btm_main_item_img"
+                  id="RESOURCESVIDEO"
+                >
                   <nuxt-img
                     :src="item.icon || '/'"
                     fit="cover"
@@ -771,6 +775,12 @@ $spacing: 16px;
       align-items: center;
     }
   }
+  .foot_components {
+    padding: 0 0 48px;
+    .choice {
+      margin-bottom: 48px;
+    }
+  }
 }
 @media (max-width: (4 * $block + 3 * $spacing + 350px)) {
   .resources {
@@ -1167,6 +1177,12 @@ $spacing: 16px;
             }
           }
         }
+      }
+    }
+    .foot_components {
+      padding: 0 0 48 * $pr;
+      .choice {
+        margin-bottom: 48 * $pr;
       }
     }
   }

@@ -172,13 +172,15 @@ const formatMMSS = (param) => {
   if (param == '' || param == undefined || param == null) {
     return ''
   }
-  const minutes = Math.floor(param / 60)
+  const hours = Math.floor(param / 3600)
+  const minutes = Math.floor((param % 3600) / 60)
   const remainingSeconds = param % 60
 
+  const formattedHours = hours > 0 ? `${hours}:` : ''
   const formattedMinutes = String(minutes).padStart(2, '0')
   const formattedSeconds = String(remainingSeconds).padStart(2, '0')
 
-  return `${formattedMinutes}:${formattedSeconds}`
+  return `${formattedHours}${formattedMinutes}:${formattedSeconds}`
 }
 
 const debounce = (fn, delay = 300) => {

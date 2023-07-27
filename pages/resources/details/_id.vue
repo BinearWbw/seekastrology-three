@@ -585,6 +585,12 @@ $spacing: 16px;
       }
     }
   }
+  .foot_components {
+    padding: 0 0 48px;
+    .choice {
+      margin-bottom: 48px;
+    }
+  }
 }
 //1400
 @media (max-width: (3 * $block + 2 * $spacing + 90px)) {
@@ -821,6 +827,12 @@ $spacing: 16px;
       width: 343 * $pr;
       height: 299 * $pr;
       // overflow: hidden;
+    }
+    .foot_components {
+      padding: 0 0 48 * $pr;
+      .choice {
+        margin-bottom: 48 * $pr;
+      }
     }
   }
 }
