@@ -18,6 +18,7 @@
                 :src="zodiacIData.banner || '/'"
                 fit="cover"
                 height="325"
+                loading="lazy"
                 :alt="zodiacIData.name"
               ></nuxt-img>
             </div>

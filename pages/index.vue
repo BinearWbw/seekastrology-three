@@ -29,7 +29,7 @@
         <home-quizzes></home-quizzes>
       </section>
       <section class="module kundli" v-if="false">
-        <home-kundli></home-kundli>
+        <!-- <home-kundli></home-kundli> -->
       </section>
       <section class="module new_pop">
         <home-pop-articles></home-pop-articles>

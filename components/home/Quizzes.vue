@@ -22,6 +22,7 @@
                     fit="cover"
                     width="500"
                     height="500"
+                    loading="lazy"
                     :alt="item.name"
                   ></nuxt-img>
                 </div>
@@ -48,6 +49,7 @@
                     fit="cover"
                     width="220"
                     height="220"
+                    loading="lazy"
                     :alt="item.name"
                   ></nuxt-img>
                 </div>

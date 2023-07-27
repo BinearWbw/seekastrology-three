@@ -16,6 +16,8 @@
                 fit="cover"
                 width="691"
                 height="320"
+                loading="lazy"
+                format="webp"
                 :alt="getHomeNewsData[0]?.name"
               ></nuxt-img>
               <span class="main_type">{{
@@ -46,6 +48,10 @@
                 <nuxt-img
                   :src="item.icon || '/'"
                   fit="cover"
+                  width="358"
+                  height="262"
+                  loading="lazy"
+                  format="webp"
                   :alt="item.name"
                 ></nuxt-img>
                 <span class="main_type">{{ getMainType(item.main_type) }}</span>
