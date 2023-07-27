@@ -136,9 +136,9 @@
           <ul class="card-list">
             <li
               class="card-list-item"
-              v-for="index of 1"
+              v-for="index of 6"
               :key="index"
-              :style="'transform: translateY(-' + index * 4 + 'px)'"
+              :style="'transform: translateY(-' + index * 5 + 'px)'"
             >
               <img
                 class="card-img-mobile"
@@ -426,7 +426,7 @@ export default {
         for (let i = 1; i <= this.mobileCount; i++) {
           let ele = this.$refs[`mobile${i}`]
           ele[0].style.display = 'block'
-          ele[0].style.transform = `rotate(${-34 + i * 3}deg)`
+          ele[0].style.transform = `rotate(${-76 + i * 6.3}deg)`
         }
       }, 100)
     },
@@ -806,11 +806,11 @@ export default {
         height: 400 * $pr;
         position: absolute;
         top: 20 * $pr;
-        transform-origin: 50% 50%;
+        transform-origin: 40% 40%;
         transition: transform 0.7s ease-out;
         .card-img-mobile {
-          width: 90 * $pr;
-          height: 150 * $pr;
+          width: 70 * $pr;
+          height: 117 * $pr;
         }
       }
     }
