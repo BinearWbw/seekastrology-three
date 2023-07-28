@@ -167,6 +167,9 @@
                     v-for="(item, index) in signComp"
                     :key="index"
                     :sub="item"
+                    :inds="index"
+                    :currentIndex="currentIndex"
+                    @close="currentClose(index)"
                     @click="currentPairingDetails"
                   ></el-sign-comratible>
                 </div>
@@ -285,6 +288,7 @@ export default {
       isSetTimes: null,
       pairingDetailsCrumbs: '',
       pairingDetailsText: '',
+      currentIndex: 0,
     }
   },
   async asyncData({ error, $apiList, params }) {
@@ -374,6 +378,9 @@ export default {
       this.pairingDetailsText =
         text[0].charAt(0).toUpperCase() + text[0].slice(1)
     },
+    currentClose(index) {
+      this.currentIndex = index
+    },
   },
   destroyed() {
     if (this.isSetTimes) clearTimeout(this.isSetTimes)
@@ -451,6 +458,7 @@ export default {
                 :deep(span),
                 :deep(p) {
                   color: rgba(255, 255, 255, 0.85) !important;
+                  text-align: inherit !important;
                 }
               }
               .imgs {

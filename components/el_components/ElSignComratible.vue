@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  props: ['ids', 'sub'],
+  props: ['ids', 'sub', 'currentIndex', 'inds'],
   data() {
     return {
       tabList: [
@@ -110,10 +110,19 @@ export default {
       unfold: 0,
     }
   },
+  watch: {
+    currentIndex(val) {
+      //关闭其他
+      if (val !== this.inds) {
+        this.isOpen = false
+      }
+    },
+  },
   computed: {},
   mounted() {
     const innerwidth = window.innerWidth
     if (innerwidth > 750) {
+      //pc 端全部打开
       this.isOpen = true
       if (this.isOpen) {
         this.$nextTick(() => {
@@ -121,6 +130,14 @@ export default {
           this.maxHeight = `${unfoldEl.scrollHeight}px`
         })
       }
+    }
+    if (this.currentIndex == this.inds) {
+      //默认打开第一个
+      this.isOpen = true
+      this.$nextTick(() => {
+        const unfoldEl = document.querySelector('.unfold')
+        this.maxHeight = `${unfoldEl.scrollHeight}px`
+      })
     }
   },
   methods: {
@@ -134,6 +151,7 @@ export default {
       this.$emit('click', text)
     },
     openContent() {
+      this.$emit('close')
       if (window.innerWidth < 751) {
         this.isOpen = !this.isOpen
         if (this.isOpen)
