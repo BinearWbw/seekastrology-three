@@ -490,14 +490,9 @@ export default {
     font-size: 14 * $pr;
     line-height: 18 * $pr;
     white-space: nowrap;
-    &:hover {
-      color: rgba(255, 255, 255, 0.85);
-      background-color: rgba(255, 255, 255, 0);
-    }
   }
   .selected {
     color: #000;
-    background-color: #fff;
     border-radius: 42 * $pr;
   }
 
