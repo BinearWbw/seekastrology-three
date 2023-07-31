@@ -466,6 +466,10 @@ export default {
     margin-top: 48 * $pr;
     position: relative;
     justify-content: initial;
+    &::-webkit-scrollbar {
+      display: block;
+    }
+    padding-bottom: 10 * $pr;
     &::after {
       content: '';
       position: absolute;
@@ -481,6 +485,7 @@ export default {
       );
     }
   }
+
   .button {
     margin: 0 10 * $pr;
     box-sizing: border-box;
@@ -490,9 +495,14 @@ export default {
     font-size: 14 * $pr;
     line-height: 18 * $pr;
     white-space: nowrap;
+    &:hover {
+      color: rgba(255, 255, 255, 0.85);
+      background-color: initial;
+    }
   }
   .selected {
-    color: #000;
+    color: #000 !important;
+    background-color: #fff !important;
     border-radius: 42 * $pr;
   }
 
