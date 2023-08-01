@@ -20,7 +20,12 @@
           </div>
         </a>
       </div>
-      <div class="menu_list" v-for="(item, index) in select_menu" :key="index">
+      <div
+        class="menu_list"
+        v-for="(item, index) in select_menu"
+        :key="index"
+        v-show="!item.sexId || item.sexId == whetherMaleFemale()"
+      >
         <a :href="`${getIntersperseUrl + item.path + '-' + ids}/`">
           <div
             class="menu_list_item"
@@ -55,15 +60,48 @@ export default {
       select_menu: [
         {
           name: 'Career',
+          sexId: 1,
           path: '/zodiac/type/career',
         },
         {
           name: 'Lover',
+          sexId: 1,
           path: '/zodiac/type/lover',
         },
         {
           name: 'Healthy',
+          sexId: 1,
           path: '/zodiac/type/healthy',
+        },
+        {
+          name: 'Man Career',
+          sexId: 2,
+          path: '/zodiac/type/boycareer',
+        },
+        {
+          name: 'Man \n Positivesy&Negativesy',
+          sexId: 2,
+          path: '/zodiac/type/boyposit',
+        },
+        {
+          name: 'Man Lover',
+          sexId: 2,
+          path: '/zodiac/type/boyamor',
+        },
+        {
+          name: 'Woman Career',
+          sexId: 3,
+          path: '/zodiac/type/girlcareer',
+        },
+        {
+          name: 'Woman \n Positivesy&Negativesy',
+          sexId: 3,
+          path: '/zodiac/type/girlposit',
+        },
+        {
+          name: 'Woman Lover',
+          sexId: 3,
+          path: '/zodiac/type/girlamor',
         },
         {
           name: 'Man',
@@ -145,6 +183,16 @@ export default {
     gotoMenu() {
       this.isLoading = true
     },
+    whetherMaleFemale() {
+      const isSex =
+        this.$route.path.includes('male') || this.$route.path.includes('boy')
+          ? 2
+          : this.$route.path.includes('woman') ||
+            this.$route.path.includes('girl')
+          ? 3
+          : 1
+      return isSex
+    },
   },
 }
 </script>
@@ -163,6 +211,7 @@ export default {
           padding: 16px 0;
           position: relative;
           transition: background-color 0.3s ease-in-out;
+          white-space: pre-wrap;
           &::after {
             content: '';
             position: absolute;
@@ -248,6 +297,7 @@ export default {
             padding: 8 * $pr;
             border-radius: 6 * $pr;
             background: var(--9747-ff, #9747ff);
+            white-space: initial;
             &::after {
               display: none;
             }

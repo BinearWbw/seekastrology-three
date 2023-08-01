@@ -25,20 +25,20 @@
               }}
             </a>
             <div class="details_left_text">
-              <div class="_item" v-if="$route.path.includes('career')">
+              <div class="_item" v-if="containsWords($route.path)">
                 <div class="imgs">
                   <img src="~/assets/img/astrology/career_sign.png" alt="#" />
                 </div>
                 <div class="p_text" v-html="tabsDataList[0].career"></div>
               </div>
               <div class="lover" v-if="$route.path.includes('lover')">
-                <div class="_item" v-show="tabsDataList[0].lover">
+                <div class="_item" v-if="tabsDataList[0].lover">
                   <div class="imgs">
                     <img src="~/assets/img/astrology/love_sign.png" alt="#" />
                   </div>
                   <div class="p_text" v-html="tabsDataList[0].lover"></div>
                 </div>
-                <div class="_item" v-show="tabsDataList[0].love_reasons">
+                <div class="_item" v-if="tabsDataList[0].love_reasons">
                   <h4>
                     {{
                       `The 5 Top Reasons to Love Being an ${zodiacIData.name.toUpperCase()}`
@@ -51,13 +51,14 @@
                 </div>
               </div>
               <div class="healthy" v-if="$route.path.includes('health')">
-                <div class="_item" v-show="tabsDataList[0].health">
+                <div class="_item" v-if="tabsDataList[0].health">
                   <div class="imgs">
                     <img src="~/assets/img/astrology/health_sign.png" alt="#" />
                   </div>
                   <div class="p_text" v-html="tabsDataList[0].health"></div>
                 </div>
               </div>
+              <!-- -------------------------------------男性特征----------------------------------------------- -->
               <div class="man" v-if="$route.path.includes('male')">
                 <div class="_item" v-if="tabsDataList[1].traits">
                   <div class="imgs">
@@ -66,46 +67,53 @@
                   <h4>{{ `${zodiacIData.name.toUpperCase()} Traits` }}</h4>
                   <div class="p_text" v-html="tabsDataList[1].traits"></div>
                 </div>
-                <div class="_item" v-if="tabsDataList[1].career">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Career` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[1].career"></div>
+              </div>
+              <div class="man_list">
+                <div class="man_list_imgs" v-if="$route.path.includes('boy')">
+                  <img src="~/assets/img/astrology/man_sign.png" alt="#" />
                 </div>
-                <div class="_item" v-if="tabsDataList[1].lover">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Lover` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[1].lover"></div>
+                <div class="man_list_career" v-if="containsBoyCar($route.path)">
+                  <div class="_item" v-if="tabsDataList[1].career">
+                    <div class="p_text" v-html="tabsDataList[1].career"></div>
+                  </div>
                 </div>
-                <div class="_item" v-if="tabsDataList[1].health">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Healthy` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[1].health"></div>
+                <div
+                  class="man_list_posit"
+                  v-if="containsBoyPosit($route.path)"
+                >
+                  <div class="_item" v-if="tabsDataList[1].positives">
+                    <h4>
+                      {{ `${zodiacIData.name.toUpperCase()} Man Positivesy` }}
+                    </h4>
+                    <div
+                      class="p_text"
+                      v-html="tabsDataList[1].positives"
+                    ></div>
+                  </div>
+                  <div class="_item" v-if="tabsDataList[1].negatives">
+                    <h4>
+                      {{ `${zodiacIData.name.toUpperCase()} Man Negativesy` }}
+                    </h4>
+                    <div
+                      class="p_text"
+                      v-html="tabsDataList[1].negatives"
+                    ></div>
+                  </div>
                 </div>
-                <div class="_item" v-if="tabsDataList[1].love_reasons">
-                  <h4>
-                    {{
-                      `The 5 Top Reasons to Love Being an ${zodiacIData.name.toUpperCase()}`
-                    }}
-                  </h4>
-                  <div
-                    class="p_text"
-                    v-html="tabsDataList[1].love_reasons"
-                  ></div>
-                </div>
-                <div class="_item" v-if="tabsDataList[1].positives">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Positivesy` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[1].positives"></div>
-                </div>
-                <div class="_item" v-if="tabsDataList[1].negatives">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Negativesy` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[1].negatives"></div>
-                </div>
-                <div class="_item" v-if="tabsDataList[1].in_love">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} In Love` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[1].in_love"></div>
-                </div>
-                <div class="_item" v-if="tabsDataList[1].attract">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Attracty` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[1].attract"></div>
+
+                <div class="man_list_love" v-if="containsBoyLove($route.path)">
+                  <div class="_item" v-if="tabsDataList[1].in_love">
+                    <div class="p_text" v-html="tabsDataList[1].in_love"></div>
+                  </div>
+                  <div class="_item" v-if="tabsDataList[1].attract">
+                    <h4>
+                      {{ `${zodiacIData.name.toUpperCase()} Man Attracty` }}
+                    </h4>
+                    <div class="p_text" v-html="tabsDataList[1].attract"></div>
+                  </div>
                 </div>
               </div>
+              <!-- -----------------------------------------女性特征------------------------------------------- -->
               <div class="woman" v-if="$route.path.includes('woman')">
                 <div class="_item" v-if="tabsDataList[2].traits">
                   <div class="imgs">
@@ -114,46 +122,58 @@
                   <h4>{{ `${zodiacIData.name.toUpperCase()} Traits` }}</h4>
                   <div class="p_text" v-html="tabsDataList[2].traits"></div>
                 </div>
-                <div class="_item" v-if="tabsDataList[2].career">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Career` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[2].career"></div>
+              </div>
+              <div class="woman_list">
+                <div
+                  class="woman_list_imgs"
+                  v-if="$route.path.includes('girl')"
+                >
+                  <img src="~/assets/img/astrology/woman_sign.png" alt="#" />
                 </div>
-                <div class="_item" v-if="tabsDataList[2].lover">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Lover` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[2].lover"></div>
+                <div class="woman_list_career" v-if="containsGirl($route.path)">
+                  <div class="_item" v-if="tabsDataList[2].career">
+                    <div class="p_text" v-html="tabsDataList[2].career"></div>
+                  </div>
                 </div>
-                <div class="_item" v-if="tabsDataList[2].health">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Healthy` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[2].health"></div>
+                <div
+                  class="woman_list_posit"
+                  v-if="containsGirlPosit($route.path)"
+                >
+                  <div class="_item" v-if="tabsDataList[2].positives">
+                    <h4>
+                      {{ `${zodiacIData.name.toUpperCase()} Woman Positivesy` }}
+                    </h4>
+                    <div
+                      class="p_text"
+                      v-html="tabsDataList[2].positives"
+                    ></div>
+                  </div>
+                  <div class="_item" v-if="tabsDataList[2].negatives">
+                    <h4>
+                      {{ `${zodiacIData.name.toUpperCase()} Woman Negativesy` }}
+                    </h4>
+                    <div
+                      class="p_text"
+                      v-html="tabsDataList[2].negatives"
+                    ></div>
+                  </div>
                 </div>
-                <div class="_item" v-if="tabsDataList[2].love_reasons">
-                  <h4>
-                    {{
-                      `The 5 Top Reasons to Love Being an ${zodiacIData.name.toUpperCase()}`
-                    }}
-                  </h4>
-                  <div
-                    class="p_text"
-                    v-html="tabsDataList[2].love_reasons"
-                  ></div>
-                </div>
-                <div class="_item" v-if="tabsDataList[2].positives">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Positivesy` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[2].positives"></div>
-                </div>
-                <div class="_item" v-if="tabsDataList[2].negatives">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Negativesy` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[2].negatives"></div>
-                </div>
-                <div class="_item" v-if="tabsDataList[2].in_love">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} In Love` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[2].in_love"></div>
-                </div>
-                <div class="_item" v-if="tabsDataList[2].attract">
-                  <h4>{{ `${zodiacIData.name.toUpperCase()} Attracty` }}</h4>
-                  <div class="p_text" v-html="tabsDataList[2].attract"></div>
+                <div
+                  class="woman_list_love"
+                  v-if="containsGirlLove($route.path)"
+                >
+                  <div class="_item" v-if="tabsDataList[2].in_love">
+                    <div class="p_text" v-html="tabsDataList[2].in_love"></div>
+                  </div>
+                  <div class="_item" v-if="tabsDataList[2].attract">
+                    <h4>
+                      {{ `${zodiacIData.name.toUpperCase()} Woman Attracty` }}
+                    </h4>
+                    <div class="p_text" v-html="tabsDataList[2].attract"></div>
+                  </div>
                 </div>
               </div>
+              <!-- -------------------------------配对信息----------------------------------- -->
               <div
                 class="comratible"
                 v-if="
@@ -347,9 +367,18 @@ export default {
         title: '',
         crumbs: '',
       }
+      const titleMap = {
+        girlamor: 'Woman Love',
+        girlposit: 'Woman Positivesy&Negativesy',
+        girlcareer: 'Woman Career',
+        boyamor: 'Man Love',
+        boyposit: 'Man Positivesy&Negativesy',
+        boycareer: 'Man Career',
+      }
       const pathNames = this.pathName.substring(0, this.pathName.indexOf('-'))
       const libra = pathNames == 'male' ? 'man' : pathNames
-      text.title = libra.charAt(0).toUpperCase() + libra.slice(1)
+      const libraName = libra.charAt(0).toUpperCase() + libra.slice(1)
+      text.title = titleMap[pathNames] ? titleMap[pathNames] : libraName
       const namep = name?.charAt(0).toUpperCase() + name?.slice(1)
       text.crumbs = namep + ' / ' + namep + ' ' + text.title
       return text
@@ -380,6 +409,34 @@ export default {
     },
     currentClose(index) {
       this.currentIndex = index
+    },
+    containsWords(path) {
+      const regex = /\bcareer\b/
+      return regex.test(path)
+    },
+    containsBoyCar(path) {
+      const regex = /\bboycareer\b/
+      return regex.test(path)
+    },
+    containsBoyPosit(path) {
+      const regex = /\bboyposit\b/
+      return regex.test(path)
+    },
+    containsBoyLove(path) {
+      const regex = /\bboyamor\b/
+      return regex.test(path)
+    },
+    containsGirl(path) {
+      const regex = /\bgirlcareer\b/
+      return regex.test(path)
+    },
+    containsGirlPosit(path) {
+      const regex = /\bgirlposit\b/
+      return regex.test(path)
+    },
+    containsGirlLove(path) {
+      const regex = /\bgirlamor\b/
+      return regex.test(path)
     },
   },
   destroyed() {
@@ -421,6 +478,7 @@ export default {
             font-style: normal;
             font-weight: 700;
             line-height: 48px;
+            width: 60%;
           }
           .crumbs {
             color: var(--9747-ff, #9747ff);
@@ -494,6 +552,26 @@ export default {
                   font-style: normal;
                   font-weight: 400;
                   line-height: 18px;
+                }
+              }
+            }
+            .man_list {
+              &_imgs {
+                padding-top: 24px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+              }
+            }
+            .woman_list {
+              &_imgs {
+                padding-top: 24px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
                 }
               }
             }
@@ -638,6 +716,7 @@ export default {
             order: 2;
             width: 100%;
             .title {
+              width: 100%;
               font-size: 36 * $pr;
               line-height: 48 * $pr;
               text-align: center;
@@ -697,6 +776,20 @@ export default {
                     font-size: 14 * $pr;
                     line-height: 18 * $pr;
                   }
+                }
+              }
+              .man_list {
+                &_imgs {
+                  padding-top: 24 * $pr;
+                  width: 100%;
+                  height: auto;
+                }
+              }
+              .woman_list {
+                &_imgs {
+                  padding-top: 24 * $pr;
+                  width: 100%;
+                  height: auto;
                 }
               }
             }

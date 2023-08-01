@@ -86,6 +86,30 @@ const addRoutes = async () => {
   res13.map((item) => {
     routes.push(`/horroscope/aries-${item}-1/`)
   })
+  let res14 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res14.map(() => {
+    routes.push(`/zodiac/type/boycareer-${item}/`)
+  })
+  let res15 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res15.map(() => {
+    routes.push(`/zodiac/type/boyposit-${item}/`)
+  })
+  let res16 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res16.map(() => {
+    routes.push(`/zodiac/type/boyamor-${item}/`)
+  })
+  let res17 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res17.map(() => {
+    routes.push(`/zodiac/type/girlcareer-${item}/`)
+  })
+  let res18 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res18.map(() => {
+    routes.push(`/zodiac/type/girlposit-${item}/`)
+  })
+  let res19 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  res19.map(() => {
+    routes.push(`/zodiac/type/girlamor-${item}/`)
+  })
 
   return routes
 }

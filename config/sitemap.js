@@ -149,6 +149,30 @@ const sitemap = [
       res13.map((item) => {
         addArr.push(`/horroscope/aries-${item}-1/`)
       })
+      let res14 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      res14.map(() => {
+        addArr.push(`/zodiac/type/boycareer-${item}/`)
+      })
+      let res15 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      res15.map(() => {
+        addArr.push(`/zodiac/type/boyposit-${item}/`)
+      })
+      let res16 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      res16.map(() => {
+        addArr.push(`/zodiac/type/boyamor-${item}/`)
+      })
+      let res17 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      res17.map(() => {
+        addArr.push(`/zodiac/type/girlcareer-${item}/`)
+      })
+      let res18 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      res18.map(() => {
+        addArr.push(`/zodiac/type/girlposit-${item}/`)
+      })
+      let res19 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      res19.map(() => {
+        addArr.push(`/zodiac/type/girlamor-${item}/`)
+      })
 
       routes = routes.concat(addArr)
       return routes
