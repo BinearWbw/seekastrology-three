@@ -135,12 +135,14 @@ export default {
 .pop_maximum {
   width: 1400px;
   margin: 96px auto 0;
+  z-index: 1;
   .pop_main {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
+
     h3 {
       font-family: 'Cinzel Decorative';
       font-weight: 700;

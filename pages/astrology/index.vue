@@ -53,9 +53,9 @@
     <transition name="fade">
       <el-daily-horoscope></el-daily-horoscope>
     </transition>
-    <transition name="fade">
+    <div class="all_tarot">
       <tarot-all-tarot></tarot-all-tarot>
-    </transition>
+    </div>
   </div>
 </template>
 
@@ -375,6 +375,9 @@ export default {
       }
     }
   }
+  .all_tarot {
+    padding: 48px 0 96px;
+  }
 }
 @media (max-width: 1450px) {
   .astrology {
@@ -553,6 +556,9 @@ export default {
           }
         }
       }
+    }
+    .all_tarot {
+      padding: 0 0 48 * $pr;
     }
   }
 }

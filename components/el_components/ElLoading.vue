@@ -19,6 +19,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 88;
   &_main {
     width: 300px;
     height: 300px;

@@ -74,6 +74,10 @@ export default {
           path: '/zodiac/type/healthy',
         },
         {
+          name: 'Man',
+          path: '/zodiac/type/male',
+        },
+        {
           name: 'Man Career',
           sexId: 2,
           path: '/zodiac/type/boycareer',
@@ -89,6 +93,10 @@ export default {
           path: '/zodiac/type/boyamor',
         },
         {
+          name: 'Woman',
+          path: '/zodiac/type/woman',
+        },
+        {
           name: 'Woman Career',
           sexId: 3,
           path: '/zodiac/type/girlcareer',
@@ -102,14 +110,6 @@ export default {
           name: 'Woman Lover',
           sexId: 3,
           path: '/zodiac/type/girlamor',
-        },
-        {
-          name: 'Man',
-          path: '/zodiac/type/male',
-        },
-        {
-          name: 'Woman',
-          path: '/zodiac/type/woman',
         },
         {
           name: 'Comratible',

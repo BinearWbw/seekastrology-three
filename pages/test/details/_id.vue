@@ -98,7 +98,7 @@
                         @change="chooseAnswer(item, index)"
                         :disabled="disabledFlag"
                       />
-                      <span>{{ item.answer }}</span>
+                      <p>{{ item.answer }}</p>
                     </label>
                   </div>
                 </div>
@@ -538,13 +538,12 @@ $spacing: 55px;
                   align-items: center;
                   cursor: pointer;
                   height: 100%;
-                  span {
-                    width: 100%;
+                  p {
+                    flex: 1;
                     cursor: pointer;
-                    margin-right: 10px;
                     display: block;
                     word-wrap: break-word;
-                    padding: 10px 0;
+                    padding: 10px 10px 10px 0;
                   }
                   input {
                     margin-left: 31px;
@@ -981,9 +980,8 @@ $spacing: 55px;
                         }
                       }
                     }
-                    span {
-                      margin-right: 10 * $pr;
-                      padding: 10 * $pr 0;
+                    p {
+                      padding: 10 * $pr 10 * $pr 10 * $pr 0;
                     }
                   }
                 }
