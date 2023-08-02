@@ -126,7 +126,7 @@ $block: 220px;
 $spacing: 75px;
 .cards-box {
   padding-top: 96px;
-  background-image: url('~assets/img/tarot/card_bg.png');
+  background-image: url('~assets/img/tarot/card_bg.webp');
   background-size: 100%;
   background-repeat: no-repeat;
   margin-top: 48px;
@@ -271,7 +271,7 @@ $spacing: 75px;
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .cards-box {
-    background: url('~assets/img/tarot/card_bg_mobile.png') no-repeat;
+    background: url('~assets/img/tarot/card_bg_mobile.webp') no-repeat;
     // background-position: center -32 * $pr;
     background-size: 100%;
     margin-left: -16 * $pr;
@@ -345,7 +345,7 @@ $spacing: 75px;
       display: flex;
       justify-content: center;
       transform: translateY(40px);
-      background-image: url('~assets/img/tarot/card_bg_list.png');
+      background-image: url('~assets/img/tarot/card_bg_list.webp');
       background-size: 100%;
       background-repeat: no-repeat;
       .list-mobile {

@@ -70,7 +70,7 @@ export default {
 }
 .main {
   min-height: 100vh;
-  background: url('/img/bg.png');
+  //   background: url('/img/bg.png');
   position: relative;
   .home_bg {
     display: inline-block;
@@ -120,7 +120,7 @@ export default {
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .main {
-    background: url('/img/bg.png');
+    // background: url('/img/bg.png');
     .home_bg {
       width: 100%;
       height: 900 * $pr;

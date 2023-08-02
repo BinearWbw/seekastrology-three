@@ -697,7 +697,6 @@ export default {
       top: 0;
       left: 0;
       z-index: 7;
-      //   background-image: url('~assets/img/tarot/paly_bg.png');
 
       background-size: 100% 100%;
       background-repeat: no-repeat;

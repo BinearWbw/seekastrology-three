@@ -15,7 +15,7 @@
     <div class="more-tarot">
       <div class="more-tarot-items" v-show="type != 4">
         <a :href="`${getIntersperseUrl}/tarot/`" class="link">
-          <img src="~/assets/img/tarot/day.png" alt="" />
+          <img src="~/assets/img/tarot/day.webp" alt="" />
           <p class="item-title">Daily Tarot</p>
           <p class="item-sub-title">
             What does the future have in store for you? Now is time to discover
@@ -27,7 +27,7 @@
 
       <div class="more-tarot-items" v-show="type != 1">
         <a :href="`${getIntersperseUrl}/tarot/type/${1}/`" class="link">
-          <img src="~/assets/img/tarot/love.png" alt="" />
+          <img src="~/assets/img/tarot/love.webp" alt="" />
           <p class="item-title">LOVE Tarot Reading</p>
           <p class="item-sub-title">
             Receive personalized advice for your romantic dilemmas
@@ -38,7 +38,7 @@
 
       <div class="more-tarot-items" v-show="type != 2">
         <a :href="`${getIntersperseUrl}/tarot/type/${2}/`" class="link">
-          <img src="~/assets/img/tarot/rich.png" alt="" />
+          <img src="~/assets/img/tarot/rich.webp" alt="" />
           <p class="item-title">Tarot Career Reading</p>
           <p class="item-sub-title">
             This free career Tarot reading is here to help you find success
@@ -49,7 +49,7 @@
 
       <div class="more-tarot-items" v-show="type != 3">
         <a :href="`${getIntersperseUrl}/tarot/type/${3}/`" class="link">
-          <img src="~/assets/img/tarot/general.png" alt="" />
+          <img src="~/assets/img/tarot/general.webp" alt="" />
           <p class="item-title">Universal Tarot Reading</p>
           <p class="item-sub-title">
             Get the answers you need with this 3-card Tarot spread
