@@ -27,14 +27,14 @@
             <div class="details_left_text">
               <div class="_item" v-if="containsWords($route.path)">
                 <div class="imgs">
-                  <img src="~/assets/img/astrology/career_sign.png" alt="#" />
+                  <img src="~/assets/img/astrology/career_sign.webp" alt="#" />
                 </div>
                 <div class="p_text" v-html="tabsDataList[0].career"></div>
               </div>
               <div class="lover" v-if="$route.path.includes('lover')">
                 <div class="_item" v-if="tabsDataList[0].lover">
                   <div class="imgs">
-                    <img src="~/assets/img/astrology/love_sign.png" alt="#" />
+                    <img src="~/assets/img/astrology/love_sign.webp" alt="#" />
                   </div>
                   <div class="p_text" v-html="tabsDataList[0].lover"></div>
                 </div>
@@ -53,7 +53,10 @@
               <div class="healthy" v-if="$route.path.includes('health')">
                 <div class="_item" v-if="tabsDataList[0].health">
                   <div class="imgs">
-                    <img src="~/assets/img/astrology/health_sign.png" alt="#" />
+                    <img
+                      src="~/assets/img/astrology/health_sign.webp"
+                      alt="#"
+                    />
                   </div>
                   <div class="p_text" v-html="tabsDataList[0].health"></div>
                 </div>
@@ -62,7 +65,7 @@
               <div class="man" v-if="$route.path.includes('male')">
                 <div class="_item" v-if="tabsDataList[1].traits">
                   <div class="imgs">
-                    <img src="~/assets/img/astrology/man_sign.png" alt="#" />
+                    <img src="~/assets/img/astrology/man_sign.webp" alt="#" />
                   </div>
                   <h4>{{ `${zodiacIData.name.toUpperCase()} Traits` }}</h4>
                   <div class="p_text" v-html="tabsDataList[1].traits"></div>
@@ -70,7 +73,7 @@
               </div>
               <div class="man_list">
                 <div class="man_list_imgs" v-if="$route.path.includes('boy')">
-                  <img src="~/assets/img/astrology/man_sign.png" alt="#" />
+                  <img src="~/assets/img/astrology/man_sign.webp" alt="#" />
                 </div>
                 <div class="man_list_career" v-if="containsBoyCar($route.path)">
                   <div class="_item" v-if="tabsDataList[1].career">
@@ -117,7 +120,7 @@
               <div class="woman" v-if="$route.path.includes('woman')">
                 <div class="_item" v-if="tabsDataList[2].traits">
                   <div class="imgs">
-                    <img src="~/assets/img/astrology/woman_sign.png" alt="#" />
+                    <img src="~/assets/img/astrology/woman_sign.webp" alt="#" />
                   </div>
                   <h4>{{ `${zodiacIData.name.toUpperCase()} Traits` }}</h4>
                   <div class="p_text" v-html="tabsDataList[2].traits"></div>
@@ -128,7 +131,7 @@
                   class="woman_list_imgs"
                   v-if="$route.path.includes('girl')"
                 >
-                  <img src="~/assets/img/astrology/woman_sign.png" alt="#" />
+                  <img src="~/assets/img/astrology/woman_sign.webp" alt="#" />
                 </div>
                 <div class="woman_list_career" v-if="containsGirl($route.path)">
                   <div class="_item" v-if="tabsDataList[2].career">

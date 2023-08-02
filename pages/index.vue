@@ -28,9 +28,6 @@
       <section class="module quizzes">
         <home-quizzes></home-quizzes>
       </section>
-      <section class="module kundli" v-if="false">
-        <!-- <home-kundli></home-kundli> -->
-      </section>
       <section class="module new_pop">
         <home-pop-articles></home-pop-articles>
         <google-auto-ad
@@ -201,12 +198,6 @@ export default {
           display: none;
         }
       }
-      &.kundli {
-        .google_ad {
-          margin: 80px auto 0;
-          height: 130px;
-        }
-      }
       &.new_pop {
         .google_ad {
           margin: 96px auto;
@@ -263,14 +254,6 @@ export default {
             background-color: initial;
           }
         }
-        &.kundli {
-          .google_ad {
-            margin: 80px auto 0;
-            height: 130px;
-          }
-        }
-        // &.new_pop {
-        // }
       }
     }
   }
@@ -364,13 +347,6 @@ export default {
         }
         &.tarot {
           margin-top: 48 * $pr;
-        }
-
-        &.kundli {
-          .google_ad {
-            width: 100%;
-            margin: 117 * $pr auto 0;
-          }
         }
         &.new_pop {
           > .pop_maximum {
