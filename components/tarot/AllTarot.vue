@@ -24,7 +24,7 @@
       <li class="card-items">
         <a :href="`${getIntersperseUrl}/tarot/cards/${getCurrentRoute}`">
           <img
-            src="~/assets/img/tarot/card0.png"
+            src="~/assets/img/tarot/card0.webp"
             alt=""
             class="card-item-img"
           />
@@ -34,7 +34,7 @@
       <li class="card-items">
         <a :href="`${getIntersperseUrl}/tarot/cards/${getCurrentRoute}`">
           <img
-            src="~/assets/img/tarot/card1.png"
+            src="~/assets/img/tarot/card1.webp"
             alt=""
             class="card-item-img"
           />
@@ -44,7 +44,7 @@
       <li class="card-items">
         <a :href="`${getIntersperseUrl}/tarot/cards/${getCurrentRoute}`">
           <img
-            src="~/assets/img/tarot/card2.png"
+            src="~/assets/img/tarot/card2.webp"
             alt=""
             class="card-item-img"
           />
@@ -54,7 +54,7 @@
       <li class="card-items">
         <a :href="`${getIntersperseUrl}/tarot/cards/${getCurrentRoute}`">
           <img
-            src="~/assets/img/tarot/card3.png"
+            src="~/assets/img/tarot/card3.webp"
             alt=""
             class="card-item-img"
           />
@@ -64,7 +64,7 @@
       <li class="card-items">
         <a :href="`${getIntersperseUrl}/tarot/cards/${getCurrentRoute}`">
           <img
-            src="~/assets/img/tarot/card4.png"
+            src="~/assets/img/tarot/card4.webp"
             alt=""
             class="card-item-img"
           />
@@ -76,7 +76,7 @@
       <li class="list-mobile">
         <a :href="`${getIntersperseUrl}/tarot/cards/${getCurrentRoute}`">
           <img
-            src="~/assets/img/tarot/card0.png"
+            src="~/assets/img/tarot/card0.webp"
             alt=""
             class="list-mobile-img"
           />
@@ -85,7 +85,7 @@
       <li class="list-mobile">
         <a :href="`${getIntersperseUrl}/tarot/cards/${getCurrentRoute}`">
           <img
-            src="~/assets/img/tarot/card1.png"
+            src="~/assets/img/tarot/card1.webp"
             alt=""
             class="list-mobile-img"
           />
@@ -94,7 +94,7 @@
       <li class="list-mobile">
         <a :href="`${getIntersperseUrl}/tarot/cards/${getCurrentRoute}`">
           <img
-            src="~/assets/img/tarot/card2.png"
+            src="~/assets/img/tarot/card2.webp"
             alt=""
             class="list-mobile-img"
           />

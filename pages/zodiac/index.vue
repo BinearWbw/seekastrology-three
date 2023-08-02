@@ -106,7 +106,7 @@ export default {
         position: relative;
         .top_text {
           width: 100%;
-          padding: 16px 0 0;
+          padding: 16px 0 24px;
           margin-right: auto;
           h3 {
             font-family: 'Cinzel Decorative';
