@@ -268,9 +268,9 @@ export default {
         this.bodyHidden('auto')
       }
     },
-    isSelected(val) {
-      if (this.inPlay) this.$refs.list_mask.style.display = 'block'
-    },
+    // isSelected(val) {
+    //     if (this.inPlay) this.$refs.list_mask.style.display = 'block'
+    // },
   },
   computed: {
     styleObj() {
@@ -299,6 +299,7 @@ export default {
         3: "Reveal Your the problems<br /> you're facing by<br /> Clicking 3 Cards Below",
         4: 'The Tarot Card of the Day is...',
       },
+      clickCount: 0,
     }
   },
   mounted() {},
@@ -329,6 +330,7 @@ export default {
       this.cardsInfo = []
       this.showList = []
       this.mobileShowNumber = 0
+      this.clickCount = 0
       if (this.type === '1' || this.type === '3') {
         this.numbers = 3
       } else if (this.type === '2') {
@@ -340,10 +342,23 @@ export default {
 
     handleClike: throttle(async function (event) {
       let ele = event.target.nodeName
-      if (this.inPlay && this.type === '4') {
-        this.$refs.list_mask.style.display = 'block'
+      this.clickCount++
+      console.log('点击', this.type)
+      console.log('点击', this.clickCount)
+      const typeNum = {
+        1: 3,
+        2: 5,
+        3: 3,
+        4: 1,
       }
-      if (this.isSelected || ele !== 'IMG') return
+      if (typeNum[this.type] === this.clickCount) {
+        this.$refs.list_mask.style.display = 'block' //阻止点击
+      }
+      //   if (this.inPlay && this.type === '4') {
+      //     //阻止点击
+      //     this.$refs.list_mask.style.display = 'block'
+      //   }
+      //   if (this.isSelected || ele !== 'IMG') return
       event.target.parentNode.style.display = 'none'
       if (this.cardsInfo.length === 0) {
         await this.drawCard()

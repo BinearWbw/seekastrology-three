@@ -286,12 +286,14 @@ export default {
     &_menu {
       display: flex;
       flex-wrap: wrap;
-      gap: 16 * $pr;
+      //   gap: 16 * $pr;
       justify-content: center;
+
       .active {
         background: rgba(151, 71, 255, 0.2) !important;
       }
       .menu_list {
+        padding: 8 * $pr;
         a {
           .menu_list_item {
             padding: 8 * $pr;
@@ -313,6 +315,7 @@ export default {
         }
       }
       .menu_sole {
+        padding: 8 * $pr;
         a {
           .menu_sole_item {
             padding: 8 * $pr;

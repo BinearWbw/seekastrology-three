@@ -56,6 +56,9 @@
     <div class="all_tarot">
       <tarot-all-tarot></tarot-all-tarot>
     </div>
+    <transition name="fade">
+      <el-loading v-if="isLoading"></el-loading>
+    </transition>
   </div>
 </template>
 
@@ -133,10 +136,22 @@ export default {
       malesId: 0,
       femalesId: 0,
       compatibilityData: '',
+      isLoading: false,
     }
   },
   mounted() {
     this.infoGetStartPairing()
+  },
+  watch: {
+    compatibilityData(val) {
+      if (val) {
+        this.isLoading = false
+        this.$refs.target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }
+    },
   },
   methods: {
     handleDropdownChangeLeft(option) {
@@ -157,6 +172,7 @@ export default {
     },
     getStartPairing() {
       if (this.males && this.females) {
+        this.isLoading = true
         this.$apiList.home
           .getZodiacComp({
             origin: process.env.origin,
@@ -164,10 +180,10 @@ export default {
             female: this.females,
           })
           .then((res) => {
+            this.isLoading = false
             this.compatibilityData = res
             sessionStorage.removeItem('genderList')
           })
-        this.$refs.target.scrollIntoView({ behavior: 'smooth', block: 'start' })
       } else {
         alert('please choose two Star sign')
       }

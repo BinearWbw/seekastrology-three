@@ -245,9 +245,10 @@ export default {
         // overflow-x: scroll;
         // grid-template-columns: repeat(6, 1fr);
         // height: 81 * $pr;
-        gap: 10 * $pr 5 * $pr;
+        // gap: 10 * $pr 5 * $pr;
         padding: 0;
         .tag_list {
+          padding: 5 * $pr 2.5 * $pr;
           border-radius: 44 * $pr;
           margin-right: 0;
           margin-top: 0;

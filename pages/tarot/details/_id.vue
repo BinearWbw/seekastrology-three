@@ -255,7 +255,8 @@ export default {
       .card-wrapper {
         margin: 0 auto 26 * $pr;
         .card-img {
-          height: 400 * $pr;
+          width: 170 * $pr;
+          height: 340 * $pr;
         }
       }
       .desc-text {
