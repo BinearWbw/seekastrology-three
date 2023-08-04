@@ -72,11 +72,11 @@
       <tarot-more-tarot></tarot-more-tarot>
     </transition>
     <transition name="fade">
-      <el-daily-horoscope></el-daily-horoscope>
-    </transition>
-    <transition name="fade">
       <el-pairing></el-pairing>
     </transition>
+    <div class="daily_horo">
+      <el-daily-horoscope></el-daily-horoscope>
+    </div>
     <transition name="fade">
       <el-loading v-if="isLoading"></el-loading>
     </transition>
@@ -497,6 +497,9 @@ export default {
       }
     }
   }
+  .daily_horo {
+    padding-bottom: 96px;
+  }
 }
 @media (max-width: 1470px) {
   .horroscope {
@@ -681,6 +684,9 @@ export default {
           width: 100%;
         }
       }
+    }
+    .daily_horo {
+      padding-bottom: 48 * $pr;
     }
   }
 }

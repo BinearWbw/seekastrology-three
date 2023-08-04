@@ -55,7 +55,7 @@ export default {}
     }
   }
   .content {
-    padding: 32px 0 0;
+    padding: 32px 0 120px 0;
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 400;
@@ -81,7 +81,7 @@ export default {}
       }
     }
     .content {
-      padding: 24 * $pr 0 0;
+      padding: 24 * $pr 0 0 0;
       font-size: 14 * $pr;
       line-height: 24 * $pr;
       color: rgba(255, 255, 255, 0.6);

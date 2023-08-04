@@ -86,16 +86,12 @@ export default {
     },
     checkElementPosition() {
       const element = this.$refs.absoluteElement
-      const pathList = this.$route.path.includes('horroscope')
       const inWidth = window.innerWidth
       if (inWidth < 751 && this.title == 'First Sign') {
         element.style.left = 0
       }
       if (inWidth < 751 && this.title == 'Second Sign') {
         element.style.left = '-100%'
-      }
-      if (inWidth > 750 && pathList) {
-        element.style.top = '-750px'
       }
     },
   },

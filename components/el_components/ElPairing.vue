@@ -299,12 +299,12 @@ export default {
   $pr: math.div(1vw, 3.75);
 
   .pairing_max_main {
-    background: url('~/assets/img/home/page_bottomh5.webp') no-repeat bottom
-      center;
-    background-size: 100%;
+    // background: url('~/assets/img/home/page_bottomh5.webp') no-repeat bottom
+    //   center;
+    // background-size: 100%;
     .pairing_module {
       width: 100%;
-      padding: 0 16 * $pr 90 * $pr;
+      padding: 0 16 * $pr;
       margin: 48 * $pr auto 0;
       h3 {
         font-size: 26 * $pr;
