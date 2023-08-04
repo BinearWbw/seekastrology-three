@@ -50,6 +50,9 @@
         </div>
       </div>
     </div>
+    <div class="poparticles">
+      <home-pop-articles></home-pop-articles>
+    </div>
     <transition name="fade">
       <el-daily-horoscope></el-daily-horoscope>
     </transition>
@@ -280,7 +283,7 @@ export default {
               font-size: 16px;
               line-height: 22px;
               text-align: center;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
             }
             .determine_button {
               width: 278px;
@@ -362,7 +365,7 @@ export default {
             font-family: 'Rubik';
             font-size: 16px;
             line-height: 28px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
             :deep(h1),
             :deep(h2),
             :deep(h3),
@@ -378,7 +381,7 @@ export default {
               color: #fff;
             }
             :deep(a) {
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               pointer-events: none;
             }
           }

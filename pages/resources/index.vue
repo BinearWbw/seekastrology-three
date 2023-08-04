@@ -408,7 +408,7 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
             }
           }
           &_subscribe {
@@ -418,7 +418,7 @@ $spacing: 16px;
             font-size: 16px;
             line-height: 22px;
             /* or 138% */
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
             margin-top: 8px;
             overflow: hidden;
             white-space: normal;
@@ -442,7 +442,7 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 14px;
             line-height: 18px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
           }
           &_h5date {
             display: none;
@@ -532,7 +532,7 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               margin-top: 8px;
             }
             &_subscribe {
@@ -541,7 +541,7 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               margin-top: 8px;
               overflow: hidden;
               white-space: normal;
@@ -597,7 +597,7 @@ $spacing: 16px;
             font-size: 14px;
             line-height: 18px;
             text-align: center;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
           }
         }
       }
@@ -728,7 +728,7 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               margin-top: 8px;
               text-align: center;
             }
@@ -738,7 +738,7 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 22px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               margin-top: 8px;
               overflow: hidden;
               white-space: normal;
@@ -946,7 +946,7 @@ $spacing: 16px;
               &_text {
                 font-size: 14 * $pr;
                 line-height: 18 * $pr;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 overflow: hidden;
                 white-space: normal;
                 -webkit-box-orient: vertical;
@@ -967,7 +967,7 @@ $spacing: 16px;
               font-style: normal;
               font-size: 12 * $pr;
               line-height: 16 * $pr;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               text-align: center;
             }
           }
@@ -1029,7 +1029,7 @@ $spacing: 16px;
                   font-size: 14 * $pr;
                   line-height: 18 * $pr;
                   text-align: center;
-                  color: rgba(255, 255, 255, 0.85);
+                  color: rgba(255, 255, 255, 0.6);
                   text-align: left;
                   word-break: break-all;
                   // margin-top: 12 * $pr;
@@ -1142,13 +1142,13 @@ $spacing: 16px;
                 font-size: 12 * $pr;
                 top: 6 * $pr;
                 right: 5 * $pr;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
               }
             }
             &_vtitle {
               font-size: 14 * $pr;
               line-height: 18 * $pr;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               width: 169 * $pr;
               margin-top: 12 * $pr;
             }
@@ -1159,7 +1159,7 @@ $spacing: 16px;
               &_date {
                 font-size: 14 * $pr;
                 line-height: 18 * $pr;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 width: 100%;
                 margin-top: 0;
                 word-break: break-all;

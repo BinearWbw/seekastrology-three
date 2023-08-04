@@ -121,7 +121,7 @@ export default {
             font-family: 'Rubik';
             font-size: 16px;
             line-height: 28px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
           }
           .h5_text {
             display: none;
@@ -144,10 +144,10 @@ export default {
             padding: 32px 16px;
             box-sizing: border-box;
             border: 1px solid rgba(255, 255, 255, 0);
-            border-radius: 6px;
+            // border-radius: 6px;
             box-sizing: border-box;
             cursor: pointer;
-            transition: border-color 0.3s ease-in-out;
+            transition: border-color 0.3s, background-color 0.3s ease-in-out;
             a {
               display: block;
               box-sizing: border-box;
@@ -175,7 +175,7 @@ export default {
                 font-weight: 400;
                 font-size: 14px;
                 line-height: 18px;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 overflow: hidden;
                 padding-right: 80px;
                 text-overflow: ellipsis;
@@ -193,7 +193,8 @@ export default {
             }
 
             &:hover {
-              border-color: rgba(255, 255, 255, 0.85);
+              border-color: rgba(255, 255, 255, 0.6);
+              background-color: rgba(255, 255, 255, 0.04);
               a {
                 transform: translateY(-5px);
                 img {
@@ -403,7 +404,7 @@ export default {
                 }
               }
               &:hover {
-                border-color: rgba(255, 255, 255, 0.85);
+                border-color: rgba(255, 255, 255, 0.6);
                 a {
                   transform: translateY(-5 * $pr);
                   img {

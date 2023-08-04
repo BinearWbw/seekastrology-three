@@ -71,6 +71,7 @@ export default {}
 @use 'sass:math';
 .aboutus_main {
   width: 100%;
+  position: relative;
   .title {
     padding-bottom: 32px;
     position: relative;
@@ -128,7 +129,7 @@ export default {}
       padding: 24 * $pr 0 0;
       font-size: 14 * $pr;
       line-height: 24 * $pr;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.6);
       .subtitle {
         padding-left: 10 * $pr;
       }

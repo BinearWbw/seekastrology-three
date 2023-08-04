@@ -174,6 +174,9 @@ export default {
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.08);
       padding: 16px 24px;
+      &:hover {
+        background: rgba(255, 255, 255, 0.16);
+      }
       .title {
         display: flex;
         justify-content: center;

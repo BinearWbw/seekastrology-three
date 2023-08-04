@@ -288,7 +288,7 @@ export default {
   font-weight: 400;
   font-size: 22px;
   line-height: 30px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.6);
 }
 .ad-box_row {
   width: 1200px;
@@ -318,7 +318,7 @@ export default {
   box-sizing: border-box;
   padding: 8px 22px;
   font-family: 'Rubik';
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 14px;
   line-height: 18px;
   white-space: nowrap;
@@ -491,12 +491,12 @@ export default {
     box-sizing: border-box;
     padding: 8 * $pr 16 * $pr;
     font-family: 'Rubik';
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 14 * $pr;
     line-height: 18 * $pr;
     white-space: nowrap;
     &:hover {
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.6);
       background-color: initial;
     }
   }

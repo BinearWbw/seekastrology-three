@@ -411,6 +411,7 @@ export default {
         text[0].charAt(0).toUpperCase() + text[0].slice(1)
     },
     currentClose(index) {
+      if (window.innerWidth > 750) return
       this.currentIndex = index
     },
     containsWords(path) {
@@ -508,7 +509,7 @@ export default {
                 font-size: 16px;
                 line-height: 28px;
                 margin-top: 8px;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 :deep(h1),
                 :deep(h2),
                 :deep(h3),
@@ -744,7 +745,7 @@ export default {
                   font-size: 16 * $pr;
                   line-height: 28 * $pr;
                   margin-top: 8 * $pr;
-                  color: rgba(255, 255, 255, 0.85);
+                  color: rgba(255, 255, 255, 0.6);
                   :deep(h1),
                   :deep(h2),
                   :deep(h3),

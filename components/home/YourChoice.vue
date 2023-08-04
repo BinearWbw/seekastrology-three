@@ -94,7 +94,7 @@ export default {
       font-size: 22px;
       line-height: 30px;
       text-align: center;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.6);
       text-align: center;
     }
     &.to_page_padding {
@@ -138,7 +138,7 @@ export default {
           font-family: 'Rubik';
           font-size: 14px;
           line-height: 18px;
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.6);
           text-align: center;
         }
       }

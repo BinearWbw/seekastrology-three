@@ -348,7 +348,7 @@ export default {
                   width: 170px;
                   font-size: 16px;
                   line-height: 22px;
-                  color: rgba(255, 255, 255, 0.85);
+                  color: rgba(255, 255, 255, 0.6);
                 }
                 .p_texts {
                   flex: 1;
@@ -362,7 +362,7 @@ export default {
               font-family: 'Rubik';
               font-size: 16px;
               line-height: 28px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               margin-top: 28px;
               position: relative;
               text-align: left;

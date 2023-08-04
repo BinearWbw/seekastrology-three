@@ -182,7 +182,7 @@ export default {
             font-size: 16px;
             line-height: 22px;
             text-align: center;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
           }
           .determine_button {
             width: 278px;

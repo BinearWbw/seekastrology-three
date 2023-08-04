@@ -138,7 +138,7 @@ export default {
           font-weight: 400;
           font-size: 16px;
           line-height: 22px;
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.6);
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
@@ -156,7 +156,7 @@ export default {
         border: 1px solid #45454d;
         border-radius: 42px;
         font-family: 'Rubik';
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.6);
         font-size: 16px;
         line-height: 22px;
         -webkit-transition: background-color 0.3s, -webkit-color 0.3s;

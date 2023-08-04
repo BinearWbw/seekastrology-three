@@ -85,7 +85,7 @@ export default {
         font-family: 'Rubik';
         font-size: 14px;
         line-height: 18px;
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.6);
         border-radius: 42px;
         margin-right: 24px;
         cursor: pointer;

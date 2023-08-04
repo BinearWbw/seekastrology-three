@@ -204,6 +204,9 @@ export default {
   &_menu {
     .active {
       background-color: rgba(0, 0, 0, 0.1);
+      p {
+        color: #fff !important;
+      }
     }
     .menu_list {
       a {

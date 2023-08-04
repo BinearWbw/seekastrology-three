@@ -28,6 +28,7 @@ export default {
 .support_main {
   width: 1400px;
   margin: 0 auto;
+  //   min-height: 100vh;
   .support_content {
     width: 100%;
     padding: 75px 0 48px;

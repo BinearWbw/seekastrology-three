@@ -250,7 +250,7 @@ $spacing: 16px;
             line-height: 18px;
             /* identical to box height, or 129% */
             text-align: center;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
           }
         }
       }
@@ -265,7 +265,7 @@ $spacing: 16px;
           font-family: 'Rubik';
           font-size: 14px;
           line-height: 18px;
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.6);
           text-indent: 18px;
         }
         &:focus {
@@ -320,7 +320,7 @@ $spacing: 16px;
                 font-size: 16px;
                 line-height: 22px;
                 text-align: center;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
@@ -533,7 +533,7 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 14 * $pr;
             line-height: 18 * $pr;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
           }
         }
       }

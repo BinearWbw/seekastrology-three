@@ -70,9 +70,9 @@
       <google-auto-ad class="ad-box_row mt_80" id="7545189503" />
     </div>
     <home-your-choice class="el_choice"></home-your-choice>
-    <transition name="fade">
-      <home-pop-articles class="el_pop"></home-pop-articles>
-    </transition>
+    <div class="el_pop">
+      <home-pop-articles></home-pop-articles>
+    </div>
   </div>
 </template>
 
@@ -215,12 +215,12 @@ export default {
   .el_more {
     margin-top: 80px;
   }
-  .el_choice {
-    margin-top: 96px;
-  }
-  .el_pop {
-    margin-bottom: 48px;
-  }
+}
+.el_choice {
+  margin-top: 96px;
+}
+.el_pop {
+  margin-bottom: 96px;
 }
 @media (max-width: 1450px) {
   .tarot-container {
@@ -306,12 +306,12 @@ export default {
       margin-top: 48 * $pr;
       padding: 0;
     }
-    .el_choice {
-      margin-top: 48 * $pr;
-    }
-    .el_pop {
-      margin-bottom: 48 * $pr;
-    }
+  }
+  .el_choice {
+    margin-top: 48 * $pr;
+  }
+  .el_pop {
+    margin-bottom: 48 * $pr;
   }
 }
 </style>

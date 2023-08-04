@@ -399,7 +399,7 @@ export default {
       &_one {
         margin-top: 32px;
         .detaile_text {
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.6);
           &_title:first-child {
             padding-top: 0;
           }
@@ -413,7 +413,7 @@ export default {
       &_two {
         margin-top: 32px;
         .detaile_text {
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.6);
           &_matrix {
             padding-left: 25px;
             position: relative;
@@ -432,25 +432,25 @@ export default {
       &_three {
         margin-top: 32px;
         .detaile_text {
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.6);
         }
       }
       &_four {
         margin-top: 32px;
         .detaile_text {
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.6);
         }
       }
       &_five {
         margin-top: 32px;
         .detaile_text {
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.6);
         }
       }
       &_six {
         margin-top: 32px;
         .detaile_text {
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.6);
           &_matrix {
             padding-left: 25px;
             position: relative;

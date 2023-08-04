@@ -193,7 +193,7 @@ export default {
             .cont_more {
               font-size: 14px;
               line-height: 18px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               margin: 8px 0;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -270,7 +270,7 @@ export default {
                 font-size: 16px;
                 line-height: 22px;
                 margin-top: 8px;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
@@ -300,7 +300,7 @@ export default {
       border: 1px solid #45454d;
       border-radius: 42px;
       font-family: 'Rubik';
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.6);
       font-size: 16px;
       line-height: 22px;
       color: #000;
@@ -431,7 +431,7 @@ export default {
               width: 40 * $pr;
               font-size: 14 * $pr;
               line-height: 18 * $pr;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
             }
           }
         }
@@ -491,7 +491,7 @@ export default {
                 font-family: 'Rubik';
                 font-size: 12 * $pr;
                 line-height: 16 * $pr;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 padding: 0;
               }
             }
@@ -563,7 +563,7 @@ export default {
               .cont_title {
                 font-size: 14 * $pr;
                 line-height: 18 * $pr;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 text-align: center;
                 padding: 0 10 * $pr;
                 overflow: hidden;
@@ -643,7 +643,7 @@ export default {
                 & > :nth-child(1) {
                   font-size: 14 * $pr;
                   line-height: 18 * $pr;
-                  color: rgba(255, 255, 255, 0.85);
+                  color: rgba(255, 255, 255, 0.6);
                   margin-top: 12 * $pr;
                   padding: 0 5 * $pr;
                   overflow: hidden;

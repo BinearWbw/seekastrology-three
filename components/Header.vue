@@ -333,7 +333,7 @@ export default {
               font-weight: 400;
               font-size: 16px;
               line-height: 42px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               position: relative;
               padding: 0 20px;
               text-overflow: ellipsis;

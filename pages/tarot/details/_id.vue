@@ -153,7 +153,7 @@ export default {
       font-weight: 400;
       font-size: 22px;
       line-height: 30px;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.6);
       margin-top: 12px;
     }
     .desc-title {

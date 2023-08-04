@@ -24,8 +24,7 @@
             :key="index"
             class="tip-img-item"
             :class="{ 'img-rotate': item.desc_type == 2 }"
-            width="60"
-            height="100"
+            width="45"
             :src="item.icon"
             :alt="item.name"
           ></nuxt-img>
@@ -343,15 +342,13 @@ export default {
     handleClike: throttle(async function (event) {
       let ele = event.target.nodeName
       this.clickCount++
-      console.log('点击', this.type)
-      console.log('点击', this.clickCount)
       const typeNum = {
         1: 3,
         2: 5,
         3: 3,
         4: 1,
       }
-      if (typeNum[this.type] === this.clickCount) {
+      if (typeNum[this.type] === this.clickCount && this.$refs.list_mask) {
         this.$refs.list_mask.style.display = 'block' //阻止点击
       }
       //   if (this.inPlay && this.type === '4') {
@@ -608,10 +605,14 @@ export default {
   }
   .tip-img-list {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 40px);
+    // display: grid;
+    // grid-template-columns: repeat(auto-fill, 40px);
+    display: flex;
     grid-gap: 6px;
     justify-content: center;
+    img {
+      max-height: 90px;
+    }
   }
   .tip-text {
     font-family: 'Rubik';
@@ -647,7 +648,7 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 22px;
   font-family: 'Rubik';
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 14px;
   line-height: 18px;
   -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
@@ -888,6 +889,9 @@ export default {
           width: 100%;
           height: 100%;
           object-fit: cover;
+        }
+        img {
+          max-height: 90 * $pr;
         }
       }
       .handle-btn {

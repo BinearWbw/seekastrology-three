@@ -125,12 +125,12 @@
               <div class="details_footer_list_item_text_title">
                 {{ item.name }}
               </div>
-              <div class="details_footer_list_item_text_subscribe">
+              <!-- <div class="details_footer_list_item_text_subscribe">
                 {{ item.text }}
-              </div>
-              <div class="details_footer_list_item_text_date">
+              </div> -->
+              <!-- <div class="details_footer_list_item_text_date">
                 {{ $utils.formatMMDD(item.created_at) }}
-              </div>
+              </div> -->
             </div>
           </template>
           <template v-else>
@@ -146,9 +146,9 @@
                 alt=""
                 class="details_footer_list_item_img_play"
               />
-              <div class="details_footer_list_item_img_time">
+              <!-- <div class="details_footer_list_item_img_time">
                 {{ $utils.formatMMSS(item.sec) }}
-              </div>
+              </div> -->
               <div class="details_footer_list_item_img_tarot">TAROT</div>
             </div>
             <div class="details_footer_list_item_vtitle">
@@ -306,7 +306,7 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 12px;
             line-height: 16px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
           }
           span {
             margin: 0 5px;
@@ -348,7 +348,7 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 14px;
               line-height: 18px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               margin-left: 18px;
             }
           }
@@ -391,7 +391,7 @@ $spacing: 16px;
               font-weight: 400;
               font-size: 16px;
               line-height: 28px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               margin-bottom: 20px;
               // word-break: break-all;
               background: transparent !important;
@@ -446,7 +446,7 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -468,21 +468,22 @@ $spacing: 16px;
       font-family: 'Cinzel Decorative';
       font-style: normal;
       font-weight: 700;
-      font-size: 26px;
-      line-height: 36px;
+      font-size: 36px;
+      line-height: 48px;
       color: #ffffff;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
+      text-align: center;
     }
     &_list {
       display: grid;
-      grid-template-columns: repeat(3, 456px);
+      grid-template-columns: repeat(4, 338px);
       grid-gap: 16px;
       margin-bottom: 130px;
       &_item {
         display: block;
         &_img {
-          width: 456px;
-          height: 280px;
+          width: 100%px;
+          height: 225px;
           position: relative;
           object-fit: cover;
           &_pic {
@@ -491,16 +492,16 @@ $spacing: 16px;
             object-fit: cover;
           }
           &_video {
-            width: 456px;
-            height: 280px;
+            width: 100%;
+            height: 100%;
           }
           &_play {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 82px;
-            height: 82px;
+            width: 52px;
+            height: 52px;
           }
 
           &_time {
@@ -534,7 +535,7 @@ $spacing: 16px;
           text-align: center;
           color: #ffffff;
           margin-top: 16px;
-          width: 456px;
+          width: 100%;
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
@@ -546,15 +547,16 @@ $spacing: 16px;
             font-family: 'Rubik';
             font-style: normal;
             font-weight: 400;
-            font-size: 22px;
-            line-height: 30px;
             text-align: center;
-            color: #ffffff;
-            margin-top: 16px;
-            width: 456px;
+            color: #fff;
+            margin-top: 12px;
+            font-size: 16px;
+            line-height: 22px;
             overflow: hidden;
-            white-space: nowrap;
             text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
           }
           &_date {
             font-family: 'Rubik';
@@ -562,7 +564,7 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
             margin-top: 8px;
             text-align: center;
           }
@@ -572,7 +574,7 @@ $spacing: 16px;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
             margin-top: 8px;
             text-align: center;
             overflow: hidden;

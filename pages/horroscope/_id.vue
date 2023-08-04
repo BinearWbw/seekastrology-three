@@ -379,7 +379,7 @@ export default {
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 28px;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 ::v-deep(:first-child) {
                   display: inline;
                 }
@@ -458,7 +458,7 @@ export default {
               font-size: 16px;
               line-height: 22px;
               text-align: center;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               margin: 16px 0;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -474,14 +474,14 @@ export default {
               font-family: 'Rubik';
               font-size: 14px;
               line-height: 18px;
-              color: rgba(255, 255, 255, 0.85);
+              color: rgba(255, 255, 255, 0.6);
               -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
               transition: background-color 0.3s, color 0.3s;
             }
           }
           &:hover {
             transform: translateY(-10px);
-            border-color: rgba(255, 255, 255, 0.85);
+            border-color: rgba(255, 255, 255, 0.6);
             .more_text {
               .button {
                 color: #000;

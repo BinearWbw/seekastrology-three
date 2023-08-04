@@ -428,16 +428,25 @@ $spacing: 55px;
 
 .green-border {
   border: 1px solid #4beb6e !important;
+  label {
+    color: #fff !important;
+  }
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .red-border {
   border: 1px solid #ff3e3e !important;
+  label {
+    color: #fff !important;
+  }
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 .stop-next {
   color: rgba(255, 255, 255, 0.7) !important;
   background: transparent !important;
-  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid #45454d !important;
   // pointer-events: none !important;
+  opacity: 0.5;
 }
 .details {
   width: 100%;
@@ -466,7 +475,7 @@ $spacing: 55px;
             font-weight: 400;
             font-size: 12px;
             line-height: 16px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.6);
           }
           span {
             margin: 0 5px;
@@ -482,7 +491,7 @@ $spacing: 55px;
                 font-weight: 400;
                 font-size: 22px;
                 line-height: 30px;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
               }
               &_desc {
                 font-family: 'Rubik';
@@ -490,7 +499,7 @@ $spacing: 55px;
                 font-weight: 400;
                 font-size: 14px;
                 line-height: 18px;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 margin-top: 16px;
               }
             }
@@ -520,19 +529,25 @@ $spacing: 55px;
               &_item {
                 width: 338px;
                 min-height: 40px;
-                background: rgba(255, 255, 255, 0.1);
+                background-color: rgba(255, 255, 255, 0.06);
                 border-radius: 18px;
                 display: flex;
                 align-items: center;
                 border: 1px solid transparent;
                 cursor: pointer;
+                &:hover {
+                  background-color: rgba(255, 255, 255, 0.1);
+                  p {
+                    color: #fff;
+                  }
+                }
                 label {
                   font-family: 'Rubik';
                   font-style: normal;
                   font-weight: 400;
                   font-size: 16px;
                   line-height: 22px;
-                  color: #ffffff;
+                  color: rgba(255, 255, 255, 0.6);
                   width: 100%;
                   display: flex;
                   align-items: center;
@@ -543,7 +558,7 @@ $spacing: 55px;
                     cursor: pointer;
                     display: block;
                     word-wrap: break-word;
-                    padding: 10px 10px 10px 0;
+                    padding: 19px 10px 19px 0;
                   }
                   input {
                     margin-left: 31px;
@@ -563,7 +578,7 @@ $spacing: 55px;
                         display: block;
                         position: absolute;
                         content: '';
-                        background: url('../../../assets/img/resources/checked.png')
+                        background: url('~/assets/img/resources/checked.png')
                           no-repeat center center;
                         width: 21px;
                         height: 16px;
@@ -583,7 +598,7 @@ $spacing: 55px;
                 font-weight: 400;
                 font-size: 22px;
                 line-height: 30px;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
               }
               &_btn {
                 margin-left: 6px;
@@ -662,17 +677,17 @@ $spacing: 55px;
             justify-content: center;
             width: 300px;
             height: 46px;
-            background: rgba(1, 1, 2, 0.9);
-            border-radius: 30px;
             font-family: 'Rubik';
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
-            color: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.6);
             margin-top: 50px;
             cursor: pointer;
+            border-radius: 42px;
+            border: 1px solid #45454d;
+            background: rgba(217, 217, 217, 0);
           }
         }
       }
@@ -715,7 +730,7 @@ $spacing: 55px;
                 font-size: 16px;
                 line-height: 22px;
                 text-align: center;
-                color: rgba(255, 255, 255, 0.85);
+                color: rgba(255, 255, 255, 0.6);
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
@@ -931,7 +946,7 @@ $spacing: 55px;
                   font-weight: 400;
                   font-size: 14 * $pr;
                   line-height: 18 * $pr;
-                  color: rgba(255, 255, 255, 0.85);
+                  color: rgba(255, 255, 255, 0.6);
                 }
                 &_btn {
                   width: 136 * $pr;
