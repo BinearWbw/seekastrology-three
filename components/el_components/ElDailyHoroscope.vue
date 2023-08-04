@@ -153,18 +153,12 @@ export default {
       .button {
         width: 220px;
         height: 44px;
-        border: 1px solid #45454d;
         border-radius: 42px;
         font-family: 'Rubik';
-        color: rgba(255, 255, 255, 0.6);
         font-size: 16px;
         line-height: 22px;
-        -webkit-transition: background-color 0.3s, -webkit-color 0.3s;
-        transition: background-color 0.3s, color 0.3s;
-        &:hover {
-          color: #000;
-          background-color: #fff;
-        }
+        background-color: #fff;
+        color: #000;
       }
     }
   }

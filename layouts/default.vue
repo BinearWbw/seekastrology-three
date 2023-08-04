@@ -70,7 +70,7 @@ export default {
 }
 .main {
   min-height: 100vh;
-  overflow-y: hidden;
+  overflow: hidden;
   //   background: url('/img/bg.png');
   position: relative;
   .home_bg {
