@@ -407,6 +407,7 @@ export default {
       }
     },
     shuffleCards(param, event) {
+      console.log('当前的hover')
       let index = event.target.dataset.index
       if (!index) {
         return
