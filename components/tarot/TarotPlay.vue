@@ -60,6 +60,7 @@
         ref="tarotWrapper"
         v-if="!isSelected && questionTop"
         :key="'tarotWrapper' + type"
+        @mousemove="shuffleOuter($event)"
       >
         <div
           class="card-row"
@@ -231,6 +232,7 @@
 
 <script>
 import { throttle } from 'lodash'
+import { gsap } from 'gsap'
 export default {
   name: 'TarotPlay',
   props: {
@@ -299,9 +301,13 @@ export default {
         4: 'The Tarot Card of the Day is...',
       },
       clickCount: 0,
+      pointers: [], //鼠标惯性位置
+      tarotWrapperEl: null, //获取父盒子
     }
   },
-  mounted() {},
+  mounted() {
+    this.initCardlist()
+  },
   methods: {
     handleInput() {
       if (!this.question.trim()) {
@@ -406,32 +412,73 @@ export default {
           break
       }
     },
+    shuffleOuter(event) {
+      //父盒鼠标
+      this.pointers[0].dx = (event.clientX - this.pointers[0].x) * 9.0
+      this.pointers[0].dy = (event.clientY - this.pointers[0].y) * 9.0
+      this.pointers[0].x = event.clientX
+      this.pointers[0].y = event.clientY
+      const tarotWrapperEl = this.$refs.tarotWrapper
+      this.pointers[0].fw = tarotWrapperEl.offsetWidth
+      this.pointers[0].fh = tarotWrapperEl.offsetHeight
+    },
     shuffleCards(param, event) {
-      console.log('当前的hover')
+      // 子盒鼠标
       let index = event.target.dataset.index
       if (!index) {
         return
       }
-      let flag = Math.random() * 10 > 5 ? '+' : '-' // 正负数标识
-
-      let card = this.$refs[`${param}${index}`][0]
+      let card = this.$refs[`${param}${index}`][0] // 当前子卡片
       //  元素之前的位置
       let leftValue = parseInt(card.style.left, 10)
       let topValue = parseInt(card.style.top, 10)
-      // 根据元素之前位置，靠修改正负值限制在容器内
-      if (leftValue < -130 || topValue < 140) {
-        flag = '+'
-      } else if (leftValue > 890 || topValue > 440) {
-        flag = '-'
-      }
 
-      card.style.left =
-        leftValue + Number(flag + Math.floor(Math.random() * 130)) + 'px'
-      card.style.top =
-        topValue + Number(flag + Math.floor((Math.random() * 220) / 2)) + 'px'
-      card.style.transform = `rotate(${flag}${Math.floor(
-        Math.random() * 90
-      )}deg)`
+      //----------------------Y轴超出距离限制--------------------------
+
+      const minimumY =
+        topValue <= 160
+          ? -200
+          : topValue <= 240
+          ? -300
+          : topValue <= 404
+          ? -450
+          : 0
+      const maximumY =
+        topValue <= 160
+          ? 200
+          : topValue <= 240
+          ? 300
+          : topValue <= 404
+          ? 130
+          : 0
+
+      //---------------------测X的超出距离限制-----------------------
+
+      const minElfs = (this.pointers[0].fw + leftValue) / 2.5 //type == 4
+      const minbais = leftValue < 150 ? (minElfs * 60) / 100 : minElfs //type == 4
+
+      const minimumXs = (this.pointers[0].fw + leftValue) / 3 //type 1-3
+      const minbaisXs = leftValue < 161 ? minimumXs / 1.7 : minimumXs //type 1-3
+
+      const minimumX = this.type == 4 ? minbais : minbaisXs
+
+      const maximumX = (this.pointers[0].fw - leftValue) / 2 //通用
+
+      const clampedX = Math.min(
+        Math.max(this.pointers[0].dx, -minimumX),
+        maximumX
+      )
+      const clampedY = Math.min(
+        Math.max(this.pointers[0].dy, minimumY),
+        maximumY
+      )
+
+      gsap.to(this.$refs[`${param}${index}`][0], {
+        x: clampedX,
+        y: clampedY,
+        rotation: Math.floor(Math.random() * 90),
+        duration: 1,
+      })
     },
     randomCards() {
       // 90 150
@@ -464,6 +511,18 @@ export default {
         sessionStorage.setItem('cardsInfo', JSON.stringify(this.showList))
         window.location = `/tarot/answer/?type=${this.type}`
       }
+    },
+    initCardlist() {
+      function pointerPrototype() {
+        this.id = -1
+        this.x = 0
+        this.y = 0
+        this.dx = 0
+        this.dy = 0
+        this.fw = 0
+        this.fh = 0
+      }
+      this.pointers.push(new pointerPrototype())
     },
   },
 }

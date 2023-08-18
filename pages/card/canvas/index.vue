@@ -9,9 +9,8 @@
         ref="cardlist"
         v-for="(iten, index) in cardArrey"
         :key="index"
-        :style="{
-          left: (index + 10) * 20 + 'px',
-        }"
+        :style="{ transform: `translate(${index * 30}px,${index * 50})` }"
+        @click="onListCard(index)"
       >
         <img src="../../../assets/img/tarot/card.png" alt="#" />
       </div>
@@ -27,7 +26,7 @@ export default {
       boxes: [],
       canvas: null,
       ctx: null,
-      cardArrey: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      cardArrey: [1, 2, 3, 4, 5],
     }
   },
   mounted() {
@@ -36,6 +35,12 @@ export default {
   methods: {
     getMousePosition() {
       console.log('传入的鼠标信息::=>>>')
+    },
+    onListCard(i) {
+      console.log('点击当前图片', i)
+    },
+    cardPosition(i) {
+      return (i + 10) * 20
     },
     initCanvas() {
       const canvas = this.$refs.canvas
@@ -557,7 +562,7 @@ export default {
       }
 
       function splat(x, y, dx, dy, color) {
-        // console.log('splatx', color)
+        // console.log('splatx', dx, dy)
         splatProgram.bind()
         gl.uniform1i(splatProgram.uniforms.uTarget, velocity.first[2])
         gl.uniform1f(
@@ -638,13 +643,19 @@ export default {
 
         pointers[0].down = true
         pointers[0].color = colorArr
+        // console.log('移动位置', (e.clientX - pointers[0].x) * 9)
         pointers[0].moved = pointers[0].down
         pointers[0].dx = (e.clientX - pointers[0].x) * 9.0
         pointers[0].dy = (e.clientY - pointers[0].y) * 9.0
         pointers[0].x = e.clientX
         pointers[0].y = e.clientY
 
-        // console.log('外部的烟雾', pointers[0].y)
+        // console.log('外部XXX位置', pointers[0].dx)
+        // console.log('子元素的XXX位置', (e.clientX - pointers[0].x) * 9.0)
+        //   console.log('子元素信息', box.offsetLeft, box.clientWidth)
+        // console.log('子元素的YYY位置', (e.clientY - pointers[0].y) * 9.0)
+        // console.log('子元素的YYY位置', pointers[0].y)
+        // console.log('外部的烟雾', pointers[0].dy)
       })
 
       cardList.forEach((box, index) => {
@@ -653,62 +664,97 @@ export default {
         box.addEventListener('mousemove', (e) => {
           mouseX = e.clientX - box.offsetLeft - box.clientWidth / 2
           mouseY = e.clientY - box.offsetTop - box.clientHeight / 2
+          //   console.log('子盒子宽度', box.offsetWidth, box.offsetLeft)
+          //   console.log('父盒子高度', cardEl.clientHeight)
+          //   console.log('鼠标XXX位置', (e.clientX - pointers[0].x) * 9.0)
+          //   console.log('子元素信息', box.offsetLeft, box.clientWidth)
+          //   console.log('鼠标YYY位置', (e.clientY - pointers[0].y) * 9.0)
+
+          const cardElRect = cardEl.getBoundingClientRect()
+
+          console.log('父盒子的信息', cardElRect)
+
+          //   box.offsetWidth  盒子更准确的宽度，包括边框
+          const minLeft = box.offsetWidth / 2
+
+          console.log('子元素的宽度/2', minLeft)
+          const maxLeft = cardElRect.width - box.offsetWidth / 2
+
+          const newX = Math.min(Math.max(mouseX, minLeft), maxLeft)
+          const newY = Math.min(
+            Math.max(mouseY, box.offsetHeight / 2),
+            cardElRect.height - box.offsetHeight / 2
+          )
+
+          //   child.style.transform = `translate(${newX - childWidth / 2}px, ${
+          //     newY - childHeight / 2
+          //   }px)`
+
+          //   console.log(
+          //     '限制子X',
+          //     Math.min(
+          //       Math.max((e.clientX - pointers[0].x) * 9.0, cardElRect.left),
+          //       cardEl.clientWidth
+          //     )
+          //   )
+          //   console.log(
+          //     '限制子Y',
+          //     Math.min(
+          //       Math.max((e.clientY - pointers[0].x) * 9.0, 0),
+          //       cardEl.clientHeight
+          //     )
+          //   )
 
           gsap.to(box, {
-            // x: mouseX,
-            // y: mouseY,
-            x: Math.min(
-              Math.max(mouseX, 0),
-              cardEl.clientWidth - box.clientWidth
-            ),
-            y: Math.min(
-              Math.max(mouseY, 0),
-              cardEl.clientHeight - box.clientHeight
-            ),
-            rotation: Math.random() * 130,
-            duration: 1,
+            x: (e.clientX - pointers[0].x) * 9.0,
+            y: (e.clientY - pointers[0].y) * 9.0,
+
+            // x: newX - box.offsetWidth / 2,
+            // y: newY - box.offsetHeight / 2,
+            rotation: Math.floor(Math.random() * 130),
+            duration: 2,
           })
         })
       })
 
-      canvas.addEventListener(
-        'touchmove',
-        function (e) {
-          e.preventDefault()
+      //   canvas.addEventListener(
+      //     'touchmove',
+      //     function (e) {
+      //       e.preventDefault()
 
-          var touches = e.targetTouches
+      //       var touches = e.targetTouches
 
-          count++
+      //       count++
 
-          count > 25 &&
-            ((colorArr = [
-              Math.random() + 0.2,
-              Math.random() + 0.2,
-              Math.random() + 0.2,
-            ]),
-            (count = 0))
+      //       count > 25 &&
+      //         ((colorArr = [
+      //           Math.random() + 0.2,
+      //           Math.random() + 0.2,
+      //           Math.random() + 0.2,
+      //         ]),
+      //         (count = 0))
 
-          for (var i = 0, len = touches.length; i < len; i++) {
-            if (i >= pointers.length) pointers.push(new pointerPrototype())
+      //       for (var i = 0, len = touches.length; i < len; i++) {
+      //         if (i >= pointers.length) pointers.push(new pointerPrototype())
 
-            pointers[i].id = touches[i].identifier
-            pointers[i].down = true
-            pointers[i].x = touches[i].pageX
-            pointers[i].y = touches[i].pageY
-            // pointers[i].color = colorArr
+      //         pointers[i].id = touches[i].identifier
+      //         pointers[i].down = true
+      //         pointers[i].x = touches[i].pageX
+      //         pointers[i].y = touches[i].pageY
+      //         // pointers[i].color = colorArr
 
-            var pointer = pointers[i]
+      //         var pointer = pointers[i]
 
-            pointer.moved = pointer.down
-            pointer.dx = (touches[i].pageX - pointer.x) * 10.0
-            pointer.dy = (touches[i].pageY - pointer.y) * 10.0
-            pointer.x = touches[i].pageX
-            pointer.y = touches[i].pageY
-            console.log('pointer.dx', pointer.dx)
-          }
-        },
-        false
-      )
+      //         pointer.moved = pointer.down
+      //         pointer.dx = (touches[i].pageX - pointer.x) * 10.0
+      //         pointer.dy = (touches[i].pageY - pointer.y) * 10.0
+      //         pointer.x = touches[i].pageX
+      //         pointer.y = touches[i].pageY
+      //         console.log('pointer.dx', pointer.dx)
+      //       }
+      //     },
+      //     false
+      //   )
     },
   },
 }
@@ -732,13 +778,20 @@ export default {
   }
 
   .card_content {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    // padding: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
     .card_list {
-      width: 150px;
-      height: 300px;
+      width: 130px;
+      height: 220px;
       border-radius: 12px;
       border: 1px solid #fff;
       position: absolute;
